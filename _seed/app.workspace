@@ -1,16 +1,12 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
 <CodeBlocks_workspace_file>
 	<Workspace title="simple">
-		<Project filename="../app/app.cbp">
-			<Depends filename="../../app/aura/aura.cbp" />
-		</Project>
 		<Project filename="../../app/app/app_app.cbp">
 			<Depends filename="../../app/aura/aura.cbp" />
 			<Depends filename="../../app/draw2d_cairo/cairo.cbp" />
 			<Depends filename="../../app/imaging_freeimage/imaging_freeimage.cbp" />
 		</Project>
 		<Project filename="../../app/shader/app_shader.cbp">
-			<Depends filename="../app/app.cbp" />
 			<Depends filename="../../app/aura/aura.cbp" />
 			<Depends filename="../../app/draw2d_cairo/cairo.cbp" />
 			<Depends filename="../../app/gpu_opengl/gpu_opengl.cbp" />
