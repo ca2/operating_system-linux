@@ -10,6 +10,8 @@
 			<Depends filename="../../app/aura/aura.cbp" />
 			<Depends filename="../../app/axis/axis.cbp" />
 		</Project>
-		<Project filename="../../console/readlines/readlines.cbp" />
+		<Project filename="../../console/readlines/readlines.cbp">
+			<Depends filename="../../app/aura/aura.cbp" />
+		</Project>
 	</Workspace>
 </CodeBlocks_workspace_file>
