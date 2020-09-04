@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
+<CodeBlocks_workspace_file>
+	<Workspace title="__hello">
+		<Project filename="../../app/aura/aura.cbp" />
+		<Project filename="../../app/axis/axis.cbp" />
+		<Project filename="../../console/helloearth/helloearth.cbp">
+			<Depends filename="../../app/aura/aura.cbp" />
+		</Project>
+		<Project filename="../../console/hellosolarsystem/hellosolarsystem.cbp">
+			<Depends filename="../../app/aura/aura.cbp" />
+			<Depends filename="../../app/axis/axis.cbp" />
+		</Project>
+		<Project filename="../../console/readlines/readlines.cbp" />
+	</Workspace>
+</CodeBlocks_workspace_file>
