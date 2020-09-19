@@ -90,7 +90,8 @@
 		</Compiler>
 		<Linker>
 			<Add option="-Wl,-rpath=\\$$$ORIGIN" />
-			<Add option="-laura" />
+			<Add option="-lacme" />
+			<Add option="-lapex" />
 			<Add option="-Wl,-z,defs" />
 			<Add directory="$(#time_dir)/x64/$(TARGET_NAME)" />
 			<Add directory="/usr/lib64/mysql/" />

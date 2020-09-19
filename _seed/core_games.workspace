@@ -1,6 +1,10 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
 <CodeBlocks_workspace_file>
 	<Workspace title="core_games">
+		<Project filename="../../app/acme/acme.cbp" />
+		<Project filename="../../app/apex/apex.cbp">
+			<Depends filename="../../app/acme/acme.cbp" />
+		</Project>
 		<Project filename="../../game/coincube/coincube.cbp">
 			<Depends filename="../../app-core/gcom/gcom.cbp" />
 			<Depends filename="../../app-core/multimedia/multimedia.cbp" />

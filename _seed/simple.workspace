@@ -1,6 +1,10 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
 <CodeBlocks_workspace_file>
 	<Workspace title="simple">
+		<Project filename="../../app/acme/acme.cbp" />
+		<Project filename="../../app/apex/apex.cbp">
+			<Depends filename="../../app/acme/acme.cbp" />
+		</Project>
 		<Project filename="../app/app.cbp">
 			<Depends filename="../../app/aura/aura.cbp" />
 		</Project>
@@ -20,12 +24,18 @@
 			<Depends filename="../../third/sn/sn.cbp" />
 		</Project>
 		<Project filename="../../app-simple/box/simple_box.cbp">
+			<Depends filename="../../app/acme/acme.cbp" />
+			<Depends filename="../../app/apex/apex.cbp" />
 			<Depends filename="../../app/aura/aura.cbp" />
 			<Depends filename="../../app/draw2d_cairo/cairo.cbp" />
 			<Depends filename="../../app/experience_core/experience_core.cbp" />
 		</Project>
 		<Project filename="../../app-simple/drawing/simple_drawing.cbp">
+			<Depends filename="../../app/acme/acme.cbp" />
+			<Depends filename="../../app/apex/apex.cbp" />
 			<Depends filename="../app/app.cbp" />
+			<Depends filename="../../app/aura/aura.cbp" />
+			<Depends filename="../../app/axis/axis.cbp" />
 			<Depends filename="../../app/base/base.cbp" />
 			<Depends filename="../../app/draw2d_cairo/cairo.cbp" />
 			<Depends filename="../../app/experience_core/experience_core.cbp" />
