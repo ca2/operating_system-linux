@@ -123,7 +123,7 @@ namespace multimedia
 
             m_iBufferCount = 8;
 
-            printf("::wave::purpose_playback %d\n", m_frameCount);
+            printf("::wave::purpose_playback %ld\n", m_frameCount);
 
          }
          else

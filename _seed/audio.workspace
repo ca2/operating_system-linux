@@ -87,6 +87,9 @@
 		</Project>
 		<Project filename="../../app-core/audio_decode_wave/audio_decode_wave.cbp" />
 		<Project filename="../../app/aura/aura.cbp" />
+		<Project filename="../../app/axis/axis.cbp" />
+		<Project filename="../../app/base/base.cbp" />
+		<Project filename="../../app/core/core.cbp" />
 		<Project filename="../../app/draw2d_cairo/cairo.cbp">
 			<Depends filename="../../app/aura/aura.cbp" />
 		</Project>
@@ -97,8 +100,5 @@
 			<Depends filename="../../app/aura/aura.cbp" />
 		</Project>
 		<Project filename="../../app-core/userdatetime/userdatetime.cbp" />
-		<Project filename="../../app/axis/axis.cbp" />
-		<Project filename="../../app/base/base.cbp" />
-		<Project filename="../../app/core/core.cbp" />
 	</Workspace>
 </CodeBlocks_workspace_file>

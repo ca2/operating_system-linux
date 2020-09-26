@@ -21,6 +21,9 @@
 					<Add option="-fPIC" />
 					<Add option="-g" />
 					<Add option="-D_DEBUG" />
+					<Add directory="$(WORKSPACE_DIR)/../../platform-linux" />
+					<Add directory="$(WORKSPACE_DIR)/../../platform-linux/_include" />
+					<Add directory="$(#archive)/third-linux/third/include" />
 				</Compiler>
 			</Target>
 			<Target title="linux_stage">
@@ -60,8 +63,8 @@
 			</Target>
 		</Build>
 		<Compiler>
-			<Add option="-fPIC" />
 			<Add option="-std=c++17" />
+			<Add option="-fPIC" />
 			<Add option="-fexceptions" />
 			<Add option="-fnon-call-exceptions" />
 			<Add option="-fno-pie" />
@@ -85,6 +88,8 @@
 		</Compiler>
 		<Linker>
 			<Add option="-Wl,-rpath=\\$$$ORIGIN" />
+			<Add option="-lacme" />
+			<Add option="-lapex" />
 			<Add option="-laura" />
 			<Add option="-laudio" />
 			<Add option="-lasound" />

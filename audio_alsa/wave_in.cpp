@@ -26,7 +26,7 @@ namespace multimedia
 
       estatus wave_in::init_thread()
       {
-         TRACE("wave_in::initialize_instance %X\n", get_os_int());
+         TRACE("wave_in::initialize_instance %X\n", get_ithread());
          //SetMainWnd(NULL);
          //ASSERT(GetMainWnd() == NULL);
          set_thread_priority(::priority_highest);
