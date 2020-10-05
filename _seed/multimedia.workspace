@@ -24,7 +24,10 @@
 			<Depends filename="../../app/experience_anthill/experience_anthill.cbp" />
 			<Depends filename="../../app/experience_core/experience_core.cbp" />
 			<Depends filename="../../app-core/gcom/gcom.cbp" />
+			<Depends filename="../../app/imaging_freeimage/imaging_freeimage.cbp" />
 			<Depends filename="../../app-core/multimedia/multimedia.cbp" />
+			<Depends filename="../music_midi_alsa/music_midi_alsa.cbp" />
+			<Depends filename="../../third/sn/sn.cbp" />
 			<Depends filename="../../app-veriwell/multimedia/veriwell_multimedia.cbp" />
 		</Project>
 		<Project filename="../../app-veriwell/verisimplevideo/verisimplevideo.cbp">
@@ -74,6 +77,9 @@
 		</Project>
 		<Project filename="../../app/aura/aura.cbp">
 			<Depends filename="../../app/acme/acme.cbp" />
+			<Depends filename="../../app/apex/apex.cbp" />
+			<Depends filename="../../app/aqua/aqua.cbp" />
+			<Depends filename="../../third/sn/sn.cbp" />
 		</Project>
 		<Project filename="../../app/axis/axis.cbp">
 			<Depends filename="../../app/acme/acme.cbp" />
@@ -90,12 +96,27 @@
 		<Project filename="../../app/draw2d_cairo/cairo.cbp" />
 		<Project filename="../../app/experience_anthill/experience_anthill.cbp" />
 		<Project filename="../../app/experience_core/experience_core.cbp" />
-		<Project filename="../../app-core/gcom/gcom.cbp" />
+		<Project filename="../../app-core/gcom/gcom.cbp">
+			<Depends filename="../../app/acme/acme.cbp" />
+			<Depends filename="../../app/apex/apex.cbp" />
+			<Depends filename="../../app/aqua/aqua.cbp" />
+			<Depends filename="../../app/aura/aura.cbp" />
+			<Depends filename="../../app/axis/axis.cbp" />
+		</Project>
+		<Project filename="../../app/imaging_freeimage/imaging_freeimage.cbp" />
 		<Project filename="../../app-core/multimedia/multimedia.cbp">
+			<Depends filename="../../app/acme/acme.cbp" />
+			<Depends filename="../../app/apex/apex.cbp" />
 			<Depends filename="../../app-core/audio/audio.cbp" />
 			<Depends filename="../../app/aura/aura.cbp" />
+			<Depends filename="../../app/axis/axis.cbp" />
+			<Depends filename="../../app/base/base.cbp" />
+			<Depends filename="../../app/bred/bred.cbp" />
+			<Depends filename="../../app/core/core.cbp" />
 			<Depends filename="../../app-core/gcom/gcom.cbp" />
 		</Project>
+		<Project filename="../music_midi_alsa/music_midi_alsa.cbp" />
+		<Project filename="../../third/sn/sn.cbp" />
 		<Project filename="../../app-core/userdatetime/userdatetime.cbp" />
 		<Project filename="../../app-veriwell/multimedia/veriwell_multimedia.cbp">
 			<Depends filename="../../app/acme/acme.cbp" />
