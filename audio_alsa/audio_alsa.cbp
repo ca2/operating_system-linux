@@ -90,7 +90,7 @@
 			<Add option="-Wl,-rpath=\\$$$ORIGIN" />
 			<Add option="-lacme" />
 			<Add option="-lapex" />
-			<Add option="-laura" />
+			<Add option="-laqua" />
 			<Add option="-laudio" />
 			<Add option="-lasound" />
 			<Add option="-Wl,-z,defs" />

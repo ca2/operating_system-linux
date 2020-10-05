@@ -54,17 +54,45 @@
 			<Depends filename="../../app/gpu_opengl/gpu_opengl.cbp" />
 			<Depends filename="../../app/shader/lib_app_shader.cbp" />
 		</Project>
+		<Project filename="../../app/aqua/aqua.cbp">
+			<Depends filename="../../app/acme/acme.cbp" />
+			<Depends filename="../../app/apex/apex.cbp" />
+		</Project>
 		<Project filename="../../app/aura/aura.cbp">
+			<Depends filename="../../app/acme/acme.cbp" />
+			<Depends filename="../../app/apex/apex.cbp" />
+			<Depends filename="../../app/aqua/aqua.cbp" />
 			<Depends filename="../../third/sn/sn.cbp" />
 		</Project>
 		<Project filename="../../app/axis/axis.cbp">
+			<Depends filename="../../app/acme/acme.cbp" />
+			<Depends filename="../../app/apex/apex.cbp" />
+			<Depends filename="../../app/aqua/aqua.cbp" />
 			<Depends filename="../../app/aura/aura.cbp" />
 		</Project>
 		<Project filename="../../app/base/base.cbp">
+			<Depends filename="../../app/acme/acme.cbp" />
+			<Depends filename="../../app/apex/apex.cbp" />
+			<Depends filename="../../app/aqua/aqua.cbp" />
+			<Depends filename="../../app/aura/aura.cbp" />
 			<Depends filename="../../app/axis/axis.cbp" />
 		</Project>
-		<Project filename="../../app/core/core.cbp">
+		<Project filename="../../app/bred/bred.cbp">
+			<Depends filename="../../app/acme/acme.cbp" />
+			<Depends filename="../../app/apex/apex.cbp" />
+			<Depends filename="../../app/aqua/aqua.cbp" />
+			<Depends filename="../../app/aura/aura.cbp" />
+			<Depends filename="../../app/axis/axis.cbp" />
 			<Depends filename="../../app/base/base.cbp" />
+		</Project>
+		<Project filename="../../app/core/core.cbp">
+			<Depends filename="../../app/acme/acme.cbp" />
+			<Depends filename="../../app/apex/apex.cbp" />
+			<Depends filename="../../app/aqua/aqua.cbp" />
+			<Depends filename="../../app/aura/aura.cbp" />
+			<Depends filename="../../app/axis/axis.cbp" />
+			<Depends filename="../../app/base/base.cbp" />
+			<Depends filename="../../app/bred/bred.cbp" />
 		</Project>
 		<Project filename="../../app/draw2d_cairo/cairo.cbp">
 			<Depends filename="../../app/aura/aura.cbp" />

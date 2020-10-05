@@ -6,12 +6,24 @@
 			<Depends filename="../../app/acme/acme.cbp" />
 		</Project>
 		<Project filename="../../app-veriwell/waven/waven.cbp">
+			<Depends filename="../../app/acme/acme.cbp" />
+			<Depends filename="../../app/apex/apex.cbp" />
 			<Depends filename="../app/app.cbp" />
 			<Depends filename="../../app-veriwell/asciimedia/asciimedia.cbp" />
+			<Depends filename="../../app/aqua/aqua.cbp" />
+			<Depends filename="../../app-core/audio/audio.cbp" />
+			<Depends filename="../audio_alsa/audio_alsa.cbp" />
 			<Depends filename="../../app-veriwell/audio_decode_libmpg123/audio_decode_libmpg123.cbp" />
+			<Depends filename="../../app-core/audio_decode_wave/audio_decode_wave.cbp" />
 			<Depends filename="../../app/aura/aura.cbp" />
+			<Depends filename="../../app/axis/axis.cbp" />
+			<Depends filename="../../app/base/base.cbp" />
+			<Depends filename="../../app/bred/bred.cbp" />
+			<Depends filename="../../app/core/core.cbp" />
 			<Depends filename="../../app/draw2d_cairo/cairo.cbp" />
 			<Depends filename="../../app/experience_anthill/experience_anthill.cbp" />
+			<Depends filename="../../app/experience_core/experience_core.cbp" />
+			<Depends filename="../../app-core/gcom/gcom.cbp" />
 			<Depends filename="../../app-core/multimedia/multimedia.cbp" />
 			<Depends filename="../../app-veriwell/multimedia/veriwell_multimedia.cbp" />
 		</Project>
@@ -50,6 +62,7 @@
 			<Depends filename="../../app-core/multimedia/multimedia.cbp" />
 			<Depends filename="../../app-veriwell/multimedia/veriwell_multimedia.cbp" />
 		</Project>
+		<Project filename="../../app/aqua/aqua.cbp" />
 		<Project filename="../../app-core/audio/audio.cbp" />
 		<Project filename="../audio_alsa/audio_alsa.cbp" />
 		<Project filename="../../app-veriwell/audio_decode_libmpg123/audio_decode_libmpg123.cbp">
@@ -59,10 +72,21 @@
 		<Project filename="../../app-core/audio_decode_wave/audio_decode_wave.cbp">
 			<Depends filename="../../app-core/multimedia/multimedia.cbp" />
 		</Project>
-		<Project filename="../../app/aura/aura.cbp" />
-		<Project filename="../../app/axis/axis.cbp" />
-		<Project filename="../../app/base/base.cbp" />
-		<Project filename="../../app/core/core.cbp" />
+		<Project filename="../../app/aura/aura.cbp">
+			<Depends filename="../../app/acme/acme.cbp" />
+		</Project>
+		<Project filename="../../app/axis/axis.cbp">
+			<Depends filename="../../app/acme/acme.cbp" />
+		</Project>
+		<Project filename="../../app/base/base.cbp">
+			<Depends filename="../../app/acme/acme.cbp" />
+		</Project>
+		<Project filename="../../app/bred/bred.cbp">
+			<Depends filename="../../app/acme/acme.cbp" />
+		</Project>
+		<Project filename="../../app/core/core.cbp">
+			<Depends filename="../../app/acme/acme.cbp" />
+		</Project>
 		<Project filename="../../app/draw2d_cairo/cairo.cbp" />
 		<Project filename="../../app/experience_anthill/experience_anthill.cbp" />
 		<Project filename="../../app/experience_core/experience_core.cbp" />

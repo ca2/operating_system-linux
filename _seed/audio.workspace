@@ -77,6 +77,11 @@
 			<Depends filename="../../app/experience_core/experience_core.cbp" />
 			<Depends filename="../../app-core/gcom/gcom.cbp" />
 		</Project>
+		<Project filename="../../app/aqua/aqua.cbp">
+			<Depends filename="../../app/acme/acme.cbp" />
+			<Depends filename="../../app/acme/apex.cbp" />
+			<Depends filename="../../app/acme/aqua.cbp" />
+		</Project>
 		<Project filename="../../app-core/audio/audio.cbp">
 			<Depends filename="../../app/aura/aura.cbp" />
 		</Project>
@@ -86,10 +91,38 @@
 			<Depends filename="../../app/aura/aura.cbp" />
 		</Project>
 		<Project filename="../../app-core/audio_decode_wave/audio_decode_wave.cbp" />
-		<Project filename="../../app/aura/aura.cbp" />
-		<Project filename="../../app/axis/axis.cbp" />
-		<Project filename="../../app/base/base.cbp" />
-		<Project filename="../../app/core/core.cbp" />
+		<Project filename="../../app/aura/aura.cbp">
+			<Depends filename="../../app/acme/acme.cbp" />
+			<Depends filename="../../app/acme/apex.cbp" />
+			<Depends filename="../../app/acme/aqua.cbp" />
+		</Project>
+		<Project filename="../../app/axis/axis.cbp">
+			<Depends filename="../../app/acme/acme.cbp" />
+			<Depends filename="../../app/acme/apex.cbp" />
+			<Depends filename="../../app/acme/aqua.cbp" />
+			<Depends filename="../../app/acme/aura.cbp" />
+		</Project>
+		<Project filename="../../app/base/base.cbp">
+			<Depends filename="../../app/acme/acme.cbp" />
+			<Depends filename="../../app/acme/apex.cbp" />
+			<Depends filename="../../app/acme/aqua.cbp" />
+			<Depends filename="../../app/acme/aura.cbp" />
+		</Project>
+		<Project filename="../../app/bred/bred.cbp">
+			<Depends filename="../../app/acme/acme.cbp" />
+			<Depends filename="../../app/acme/apex.cbp" />
+			<Depends filename="../../app/acme/aqua.cbp" />
+			<Depends filename="../../app/acme/aura.cbp" />
+			<Depends filename="../../app/acme/base.cbp" />
+		</Project>
+		<Project filename="../../app/core/core.cbp">
+			<Depends filename="../../app/acme/acme.cbp" />
+			<Depends filename="../../app/acme/apex.cbp" />
+			<Depends filename="../../app/acme/aqua.cbp" />
+			<Depends filename="../../app/acme/aura.cbp" />
+			<Depends filename="../../app/acme/base.cbp" />
+			<Depends filename="../../app/acme/bred.cbp" />
+		</Project>
 		<Project filename="../../app/draw2d_cairo/cairo.cbp">
 			<Depends filename="../../app/aura/aura.cbp" />
 		</Project>

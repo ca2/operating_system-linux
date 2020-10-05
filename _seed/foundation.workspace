@@ -39,6 +39,10 @@
 		<Project filename="../../app-core/hash_crc/hash_crc.cbp" />
 		<Project filename="../../app-core/hash_md5/hash_md5.cbp" />
 		<Project filename="../../app-core/hash_sha1/hash_sha1.cbp" />
+		<Project filename="../../app/aqua/aqua.cbp">
+			<Depends filename="../../app/aura/acme.cbp" />
+			<Depends filename="../../app/aura/apex.cbp" />
+		</Project>
 		<Project filename="../../app-veriwell/audio_decode_libmpg123/audio_decode_libmpg123.cbp">
 			<Depends filename="../../app/aura/aura.cbp" />
 			<Depends filename="../../app-core/multimedia/multimedia.cbp" />
@@ -49,7 +53,41 @@
 		</Project>
 		<Project filename="../../app-core/audio/audio.cbp" />
 		<Project filename="../audio_alsa/audio_alsa.cbp" />
-		<Project filename="../../app/aura/aura.cbp" />
+		<Project filename="../../app/aura/aura.cbp">
+			<Depends filename="../../app/aura/acme.cbp" />
+			<Depends filename="../../app/aura/apex.cbp" />
+			<Depends filename="../../app/aura/aqua.cbp" />
+		</Project>
+		<Project filename="../../app/axis/axis.cbp">
+			<Depends filename="../../app/aura/acme.cbp" />
+			<Depends filename="../../app/aura/apex.cbp" />
+			<Depends filename="../../app/aura/aqua.cbp" />
+			<Depends filename="../../app/aura/aura.cbp" />
+		</Project>
+		<Project filename="../../app/base/base.cbp">
+			<Depends filename="../../app/aura/acme.cbp" />
+			<Depends filename="../../app/aura/apex.cbp" />
+			<Depends filename="../../app/aura/aqua.cbp" />
+			<Depends filename="../../app/aura/aura.cbp" />
+			<Depends filename="../../app/aura/axis.cbp" />
+		</Project>
+		<Project filename="../../app/bred/bred.cbp">
+			<Depends filename="../../app/aura/acme.cbp" />
+			<Depends filename="../../app/aura/apex.cbp" />
+			<Depends filename="../../app/aura/aqua.cbp" />
+			<Depends filename="../../app/aura/aura.cbp" />
+			<Depends filename="../../app/aura/axis.cbp" />
+			<Depends filename="../../app/aura/base.cbp" />
+		</Project>
+		<Project filename="../../app/core/core.cbp">
+			<Depends filename="../../app/aura/acme.cbp" />
+			<Depends filename="../../app/aura/apex.cbp" />
+			<Depends filename="../../app/aura/aqua.cbp" />
+			<Depends filename="../../app/aura/aura.cbp" />
+			<Depends filename="../../app/aura/axis.cbp" />
+			<Depends filename="../../app/aura/base.cbp" />
+			<Depends filename="../../app/aura/bred.cbp" />
+		</Project>
 		<Project filename="../../design/text_format/text_format.cbp">
 			<Depends filename="../../app/aura/aura.cbp" />
 			<Depends filename="../../app/draw2d_cairo/cairo.cbp" />
