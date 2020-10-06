@@ -21,6 +21,7 @@ namespace multimedia
          bool                    m_bStarted;
          uint64_t                m_uiStart;
          snd_pcm_status_t *      m_pstatus;
+         timeval                 m_timevalStart;
 
 
          wave_out();
@@ -29,8 +30,8 @@ namespace multimedia
 
          void install_message_routing(::channel * pchannel) override;
 
-         virtual imedia_time out_get_position_millis();
-         imedia_position out_get_position();
+         virtual imedia_time out_get_time();
+         //imedia_position out_get_position();
 
          //virtual ::estatus wave_out_open(::thread * pthreadCallback, ::count iBufferCount, ::count iBufferSampleCount) override;
          virtual ::estatus out_open_ex(::thread * pthreadCallback, uint32_t uiSamplesPerSec, uint32_t uiChannelCount, uint32_t uiBitsPerSample, ::wave::e_purpose epurpose) override;
@@ -49,11 +50,11 @@ namespace multimedia
          virtual estatus init_thread() override;
          virtual void term_thread() override;
 
-         virtual ::estatus out_start(const imedia_position & position);
+         virtual ::estatus out_start(const imedia_time & time);
 
          virtual int defer_underrun_recovery(int err);
 
-         imedia_time out_get_position_millis_for_synch();
+         imedia_time out_get_time_for_synch();
 
 
       };

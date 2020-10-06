@@ -216,6 +216,24 @@ namespace multimedia
 
          }
 
+         if((err = snd_pcm_sw_params_set_tstamp_mode(m_ppcm, m_pswparams, SND_PCM_TSTAMP_ENABLE)) < 0)
+         {
+
+            TRACE("unable to set time stamp mode: %s\n", snd_strerror(err));
+
+            return error_failed;
+
+         }
+
+         if((err = snd_pcm_sw_params_set_tstamp_type(m_ppcm, m_pswparams,SND_PCM_TSTAMP_TYPE_GETTIMEOFDAY)) <0)
+         {
+
+            TRACE("unable to set time stamp type: %s\n", snd_strerror(err));
+
+            return error_failed;
+
+         }
+
          // write the parameters to the playback device
          if((err = snd_pcm_sw_params(m_ppcm, m_pswparams)) < 0)
          {
@@ -376,7 +394,7 @@ namespace multimedia
       }
 
 
-      imedia_time wave_out::out_get_position_millis()
+      imedia_time wave_out::out_get_time()
       {
 
          sync_lock sl(mutex());
@@ -389,11 +407,15 @@ namespace multimedia
             if(snd_pcm_status(m_ppcm, m_pstatus) == 0)
             {
 
-               snd_htimestamp_t t;
+               snd_timestamp_t t;
 
-               snd_pcm_status_get_htstamp (m_pstatus, &t);
+               snd_pcm_status_get_trigger_tstamp (m_pstatus, &t);
 
-               time = t.tv_sec * 1000 + t.tv_nsec / (1000 * 1000);
+               timeval tnow;
+
+               gettimeofday(&tnow, nullptr);
+
+               time = (tnow.tv_sec - t.tv_sec)*1'000.0 + (tnow.tv_usec - t.tv_usec) / (1'000.0);
 
             }
 
@@ -402,7 +424,7 @@ namespace multimedia
          if(time > 0)
          {
 
-            output_debug_string("test");
+            //output_debug_string("test");
 
          }
 
@@ -411,12 +433,12 @@ namespace multimedia
       }
 
 
-      imedia_position wave_out::out_get_position()
-      {
-
-         return out_get_position_millis();
-
-      }
+//      imedia_position wave_out::out_get_position()
+//      {
+//
+//         return out_get_position_millis()/1'000.0;
+//
+//      }
 
 
       void wave_out::out_on_playback_end()
@@ -579,13 +601,19 @@ namespace multimedia
 
          int iFramesJustWritten = 0;
 
-
          while (iBytesToWrite > 0)
          {
 
             iFramesJustWritten = snd_pcm_writei(m_ppcm, pdata, iFramesToWrite);
 
             iFramesToWrite -= iFramesJustWritten;
+
+            if(!m_bStarted)
+            {
+
+               gettimeofday(&m_timevalStart, nullptr);
+
+            }
 
             m_bStarted = true;
 
@@ -644,7 +672,7 @@ namespace multimedia
             if(iBuffer >= 0)
             {
 
-               m_pprebuffer->m_position += iFramesJustWritten;
+               m_pprebuffer->m_iBytes += iFramesJustWritten;
 
             }
 
@@ -679,7 +707,7 @@ namespace multimedia
       }
 
 
-      imedia_time wave_out::out_get_position_millis_for_synch()
+      imedia_time wave_out::out_get_time_for_synch()
       {
 
          if (m_pprebuffer.is_null())
@@ -689,7 +717,7 @@ namespace multimedia
 
          }
 
-         int64_t dwPosition = m_pprebuffer->m_position;
+         int64_t dwPosition = m_pprebuffer->m_iBytes;
 
          dwPosition *= 1000;
 
@@ -698,12 +726,12 @@ namespace multimedia
 
          dwPosition /= m_pwaveformat->nSamplesPerSec;
 
-         return dwPosition;
+         return dwPosition / 1000.0;
 
       }
 
 
-      ::estatus wave_out::out_start(const imedia_position & position)
+      ::estatus wave_out::out_start(const imedia_time & time)
       {
 
          sync_lock sl(mutex());
@@ -737,7 +765,7 @@ namespace multimedia
 
          m_bStarted = false;
 
-         m_estatusWave = ::wave::out::out_start(position);
+         m_estatusWave = ::wave::out::out_start(time);
 
          if(failed(m_estatusWave))
          {

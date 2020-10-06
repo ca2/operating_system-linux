@@ -338,30 +338,8 @@ namespace music
 
             card = -1;
 
-            if ((err = snd_card_next(&card)) < 0)
+            while(true)
             {
-
-               TRACE("cannot determine card number: %s", snd_strerror(err));
-
-               return false;
-
-            }
-
-            if (card < 0)
-            {
-
-               TRACE("no sound card found");
-
-               return false;
-
-            }
-
-
-            do
-            {
-
-               list_midi_out_card_devices(card);
-
 
                if ((err = snd_card_next(&card)) < 0)
                {
@@ -372,7 +350,16 @@ namespace music
 
                }
 
-            } while (card >= 0);
+               if(card < 0)
+               {
+
+                  break;
+
+               }
+
+               list_midi_out_card_devices(card);
+
+            }
 
             return true;
 
@@ -387,7 +374,7 @@ namespace music
             int device;
             int err;
 
-            sprintf(name, "hw:%d", card);
+            sprintf(name, "hw:CARD=%d", card);
 
             if ((err = snd_ctl_open(&ctl, name, 0)) < 0)
             {
@@ -397,13 +384,32 @@ namespace music
                return false;
             }
 
+            snd_ctl_card_info_t *info;
+
+            snd_ctl_card_info_alloca(&info);
+
+            if ((err = snd_ctl_card_info(ctl, info)) < 0)
+            {
+
+               printf("HW info error: %s\n", snd_strerror(err));
+
+               return false;
+
+            }
+
+            printf("Soundcard #%i:\n", card);
+            printf("  card - %i\n", snd_ctl_card_info_get_card(info));
+            printf("  id - '%s'\n", snd_ctl_card_info_get_id(info));
+            printf("  driver - '%s'\n", snd_ctl_card_info_get_driver(info));
+            printf("  name - '%s'\n", snd_ctl_card_info_get_name(info));
+            printf("  longname - '%s'\n", snd_ctl_card_info_get_longname(info));
+            printf("  mixername - '%s'\n", snd_ctl_card_info_get_mixername(info));
+            printf("  components - '%s'\n", snd_ctl_card_info_get_components(info));
+
             device = -1;
 
             for (;;)
             {
-
-                           list_midi_out_devices(ctl, card, device);
-
 
                if ((err = snd_ctl_rawmidi_next_device(ctl, &device)) < 0)
                {
@@ -421,6 +427,7 @@ namespace music
 
                }
 
+               list_midi_out_devices(ctl, card, device);
 
             }
 
@@ -434,7 +441,7 @@ namespace music
          bool midi::list_midi_out_devices(snd_ctl_t *ctl, int card, int device)
          {
 
-            snd_rawmidi_info_t *info;
+            snd_rawmidi_info_t *info = nullptr;
             const char *name;
             const char *sub_name;
             int subs;
@@ -457,6 +464,10 @@ namespace music
             }
             else
             {
+
+               const char * pszError = snd_strerror(err);
+
+               TRACE("cannot not get snd_ctl_rawmidi_info: %s", pszError);
 
                subs = 0;
 
