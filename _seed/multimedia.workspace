@@ -5,6 +5,14 @@
 		<Project filename="../../app/apex/apex.cbp">
 			<Depends filename="../../app/acme/acme.cbp" />
 		</Project>
+		<Project filename="../../app-veriwell/keyboard/keyboard.cbp">
+			<Depends filename="../../app/acme/acme.cbp" />
+			<Depends filename="../../app/apex/apex.cbp" />
+			<Depends filename="../../app/aura/aura.cbp" />
+			<Depends filename="../../app/base/base.cbp" />
+			<Depends filename="../../app/bred/bred.cbp" />
+			<Depends filename="../../app/core/core.cbp" />
+		</Project>
 		<Project filename="../../app-veriwell/waven/waven.cbp">
 			<Depends filename="../../app/acme/acme.cbp" />
 			<Depends filename="../../app/apex/apex.cbp" />
@@ -62,7 +70,19 @@
 			<Depends filename="../../app/aura/aura.cbp" />
 		</Project>
 		<Project filename="../../app-veriwell/asciimedia/asciimedia.cbp">
+			<Depends filename="../../app/acme/acme.cbp" />
+			<Depends filename="../../app/apex/apex.cbp" />
+			<Depends filename="../../app/aqua/aqua.cbp" />
+			<Depends filename="../../app-core/audio/audio.cbp" />
+			<Depends filename="../../app/aura/aura.cbp" />
+			<Depends filename="../../app/axis/axis.cbp" />
+			<Depends filename="../../app/base/base.cbp" />
+			<Depends filename="../../app/bred/bred.cbp" />
+			<Depends filename="../../app/core/core.cbp" />
+			<Depends filename="../../app/draw2d_cairo/cairo.cbp" />
+			<Depends filename="../../app/experience_anthill/experience_anthill.cbp" />
 			<Depends filename="../../app-core/multimedia/multimedia.cbp" />
+			<Depends filename="../music_midi_alsa/music_midi_alsa.cbp" />
 			<Depends filename="../../app-veriwell/multimedia/veriwell_multimedia.cbp" />
 		</Project>
 		<Project filename="../../app/aqua/aqua.cbp" />
@@ -115,7 +135,12 @@
 			<Depends filename="../../app/core/core.cbp" />
 			<Depends filename="../../app-core/gcom/gcom.cbp" />
 		</Project>
-		<Project filename="../music_midi_alsa/music_midi_alsa.cbp" />
+		<Project filename="../music_midi_alsa/music_midi_alsa.cbp">
+			<Depends filename="../../app/acme/acme.cbp" />
+			<Depends filename="../../app/apex/apex.cbp" />
+			<Depends filename="../../app/aqua/aqua.cbp" />
+			<Depends filename="../../app/aura/aura.cbp" />
+		</Project>
 		<Project filename="../../third/sn/sn.cbp" />
 		<Project filename="../../app-core/userdatetime/userdatetime.cbp" />
 		<Project filename="../../app-veriwell/multimedia/veriwell_multimedia.cbp">
