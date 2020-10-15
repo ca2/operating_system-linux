@@ -14,7 +14,10 @@
 			<Depends filename="../../app/apex/apex.cbp" />
 			<Depends filename="../../app/aqua/aqua.cbp" />
 		</Project>
-		<Project filename="../../console/readlines/readlines.cbp" />
+		<Project filename="../../console/readlines/readlines.cbp">
+			<Depends filename="../../app/acme/acme.cbp" />
+			<Depends filename="../../app/apex/apex.cbp" />
+		</Project>
 		<Project filename="../../third/sn/sn.cbp" />
 	</Workspace>
 </CodeBlocks_workspace_file>
