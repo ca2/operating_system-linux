@@ -6,11 +6,15 @@
 		<Project filename="../../app/app/app_app.cbp">
 			<Depends filename="../../app/acme/acme.cbp" />
 			<Depends filename="../../app/apex/apex.cbp" />
+			<Depends filename="../../app/aqua/aqua.cbp" />
 			<Depends filename="../../app/aura/aura.cbp" />
 			<Depends filename="../../app/draw2d_cairo/cairo.cbp" />
 			<Depends filename="../../third/sn/sn.cbp" />
 		</Project>
-		<Project filename="../../app/aqua/aqua.cbp" />
+		<Project filename="../../app/aqua/aqua.cbp">
+			<Depends filename="../../app/acme/acme.cbp" />
+			<Depends filename="../../app/apex/apex.cbp" />
+		</Project>
 		<Project filename="../../app/shader/app_shader.cbp">
 			<Depends filename="../../app/acme/acme.cbp" />
 			<Depends filename="../../app/apex/apex.cbp" />
