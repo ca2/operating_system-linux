@@ -1,21 +1,21 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
 <CodeBlocks_workspace_file>
 	<Workspace title="simple">
-		<Project filename="../../app/acme/acme.cbp" />
-		<Project filename="../../app/apex/apex.cbp">
+		<Project filename="../../../source/app/acme/acme.cbp" />
+		<Project filename="../../../source/app/apex/apex.cbp">
 			<Depends filename="../../app/acme/acme.cbp" />
 		</Project>
 		<Project filename="../app/app.cbp">
 			<Depends filename="../../app/aura/aura.cbp" />
 		</Project>
-		<Project filename="../../app/shader/app_shader.cbp" />
-		<Project filename="../../app-complex/drawing/complex_drawing.cbp">
+		<Project filename="../../../source/app/shader/app_shader.cbp" />
+		<Project filename="../../../source/app-complex/drawing/complex_drawing.cbp">
 			<Depends filename="../../app-simple/drawing/simple_drawing.cbp" />
 			<Depends filename="../../app/core/core.cbp" />
 			<Depends filename="../../app/experience_core/experience_core.cbp" />
 			<Depends filename="../../app/imaging_freeimage/imaging_freeimage.cbp" />
 		</Project>
-		<Project filename="../../app-simple/application/simple_application.cbp">
+		<Project filename="../../../source/app-simple/application/simple_application.cbp">
 			<Depends filename="../app/app.cbp" />
 			<Depends filename="../../app/aura/aura.cbp" />
 			<Depends filename="../../app/draw2d_cairo/cairo.cbp" />
@@ -23,14 +23,14 @@
 			<Depends filename="../../app/imaging_freeimage/imaging_freeimage.cbp" />
 			<Depends filename="../../third/sn/sn.cbp" />
 		</Project>
-		<Project filename="../../app-simple/box/simple_box.cbp">
+		<Project filename="../../../source/app-simple/box/simple_box.cbp">
 			<Depends filename="../../app/acme/acme.cbp" />
 			<Depends filename="../../app/apex/apex.cbp" />
 			<Depends filename="../../app/aura/aura.cbp" />
 			<Depends filename="../../app/draw2d_cairo/cairo.cbp" />
 			<Depends filename="../../app/experience_core/experience_core.cbp" />
 		</Project>
-		<Project filename="../../app-simple/drawing/simple_drawing.cbp">
+		<Project filename="../../../source/app-simple/drawing/simple_drawing.cbp">
 			<Depends filename="../../app/acme/acme.cbp" />
 			<Depends filename="../../app/apex/apex.cbp" />
 			<Depends filename="../app/app.cbp" />
@@ -41,12 +41,12 @@
 			<Depends filename="../../app/experience_core/experience_core.cbp" />
 			<Depends filename="../../app/imaging_freeimage/imaging_freeimage.cbp" />
 		</Project>
-		<Project filename="../../app-simple/notify_drawing/notify_drawing.cbp">
+		<Project filename="../../../source/app-simple/notify_drawing/notify_drawing.cbp">
 			<Depends filename="../../app-simple/drawing/simple_drawing.cbp" />
 			<Depends filename="../../app/aura/aura.cbp" />
 			<Depends filename="../../app/experience_core/experience_core.cbp" />
 		</Project>
-		<Project filename="../../app-simple/shader/simple_shader.cbp">
+		<Project filename="../../../source/app-simple/shader/simple_shader.cbp">
 			<Depends filename="../app/app.cbp" />
 			<Depends filename="../../app/core/core.cbp" />
 			<Depends filename="../../app/draw2d_cairo/cairo.cbp" />
@@ -54,30 +54,30 @@
 			<Depends filename="../../app/gpu_opengl/gpu_opengl.cbp" />
 			<Depends filename="../../app/shader/lib_app_shader.cbp" />
 		</Project>
-		<Project filename="../../app/aqua/aqua.cbp">
+		<Project filename="../../../source/app/aqua/aqua.cbp">
 			<Depends filename="../../app/acme/acme.cbp" />
 			<Depends filename="../../app/apex/apex.cbp" />
 		</Project>
-		<Project filename="../../app/aura/aura.cbp">
+		<Project filename="../../../source/app/aura/aura.cbp">
 			<Depends filename="../../app/acme/acme.cbp" />
 			<Depends filename="../../app/apex/apex.cbp" />
 			<Depends filename="../../app/aqua/aqua.cbp" />
 			<Depends filename="../../third/sn/sn.cbp" />
 		</Project>
-		<Project filename="../../app/axis/axis.cbp">
+		<Project filename="../../../source/app/axis/axis.cbp">
 			<Depends filename="../../app/acme/acme.cbp" />
 			<Depends filename="../../app/apex/apex.cbp" />
 			<Depends filename="../../app/aqua/aqua.cbp" />
 			<Depends filename="../../app/aura/aura.cbp" />
 		</Project>
-		<Project filename="../../app/base/base.cbp">
+		<Project filename="../../../source/app/base/base.cbp">
 			<Depends filename="../../app/acme/acme.cbp" />
 			<Depends filename="../../app/apex/apex.cbp" />
 			<Depends filename="../../app/aqua/aqua.cbp" />
 			<Depends filename="../../app/aura/aura.cbp" />
 			<Depends filename="../../app/axis/axis.cbp" />
 		</Project>
-		<Project filename="../../app/bred/bred.cbp">
+		<Project filename="../../../source/app/bred/bred.cbp">
 			<Depends filename="../../app/acme/acme.cbp" />
 			<Depends filename="../../app/apex/apex.cbp" />
 			<Depends filename="../../app/aqua/aqua.cbp" />
@@ -85,7 +85,7 @@
 			<Depends filename="../../app/axis/axis.cbp" />
 			<Depends filename="../../app/base/base.cbp" />
 		</Project>
-		<Project filename="../../app/core/core.cbp">
+		<Project filename="../../../source/app/core/core.cbp">
 			<Depends filename="../../app/acme/acme.cbp" />
 			<Depends filename="../../app/apex/apex.cbp" />
 			<Depends filename="../../app/aqua/aqua.cbp" />
@@ -94,19 +94,19 @@
 			<Depends filename="../../app/base/base.cbp" />
 			<Depends filename="../../app/bred/bred.cbp" />
 		</Project>
-		<Project filename="../../app/draw2d_cairo/cairo.cbp">
+		<Project filename="../../../source/app/draw2d_cairo/cairo.cbp">
 			<Depends filename="../../app/aura/aura.cbp" />
 		</Project>
-		<Project filename="../../app/experience_core/experience_core.cbp">
+		<Project filename="../../../source/app/experience_core/experience_core.cbp">
 			<Depends filename="../../app/aura/aura.cbp" />
 			<Depends filename="../../app/core/core.cbp" />
 		</Project>
-		<Project filename="../../app/experience_tranquillum/experience_tranquillum.cbp">
+		<Project filename="../../../source/app/experience_tranquillum/experience_tranquillum.cbp">
 			<Depends filename="../../app/aura/aura.cbp" />
 		</Project>
-		<Project filename="../../app/gpu_opengl/gpu_opengl.cbp" />
-		<Project filename="../../app/imaging_freeimage/imaging_freeimage.cbp" />
-		<Project filename="../../app/shader/lib_app_shader.cbp" />
-		<Project filename="../../third/sn/sn.cbp" />
+		<Project filename="../../../source/app/gpu_opengl/gpu_opengl.cbp" />
+		<Project filename="../../../source/app/imaging_freeimage/imaging_freeimage.cbp" />
+		<Project filename="../../../source/app/shader/lib_app_shader.cbp" />
+		<Project filename="../../../source/third/sn/sn.cbp" />
 	</Workspace>
 </CodeBlocks_workspace_file>

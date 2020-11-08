@@ -4,10 +4,10 @@
 		<Project filename="../app/app.cbp">
 			<Depends filename="../../app/aura/aura.cbp" />
 		</Project>
-		<Project filename="../../app-cidadedecuritiba/alphaclock/alphaclock.cbp">
+		<Project filename="../../../source/app-cidadedecuritiba/alphaclock/alphaclock.cbp">
 			<Depends filename="../../app-core/flag/flag.cbp" />
 		</Project>
-		<Project filename="../../app-core/audioaura/audioaura.cbp">
+		<Project filename="../../../source/app-core/audioaura/audioaura.cbp">
 			<Depends filename="../app/app.cbp" />
 			<Depends filename="../../app-core/audio/audio.cbp" />
 			<Depends filename="../../app-veriwell/audio_decode_libmpg123/audio_decode_libmpg123.cbp" />
@@ -17,7 +17,7 @@
 			<Depends filename="../../app/experience_core/experience_core.cbp" />
 			<Depends filename="../../app/freeimage_imaging/freeimage_imaging.cbp" />
 		</Project>
-		<Project filename="../../app-core/auraclick/auraclick.cbp">
+		<Project filename="../../../source/app-core/auraclick/auraclick.cbp">
 			<Depends filename="../../app-core/audio/audio.cbp" />
 			<Depends filename="../../app-veriwell/audio_decode_libmpg123/audio_decode_libmpg123.cbp" />
 			<Depends filename="../../app-core/audio_decode_wave/audio_decode_wave.cbp" />
@@ -26,13 +26,13 @@
 			<Depends filename="../../app/experience_core/experience_core.cbp" />
 			<Depends filename="../../app/freeimage_imaging/freeimage_imaging.cbp" />
 		</Project>
-		<Project filename="../../app-core/auratype/auratype.cbp">
+		<Project filename="../../../source/app-core/auratype/auratype.cbp">
 			<Depends filename="../../app-core/audio/audio.cbp" />
 			<Depends filename="../../app/draw2d_cairo/cairo.cbp" />
 			<Depends filename="../../app/experience_core/experience_core.cbp" />
 			<Depends filename="../../app/freeimage_imaging/freeimage_imaging.cbp" />
 		</Project>
-		<Project filename="../../app-core/chronometer/chronometer.cbp">
+		<Project filename="../../../source/app-core/chronometer/chronometer.cbp">
 			<Depends filename="../../app-core/audio/audio.cbp" />
 			<Depends filename="../../app-veriwell/audio_decode_libmpg123/audio_decode_libmpg123.cbp" />
 			<Depends filename="../../app-core/audio_decode_wave/audio_decode_wave.cbp" />
@@ -41,23 +41,23 @@
 			<Depends filename="../../app/experience_core/experience_core.cbp" />
 			<Depends filename="../../app/freeimage_imaging/freeimage_imaging.cbp" />
 		</Project>
-		<Project filename="../../app-core/clockverse/clockverse.cbp">
+		<Project filename="../../../source/app-core/clockverse/clockverse.cbp">
 			<Depends filename="../../app-cidadedecuritiba/alphaclock/alphaclock.cbp" />
 			<Depends filename="../../app-core/audio/audio.cbp" />
 		</Project>
-		<Project filename="../../app-core/flag/flag.cbp">
+		<Project filename="../../../source/app-core/flag/flag.cbp">
 			<Depends filename="../../app-core/hellomultiverse/hellomultiverse.cbp" />
 			<Depends filename="../../app/draw2d_cairo/cairo.cbp" />
 			<Depends filename="../../app/experience_core/experience_core.cbp" />
 			<Depends filename="../../app/freeimage_imaging/freeimage_imaging.cbp" />
 		</Project>
-		<Project filename="../../app-core/hellomultiverse/hellomultiverse.cbp">
+		<Project filename="../../../source/app-core/hellomultiverse/hellomultiverse.cbp">
 			<Depends filename="../../app/draw2d_cairo/cairo.cbp" />
 			<Depends filename="../../app/experience_core/experience_core.cbp" />
 			<Depends filename="../../app/freeimage_imaging/freeimage_imaging.cbp" />
 			<Depends filename="../../app-core/gcom/gcom.cbp" />
 		</Project>
-		<Project filename="../../app-core/timer/timer.cbp">
+		<Project filename="../../../source/app-core/timer/timer.cbp">
 			<Depends filename="../../app-core/audio/audio.cbp" />
 			<Depends filename="../../app-veriwell/audio_decode_libmpg123/audio_decode_libmpg123.cbp" />
 			<Depends filename="../../app-core/audio_decode_wave/audio_decode_wave.cbp" />
@@ -67,7 +67,7 @@
 			<Depends filename="../../app/freeimage_imaging/freeimage_imaging.cbp" />
 			<Depends filename="../../app-core/userdatetime/userdatetime.cbp" />
 		</Project>
-		<Project filename="../../app-core/todo/todo.cbp">
+		<Project filename="../../../source/app-core/todo/todo.cbp">
 			<Depends filename="../../app-core/audio/audio.cbp" />
 			<Depends filename="../../app-veriwell/audio_decode_libmpg123/audio_decode_libmpg123.cbp" />
 			<Depends filename="../../app-core/audio_decode_wave/audio_decode_wave.cbp" />
@@ -76,30 +76,30 @@
 			<Depends filename="../../app/experience_core/experience_core.cbp" />
 			<Depends filename="../../app/freeimage_imaging/freeimage_imaging.cbp" />
 		</Project>
-		<Project filename="../../app-core/audio/audio.cbp">
+		<Project filename="../../../source/app-core/audio/audio.cbp">
 			<Depends filename="../../app/aura/aura.cbp" />
 		</Project>
-		<Project filename="../../app-veriwell/audio_decode_libmpg123/audio_decode_libmpg123.cbp">
+		<Project filename="../../../source/app-veriwell/audio_decode_libmpg123/audio_decode_libmpg123.cbp">
 			<Depends filename="../../app-core/audio/audio.cbp" />
 			<Depends filename="../../app/aura/aura.cbp" />
 			<Depends filename="../../app/aura/aura.cbp" />
 		</Project>
-		<Project filename="../../app-core/audio_decode_wave/audio_decode_wave.cbp" />
+		<Project filename="../../../source/app-core/audio_decode_wave/audio_decode_wave.cbp" />
 		<Project filename="../../audio_alsa/audio_alsa.cbp">
 			<Depends filename="../../app/aura/aura.cbp" />
 		</Project>
-		<Project filename="../../app/aura/aura.cbp" />
-		<Project filename="../../app/aura/aura.cbp">
+		<Project filename="../../../source/app/aura/aura.cbp" />
+		<Project filename="../../../source/app/aura/aura.cbp">
 			<Depends filename="../../app/aura/aura.cbp" />
 		</Project>
-		<Project filename="../../app/draw2d_cairo/cairo.cbp" />
-		<Project filename="../../app/experience_core/experience_core.cbp">
+		<Project filename="../../../source/app/draw2d_cairo/cairo.cbp" />
+		<Project filename="../../../source/app/experience_core/experience_core.cbp">
 			<Depends filename="../../app/aura/aura.cbp" />
 		</Project>
-		<Project filename="../../app/freeimage_imaging/freeimage_imaging.cbp" />
-		<Project filename="../../app-core/gcom/gcom.cbp">
+		<Project filename="../../../source/app/freeimage_imaging/freeimage_imaging.cbp" />
+		<Project filename="../../../source/app-core/gcom/gcom.cbp">
 			<Depends filename="../../app/aura/aura.cbp" />
 		</Project>
-		<Project filename="../../app-core/userdatetime/userdatetime.cbp" />
+		<Project filename="../../../source/app-core/userdatetime/userdatetime.cbp" />
 	</Workspace>
 </CodeBlocks_workspace_file>
