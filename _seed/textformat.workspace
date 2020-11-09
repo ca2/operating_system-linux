@@ -3,38 +3,38 @@
 	<Workspace title="aura solutions 64">
 		<Project filename="../../../source/app/acme/acme.cbp" />
 		<Project filename="../../../source/app/apex/apex.cbp">
-			<Depends filename="../../app/acme/acme.cbp" />
+			<Depends filename="../../../source/app/acme/acme.cbp" />
 		</Project>
 		<Project filename="../app/app.cbp">
-			<Depends filename="../../app/ace/ace.cbp" />
-			<Depends filename="../../app/aura/aura.cbp" />
-			<Depends filename="../../app/base/base.cbp" />
-			<Depends filename="../../app/aura/aura.cbp" />
+			<Depends filename="../../../source/app/ace/ace.cbp" />
+			<Depends filename="../../../source/app/aura/aura.cbp" />
+			<Depends filename="../../../source/app/base/base.cbp" />
+			<Depends filename="../../../source/app/aura/aura.cbp" />
 		</Project>
 		<Project filename="../../../source/third/aqua/aqua.cbp" />
 		<Project filename="../../../source/app/aura/aura.cbp">
-			<Depends filename="../../app/ace/ace.cbp" />
-			<Depends filename="../../third/sn/aurasn.cbp" />
-			<Depends filename="../../third/aqua/aqua.cbp" />
+			<Depends filename="../../../source/app/ace/ace.cbp" />
+			<Depends filename="../../../source/third/sn/aurasn.cbp" />
+			<Depends filename="../../../source/third/aqua/aqua.cbp" />
 		</Project>
 		<Project filename="../../../source/third/sn/aurasn.cbp" />
 		<Project filename="../../../source/app/axis/axis.cbp">
-			<Depends filename="../../app/aura/aura.cbp" />
+			<Depends filename="../../../source/app/aura/aura.cbp" />
 		</Project>
 		<Project filename="../../../source/app/base/base.cbp">
-			<Depends filename="../../app/ace/ace.cbp" />
-			<Depends filename="../../app/axis/axis.cbp" />
+			<Depends filename="../../../source/app/ace/ace.cbp" />
+			<Depends filename="../../../source/app/axis/axis.cbp" />
 		</Project>
 		<Project filename="../../../source/app/aura/aura.cbp">
-			<Depends filename="../../app/axis/axis.cbp" />
-			<Depends filename="../../app/base/base.cbp" />
+			<Depends filename="../../../source/app/axis/axis.cbp" />
+			<Depends filename="../../../source/app/base/base.cbp" />
 		</Project>
 		<Project filename="../../../source/design/textformat/textformat.cbp">
-			<Depends filename="../../app/aura/aura.cbp" />
-			<Depends filename="../../app/draw2d_cairo/draw2d_cairo.cbp" />
+			<Depends filename="../../../source/app/aura/aura.cbp" />
+			<Depends filename="../../../source/app/draw2d_cairo/draw2d_cairo.cbp" />
 		</Project>
 		<Project filename="../../../source/app/draw2d_cairo/draw2d_cairo.cbp">
-			<Depends filename="../../app/base/base.cbp" />
+			<Depends filename="../../../source/app/base/base.cbp" />
 		</Project>
 		<Project filename="../../../source/app/experience_anthill/experience_anthill.cbp" />
 		<Project filename="../../../source/app/experience_core/experience_core.cbp" />

@@ -2,7 +2,7 @@
 <CodeBlocks_workspace_file>
 	<Workspace title="aura">
 		<Project filename="../../../source/app/aura/para_aura.cbp">
-			<Depends filename="../../third/sn/para_sn.cbp" />
+			<Depends filename="../../../source/third/sn/para_sn.cbp" />
 		</Project>
 		<Project filename="../../../source/third/sn/para_sn.cbp" />
 	</Workspace>

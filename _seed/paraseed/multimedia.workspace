@@ -3,60 +3,60 @@
 	<Workspace title="multimedia">
 		<Project filename="../../../source/app-veriwell/waven/waven.cbp">
 			<Depends filename="../app/app.cbp" />
-			<Depends filename="../../app-veriwell/asciimedia/asciimedia.cbp" />
-			<Depends filename="../../app-veriwell/audio_decode_libmpg123/audio_decode_libmpg123.cbp" />
+			<Depends filename="../../../source/app-veriwell/asciimedia/asciimedia.cbp" />
+			<Depends filename="../../../source/app-veriwell/audio_decode_libmpg123/audio_decode_libmpg123.cbp" />
 			<Depends filename="../../audio_alsa/audio_alsa.cbp" />
-			<Depends filename="../../app/aura/aura.cbp" />
-			<Depends filename="../../app/draw2d_cairo/cairo.cbp" />
-			<Depends filename="../../app/experience_anthill/experience_anthill.cbp" />
-			<Depends filename="../../app/freeimage_imaging/freeimage_imaging.cbp" />
-			<Depends filename="../../app-core/multimedia/multimedia.cbp" />
+			<Depends filename="../../../source/app/aura/aura.cbp" />
+			<Depends filename="../../../source/app/draw2d_cairo/cairo.cbp" />
+			<Depends filename="../../../source/app/experience_anthill/experience_anthill.cbp" />
+			<Depends filename="../../../source/app/freeimage_imaging/freeimage_imaging.cbp" />
+			<Depends filename="../../../source/app-core/multimedia/multimedia.cbp" />
 			<Depends filename="../../music_midi_alsa/music_midi_alsa.cbp" />
-			<Depends filename="../../app-veriwell/multimedia/veriwell_multimedia.cbp" />
+			<Depends filename="../../../source/app-veriwell/multimedia/veriwell_multimedia.cbp" />
 		</Project>
 		<Project filename="../../../source/app-veriwell/verisimplevideo/verisimplevideo.cbp">
 			<Depends filename="../app/app.cbp" />
-			<Depends filename="../../app-veriwell/audio_decode_libmpg123/audio_decode_libmpg123.cbp" />
-			<Depends filename="../../app-core/audio_decode_wave/audio_decode_wave.cbp" />
+			<Depends filename="../../../source/app-veriwell/audio_decode_libmpg123/audio_decode_libmpg123.cbp" />
+			<Depends filename="../../../source/app-core/audio_decode_wave/audio_decode_wave.cbp" />
 			<Depends filename="../../audio_alsa/audio_alsa.cbp" />
-			<Depends filename="../../app/aura/aura.cbp" />
-			<Depends filename="../../app/experience_core/experience_core.cbp" />
-			<Depends filename="../../app-core/gcom/gcom.cbp" />
-			<Depends filename="../../app-core/multimedia/multimedia.cbp" />
-			<Depends filename="../../app-veriwell/multimedia/veriwell_multimedia.cbp" />
-			<Depends filename="../../app-veriwell/video_decode_ffmpeg/video_decode_ffmpeg.cbp" />
+			<Depends filename="../../../source/app/aura/aura.cbp" />
+			<Depends filename="../../../source/app/experience_core/experience_core.cbp" />
+			<Depends filename="../../../source/app-core/gcom/gcom.cbp" />
+			<Depends filename="../../../source/app-core/multimedia/multimedia.cbp" />
+			<Depends filename="../../../source/app-veriwell/multimedia/veriwell_multimedia.cbp" />
+			<Depends filename="../../../source/app-veriwell/video_decode_ffmpeg/video_decode_ffmpeg.cbp" />
 		</Project>
 		<Project filename="../../../source/app-veriwell/musical_player_lite/musical_player_lite.cbp">
 			<Depends filename="../../audio_alsa/audio_alsa.cbp" />
-			<Depends filename="../../app/experience_core/experience_core.cbp" />
-			<Depends filename="../../app-core/multimedia/multimedia.cbp" />
+			<Depends filename="../../../source/app/experience_core/experience_core.cbp" />
+			<Depends filename="../../../source/app-core/multimedia/multimedia.cbp" />
 			<Depends filename="../../music_midi_alsa/music_midi_alsa.cbp" />
-			<Depends filename="../../app-veriwell/multimedia/veriwell_multimedia.cbp" />
+			<Depends filename="../../../source/app-veriwell/multimedia/veriwell_multimedia.cbp" />
 		</Project>
 		<Project filename="../../../source/app-veriwell/musical_player/musical_player.cbp">
-			<Depends filename="../../app-veriwell/musical_player_lite/musical_player_lite.cbp" />
-			<Depends filename="../../app-core/audio_decode_wave/audio_decode_wave.cbp" />
+			<Depends filename="../../../source/app-veriwell/musical_player_lite/musical_player_lite.cbp" />
+			<Depends filename="../../../source/app-core/audio_decode_wave/audio_decode_wave.cbp" />
 			<Depends filename="../../audio_alsa/audio_alsa.cbp" />
 			<Depends filename="../../music_midi_alsa/music_midi_alsa.cbp" />
 		</Project>
 		<Project filename="../app/app.cbp">
-			<Depends filename="../../app/aura/aura.cbp" />
+			<Depends filename="../../../source/app/aura/aura.cbp" />
 		</Project>
 		<Project filename="../../../source/app-veriwell/asciimedia/asciimedia.cbp">
-			<Depends filename="../../app-core/multimedia/multimedia.cbp" />
-			<Depends filename="../../app-veriwell/multimedia/veriwell_multimedia.cbp" />
+			<Depends filename="../../../source/app-core/multimedia/multimedia.cbp" />
+			<Depends filename="../../../source/app-veriwell/multimedia/veriwell_multimedia.cbp" />
 		</Project>
 		<Project filename="../../../source/app-core/audio/audio.cbp" />
 		<Project filename="../../../source/app-veriwell/audio_decode_libmpg123/audio_decode_libmpg123.cbp">
-			<Depends filename="../../app/aura/aura.cbp" />
-			<Depends filename="../../app-core/multimedia/multimedia.cbp" />
+			<Depends filename="../../../source/app/aura/aura.cbp" />
+			<Depends filename="../../../source/app-core/multimedia/multimedia.cbp" />
 		</Project>
 		<Project filename="../../../source/app-core/audio_decode_wave/audio_decode_wave.cbp">
-			<Depends filename="../../app-core/multimedia/multimedia.cbp" />
+			<Depends filename="../../../source/app-core/multimedia/multimedia.cbp" />
 		</Project>
 		<Project filename="../../audio_alsa/audio_alsa.cbp">
-			<Depends filename="../../app/aura/aura.cbp" />
-			<Depends filename="../../app-core/multimedia/multimedia.cbp" />
+			<Depends filename="../../../source/app/aura/aura.cbp" />
+			<Depends filename="../../../source/app-core/multimedia/multimedia.cbp" />
 		</Project>
 		<Project filename="../../../source/app/aura/aura.cbp" />
 		<Project filename="../../../source/app/draw2d_cairo/cairo.cbp" />
@@ -65,17 +65,17 @@
 		<Project filename="../../../source/app/freeimage_imaging/freeimage_imaging.cbp" />
 		<Project filename="../../../source/app-core/gcom/gcom.cbp" />
 		<Project filename="../../../source/app-core/multimedia/multimedia.cbp">
-			<Depends filename="../../app-core/audio/audio.cbp" />
-			<Depends filename="../../app/aura/aura.cbp" />
-			<Depends filename="../../app-core/gcom/gcom.cbp" />
+			<Depends filename="../../../source/app-core/audio/audio.cbp" />
+			<Depends filename="../../../source/app/aura/aura.cbp" />
+			<Depends filename="../../../source/app-core/gcom/gcom.cbp" />
 		</Project>
 		<Project filename="../../music_midi_alsa/music_midi_alsa.cbp">
-			<Depends filename="../../app-veriwell/multimedia/veriwell_multimedia.cbp" />
+			<Depends filename="../../../source/app-veriwell/multimedia/veriwell_multimedia.cbp" />
 		</Project>
 		<Project filename="../../../source/app-core/userdatetime/userdatetime.cbp" />
 		<Project filename="../../../source/app-veriwell/multimedia/veriwell_multimedia.cbp">
-			<Depends filename="../../app/aura/aura.cbp" />
-			<Depends filename="../../app-core/multimedia/multimedia.cbp" />
+			<Depends filename="../../../source/app/aura/aura.cbp" />
+			<Depends filename="../../../source/app-core/multimedia/multimedia.cbp" />
 		</Project>
 		<Project filename="../../../source/app-veriwell/video_decode_ffmpeg/video_decode_ffmpeg.cbp" />
 	</Workspace>
