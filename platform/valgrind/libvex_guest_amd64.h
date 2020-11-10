@@ -55,8 +55,8 @@ typedef
       /* Event check fail addr, counter, and padding to make RAX 16
          aligned. */
       /*   0 */ ULong  host_EvC_FAILADDR;
-      /*   8 */ UInt   host_EvC_COUNTER;
-      /*  12 */ UInt   pad0;
+      /*   8 */ ::u32   host_EvC_COUNTER;
+      /*  12 */ ::u32   pad0;
       /*  16 */ ULong  guest_RAX;
       /*  24 */ ULong  guest_RCX;
       /*  32 */ ULong  guest_RDX;
@@ -123,17 +123,17 @@ typedef
       /* FPU */
       /* Note.  Setting guest_FTOP to be ULong messes up the
          delicately-balanced PutI/GetI optimisation machinery.
-         Therefore best to leave it as a UInt. */
-      UInt  guest_FTOP;
-      UInt  pad1;
+         Therefore best to leave it as a ::u32. */
+      ::u32  guest_FTOP;
+      ::u32  pad1;
       ULong guest_FPREG[8];
       UChar guest_FPTAG[8];
       ULong guest_FPROUND;
       ULong guest_FC3210;
 
       /* Emulation notes */
-      UInt  guest_EMNOTE;
-      UInt  pad2;
+      ::u32  guest_EMNOTE;
+      ::u32  pad2;
 
       /* Translation-invalidation area description.  Not used on amd64
          (there is no invalidate-icache insn), but needed so as to

@@ -24,10 +24,10 @@ namespace multimedia
          virtual ~source();
 
 
-         ::multimedia::result mixerGetLineInfo(uint32_t dwSource, uint32_t dwDestination, uint32_t fdwInfo);
-         ::multimedia::result mixerGetLineInfo(uint32_t dwSource, ::multimedia::audio_mixer::destination * pdestination);
+         ::multimedia::result mixerGetLineInfo(::u32 dwSource, ::u32 dwDestination, ::u32 fdwInfo);
+         ::multimedia::result mixerGetLineInfo(::u32 dwSource, ::multimedia::audio_mixer::destination * pdestination);
 
-         uint32_t GetLineID();
+         ::u32 GetLineID();
          const char * GetSZName();
          void update_all_controls();
          MIXERLINECONTROLS & get_mixer_line_controls();
@@ -41,7 +41,7 @@ namespace multimedia
 
          void OnMixerLineChange();
          //void OnArrayReallocation(void *pNewPointer);
-         //::multimedia::result GetControl(uint32_t dwControlType, uint32_t dwControlFlags, ::multimedia::audio_mixer::control ** ppControl);
+         //::multimedia::result GetControl(::u32 dwControlType, ::u32 dwControlFlags, ::multimedia::audio_mixer::control ** ppControl);
          ::multimedia::result GetLineControls();
 
          inline bool HasV001Controls();

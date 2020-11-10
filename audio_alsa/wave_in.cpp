@@ -97,7 +97,7 @@ namespace multimedia
             audiowave->m_uiWaveInDevice,
             wave_format(),
             get_os_int(),
-            (uint32_t) 0,
+            (::u32) 0,
             CALLBACK_THREAD)))
             goto Opened;
          m_pwaveformat->nSamplesPerSec = 22050;
@@ -106,8 +106,8 @@ namespace multimedia
             &m_hwavein,
             WAVE_MAPPER,
             wave_format(),
-            (uint32_t) get_os_int(),
-            (uint32_t) 0,
+            (::u32) get_os_int(),
+            (::u32) 0,
             CALLBACK_THREAD)))
             goto Opened;
          m_pwaveformat->nSamplesPerSec = 11025;
@@ -116,8 +116,8 @@ namespace multimedia
             &m_hwavein,
             WAVE_MAPPER,
             wave_format(),
-            (uint32_t) get_os_int(),
-            (uint32_t) 0,
+            (::u32) get_os_int(),
+            (::u32) 0,
             CALLBACK_THREAD)))
             goto Opened;
 
@@ -140,12 +140,12 @@ namespace multimedia
          }*/
 
 Opened:
-         uint32_t uiBufferSizeLog2;
-         uint32_t uiBufferSize;
-         uint32_t uiAnalysisSize;
-         uint32_t uiAllocationSize;
-         uint32_t uiInterestSize;
-         uint32_t uiSkippedSamplesCount;
+         ::u32 uiBufferSizeLog2;
+         ::u32 uiBufferSize;
+         ::u32 uiAnalysisSize;
+         ::u32 uiAllocationSize;
+         ::u32 uiInterestSize;
+         ::u32 uiSkippedSamplesCount;
 
          if(m_pwaveformat->nSamplesPerSec == 44100)
          {
@@ -390,12 +390,12 @@ Opened:
       }
 
 
-      void CALLBACK wave_in::in_proc(snd_pcm_t * p, UINT uMsg, DWORD dwInstance, DWORD dwParam1, DWORD dwParam2)
+      void CALLBACK wave_in::in_proc(snd_pcm_t * p, ::u32 uMsg, ::u32 dwInstance, ::u32 dwParam1, ::u32 dwParam2)
       {
 
          m_iBuffer--;
 
-         uint32_t msSampleTime = Audio.multimedia_get_time();
+         ::u32 msSampleTime = Audio.multimedia_get_time();
 
          int iBuffer = dwParam1;
 

@@ -293,7 +293,7 @@ extern OSet* VG_(OSetGen_EmptyClone) (const OSet* os);
 //   they will return NULL if VG_(OSetGen_Next)() is called without an
 //   intervening call to VG_(OSetGen_ResetIter)().
 
-extern UInt  VG_(OSetGen_Size)         ( const OSet* os );
+extern ::u32  VG_(OSetGen_Size)         ( const OSet* os );
 extern void  VG_(OSetGen_Insert)       ( OSet* os, void* elem );
 extern Bool  VG_(OSetGen_Contains)     ( const OSet* os, const void* key );
 extern void* VG_(OSetGen_Lookup)       ( const OSet* os, const void* key );

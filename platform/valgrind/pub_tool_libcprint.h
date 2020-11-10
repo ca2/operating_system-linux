@@ -49,17 +49,17 @@
    are understood by PRINTF_CHECK as characters to output.
 */
 
-extern UInt VG_(sprintf)  ( HChar* buf, const HChar* format, ... )
+extern ::u32 VG_(sprintf)  ( HChar* buf, const HChar* format, ... )
                           PRINTF_CHECK(2, 3);
 
-extern UInt VG_(vsprintf) ( HChar* buf, const HChar* format, va_list vargs )
+extern ::u32 VG_(vsprintf) ( HChar* buf, const HChar* format, va_list vargs )
                           PRINTF_CHECK(2, 0);
 
-extern UInt VG_(snprintf) ( HChar* buf, Int size, 
+extern ::u32 VG_(snprintf) ( HChar* buf, Int size,
                                        const HChar *format, ... )
                           PRINTF_CHECK(3, 4);
 
-extern UInt VG_(vsnprintf)( HChar* buf, Int size, 
+extern ::u32 VG_(vsnprintf)( HChar* buf, Int size,
                                        const HChar *format, va_list vargs )
                           PRINTF_CHECK(3, 0);
 
@@ -90,31 +90,31 @@ typedef
 
 // These print output that isn't prefixed with anything, and should be
 // used in very few cases, such as printing usage messages.
-extern UInt VG_(printf)   ( const HChar *format, ... )
+extern ::u32 VG_(printf)   ( const HChar *format, ... )
                           PRINTF_CHECK(1, 2);
-extern UInt VG_(vprintf)  ( const HChar *format, va_list vargs )
+extern ::u32 VG_(vprintf)  ( const HChar *format, va_list vargs )
                           PRINTF_CHECK(1, 0);
 
-extern UInt VG_(printf_xml)  ( const HChar *format, ... )
+extern ::u32 VG_(printf_xml)  ( const HChar *format, ... )
                              PRINTF_CHECK(1, 2);
 
-extern UInt VG_(vprintf_xml) ( const HChar *format, va_list vargs )
+extern ::u32 VG_(vprintf_xml) ( const HChar *format, va_list vargs )
                              PRINTF_CHECK(1, 0);
 
 typedef struct _VgFile VgFile;
 
 extern VgFile *VG_(fopen)    ( const HChar *name, Int flags, Int mode );
 extern void    VG_(fclose)   ( VgFile *fp );
-extern UInt    VG_(fprintf)  ( VgFile *fp, const HChar *format, ... )
+extern ::u32    VG_(fprintf)  ( VgFile *fp, const HChar *format, ... )
                                PRINTF_CHECK(2, 3);
-extern UInt    VG_(vfprintf) ( VgFile *fp, const HChar *format, va_list vargs )
+extern ::u32    VG_(vfprintf) ( VgFile *fp, const HChar *format, va_list vargs )
                                PRINTF_CHECK(2, 0);
 
 /* Do a printf-style operation on either the XML 
    or normal output channel
    or gdb output channel, depending on the setting of VG_(clo_xml)
    and the state of VG_(log_output_sink). */
-extern UInt VG_(emit) ( const HChar* format, ... ) PRINTF_CHECK(1, 2);
+extern ::u32 VG_(emit) ( const HChar* format, ... ) PRINTF_CHECK(1, 2);
 
 /* Yet another, totally general, version of vprintf, which hands all
    output bytes to CHAR_SINK, passing it OPAQUE as the second arg. */
@@ -122,17 +122,17 @@ extern void VG_(vcbprintf)( void(*char_sink)(HChar, void* opaque),
                             void* opaque,
                             const HChar* format, va_list vargs );
 
-extern UInt VG_(message)( VgMsgKind kind, const HChar* format, ... )
+extern ::u32 VG_(message)( VgMsgKind kind, const HChar* format, ... )
    PRINTF_CHECK(2, 3);
 
-extern UInt VG_(vmessage)( VgMsgKind kind, const HChar* format, va_list vargs )
+extern ::u32 VG_(vmessage)( VgMsgKind kind, const HChar* format, va_list vargs )
    PRINTF_CHECK(2, 0);
 
 // Short-cuts for VG_(message)().
 
 // This is used for messages printed due to start-up failures that occur
 // before the preamble is printed, eg. due a bad executable.
-extern UInt VG_(fmsg)( const HChar* format, ... ) PRINTF_CHECK(1, 2);
+extern ::u32 VG_(fmsg)( const HChar* format, ... ) PRINTF_CHECK(1, 2);
 
 // This is used if an option was bad for some reason.  Note: don't use it just
 // because an option was unrecognised -- return 'False' from
@@ -146,10 +146,10 @@ extern void VG_(fmsg_bad_option) ( const HChar* opt, const HChar* format, ... )
 // This is used for messages that are interesting to the user:  info about
 // their program (eg. preamble, tool error messages, postamble) or stuff they
 // requested.
-extern UInt VG_(umsg)( const HChar* format, ... ) PRINTF_CHECK(1, 2);
+extern ::u32 VG_(umsg)( const HChar* format, ... ) PRINTF_CHECK(1, 2);
 
 // This is used for debugging messages that are only of use to developers.
-extern UInt VG_(dmsg)( const HChar* format, ... ) PRINTF_CHECK(1, 2);
+extern ::u32 VG_(dmsg)( const HChar* format, ... ) PRINTF_CHECK(1, 2);
 
 /* Flush any output cached by previous calls to VG_(message) et al. */
 extern void VG_(message_flush) ( void );

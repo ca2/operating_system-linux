@@ -29,14 +29,14 @@ namespace multimedia
       void window::_001OnMixerControlChange(::signal_details * pobj)
       {
          IGUI_WIN_CST(base);
-         (dynamic_cast < ::multimedia::audio_mixer_mmsystem::audio_mixer * > (m_pmixer))->OnMixerControlChange((HMIXER) pbase->m_wparam, (uint32_t) pbase->m_lparam);
+         (dynamic_cast < ::multimedia::audio_mixer_mmsystem::audio_mixer * > (m_pmixer))->OnMixerControlChange((HMIXER) pbase->m_wparam, (::u32) pbase->m_lparam);
          pbase->set_lresult(0);
       }
 
       void window::_001OnMixerLineChange(::signal_details * pobj)
       {
          IGUI_WIN_CST(base);
-         (dynamic_cast < ::multimedia::audio_mixer_mmsystem::audio_mixer * > (m_pmixer))->OnMixerLineChange((HMIXER) pbase->m_wparam, (uint32_t) pbase->m_lparam);
+         (dynamic_cast < ::multimedia::audio_mixer_mmsystem::audio_mixer * > (m_pmixer))->OnMixerLineChange((HMIXER) pbase->m_wparam, (::u32) pbase->m_lparam);
          pbase->set_lresult(0);
       }
 

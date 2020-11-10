@@ -295,14 +295,14 @@ typedef
          Bool   U1;
          UChar  U8;
          UShort U16;
-         UInt   U32;
+         ::u32   U32;
          ULong  U64;
          Float  F32;
-         UInt   F32i;
+         ::u32   F32i;
          Double F64;
          ULong  F64i;
          UShort V128;   /* 16-bit value; see Ico_V128 comment above */
-         UInt   V256;   /* 32-bit value; see Ico_V256 comment above */
+         ::u32   V256;   /* 32-bit value; see Ico_V256 comment above */
       } Ico;
    }
    IRConst;
@@ -311,14 +311,14 @@ typedef
 extern IRConst* IRConst_U1   ( Bool );
 extern IRConst* IRConst_U8   ( UChar );
 extern IRConst* IRConst_U16  ( UShort );
-extern IRConst* IRConst_U32  ( UInt );
+extern IRConst* IRConst_U32  ( ::u32 );
 extern IRConst* IRConst_U64  ( ULong );
 extern IRConst* IRConst_F32  ( Float );
-extern IRConst* IRConst_F32i ( UInt );
+extern IRConst* IRConst_F32i ( ::u32 );
 extern IRConst* IRConst_F64  ( Double );
 extern IRConst* IRConst_F64i ( ULong );
 extern IRConst* IRConst_V128 ( UShort );
-extern IRConst* IRConst_V256 ( UInt );
+extern IRConst* IRConst_V256 ( ::u32 );
 
 /* Deep-copy an IRConst */
 extern IRConst* deepCopyIRConst ( const IRConst* );
@@ -352,7 +352,7 @@ typedef
       Int          regparms;
       const HChar* name;
       void*        addr;
-      UInt         mcx_mask;
+      ::u32         mcx_mask;
    }
    IRCallee;
 
@@ -392,7 +392,7 @@ extern Bool eqIRRegArray ( const IRRegArray*, const IRRegArray* );
 /* This represents a temporary, eg. t1.  The IR optimiser relies on the
    fact that IRTemps are 32-bit ints.  Do not change them to be ints of
    any other size. */
-typedef UInt IRTemp;
+typedef ::u32 IRTemp;
 
 /* Pretty-print an IRTemp. */
 extern void ppIRTemp ( IRTemp );
@@ -2764,7 +2764,7 @@ typedef
          */
          struct {
             Addr   addr;   /* instruction address */
-            UInt   len;    /* instruction length */
+            ::u32   len;    /* instruction length */
             UChar  delta;  /* addr = program counter as encoded in guest state
                                      - delta */
          } IMark;
@@ -2962,7 +2962,7 @@ typedef
 
 /* Statement constructors. */
 extern IRStmt* IRStmt_NoOp    ( void );
-extern IRStmt* IRStmt_IMark   ( Addr addr, UInt len, UChar delta );
+extern IRStmt* IRStmt_IMark   ( Addr addr, ::u32 len, UChar delta );
 extern IRStmt* IRStmt_AbiHint ( IRExpr* base, Int len, IRExpr* nia );
 extern IRStmt* IRStmt_Put     ( Int off, IRExpr* data );
 extern IRStmt* IRStmt_PutI    ( IRPutI* details );

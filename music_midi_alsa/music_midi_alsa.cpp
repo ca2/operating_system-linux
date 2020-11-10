@@ -14,9 +14,9 @@ namespace music
       {
 
 
-      uint32_t const DefaultTempo = 500000L;
+      ::u32 const DefaultTempo = 500000L;
 
-      const uint32_t grbChanMsgLen[] =
+      const ::u32 grbChanMsgLen[] =
       {
          0,                      /* 0x   not a status byte   */
          0,                      /* 1x   not a status byte   */
@@ -182,7 +182,7 @@ namespace music
       };
 
 
-      /*const uint32_t voiceText[]
+      /*const ::u32 voiceText[]
       =
       {
       IDS_VOICE_1   ,
@@ -316,7 +316,7 @@ namespace music
       };
       */
 
-      double GetNoteFrequency(double dA3Frequency, BYTE bNote)
+      double GetNoteFrequency(double dA3Frequency, byte bNote)
       {
 
          return dA3Frequency * pow(2.0, (double) (bNote - 69) / 12);
@@ -372,7 +372,7 @@ namespace music
 //      }
 
 
-      int32_t GetMessageLen(BYTE bEvent)
+      int32_t GetMessageLen(byte bEvent)
       {
 
 
@@ -380,13 +380,13 @@ namespace music
       }
 
       // returns the midi stream var dword
-      uint32_t GetVDWord(byte * &hpbMidiStream, uint32_t dwLeft, uint32_t &dwValueParam)
+      ::u32 GetVDWord(byte * &hpbMidiStream, ::u32 dwLeft, ::u32 &dwValueParam)
       {
 
-         BYTE                    b;
-         uint32_t                   dwUsed  = 0;
+         byte                    b;
+         ::u32                   dwUsed  = 0;
          byte * &            hpbImage = hpbMidiStream;
-         uint32_t               dwValue;
+         ::u32               dwValue;
 
          ASSERT(hpbImage != NULL);
 
@@ -427,13 +427,13 @@ namespace music
       * Returns the state size in bytes.
       *
       *****************************************************************************/
-      uint32_t GetStateMaxSize(
+      ::u32 GetStateMaxSize(
          VOID)
       {
-         return  3*sizeof(uint32_t) +           /* Tempo                */
-            3*16*sizeof(uint32_t) +        /* Patch changes        */
-            3*16*120*sizeof(uint32_t) +    /* Controller changes   */
-            3*sizeof(uint32_t);            /* time alignment NOP   */
+         return  3*sizeof(::u32) +           /* Tempo                */
+            3*16*sizeof(::u32) +        /* Patch changes        */
+            3*16*120*sizeof(::u32) +    /* Controller changes   */
+            3*sizeof(::u32);            /* time alignment NOP   */
       }
 
 

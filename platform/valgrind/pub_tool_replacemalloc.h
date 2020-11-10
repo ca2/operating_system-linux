@@ -67,7 +67,7 @@ extern Bool VG_(addr_is_in_block)( Addr a, Addr start,
 extern Bool VG_(clo_trace_malloc);
 /* Minimum alignment in functions that don't specify alignment explicitly.
    default: VG_MIN_MALLOC_SZB */
-extern UInt VG_(clo_alignment);
+extern ::u32 VG_(clo_alignment);
 
 extern Bool VG_(replacement_malloc_process_cmd_line_option) ( const HChar* arg );
 

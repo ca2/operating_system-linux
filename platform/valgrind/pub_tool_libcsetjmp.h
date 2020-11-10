@@ -75,7 +75,7 @@
 
 #if defined(VGP_ppc32_linux)
 
-#define VG_MINIMAL_JMP_BUF(_name)        UInt _name [32+1+1]
+#define VG_MINIMAL_JMP_BUF(_name)        ::u32 _name [32+1+1]
 __attribute__((returns_twice))
 UWord VG_MINIMAL_SETJMP(VG_MINIMAL_JMP_BUF(_env));
 __attribute__((noreturn))
@@ -104,7 +104,7 @@ void  VG_MINIMAL_LONGJMP(VG_MINIMAL_JMP_BUF(_env));
 #elif defined(VGP_x86_linux) || defined(VGP_x86_darwin) || \
       defined(VGP_x86_solaris)
 
-#define VG_MINIMAL_JMP_BUF(_name)        UInt _name [8+1]
+#define VG_MINIMAL_JMP_BUF(_name)        ::u32 _name [8+1]
 __attribute__((returns_twice))
 __attribute__((regparm(1))) // this is critical; don't delete
 UWord VG_MINIMAL_SETJMP(VG_MINIMAL_JMP_BUF(_env));

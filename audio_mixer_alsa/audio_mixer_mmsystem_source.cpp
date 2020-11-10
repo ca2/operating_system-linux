@@ -76,7 +76,7 @@ namespace multimedia
          {
             //        char       ach[128];
             //      char       szControlType[64];
-            //        uint32_t        u;
+            //        ::u32        u;
             //    int32_t         nIndex;
             PMIXERCONTROL       pamxctrl;
             //        LPMIXERCONTROLDETAILS lpmcd;
@@ -85,7 +85,7 @@ namespace multimedia
             //        if (0 != (APP_OPTF_DEBUGLOG & gfuAppOptions))
             //          MixAppDebugLog(NULL);
 
-            for (int32_t i = 0; (uint32_t) i < m_mixerlinecontrols.cControls; i++)
+            for (int32_t i = 0; (::u32) i < m_mixerlinecontrols.cControls; i++)
             {
                lpMixerControl = m_mixercontrola(i);
                lpMixerControl->m_pmixersource = this;
@@ -147,7 +147,7 @@ namespace multimedia
 
       }
 
-      /*::multimedia::result source::GetControl(uint32_t dwControlType, uint32_t dwControlFlags,  ::multimedia::audio_mixer::control ** ppControl)
+      /*::multimedia::result source::GetControl(::u32 dwControlType, ::u32 dwControlFlags,  ::multimedia::audio_mixer::control ** ppControl)
       {
       ::multimedia::audio_mixer::control_array & controla = m_mixercontrola;
       if(controla.get_size() <= 0)
@@ -199,7 +199,7 @@ namespace multimedia
          return m_mixerline.szName;
       }
 
-      uint32_t source::GetLineID()
+      ::u32 source::GetLineID()
       {
          return m_mixerline.dwLineID;
       }
@@ -216,7 +216,7 @@ namespace multimedia
       }
 
 
-      ::multimedia::result source::mixerGetLineInfo(uint32_t dwSource, uint32_t dwDestination, uint32_t fdwInfo)
+      ::multimedia::result source::mixerGetLineInfo(::u32 dwSource, ::u32 dwDestination, ::u32 fdwInfo)
       {
          
          m_mixerline.cbStruct       = sizeof(MIXERLINE);
@@ -240,7 +240,7 @@ namespace multimedia
 
       }
 
-      ::multimedia::result source::mixerGetLineInfo(uint32_t dwSource, ::multimedia::audio_mixer::destination * pdestination)
+      ::multimedia::result source::mixerGetLineInfo(::u32 dwSource, ::multimedia::audio_mixer::destination * pdestination)
       {
          
          sp(::multimedia::audio_mixer_mmsystem::destination) destination = pdestination;

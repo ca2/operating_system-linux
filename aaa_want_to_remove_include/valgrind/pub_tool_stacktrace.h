@@ -58,8 +58,8 @@ typedef Addr* StackTrace;
 // If sps and fps are non-NULL, the corresponding frame-pointer and
 // stack-pointer values for each frame are stored there.
 
-extern UInt VG_(get_StackTrace) ( ThreadId tid, 
-                                  /*OUT*/StackTrace ips, UInt n_ips,
+extern ::u32 VG_(get_StackTrace) ( ThreadId tid,
+                                  /*OUT*/StackTrace ips, ::u32 n_ips,
                                   /*OUT*/StackTrace sps,
                                   /*OUT*/StackTrace fps,
                                   Word first_ip_delta );
@@ -70,17 +70,17 @@ extern UInt VG_(get_StackTrace) ( ThreadId tid,
 // closure).  Doesn't go below main() unless --show-below-main=yes is
 // set.
 extern void VG_(apply_StackTrace)(
-               void(*action)(UInt n, Addr ip, void* opaque),
+               void(*action)(::u32 n, Addr ip, void* opaque),
                void* opaque,
-               StackTrace ips, UInt n_ips
+               StackTrace ips, ::u32 n_ips
             );
 
 // Print a StackTrace.
-extern void VG_(pp_StackTrace) ( StackTrace ips, UInt n_ips );
+extern void VG_(pp_StackTrace) ( StackTrace ips, ::u32 n_ips );
 
 // Gets and immediately prints a StackTrace.  Just a bit simpler than
 // calling VG_(get_StackTrace)() then VG_(pp_StackTrace)().
-extern void VG_(get_and_pp_StackTrace) ( ThreadId tid, UInt n_ips );
+extern void VG_(get_and_pp_StackTrace) ( ThreadId tid, ::u32 n_ips );
 
 #endif   // __PUB_TOOL_STACKTRACE_H
 

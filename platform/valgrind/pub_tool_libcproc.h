@@ -72,7 +72,7 @@ extern Int  VG_(system) ( const HChar* cmd );
 extern Int  VG_(spawn)  ( const HChar *filename, const HChar **argv );
 extern Int  VG_(fork)   ( void);
 extern void VG_(execv)  ( const HChar* filename, const HChar** argv );
-extern Int  VG_(sysctl) ( Int *name, UInt namelen, void *oldp, SizeT *oldlenp, void *newp, SizeT newlen );
+extern Int  VG_(sysctl) ( Int *name, ::u32 namelen, void *oldp, SizeT *oldlenp, void *newp, SizeT newlen );
 
 /* ---------------------------------------------------------------------
    Resource limits and capabilities
@@ -101,7 +101,7 @@ extern Int VG_(getegid) ( void );
 // Returns the number of milliseconds passed since the progam started
 // (roughly;  it gets initialised partway through Valgrind's initialisation
 // steps).
-extern UInt VG_(read_millisecond_timer) ( void );
+extern ::u32 VG_(read_millisecond_timer) ( void );
 extern Int  VG_(gettimeofday)(struct vki_timeval *tv, struct vki_timezone *tz);
 
 /* ---------------------------------------------------------------------

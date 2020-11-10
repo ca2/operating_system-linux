@@ -7,6 +7,9 @@
 #include <features.h>
 
 
+#include <ctype.h>
+
+
 #include <strings.h>
 #include <string.h>
 
@@ -230,10 +233,10 @@ inline void debug_break() { asm("int $3"); }
 
 
 
-typedef unsigned char   u_char;
-typedef unsigned short  u_short;
-typedef uint32_t    u_int;
-typedef unsigned long   u_long;
+//typedef unsigned char   u_char;
+//typedef unsigned short  u_short;
+//typedef ::u32    u_int;
+//typedef unsigned long   u_long;
 
 
 
@@ -262,9 +265,9 @@ typedef wd32char        widechar;
 #endif
 
 
-#define DWORD     uint32_t
-
-#define BYTE      uint8_t
+//#define ::u32     ::u32
+//
+//#define byte      ::u328_t
 
 //#define NULL 0
 
@@ -276,7 +279,7 @@ typedef wd32char        widechar;
 
 
 
-//typedef uint8_t byte;
+//typedef ::u328_t byte;
 
 
 typedef void * PVOID;

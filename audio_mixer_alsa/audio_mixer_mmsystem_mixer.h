@@ -27,12 +27,12 @@ namespace multimedia
          void set_callback(::multimedia::audio_mixer::callback * pcallback);
 
 
-         ::multimedia::result set_new_device(uint32_t uiMixerId);
+         ::multimedia::result set_new_device(::u32 uiMixerId);
 
 
          bool OnCommand(WPARAM wparam, LPARAM lparam);
-         void OnMixerControlChange(HMIXER hMixer, uint32_t dwControlID);
-         void OnMixerLineChange(HMIXER hMixer, uint32_t dwLineID);
+         void OnMixerControlChange(HMIXER hMixer, ::u32 dwControlID);
+         void OnMixerLineChange(HMIXER hMixer, ::u32 dwLineID);
 
 
          static bool get_component_name(LPMIXERLINE pmxl, string & strComponent);

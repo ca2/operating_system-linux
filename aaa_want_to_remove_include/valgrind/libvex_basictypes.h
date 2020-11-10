@@ -52,7 +52,7 @@ typedef  unsigned short  UShort;
 typedef    signed short  Short;
 
 /* Always 32 bits. */
-typedef  unsigned int    UInt;
+typedef  unsigned int    ::u32;
 typedef    signed int    Int;
 
 /* Always 64 bits. */
@@ -66,17 +66,17 @@ typedef    signed long long int   Long;
 typedef  unsigned long SizeT;
 
 /* Always 128 bits. */
-typedef  UInt  U128[4];
+typedef  ::u32  U128[4];
 
 /* Always 256 bits. */
-typedef  UInt  U256[8];
+typedef  ::u32  U256[8];
 
 /* A union for doing 128-bit vector primitives conveniently. */
 typedef
    union {
       UChar  w8[16];
       UShort w16[8];
-      UInt   w32[4];
+      ::u32   w32[4];
       ULong  w64[2];
    }
    V128;
@@ -86,7 +86,7 @@ typedef
    union {
       UChar  w8[32];
       UShort w16[16];
-      UInt   w32[8];
+      ::u32   w32[8];
       ULong  w64[4];
    }
    V256;
@@ -123,13 +123,13 @@ static inline Short toShort ( Int x ) {
    x &= 0xFFFF;
    return (Short)x;
 }
-static inline UInt toUInt ( Long x ) {
+static inline ::u32 to::u32 ( Long x ) {
    x &= 0xFFFFFFFFLL;
-   return (UInt)x;
+   return (::u32)x;
 }
 
 /* 32/64 bit addresses. */
-typedef  UInt      Addr32;
+typedef  ::u32      Addr32;
 typedef  ULong     Addr64;
 
 /* An address: 32-bit or 64-bit wide depending on host architecture */

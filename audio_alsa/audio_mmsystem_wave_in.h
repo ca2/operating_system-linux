@@ -45,7 +45,7 @@ namespace multimedia
          virtual int32_t exit_instance();
          virtual void pre_translate_message(::signal_details * pobj);
 
-         static void CALLBACK wave_in_proc(HWAVEIN hwi, UINT uMsg, DWORD dwInstance, DWORD dwParam1, DWORD dwParam2);
+         static void CALLBACK wave_in_proc(HWAVEIN hwi, ::u32 uMsg, ::u32 dwInstance, ::u32 dwParam1, ::u32 dwParam2);
 
          WAVEFORMATEX * wave_format();
          LPWAVEHDR wave_hdr(int iBuffer);

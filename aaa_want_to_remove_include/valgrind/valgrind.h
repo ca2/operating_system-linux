@@ -336,25 +336,25 @@ typedef
 #define VALGRIND_DO_CLIENT_REQUEST_EXPR(                          \
         _zzq_default, _zzq_request,                               \
         _zzq_arg1, _zzq_arg2, _zzq_arg3, _zzq_arg4, _zzq_arg5)    \
-    valgrind_do_client_request_expr((uintptr_t)(_zzq_default),    \
-        (uintptr_t)(_zzq_request), (uintptr_t)(_zzq_arg1),        \
-        (uintptr_t)(_zzq_arg2), (uintptr_t)(_zzq_arg3),           \
-        (uintptr_t)(_zzq_arg4), (uintptr_t)(_zzq_arg5))
+    valgrind_do_client_request_expr((::u32ptr_t)(_zzq_default),    \
+        (::u32ptr_t)(_zzq_request), (::u32ptr_t)(_zzq_arg1),        \
+        (::u32ptr_t)(_zzq_arg2), (::u32ptr_t)(_zzq_arg3),           \
+        (::u32ptr_t)(_zzq_arg4), (::u32ptr_t)(_zzq_arg5))
 
-static __inline uintptr_t
-valgrind_do_client_request_expr(uintptr_t _zzq_default, uintptr_t _zzq_request,
-                                uintptr_t _zzq_arg1, uintptr_t _zzq_arg2,
-                                uintptr_t _zzq_arg3, uintptr_t _zzq_arg4,
-                                uintptr_t _zzq_arg5)
+static __inline ::u32ptr_t
+valgrind_do_client_request_expr(::u32ptr_t _zzq_default, ::u32ptr_t _zzq_request,
+                                ::u32ptr_t _zzq_arg1, ::u32ptr_t _zzq_arg2,
+                                ::u32ptr_t _zzq_arg3, ::u32ptr_t _zzq_arg4,
+                                ::u32ptr_t _zzq_arg5)
 {
-    volatile uintptr_t _zzq_args[6];
+    volatile ::u32ptr_t _zzq_args[6];
     volatile unsigned int _zzq_result;
-    _zzq_args[0] = (uintptr_t)(_zzq_request);
-    _zzq_args[1] = (uintptr_t)(_zzq_arg1);
-    _zzq_args[2] = (uintptr_t)(_zzq_arg2);
-    _zzq_args[3] = (uintptr_t)(_zzq_arg3);
-    _zzq_args[4] = (uintptr_t)(_zzq_arg4);
-    _zzq_args[5] = (uintptr_t)(_zzq_arg5);
+    _zzq_args[0] = (::u32ptr_t)(_zzq_request);
+    _zzq_args[1] = (::u32ptr_t)(_zzq_arg1);
+    _zzq_args[2] = (::u32ptr_t)(_zzq_arg2);
+    _zzq_args[3] = (::u32ptr_t)(_zzq_arg3);
+    _zzq_args[4] = (::u32ptr_t)(_zzq_arg4);
+    _zzq_args[5] = (::u32ptr_t)(_zzq_arg5);
     __asm { __asm lea eax, _zzq_args __asm mov edx, _zzq_default
             __SPECIAL_INSTRUCTION_PREAMBLE
             /* %EDX = client_request ( %EAX ) */
@@ -6248,7 +6248,7 @@ VALGRIND_PRINTF(const char *format, ...)
    return 0;
 #else /* NVALGRIND */
 #if defined(_MSC_VER) || defined(__MINGW64__)
-   uintptr_t _qzz_res;
+   ::u32ptr_t _qzz_res;
 #else
    unsigned long _qzz_res;
 #endif
@@ -6257,8 +6257,8 @@ VALGRIND_PRINTF(const char *format, ...)
 #if defined(_MSC_VER) || defined(__MINGW64__)
    _qzz_res = VALGRIND_DO_CLIENT_REQUEST_EXPR(0,
                               VG_USERREQ__PRINTF_VALIST_BY_REF,
-                              (uintptr_t)format,
-                              (uintptr_t)&vargs,
+                              (::u32ptr_t)format,
+                              (::u32ptr_t)&vargs,
                               0, 0, 0);
 #else
    _qzz_res = VALGRIND_DO_CLIENT_REQUEST_EXPR(0,
@@ -6287,7 +6287,7 @@ VALGRIND_PRINTF_BACKTRACE(const char *format, ...)
    return 0;
 #else /* NVALGRIND */
 #if defined(_MSC_VER) || defined(__MINGW64__)
-   uintptr_t _qzz_res;
+   ::u32ptr_t _qzz_res;
 #else
    unsigned long _qzz_res;
 #endif
@@ -6296,8 +6296,8 @@ VALGRIND_PRINTF_BACKTRACE(const char *format, ...)
 #if defined(_MSC_VER) || defined(__MINGW64__)
    _qzz_res = VALGRIND_DO_CLIENT_REQUEST_EXPR(0,
                               VG_USERREQ__PRINTF_BACKTRACE_VALIST_BY_REF,
-                              (uintptr_t)format,
-                              (uintptr_t)&vargs,
+                              (::u32ptr_t)format,
+                              (::u32ptr_t)&vargs,
                               0, 0, 0);
 #else
    _qzz_res = VALGRIND_DO_CLIENT_REQUEST_EXPR(0,

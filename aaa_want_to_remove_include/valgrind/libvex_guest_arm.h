@@ -42,24 +42,24 @@ typedef
    struct {
       /* 0 */
       /* Event check fail addr and counter. */
-      UInt host_EvC_FAILADDR; /* 0 */
-      UInt host_EvC_COUNTER;  /* 4 */
-      UInt guest_R0;
-      UInt guest_R1;
-      UInt guest_R2;
-      UInt guest_R3;
-      UInt guest_R4;
-      UInt guest_R5;
-      UInt guest_R6;
-      UInt guest_R7;
-      UInt guest_R8;
-      UInt guest_R9;
-      UInt guest_R10;
-      UInt guest_R11;
-      UInt guest_R12;
-      UInt guest_R13;     /* stack pointer */
-      UInt guest_R14;     /* link register */
-      UInt guest_R15T;
+      ::u32 host_EvC_FAILADDR; /* 0 */
+      ::u32 host_EvC_COUNTER;  /* 4 */
+      ::u32 guest_R0;
+      ::u32 guest_R1;
+      ::u32 guest_R2;
+      ::u32 guest_R3;
+      ::u32 guest_R4;
+      ::u32 guest_R5;
+      ::u32 guest_R6;
+      ::u32 guest_R7;
+      ::u32 guest_R8;
+      ::u32 guest_R9;
+      ::u32 guest_R10;
+      ::u32 guest_R11;
+      ::u32 guest_R12;
+      ::u32 guest_R13;     /* stack pointer */
+      ::u32 guest_R14;     /* link register */
+      ::u32 guest_R15T;
       /* program counter[31:1] ++ [T], encoding both the current
          instruction address and the ARM vs Thumb state of the
          machine.  T==1 is Thumb, T==0 is ARM.  Hence values of the
@@ -72,31 +72,31 @@ typedef
       /* 4-word thunk used to calculate N(sign) Z(zero) C(carry,
          unsigned overflow) and V(signed overflow) flags. */
       /* 72 */
-      UInt guest_CC_OP;
-      UInt guest_CC_DEP1;
-      UInt guest_CC_DEP2;
-      UInt guest_CC_NDEP;
+      ::u32 guest_CC_OP;
+      ::u32 guest_CC_DEP1;
+      ::u32 guest_CC_DEP2;
+      ::u32 guest_CC_NDEP;
 
       /* A 32-bit value which is used to compute the APSR.Q (sticky
          saturation) flag, when necessary.  If the value stored here
          is zero, APSR.Q is currently zero.  If it is any other value,
          APSR.Q is currently one. */
-      UInt guest_QFLAG32;
+      ::u32 guest_QFLAG32;
 
       /* 32-bit values to represent APSR.GE0 .. GE3.  Same
          zero-vs-nonzero scheme as for QFLAG32. */
-      UInt guest_GEFLAG0;
-      UInt guest_GEFLAG1;
-      UInt guest_GEFLAG2;
-      UInt guest_GEFLAG3;
+      ::u32 guest_GEFLAG0;
+      ::u32 guest_GEFLAG1;
+      ::u32 guest_GEFLAG2;
+      ::u32 guest_GEFLAG3;
 
       /* Various pseudo-regs mandated by Vex or Valgrind. */
       /* Emulation notes */
-      UInt guest_EMNOTE;
+      ::u32 guest_EMNOTE;
 
       /* For clinval/clflush: record start and length of area */
-      UInt guest_CMSTART;
-      UInt guest_CMLEN;
+      ::u32 guest_CMSTART;
+      ::u32 guest_CMLEN;
 
       /* Used to record the unredirected guest address at the start of
          a translation whose start has been redirected.  By reading
@@ -104,14 +104,14 @@ typedef
          find out what the corresponding no-redirection address was.
          Note, this is only set for wrap-style redirects, not for
          replace-style ones. */
-      UInt guest_NRADDR;
+      ::u32 guest_NRADDR;
 
       /* Needed for Darwin (but mandated for all guest architectures):
          program counter at the last syscall insn (int 0x80/81/82,
          sysenter, syscall, svc).  Used when backing up to restart a
          syscall that has been interrupted by a signal. */
       /* 124 */
-      UInt guest_IP_AT_SYSCALL;
+      ::u32 guest_IP_AT_SYSCALL;
 
       /* VFP state.  D0 .. D15 must be 8-aligned. */
       /* 128 */
@@ -147,7 +147,7 @@ typedef
       ULong guest_D29;
       ULong guest_D30;
       ULong guest_D31;
-      UInt  guest_FPSCR;
+      ::u32  guest_FPSCR;
 
       /* Not a town in Cornwall, but instead the TPIDRURO, on of the
          Thread ID registers present in CP15 (the system control
@@ -156,7 +156,7 @@ typedef
          to hold the TLS pointer for the thread.  It's read-only in
          user space.  On Linux it is set in user space by various
          thread-related syscalls. */
-      UInt guest_TPIDRURO;
+      ::u32 guest_TPIDRURO;
 
       /* Representation of the Thumb IT state.  ITSTATE is a 32-bit
          value with 4 8-bit lanes.  [7:0] pertain to the next insn to
@@ -191,10 +191,10 @@ typedef
          The condition "is outside or last in IT block" corresponds
          to the top 24 bits of ITSTATE being zero.
       */
-      UInt guest_ITSTATE;
+      ::u32 guest_ITSTATE;
 
       /* Padding to make it have an 16-aligned size */
-      UInt padding1;
+      ::u32 padding1;
    }
    VexGuestARMState;
 
@@ -213,7 +213,7 @@ void LibVEX_GuestARM_initialise ( /*OUT*/VexGuestARMState* vex_state );
 /* Calculate the ARM flag state from the saved data. */
 
 extern
-UInt LibVEX_GuestARM_get_cpsr ( /*IN*/const VexGuestARMState* vex_state );
+::u32 LibVEX_GuestARM_get_cpsr ( /*IN*/const VexGuestARMState* vex_state );
 
 
 #endif /* ndef __LIBVEX_PUB_GUEST_ARM_H */

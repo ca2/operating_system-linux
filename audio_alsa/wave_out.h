@@ -19,7 +19,7 @@ namespace multimedia
          bool                    m_bWrite;
          int                     m_iBuffer;
          bool                    m_bStarted;
-         uint64_t                m_uiStart;
+         ::u3264_t                m_uiStart;
          snd_pcm_status_t *      m_pstatus;
          timeval                 m_timevalStart;
 
@@ -34,7 +34,7 @@ namespace multimedia
          //imedia_position out_get_position();
 
          //virtual ::estatus wave_out_open(::thread * pthreadCallback, ::count iBufferCount, ::count iBufferSampleCount) override;
-         virtual ::estatus out_open_ex(::thread * pthreadCallback, uint32_t uiSamplesPerSec, uint32_t uiChannelCount, uint32_t uiBitsPerSample, ::wave::e_purpose epurpose) override;
+         virtual ::estatus out_open_ex(::thread * pthreadCallback, ::u32 uiSamplesPerSec, ::u32 uiChannelCount, ::u32 uiBitsPerSample, ::wave::e_purpose epurpose) override;
          virtual ::estatus out_stop() override;
          virtual ::estatus out_close() override;
          virtual ::estatus out_pause() override;

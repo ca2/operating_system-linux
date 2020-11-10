@@ -63,17 +63,17 @@ namespace multimedia
 
       bool control::CreateWindowsVolumeV001(
          sp(::user::interaction)pParent,
-         uint32_t nStartID,
-         uint32_t * nNextID)
+         ::u32 nStartID,
+         ::u32 * nNextID)
       {
          ASSERT(m_mixercontrol.dwControlType == MIXERCONTROL_CONTROLTYPE_VOLUME);
 
          static char        szScrollBar[] = TEXT("scrollbar");
          static char        szTitle[]     = TEXT("Fader Class: '%s'");
 
-         uint32_t                        cb;
-         uint32_t                        lcChannels;
-         uint32_t                        lcMultipleItems;
+         ::u32                        cb;
+         ::u32                        lcChannels;
+         ::u32                        lcMultipleItems;
          int32_t                         nRange;
          int32_t                         nPageInc;
 
@@ -81,13 +81,13 @@ namespace multimedia
 
          ASSERT(source != NULL);
 
-         lcChannels = (uint32_t)source->m_mixerline.cChannels;
+         lcChannels = (::u32)source->m_mixerline.cChannels;
          if (MIXERCONTROL_CONTROLF_UNIFORM & m_mixercontrol.fdwControl)
             m_mixercontroldetails.cChannels = 1;
 
          lcMultipleItems = 1;
          if (MIXERCONTROL_CONTROLF_MULTIPLE & m_mixercontrol.fdwControl)
-            lcMultipleItems = (uint32_t)m_mixercontrol.cMultipleItems;
+            lcMultipleItems = (::u32)m_mixercontrol.cMultipleItems;
 
          if(lcChannels > 2)
             return false;
@@ -130,11 +130,11 @@ namespace multimedia
             }
          }
 
-         uint32_t nID = nStartID;
-         uint32_t nVolumeID = nID++;
-         uint32_t nVolumeLabelID = nID++;
-         uint32_t nBalanceID = nID++;
-         uint32_t nBalanceLabelID = nID++;
+         ::u32 nID = nStartID;
+         ::u32 nVolumeID = nID++;
+         ::u32 nVolumeLabelID = nID++;
+         ::u32 nBalanceID = nID++;
+         ::u32 nBalanceLabelID = nID++;
 
          rect rect(0, 0, 0, 0);
 
@@ -215,27 +215,27 @@ namespace multimedia
 
       bool control::_001CreateMuteControl(
          sp(::user::interaction)pParent,
-         uint32_t nStartID,
-         uint32_t * nNextID)
+         ::u32 nStartID,
+         ::u32 * nNextID)
       {
          ASSERT((m_mixercontrol.dwControlType &  MIXERCONTROL_CT_UNITS_MASK) == MIXERCONTROL_CT_UNITS_BOOLEAN);
 
-         uint32_t                        cb;
-         uint32_t                        lcChannels;
-         uint32_t                        lcMultipleItems;
+         ::u32                        cb;
+         ::u32                        lcChannels;
+         ::u32                        lcMultipleItems;
 
 
          ASSERT(m_pmixersource != NULL);
 
          sp(::multimedia::audio_mixer_mmsystem::source) source = m_pmixersource;
 
-         lcChannels = (uint32_t)source->m_mixerline.cChannels;
+         lcChannels = (::u32)source->m_mixerline.cChannels;
          if (MIXERCONTROL_CONTROLF_UNIFORM & m_mixercontrol.fdwControl)
             lcChannels = 1;
 
          lcMultipleItems = 1;
          if (MIXERCONTROL_CONTROLF_MULTIPLE & m_mixercontrol.fdwControl)
-            lcMultipleItems = (uint32_t)m_mixercontrol.cMultipleItems;
+            lcMultipleItems = (::u32)m_mixercontrol.cMultipleItems;
 
          //if(lcChannels > 2)
          //  return false;
@@ -250,8 +250,8 @@ namespace multimedia
             free(m_mixercontroldetails.paDetails);
          m_mixercontroldetails.paDetails = malloc(cb);
 
-         uint32_t nID = nStartID;
-         uint32_t nMuteID;
+         ::u32 nID = nStartID;
+         ::u32 nMuteID;
 
 
 
@@ -327,11 +327,11 @@ namespace multimedia
          PMIXERCONTROLDETAILS_UNSIGNED   pmxcd_u;
          int32_t                             nRange;
          //    int32_t                             nValue;
-         uint32_t                            cChannels;
-         uint32_t                            cMultipleItems;
-         //    uint32_t                            u;
-         //    uint32_t                            uIndex;
-         //    uint32_t                            v;
+         ::u32                            cChannels;
+         ::u32                            cMultipleItems;
+         //    ::u32                            u;
+         //    ::u32                            uIndex;
+         //    ::u32                            v;
          //    MIXERCONTROLDETAILS             mxcd;
          //   oswindow                            hsbFocus;
          //    oswindow                            hsb;
@@ -355,7 +355,7 @@ namespace multimedia
          //
          //
          //
-         //    pmaci_fader = (PMACONTROLINSTANCE_FADER)(uint32_t)GetWindowLong(oswindow, DWL_USER);
+         //    pmaci_fader = (PMACONTROLINSTANCE_FADER)(::u32)GetWindowLong(oswindow, DWL_USER);
          //    pmaci       = pmaci_fader->pmaci;
          //    pmxl        = pmaci->pmxl;
          //    pmxctrl     = pmaci->pmxctrl;
@@ -365,7 +365,7 @@ namespace multimedia
          sp(::multimedia::audio_mixer_mmsystem::source) source = m_pmixersource;
          sp(::multimedia::audio_mixer_mmsystem::device) device = source->get_device();
 
-         cChannels = (uint32_t)source->m_mixerline.cChannels;
+         cChannels = (::u32)source->m_mixerline.cChannels;
          if (MIXERCONTROL_CONTROLF_UNIFORM & m_mixercontrol.fdwControl)
             cChannels = 1;
 
@@ -395,7 +395,7 @@ namespace multimedia
 
          cMultipleItems = 1;
          if (MIXERCONTROL_CONTROLF_MULTIPLE & m_mixercontrol.fdwControl)
-            cMultipleItems = (uint32_t)m_mixercontrol.cMultipleItems;
+            cMultipleItems = (::u32)m_mixercontrol.cMultipleItems;
          if(m_mixercontrol.dwControlType == MIXERCONTROL_CONTROLTYPE_VOLUME)
          {
             ASSERT(cMultipleItems == 1);
@@ -480,7 +480,7 @@ namespace multimedia
          return NULL;
       }
 
-      /*bool control::OnNotify(uint32_t nID, LPNMHDR lpnmhdr)
+      /*bool control::OnNotify(::u32 nID, LPNMHDR lpnmhdr)
       {
       UNREFERENCED_PARAMETER(nID);
       if(lpnmhdr->code == TB_BOTTOM ||
@@ -521,7 +521,7 @@ namespace multimedia
       pslBalance = (CSliderCtrl *) GetControl(::multimedia::audio_mixer::control_data::TypeStereoBalance)->GetWnd();
       ASSERT(pslVolume != NULL);
       }
-      m_mixercontroldetails.cChannels = (uint32_t)m_pmixersource->m_mixerline.cChannels;
+      m_mixercontroldetails.cChannels = (::u32)m_pmixersource->m_mixerline.cChannels;
       if (MIXERCONTROL_CONTROLF_UNIFORM & m_mixercontrol.fdwControl)
       m_mixercontroldetails.cChannels = 1;
 
@@ -615,7 +615,7 @@ namespace multimedia
 
       }*/
 
-      ::multimedia::audio_mixer::user::control * control::GetControlByDlgCtrlID(uint32_t nID)
+      ::multimedia::audio_mixer::user::control * control::GetControlByDlgCtrlID(::u32 nID)
       {
          ::multimedia::audio_mixer::user::control * pusercontrol = NULL;
          for(int32_t i = 0; i < this->get_size(); i++)
@@ -623,7 +623,7 @@ namespace multimedia
             pusercontrol = this->element_at(i);
             if(pusercontrol == NULL)
                continue;
-            if((uint32_t) pusercontrol->_GetDlgCtrlID() == nID)
+            if((::u32) pusercontrol->_GetDlgCtrlID() == nID)
             {
                return pusercontrol;
             }
@@ -632,7 +632,7 @@ namespace multimedia
 
       }
 
-      ::multimedia::audio_mixer::control_data * control::GetWindowDataByDlgCtrlID(uint32_t nID)
+      ::multimedia::audio_mixer::control_data * control::GetWindowDataByDlgCtrlID(::u32 nID)
       {
          ::multimedia::audio_mixer::user::control * pusercontrol = NULL;
          for(int32_t i = 0; i < this->get_size(); i++)
@@ -640,7 +640,7 @@ namespace multimedia
             pusercontrol = this->element_at(i);
             if(pusercontrol == NULL)
                continue;
-            if((uint32_t) pusercontrol->GetWnd()->GetDlgCtrlId() == nID)
+            if((::u32) pusercontrol->GetWnd()->GetDlgCtrlId() == nID)
             {
                return pusercontrol->m_pdata;
             }
@@ -648,7 +648,7 @@ namespace multimedia
          return NULL;
       }
 
-      void control::OnVHScroll(uint32_t nSBCode, uint32_t nPos, sp(::user::interaction) pScrollBar)
+      void control::OnVHScroll(::u32 nSBCode, ::u32 nPos, sp(::user::interaction) pScrollBar)
       {
          UNREFERENCED_PARAMETER(nPos);
          sp(::user::interaction) pParamWnd = pScrollBar;
@@ -669,7 +669,7 @@ namespace multimedia
             nSBCode == SB_PAGEDOWN ||
             nSBCode == SB_TOP )
          {
-            ::multimedia::audio_mixer::user::control * pcontrol = GetControlByDlgCtrlID((uint32_t) pParamWnd->GetDlgCtrlId());
+            ::multimedia::audio_mixer::user::control * pcontrol = GetControlByDlgCtrlID((::u32) pParamWnd->GetDlgCtrlId());
             if(pcontrol != NULL)
             {
                ::multimedia::audio_mixer::user::level_control * pSlider = dynamic_cast<::multimedia::audio_mixer::user::level_control*>(pcontrol);
@@ -677,7 +677,7 @@ namespace multimedia
                {
                   //mix::SliderInterface * pSlider = dynamic_cast < ::multimedia::audio_mixer::user::level_control * > ( pusercontrol);
                   ::multimedia::audio_mixer::control_data * pData;
-                  if(NULL != (pData = GetWindowDataByDlgCtrlID((uint32_t) pParamWnd->GetDlgCtrlId())))
+                  if(NULL != (pData = GetWindowDataByDlgCtrlID((::u32) pParamWnd->GetDlgCtrlId())))
                   {
 
                      if(pData->get_type() == ::multimedia::audio_mixer::control_data::TypeStereoBalance ||
@@ -701,7 +701,7 @@ namespace multimedia
                               ( GetControl(::multimedia::audio_mixer::control_data::TypeStereoBalance));
                            ASSERT(pslVolume != NULL);
                         }
-                        m_mixercontroldetails.cChannels = (uint32_t)source->m_mixerline.cChannels;
+                        m_mixercontroldetails.cChannels = (::u32)source->m_mixerline.cChannels;
                         if (MIXERCONTROL_CONTROLF_UNIFORM & m_mixercontrol.fdwControl)
                            m_mixercontroldetails.cChannels = 1;
 
@@ -795,10 +795,10 @@ namespace multimedia
       bool control::OnCommand(WPARAM wParam, LPARAM lParam)
       {
          UNREFERENCED_PARAMETER(lParam);
-         WORD wNotifyCode = HIWORD(wParam);
-         WORD wID = LOWORD(wParam);
+         ::u16 wNotifyCode = HIWORD(wParam);
+         ::u16 wID = LOWORD(wParam);
 
-         ::multimedia::audio_mixer::user::control * pwnd = GetControlByDlgCtrlID((uint32_t)wID);
+         ::multimedia::audio_mixer::user::control * pwnd = GetControlByDlgCtrlID((::u32)wID);
 
          ::multimedia::audio_mixer::user::toggle_control * pmutecontrol =
             dynamic_cast < ::multimedia::audio_mixer::user::toggle_control  * >
@@ -807,7 +807,7 @@ namespace multimedia
          if(pmutecontrol != NULL)
          {
             ::multimedia::audio_mixer::control_data * pData;
-            if(NULL != (pData = GetWindowDataByDlgCtrlID((uint32_t) wID)))
+            if(NULL != (pData = GetWindowDataByDlgCtrlID((::u32) wID)))
             {
                if(pData->get_type() == ::multimedia::audio_mixer::control_data::TypeUniformMute)
                {
@@ -817,7 +817,7 @@ namespace multimedia
                      sp(::multimedia::audio_mixer_mmsystem::source) source = m_pmixersource;
                      sp(::multimedia::audio_mixer_mmsystem::device) device = source->get_device();
 
-                     m_mixercontroldetails.cChannels = (uint32_t)source->m_mixerline.cChannels;
+                     m_mixercontroldetails.cChannels = (::u32)source->m_mixerline.cChannels;
                      if(MIXERCONTROL_CONTROLF_UNIFORM & m_mixercontrol.fdwControl)
                         m_mixercontroldetails.cChannels = 1;
 

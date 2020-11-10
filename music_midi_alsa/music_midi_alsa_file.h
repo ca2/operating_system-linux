@@ -47,7 +47,7 @@ namespace music
 
          void OnStop();
 
-         uint32_t GetImageSize();
+         ::u32 GetImageSize();
 
          LPBYTE GetImage();
 
@@ -99,7 +99,7 @@ namespace music
 
          ::estatus WorkMergeTracks();
 
-         ::estatus WorkStreamRender(LPMIDIHDR lpmh, imedia::position tkMax, uint32_t cbPrerollNomimalMax);
+         ::estatus WorkStreamRender(LPMIDIHDR lpmh, imedia::position tkMax, ::u32 cbPrerollNomimalMax);
 
          ::estatus WorkGetNextEvent(::music::midi::event * & pevent, imedia::position tkMax, bool bTkMaxInclusive);
 
@@ -155,11 +155,11 @@ namespace music
 
          void TimeToPosition(imedia::position_array & positiona, imedia::time_array & timea, imedia::time msOffset);
 
-         ::estatus StreamRender(LPMIDIHDR lpmh, imedia::position tkMax, uint32_t cbPrerollNomimalMax);
+         ::estatus StreamRender(LPMIDIHDR lpmh, imedia::position tkMax, ::u32 cbPrerollNomimalMax);
 
-         ::estatus StreamEvent(imedia::position tkDelta, ::music::midi::event * Event, LPMIDIHDR lpmh, imedia::position tkMax, uint32_t cbPrerollNomimalMax);
+         ::estatus StreamEvent(imedia::position tkDelta, ::music::midi::event * Event, LPMIDIHDR lpmh, imedia::position tkMax, ::u32 cbPrerollNomimalMax);
 
-         ::estatus StreamEventF1(imedia::position tkDelta, array < ::music::midi::event *, ::music::midi::event * > & eventptra, LPMIDIHDR lpmh, imedia::position tkMax, uint32_t cbPrerollNomimalMax);
+         ::estatus StreamEventF1(imedia::position tkDelta, array < ::music::midi::event *, ::music::midi::event * > & eventptra, LPMIDIHDR lpmh, imedia::position tkMax, ::u32 cbPrerollNomimalMax);
 
          ::estatus seek(imedia::position tkPosition, LPMIDIHDR lpmh);
 

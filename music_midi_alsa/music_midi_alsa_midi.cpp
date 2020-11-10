@@ -32,11 +32,11 @@ namespace music
 
             return ::success;
 
-   /*         UINT devs = midiInGetNumDevs();
+   /*         ::u32 devs = midiInGetNumDevs();
 
             LOG("midiIn devices: %u", devs);
 
-            for (UINT dev = 0; dev < devs; dev++)
+            for (::u32 dev = 0; dev < devs; dev++)
             {
 
                MIDIINCAPSW caps = {};
@@ -62,7 +62,7 @@ namespace music
 
             LOG("midiOut devices: %u", devs);
 
-            for (UINT dev = 0; dev < devs; dev++)
+            for (::u32 dev = 0; dev < devs; dev++)
             {
 
                MIDIOUTCAPSW caps = {};
@@ -89,7 +89,7 @@ namespace music
 
 
 
-   //      void midi::mmsystem_GetMidiInDeviceInterface(UINT i)
+   //      void midi::mmsystem_GetMidiInDeviceInterface(::u32 i)
      //    {
 
             // query the size of the device interface string
@@ -135,7 +135,7 @@ namespace music
             LOG("    Device interface: \"%S\"", wstr);*/
        //  }
 
-         //void midi::mmsystem_GetMidiOutDeviceInterface(UINT i)
+         //void midi::mmsystem_GetMidiOutDeviceInterface(::u32 i)
          //{
 
             // query the size of the device interface string
@@ -178,7 +178,7 @@ namespace music
             LOG("    Device interface: \"%S\"", wstr);*/
          //}
 
-         //void midi::mmsystem_LogMidiInCaps(UINT i, MIDIINCAPSW caps)
+         //void midi::mmsystem_LogMidiInCaps(::u32 i, MIDIINCAPSW caps)
          //{
    /*         LOG(
                "-- %u: %S --\n"
@@ -210,7 +210,7 @@ namespace music
             m_straIn.add(strName);*/
          //}
 
-         //void midi::mmsystem_LogMidiOutCaps(UINT i, MIDIOUTCAPSW caps)
+         //void midi::mmsystem_LogMidiOutCaps(::u32 i, MIDIOUTCAPSW caps)
          //{
    /*         LOG(
                "-- %u: %S --\n"

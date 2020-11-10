@@ -47,7 +47,7 @@
    the nature of the warning.  Currently the limitations that are
    warned about apply primarily to floating point support.
 
-   All guest states must have a 32-bit (UInt) guest_EMNOTE pseudo-
+   All guest states must have a 32-bit (::u32) guest_EMNOTE pseudo-
    register, that emulation warnings can be written in to.
 
    Note that guest_EMNOTE only carries a valid value at the jump

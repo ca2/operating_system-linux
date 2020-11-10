@@ -3,7 +3,7 @@
 
 #define  VERSION_MINOR              0x00
 #define  VERSION_MAJOR              0x04
-#define  SEQ_VERSION                ((uint32_t)(WORD)((BYTE)VERSION_MINOR | (((WORD)(BYTE)VERSION_MAJOR) << 8)))
+#define  SEQ_VERSION                ((::u32)(::u16)((byte)VERSION_MINOR | (((::u16)(byte)VERSION_MAJOR) << 8)))
 
 #define MMSG_DONE                   (WM_USER+20)
 
@@ -62,7 +62,7 @@ namespace music
 
             bool IsPrepared();
             void Reset();
-            void Initialize(int32_t iSize, uint32_t dwUser);
+            void Initialize(int32_t iSize, ::u32 dwUser);
 
             ::estatus midiStreamOut(seq_context_t * hmidiout);
             //::estatus midiOutPrepareHeader(HMIDIOUT hmidiout);
@@ -84,7 +84,7 @@ namespace music
 
 
             void Reset();
-            void Initialize(int32_t iCount, int32_t iSize, uint32_t dwUser);
+            void Initialize(int32_t iCount, int32_t iSize, ::u32 dwUser);
 
 
             ::estatus midiStreamOut(seq_context_t * hmidiout);
@@ -138,9 +138,9 @@ namespace music
          virtual ~sequence();
 
 
-//         inline uint32_t get_status();
-//         inline uint32_t GetPreviousState();
-//         uint32_t set_status(uint32_t uiState);
+//         inline ::u32 get_status();
+//         inline ::u32 GetPreviousState();
+//         ::u32 set_status(::u32 uiState);
 //
 //         void SetSpecialModeV001Flag(bool bSet = true);
 
@@ -162,7 +162,7 @@ namespace music
          //imedia::position GetPositionTicks();
          void SetLevelMeter(int32_t iLevel);
          ::estatus CloseStream();
-         bool SetMidiOutDevice(uint32_t uiDevice);
+         bool SetMidiOutDevice(::u32 uiDevice);
          int32_t SetKeyShift(int32_t iKeyShift);
          int32_t GetKeyShift();
 
@@ -190,7 +190,7 @@ namespace music
 //         virtual void GetMidiDoneData(::music::midi::LPMIDIDONEDATA lpmdd);
          virtual bool IsInSpecialModeV001();
          virtual bool WasInSpecialModeV001();
-         //virtual void SetSpecialModeV001Operation(uint32_t uiOperation);
+         //virtual void SetSpecialModeV001Operation(::u32 uiOperation);
 
          virtual void OnEvent(::music::midi::sequence::event * pevent);
 
@@ -216,7 +216,7 @@ namespace music
 
          ::estatus Restart();
 
-         //::estatus Stop(uint32_t dwEllapse);
+         //::estatus Stop(::u32 dwEllapse);
          ::estatus Stop();
 
          //void get_position(imedia_position  & time) override;
@@ -232,7 +232,7 @@ namespace music
 
          bool IsPlaying();
 
-//         static void CALLBACK MidiOutProc(HMIDIOUT hmo, uint32_t wMsg, uint32_t dwInstance, uint32_t dwParam1, uint32_t dwParam2);
+//         static void CALLBACK MidiOutProc(HMIDIOUT hmo, ::u32 wMsg, ::u32 dwInstance, ::u32 dwParam1, ::u32 dwParam2);
 
          sp(message_out) get_message_out();
 

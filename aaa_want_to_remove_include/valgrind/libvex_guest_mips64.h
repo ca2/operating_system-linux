@@ -47,8 +47,8 @@
 typedef
    struct {
       /*    0 */ ULong host_EvC_FAILADDR;
-      /*    8 */ UInt host_EvC_COUNTER;
-      /*   12 */ UInt _padding1;
+      /*    8 */ ::u32 host_EvC_COUNTER;
+      /*   12 */ ::u32 _padding1;
 
       /* CPU Registers */
       /*   16 */ ULong guest_r0;   /* Hardwired to 0. */
@@ -121,12 +121,12 @@ typedef
       /*  536 */ ULong guest_f30;
       /*  544 */ ULong guest_f31;
 
-      /*  552 */ UInt guest_FIR;
-      /*  556 */ UInt guest_FCCR;
-      /*  560 */ UInt guest_FEXR;
-      /*  564 */ UInt guest_FENR;
-      /*  568 */ UInt guest_FCSR;
-      /*  572 */ UInt guest_CP0_status;
+      /*  552 */ ::u32 guest_FIR;
+      /*  556 */ ::u32 guest_FCCR;
+      /*  560 */ ::u32 guest_FEXR;
+      /*  564 */ ::u32 guest_FENR;
+      /*  568 */ ::u32 guest_FCSR;
+      /*  572 */ ::u32 guest_CP0_status;
 
       /* TLS pointer for the thread. It's read-only in user space. On Linux it
          is set in user space by various thread-related syscalls.
@@ -139,8 +139,8 @@ typedef
       /*  576 */ ULong guest_ULR;
 
       /* Emulation notes */
-      /*  584 */ UInt guest_EMNOTE;
-      /*  588 */ UInt guest_COND;
+      /*  584 */ ::u32 guest_EMNOTE;
+      /*  588 */ ::u32 guest_COND;
 
       /* For clflush: record start and length of area to invalidate */
       /*  592 */ ULong guest_CMSTART;

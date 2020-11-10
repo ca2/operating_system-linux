@@ -108,7 +108,7 @@ typedef
 typedef
    struct _ThreadInfo {
       ThreadId tid;   // 0 means thread not known.
-      UInt     tnr;   // 0 means no tool specific thread nr, or not known.
+      ::u32     tnr;   // 0 means no tool specific thread nr, or not known.
    } ThreadInfo;
 
 /* Zeroes/clear all the fields of *tinfo. */

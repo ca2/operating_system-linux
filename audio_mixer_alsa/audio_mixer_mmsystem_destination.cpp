@@ -108,7 +108,7 @@ namespace multimedia
       }
 
 
-      uint32_t destination::get_component_type()
+      ::u32 destination::get_component_type()
       {
 
          return m_mixerline.dwComponentType;
@@ -139,7 +139,7 @@ namespace multimedia
 
       }
 
-      uint32_t destination::get_mixer_line_id()
+      ::u32 destination::get_mixer_line_id()
       {
          return m_mixerline.dwLineID;
       }

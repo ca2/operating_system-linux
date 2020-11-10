@@ -76,7 +76,7 @@ namespace music
          }
 
 
-         bool player::Play(imedia_position tkStart, uint32_t dwEllapse)
+         bool player::Play(imedia_position tkStart, ::u32 dwEllapse)
          {
 
             auto pcommand = __sp(new ::music::midi::player_command(this));
@@ -95,7 +95,7 @@ namespace music
          }
 
 
-         bool player::PlayRate(double dRate, uint32_t dwEllapse)
+         bool player::PlayRate(double dRate, ::u32 dwEllapse)
          {
 
             auto pcommand = __sp(new ::music::midi::player_command(this));
@@ -129,7 +129,7 @@ namespace music
 
          }
 
-         bool player::ExecuteCommand(::music::midi::e_command ecommand, uint32_t dwEllapse)
+         bool player::ExecuteCommand(::music::midi::e_command ecommand, ::u32 dwEllapse)
          {
 
             auto pcommand = __sp(new ::music::midi::player_command(this));
@@ -338,7 +338,7 @@ namespace music
          }
 
 
-         bool player::SetMidiOutDevice(uint32_t uiDevice)
+         bool player::SetMidiOutDevice(::u32 uiDevice)
          {
             UNREFERENCED_PARAMETER(uiDevice);
             OnMidiOutDeviceChange();
@@ -415,7 +415,7 @@ namespace music
 //         }
 
 //
-//         uint32_t player::GetMidiOutDevice()
+//         ::u32 player::GetMidiOutDevice()
 //         {
 //
 //            return Application.midi()->GetMidiOutDevice();
@@ -518,7 +518,7 @@ namespace music
          {
 /*            HMIDIOUT hmidiout = NULL;
             ::e_status mmrc;
-            uint32_t uDeviceID = 0;
+            ::u32 uDeviceID = 0;
             mmrc = midiOutOpen(&hmidiout, uDeviceID,  0, 0, CALLBACK_NULL);
             if(mmrc != ::success)
                return;

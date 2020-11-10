@@ -71,7 +71,7 @@
     }) \
    )
 
-// UInt enum set arg, eg. --foo=fubar,bar,baz or --foo=none
+// ::u32 enum set arg, eg. --foo=fubar,bar,baz or --foo=none
 // or --foo=all  (if qq_all is True)
 #define VG_USETGEN_CLO(qq_arg, qq_option, qq_vals, qq_var, qq_all) \
    (VG_STREQN(VG_(strlen)(qq_option)+1, qq_arg, qq_option"=") && \
@@ -87,7 +87,7 @@
      }) \
     )
 
-// UInt enum set arg, eg. --foo=fubar,bar,baz or --foo=none or --foo=all
+// ::u32 enum set arg, eg. --foo=fubar,bar,baz or --foo=none or --foo=all
 #define VG_USET_CLO(qq_arg, qq_option, qq_vals, qq_var) \
    VG_USETGEN_CLO((qq_arg), qq_option, (qq_vals), (qq_var), True)
 

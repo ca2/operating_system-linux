@@ -72,9 +72,9 @@ namespace music
          {
             ASSERT(FALSE);
             /*
-            uint32_t                   dwEachBufferSize;
-            uint32_t                   dwAlloc;
-            uint32_t                    i;
+            ::u32                   dwEachBufferSize;
+            ::u32                   dwAlloc;
+            ::u32                    i;
             LPBYTE                  lpbWork;
 
             //    assert(pSeq != NULL);
@@ -86,8 +86,8 @@ namespace music
 
             // First make sure we can allocate the buffers they asked for
             //
-            dwEachBufferSize = sizeof(MIDIHDR) + (uint32_t)(m_cbBuffer);
-            dwAlloc          = dwEachBufferSize * (uint32_t)(m_cBuffer);
+            dwEachBufferSize = sizeof(MIDIHDR) + (::u32)(m_cbBuffer);
+            dwAlloc          = dwEachBufferSize * (::u32)(m_cBuffer);
 
             //m_lpbAlloc = (uchar *) GlobalAllocPtr(GMEM_MOVEABLE|GMEM_SHARE, dwAlloc);
             m_lpbAlloc = (uchar *) HeapAlloc(GetProcessHeap(), 0, dwAlloc);
@@ -106,7 +106,7 @@ namespace music
             ((LPMIDIHDR)lpbWork)->lpData            = (char *) (lpbWork + sizeof(MIDIHDR));
             ((LPMIDIHDR)lpbWork)->dwBufferLength    = m_cbBuffer;
             ((LPMIDIHDR)lpbWork)->dwBytesRecorded   = 0;
-            ((LPMIDIHDR)lpbWork)->dwUser            = (uint32_t)(uint32_t)this;
+            ((LPMIDIHDR)lpbWork)->dwUser            = (::u32)(::u32)this;
             ((LPMIDIHDR)lpbWork)->dwFlags           = 0;
 
             m_lpmhFree = (LPMIDIHDR)lpbWork;
@@ -187,7 +187,7 @@ namespace music
    //
    ////         SMFFILEINFO                sfi;
    ////         ::e_status          smfrc;
-   ////         uint32_t                   cbBuffer;
+   ////         ::u32                   cbBuffer;
    ////
    ////         if (get_state() != state_no_file)
    ////         {
@@ -252,7 +252,7 @@ namespace music
    //      {
    //         SMFFILEINFO             sfi;
    //         ::e_status    smfrc;
-   //         uint32_t                   cbBuffer;
+   //         ::u32                   cbBuffer;
    //
    //         if (get_state() != state_no_file)
    //         {
@@ -299,7 +299,7 @@ namespace music
    //         //    SMFOPENFILESTRUCT       sofs;
    //         SMFFILEINFO             sfi;
    //         ::e_status               smfrc;
-   //         uint32_t                   cbBuffer;
+   //         ::u32                   cbBuffer;
    //         //    assert(pSeq != NULL);
    //
    //         if (get_state() != state_no_file)
@@ -434,7 +434,7 @@ namespace music
    ////         MIDIPROPTIMEDIV         mptd;
    //         LPMIDIHDR               lpmh = NULL;
    //         //   LPMIDIHDR               lpmhPreroll = NULL;
-   //         uint32_t                    uDeviceID;
+   //         ::u32                    uDeviceID;
    //
    //
    //         ASSERT(m_iOpenMode == ::music::midi::file::OpenForPlaying
@@ -522,7 +522,7 @@ namespace music
    //
    //            if(::music::success != smfrc && ::music::SEndOfFile != smfrc)
    //            {
-   //               TRACE( "SFP: smfReadEvents() -> %u", (uint32_t)smfrc);
+   //               TRACE( "SFP: smfReadEvents() -> %u", (::u32)smfrc);
    //               mmrc = ::music::translate(smfrc);
    //               /*if(bThrow)
    //               {
@@ -545,7 +545,7 @@ namespace music
    ///*         mmrc = m_buffera.midiOutPrepareHeader((HMIDIOUT) m_hstream);
    //         if (mmrc != ::success)
    //         {
-   //            TRACE( "midiOutPrepare(preroll) -> %lu!", (uint32_t)mmrc);
+   //            TRACE( "midiOutPrepare(preroll) -> %lu!", (::u32)mmrc);
    //            mmrc = MCIERR_DEVICE_NOT_READY;
    //            if(bThrow)
    //            {
@@ -562,7 +562,7 @@ namespace music
    //         //mmrc = m_buffera.midiStreamOut(m_hstream);
    //         if (mmrc != ::success)
    //         {
-   //            TRACE( "midiOutPrepare(preroll) -> %lu!", (uint32_t)mmrc);
+   //            TRACE( "midiOutPrepare(preroll) -> %lu!", (::u32)mmrc);
    //            //mmrc = MCIERR_DEVICE_NOT_READY;
    //            if(bThrow)
    //            {
@@ -574,7 +574,7 @@ namespace music
    //               goto seq_Preroll_Cleanup;
    //            }
    //         }
-   ////         m_uBuffersInMMSYSTEM +=(uint32_t)  m_buffera.get_size();
+   ////         m_uBuffersInMMSYSTEM +=(::u32)  m_buffera.get_size();
    //
    //seq_Preroll_Cleanup:
    //
@@ -724,9 +724,9 @@ namespace music
    //         if (KF_EMPTY != keyframe.rbTempo[0] || KF_EMPTY != keyframe.rbTempo[1] || KF_EMPTY != keyframe.rbTempo[2])
    //         {
    //
-   //            uint32_t dwTempo =  (((uint32_t)keyframe.rbTempo[0])<<16) | (((uint32_t)keyframe.rbTempo[1])<<8) | ((uint32_t)keyframe.rbTempo[2]);
+   //            ::u32 dwTempo =  (((::u32)keyframe.rbTempo[0])<<16) | (((::u32)keyframe.rbTempo[1])<<8) | ((::u32)keyframe.rbTempo[2]);
    //
-   //            dwTempo = (uint32_t) ((double) dwTempo / get_file()->GetTempoShiftRate());
+   //            dwTempo = (::u32) ((double) dwTempo / get_file()->GetTempoShiftRate());
    //
    //            seq_midi_event_init(m_pseq, &ev, 0, 0);
    //
@@ -949,7 +949,7 @@ namespace music
    //            if(::success != m_mmrcLastErr)
    //            {
    //
-   //               TRACE( "::music::midi::sequence::Stop() -> midiOutStop() returned %lu in seqStop()!\n", (uint32_t)m_mmrcLastErr);
+   //               TRACE( "::music::midi::sequence::Stop() -> midiOutStop() returned %lu in seqStop()!\n", (::u32)m_mmrcLastErr);
    //
    //               m_flags.unsignalize(FlagWaiting);
    //
@@ -974,7 +974,7 @@ namespace music
          *
          * pSeq                      - The sequencer instance.
          *
-         * pTicks                    - A pointer to a uint32_t where the current position
+         * pTicks                    - A pointer to a ::u32 where the current position
          *                             in ticks will be returned.
          *
          * Returns
@@ -1336,7 +1336,7 @@ namespace music
                            {
                               plyriceventa = new array <::ikaraoke::lyric_event_v1, ::ikaraoke::lyric_event_v1 &>;
                            }
-                           ::file::memory_buffer memFile(get_app(), (LPBYTE) &lpdwParam[1], pheader->m_dwLength - sizeof(uint32_t));
+                           ::file::memory_buffer memFile(get_app(), (LPBYTE) &lpdwParam[1], pheader->m_dwLength - sizeof(::u32));
                            /* x2x                  CArchive ar(&memFile, CArchive::load);
                            lyriceventa.Serialize(ar);
                            plyriceventa->append(lyriceventa); */
@@ -1348,10 +1348,10 @@ namespace music
                         break;
                      case EVENT_ID_NOTE_ON:
                         {
-                           ::file::byte_stream_memory_buffer memFile(get_app(), (LPBYTE) &lpdwParam[1], pheader->m_dwLength - sizeof(uint32_t));
+                           ::file::byte_stream_memory_buffer memFile(get_app(), (LPBYTE) &lpdwParam[1], pheader->m_dwLength - sizeof(::u32));
                            for(int32_t i = 0; i < m_iaLevel.get_size(); i++)
                            {
-                              BYTE b;
+                              byte b;
                               memFile >> b;
                               m_iaLevel.element_at(i) = b;
                            }
@@ -1375,7 +1375,7 @@ namespace music
 
          }
 
-         //void CALLBACK sequence::MidiOutProc(HMIDIOUT hmo, uint32_t wMsg, uint32_t dwInstance, uint32_t dwParam1, uint32_t dwParam2)
+         //void CALLBACK sequence::MidiOutProc(HMIDIOUT hmo, ::u32 wMsg, ::u32 dwInstance, ::u32 dwParam1, ::u32 dwParam2)
          //{
 
             /*UNREFERENCED_PARAMETER(hmo);
@@ -1407,7 +1407,7 @@ namespace music
 
 
 
-   //      uint32_t sequence::set_state(uint32_t uiState)
+   //      ::u32 sequence::set_state(::u32 uiState)
    //      {
    //         m_uiPreviousState = m_uiState;
    //         m_uiState = uiState;
@@ -1427,7 +1427,7 @@ namespace music
    //            m_flags.unsignalize(FlagIsInSpecialModeV001);
    //      }
 
-   //      void sequence::SetSpecialModeV001Operation(uint32_t uiOperation)
+   //      void sequence::SetSpecialModeV001Operation(::u32 uiOperation)
    //      {
    //         m_estatusPreSpecialModeV001 = m_uiState;
    //         SetSpecialModeV001Flag();
@@ -1566,7 +1566,7 @@ namespace music
                   /*if((mmrc = m_buffera.midiOutUnprepareHeader((HMIDIOUT) m_hstream))
                      != ::success)
                   {
-                     TRACE( "midiOutUnprepareHeader failed in seqBufferDone! (%lu)", (uint32_t)mmrc);
+                     TRACE( "midiOutUnprepareHeader failed in seqBufferDone! (%lu)", (::u32)mmrc);
                   }*/
    //               seq_free_context(m_pseq);
                   m_pseq = NULL;
@@ -2182,7 +2182,7 @@ namespace music
    //
    //         tracks.WorkSeekBegin();
    //         //tracks.WorkGetXFTokens(staticdata.m_dwDefaultCodePage, str2a, position2a, i2aTokenLine, NULL);
-   //         tracks.WorkGetXFTokens((uint32_t) -1, str2a, position2a, i2aTokenLine, NULL, false);
+   //         tracks.WorkGetXFTokens((::u32) -1, str2a, position2a, i2aTokenLine, NULL, false);
    //
    //         Prepare(
    //            str2a,
@@ -2205,17 +2205,17 @@ namespace music
             position = m_tkLength;
          }
 
-         void sequence::buffer::Initialize(int32_t iSize, uint32_t dwUser)
+         void sequence::buffer::Initialize(int32_t iSize, ::u32 dwUser)
          {
             m_storage.allocate(iSize);
             m_midihdr.lpData           = (char *) m_storage.get_data();
-            m_midihdr.dwBufferLength   = (uint32_t) m_storage.get_size();
+            m_midihdr.dwBufferLength   = (::u32) m_storage.get_size();
             m_midihdr.dwUser           = dwUser;
             m_bPrepared                = false;
 
          }
 
-         void sequence::buffer_array::Initialize(int32_t iCount, int32_t iSize, uint32_t dwUser)
+         void sequence::buffer_array::Initialize(int32_t iCount, int32_t iSize, ::u32 dwUser)
          {
             set_size(iCount);
 
@@ -2785,10 +2785,10 @@ namespace music
    //                     {
    //                     case ::music::midi::MetaTempo:
    //                        {
-   //                           DWORD dwTempo = (((uint32_t)pevent->GetData()[0])<<16)|
-   //                           (((uint32_t)pevent->GetData()[1])<<8)|
-   //                           ((uint32_t)pevent->GetData()[2]);
-   //                           dwTempo = (uint32_t) ((double) dwTempo / get_file()->GetTempoShiftRate());
+   //                           ::u32 dwTempo = (((::u32)pevent->GetData()[0])<<16)|
+   //                           (((::u32)pevent->GetData()[1])<<8)|
+   //                           ((::u32)pevent->GetData()[2]);
+   //                           dwTempo = (::u32) ((double) dwTempo / get_file()->GetTempoShiftRate());
    //
    //                           seq_midi_tempo(m_pseq, &ev, dwTempo);
    //                        }

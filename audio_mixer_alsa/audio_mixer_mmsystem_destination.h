@@ -21,7 +21,7 @@ namespace multimedia
          virtual ~destination();
 
 
-         uint32_t get_component_type();
+         ::u32 get_component_type();
          void update_all_controls();
          ::multimedia::result initialize_all_controls();
          ::multimedia::result initialize_source_info();
@@ -35,7 +35,7 @@ namespace multimedia
          void set_device(::multimedia::audio_mixer::device * pdevice);
 
 
-         virtual uint32_t get_mixer_line_id();
+         virtual ::u32 get_mixer_line_id();
 
       };
 

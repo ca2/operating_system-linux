@@ -40,7 +40,7 @@ namespace multimedia
          virtual void term_thread() override;
          //virtual void pre_translate_message(::signal_details * pobj);
 
-         void CALLBACK in_proc(snd_pcm_t * hwi, UINT uMsg, DWORD dwInstance, DWORD dwParam1, DWORD dwParam2);
+         void CALLBACK in_proc(snd_pcm_t * hwi, ::u32 uMsg, ::u32 dwInstance, ::u32 dwParam1, ::u32 dwParam2);
 
          virtual ::estatus run() override;
 

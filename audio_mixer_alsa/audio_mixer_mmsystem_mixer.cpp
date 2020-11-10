@@ -44,12 +44,12 @@ namespace multimedia
       }
 
 
-      ::multimedia::result audio_mixer::set_new_device(uint32_t uiMixerId)
+      ::multimedia::result audio_mixer::set_new_device(::u32 uiMixerId)
       {
 
          ::multimedia::result            mmrc;
 
-         if(MMSYSERR_NOERROR != (mmrc = m_pdevice->open(uiMixerId, (uint32_t) m_window.get_handle(), 0,  CALLBACK_WINDOW)))
+         if(MMSYSERR_NOERROR != (mmrc = m_pdevice->open(uiMixerId, (::u32) m_window.get_handle(), 0,  CALLBACK_WINDOW)))
          {
             return mmrc;
          }
@@ -302,7 +302,7 @@ namespace multimedia
 
       } 
 
-      void audio_mixer::OnMixerLineChange(HMIXER hMixer, uint32_t dwLineID)
+      void audio_mixer::OnMixerLineChange(HMIXER hMixer, ::u32 dwLineID)
       {
 
          sp(::multimedia::audio_mixer_mmsystem::device) device = m_pdevice;
@@ -323,7 +323,7 @@ namespace multimedia
       }
 
 
-      void audio_mixer::OnMixerControlChange(HMIXER hMixer, uint32_t dwControlID)
+      void audio_mixer::OnMixerControlChange(HMIXER hMixer, ::u32 dwControlID)
       {
 
          sp(::multimedia::audio_mixer_mmsystem::device) device = m_pdevice;

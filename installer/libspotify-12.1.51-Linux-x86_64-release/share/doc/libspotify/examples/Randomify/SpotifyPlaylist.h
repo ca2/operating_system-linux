@@ -27,6 +27,6 @@
 @property (assign) NSObject<SpotifyPlaylistDelegate> *delegate;
 @property (readonly) BOOL loaded; // listen to playlistEndedUpdating if false
 
--(NSUInteger)countOfTracks;
--(SpotifyTrack*)objectInTracksAtIndex:(NSUInteger)index;
+-(NS::u32eger)countOfTracks;
+-(SpotifyTrack*)objectInTracksAtIndex:(NS::u32eger)index;
 @end

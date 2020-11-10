@@ -57,7 +57,7 @@ extern void SP_CALLCONV notify_main_thread(sp_session *session);
 
 extern void start_prompt(void);
 
-extern sp_uint64 get_ts(void);
+extern sp_::u3264 get_ts(void);
 
 #if WITH_TEST_COMMAND
 

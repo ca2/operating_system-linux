@@ -42,8 +42,8 @@ typedef
    struct {
       /* Event check fail addr and counter. */
       /* 0 */  ULong host_EvC_FAILADDR;
-      /* 8 */  UInt  host_EvC_COUNTER;
-      /* 12 */ UInt  pad0;
+      /* 8 */  ::u32  host_EvC_COUNTER;
+      /* 12 */ ::u32  pad0;
       /* 16 */
       ULong guest_X0;
       ULong guest_X1;
@@ -132,7 +132,7 @@ typedef
 
       /* Various pseudo-regs mandated by Vex or Valgrind. */
       /* Emulation notes */
-      UInt guest_EMNOTE;
+      ::u32 guest_EMNOTE;
 
       /* For clflush/clinval: record start and length of area */
       ULong guest_CMSTART;
@@ -157,7 +157,7 @@ typedef
          mode.  The guest is unconstrained in what values it can write
          to and read from this register, but the emulation only takes
          note of bits 23 and 22. */
-      UInt  guest_FPCR;
+      ::u32  guest_FPCR;
 
       /* Fallback LL/SC support.  See bugs 344524 and 369459. */
       ULong guest_LLSC_SIZE; // 0==no current transaction, else 1,2,4 or 8.
@@ -165,7 +165,7 @@ typedef
       ULong guest_LLSC_DATA; // Original value at _ADDR, zero-extended.
 
       /* Padding to make it have an 16-aligned size */
-      /* UInt  pad_end_0; */
+      /* ::u32  pad_end_0; */
       ULong pad_end_1;
    }
    VexGuestARM64State;

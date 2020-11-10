@@ -34,7 +34,7 @@
 #include "pub_tool_basics.h"   // ThreadID
 
 /* The maximum number of pthreads that we support. */
-extern UInt VG_N_THREADS;
+extern ::u32 VG_N_THREADS;
 
 /* Special magic value for an invalid ThreadId.  It corresponds to
    LinuxThreads using zero as the initial value for
