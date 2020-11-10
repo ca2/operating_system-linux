@@ -46,29 +46,29 @@ struct tagHandle
 //typedef struct tagHandle * HANDLE;
 
 
-typedef uint32_t       DWORD;
+typedef ::u32       ::u32;
 //typedef int32_t                 WINBOOL;
-typedef unsigned char       BYTE;
-//typedef unsigned short      WORD;
+typedef unsigned char       byte;
+//typedef unsigned short      ::u16;
 //typedef float               FLOAT;
 //typedef FLOAT               *PFLOAT;
 //typedef WINBOOL near           *PBOOL;
-//typedef WINBOOL far            *LPBOOL;
-//typedef BYTE near           *PBYTE;
-//typedef BYTE far            *LPBYTE;
+//typedef WINBOOL far            *int_bool *;
+//typedef byte near           *PBYTE;
+//typedef byte far            *LPBYTE;
 //typedef int32_t near            *PINT;
 //typedef int32_t far             *LPINT;
-//typedef WORD near           *PWORD;
-//typedef WORD far            *LPWORD;
+//typedef ::u16 near           *PWORD;
+//typedef ::u16 far            *LPWORD;
 //typedef int32_t far            *LPLONG;
-//typedef DWORD near          *PDWORD;
-//typedef DWORD far           *LPDWORD;
+//typedef ::u32 near          *PDWORD;
+//typedef ::u32 far           *LPDWORD;
 //typedef void far            *LPVOID;
-//typedef CONST void far      *LPCVOID;
+//typedef CONST void far      *const void *;
 
 //typedef int32_t                 INT;
-//typedef uint32_t        UINT;
-//typedef uint32_t        *PUINT;
+//typedef ::u32        ::u32;
+//typedef ::u32        *P::u32;
 
 
 
@@ -77,12 +77,12 @@ typedef unsigned char       BYTE;
 
 
 //typedef void * LPVOID;
-//typedef const void * LPCVOID;
+//typedef const void * const void *;
 
-//typedef const char * LPCSTR;
-typedef LPCSTR LPCTSTR;
-//typedef char * LPSTR;
-typedef LPSTR LPTSTR;
+//typedef const char * const char *;
+typedef const char * LPCTSTR;
+//typedef char * char *;
+typedef char * LPTSTR;
 
 
 
@@ -94,7 +94,7 @@ typedef LPSTR LPTSTR;
 #define VOID void
 typedef char CHAR;
 typedef short SHORT;
-typedef int32_t LONG;
+typedef int32_t ::i32;
 typedef int32_t INT;
 #endif
 
@@ -148,10 +148,10 @@ typedef  CONST WCHAR UNALIGNED *PCUNZWCH;
 //typedef CHAR *PCHAR, *LPCH, *PCH;
 //typedef CONST CHAR *LPCCH, *PCCH;
 
-//typedef  CHAR *NPSTR, *LPSTR, *PSTR;
+//typedef  CHAR *NPSTR, *char *, *PSTR;
 typedef  PSTR *PZPSTR;
 typedef  CONST PSTR *PCZPSTR;
-//typedef  CONST CHAR *LPCSTR, *PCSTR;
+//typedef  CONST CHAR *const char *, *PCSTR;
 typedef  PCSTR *PZPCSTR;
 
 typedef  CHAR *PZZSTR;
@@ -170,8 +170,8 @@ typedef unsigned char TBYTE , *PTBYTE ;
 
 typedef LPCH LPTCH, PTCH;
 typedef LPCCH LPCTCH, PCTCH;
-//typedef LPSTR PTSTR, LPTSTR, PUTSTR, LPUTSTR;
-//typedef LPCSTR PCTSTR, LPCTSTR, PCUTSTR, LPCUTSTR;
+//typedef char * PTSTR, LPTSTR, PUTSTR, LPUTSTR;
+//typedef const char * PCTSTR, LPCTSTR, PCUTSTR, LPCUTSTR;
 typedef PZZSTR PZZTSTR, PUZZTSTR;
 typedef PCZZSTR PCZZTSTR, PCUZZTSTR;
 typedef PNZCH PNZTCH, PUNZTCH;
@@ -181,7 +181,7 @@ typedef PCNZCH PCNZTCH, PCUNZTCH;
 
 
 //typedef SHORT *PSHORT;
-//typedef LONG *PLONG;
+//typedef ::i32 *PLONG;
 
 
 //typedef void *HINSTANCE;
@@ -197,10 +197,10 @@ typedef struct {
 } GUID;
 #else
 typedef struct _GUID {
-    uint32_t   Data1;
-    uint16_t   Data2;
-    uint16_t   Data3;
-    uint8_t    Data4[ 8 ];
+    ::u32   Data1;
+    ::u3216_t   Data2;
+    ::u3216_t   Data3;
+    ::u328_t    Data4[ 8 ];
 } GUID;
 #endif
 #endif
@@ -215,7 +215,7 @@ typedef struct _GUID {
 #define FAR
 
 #define DECLSPEC_NO_RETURN
-void RaiseException(DWORD dwExceptionCode, DWORD dwExceptionFlags, DWORD nNumberOfArguments, const ulong_ptr *lpArguments);
+void RaiseException(::u32 dwExceptionCode, ::u32 dwExceptionFlags, ::u32 nNumberOfArguments, const ulong_ptr *lpArguments);
 typedef int32_t errno_t;
 
 
@@ -226,20 +226,20 @@ typedef int32_t errno_t;
 #endif
 
 
-MY_EXTERN_C DWORD GetLastError();
-MY_EXTERN_C DWORD SetLastError(DWORD dw);
+MY_EXTERN_C ::u32 GetLastError();
+MY_EXTERN_C ::u32 SetLastError(::u32 dw);
 
 
-/*#define MAKEWORD(a, b)      ((WORD)(((BYTE)(((DWORD_PTR)(a)) & 0xff)) | ((WORD)((BYTE)(((DWORD_PTR)(b)) & 0xff))) << 8))
-#define MAKELONG(a, b)      ((LONG)(((WORD)(((DWORD_PTR)(a)) & 0xffff)) | ((DWORD)((WORD)(((DWORD_PTR)(b)) & 0xffff))) << 16))
-#define LOWORD(l)           ((WORD)(((DWORD_PTR)(l)) & 0xffff))
-#define HIWORD(l)           ((WORD)((((DWORD_PTR)(l)) >> 16) & 0xffff))
-#define LOBYTE(w)           ((BYTE)(((DWORD_PTR)(w)) & 0xff))
-#define HIBYTE(w)           ((BYTE)((((DWORD_PTR)(w)) >> 8) & 0xff))*/
+/*#define MAKEWORD(a, b)      ((::u16)(((byte)(((DWORD_PTR)(a)) & 0xff)) | ((::u16)((byte)(((DWORD_PTR)(b)) & 0xff))) << 8))
+#define MAKELONG(a, b)      ((::i32)(((::u16)(((DWORD_PTR)(a)) & 0xffff)) | ((::u32)((::u16)(((DWORD_PTR)(b)) & 0xffff))) << 16))
+#define LOWORD(l)           ((::u16)(((DWORD_PTR)(l)) & 0xffff))
+#define HIWORD(l)           ((::u16)((((DWORD_PTR)(l)) >> 16) & 0xffff))
+#define LOBYTE(w)           ((byte)(((DWORD_PTR)(w)) & 0xff))
+#define HIBYTE(w)           ((byte)((((DWORD_PTR)(w)) >> 8) & 0xff))*/
 
-#define MAKEWPARAM(l, h)      ((WPARAM)(DWORD)MAKELONG(l, h))
-#define MAKELPARAM(l, h)      ((LPARAM)(DWORD)MAKELONG(l, h))
-#define MAKELRESULT(l, h)     ((LRESULT)(DWORD)MAKELONG(l, h))
+#define MAKEWPARAM(l, h)      ((WPARAM)(::u32)MAKELONG(l, h))
+#define MAKELPARAM(l, h)      ((LPARAM)(::u32)MAKELONG(l, h))
+#define MAKELRESULT(l, h)     ((LRESULT)(::u32)MAKELONG(l, h))
 
 
 #include "win_error.h"
