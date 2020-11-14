@@ -37,7 +37,7 @@ namespace multimedia
          int32_t iControlCount = m_mixerline.cControls;
          if (0 == iControlCount)
          {
-            //        System.simple_message_box(NULL, MB_OK | MB_ICONEXCLAMATION,
+            //        System.simple_message_box(NULL, e_message_box_ok | e_message_box_icon_exclamation,
             //"There are no controls associated with the selected line.");
             //        EndDialog(oswindow, FALSE);
             return MMSYSERR_NOERROR;
@@ -68,7 +68,7 @@ namespace multimedia
             MIXER_GETLINECONTROLSF_ALL);
          if (MMSYSERR_NOERROR != mmrc)
          {
-            System.simple_message_box(NULL, MB_OK | MB_ICONEXCLAMATION,
+            System.simple_message_box(NULL, e_message_box_ok | e_message_box_icon_exclamation,
                "mixerGetLineControls(ctrlid=%.08lXh) failed on hmx=%.04Xh, mmr=%u!",
                m_mixerline.dwLineID, device->m_hMixer, mmrc);
          }
@@ -120,7 +120,7 @@ namespace multimedia
                //
                //            wsprintf(ach, gszLineControlsFormatList,
                //                  u,
-               //                (LPTSTR)szControlType,
+               //                (char *)szControlType,
                //              pamxctrl[u].dwControlID,
                //            pamxctrl[u].fdwControl,
                //          pamxctrl[u].cMultipleItems,
@@ -230,7 +230,7 @@ namespace multimedia
 
          if (MMSYSERR_NOERROR != mmrc)
          {
-            System.simple_message_box(NULL, MB_OK | MB_ICONEXCLAMATION,
+            System.simple_message_box(NULL, e_message_box_ok | e_message_box_icon_exclamation,
                "mixerGetLineInfo(src=%u) failed on hmx=%.04Xh, mmr=%u!",
                dwSource, device->m_hMixer, mmrc);
          }

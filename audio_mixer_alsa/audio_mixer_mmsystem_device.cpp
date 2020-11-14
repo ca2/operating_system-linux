@@ -56,7 +56,7 @@ namespace multimedia
             if (MMSYSERR_NOERROR != mmrct)
             {
 
-               System.simple_message_box(NULL, MB_OK | MB_ICONEXCLAMATION, "mixerClose() failed on hmx=%.04Xh, mmr=%u!", m_hMixer, mmrct);
+               System.simple_message_box(NULL, e_message_box_ok | e_message_box_icon_exclamation, "mixerClose() failed on hmx=%.04Xh, mmr=%u!", m_hMixer, mmrct);
 
             }
 
@@ -67,7 +67,7 @@ namespace multimedia
          if (MMSYSERR_NOERROR != mmrc)
          {
 
-            System.simple_message_box(NULL, MB_OK | MB_ICONEXCLAMATION, "mixerGetDevCaps() failed on uMxId=%u, mmr=%u!", uiMixerId, mmrc);
+            System.simple_message_box(NULL, e_message_box_ok | e_message_box_icon_exclamation, "mixerGetDevCaps() failed on uMxId=%u, mmr=%u!", uiMixerId, mmrc);
 
             return mmrc;
 
@@ -78,7 +78,7 @@ namespace multimedia
          if (MMSYSERR_NOERROR != mmrc)
          {
 
-            System.simple_message_box(NULL, MB_OK | MB_ICONEXCLAMATION, "mixerOpen() failed on uMxId=%u, mmr=%u!", uiMixerId, mmrc);
+            System.simple_message_box(NULL, e_message_box_ok | e_message_box_icon_exclamation, "mixerOpen() failed on uMxId=%u, mmr=%u!", uiMixerId, mmrc);
 
             return mmrc;
 
@@ -107,7 +107,7 @@ namespace multimedia
          if (MMSYSERR_NOERROR != mmrc)
          {
 
-            System.simple_message_box(NULL, MB_OK | MB_ICONEXCLAMATION, "mixerGetDevCaps() failed on uMxId=%u, mmr=%u!", m_uiMixerID, mmrc);
+            System.simple_message_box(NULL, e_message_box_ok | e_message_box_icon_exclamation, "mixerGetDevCaps() failed on uMxId=%u, mmr=%u!", m_uiMixerID, mmrc);
 
             return mmrc;
 
@@ -138,7 +138,7 @@ namespace multimedia
             //  wsprintf(ach, gszLineFormatList,
             //         (char *)szLineTypeDst,
             //       (MIXERLINE_LINEF_ACTIVE & mxl.fdwLine) ? '*' : ' ',
-            //     (LPTSTR)szComponent,
+            //     (char *)szComponent,
             //   mxl.dwLineID,
             //   mxl.fdwLine,
             // mxl.cControls,

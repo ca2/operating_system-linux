@@ -13,6 +13,10 @@
 #define _LINUX
 #endif
 
+
+#define c_cdecl
+
+
 #define BROAD_PRECOMPILED_HEADER 0
 
 #ifndef __linux__

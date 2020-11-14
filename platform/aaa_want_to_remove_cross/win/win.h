@@ -66,7 +66,7 @@ typedef unsigned char       byte;
 //typedef void far            *LPVOID;
 //typedef CONST void far      *const void *;
 
-//typedef int32_t                 INT;
+//typedef int32_t                 ::i32;
 //typedef ::u32        ::u32;
 //typedef ::u32        *P::u32;
 
@@ -82,7 +82,7 @@ typedef unsigned char       byte;
 //typedef const char * const char *;
 typedef const char * LPCTSTR;
 //typedef char * char *;
-typedef char * LPTSTR;
+typedef char * char *;
 
 
 
@@ -92,10 +92,10 @@ typedef char * LPTSTR;
 
 #ifndef VOID
 #define VOID void
-typedef char CHAR;
+typedef char char;
 typedef short SHORT;
 typedef int32_t ::i32;
-typedef int32_t INT;
+typedef int32_t ::i32;
 #endif
 
 //
@@ -127,7 +127,7 @@ typedef unsigned short WCHAR;    // wc,   16-bit UNICODE character
 typedef  PWSTR *PZPWSTR;
 typedef  CONST PWSTR *PCZPWSTR;
 typedef  WCHAR UNALIGNED *LPUWSTR, *PUWSTR;
-//typedef  CONST WCHAR *LPCWSTR, *PCWSTR;
+//typedef  CONST WCHAR *const widechar *, *PCWSTR;
 typedef  PCWSTR *PZPCWSTR;
 typedef  CONST WCHAR UNALIGNED *LPCUWSTR, *PCUWSTR;
 
@@ -145,20 +145,20 @@ typedef  CONST WCHAR UNALIGNED *PCUNZWCH;
 //
 // ANSI (Multi-byte Character) types
 //
-//typedef CHAR *PCHAR, *LPCH, *PCH;
-//typedef CONST CHAR *LPCCH, *PCCH;
+//typedef char *PCHAR, *LPCH, *PCH;
+//typedef CONST char *LPCCH, *PCCH;
 
-//typedef  CHAR *NPSTR, *char *, *PSTR;
+//typedef  char *NPSTR, *char *, *PSTR;
 typedef  PSTR *PZPSTR;
 typedef  CONST PSTR *PCZPSTR;
-//typedef  CONST CHAR *const char *, *PCSTR;
+//typedef  CONST char *const char *, *PCSTR;
 typedef  PCSTR *PZPCSTR;
 
-typedef  CHAR *PZZSTR;
-typedef  CONST CHAR *PCZZSTR;
+typedef  char *PZZSTR;
+typedef  CONST char *PCZZSTR;
 
-typedef  CHAR *PNZCH;
-typedef  CONST CHAR *PCNZCH;
+typedef  char *PNZCH;
+typedef  CONST char *PCNZCH;
 
 
 
@@ -170,7 +170,7 @@ typedef unsigned char TBYTE , *PTBYTE ;
 
 typedef LPCH LPTCH, PTCH;
 typedef LPCCH LPCTCH, PCTCH;
-//typedef char * PTSTR, LPTSTR, PUTSTR, LPUTSTR;
+//typedef char * PTSTR, char *, PUTSTR, LPUTSTR;
 //typedef const char * PCTSTR, LPCTSTR, PCUTSTR, LPCUTSTR;
 typedef PZZSTR PZZTSTR, PUZZTSTR;
 typedef PCZZSTR PCZZTSTR, PCUZZTSTR;

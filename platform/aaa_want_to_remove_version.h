@@ -22,7 +22,7 @@
 #pragma component(browser, off, references, "FALSE")
 #pragma component(browser, off, references, "FAR")
 #pragma component(browser, off, references, "char *")
-#pragma component(browser, off, references, "LPTSTR")
+#pragma component(browser, off, references, "char *")
 #pragma component(browser, off, references, "const char *")
 #pragma component(browser, off, references, "LPCTSTR")
 #pragma component(browser, off, references, "NULL")
