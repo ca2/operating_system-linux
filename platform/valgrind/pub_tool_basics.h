@@ -469,7 +469,7 @@ static inline Bool sr_EQ ( ::u32 sysno, SysRes sr1, SysRes sr2 ) {
       union {              \
          const T in;      \
          T out;           \
-      } var = { .in = x }; var.out;  \
+      } payload = { .in = x }; payload.out;  \
    })
 
 /* Some architectures (eg. mips, arm) do not support unaligned memory access
@@ -480,8 +480,8 @@ static inline Bool sr_EQ ( ::u32 sysno, SysRes sr1, SysRes sr2 ) {
       union {                                \
          void *in;                           \
          D out;                              \
-      } var;                                 \
-      var.in = (void *) (x); var.out;        \
+      } payload;                                 \
+      payload.in = (void *) (x); payload.out;        \
    })
 
 // Poor man's static assert

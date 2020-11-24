@@ -131,10 +131,10 @@ struct {								\
 	*(elm)->field.le_prev = (elm)->field.le_next;			\
 } while (/*CONSTCOND*/0)
 
-#define	LIST_FOREACH(var, head, field)					\
-	for ((var) = ((head)->lh_first);				\
-		(var);							\
-		(var) = ((var)->field.le_next))
+#define	LIST_FOREACH(payload, head, field)					\
+	for ((payload) = ((head)->lh_first);				\
+		(payload);							\
+		(payload) = ((payload)->field.le_next))
 
 /*
  * List access methods.
@@ -194,8 +194,8 @@ struct {								\
 	}								\
 } while (/*CONSTCOND*/0)
 
-#define	SLIST_FOREACH(var, head, field)					\
-	for((var) = (head)->slh_first; (var); (var) = (var)->field.sle_next)
+#define	SLIST_FOREACH(payload, head, field)					\
+	for((payload) = (head)->slh_first; (payload); (payload) = (payload)->field.sle_next)
 
 /*
  * Singly-linked List access methods.
@@ -266,10 +266,10 @@ struct {								\
 	}								\
 } while (/*CONSTCOND*/0)
 
-#define	STAILQ_FOREACH(var, head, field)				\
-	for ((var) = ((head)->stqh_first);				\
-		(var);							\
-		(var) = ((var)->field.stqe_next))
+#define	STAILQ_FOREACH(payload, head, field)				\
+	for ((payload) = ((head)->stqh_first);				\
+		(payload);							\
+		(payload) = ((payload)->field.stqe_next))
 
 /*
  * Singly-linked Tail queue access methods.
@@ -340,10 +340,10 @@ struct {								\
 	}								\
 } while (/*CONSTCOND*/0)
 
-#define	SIMPLEQ_FOREACH(var, head, field)				\
-	for ((var) = ((head)->sqh_first);				\
-		(var);							\
-		(var) = ((var)->field.sqe_next))
+#define	SIMPLEQ_FOREACH(payload, head, field)				\
+	for ((payload) = ((head)->sqh_first);				\
+		(payload);							\
+		(payload) = ((payload)->field.sqe_next))
 
 /*
  * Simple queue access methods.
@@ -424,15 +424,15 @@ struct {								\
 	*(elm)->field.tqe_prev = (elm)->field.tqe_next;			\
 } while (/*CONSTCOND*/0)
 
-#define	TAILQ_FOREACH(var, head, field)					\
-	for ((var) = ((head)->tqh_first);				\
-		(var);							\
-		(var) = ((var)->field.tqe_next))
+#define	TAILQ_FOREACH(payload, head, field)					\
+	for ((payload) = ((head)->tqh_first);				\
+		(payload);							\
+		(payload) = ((payload)->field.tqe_next))
 
-#define	TAILQ_FOREACH_REVERSE(var, head, headname, field)		\
-	for ((var) = (*(((struct headname *)((head)->tqh_last))->tqh_last));	\
-		(var);							\
-		(var) = (*(((struct headname *)((var)->field.tqe_prev))->tqh_last)))
+#define	TAILQ_FOREACH_REVERSE(payload, head, headname, field)		\
+	for ((payload) = (*(((struct headname *)((head)->tqh_last))->tqh_last));	\
+		(payload);							\
+		(payload) = (*(((struct headname *)((payload)->field.tqe_prev))->tqh_last)))
 
 /*
  * Tail queue access methods.
@@ -526,15 +526,15 @@ struct {								\
 		    (elm)->field.cqe_next;				\
 } while (/*CONSTCOND*/0)
 
-#define	CIRCLEQ_FOREACH(var, head, field)				\
-	for ((var) = ((head)->cqh_first);				\
-		(var) != (const void *)(head);				\
-		(var) = ((var)->field.cqe_next))
+#define	CIRCLEQ_FOREACH(payload, head, field)				\
+	for ((payload) = ((head)->cqh_first);				\
+		(payload) != (const void *)(head);				\
+		(payload) = ((payload)->field.cqe_next))
 
-#define	CIRCLEQ_FOREACH_REVERSE(var, head, field)			\
-	for ((var) = ((head)->cqh_last);				\
-		(var) != (const void *)(head);				\
-		(var) = ((var)->field.cqe_prev))
+#define	CIRCLEQ_FOREACH_REVERSE(payload, head, field)			\
+	for ((payload) = ((head)->cqh_last);				\
+		(payload) != (const void *)(head);				\
+		(payload) = ((payload)->field.cqe_prev))
 
 /*
  * Circular queue access methods.
