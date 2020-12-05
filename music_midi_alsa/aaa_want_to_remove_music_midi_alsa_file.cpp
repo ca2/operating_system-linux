@@ -1861,7 +1861,7 @@ namespace music
 //         if (iLeft < sizeof(CHUNKHDR))
 //            return ::music::EInvalidFile;
 //
-//         m_pMThd = (CHUNKHDR FAR *)hpbImage;
+//         m_pMThd = (CHUNKHDR *)hpbImage;
 //
 //         iLeft   -= sizeof(CHUNKHDR);
 //         hpbImage += sizeof(CHUNKHDR);
@@ -1899,7 +1899,7 @@ namespace music
 //            if (iLeft < sizeof(CHUNKHDR))
 //               break;
 //
-//            pCh = (CHUNKHDR FAR *)hpbImage;
+//            pCh = (CHUNKHDR *)hpbImage;
 //
 //            iLeft       -= sizeof(CHUNKHDR);
 //            hpbImage    += sizeof(CHUNKHDR);
@@ -1940,7 +1940,7 @@ namespace music
 //         if (iLeft < sizeof(CHUNKHDR))
 //         break;
 //
-//         pCh = (CHUNKHDR FAR *)hpbImage;
+//         pCh = (CHUNKHDR *)hpbImage;
 //
 //         iLeft       -= sizeof(CHUNKHDR);
 //         hpbImage    += sizeof(CHUNKHDR);

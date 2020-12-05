@@ -20,7 +20,7 @@
 #pragma component(browser, off, references, "DECLSPEC_IMPORT")
 #pragma component(browser, off, references, "::u32")
 #pragma component(browser, off, references, "FALSE")
-#pragma component(browser, off, references, "FAR")
+#pragma component(browser, off, references, "")
 #pragma component(browser, off, references, "char *")
 #pragma component(browser, off, references, "char *")
 #pragma component(browser, off, references, "const char *")

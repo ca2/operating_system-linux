@@ -147,13 +147,13 @@ namespace multimedia
 
          ASSERT(m_estate == state_initial);
 
-         m_pwaveformat->wFormatTag        = 0;
-         m_pwaveformat->nChannels         = (::u16) uiChannelCount;
-         m_pwaveformat->nSamplesPerSec    = uiSamplesPerSec;
-         m_pwaveformat->wBitsPerSample    = (::u16) uiBitsPerSample;
-         m_pwaveformat->nBlockAlign       = m_pwaveformat->wBitsPerSample * m_pwaveformat->nChannels / 8;
-         m_pwaveformat->nAvgBytesPerSec   = m_pwaveformat->nSamplesPerSec * m_pwaveformat->nBlockAlign;
-         m_pwaveformat->cbSize            = 0;
+         m_pwaveformat->m_waveformat.wFormatTag        = 0;
+         m_pwaveformat->m_waveformat.nChannels         = (::u16) uiChannelCount;
+         m_pwaveformat->m_waveformat.nSamplesPerSec    = uiSamplesPerSec;
+         m_pwaveformat->m_waveformat.wBitsPerSample    = (::u16) uiBitsPerSample;
+         m_pwaveformat->m_waveformat.nBlockAlign       = m_pwaveformat->m_waveformat.wBitsPerSample * m_pwaveformat->m_waveformat.nChannels / 8;
+         m_pwaveformat->m_waveformat.nAvgBytesPerSec   = m_pwaveformat->m_waveformat.nSamplesPerSec * m_pwaveformat->m_waveformat.nBlockAlign;
+         //m_pwaveformat->cbSize            = 0;
 
          if((m_estatusWave = this->snd_pcm_open(SND_PCM_STREAM_PLAYBACK)) != success)
          {
@@ -177,9 +177,9 @@ namespace multimedia
 
          ::u32 uBufferSize = snd_pcm_frames_to_bytes(m_ppcm, m_frameCount);
 
-         out_get_buffer()->PCMOutOpen(this, uiBufferSize, m_iBufferCount, 128, m_pwaveformat, m_pwaveformat);
+         out_get_buffer()->PCMOutOpen(this, uBufferSize, m_iBufferCount, 128, m_pwaveformat, m_pwaveformat);
 
-         m_pprebuffer->open(m_pwaveformat->nChannels, m_iBufferCount, m_frameCount);
+         m_pprebuffer->open(m_pwaveformat->m_waveformat.nChannels, m_iBufferCount, m_frameCount);
 
 //         m_pprebuffer->SetMinL1BufferCount(out_get_buffer()->GetBufferCount());
 
@@ -570,7 +570,7 @@ namespace multimedia
 
                }
 
-               usleep((iFramesToWrite - iFrameFreeCount) * 1'500'000 / m_pwaveformat->nSamplesPerSec);
+               usleep((iFramesToWrite - iFrameFreeCount) * 1'500'000 / m_pwaveformat->m_waveformat.nSamplesPerSec);
 
             }
 
@@ -721,10 +721,10 @@ namespace multimedia
 
          dwPosition *= 1000;
 
-         if (m_pwaveformat->nSamplesPerSec <= 0)
+         if (m_pwaveformat->m_waveformat.nSamplesPerSec <= 0)
             return 0;
 
-         dwPosition /= m_pwaveformat->nSamplesPerSec;
+         dwPosition /= m_pwaveformat->m_waveformat.nSamplesPerSec;
 
          return dwPosition / 1000.0;
 

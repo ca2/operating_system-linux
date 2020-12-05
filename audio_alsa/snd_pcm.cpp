@@ -211,15 +211,17 @@ namespace multimedia
 
          snd_pcm_format_t format = SND_PCM_FORMAT_S16_LE;
 
-         if (pformat->wBitsPerSample == 16)
+         if (pformat->m_waveformat.wBitsPerSample == 16)
          {
 
             format = SND_PCM_FORMAT_S16_LE;
+
          }
-         else if (pformat->wBitsPerSample == 8)
+         else if (pformat->m_waveformat.wBitsPerSample == 8)
          {
 
             format = SND_PCM_FORMAT_U8;
+
          }
 
          if ((err = snd_pcm_hw_params_set_format(m_ppcm, m_phwparams, format)) < 0)
@@ -227,12 +229,13 @@ namespace multimedia
 
             string strError = snd_strerror(err);
 
-            TRACE("cannot set sample format (%s)\n", strError);
+            TRACE("cannot set sample format (%s)\n", strError.c_str());
 
             return error_failed;
+
          }
 
-         unsigned int uiFreq = pformat->nSamplesPerSec;
+         unsigned int uiFreq = pformat->m_waveformat.nSamplesPerSec;
 
          int dir = 0;
 
@@ -244,9 +247,9 @@ namespace multimedia
             return error_failed;
          }
 
-         pformat->nSamplesPerSec = uiFreq;
+         pformat->m_waveformat.nSamplesPerSec = uiFreq;
 
-         if ((err = snd_pcm_hw_params_set_channels(m_ppcm, m_phwparams, pformat->nChannels)) < 0)
+         if ((err = snd_pcm_hw_params_set_channels(m_ppcm, m_phwparams, pformat->m_waveformat.nChannels)) < 0)
          {
 
             TRACE("cannot set channel count (%s)\n", snd_strerror(err));

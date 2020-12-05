@@ -67,13 +67,13 @@ namespace multimedia
 
          ASSERT(m_estate == state_initial);
 
-         m_pwaveformat->wFormatTag = 0;
-         m_pwaveformat->nChannels = 2;
-         m_pwaveformat->nSamplesPerSec = 44100;
-         m_pwaveformat->wBitsPerSample = sizeof(::wave::WAVEBUFFERDATA) * 8;
-         m_pwaveformat->nBlockAlign = m_pwaveformat->wBitsPerSample * m_pwaveformat->nChannels / 8;
-         m_pwaveformat->nAvgBytesPerSec = m_pwaveformat->nSamplesPerSec * m_pwaveformat->nBlockAlign;
-         m_pwaveformat->cbSize = 0;
+         m_pwaveformat->m_waveformat.wFormatTag = 0;
+         m_pwaveformat->m_waveformat.nChannels = 2;
+         m_pwaveformat->m_waveformat.nSamplesPerSec = 44100;
+         m_pwaveformat->m_waveformat.wBitsPerSample = sizeof(::wave::WAVEBUFFERDATA) * 8;
+         m_pwaveformat->m_waveformat.nBlockAlign = m_pwaveformat->m_waveformat.wBitsPerSample * m_pwaveformat->m_waveformat.nChannels / 8;
+         m_pwaveformat->m_waveformat.nAvgBytesPerSec = m_pwaveformat->m_waveformat.nSamplesPerSec * m_pwaveformat->m_waveformat.nBlockAlign;
+         //m_pwaveformat->m_waveformat.cbSize = 0;
 
          return error_failed;
 
@@ -147,10 +147,10 @@ Opened:
          ::u32 uiInterestSize;
          ::u32 uiSkippedSamplesCount;
 
-         if(m_pwaveformat->nSamplesPerSec == 44100)
+         if(m_pwaveformat->m_waveformat.nSamplesPerSec == 44100)
          {
             uiBufferSizeLog2 = 16;
-            uiBufferSize = m_pwaveformat->nChannels * 2 * iBufferSampleCount; // 512 kbytes
+            uiBufferSize = m_pwaveformat->m_waveformat.nChannels * 2 * iBufferSampleCount; // 512 kbytes
             uiAnalysisSize = 4 * 1 << uiBufferSizeLog2;
             if(iBufferCount > 0)
             {
@@ -163,7 +163,7 @@ Opened:
             uiInterestSize = 200;
             uiSkippedSamplesCount = 2;
          }
-         else if(m_pwaveformat->nSamplesPerSec == 22050)
+         else if(m_pwaveformat->m_waveformat.nSamplesPerSec == 22050)
          {
             uiBufferSizeLog2 = 9;
             uiBufferSize = 4 * 1 << uiBufferSizeLog2;
@@ -172,7 +172,7 @@ Opened:
             uiInterestSize = 600;
             uiSkippedSamplesCount = 1;
          }
-         else if(m_pwaveformat->nSamplesPerSec == 11025)
+         else if(m_pwaveformat->m_waveformat.nSamplesPerSec == 11025)
          {
             uiBufferSizeLog2 = 9;
             uiBufferSize = 2 * 1 << uiBufferSizeLog2;
@@ -380,7 +380,9 @@ Opened:
             }
             else
             {
-                Sleep(5);
+
+               sleep(5_s);
+
             }
 
          }
@@ -390,7 +392,7 @@ Opened:
       }
 
 
-      void CALLBACK wave_in::in_proc(snd_pcm_t * p, ::u32 uMsg, ::u32 dwInstance, ::u32 dwParam1, ::u32 dwParam2)
+      void wave_in::in_proc(snd_pcm_t * p, ::u32 uMsg, ::u32 dwInstance, ::u32 dwParam1, ::u32 dwParam2)
       {
 
          m_iBuffer--;

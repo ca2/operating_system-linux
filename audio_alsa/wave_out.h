@@ -19,7 +19,7 @@ namespace multimedia
          bool                    m_bWrite;
          int                     m_iBuffer;
          bool                    m_bStarted;
-         ::u3264_t                m_uiStart;
+         ::u64                   m_uStart;
          snd_pcm_status_t *      m_pstatus;
          timeval                 m_timevalStart;
 
