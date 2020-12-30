@@ -6,7 +6,8 @@
 			<Depends filename="../../../source/app/acme/acme.cbp" />
 		</Project>
 		<Project filename="../app/app.cbp">
-			<Depends filename="../../../source/app/aura/aura.cbp" />
+			<Depends filename="../../../source/app/acme/acme.cbp" />
+			<Depends filename="../../../source/app/apex/apex.cbp" />
 		</Project>
 		<Project filename="../../../source/app/shader/app_shader.cbp" />
 		<Project filename="../../../source/app-complex/drawing/complex_drawing.cbp">

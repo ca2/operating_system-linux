@@ -11,10 +11,6 @@
 			<Depends filename="../../../source/app/draw2d_cairo/cairo.cbp" />
 			<Depends filename="../../../source/third/sn/sn.cbp" />
 		</Project>
-		<Project filename="../../../source/app/aqua/aqua.cbp">
-			<Depends filename="../../../source/app/acme/acme.cbp" />
-			<Depends filename="../../../source/app/apex/apex.cbp" />
-		</Project>
 		<Project filename="../../../source/app/shader/app_shader.cbp">
 			<Depends filename="../../../source/app/acme/acme.cbp" />
 			<Depends filename="../../../source/app/apex/apex.cbp" />
@@ -22,6 +18,10 @@
 			<Depends filename="../../../source/app/draw2d_cairo/cairo.cbp" />
 			<Depends filename="../../../source/app/gpu_opengl/gpu_opengl.cbp" />
 			<Depends filename="../../../source/third/sn/sn.cbp" />
+		</Project>
+		<Project filename="../../../source/app/aqua/aqua.cbp">
+			<Depends filename="../../../source/app/acme/acme.cbp" />
+			<Depends filename="../../../source/app/apex/apex.cbp" />
 		</Project>
 		<Project filename="../../../source/app/aura/aura.cbp">
 			<Depends filename="../../../source/app/acme/acme.cbp" />
