@@ -28,8 +28,8 @@ namespace multimedia
          virtual ~snd_pcm();
 
 
-         estatus snd_pcm_open(snd_pcm_stream_t stream_type);
-         estatus snd_pcm_close();
+         ::e_status snd_pcm_open(snd_pcm_stream_t stream_type);
+         ::e_status snd_pcm_close();
 
 
       };

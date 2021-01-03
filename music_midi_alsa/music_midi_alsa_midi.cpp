@@ -27,7 +27,7 @@ namespace music
          }
 
 
-         ::estatus midi::enumerate_midi_devices()
+         ::e_status midi::enumerate_midi_devices()
          {
 
             return ::success;
@@ -306,10 +306,10 @@ namespace music
       }
 
 
-      ::estatus midi::translate_os_result(string & strMessage, string & strOsMessage, ::music::midi::object * pobject, int64_t iOsResult, const string & strContext, const string & strText)
+      ::e_status midi::translate_os_result(string & strMessage, string & strOsMessage, ::music::midi::object * pobject, int64_t iOsResult, const string & strContext, const string & strText)
          {
 
-            ::estatus mmrc = iOsResult == 0 ? ::success : ::error_failed;
+            ::e_status mmrc = iOsResult == 0 ? ::success : ::error_failed;
 
             if (mmrc == ::success)
             {

@@ -13,7 +13,7 @@ namespace multimedia
       {
 
          m_pencoder = NULL;
-         m_estate = state_initial;
+         m_estate = e_state_initial;
          m_bResetting = false;
 
 
@@ -24,7 +24,7 @@ namespace multimedia
       }
 
 
-      estatus wave_in::init_thread()
+      ::e_status wave_in::init_thread()
       {
          TRACE("wave_in::initialize_instance %X\n", get_ithread());
          //SetMainWnd(NULL);
@@ -45,12 +45,12 @@ namespace multimedia
       }
 
 
-      ::estatus wave_in::in_open(int32_t iBufferCount, int32_t iBufferSampleCount)
+      ::e_status wave_in::in_open(int32_t iBufferCount, int32_t iBufferSampleCount)
       {
 
          return success;
 
-         if(m_ppcm != NULL && m_estate != state_initial)
+         if(m_ppcm != NULL && m_estate != e_state_initial)
          {
 
             in_initialize_encoder();
@@ -61,11 +61,11 @@ namespace multimedia
 
          single_lock sLock(mutex(), TRUE);
 
-         ::estatus mmr = success;
+         ::e_status mmr = success;
 
          ASSERT(m_ppcm == NULL);
 
-         ASSERT(m_estate == state_initial);
+         ASSERT(m_estate == e_state_initial);
 
          m_pwaveformat->m_waveformat.wFormatTag = 0;
          m_pwaveformat->m_waveformat.nChannels = 2;
@@ -208,29 +208,29 @@ Opened:
          if(m_pencoder != NULL && !in_initialize_encoder())
          {
 
-            m_estate = state_opened;
+            m_estate = e_state_opened;
 
             in_close();
 
-            return (::estatus) -1;
+            return (::e_status) -1;
 
          }
 
-         m_estate = state_opened;
+         m_estate = e_state_opened;
 
          return success;
 
       }
 
 
-      ::estatus wave_in::in_close()
+      ::e_status wave_in::in_close()
       {
 
          single_lock sLock(mutex(), TRUE);
 
-         ::estatus mmr;
+         ::e_status mmr;
 
-         if(m_estate != state_opened && m_estate != state_stopped)
+         if(m_estate != e_state_opened && m_estate != state_stopped)
             return success;
 
          mmr = in_reset();
@@ -256,14 +256,14 @@ Opened:
 
          m_ppcm = NULL;
 
-         m_estate = state_initial;
+         m_estate = e_state_initial;
 
          return success;
 
       }
 
 
-      ::estatus wave_in::in_start()
+      ::e_status wave_in::in_start()
       {
 
          return success;
@@ -277,14 +277,14 @@ Opened:
 
          }
 
-         if(m_estate != state_opened && m_estate != state_stopped)
+         if(m_estate != e_state_opened && m_estate != state_stopped)
          {
 
             return success;
 
          }
 
-         ::estatus mmr;
+         ::e_status mmr;
 
          if((mmr = translate_alsa(snd_pcm_start(m_ppcm))) != success)
          {
@@ -302,7 +302,7 @@ Opened:
       }
 
 
-      ::estatus wave_in::in_stop()
+      ::e_status wave_in::in_stop()
       {
 
          sync_lock sl(mutex());
@@ -314,9 +314,9 @@ Opened:
 
          }
 
-         ::estatus mmr;
+         ::e_status mmr;
 
-         m_estate = state_stopping;
+         m_estate = e_state_stopping;
 
          try
          {
@@ -345,7 +345,7 @@ Opened:
       }
 
 
-      ::estatus wave_in::run()
+      ::e_status wave_in::run()
       {
 
          int iBuffer = 0;
@@ -418,7 +418,7 @@ Opened:
       }
 
 
-      ::estatus wave_in::in_reset()
+      ::e_status wave_in::in_reset()
       {
          sync_lock sl(mutex());
          m_bResetting = true;
@@ -427,7 +427,7 @@ Opened:
             return error_failed;
          }
 
-         ::estatus mmr;
+         ::e_status mmr;
          if(m_estate == state_recording)
          {
             if(success != (mmr = in_stop()))
@@ -448,7 +448,7 @@ Opened:
          {
          }
 
-         m_estate = state_opened;
+         m_estate = e_state_opened;
 
          m_bResetting = false;
 
@@ -459,7 +459,7 @@ Opened:
 
 /*
 
-      ::estatus wave_in::in_add_buffer(int32_t iBuffer)
+      ::e_status wave_in::in_add_buffer(int32_t iBuffer)
       {
 
          return in_add_buffer(wave_hdr(iBuffer));
@@ -467,10 +467,10 @@ Opened:
       }
 
 
-      ::estatus wave_in::in_add_buffer(LPWAVEHDR lpwavehdr)
+      ::e_status wave_in::in_add_buffer(LPWAVEHDR lpwavehdr)
       {
 
-         ::estatus mmr;
+         ::e_status mmr;
 
          /*if(success != (mmr = waveInAddBuffer(m_hwavein, lpwavehdr, sizeof(WAVEHDR))))
          {

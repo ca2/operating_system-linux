@@ -112,7 +112,7 @@ namespace music
          }
 
 
-         ::estatus message_out::note_on(int channel, unsigned char note, unsigned char volume)
+         ::e_status message_out::note_on(int channel, unsigned char note, unsigned char volume)
          {
 
             byte message[3];
@@ -129,7 +129,7 @@ namespace music
 
 
 
-         ::estatus message_out::note_off(int channel, unsigned char note, unsigned char velocity)
+         ::e_status message_out::note_off(int channel, unsigned char note, unsigned char velocity)
          {
 
             byte message[3];
@@ -145,7 +145,7 @@ namespace music
          }
 
 
-         ::estatus message_out::program_change(int channel, unsigned char instrument)
+         ::e_status message_out::program_change(int channel, unsigned char instrument)
          {
 
             byte message[2];
@@ -205,7 +205,7 @@ namespace music
          }
 
 
-         ::estatus message_out::add_short_message(byte * pmessage, int iSize)
+         ::e_status message_out::add_short_message(byte * pmessage, int iSize)
          {
 
             m_file.write(pmessage, iSize);

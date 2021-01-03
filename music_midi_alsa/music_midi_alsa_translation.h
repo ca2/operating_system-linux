@@ -15,7 +15,7 @@ namespace music
       namespace alsa
       {
 
-      //::estatus ::music::translate(::estatus smfrc);
+      //::e_status ::music::translate(::e_status smfrc);
 
 
       }

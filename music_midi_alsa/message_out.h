@@ -33,9 +33,9 @@ namespace music
 
             virtual void start() override;
 
-            virtual ::estatus note_on(int iChannel, unsigned char uchNote, unsigned char uchVelocity) override;
-            virtual ::estatus note_off(int iChannel, unsigned char uchNote, unsigned char uchVelocity) override;
-            virtual ::estatus program_change(int iChannel, unsigned char uchProgram) override;
+            virtual ::e_status note_on(int iChannel, unsigned char uchNote, unsigned char uchVelocity) override;
+            virtual ::e_status note_off(int iChannel, unsigned char uchNote, unsigned char uchVelocity) override;
+            virtual ::e_status program_change(int iChannel, unsigned char uchProgram) override;
             virtual void control_change(int iChannel, unsigned char uchController, unsigned char uchValue) override;
             virtual void pitch_bend(int iChannel, unsigned short ushBend) override;
             virtual void sysex(const ::block & block) override;
@@ -46,7 +46,7 @@ namespace music
 
             virtual void reset_all_controllers() override;
 
-            virtual ::estatus add_short_message(byte * pmessage, int iSize);
+            virtual ::e_status add_short_message(byte * pmessage, int iSize);
 
             virtual bool is_ok() override;
 

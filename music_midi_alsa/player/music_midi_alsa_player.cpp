@@ -164,7 +164,7 @@ namespace music
          void player::pause()
          {
 
-            if (get_sequence()->get_state() == ::music::midi::sequence::state_paused)
+            if (get_sequence()->get_state() == ::music::midi::sequence::e_state_paused)
             {
 
                get_sequence()->Restart();
@@ -179,9 +179,9 @@ namespace music
 
          void player::SetPosition(double dRate)
          {
-            if (::music::midi::sequence::state_playing != get_sequence()->get_state() &&
-               ::music::midi::sequence::state_stopping != get_sequence()->get_state() &&
-               ::music::midi::sequence::state_opened != get_sequence()->get_state())
+            if (::music::midi::sequence::e_state_playing != get_sequence()->get_state() &&
+               ::music::midi::sequence::e_state_stopping != get_sequence()->get_state() &&
+               ::music::midi::sequence::e_state_opened != get_sequence()->get_state())
                return;
 
             if(get_sequence()->IsPlaying())
@@ -189,7 +189,7 @@ namespace music
 
                ::music::midi::sequence::player_link & link = get_sequence()->GetPlayerLink();
 
-               link() |= ::music::midi::sequence::FlagSettingPos;
+               link() |= ::music::midi::sequence::e_flag_setting_position;
 
                link.m_tkRestart = RateToTicks(dRate);
 
@@ -354,8 +354,8 @@ namespace music
              get_sequence()->SetTempoChangeFlag();
              ::music::midi::sequence::PlayerLink & link = get_sequence()->GetPlayerLink();
              link.ModifyFlag(
-             ::music::midi::sequence::FlagTempoChange,
-             ::music::midi::sequence::FlagNull);
+             ::music::midi::sequence::e_flag_tempo_change,
+             ::music::midi::sequence::e_flag_null);
              imedia::position tk = get_sequence()->GetPositionTicks();
              get_sequence()->m_evMmsgDone.ResetEvent();
              link.m_tkRestart = tk + get_sequence()->m_tkBase;
@@ -452,7 +452,7 @@ namespace music
                imedia_position tkPosition = 0;
                get_sequence()->get_position(tkPosition);
                ::music::midi::sequence::player_link & link = get_sequence()->GetPlayerLink();
-               link() |= ::music::midi::sequence::FlagTempoChange;
+               link() |= ::music::midi::sequence::e_flag_tempo_change;
                link.m_tkRestart = tkPosition;
                get_sequence()->Stop();
             }

@@ -30,10 +30,10 @@ namespace multimedia
          }
       }
 
-      ::estatus snd_pcm::snd_pcm_open(snd_pcm_stream_t stream_type)
+      ::e_status snd_pcm::snd_pcm_open(snd_pcm_stream_t stream_type)
       {
 
-         ::estatus mmr;
+         ::e_status mmr;
          ASSERT(m_ppcm == NULL);
 
          __pointer(::wave::format) pformat = m_pwaveformat;
@@ -484,7 +484,7 @@ namespace multimedia
       }
 
 
-      ::estatus snd_pcm::snd_pcm_close()
+      ::e_status snd_pcm::snd_pcm_close()
       {
 
          if (m_ppcm == NULL)

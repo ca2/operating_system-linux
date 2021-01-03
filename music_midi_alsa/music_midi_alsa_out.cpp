@@ -29,7 +29,7 @@ namespace music
          }
 
 
-         ::estatus out::open()
+         ::e_status out::open()
          {
 
             // Set up the ALSA sequencer client.
@@ -75,7 +75,7 @@ namespace music
          }
 
 
-         ::estatus out::close()
+         ::e_status out::close()
          {
 
             if(m_poseq != NULL)
@@ -92,7 +92,7 @@ namespace music
          }
 
 
-         ::estatus out::send_short_message(::music::midi::e_message emessage, int iChannel, int iData1, int iData2)
+         ::e_status out::send_short_message(::music::midi::e_message emessage, int iChannel, int iData1, int iData2)
          {
 
             //return midiOutShortMsg(m_hmidiout, MIDIMSG(((int) etype) >> 4, iChannel, iData1, iData2));

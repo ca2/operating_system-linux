@@ -64,9 +64,9 @@ namespace music
             void Reset();
             void Initialize(int32_t iSize, ::u32 dwUser);
 
-            ::estatus midiStreamOut(seq_context_t * hmidiout);
-            //::estatus midiOutPrepareHeader(HMIDIOUT hmidiout);
-            //::estatus midiOutUnprepareHeader(HMIDIOUT hmidiout);
+            ::e_status midiStreamOut(seq_context_t * hmidiout);
+            //::e_status midiOutPrepareHeader(HMIDIOUT hmidiout);
+            //::e_status midiOutUnprepareHeader(HMIDIOUT hmidiout);
 
 
             inline LPMIDIHDR GetMidiHdr() { return &m_midihdr; }
@@ -87,9 +87,9 @@ namespace music
             void Initialize(int32_t iCount, int32_t iSize, ::u32 dwUser);
 
 
-            ::estatus midiStreamOut(seq_context_t * hmidiout);
-            //::estatus midiOutPrepareHeader(HMIDIOUT hmidiout);
-            //::estatus midiOutUnprepareHeader(HMIDIOUT hmidiout);
+            ::e_status midiStreamOut(seq_context_t * hmidiout);
+            //::e_status midiOutPrepareHeader(HMIDIOUT hmidiout);
+            //::e_status midiOutUnprepareHeader(HMIDIOUT hmidiout);
 
          };
 
@@ -161,7 +161,7 @@ namespace music
 
          //imedia::position GetPositionTicks();
          void SetLevelMeter(int32_t iLevel);
-         ::estatus CloseStream();
+         ::e_status CloseStream();
          bool SetMidiOutDevice(::u32 uiDevice);
          int32_t SetKeyShift(int32_t iKeyShift);
          int32_t GetKeyShift();
@@ -195,35 +195,35 @@ namespace music
          virtual void OnEvent(::music::midi::sequence::event * pevent);
 
 
-         ::estatus AllocBuffers();
+         ::e_status AllocBuffers();
 
          VOID FreeBuffers();
 
-         //::estatus OpenFile(const char * lpFileName, int32_t openMode);
-//         ::estatus OpenFile(::music::midi::sequence & sequence, int32_t iOpenMode);
-//         ::estatus OpenFile(::file::file & ar, int32_t openMode) override;
-//         ::estatus OpenFile(const char * lpFileName, int32_t openMode);
-//         ::estatus OpenFile(memory * pmemorystorage, int32_t openMode, ::music::e_storage estorage);
+         //::e_status OpenFile(const char * lpFileName, int32_t openMode);
+//         ::e_status OpenFile(::music::midi::sequence & sequence, int32_t iOpenMode);
+//         ::e_status OpenFile(::file::file & ar, int32_t openMode) override;
+//         ::e_status OpenFile(const char * lpFileName, int32_t openMode);
+//         ::e_status OpenFile(memory * pmemorystorage, int32_t openMode, ::music::e_storage estorage);
 
-         ::estatus CloseFile();
-         //::estatus SaveFile(const char * lpFileName);
-         //::estatus SaveFile();
-         //::estatus SaveFile(::file::file & file) override;
-         //::estatus Preroll(::thread * pthread, ::music::midi::LPPREROLL lpPreroll, bool bThrow);
-         ::estatus Start();
+         ::e_status CloseFile();
+         //::e_status SaveFile(const char * lpFileName);
+         //::e_status SaveFile();
+         //::e_status SaveFile(::file::file & file) override;
+         //::e_status Preroll(::thread * pthread, ::music::midi::LPPREROLL lpPreroll, bool bThrow);
+         ::e_status Start();
 
-         ::estatus Pause();
+         ::e_status Pause();
 
-         ::estatus Restart();
+         ::e_status Restart();
 
-         //::estatus Stop(::u32 dwEllapse);
-         ::estatus Stop();
+         //::e_status Stop(::u32 dwEllapse);
+         ::e_status Stop();
 
          //void get_position(imedia_position  & time) override;
 //         void get_time(imedia_time  & time) override;
 
-         //::estatus get_ticks(imedia_position & time) override;
-         //::estatus get_millis(imedia_time & time) override;
+         //::e_status get_ticks(imedia_position & time) override;
+         //::e_status get_millis(imedia_time & time) override;
 
 
          //imedia_position MillisecsToTicks(imedia_time msOffset);
@@ -263,7 +263,7 @@ namespace music
 
 
          //int seq_play(::music::midi::event * pevent);
-         //::estatus seq_start();
+         //::e_status seq_start();
 
       };
 

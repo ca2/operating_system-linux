@@ -324,7 +324,7 @@ namespace music
       }
 
 
-//      ::estatus FillTypeCombo(::user::combo_box * lpcombo)
+//      ::e_status FillTypeCombo(::user::combo_box * lpcombo)
 //      {
 //
 //         UNREFERENCED_PARAMETER(lpcombo);
@@ -355,7 +355,7 @@ namespace music
 //      }
 
 
-//      ::estatus FillPitchCombo(::user::combo_box * lpcombo)
+//      ::e_status FillPitchCombo(::user::combo_box * lpcombo)
 //      {
 //
 //         UNREFERENCED_PARAMETER(lpcombo);
