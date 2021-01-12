@@ -37,12 +37,12 @@ namespace music
 } // namespace music
 
 
-#include "music_midi_alsa_translation.h"
+#include "translation.h"
 
 #include "message_out.h"
 
-#include "music_midi_alsa_out.h"
+#include "out.h"
 
-#include "music_midi_alsa_midi.h"
+#include "midi.h"
 
-#include "music_midi_alsa_factory_exchange.h"
+#include "factory_exchange.h"

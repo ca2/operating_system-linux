@@ -22,7 +22,7 @@ namespace music
          public:
 
 
-            ::u3264_t                m_ui64Start;
+            ::u64                   m_u64Start;
             snd_rawmidi_t *         m_prawmidi;
             int64_t                 m_iWrite;
             memory_file             m_file;

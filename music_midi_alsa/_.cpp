@@ -427,8 +427,7 @@ namespace music
       * Returns the state size in bytes.
       *
       *****************************************************************************/
-      ::u32 GetStateMaxSize(
-         VOID)
+      ::u32 GetStateMaxSize()
       {
          return  3*sizeof(::u32) +           /* Tempo                */
             3*16*sizeof(::u32) +        /* Patch changes        */

@@ -97,7 +97,7 @@ target_include_directories(audio_alsa PRIVATE ${CMAKE_CURRENT_SOURCE_DIR}/../../
 target_include_directories(audio_alsa PRIVATE ${CMAKE_CURRENT_SOURCE_DIR})
 
 
-target_compile_definitions(audio_alsa PRIVATE _audio_alsa_LIBRARY)
+target_compile_definitions(audio_alsa PRIVATE _AUDIO_ALSA_LIBRARY)
 target_compile_definitions(audio_alsa PRIVATE UNICODE)
 target_compile_definitions(audio_alsa PRIVATE _UNICODE)
 
