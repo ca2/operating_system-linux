@@ -28,8 +28,8 @@ namespace music
             virtual ~midi();
 
 
-            virtual ::e_status enumerate_midi_devices();
-
+            //virtual ::e_status enumerate_midi_devices();
+            virtual void enumerate_midi_out_devices() override;
 
             //void RemoveListener(midi_listener * plistener);
             //void AddListener(midi_listener * plistener);

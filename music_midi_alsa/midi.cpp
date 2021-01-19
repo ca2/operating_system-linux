@@ -27,64 +27,64 @@ namespace music
          }
 
 
-         ::e_status midi::enumerate_midi_devices()
-         {
-
-            return ::success;
-
-   /*         ::u32 devs = midiInGetNumDevs();
-
-            LOG("midiIn devices: %u", devs);
-
-            for (::u32 dev = 0; dev < devs; dev++)
-            {
-
-               MIDIINCAPSW caps = {};
-
-               MMRESULT mmr = midiInGetDevCapsW(dev, &caps, sizeof(caps));
-
-               if (MMSYSERR_NOERROR != mmr)
-               {
-
-                  return translate_os_result(mmr, "enumerate_midi_devices", "midiInGetDevCapsW");
-
-               }
-
-               m_uiaIn.add(dev);
-
-               mmsystem_LogMidiInCaps(dev, caps);
-
-               mmsystem_GetMidiInDeviceInterface(dev);
-
-            }
-
-            devs = midiOutGetNumDevs();
-
-            LOG("midiOut devices: %u", devs);
-
-            for (::u32 dev = 0; dev < devs; dev++)
-            {
-
-               MIDIOUTCAPSW caps = {};
-
-               MMRESULT mmr = midiOutGetDevCapsW(dev, &caps, sizeof(caps));
-
-               if (MMSYSERR_NOERROR != mmr)
-               {
-
-                  return translate_os_result(mmr, "enumerate_midi_devices", "midiOutGetDevCaps");
-
-               }
-
-               mmsystem_LogMidiOutCaps(dev, caps);
-
-               mmsystem_GetMidiOutDeviceInterface(dev);
-
-            }
-
-            return ::success;*/
-
-         }
+//         ::e_status midi::enumerate_midi_devices()
+//         {
+//
+//            return ::success;
+//
+//   /*         ::u32 devs = midiInGetNumDevs();
+//
+//            LOG("midiIn devices: %u", devs);
+//
+//            for (::u32 dev = 0; dev < devs; dev++)
+//            {
+//
+//               MIDIINCAPSW caps = {};
+//
+//               MMRESULT mmr = midiInGetDevCapsW(dev, &caps, sizeof(caps));
+//
+//               if (MMSYSERR_NOERROR != mmr)
+//               {
+//
+//                  return translate_os_result(mmr, "enumerate_midi_devices", "midiInGetDevCapsW");
+//
+//               }
+//
+//               m_uiaIn.add(dev);
+//
+//               mmsystem_LogMidiInCaps(dev, caps);
+//
+//               mmsystem_GetMidiInDeviceInterface(dev);
+//
+//            }
+//
+//            devs = midiOutGetNumDevs();
+//
+//            LOG("midiOut devices: %u", devs);
+//
+//            for (::u32 dev = 0; dev < devs; dev++)
+//            {
+//
+//               MIDIOUTCAPSW caps = {};
+//
+//               MMRESULT mmr = midiOutGetDevCapsW(dev, &caps, sizeof(caps));
+//
+//               if (MMSYSERR_NOERROR != mmr)
+//               {
+//
+//                  return translate_os_result(mmr, "enumerate_midi_devices", "midiOutGetDevCaps");
+//
+//               }
+//
+//               mmsystem_LogMidiOutCaps(dev, caps);
+//
+//               mmsystem_GetMidiOutDeviceInterface(dev);
+//
+//            }
+//
+//            return ::success;*/
+//
+//         }
 
 
 
@@ -323,18 +323,12 @@ namespace music
          }
 
 
-         bool midi::Initialize()
+         void midi::enumerate_midi_out_devices()
          {
 
+            ::music::midi::midi::enumerate_midi_out_devices();
 
-            if(!::music::midi::midi::Initialize())
-            {
-
-               return false;
-
-            }
-
-         	int card, err;
+            int card, err;
 
             card = -1;
 
@@ -358,6 +352,19 @@ namespace music
                }
 
                list_midi_out_card_devices(card);
+
+            }
+
+         }
+
+
+         bool midi::Initialize()
+         {
+
+            if(!::music::midi::midi::Initialize())
+            {
+
+               return false;
 
             }
 
