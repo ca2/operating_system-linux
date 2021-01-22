@@ -1,15 +1,31 @@
 //
-// Created by camilo on 20/01/2021.
+// Created by camilo on 20/01/2021. ThomasBS!!
 //
-
-#ifndef BASIS_APPINDICATOR_H
-#define BASIS_APPINDICATOR_H
+#pragma once
 
 
-class appindicator
+namespace node_gnome
 {
 
-};
+
+   class appindicator :
+      virtual public ::linux::appindicator
+   {
+   public:
 
 
-#endif //BASIS_APPINDICATOR_H
+      appindicator();
+      virtual ~appindicator();
+
+
+      virtual bool create(const char * pszId, const char * pszIcon, const char * pszFolder, user_notify_icon_bridge * pbridge);
+
+
+
+   };
+
+
+} // namespace node_gnome
+
+
+

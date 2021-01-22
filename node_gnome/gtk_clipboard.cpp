@@ -1,7 +1,9 @@
 //
 // Created by camilo on 20/01/2021. <3ThomasBS!!
 //
-
+#include "framework.h"
+#include "clipboard_data.h"
+#include <gtk/gtk.h>
 
 
 void clipboard_targets_func(GtkClipboard *clipboard, GdkAtom *atoms, gint n_atoms, gpointer data)
@@ -104,7 +106,7 @@ void clipboard_received_func(GtkClipboard * clipboard, GtkSelectionData * select
    if(stra.is_empty())
    {
 
-      pdata->m_eclipboard = clipboard_error;
+      pdata->m_eclipboard = e_clipboard_error;
 
       pdata->m_event.SetEvent();
 
@@ -129,7 +131,7 @@ void clipboard_received_func(GtkClipboard * clipboard, GtkSelectionData * select
    else
    {
 
-      pdata->m_eclipboard = clipboard_error;
+      pdata->m_eclipboard = e_clipboard_error;
 
       pdata->m_event.SetEvent();
 
@@ -177,7 +179,7 @@ void clipboard_get_func(GtkClipboard * clipboard, GtkSelectionData * selection_d
    else
    {
 
-      pdata->m_eclipboard = clipboard_error;
+      pdata->m_eclipboard = e_clipboard_error;
 
       return;
 
@@ -244,14 +246,14 @@ gboolean clipboard_callback(gpointer data)
 
    GtkClipboard* clipboard = gtk_clipboard_get(GDK_SELECTION_CLIPBOARD);
 
-   if(pdata->m_eclipboard == clipboard_get_plain_text)
+   if(pdata->m_eclipboard == e_clipboard_get_plain_text)
    {
 
 
       gtk_clipboard_request_text(clipboard, &clipboard_text_request_callback, pdata);
 
    }
-   else if(pdata->m_eclipboard == clipboard_set_patha)
+   else if(pdata->m_eclipboard == e_clipboard_set_patha)
    {
 
       //_source = _fileCopy.Uri;
@@ -272,7 +274,7 @@ gboolean clipboard_callback(gpointer data)
       pdata->m_event.SetEvent();
 
    }
-   else if(pdata->m_eclipboard == clipboard_get_patha)
+   else if(pdata->m_eclipboard == e_clipboard_get_patha)
    {
 
       GdkAtom target = gdk_atom_intern("x-special/gnome-copied-files", false);
@@ -280,13 +282,13 @@ gboolean clipboard_callback(gpointer data)
       gtk_clipboard_request_contents(clipboard, target, &clipboard_received_func, pdata);
 
    }
-   else if(pdata->m_eclipboard == clipboard_get_file_target_count)
+   else if(pdata->m_eclipboard == e_clipboard_get_file_target_count)
    {
 
       gtk_clipboard_request_targets(clipboard, &clipboard_targets_func, pdata);
 
    }
-   else if(pdata->m_eclipboard == clipboard_get_image)
+   else if(pdata->m_eclipboard == e_clipboard_get_image)
    {
 
       if(gtk_clipboard_wait_is_image_available(clipboard))
