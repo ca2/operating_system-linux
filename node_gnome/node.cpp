@@ -525,13 +525,13 @@ void node::os_calc_user_dark_mode()
 
                                  GdkRectangle rect;
 
-                                 xxf_zero(rect);
+                                 __zero(rect);
 
                                  gdk_monitor_get_workarea(pmonitor, &rect);
 
                                  __copy(rectWkspace, rect);
 
-                                 xxf_zero(rect);
+                                 __zero(rect);
 
                                  gdk_monitor_get_geometry(pmonitor, &rect);
 
