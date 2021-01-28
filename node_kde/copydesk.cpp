@@ -24,8 +24,7 @@ gboolean clipboard_callback(gpointer data);
 
 
 
-namespace node_gnome
-{
+namespace node_kde{
 
 
    copydesk::copydesk()
@@ -300,7 +299,7 @@ namespace node_gnome
    }
 
 
-} // namespace node_gnome
+} // namespace node_kde
 
 
 //void clipboard_targets_func(GtkClipboard *clipboard, GdkAtom *atoms, gint n_atoms, gpointer data)

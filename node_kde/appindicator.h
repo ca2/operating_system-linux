@@ -4,8 +4,7 @@
 #pragma once
 
 
-namespace node_gnome
-{
+namespace node_kde{
 
 
    class appindicator :
@@ -25,7 +24,7 @@ namespace node_gnome
    };
 
 
-} // namespace node_gnome
+} // namespace node_kde
 
 
 

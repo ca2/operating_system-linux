@@ -9,12 +9,12 @@
 
 
 
-
+void x11_kick_idle();
 
 void gtk_settings_gtk_theme_name_callback(GObject* object, GParamSpec* pspec, gpointer data)
 {
 
-   node_gnome::node * pnode = (node_gnome::node *) data;
+   node_kde::node * pnode = (node_kde::node *) data;
 
    if(pnode)
    {
@@ -55,14 +55,13 @@ mutex * x11_mutex();
 gboolean node_gnome_source_func(gpointer pUserdata);
 
 
-namespace node_gnome
-{
+namespace node_kde{
 
    class appindicator;
 
    void appindicator_destroy(appindicator * pindicator);
 
-} // namespace node_gnome
+} // namespace node_kde
 
 
 
@@ -70,7 +69,7 @@ void os_post_quit();
 
 void apex_application_run(const char * pszAppName, const char * pszProgName);
 
-namespace node_gnome
+namespace node_kde
 {
 
 
@@ -81,6 +80,7 @@ namespace node_gnome
    {
 
       m_pGtkSettingsDefault = nullptr;
+      m_pnodeimpl = nullptr;
 
    }
 
@@ -88,10 +88,19 @@ namespace node_gnome
    node::~node()
    {
 
-      if(m_pGtkSettingsDefault)
+      if (m_pGtkSettingsDefault)
       {
 
          g_object_unref(m_pGtkSettingsDefault);
+
+      }
+
+      if(m_pnodeimpl)
+      {
+
+         del_node_impl(m_pnodeimpl);
+
+         m_pnodeimpl = nullptr;
 
       }
 
@@ -101,16 +110,64 @@ namespace node_gnome
    int node::node_init_check(int *pi, char ***ppz)
    {
 
-      auto iResult = gtk_init_check(pi, ppz);
+      m_pnodeimpl = new_node_impl(*pi, *ppz);
 
-      return iResult;
+      if(!m_pnodeimpl)
+      {
+
+         return 0;
+
+      }
+
+      return 1;
+
+   }
+
+
+   ::os_theme_colors * node::new_os_theme_colors()
+   {
+
+      auto pthemecolors = m_pnodeimpl->new_os_theme_colors();
+
+      return pthemecolors;
+
+   }
+
+
+   bool node::_calc_dark_mode()
+   {
+
+      auto pthemecolors = ::user::os_get_theme_colors();
+
+      if(!pthemecolors)
+      {
+
+         pthemecolors = new_os_theme_colors();
+
+         ::user::os_set_theme_colors(pthemecolors);
+
+      }
+
+      ::color colorBack(pthemecolors->m_colorBack);
+
+      auto dLuminance = colorBack.get_luminance();
+
+      return dLuminance < 0.5;
+
+   }
+
+
+
+   void node::on_os_dark_mode_change()
+   {
+
+      x11_kick_idle();
 
    }
 
 
    void node::os_application_system_run()
    {
-
 
       if (System.m_bGtkApp)
       {
@@ -120,26 +177,26 @@ namespace node_gnome
       }
       else
       {
-      //
-      ////      g_set_application_name(psystem->m_strAppId);
-      ////
-      ////      g_set_prgname(psystem->m_strProgName);
-      ////
-      ////      //auto idle_source = g_idle_source_new();
-      ////
-      ////      //g_source_set_callback(idle_source, &linux_start_system, (::apex::system *) m_psystem, nullptr);
-      ////
-      ////      //g_source_attach(idle_source, g_main_context_default());
-      ////
-      ////      //int c = 2;
-      ////
-      ////      //const char * argv[]={"app", "--g-fatal-warnings"};
-      ////
-      ////#if !defined(__SANITIZE_ADDRESS__)
-      ////
-      ////      gtk_init_check(&psystem->m_argc, &psystem->m_argv);
-      ////
-      ////#endif
+         //
+         ////      g_set_application_name(psystem->m_strAppId);
+         ////
+         ////      g_set_prgname(psystem->m_strProgName);
+         ////
+         ////      //auto idle_source = g_idle_source_new();
+         ////
+         ////      //g_source_set_callback(idle_source, &linux_start_system, (::apex::system *) m_psystem, nullptr);
+         ////
+         ////      //g_source_attach(idle_source, g_main_context_default());
+         ////
+         ////      //int c = 2;
+         ////
+         ////      //const char * argv[]={"app", "--g-fatal-warnings"};
+         ////
+         ////#if !defined(__SANITIZE_ADDRESS__)
+         ////
+         ////      gtk_init_check(&psystem->m_argc, &psystem->m_argv);
+         ////
+         ////#endif
 
          node_fork([this]()
                    {
@@ -150,13 +207,13 @@ namespace node_gnome
 
                       auto pgtksettingsDefault = gtk_settings_get_default();
 
-                      if(pgtksettingsDefault)
+                      if (pgtksettingsDefault)
                       {
 
 
                          m_pGtkSettingsDefault = G_OBJECT(pgtksettingsDefault);
 
-                         g_object_ref (m_pGtkSettingsDefault);
+                         g_object_ref(m_pGtkSettingsDefault);
 
                          gchar *theme_name = nullptr;
 
@@ -188,14 +245,14 @@ namespace node_gnome
 
          //x11_add_filter();
 
-System.fork([]()
-     {
+         System.fork([]()
+                     {
 
-      x11_main();
+                        //x11_main();
 
-     });
+                     });
 
-         gtk_main();
+         m_pnodeimpl->exec();
 
          //x11_main();
 
@@ -207,24 +264,14 @@ System.fork([]()
    }
 
 
-::e_status node::initialize(::layered *pobjectContext)
-{
+   ::e_status node::initialize(::layered *pobjectContext)
+   {
 
-   ::node_gnome::g_defer_init();
+      ::node_kde::g_defer_init();
 
-   ::node_gnome::initialize_edesktop();
+      return ::success;
 
-   return ::success;
-
-}
-
-
-void node::os_calc_user_dark_mode()
-{
-
-      ::node_gnome::os_calc_dark_mode();
-
-}
+   }
 
 
    string node::os_get_user_theme()
@@ -243,64 +290,65 @@ void node::os_calc_user_dark_mode()
 
       // indirect wall-changer sourceforge.net contribution
 
-      auto edesktop = get_edesktop();
+      auto edesktop = System.get_edesktop();
 
       switch (edesktop)
       {
 
-      case ::user::e_desktop_gnome:
-      case ::user::e_desktop_ubuntu_gnome:
-      case ::user::e_desktop_unity_gnome:
-      {
+         case ::user::e_desktop_gnome:
+         case ::user::e_desktop_ubuntu_gnome:
+         case ::user::e_desktop_unity_gnome:
+         {
 
-      bool bOk1 = ::node_gnome::gsettings_set("org.gnome.desktop.interface", "gtk-theme", strUserTheme);
+            bool bOk1 = ::node_kde::gsettings_set("org.gnome.desktop.interface", "gtk-theme", strUserTheme);
 
-      bool bOk2 = true;
+            bool bOk2 = true;
 
-      //if(::file::system_short_name().contains_ci("manjaro"))
-      {
+            //if(::file::system_short_name().contains_ci("manjaro"))
+            {
 
-         bOk2 = ::node_gnome::gsettings_set("org.gnome.desktop.wm.preferences", "theme", strUserTheme);
+               bOk2 = ::node_kde::gsettings_set("org.gnome.desktop.wm.preferences", "theme", strUserTheme);
 
-      }
+            }
 
-      sleep(300_ms);
+            sleep(300_ms);
 
-      ::node_gnome::gsettings_sync();
+            ::node_kde::gsettings_sync();
 
-      sleep(300_ms);
+            sleep(300_ms);
 
-      return
-      bOk1 &&bOk2;
+            return
+               bOk1 && bOk2;
 
-      }
+         }
 
-      case ::user::e_desktop_mate:
+         case ::user::e_desktop_mate:
 
-      //return ::user::gsettings_set("org.mate.background", "picture-filename", strLocalImagePath);
+            //return ::user::gsettings_set("org.mate.background", "picture-filename", strLocalImagePath);
 
-      case ::user::e_desktop_lxde:
+         case ::user::e_desktop_lxde:
 
-      //call_async("pcmanfm", "-w " + strLocalImagePath, nullptr, e_display_none, false);
+            //call_async("pcmanfm", "-w " + strLocalImagePath, nullptr, e_display_none, false);
 
-      break;
+            break;
 
-      case ::user::e_desktop_xfce:
-      {
-      //        Q_FOREACH(QString entry, Global::getOutputOfCommand("xfconf-query", QStringList() << "-c" << "xfce4-desktop" << "-point" << "/backdrop" << "-l").split("\n")){
-      //          if(entry.contains("image-path") || entry.contains("last-image")){
-      //            QProcess::startDetached("xfconf-query", QStringList() << "-c" << "xfce4-desktop" << "-point" << entry << "-s" << image);
-      //      }
-      //}
+         case ::user::e_desktop_xfce:
+         {
+            //        Q_FOREACH(QString entry, Global::getOutputOfCommand("xfconf-query", QStringList() << "-c" << "xfce4-desktop" << "-point" << "/backdrop" << "-l").split("\n")){
+            //          if(entry.contains("image-path") || entry.contains("last-image")){
+            //            QProcess::startDetached("xfconf-query", QStringList() << "-c" << "xfce4-desktop" << "-point" << entry << "-s" << image);
+            //      }
+            //}
 
-      }
+         }
 
-      //break;
+            //break;
 
-      default:
+         default:
 
-      output_debug_string("Failed to change wallpaper. If your Desktop Environment is not listed at \"Preferences->Integration-> Current Desktop Environment\", then it is not supported.");
-      return false;
+            output_debug_string(
+               "Failed to change wallpaper. If your Desktop Environment is not listed at \"Preferences->Integration-> Current Desktop Environment\", then it is not supported.");
+            return false;
 
       }
 
@@ -324,7 +372,7 @@ void node::os_calc_user_dark_mode()
 
       auto pnode = Node;
 
-      auto edesktop = pnode->get_edesktop();
+      auto edesktop = System.get_edesktop();
 
       switch (edesktop)
       {
@@ -333,11 +381,12 @@ void node::os_calc_user_dark_mode()
          case ::user::e_desktop_ubuntu_gnome:
          case ::user::e_desktop_unity_gnome:
 
-            return ::node_gnome::gsettings_set("org.gnome.desktop.background", "picture-uri", "file://" + strLocalImagePath);
+            return ::node_kde::gsettings_set("org.gnome.desktop.background", "picture-uri",
+                                               "file://" + strLocalImagePath);
 
          case ::user::e_desktop_mate:
 
-            return ::node_gnome::gsettings_set("org.mate.background", "picture-filename", strLocalImagePath);
+            return ::node_kde::gsettings_set("org.mate.background", "picture-filename", strLocalImagePath);
 
          case ::user::e_desktop_lxde:
 
@@ -359,7 +408,8 @@ void node::os_calc_user_dark_mode()
 
          default:
 
-            output_debug_string("Failed to change wallpaper. If your Desktop Environment is not listed at \"Preferences->Integration-> Current Desktop Environment\", then it is not supported.");
+            output_debug_string(
+               "Failed to change wallpaper. If your Desktop Environment is not listed at \"Preferences->Integration-> Current Desktop Environment\", then it is not supported.");
             return false;
 
       }
@@ -372,7 +422,7 @@ void node::os_calc_user_dark_mode()
    void node::enable_wallpaper_change_notification()
    {
 
-      auto edesktop = get_edesktop();
+      auto edesktop = System.get_edesktop();
 
       switch (edesktop)
       {
@@ -381,13 +431,13 @@ void node::os_calc_user_dark_mode()
          case ::user::e_desktop_ubuntu_gnome:
          case ::user::e_desktop_unity_gnome:
 
-            ::node_gnome::g_enable_wallpaper_change_notification("org.gnome.desktop.background", "picture-uri");
+            ::node_kde::g_enable_wallpaper_change_notification("org.gnome.desktop.background", "picture-uri");
 
             break;
 
          case ::user::e_desktop_mate:
 
-            ::node_gnome::g_enable_wallpaper_change_notification("org.mate.background", "picture-filename");
+            ::node_kde::g_enable_wallpaper_change_notification("org.mate.background", "picture-filename");
 
             break;
 
@@ -407,10 +457,11 @@ void node::os_calc_user_dark_mode()
 
          }
 
-         break;
+            break;
          default:
 
-            output_debug_string("Failed to get wallpaper setting. If your Desktop Environment is not listed at \"Preferences->Integration-> Current Desktop Environment\", then it is not supported.");
+            output_debug_string(
+               "Failed to get wallpaper setting. If your Desktop Environment is not listed at \"Preferences->Integration-> Current Desktop Environment\", then it is not supported.");
             //return "";
 
       }
@@ -418,7 +469,7 @@ void node::os_calc_user_dark_mode()
    }
 
 
-   string node::get_file_icon_path(const char * pszPath, int iSize)
+   string node::get_file_icon_path(const char *pszPath, int iSize)
    {
 
       return ::linux_g_direct_get_file_icon_path(pszPath, iSize);
@@ -426,7 +477,7 @@ void node::os_calc_user_dark_mode()
    }
 
 
-   string node::get_file_content_type(const char * pszPath)
+   string node::get_file_content_type(const char *pszPath)
    {
 
       return ::linux_g_direct_get_file_content_type(pszPath);
@@ -442,7 +493,7 @@ void node::os_calc_user_dark_mode()
    }
 
 
-   void node::node_fork(const ::promise::routine & routine)
+   void node::node_fork(const ::promise::routine &routine)
    {
 
       gdk_branch(routine);
@@ -458,15 +509,15 @@ void node::os_calc_user_dark_mode()
    }
 
 
-   ::linux::appindicator * node::appindicator_allocate()
+   ::linux::appindicator *node::appindicator_allocate()
    {
 
-      return new ::node_gnome::appindicator();
+      return new ::node_kde::appindicator();
 
    }
 
 
-   void node::appindicator_destroy(::linux::appindicator * pappindicator)
+   void node::appindicator_destroy(::linux::appindicator *pappindicator)
    {
 
       //::linux::appindicator_destroy(pappindicator);
@@ -476,70 +527,70 @@ void node::os_calc_user_dark_mode()
    }
 
 
-   void node::enum_display_monitors(::aura::session * psession)
+   void node::enum_display_monitors(::aura::session *psession)
    {
 
       node_fork(__routine([psession]
-                           {
+                          {
 
-                              sync_lock sl(x11_mutex());
+                             sync_lock sl(x11_mutex());
 
-                              xdisplay d(x11_get_display());
+                             xdisplay d(x11_get_display());
 
-                              GdkDisplay *pdisplay = gdk_display_get_default();
+                             GdkDisplay *pdisplay = gdk_display_get_default();
 
-                              if (pdisplay == nullptr)
-                              {
+                             if (pdisplay == nullptr)
+                             {
 
-                                 return;
+                                return;
 
-                              }
+                             }
 
-                              sync_lock slSession(psession->mutex());
+                             sync_lock slSession(psession->mutex());
 
-                              ::count iMonitorCount = gdk_display_get_n_monitors(pdisplay);
+                             ::count iMonitorCount = gdk_display_get_n_monitors(pdisplay);
 
-                              psession->m_rectaWkspace.set_size(iMonitorCount);
+                             psession->m_rectaWkspace.set_size(iMonitorCount);
 
-                              psession->m_rectaMonitor.set_size(iMonitorCount);
+                             psession->m_rectaMonitor.set_size(iMonitorCount);
 
-                              for (index iMonitor = 0; iMonitor < iMonitorCount; iMonitor++)
-                              {
+                             for (index iMonitor = 0; iMonitor < iMonitorCount; iMonitor++)
+                             {
 
-                                 GdkMonitor *pmonitor = gdk_display_get_monitor(pdisplay, iMonitor);
+                                GdkMonitor *pmonitor = gdk_display_get_monitor(pdisplay, iMonitor);
 
-                                 auto &rectWkspace = psession->m_rectaWkspace[iMonitor];
+                                auto &rectWkspace = psession->m_rectaWkspace[iMonitor];
 
-                                 auto &rectMonitor = psession->m_rectaMonitor[iMonitor];
+                                auto &rectMonitor = psession->m_rectaMonitor[iMonitor];
 
-                                 if (pmonitor == nullptr)
-                                 {
+                                if (pmonitor == nullptr)
+                                {
 
-                                    rectWkspace.Null();
+                                   rectWkspace.Null();
 
-                                    rectMonitor.Null();
+                                   rectMonitor.Null();
 
-                                    continue;
+                                   continue;
 
-                                 }
+                                }
 
-                                 GdkRectangle rect;
+                                GdkRectangle rect;
 
-                                 __zero(rect);
+                                __zero(rect);
 
-                                 gdk_monitor_get_workarea(pmonitor, &rect);
+                                gdk_monitor_get_workarea(pmonitor, &rect);
 
-                                 __copy(rectWkspace, rect);
+                                __copy(rectWkspace, rect);
 
-                                 __zero(rect);
+                                __zero(rect);
 
-                                 gdk_monitor_get_geometry(pmonitor, &rect);
+                                gdk_monitor_get_geometry(pmonitor, &rect);
 
-                                 __copy(rectMonitor, rect);
+                                __copy(rectMonitor, rect);
 
-                              }
+                             }
 
-                           }));
+                          }));
 
    }
 
@@ -563,17 +614,17 @@ void node::os_calc_user_dark_mode()
 //
 //   }
 
-   bool node::should_launch_on_node(::promise::subject * psubject)
+   bool node::should_launch_on_node(::promise::subject *psubject)
    {
 
-      if(::is_null(psubject))
+      if (::is_null(psubject))
       {
 
          return false;
 
       }
 
-      if(psubject->m_id == id_os_dark_mode)
+      if (psubject->m_id == id_os_dark_mode)
       {
 
          return false;
@@ -585,10 +636,10 @@ void node::os_calc_user_dark_mode()
    }
 
 
-   bool node::launch_on_node(::promise::subject * psubject)
+   bool node::launch_on_node(::promise::subject *psubject)
    {
 
-      ::matter * pmatter = psubject;
+      ::matter *pmatter = psubject;
 
       node_fork([pmatter]()
                 {
@@ -606,7 +657,7 @@ void node::os_calc_user_dark_mode()
    }
 
 
-} // namespace node_gnome
+} // namespace node_kde
 
 
 gboolean node_gnome_source_func(gpointer pUserdata)

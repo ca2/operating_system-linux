@@ -19,8 +19,6 @@ namespace user
 //   };
 //
 
-   ::user::enum_desktop get_edesktop();
-
    bool gsettings_set(const char * pszSchema, const char * pszKey, const char * pszValue);
 
    bool gsettings_sync();
@@ -28,10 +26,6 @@ namespace user
    char * gsettings_get_malloc(const char * pszSchema, const char * pszKey);
 
    bool g_enable_wallpaper_change_notification(const char * pszSchema, const char * pszKey);
-
-   void initialize_edesktop();
-
-   enum_desktop calc_edesktop();
 
    void g_defer_init();
 

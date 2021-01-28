@@ -132,7 +132,6 @@ void g_safe_free(void * pfree)
 }
 
 
-
 const char * linux_g_direct_get_file_icon_path(const char * pszPath, int iSize)
 {
 

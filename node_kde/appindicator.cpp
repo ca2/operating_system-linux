@@ -5,8 +5,7 @@
 #include "appindicator.h"
 
 
-namespace node_gnome
-{
+namespace node_kde{
 
 
    appindicator::appindicator()
@@ -31,7 +30,7 @@ namespace node_gnome
    }
 
 
-} // namespace node_gnome
+} // namespace node_kde
 
 
 

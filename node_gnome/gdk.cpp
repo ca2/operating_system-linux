@@ -215,91 +215,6 @@ namespace node_gnome
    }
 
 
-   ::user::enum_desktop g_edesktop = ::user::e_desktop_none;
-
-
-   ::user::enum_desktop get_edesktop()
-   {
-
-      if(g_edesktop == ::user::e_desktop_none)
-      {
-
-         initialize_edesktop();
-
-      }
-
-      return g_edesktop;
-
-   }
-
-
-   void initialize_edesktop()
-   {
-
-      g_edesktop = calc_edesktop();
-
-   }
-
-
-   ::user::enum_desktop calc_edesktop()
-   {
-
-      const char * pszDesktop = getenv("XDG_CURRENT_DESKTOP");
-
-//      utsname name;
-//
-//      memset(&name, 0, sizeof(utsname));
-//
-//      uname(&name);
-
-      if(pszDesktop != nullptr)
-      {
-
-         if(strcasecmp(pszDesktop, "Unity") == 0)
-         {
-
-            return ::user::e_desktop_unity_gnome;
-
-         }
-
-      }
-
-      if(strcasecmp(pszDesktop, "ubuntu:gnome") == 0)
-      {
-
-         return ::user::e_desktop_ubuntu_gnome;
-
-      }
-      else if(is_dir("/etc/xdg/lubuntu"))
-      {
-
-         return ::user::e_desktop_lxde;
-
-      }
-      else if(file_exists("/usr/bin/xfconf-query"))
-      {
-
-         return ::user::e_desktop_xfce;
-
-      }
-      else if(file_exists("/usr/bin/mate-about"))
-      {
-
-         return ::user::e_desktop_mate;
-
-      }
-      else if(file_exists("/usr/bin/unity"))
-      {
-
-         return ::user::e_desktop_unity_gnome;
-
-      }
-
-      return ::user::e_desktop_gnome;
-
-   }
-
-
    void wallpaper_change_notification (GSettings * settings, const gchar * key, gpointer data)
    {
 
@@ -439,7 +354,7 @@ namespace node_gnome
 
       bool bOk = false;
 
-      auto edesktop = ::node_gnome::get_edesktop();
+      auto edesktop = System.get_edesktop();
 
       switch (edesktop)
       {
@@ -497,7 +412,7 @@ namespace node_gnome
 
       string strWallpaper;
 
-      auto edesktop = node_gnome::get_edesktop();
+      auto edesktop = System.get_edesktop();
 
       switch (edesktop)
       {

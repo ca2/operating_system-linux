@@ -212,8 +212,6 @@ System.fork([]()
 
    ::node_gnome::g_defer_init();
 
-   ::node_gnome::initialize_edesktop();
-
    return ::success;
 
 }
@@ -243,7 +241,7 @@ void node::os_calc_user_dark_mode()
 
       // indirect wall-changer sourceforge.net contribution
 
-      auto edesktop = get_edesktop();
+      auto edesktop = System.get_edesktop();
 
       switch (edesktop)
       {
@@ -324,7 +322,7 @@ void node::os_calc_user_dark_mode()
 
       auto pnode = Node;
 
-      auto edesktop = pnode->get_edesktop();
+      auto edesktop = System.get_edesktop();
 
       switch (edesktop)
       {
@@ -372,7 +370,7 @@ void node::os_calc_user_dark_mode()
    void node::enable_wallpaper_change_notification()
    {
 
-      auto edesktop = get_edesktop();
+      auto edesktop = System.get_edesktop();
 
       switch (edesktop)
       {

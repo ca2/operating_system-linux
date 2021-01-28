@@ -5,8 +5,6 @@ namespace node_gnome
 {
 
 
-   ::user::enum_desktop get_edesktop();
-
    bool gsettings_set(const char * pszSchema, const char * pszKey, const char * pszValue);
 
    bool gsettings_sync();
@@ -15,17 +13,11 @@ namespace node_gnome
 
    bool g_enable_wallpaper_change_notification(const char * pszSchema, const char * pszKey);
 
-   void initialize_edesktop();
-
-   ::user::enum_desktop calc_edesktop();
-
    void g_defer_init();
 
    void g_defer_term();
 
    void os_calc_dark_mode();
-
-   void initialize_edesktop();
 
 
 } // namespace node_gnome

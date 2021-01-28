@@ -63,8 +63,6 @@ namespace node_gnome
 
       virtual void os_post_quit() override;
 
-      //void * node_wrap_window(void * pdisplay, i64 window);
-
       virtual bool should_launch_on_node(::promise::subject * psubject);
 
       virtual bool launch_on_node(::promise::subject * psubject);

@@ -30,11 +30,6 @@ namespace user
 
    char * gsettings_get_malloc(const char * pszSchema, const char * pszKey);
 
-   enum_desktop get_edesktop();
-
-   enum_desktop calc_edesktop();
-
-   void initialize_edesktop();
 
 }
 

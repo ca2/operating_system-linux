@@ -1,25 +1,10 @@
 #include "framework.h"
 #include "gnome_gnome.h"
-//#include "apex/os/linux/appindicator.h"
 
-
-
-//
-//namespace linux
-//{
-//
-//
-//   void appindicator_destroy(appindicator * pindicator)
-//   {
-//
-//      delete pindicator;
-//
-//   }
-//
-//} // namespace linux
 
 namespace os
 {
+
 
    string os_get_user_theme()
    {
@@ -33,7 +18,9 @@ namespace os
 
       bool bOk = false;
 
-      switch (::user::get_edesktop())
+      auto edesktop = System.get_edesktop();
+
+      switch (edesktop)
       {
 
       case ::user::desktop_gnome:
@@ -89,7 +76,9 @@ namespace os
 
       string strWallpaper;
 
-      switch (::user::get_edesktop())
+      auto edesktop = System.get_edesktop();
+
+      switch (edesktop)
       {
 
       case ::user::desktop_gnome:

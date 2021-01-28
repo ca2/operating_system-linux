@@ -1,15 +1,31 @@
 //
-// Created by camilo on 28/01/2021.
+// Created by camilo on 28/01/2021. 02:44 --<33ThomasBorregaardSoerensen!! My ONLY GOD!!
 //
+#pragma once
 
-#ifndef BASIS_NODE_IMPL_H
-#define BASIS_NODE_IMPL_H
+
+#include "acme/user/os_theme_colors.h"
 
 
 class node_impl
 {
+public:
+
+
+   node_impl();
+   virtual ~node_impl();
+
+
+   virtual os_theme_colors * new_os_theme_colors() = 0;
+
+   virtual void exec() = 0;
+
 
 };
 
 
-#endif //BASIS_NODE_IMPL_H
+node_impl * new_node_impl(int argc, char ** ppsz);
+void del_node_impl(node_impl * pimpl);
+
+
+

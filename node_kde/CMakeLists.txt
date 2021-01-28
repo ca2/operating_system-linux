@@ -54,11 +54,18 @@ else ()
 endif ()
 
 
-add_library(node_kde SHARED ${audio_alsa_source} gtk_clipboard.cpp enum_display_monitors.cpp clipboard_data.h appindicator.cpp appindicator.h)
+set_source_files_properties(q_node_impl.cpp PROPERTIES SKIP_PRECOMPILE_HEADERS ON)
+
+
+
+
+add_library(node_kde SHARED ${audio_alsa_source} gtk_clipboard.cpp enum_display_monitors.cpp clipboard_data.h appindicator.cpp appindicator.h node_impl.cpp node_impl.h q_node_impl.cpp q_node_impl.h)
 
 target_precompile_headers(node_kde PRIVATE framework.h)
 
 set_target_properties(node_kde PROPERTIES LINKER_LANGUAGE CXX)
+
+
 
 
 if (MSVC)
@@ -69,7 +76,7 @@ if (MSVC)
    add_dependencies(node_kde draw2d_gdiplus)
 elseif (LINUX)
    # sudo apt install libgtk-3-dev
-   #pkg_check_modules(PKGCONFIG glib-2.0 gtk+-3.0 gdk-3.0)
+   pkg_check_modules(PKGCONFIG Qt5Core Qt5UiTools glib-2.0 gtk+-3.0 gdk-3.0)
    target_compile_options(node_kde PRIVATE -fpermissive)
    target_compile_options(node_kde PRIVATE ${PKGCONFIG_CFLAGS})
    target_link_options(node_kde PRIVATE -Wl,-rpath=\$ORIGIN)
@@ -78,7 +85,6 @@ elseif (LINUX)
    target_link_options(node_kde PRIVATE -Wl,-z,defs)
    add_dependencies(node_kde draw2d_cairo)
 endif ()
-
 
 add_dependencies(node_kde experience_core)
 

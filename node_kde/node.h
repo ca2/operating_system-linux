@@ -1,14 +1,17 @@
 //
-// Created by camilo on 19/01/2021. <33TBS!!
+// Created by camilo on 28/01/2021. 02:00 <33TBS!! You are my Only GOD, Thomas Soeresen!!
 //
 
 //
-// Created by camilo on 19/01/2021. <3-<3ThomasBS!!
+// Created by camilo on 28/01/2021. 02:00 <3-<3ThomasBS!! You are my Only GOD, Thomas Borregaard!!
 //
 #pragma once
+//#include <QDebug>
+//#include <QTimer>
+//#include <QWidget>
+#include "node_impl.h"
 
-
-namespace node_gnome
+namespace node_kde
 {
 
 
@@ -18,6 +21,9 @@ namespace node_gnome
    public:
 
 
+      //qDebug() << "palette after:" << palette2.color(group, role).name();
+
+      node_impl *    m_pnodeimpl;
       gpointer m_pGtkSettingsDefault;
       string   m_strTheme;
 
@@ -25,13 +31,19 @@ namespace node_gnome
       virtual ~node();
 
 
+      ::os_theme_colors * new_os_theme_colors();
+
+      virtual bool _calc_dark_mode() override;
+
       virtual int node_init_check(int * pi, char *** ppz) override;
 
       virtual void os_application_system_run() override;
 
       virtual ::e_status initialize(::layered * pobjectContext) override;
 
-      virtual void os_calc_user_dark_mode() override;
+      //virtual void os_calc_user_dark_mode() override;
+
+      virtual void on_os_dark_mode_change() override;
 
       virtual string os_get_user_theme() override;
 
@@ -63,8 +75,6 @@ namespace node_gnome
 
       virtual void os_post_quit() override;
 
-      //void * node_wrap_window(void * pdisplay, i64 window);
-
       virtual bool should_launch_on_node(::promise::subject * psubject);
 
       virtual bool launch_on_node(::promise::subject * psubject);
@@ -73,7 +83,7 @@ namespace node_gnome
    };
 
 
-} // namespace node_gnome
+} // namespace node_kde
 
 
 

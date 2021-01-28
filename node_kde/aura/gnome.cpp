@@ -51,8 +51,7 @@ namespace user
 #ifndef RASPBIAN
 
 
-namespace node_gnome
-{
+namespace node_kde{
 
 
    void appindicator_destroy(linux::appindicator * pindicator)
@@ -83,7 +82,9 @@ namespace user
 
       bool bOk = false;
 
-      switch (::user::get_edesktop())
+      auto edesktop = System.get_edesktop();
+
+      switch (edesktop)
       {
 
       case ::user::desktop_gnome:
@@ -139,7 +140,9 @@ namespace user
 
       string strWallpaper;
 
-      switch (::user::get_edesktop())
+      auto edesktop = System.get_edesktop();
+
+      switch (edesktop)
       {
 
       case ::user::desktop_gnome:
@@ -188,7 +191,7 @@ namespace user
    }
 
 
-} // namespace node_gnome
+} // namespace node_kde
 
 
 

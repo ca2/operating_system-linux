@@ -1,8 +1,7 @@
 #pragma once
 
 //
-//namespace node_gnome
-//{
+//namespace node_kde//{
 //
 //
 //   class CLASS_DECL_NODE_GNOME factory_exchange :

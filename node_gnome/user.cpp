@@ -33,7 +33,9 @@ namespace os
 
       bool bOk = false;
 
-      switch (::user::get_edesktop())
+      auto edesktop = System.get_edesktop();
+
+      switch (edesktop)
       {
 
       case ::user::desktop_gnome:
@@ -89,7 +91,9 @@ namespace os
 
       string strWallpaper;
 
-      switch (::user::get_edesktop())
+      auto edesktop = System.get_edesktop();
+
+      switch (edesktop)
       {
 
       case ::user::desktop_gnome:

@@ -1,8 +1,7 @@
 #pragma once
 
 
-namespace node_gnome
-{
+namespace node_kde{
 
 
    class CLASS_DECL_AURA copydesk :
@@ -37,7 +36,7 @@ namespace node_gnome
    };
 
 
-} // namespace node_gnome
+} // namespace node_kde
 
 
 

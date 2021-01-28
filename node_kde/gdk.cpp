@@ -35,8 +35,7 @@ void __gtk_style_context_get_color(GtkStyleContext *context, GtkStateFlags state
 }
 
 
-namespace node_gnome
-{
+namespace node_kde{
 
    ::logic::bit g_bitLastDarkMode;
 
@@ -215,91 +214,6 @@ namespace node_gnome
    }
 
 
-   ::user::enum_desktop g_edesktop = ::user::e_desktop_none;
-
-
-   ::user::enum_desktop get_edesktop()
-   {
-
-      if(g_edesktop == ::user::e_desktop_none)
-      {
-
-         initialize_edesktop();
-
-      }
-
-      return g_edesktop;
-
-   }
-
-
-   void initialize_edesktop()
-   {
-
-      g_edesktop = calc_edesktop();
-
-   }
-
-
-   ::user::enum_desktop calc_edesktop()
-   {
-
-      const char * pszDesktop = getenv("XDG_CURRENT_DESKTOP");
-
-//      utsname name;
-//
-//      memset(&name, 0, sizeof(utsname));
-//
-//      uname(&name);
-
-      if(pszDesktop != nullptr)
-      {
-
-         if(strcasecmp(pszDesktop, "Unity") == 0)
-         {
-
-            return ::user::e_desktop_unity_gnome;
-
-         }
-
-      }
-
-      if(strcasecmp(pszDesktop, "ubuntu:gnome") == 0)
-      {
-
-         return ::user::e_desktop_ubuntu_gnome;
-
-      }
-      else if(is_dir("/etc/xdg/lubuntu"))
-      {
-
-         return ::user::e_desktop_lxde;
-
-      }
-      else if(file_exists("/usr/bin/xfconf-query"))
-      {
-
-         return ::user::e_desktop_xfce;
-
-      }
-      else if(file_exists("/usr/bin/mate-about"))
-      {
-
-         return ::user::e_desktop_mate;
-
-      }
-      else if(file_exists("/usr/bin/unity"))
-      {
-
-         return ::user::e_desktop_unity_gnome;
-
-      }
-
-      return ::user::e_desktop_gnome;
-
-   }
-
-
    void wallpaper_change_notification (GSettings * settings, const gchar * key, gpointer data)
    {
 
@@ -439,7 +353,7 @@ namespace node_gnome
 
       bool bOk = false;
 
-      auto edesktop = ::node_gnome::get_edesktop();
+      auto edesktop = System.get_edesktop();
 
       switch (edesktop)
       {
@@ -497,7 +411,7 @@ namespace node_gnome
 
       string strWallpaper;
 
-      auto edesktop = node_gnome::get_edesktop();
+      auto edesktop = System.get_edesktop();
 
       switch (edesktop)
       {
@@ -548,171 +462,12 @@ namespace node_gnome
    }
 
 
-   ::user::os_theme_colors * new_os_theme_colors(string strTheme)
-   {
-
-      auto pthemecolors = new ::user::os_theme_colors;
-
-      GtkStyleContext *pstylecontext = gtk_style_context_new();
-
-      GtkCssProvider *pprovider = gtk_css_provider_get_named(strTheme, nullptr);
-
-      gtk_style_context_add_provider(pstylecontext, GTK_STYLE_PROVIDER(pprovider), GTK_STYLE_PROVIDER_PRIORITY_USER);
-
-      {
-
-         GtkWidget *pdialog = gtk_dialog_new();
-
-         GtkWidgetPath *ppath = gtk_widget_get_path(pdialog);
-
-         gtk_style_context_set_path(pstylecontext, ppath);
-
-         __gtk_style_context_get_color(
-                 pstylecontext,
-                 GTK_STATE_FLAG_NORMAL,
-                 GTK_STYLE_PROPERTY_BACKGROUND_COLOR,
-                 pthemecolors->m_colorBack);
-
-         __gtk_style_context_get_color(
-                 pstylecontext,
-                 GTK_STATE_FLAG_NORMAL,
-                 GTK_STYLE_PROPERTY_COLOR,
-                 pthemecolors->m_colorFore);
-
-         gtk_widget_destroy(pdialog);
-
-      }
-
-      {
-
-         GtkWidget *pbutton = gtk_button_new();
-
-         GtkWidgetPath *ppath = gtk_widget_get_path(pbutton);
-
-         gtk_style_context_set_path(pstylecontext, ppath);
-
-         __gtk_style_context_get_color(
-                 pstylecontext,
-                 GTK_STATE_FLAG_NORMAL,
-                 GTK_STYLE_PROPERTY_BACKGROUND_COLOR,
-                 pthemecolors->m_colorFace);
-
-         double dAlpha = pthemecolors->m_colorFace.get_a_rate();
-
-         if(dAlpha < 0.95)
-         {
-
-            pthemecolors->m_colorFace.blend(pthemecolors->m_colorBack, 1.0 - dAlpha);
-
-         }
-
-         __gtk_style_context_get_color(
-                 pstylecontext,
-                 GTK_STATE_FLAG_PRELIGHT,
-                 GTK_STYLE_PROPERTY_BACKGROUND_COLOR,
-                 pthemecolors->m_colorFaceHover);
-
-         dAlpha = pthemecolors->m_colorFaceHover.get_a_rate();
-
-         if(dAlpha < 0.95)
-         {
-
-            pthemecolors->m_colorFaceHover.blend(pthemecolors->m_colorBack, 1.0 - dAlpha);
-
-         }
-
-         __gtk_style_context_get_color(
-                 pstylecontext,
-                 GTK_STATE_FLAG_ACTIVE,
-                 GTK_STYLE_PROPERTY_BACKGROUND_COLOR,
-                 pthemecolors->m_colorFacePress);
-
-         dAlpha = pthemecolors->m_colorFacePress.get_a_rate();
-
-         if(dAlpha < 0.95)
-         {
-
-            pthemecolors->m_colorFacePress.blend(pthemecolors->m_colorBack, 1.0 - dAlpha);
-
-         }
-
-         __gtk_style_context_get_color(
-                 pstylecontext,
-                 GTK_STATE_FLAG_NORMAL,
-                 GTK_STYLE_PROPERTY_COLOR,
-                 pthemecolors->m_colorButton);
-
-         __gtk_style_context_get_color(
-                 pstylecontext,
-                 GTK_STATE_FLAG_PRELIGHT,
-                 GTK_STYLE_PROPERTY_COLOR,
-                 pthemecolors->m_colorButtonHover);
-
-         __gtk_style_context_get_color(
-                 pstylecontext,
-                 GTK_STATE_FLAG_NORMAL,
-                 GTK_STYLE_PROPERTY_BORDER_COLOR,
-                 pthemecolors->m_colorBorder);
-
-
-//         pthemecolors->m_colorBorderHover4 = pthemecolors->m_colorBorderHover;
-//
-//         pthemecolors->m_colorBorderHover4.blend(pthemecolors->m_colorBack, 0.8);
-
-
-         gtk_widget_destroy(pbutton);
-
-      }
-
-      {
-
-         GtkWidget *pwidget = gtk_list_box_row_new();
-
-         GtkWidgetPath *ppath = gtk_widget_get_path(pwidget);
-
-         gtk_style_context_set_path(pstylecontext, ppath);
-
-         __gtk_style_context_get_color(
-                 pstylecontext,
-                 GTK_STATE_FLAG_SELECTED,
-                 GTK_STYLE_PROPERTY_BACKGROUND_COLOR,
-                 pthemecolors->m_colorBorderHover);
-
-         pthemecolors->m_colorBorderPress = pthemecolors->m_colorBorderHover;
-
-         pthemecolors->m_colorBorderHover1 = pthemecolors->m_colorBorderHover;
-
-         pthemecolors->m_colorBorderHover1.blend(pthemecolors->m_colorBack, 0.3);
-
-         pthemecolors->m_colorBorderHover2 = pthemecolors->m_colorBorderHover;
-
-         pthemecolors->m_colorBorderHover2.blend(pthemecolors->m_colorBack, 0.6);
-
-         pthemecolors->m_colorBorderHover3 = pthemecolors->m_colorBorderHover;
-
-         pthemecolors->m_colorBorderHover3.blend(pthemecolors->m_colorBack, 0.9);
-
-         __gtk_style_context_get_color(
-                 pstylecontext,
-                 GTK_STATE_FLAG_SELECTED,
-                 GTK_STYLE_PROPERTY_COLOR,
-                 pthemecolors->m_colorButtonPress);
-
-         gtk_widget_destroy(pwidget);
-
-      }
-
-      return pthemecolors;
-
-   }
-
-
    CLASS_DECL_ACME void _os_process_user_theme(string strTheme)
    {
 
       _os_process_user_theme_color(strTheme);
 
-      os_calc_dark_mode();
+      Node->os_calc_user_dark_mode();
 
    }
 
@@ -720,20 +475,18 @@ namespace node_gnome
    CLASS_DECL_ACME void _os_process_user_theme_color(string strTheme)
    {
 
-      auto pthemecolors = new_os_theme_colors(strTheme);
+      auto pnode = Node;
+
+      auto pnodekde = dynamic_cast < ::node_kde::node * >(pnode);
+
+      auto pthemecolors = pnodekde->new_os_theme_colors();
 
       auto pthemecolorsOld = ::user::os_get_theme_colors();
 
-      if(!pthemecolorsOld || memcmp(pthemecolors, pthemecolorsOld, sizeof(::user::os_theme_colors)))
+      if(!pthemecolorsOld || memcmp(pthemecolors, pthemecolorsOld, sizeof(::os_theme_colors)))
       {
 
          ::user::os_set_theme_colors(pthemecolors);
-
-//         auto psubject = System.subject(id_os_user_theme);
-//
-//         psubject->m_esubject = e_subject_deliver;
-//
-//         System.process(psubject);
 
       }
       else
@@ -746,51 +499,6 @@ namespace node_gnome
    }
 
 
-
-   bool _os_calc_dark_mode()
-   {
-
-      auto pthemecolors = ::user::os_get_theme_colors();
-
-      if(!pthemecolors)
-      {
-
-         string strTheme = _os_get_user_theme();
-
-         pthemecolors = new_os_theme_colors(strTheme);
-
-         ::user::os_set_theme_colors(pthemecolors);
-
-      }
-
-      auto dLuminance = pthemecolors->m_colorBack.get_luminance();
-
-      return dLuminance < 0.5;
-
-   }
-
-
-   void os_calc_dark_mode()
-   {
-
-      bool bDarkMode = _os_calc_dark_mode();
-
-      if(g_bitLastDarkMode != bDarkMode)
-      {
-
-         ::user::set_app_dark_mode(bDarkMode);
-
-         ::user::set_system_dark_mode(bDarkMode);
-
-         g_bitLastDarkMode = bDarkMode;
-
-         System.deliver(id_os_dark_mode);
-
-         x11_kick_idle();
-
-      }
-
-   }
 
 } // namespace user
 
