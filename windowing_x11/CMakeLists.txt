@@ -1,0 +1,115 @@
+cmake_minimum_required(VERSION 3.17)
+project(windowing_x11 CXX)
+
+
+set(CMAKE_CXX_STANDARD 20)
+set(CMAKE_CXX_EXTENSIONS OFF)
+add_compile_options("$<$<CONFIG:DEBUG>:-DDEBUG>")
+
+
+if (${CMAKE_SYSTEM_NAME} STREQUAL "Linux")
+   set(LINUX TRUE)
+   set(PLATFORM_NAME "linux")
+   include(FindPkgConfig)
+elseif (WIN32)
+   set(PLATFORM_NAME "windows")
+endif ()
+
+
+set(LIBRARY_OUTPUT_PATH ${CMAKE_CURRENT_SOURCE_DIR}/../../../time-${PLATFORM_NAME}/cmake)
+set(EXECUTABLE_OUTPUT_PATH ${CMAKE_CURRENT_SOURCE_DIR}/../../../time-${PLATFORM_NAME}/cmake)
+
+
+list(APPEND audio_alsa_source
+   _.h
+   _.cpp
+   copydesk.cpp
+   copydesk.h
+   factory_exchange.cpp
+   factory_exchange.h
+   framework.cpp
+   framework.h
+   gdk.cpp
+   gdk.h
+   gnome_direct.cpp
+   application.cpp
+   application.h
+   node.cpp
+   node.h
+   windowing.cpp
+   windowing.h
+   )
+
+
+list(APPEND library_references
+   acme
+   apex
+   aqua
+   aura
+   )
+
+
+if (MSVC)
+   set(LIBCXX_TARGETING_MSVC ON)
+else ()
+   set(LIBCXX_TARGETING_MSVC OFF)
+endif ()
+
+
+add_library(windowing_x11 SHARED ${audio_alsa_source} gtk_clipboard.cpp enum_display_monitors.cpp clipboard_data.h appindicator.cpp appindicator.h)
+
+target_precompile_headers(windowing_x11 PRIVATE framework.h)
+
+set_target_properties(windowing_x11 PROPERTIES LINKER_LANGUAGE CXX)
+
+
+if (MSVC)
+   target_compile_options(windowing_x11 PRIVATE "/MD$<$<CONFIG:Debug>:d>")
+   target_link_options(windowing_x11 PRIVATE "/DEFAULTLIB:msvcrt$<$<CONFIG:Debug>:d>")
+   target_link_options(windowing_x11 PRIVATE "/SUBSYSTEM:WINDOWS")
+   target_link_libraries(windowing_x11 PRIVATE ${library_references})
+   add_dependencies(windowing_x11 draw2d_gdiplus)
+elseif (LINUX)
+   pkg_check_modules(PKGCONFIG glib-2.0 gtk+-3.0 gdk-3.0 appindicator-0.1)
+   # sudo apt install libgtk-3-dev
+   pkg_check_modules(PKGCONFIG glib-2.0 gtk+-3.0 gdk-3.0)
+   target_compile_options(windowing_x11 PRIVATE -fpermissive)
+   target_compile_options(windowing_x11 PRIVATE ${PKGCONFIG_CFLAGS})
+   target_link_options(windowing_x11 PRIVATE -Wl,-rpath=\$ORIGIN)
+   target_link_libraries(windowing_x11 PRIVATE ${library_references} ${PKGCONFIG_LIBRARIES})
+   target_link_libraries(windowing_x11 PRIVATE asound)
+   target_link_options(windowing_x11 PRIVATE -Wl,-z,defs)
+   add_dependencies(windowing_x11 draw2d_cairo)
+endif ()
+
+
+add_dependencies(windowing_x11 experience_core)
+
+
+target_link_directories(windowing_x11 PRIVATE ${LIBRARY_OUTPUT_PATH})
+target_link_directories(windowing_x11 PRIVATE ${CMAKE_CURRENT_SOURCE_DIR}/../../../archive/storage-${PLATFORM_NAME}/library/x64/basis)
+target_link_directories(windowing_x11 PRIVATE ${CMAKE_CURRENT_SOURCE_DIR}/../../../archive/storage-${PLATFORM_NAME}/third/library/x64/basis)
+
+
+target_include_directories(windowing_x11 PRIVATE .)
+target_include_directories(windowing_x11 PRIVATE $ENV{HOME}/__config)
+target_include_directories(windowing_x11 PRIVATE ${CMAKE_CURRENT_SOURCE_DIR}/../..)
+target_include_directories(windowing_x11 PRIVATE ${CMAKE_CURRENT_SOURCE_DIR}/..)
+target_include_directories(windowing_x11 PRIVATE ${CMAKE_CURRENT_SOURCE_DIR}/../../../source)
+target_include_directories(windowing_x11 PRIVATE ${CMAKE_CURRENT_SOURCE_DIR}/../../../source/app)
+target_include_directories(windowing_x11 PRIVATE ${CMAKE_CURRENT_SOURCE_DIR}/../../../source/app/_include)
+target_include_directories(windowing_x11 PRIVATE ${CMAKE_CURRENT_SOURCE_DIR}/../../../source/include)
+target_include_directories(windowing_x11 PRIVATE ${CMAKE_CURRENT_SOURCE_DIR}/../../../archive/platform-${PLATFORM_NAME})
+target_include_directories(windowing_x11 PRIVATE ${CMAKE_CURRENT_SOURCE_DIR}/../../../archive/platform-${PLATFORM_NAME}/_include)
+target_include_directories(windowing_x11 PRIVATE ${CMAKE_CURRENT_SOURCE_DIR}/../../../archive/third-${PLATFORM_NAME}/include)
+target_include_directories(windowing_x11 PRIVATE ${CMAKE_CURRENT_SOURCE_DIR}/../../../archive/third-${PLATFORM_NAME}/third/include)
+target_include_directories(windowing_x11 PRIVATE ${CMAKE_CURRENT_SOURCE_DIR}/../../../archive/third-${PLATFORM_NAME}/third/include/include)
+target_include_directories(windowing_x11 PRIVATE ${CMAKE_CURRENT_SOURCE_DIR})
+
+
+target_compile_definitions(windowing_x11 PRIVATE _MUSIC_MIDI_ALSA_LIBRARY)
+target_compile_definitions(windowing_x11 PRIVATE UNICODE)
+target_compile_definitions(windowing_x11 PRIVATE _UNICODE)
+
+
+
