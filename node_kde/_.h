@@ -6,8 +6,8 @@
 #include "aura/os/linux/appindicator.h"
 
 
-#include <gtk/gtk.h>
-#include <gdk/gdkx.h>
+//#include <gtk/gtk.h>
+//#include <gdk/gdkx.h>
 
 
 #if defined(_NODE_GNOME_LIBRARY)

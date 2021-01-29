@@ -58,12 +58,18 @@ typedef unsigned long XID;
 // openSUSE zypper install libx11-devel
 //#include <X11/Xlib.h>
 //#include <X11/Xutil.h>
+namespace windowing
+{
+
+   class window;
+
+} // namespace windowing
 
 
-typedef uptr                 WPARAM;
-typedef iptr                 LPARAM;
-typedef iptr                 LRESULT;
-typedef struct oswindow_data *   oswindow;
+typedef uptr                     WPARAM;
+typedef iptr                     LPARAM;
+typedef iptr                     LRESULT;
+typedef ::windowing::window *    oswindow;
 
 #include <pthread.h>
 
