@@ -1,39 +1,8 @@
 #pragma once
 
-#define index linux_bsd_index
 
 
-#define PARALLELIZATION_PTHREAD
 
-
-#include <features.h>
-
-
-#include <ctype.h>
-
-
-#include <strings.h>
-#include <string.h>
-
-
-#include <errno.h>
-
-
-#include <stdarg.h>
-#include <stdlib.h>
-#include <stdio.h>
-
-
-#include <limits.h>
-#define sync unistd_sync
-#include <unistd.h>
-#undef sync
-
-
-#include <wchar.h>
-#include <wctype.h>
-
-#include "__standard_type.h"
 /*
 #ifndef _XSERVER64
 #ifndef _XTYPEDEF_XID
@@ -58,6 +27,24 @@ typedef unsigned long XID;
 // openSUSE zypper install libx11-devel
 //#include <X11/Xlib.h>
 //#include <X11/Xutil.h>
+namespace windowing
+{
+
+   class window;
+
+} // namespace windowing
+
+
+typedef uptr                     WPARAM;
+typedef iptr                     LPARAM;
+typedef iptr                     LRESULT;
+typedef ::windowing::window *    oswindow;
+
+//#include <pthread.h>
+
+typedef pthread_t pthread;
+
+typedef pthread HTHREAD;
 
 //#ifdef __cplusplus
 //struct pthread
@@ -167,7 +154,7 @@ extern "C" void _BPT();
 #ifdef __cplusplus
 
 
-void debug_break();
+inline void debug_break() { asm("int $3"); }
 
 
 #endif
@@ -319,8 +306,10 @@ typedef void * PVOID;
 #define WINBOOL int
 
 
+#define MAX_PATH 260
 
-#define offsetof(type, member)  __builtin_offsetof (type, member)
+
+//#define offsetof(type, member)  __builtin_offsetof (type, member)
 
 
 
