@@ -4,6 +4,9 @@
 #define index linux_bsd_index
 
 
+#define PARALLELIZATION_PTHREAD
+
+
 #include <features.h>
 
 
