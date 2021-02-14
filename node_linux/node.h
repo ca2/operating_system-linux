@@ -8,12 +8,12 @@
 #pragma once
 
 
-namespace node_gnome
+namespace node_linux
 {
 
 
    class CLASS_DECL_ACME node :
-      virtual public ::node_linux::node
+      virtual public ::node_ansios::node
    {
    public:
 
@@ -23,6 +23,10 @@ namespace node_gnome
 
       node();
       virtual ~node();
+
+
+
+      virtual enum_operating_system get_operating_system() const override;
 
 
       virtual int node_init_check(int * pi, char *** ppz) override;
@@ -49,6 +53,8 @@ namespace node_gnome
 
       virtual string get_wallpaper(index iScreen) override;
 
+      virtual ::user::enum_desktop calc_edesktop() override;
+
       using ::aura::node::node_fork;
 
       virtual void node_fork(const ::promise::routine & routine) override;
@@ -67,11 +73,12 @@ namespace node_gnome
 
       virtual bool launch_on_node(::promise::subject * psubject);
 
+      virtual void get_system_time_as_file_time(filetime_t * pfiletime);
 
    };
 
 
-} // namespace node_gnome
+} // namespace node_linux
 
 
 

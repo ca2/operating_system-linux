@@ -1,8 +1,7 @@
 #pragma once
 
 
-#include "aura/_.h"
-#include "aura/user/_user.h"
+#include "node_linux/_.h"
 #include "aura/os/linux/appindicator.h"
 
 

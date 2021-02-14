@@ -21,10 +21,16 @@ set(EXECUTABLE_OUTPUT_PATH ${CMAKE_CURRENT_SOURCE_DIR}/../../../time-${PLATFORM_
 
 
 list(APPEND audio_alsa_source
-   _.h
    _.cpp
+   _.h
+   appindicator.cpp
+   appindicator.h
+   application.cpp
+   application.h
+   clipboard_data.h
    copydesk.cpp
    copydesk.h
+   enum_display_monitors.cpp
    factory_exchange.cpp
    factory_exchange.h
    framework.cpp
@@ -32,8 +38,7 @@ list(APPEND audio_alsa_source
    gdk.cpp
    gdk.h
    gnome_direct.cpp
-   application.cpp
-   application.h
+   gtk_clipboard.cpp
    node.cpp
    node.h
    )
@@ -54,7 +59,7 @@ else ()
 endif ()
 
 
-add_library(node_gnome SHARED ${audio_alsa_source} gtk_clipboard.cpp enum_display_monitors.cpp clipboard_data.h appindicator.cpp appindicator.h)
+add_library(node_gnome SHARED ${audio_alsa_source})
 
 target_precompile_headers(node_gnome PRIVATE framework.h)
 
@@ -77,7 +82,7 @@ elseif (LINUX)
    target_link_libraries(node_gnome PRIVATE ${library_references} ${PKGCONFIG_LIBRARIES})
    target_link_libraries(node_gnome PRIVATE asound)
    target_link_options(node_gnome PRIVATE -Wl,-z,defs)
-   add_dependencies(node_gnome draw2d_cairo)
+   add_dependencies(node_gnome draw2d_cairo node_linux)
 endif ()
 
 

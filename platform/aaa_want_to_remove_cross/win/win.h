@@ -29,6 +29,7 @@ typedef HANDLE *PHANDLE, *LPHANDLE;
 
 
 #define MAX_PATH          260
+#define _MAX_PATH MAX_PATH
 
 #define near
 #define far

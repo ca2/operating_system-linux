@@ -16,7 +16,7 @@ namespace node_kde
 
 
    class CLASS_DECL_ACME node :
-      virtual public ::aura::node
+      virtual public ::node_linux::node
    {
    public:
 

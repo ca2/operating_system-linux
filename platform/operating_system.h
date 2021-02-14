@@ -306,8 +306,6 @@ typedef void * PVOID;
 #define WINBOOL int
 
 
-#define MAX_PATH 260
-
 
 //#define offsetof(type, member)  __builtin_offsetof (type, member)
 

@@ -21,10 +21,16 @@ set(EXECUTABLE_OUTPUT_PATH ${CMAKE_CURRENT_SOURCE_DIR}/../../../time-${PLATFORM_
 
 
 list(APPEND audio_alsa_source
-   _.h
    _.cpp
+   _.h
+   appindicator.cpp
+   appindicator.h
+   application.cpp
+   application.h
+   clipboard_data.h
    copydesk.cpp
    copydesk.h
+   enum_display_monitors.cpp
    factory_exchange.cpp
    factory_exchange.h
    framework.cpp
@@ -32,10 +38,13 @@ list(APPEND audio_alsa_source
    gdk.cpp
    gdk.h
    gnome_direct.cpp
-   application.cpp
-   application.h
+   gtk_clipboard.cpp
    node.cpp
    node.h
+   node_impl.cpp
+   node_impl.h
+   q_node_impl.cpp
+   q_node_impl.h
    )
 
 
@@ -59,7 +68,7 @@ set_source_files_properties(q_node_impl.cpp PROPERTIES SKIP_PRECOMPILE_HEADERS O
 
 
 
-add_library(node_kde SHARED ${audio_alsa_source} gtk_clipboard.cpp enum_display_monitors.cpp clipboard_data.h appindicator.cpp appindicator.h node_impl.cpp node_impl.h q_node_impl.cpp q_node_impl.h)
+add_library(node_kde SHARED ${audio_alsa_source})
 
 target_precompile_headers(node_kde PRIVATE framework.h)
 
@@ -83,7 +92,7 @@ elseif (LINUX)
    target_link_libraries(node_kde PRIVATE ${library_references} ${PKGCONFIG_LIBRARIES})
    target_link_libraries(node_kde PRIVATE asound)
    target_link_options(node_kde PRIVATE -Wl,-z,defs)
-   add_dependencies(node_kde draw2d_cairo)
+   add_dependencies(node_kde draw2d_cairo node_linux)
 endif ()
 
 add_dependencies(node_kde experience_core)

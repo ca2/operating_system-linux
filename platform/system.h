@@ -1,9 +1,18 @@
 #pragma once
 
+
 #define index linux_bsd_index
 
 
+#define MAX_PATH 260
+#define _MAX_PATH MAX_PATH
+
+
 #define PARALLELIZATION_PTHREAD
+
+
+// platform text char
+#define platform_char char
 
 
 #include <features.h>
