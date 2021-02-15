@@ -648,6 +648,61 @@ System.fork([]()
    }
 
 
+   ::e_status node::create_os_desktop()
+   {
+
+      ::e_status estatus = ::success;
+
+      auto edesktop = get_edesktop();
+
+      if(edesktop & ::user::e_desktop_kde)
+      {
+
+         estatus = do_factory_exchange("node", "kde");
+
+      }
+      else if(edesktop & ::user::e_desktop_gnome)
+      {
+
+         estatus = do_factory_exchange("node", "gnome");
+
+      }
+      else
+      {
+
+         estatus = do_factory_exchange("node", "kde");
+
+         if(!estatus)
+         {
+
+            estatus = do_factory_exchange("node", "gnome");
+
+         }
+
+      }
+
+      estatus = do_factory_exchange("node", "linux");
+
+      if(!estatus)
+      {
+
+         return estatus;
+
+      }
+
+      estatus = ::node_ansios::system::create_os_desktop();
+
+      if(!estatus)
+      {
+
+         return estatus;
+
+      }
+
+      return estatus;
+
+   }
+
 
 } // namespace node_gnome
 

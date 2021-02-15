@@ -59,7 +59,7 @@ else ()
 endif ()
 
 
-add_library(node_gnome SHARED ${audio_alsa_source})
+add_library(node_gnome SHARED ${audio_alsa_source} notify_icon.cpp)
 
 target_precompile_headers(node_gnome PRIVATE framework.h)
 
