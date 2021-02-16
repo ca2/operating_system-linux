@@ -56,7 +56,7 @@ else ()
 endif ()
 
 
-add_library(windowing_x11 SHARED ${audio_alsa_source} gtk_clipboard.cpp enum_display_monitors.cpp clipboard_data.h appindicator.cpp appindicator.h)
+add_library(windowing_x11 SHARED ${audio_alsa_source} gtk_clipboard.cpp enum_display_monitors.cpp clipboard_data.h appindicator.cpp appindicator.h keyboard.cpp keyboard.h)
 
 target_precompile_headers(windowing_x11 PRIVATE framework.h)
 

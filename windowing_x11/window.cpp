@@ -1579,5 +1579,24 @@ iptr set_window_long_ptr(window * pdata, int nIndex, iptr i)
 
 }
 
+void window::set_window_text(const char * pszString)
+
+{
+
+   m_strWindowText = pszString;
+
+
+   //windowing_output_debug_string("\nlinux::interaction_impl::set_window_text");
+
+   //fflush(stdout);
+
+   x11_store_name(m_oswindow, m_strWindowText);
+
+   //windowing_output_debug_string("\nlinux::interaction_impl::set_window_text END");
+
+   //fflush(stdout);
+
+}
+
 
 } // namespace windowing_x11
