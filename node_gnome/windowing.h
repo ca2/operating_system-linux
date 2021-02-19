@@ -22,6 +22,10 @@ namespace node_gnome
 
       virtual ::e_status user_fork(const ::promise::routine & routine) override;
 
+
+      virtual void message_loop_step() override;
+
+
    };
 
 

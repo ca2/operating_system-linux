@@ -44,6 +44,8 @@ namespace windowing_x11
       virtual void _libsn_start_context()  override;
       virtual ::windowing::display * display() override;
 
+      virtual void windowing_main() override;
+
       virtual void x11_main();
 
       //virtual HCURSOR load_default_cursor(e_cursor ecursor) override;

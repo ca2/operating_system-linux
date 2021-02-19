@@ -8,7 +8,7 @@
 #include "gdk.h"
 
 
-
+void x11_add_idle_source(::node_gnome::node * pnode);
 
 
 void gtk_settings_gtk_theme_name_callback(GObject* object, GParamSpec* pspec, gpointer data)
@@ -111,7 +111,6 @@ namespace node_gnome
    void node::os_application_system_run()
    {
 
-
       if (System.m_bGtkApp)
       {
 
@@ -120,10 +119,10 @@ namespace node_gnome
       }
       else
       {
-      //
-      ////      g_set_application_name(psystem->m_strAppId);
-      ////
-      ////      g_set_prgname(psystem->m_strProgName);
+
+         g_set_application_name(System.m_strAppId);
+
+         g_set_prgname(System.m_strProgName);
       ////
       ////      //auto idle_source = g_idle_source_new();
       ////
@@ -144,9 +143,12 @@ namespace node_gnome
          node_fork([this]()
                    {
 
-                      //x11_add_idle_source();
 
+
+                      // This seems not to work with "foreign" windows
+                      // (X11 windows not created with Gdk)
                       //x11_add_filter();
+
 
                       auto pgtksettingsDefault = gtk_settings_get_default();
 
@@ -182,18 +184,20 @@ namespace node_gnome
 
                       }
 
+                      x11_add_idle_source(this);
+
 
                    });
 
 
          //x11_add_filter();
 
-   System.fork([this]()
-   {
+         System.fork([this]()
+         {
 
-      m_pwindowing->_main_loop();
+            //m_pwindowing->windowing_main();
 
-     });
+         });
 
          gtk_main();
 

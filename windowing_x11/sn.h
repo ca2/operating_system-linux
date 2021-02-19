@@ -7,7 +7,7 @@
 #include "third/sn/sn.h"
 
 
-extern SnLauncheeContext * g_psncontext;
+//extern SnLauncheeContext * g_psncontext;
 
 
 

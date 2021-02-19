@@ -1,74 +1,34 @@
 // created by Camilo <3CamiloSasukeThomasBorregaardSoerensen
 // recreated by Camilo 2021-01-28 22:20 <3TBS, Mummi and bilbo!!
-// hi5 contribution...#include "framework.h"
-#if !BROAD_PRECOMPILED_HEADER
-
+// hi5 contribution...
+#include "framework.h"
 #include "aura/user/_user.h"
 #include "windowing_x11.h"
 #include "acme/os/_user.h"
-
+#include "aura/user/interaction_prodevian.h"
+#include "aura/platform/message_queue.h"
 #include <X11/Xatom.h>
 
-#endif
 
-//#include "_linux.h"
-//#include "_user.h"
-#include "sn.h"
-#include "aura/platform/message_queue.h"
+void on_sn_launch_context(void * pSnContext, Window window);
+void on_sn_launch_complete(void * pSnContext);
 
 
-mutex *x11_mutex();
+mutex * x11_mutex();
+
 
 #undef ALOG_CONTEXT
 #define ALOG_CONTEXT ::trace_object(::trace_category_windowing)
-
-
-#ifdef XDISPLAY_LOCK_LOG
-
-extern bool b_prevent_xdisplay_lock_log;
-
-#endif
-
-
-void windowing_output_debug_string(const char *pszDebugString);
-
-void wm_state_clear_raw(oswindow
-                        w,
-                        bool bSet
-);
-
-void wm_state_below_raw(oswindow
-                        w,
-                        bool bSet
-);
-
-void wm_state_above_raw(oswindow
-                        w,
-                        bool bSet
-);
-
-void wm_toolwindow(oswindow
-                   w,
-                   bool bSet
-);
-
-void wm_iconify_window(oswindow
-                       w);
-
-void x11_post_message(MESSAGE &msg);
 
 
 namespace windowing_x11
 {
 
 
-
    window::window()
    {
 
       set_layer(LAYERED_X11, this);
-
-      //m_plongmap  = new iptr_to_iptr;
 
       m_iXic = 0;
 
@@ -91,8 +51,6 @@ namespace windowing_x11
 
       m_bMessageOnlyWindow = false;
 
-      //m_osdisplay = nullptr;
-
       __zero(m_visual);
 
       m_iDepth = -1;
@@ -109,55 +67,19 @@ namespace windowing_x11
    window::~window()
    {
 
-      //::acme::del(m_plongmap);
-
    }
 
 
    ::e_status window::create_window(::user::interaction_impl * pimpl)
    {
 
-
-//      ENSURE_ARG(pusersystem->m_createstruct.lpszName == nullptr || __is_valid_string(pusersystem->m_createstruct.lpszName));
-//
-//      if (!m_puserinteraction->pre_create_window(pusersystem))
-//      {
-//
-//         return false;
-//
-//      }
-//
-//      __refer(m_puserinteraction->m_pthreadUserInteraction, ::get_task());
-
-      //m_pthreadUserImpl = m_puserinteraction->m_pthreadUserInteraction;
-
-      //install_message_routing(m_puserinteraction);
-
       bool bOk = true;
-
-//      if(pusersystem->m_createstruct.hwndParent == (oswindow) MESSAGE_WINDOW_PARENT)
-//      {
-//
-//         m_oswindow = oswindow_get_message_only_window(this);
-//
-//         m_puserinteraction->m_bMessageWindow = true;
-//
-//         //send_message(e_message_create, 0, (LPARAM) &cs);
-//
-//      }
-//      else
-//      {
-//m_pimpl = pimpl;
-
 
       auto pusersystem = pimpl->m_puserinteraction->m_pusersystem;
 
       pimpl->m_puserinteraction->m_bMessageWindow = false;
 
-      //x11_sync([&]()
-      //       {
-
-      auto pwindowing = m_pwindowing;
+      auto pwindowing = x11_windowing();
 
       auto pwindowingdisplay = pwindowing->display();
 
@@ -317,78 +239,16 @@ namespace windowing_x11
 
       windowstate3.screen_origin() = {INT_MIN, INT_MIN};
 
-      //         {
-      //
-      //            auto & uistate = m_puserinteraction->ui_state();
-      //
-      //            uistate.m_point.set(pusersystem->m_createstruct.x, pusersystem->m_createstruct.y);
-      //
-      //            uistate.m_size.set(pusersystem->m_createstruct.cx, pusersystem->m_createstruct.cy);
-      //
-      //            uistate.m_pointScreen = uistate.m_point;
-      //
-      //         }
-      //
-      {
+      auto &state = pimpl->m_puserinteraction->m_layout.design();
 
-         auto &state = pimpl->m_puserinteraction->m_layout.design();
+      state.origin() = {x, y};
 
-         state.origin() = {x, y};
+      state.size() = {cx, cy};
 
-         state.size() = {cx, cy};
-
-         state.screen_origin() = state.origin();
-
-      }
-
-      //         {
-      //
-      //            auto & state = m_puserinteraction->process_state();
-      //
-      //            state.m_point = windowstate.m_point;
-      //
-      //            state.m_size = windowstate.m_size;
-      //
-      //            state.m_pointScreen = windowstate.m_pointScreen;
-      //
-      //         }
+      state.screen_origin() = state.origin();
 
       if (window == 0)
       {
-
-         //::u32 dwLastError = get_last_error();
-
-         //string strLastError = FormatMessageFromSystem(dwLastError);
-
-         //string strMessage;
-
-         //strMessage.Format("%s\n\nSystem Error Code: %d", strLastError.c_str(), dwLastError);
-
-         //TRACE(trace_category_appmsg, e_trace_level_warning, "Warning: oswindow creation failed: get_last_error returned:\n");
-
-         //TRACE(trace_category_appmsg, e_trace_level_warning, "%s\n", strMessage.c_str());
-
-//                        try
-//                        {
-//
-//                           if(dwLastError == 0x0000057e)
-//                           {
-//
-//                              System.message_box("cannot create a top-level child interaction_impl.");
-//
-//                           }
-//                           else
-//                           {
-//
-//                              System.message_box(strMessage);
-//
-//                           }
-//
-//                        }
-//                        catch(...)
-//                        {
-//
-//                        }
 
          bOk = false;
 
@@ -438,10 +298,10 @@ namespace windowing_x11
 
 #ifndef RASPBIAN
 
-      if (g_psncontext != nullptr && !papp->m_bSnLauncheeSetup)
+      if (pwindowing->m_pSnLauncheeContext != nullptr && !papp->m_bSnLauncheeSetup)
       {
 
-         sn_launchee_context_setup_window(g_psncontext, window);
+         on_sn_launch_context(pwindowing->m_pSnLauncheeContext, window);
 
          papp->m_bSnLauncheeSetup = true;
 
@@ -612,8 +472,6 @@ namespace windowing_x11
 
    }
 
-//}
-
 
    void window::set_wm_class(const char *psz)
    {
@@ -650,12 +508,14 @@ namespace windowing_x11
 
 #ifdef WITH_SN
 
-      if (g_psncontext != nullptr)
+      auto pwindowing = x11_windowing();
+
+      if (pwindowing->m_pSnLauncheeContext != nullptr)
       {
 
-         sn_launchee_context_complete(g_psncontext);
+         on_sn_launch_complete(pwindowing->m_pSnLauncheeContext);
 
-         g_psncontext = nullptr;
+         pwindowing->m_pSnLauncheeContext = nullptr;
 
       }
 
@@ -860,6 +720,8 @@ namespace windowing_x11
       //m_parent = 0;
 
       //::window::s_pdataptra->add(pdata);
+
+      x11_display()->m_windowmap[m_window] = this;
 
       return ::success;
 
@@ -3424,6 +3286,33 @@ va_end(argp);
 //      return true;
 //
 //   }
+
+
+   void window::update_screen()
+   {
+
+      m_pwindowing->user_fork(__routine([this]()
+      {
+
+         m_pimpl->m_puserinteraction->m_pimpl2->m_pprodevian->update_screen();
+
+      }));
+
+   }
+
+
+   void window::window_show()
+   {
+
+      m_pwindowing->user_fork(__routine([this]()
+      {
+
+         m_pimpl->m_puserinteraction->m_pimpl2->window_show();
+
+      }));
+
+
+   }
 
 
 } // namespace windowing_x11

@@ -6,35 +6,31 @@
 #include "sn.h"
 #include "windowing_x11.h"
 
-//
-//#ifndef RASPBIAN
-
-SnLauncheeContext* g_psncontext = nullptr;
-
-//void x_display_error_trap_push(SnDisplay * sndisplay, Display * display);
-//
-//void x_display_error_trap_pop(SnDisplay * sndisplay, Display * display);
-
-
-//
-//void sn_start_context()
-//{
-//
-//
-//   Display * dpy = x11_get_display();
-//
-//   SnDisplay * pd = sn_display_new(dpy, &x_display_error_trap_push, &x_display_error_trap_pop);
-//
-//   int iScreen = DefaultScreen(dpy);
-//
-//   g_psncontext = sn_launchee_context_new(pd, iScreen, ::g_pappcore->m_strProgName);
-//
-//}
-//
-//
-//#endif // !RASPBIAN
 
 int g_iIgnoreXDisplayError = 0;
+
+
+void on_sn_launch_context(void * pSnContext , Window window)
+{
+
+   SnLauncheeContext * pcontext = (SnLauncheeContext *) pSnContext;
+
+   sn_launchee_context_setup_window(pcontext, window);
+
+}
+
+
+void on_sn_launch_complete(void * pSnContext)
+{
+
+   SnLauncheeContext * pcontext = (SnLauncheeContext *) pSnContext;
+
+   sn_launchee_context_complete(pcontext);
+
+}
+
+
+
 
 
 void x_display_error_trap_push(SnDisplay * sndisplay, Display * display)
@@ -65,23 +61,22 @@ void x_display_error_trap_pop(SnDisplay * sndisplay, Display * display)
 namespace windowing_x11
 {
 
+
    void windowing::_libsn_start_context()
    {
 
-      Display *dpy = m_pdisplay->Display();
+      Display * pdisplay = m_pdisplay->Display();
 
-      SnDisplay *pd = sn_display_new(dpy, &x_display_error_trap_push, &x_display_error_trap_pop);
+      SnDisplay * psndisplay = sn_display_new(pdisplay, &x_display_error_trap_push, &x_display_error_trap_pop);
 
-      int iScreen = DefaultScreen(dpy);
+      int iScreen = DefaultScreen(pdisplay);
 
-      m_pSnLauncheeContext = sn_launchee_context_new(pd, iScreen, System.m_strProgName);
+      m_pSnLauncheeContext = sn_launchee_context_new(psndisplay, iScreen, System.m_strProgName);
 
    }
 
 
 } // namespace windowing_x11
-
-
 
 
 #endif

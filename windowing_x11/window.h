@@ -116,7 +116,7 @@ namespace windowing_x11
 
       //virtual ::Window get_parent_handle() const;
 
-
+      ::windowing_x11::windowing * x11_windowing() const {return (::windowing_x11::windowing *) m_pwindowing->layer(LAYERED_X11); }
       ::windowing_x11::display * x11_display() const {return (::windowing_x11::display *) m_pdisplay->layer(LAYERED_X11); }
 
       virtual ::e_status set_parent(::windowing::window * pwindowNewParent);
@@ -240,6 +240,9 @@ namespace windowing_x11
       //virtual void wm_state_hidden( WINDOWING_X11_WINDOW_MEMBER bool bSet);
       //virtual void wm_state_hidden_raw( WINDOWING_X11_WINDOW_MEMBER bool bSet);
       virtual ::e_status mq_remove_window_from_all_queues( WINDOWING_X11_WINDOW_MEMBER );
+
+      virtual void update_screen() override;
+      virtual void window_show() override;
 
 
    };

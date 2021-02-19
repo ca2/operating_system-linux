@@ -840,14 +840,16 @@ GdkFilterReturn x11_event_func(GdkXEvent *xevent, GdkEvent *event, gpointer  dat
 }
 
 
+// This seems not to work with "foreign" windows
+// (X11 windows not created with Gdk)
 void x11_add_filter()
 {
 
+   // This seems not to work with "foreign" windows
+   // (X11 windows not created with Gdk)
    gdk_window_add_filter(nullptr, &x11_event_func, nullptr);
 
 }
-
-
 
 
 

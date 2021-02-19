@@ -38,6 +38,14 @@ namespace node_gnome
    }
 
 
+   void windowing::message_loop_step()
+   {
+
+      x11_message_loop_step();
+
+   }
+
+
 } // namespace node_gnome
 
 

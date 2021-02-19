@@ -27,6 +27,9 @@
 #include "acme/os/_user.h"
 
 
+bool x11_runnable_step();
+
+
 ::mutex * g_pmutexX11Runnable = nullptr;
 list < __pointer(::matter) > * g_prunnableptrlX11 = nullptr;
 
@@ -145,9 +148,9 @@ bool is_space_key(XIRawEvent *event)
 // Tutor Exilius Q(t)List streaming contribution
 //::mutex * g_pmutexX11Runnable = nullptr;
 //list < __pointer(::matter) > * g_prunnableptrlX11 = nullptr;
-::mutex * g_pmutexX11Sync = nullptr;
-manual_reset_event * g_peventX11Sync = nullptr;
-__pointer(::matter) g_prunnableX11Sync;
+//::mutex * g_pmutexX11Sync = nullptr;
+//manual_reset_event * g_peventX11Sync = nullptr;
+//__pointer(::matter) g_prunnableX11Sync;
 Window g_windowX11Client = 0;
 
 
@@ -157,9 +160,9 @@ int_bool _x11_get_cursor_pos(Display * d, POINT_I32 * ppointCursor);
 
 extern ::mutex *g_pmutexX11Runnable;
 extern list<__pointer(::matter) > *g_prunnableptrlX11;
-extern ::mutex *g_pmutexX11Sync;
-extern manual_reset_event *g_peventX11Sync;
-extern __pointer(::matter) g_prunnableX11Sync;
+//extern ::mutex *g_pmutexX11Sync;
+//extern manual_reset_event *g_peventX11Sync;
+//extern __pointer(::matter) g_prunnableX11Sync;
 
 
 //int get_best_ordered_monitor(::user::interaction * pinteraction, int & l, int & t, int & cx, int & cy);
@@ -992,55 +995,6 @@ Retrieved from: http://en.literateprograms.org/Hello_World_(C,_Cairo)?oldid=1038
 #endif
 
 
-   bool x11_step()
-   {
-
-      bool bDoneMuchThings = false;
-
-      {
-
-         synchronization_lock synchronizationlock(g_pmutexX11Sync);
-
-         if (g_prunnableX11Sync)
-         {
-
-            g_prunnableX11Sync->operator()();
-
-            g_prunnableX11Sync.release();
-
-            g_peventX11Sync->SetEvent();
-
-            bDoneMuchThings = true;
-
-         }
-
-      }
-
-      {
-
-         synchronization_lock synchronizationlock(g_pmutexX11Runnable);
-
-         while (g_prunnableptrlX11->has_elements() && ::thread_get_run())
-         {
-
-            __pointer(::matter) prunnable = g_prunnableptrlX11->pop_front();
-
-            synchronizationlock.unlock();
-
-            prunnable->operator()();
-
-            synchronizationlock.lock();
-
-            bDoneMuchThings = true;
-
-         }
-
-      }
-
-      return bDoneMuchThings;
-
-   }
-
 
    bool post_ui_message(const MESSAGE &message);
 
@@ -1296,7 +1250,7 @@ Retrieved from: http://en.literateprograms.org/Hello_World_(C,_Cairo)?oldid=1038
          try
          {
 
-            if (!x11_step())
+            if (!x11_runnable_step())
             {
 
                break;
@@ -1454,7 +1408,7 @@ Retrieved from: http://en.literateprograms.org/Hello_World_(C,_Cairo)?oldid=1038
          try
          {
 
-            if (!x11_step())
+            if (!x11_runnable_step())
             {
 
                break;
@@ -1557,10 +1511,10 @@ Retrieved from: http://en.literateprograms.org/Hello_World_(C,_Cairo)?oldid=1038
 //
 //    x11_
 
+
 #ifdef WITH_XI
    bool windowing::x11_process_event(XEvent * pevent, XGenericEventCookie *cookie)
 #else
-
    bool windowing::x11_process_event(XEvent *pevent)
 #endif
    {
@@ -1672,6 +1626,10 @@ Retrieved from: http://en.literateprograms.org/Hello_World_(C,_Cairo)?oldid=1038
          case MotionNotify:
          {
 
+            m_pointCursor.x = e.xmotion.x_root;
+
+            m_pointCursor.y = e.xmotion.y_root;
+
             g_pointX11Cursor.x = e.xmotion.x_root;
 
             g_pointX11Cursor.y = e.xmotion.y_root;
@@ -1782,27 +1740,48 @@ Retrieved from: http://en.literateprograms.org/Hello_World_(C,_Cairo)?oldid=1038
             post_ui_message(msg);
 
          }
-            break;
+         break;
          case Expose:
          {
 
             if (e.xexpose.count == 0)
             {
 
-               if (msg.oswindow->m_pimpl->m_puserinteraction->m_ewindowflag & ::e_window_flag_arbitrary_positioning)
+               auto oswindow = msg.oswindow;
+
+               if(oswindow)
                {
 
-                  msg.oswindow->m_pimpl->_001UpdateScreen();
+                  auto pimpl = oswindow->m_pimpl;
 
-               }
-               else
-               {
+                  if(pimpl)
+                  {
 
-                  msg.m_id = e_message_paint;
-                  msg.lParam = 0;
-                  msg.wParam = 0;
+                     auto puserinteraction = pimpl->m_puserinteraction;
 
-                  post_ui_message(msg);
+                     if(puserinteraction)
+                     {
+
+                        if (puserinteraction->m_ewindowflag & ::e_window_flag_arbitrary_positioning)
+                        {
+
+                           pimpl->_001UpdateScreen();
+
+                        }
+                        else
+                        {
+
+                           msg.m_id = e_message_paint;
+                           msg.lParam = 0;
+                           msg.wParam = 0;
+
+                           post_ui_message(msg);
+
+                        }
+
+                     }
+
+                  }
 
                }
 
@@ -1817,7 +1796,7 @@ Retrieved from: http://en.literateprograms.org/Hello_World_(C,_Cairo)?oldid=1038
             }
 
          }
-            break;
+         break;
          case PropertyNotify:
          {
 
@@ -1941,7 +1920,7 @@ Retrieved from: http://en.literateprograms.org/Hello_World_(C,_Cairo)?oldid=1038
             }
 
          }
-            break;
+         break;
          case MapNotify:
          case UnmapNotify:
          {
@@ -1953,7 +1932,7 @@ Retrieved from: http://en.literateprograms.org/Hello_World_(C,_Cairo)?oldid=1038
             post_ui_message(msg);
 
          }
-            break;
+         break;
          case ConfigureNotify:
          {
 
@@ -2907,9 +2886,9 @@ Retrieved from: http://en.literateprograms.org/Hello_World_(C,_Cairo)?oldid=1038
 
       g_prunnableptrlX11 = new list<__pointer(::matter) >();
 
-      g_pmutexX11Sync = new ::mutex();
+//      g_pmutexX11Sync = new ::mutex();
 
-      g_peventX11Sync = new manual_reset_event();
+//      g_peventX11Sync = new manual_reset_event();
 
       //oswindow_data::s_pdataptra = new oswindow_dataptra;
 
@@ -2945,9 +2924,9 @@ Retrieved from: http://en.literateprograms.org/Hello_World_(C,_Cairo)?oldid=1038
 
       ::acme::del(g_pmutexX11Runnable);
 
-      ::acme::del(g_peventX11Sync);
+//      ::acme::del(g_peventX11Sync);
 
-      ::acme::del(g_pmutexX11Sync);
+//      ::acme::del(g_pmutexX11Sync);
 
       return false;
 
@@ -3068,7 +3047,23 @@ Retrieved from: http://en.literateprograms.org/Hello_World_(C,_Cairo)?oldid=1038
 
       ASSERT(oswindow != nullptr);
 
-      ::user::interaction *pinteraction = oswindow->m_pimpl->m_puserinteraction;
+      auto pimpl = oswindow->m_pimpl;
+
+      if(::is_null(pimpl))
+      {
+
+         return false;
+
+      }
+
+      auto pinteraction = pimpl->m_puserinteraction;
+
+      if(::is_null(pinteraction))
+      {
+
+         return false;
+
+      }
 
       ::thread *pthread = nullptr;
 
@@ -3172,6 +3167,15 @@ Retrieved from: http://en.literateprograms.org/Hello_World_(C,_Cairo)?oldid=1038
 //
 //}
 //
+
+
+   void windowing::windowing_main()
+   {
+
+      x11_main();
+
+   }
+
 
    void windowing::x11_main()
    {
@@ -3484,6 +3488,54 @@ bool x11_get_window_rect(Display * d, Window window, RECTANGLE_I32 * prectangle)
 }
 
 
+bool x11_runnable_step()
+{
+
+   bool bDoneMuchThings = false;
+
+//   {
+//
+//      synchronization_lock synchronizationlock(g_pmutexX11Sync);
+//
+//      if (g_prunnableX11Sync)
+//      {
+//
+//         g_prunnableX11Sync->operator()();
+//
+//         g_prunnableX11Sync.release();
+//
+//         g_peventX11Sync->SetEvent();
+//
+//         bDoneMuchThings = true;
+//
+//      }
+//
+//   }
+
+   {
+
+      synchronization_lock synchronizationlock(g_pmutexX11Runnable);
+
+      while (g_prunnableptrlX11->has_elements() && ::thread_get_run())
+      {
+
+         __pointer(::matter) prunnable = g_prunnableptrlX11->pop_front();
+
+         synchronizationlock.unlock();
+
+         prunnable->operator()();
+
+         synchronizationlock.lock();
+
+         bDoneMuchThings = true;
+
+      }
+
+   }
+
+   return bDoneMuchThings;
+
+}
 
 
 
