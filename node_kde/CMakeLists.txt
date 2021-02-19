@@ -50,9 +50,12 @@ list(APPEND audio_alsa_source
 
 list(APPEND library_references
    acme
+   node_ansios
    apex
    aqua
    aura
+   node_linux
+   windowing_xcb
    )
 
 

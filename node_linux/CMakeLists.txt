@@ -23,12 +23,14 @@ set(EXECUTABLE_OUTPUT_PATH ${CMAKE_CURRENT_SOURCE_DIR}/../../../time-${PLATFORM_
 list(APPEND audio_alsa_source
    _.h
    _.cpp
+   appindicator.cpp
+   appindicator.h
    factory_exchange.cpp
    factory_exchange.h
    framework.cpp
    framework.h
-   application.cpp
-   application.h
+   #application.cpp
+   #application.h
    node.cpp
    node.h
    )
@@ -36,6 +38,7 @@ list(APPEND audio_alsa_source
 
 list(APPEND library_references
    acme
+   node_ansios
    apex
    aqua
    aura
@@ -49,7 +52,7 @@ else ()
 endif ()
 
 
-add_library(node_linux SHARED ${audio_alsa_source})
+add_library(node_linux SHARED ${audio_alsa_source} appindicator.cpp appindicator.h)
 
 target_precompile_headers(node_linux PRIVATE framework.h)
 
@@ -70,11 +73,11 @@ elseif (LINUX)
    target_link_libraries(node_linux PRIVATE ${library_references} ${PKGCONFIG_LIBRARIES})
    target_link_libraries(node_linux PRIVATE asound)
    target_link_options(node_linux PRIVATE -Wl,-z,defs)
-   add_dependencies(node_linux acme node_ansios)
+   #add_dependencies(node_linux node_ansios)
 endif ()
 
 
-add_dependencies(node_linux experience_core)
+#add_dependencies(node_linux experience_core)
 
 
 target_link_directories(node_linux PRIVATE ${LIBRARY_OUTPUT_PATH})

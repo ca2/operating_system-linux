@@ -1,204 +1,168 @@
 // created by Camilo <3CamiloSasukeThomasBorregaardSoerensen
 // recreated by Camilo 2021-01-28 22:20 <3TBS, Mummi and bilbo!!
 // hi5 contribution...
-#pragma one
+#pragma once
+
+
+#define WINDOWING_X11_DISPLAY_MEMBER
 
 
 namespace windowing_x11
 {
 
-   class CLASS_DECL_AURA display
 
-   :
-   virtual public ::windowing::display
-{
+   class CLASS_DECL_WINDOWING_X11 display :
+      virtual public ::windowing::display
+   {
    public:
 
 
-   critical_section *m_pcsOsDisplayData;
-   Display *m_pdisplay;
-   Atom m_atomLongType;
-   Atom m_atomLongStyle;
-   Atom m_atomLongStyleEx;
-   Atom m_atomWmState;
-   Atom m_atomNetWmState;
-   Atom m_atomaNetWmState[net_wm_state_count];
-   iptr m_countReference;
-   //array < MESSAGE >     m_messsageaInput;
-   //::mutex *               m_pmutexInput;
+      critical_section                             m_criticalsectionWindowMap;
+      window_map                                   m_windowmap;
+      ::Display *                                  m_pdisplay;
+      Atom                                         m_atomLongType;
+      Atom                                         m_atomLongStyle;
+      Atom                                         m_atomLongStyleEx;
+      Atom                                         m_atomWmState;
+      Atom                                         m_atomNetWmState;
+      Atom                                         m_atomaNetWmState[e_net_wm_state_count];
+      iptr                                         m_countReference;
+      __pointer(class window)                 m_pwindowRoot;
+      //array < MESSAGE >                          m_messsageaInput;
+      //::mutex *                                  m_pmutexInput;
 
-   static osdisplay_dataptra *s_pdataptra;
-   static ::mutex *s_pmutex;
-
-   osdisplay_data();
-
-   ~
-
-   osdisplay_data();
-
-   Display *display()
-   {
-      return ::is_null(this) ? nullptr : m_pdisplay;
-   }
-
-   Display *display() const
-   {
-      return ::is_null(this) ? nullptr : m_pdisplay;
-   }
-
-   Atom atom_long_type()
-   {
-      return ::is_null(this) ? 0 : m_atomLongType;
-   }
-
-   Atom atom_long_style()
-   {
-      return ::is_null(this) ? 0 : m_atomLongStyle;
-   }
-
-   Atom atom_long_style_ex()
-   {
-      return ::is_null(this) ? 0 : m_atomLongStyleEx;
-   }
-
-   bool is_null() const
-   {
-      return ::is_null(this);
-   }
-
-   Atom get_window_long_atom(i32 nIndex);
+      //static osdisplay_dataptra *                s_pdataptra;
+      //static ::mutex *                           s_pmutex;
+      __pointer(::windowing_x11::window)      m_pwindowActive;
 
 
-   Atom intern_atom(const char *pszAtomName, bool bCreate);
-
-   Atom intern_atom(e_net_wm_state estate, bool bCreate);
-
-   Atom net_wm_state_atom(bool bCreate);
+      display();
+      virtual ~display();
 
 
-   inline i64 get_ref_count()
-   {
-
-      return m_countReference;
-
-   }
+#ifdef DEBUG
 
 
-   inline i64 add_ref(OBJ_REF_DBG_PARAMS)
-   {
+      virtual i64 get_ref_count();
+      virtual i64 add_ref(OBJ_REF_DBG_PARAMS);
+      virtual i64 dec_ref(OBJ_REF_DBG_PARAMS);
+      virtual i64 release(OBJ_REF_DBG_PARAMS);
 
-#ifdef WINDOWS
-
-      return InterlockedIncrement64(&m_countReference);
-
-#elif defined(RASPBIAN) && defined(OS32BIT)
-
-      return __sync_add_and_fetch_4(&m_countReference,1);
-
-#else
-
-      return __sync_add_and_fetch(&m_countReference, 1);
 
 #endif
 
-   }
+      virtual ::windowing_x11::window * _window(Window window);
+
+      virtual void lock_display();
+
+      virtual void unlock_display();
+
+      virtual ::e_status open() override;
+
+      virtual ::e_status remove_window(::windowing::window * pwindow);
 
 
-   inline i64 dec_ref(OBJ_REF_DBG_PARAMS)
-   {
+      virtual ::Display * Display();
 
-#ifdef WINDOWS
+      virtual ::Display * Display() const;
 
-      return InterlockedDecrement64(&m_countReference);
+//      virtual ::Visual * Visual();
+//
+//      virtual ::Visual * Visual() const;
 
-#elif defined(RASPBIAN) && defined(OS32BIT)
+      virtual Atom atom_long_type();
 
-      return __sync_sub_and_fetch_4(&m_countReference,1);
+      virtual Atom atom_long_style();
 
-#else
+      virtual Atom atom_long_style_ex();
 
-      return __sync_sub_and_fetch(&m_countReference, 1);
-
-#endif
-
-   }
+      virtual bool is_null() const;
 
 
-   inline i64 release(OBJ_REF_DBG_PARAMS)
-   {
-
-      i64 i = dec_ref(OBJ_REF_DBG_ARGS);
-
-      if (i == 0)
-      {
-
-         osdisplay_remove(m_pdisplay);
-
-      }
-
-      return i;
-
-   }
+      virtual bool get_monitor_rect(index iMonitor, RECTANGLE_I32 * prectangle);
 
 
-   Window default_root_window();
+      virtual ::e_status release_mouse_capture();
+
+      Atom get_window_long_atom(i32 nIndex);
+
+      Atom intern_atom(const char * pszAtomName, bool bCreate);
+
+      Atom intern_atom(enum_net_wm_state estate, bool bCreate);
+
+      Atom net_wm_state_atom(bool bCreate);
+
+      //virtual ::windowing::window * default_root_window() override;
 
 
-};
+      virtual ::windowing_x11::window * get_keyboard_focus();
 
 
-typedef osdisplay_data *osdisplay;
+      virtual ::windowing_x11::window * _get_active_window(::thread * pthread);
 
 
-inline xdisplay::operator Display *()
-{
+      virtual bool x11_window_list(WINDOWING_X11_DISPLAY_MEMBER array < Window > & windowa);
+      //virtual oswindow get_focus();
 
-   return m_pdata->m_pdisplay;
+      virtual bool get_cursor_pos(WINDOWING_X11_DISPLAY_MEMBER POINT_I32 * ppointCursor);
+      //virtual oswindow _x11_get_active_window(WINDOWING_X11_DISPLAY_MEMBER);
+      //virtual oswindow _x11_get_active_window();
+      virtual Window * x11_window_list(WINDOWING_X11_DISPLAY_MEMBER unsigned long * len);
 
-}
+      virtual Cursor create_alpha_cursor(const ::image *pimage, int xHotSpot, int yHotSpot);
+      virtual Pixmap _x11_create_pixmap(::image_pointer pimage);
+      virtual XImage * _x11_create_image(::image_pointer pimage);
+      virtual Pixmap x11_create_pixmap(::image_pointer pimage);
+      virtual XImage * x11_create_image(::image_pointer pimage);
 
-inline bool xdisplay::is_null()
-{
-
-   return m_pdata == nullptr;
-
-}
-
-
-inline bool xdisplay::is_set()
-{
-
-   return m_pdata != nullptr;
-
-}
+      virtual bool point_is_window_origin(POINT_I32 pointHitTest, ::windowing::window * pwindowExclude, int iMargin);
 
 
-class osdisplay_dataptra :
-   public ::raw_array<osdisplay_data *>
-{
-public:
+      //virtual Atom intern_atom(const char * pszAtomName, bool bCreate);
+      //virtual Atom intern_atom(enum_net_wm_state state, bool bCreate);
 
-   virtual ~osdisplay_dataptra()
-   {
+      virtual Picture xrender_create_picture(::image_pointer pimage);
+      //virtual Picture xrender_create_picture(::image_pointer pimage);
 
-      remove_all();
 
-   }
 
-   void remove_all()
-   {
+   };
 
-      for (auto point : *this)
-      {
 
-         delete point;
+//   typedef osdisplay_data *osdisplay;
 
-      }
 
-      raw_array<osdisplay_data *>::remove_all();
-   }
 
-};
+
+//class osdisplay_dataptra :
+//   public ::raw_array<osdisplay_data *>
+//{
+//public:
+//
+//   virtual ~osdisplay_dataptra()
+//   {
+//
+//      remove_all();
+//
+//   }
+//
+//   void remove_all()
+//   {
+//
+//      for (auto point : *this)
+//      {
+//
+//         delete point;
+//
+//      }
+//
+//      raw_array<osdisplay_data *>::remove_all();
+//   }
+//
+//};
 
 
 } // namespace windowing_x11
+
+
+

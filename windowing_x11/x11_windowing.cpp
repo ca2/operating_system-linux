@@ -1,5 +1,5 @@
 #include "framework.h"
-#include "_x11.h"
+#include "windowing_x11.h"
 #include <fcntl.h> // library for fcntl function
 #include <sys/stat.h>
 
@@ -52,7 +52,7 @@ GC x11_create_gc(Colormap colormap, Display* pdisplay, Window window, byte a, by
 
    GC gc = XCreateGC(pdisplay, window, 0, 0);
 
-   color32_t cr = ARGB(a, r * a / 255, g * a / 255, b * a / 255);
+   color32_t cr = argb(a, r * a / 255, g * a / 255, b * a / 255);
 
    XSetForeground (pdisplay, gc, cr);
 
@@ -61,16 +61,16 @@ GC x11_create_gc(Colormap colormap, Display* pdisplay, Window window, byte a, by
 }
 
 
-int x11_message_box(const string & str, const string & strTitle, const ::e_message_box & emessagebox)
-{
-
-   defer_initialize_x11();
-
-   auto pdisplay = __new(simple_ui_display(str, strTitle, emessagebox));
-
-   return pdisplay->show();
-
-}
+//int x11_message_box(const string & str, const string & strTitle, const ::e_message_box & emessagebox)
+//{
+//
+//   //defer_initialize_x11();
+//
+//   auto pdisplay = __new(simple_ui_display(str, strTitle, emessagebox));
+//
+//   return pdisplay->show();
+//
+//}
 
 
 
@@ -130,7 +130,7 @@ void x11_wait_timer_or_event(Display * pdisplay)
    tv.tv_sec = 1;
 
    // Wait for X Event or a Timer
-   int num_ready_fds = select(max(x11_fd, g_fdX11[0]) + 1, &in_fds, NULL, NULL, &tv);
+   int num_ready_fds = select(maximum(x11_fd, g_fdX11[0]) + 1, &in_fds, NULL, NULL, &tv);
 
    if (num_ready_fds > 0)
    {
@@ -173,115 +173,115 @@ void x11_wait_timer_or_event(Display * pdisplay)
 
 bool g_bAcmeInitWindowing = false;
 
-
-void acme_defer_os_init_windowing()
-{
-
-   if(g_bAcmeInitWindowing)
-   {
-
-      return;
-
-   }
-
-   g_bAcmeInitWindowing = true;
-
-   pipe(g_fdX11);
-
-   int retval = fcntl(g_fdX11[0], F_SETFL, fcntl(g_fdX11[0], F_GETFL) | O_NONBLOCK);
-
-   g_pmutexX11 = new ::mutex();
-
-}
+//
+//void acme_defer_os_init_windowing()
+//{
+//
+//   if(g_bAcmeInitWindowing)
+//   {
+//
+//      return;
+//
+//   }
+//
+//   g_bAcmeInitWindowing = true;
+//
+//   pipe(g_fdX11);
+//
+//   int retval = fcntl(g_fdX11[0], F_SETFL, fcntl(g_fdX11[0], F_GETFL) | O_NONBLOCK);
+//
+//   g_pmutexX11 = new ::mutex();
+//
+//}
 
 
 mutex * x11_mutex() {return g_pmutexX11;}
 
 
-void x11_defer_handle_just_hooks()
-{
-
-   if(get_platform_level() <= e_platform_level_apex)
-   {
-
-      x11_handle_just_hooks();
-
-   }
-
-}
-
-
-void x11_handle_just_hooks()
-{
-
-   Display * pdisplay = x11_get_display();
-
-   XEvent e = {};
-
-#if !defined(RASPBIAN)
-
-   XGenericEventCookie * cookie;
-
-#endif
-
-   while(true)
-   {
-
-      try
-      {
-
-         sync_lock sl(x11_mutex());
-
-         XLockDisplay(pdisplay);
-
-         try
-         {
-
-            while(XPending(pdisplay))
-            {
-
-               XNextEvent(pdisplay, &e);
-
-               __x11_hook_process_event(pdisplay, &e, nullptr);
-
-               if(__x11_hook_list_is_empty())
-               {
-
-                  break;
-
-               }
-
-            }
-
-         }
-         catch(...)
-         {
-
-         }
-
-         __x11_hook_on_idle(pdisplay);
-
-         XUnlockDisplay(pdisplay);
-
-      }
-      catch(...)
-      {
-
-      }
-
-//      x11_wait_timer_or_event(pdisplay);
-
-      if(__x11_hook_list_is_empty())
-      {
-
-         break;
-
-      }
-
-   }
-
-}
-
+//void x11_defer_handle_just_hooks()
+//{
+//
+//   if(get_platform_level() <= e_platform_level_apex)
+//   {
+//
+//      x11_handle_just_hooks();
+//
+//   }
+//
+//}
+//
+//
+//void x11_handle_just_hooks()
+//{
+//
+//   Display * pdisplay = x11_get_display();
+//
+//   XEvent e = {};
+//
+//#if !defined(RASPBIAN)
+//
+//   XGenericEventCookie * cookie;
+//
+//#endif
+//
+//   while(true)
+//   {
+//
+//      try
+//      {
+//
+//         synchronization_lock sl(x11_mutex());
+//
+//         XLockDisplay(pdisplay);
+//
+//         try
+//         {
+//
+//            while(XPending(pdisplay))
+//            {
+//
+//               XNextEvent(pdisplay, &e);
+//
+//               __x11_hook_process_event(pdisplay, &e, nullptr);
+//
+//               if(__x11_hook_list_is_empty())
+//               {
+//
+//                  break;
+//
+//               }
+//
+//            }
+//
+//         }
+//         catch(...)
+//         {
+//
+//         }
+//
+//         __x11_hook_on_idle(pdisplay);
+//
+//         XUnlockDisplay(pdisplay);
+//
+//      }
+//      catch(...)
+//      {
+//
+//      }
+//
+////      x11_wait_timer_or_event(pdisplay);
+//
+//      if(__x11_hook_list_is_empty())
+//      {
+//
+//         break;
+//
+//      }
+//
+//   }
+//
+//}
+//
 
 ::e_status initialize_x11();
 

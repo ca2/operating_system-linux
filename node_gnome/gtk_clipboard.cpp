@@ -78,7 +78,7 @@ void clipboard_image_received_func(GtkClipboard * clipboard, GdkPixbuf * pixbuf,
          if(!bHasAlpha)
          {
 
-            pdata->m_pimage->fill_channel(255, ::color::channel_alpha);
+            pdata->m_pimage->fill_channel(255, ::color::e_channel_alpha);
 
          }
 
@@ -89,7 +89,6 @@ void clipboard_image_received_func(GtkClipboard * clipboard, GdkPixbuf * pixbuf,
    pdata->m_event.SetEvent();
 
 }
-
 
 
 void clipboard_received_func(GtkClipboard * clipboard, GtkSelectionData * selection_data, gpointer data)

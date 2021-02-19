@@ -23,25 +23,50 @@ set(EXECUTABLE_OUTPUT_PATH ${CMAKE_CURRENT_SOURCE_DIR}/../../../time-${PLATFORM_
 list(APPEND audio_alsa_source
    _.h
    _.cpp
-   copydesk.cpp
-   copydesk.h
+   #application.cpp
+   #application.h
+   buffer.cpp
+   buffer.h
+   cursor.cpp
+   cursor.h
+   #copydesk.cpp
+   #copydesk.h
+   debug.cpp
+   display.cpp
+   display.h
+   display_lock.cpp
+   display_lock.h
+   display_xrender.cpp
+   enum_display_monitors.cpp
    factory_exchange.cpp
    factory_exchange.h
    framework.cpp
    framework.h
-   gdk.cpp
-   gdk.h
-   gnome_direct.cpp
-   application.cpp
-   application.h
-   node.cpp
-   node.h
+   #gdk.cpp
+   #gdk.h
+   #gnome_direct.cpp
+   icon.cpp
+   icon.h
+   keyboard.cpp
+   keyboard.h
+   #node.cpp
+   #node.h
+   sn.cpp
+   sn.h
+   user.cpp
+   window.cpp
+   window.h
    windowing.cpp
+   windowing_wm.cpp
+   windowing_x11.cpp
    windowing.h
+   x11_windowing.cpp
+   xi.cpp
    )
 
 
 list(APPEND library_references
+   sn
    acme
    apex
    aqua
@@ -56,7 +81,7 @@ else ()
 endif ()
 
 
-add_library(windowing_x11 SHARED ${audio_alsa_source} gtk_clipboard.cpp enum_display_monitors.cpp clipboard_data.h appindicator.cpp appindicator.h keyboard.cpp keyboard.h)
+add_library(windowing_x11 SHARED ${audio_alsa_source})
 
 target_precompile_headers(windowing_x11 PRIVATE framework.h)
 
@@ -70,9 +95,10 @@ if (MSVC)
    target_link_libraries(windowing_x11 PRIVATE ${library_references})
    add_dependencies(windowing_x11 draw2d_gdiplus)
 elseif (LINUX)
-   pkg_check_modules(PKGCONFIG glib-2.0 gtk+-3.0 gdk-3.0 appindicator-0.1)
+   #pkg_check_modules(PKGCONFIG glib-2.0 gtk+-3.0 gdk-3.0 appindicator-0.1)
    # sudo apt install libgtk-3-dev
-   pkg_check_modules(PKGCONFIG glib-2.0 gtk+-3.0 gdk-3.0)
+   #pkg_check_modules(PKGCONFIG glib-2.0 gtk+-3.0 gdk-3.0)
+   pkg_check_modules(PKGCONFIG x11 xrender xi)
    target_compile_options(windowing_x11 PRIVATE -fpermissive)
    target_compile_options(windowing_x11 PRIVATE ${PKGCONFIG_CFLAGS})
    target_link_options(windowing_x11 PRIVATE -Wl,-rpath=\$ORIGIN)
@@ -83,7 +109,7 @@ elseif (LINUX)
 endif ()
 
 
-add_dependencies(windowing_x11 experience_core)
+#add_dependencies(windowing_x11 experience_core)
 
 
 target_link_directories(windowing_x11 PRIVATE ${LIBRARY_OUTPUT_PATH})

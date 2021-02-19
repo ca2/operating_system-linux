@@ -1,39 +1,39 @@
 #include "framework.h"
-#include "_x11.h"
-#include "third/sn/sn.h"
+#include "windowing_x11.h"
+//#include "third/sn/sn.h"
 
 
 extern ::mutex * x11_mutex();
 
 
-int g_iIgnoreXDisplayError = 0;
+//int g_iIgnoreXDisplayError = 0;
 
-
-void x_display_error_trap_push(SnDisplay * sndisplay, Display * display)
-{
-
-   g_iIgnoreXDisplayError++;
-
-}
-
-
-void x_display_error_trap_pop(SnDisplay * sndisplay, Display * display)
-{
-
-   sync_lock sl(x11_mutex());
-
-   g_iIgnoreXDisplayError--;
-
-   if(g_iIgnoreXDisplayError == 0)
-   {
-
-      XSync(display, false);
-
-   }
-
-}
-
-
+//
+//void x_display_error_trap_push(SnDisplay * sndisplay, Display * display)
+//{
+//
+//   g_iIgnoreXDisplayError++;
+//
+//}
+//
+//
+//void x_display_error_trap_pop(SnDisplay * sndisplay, Display * display)
+//{
+//
+//   synchronization_lock sl(x11_mutex());
+//
+//   g_iIgnoreXDisplayError--;
+//
+//   if(g_iIgnoreXDisplayError == 0)
+//   {
+//
+//      XSync(display, false);
+//
+//   }
+//
+//}
+//
+//
 
 
 i32 _c_XErrorHandler(Display * display, XErrorEvent * perrorevent)

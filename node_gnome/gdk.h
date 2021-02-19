@@ -17,7 +17,7 @@ namespace node_gnome
 
    void g_defer_term();
 
-   void os_calc_dark_mode();
+   //void os_calc_dark_mode();
 
 
 } // namespace node_gnome

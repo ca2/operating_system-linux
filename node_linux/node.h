@@ -13,67 +13,26 @@ namespace node_linux
 
 
    class CLASS_DECL_ACME node :
-      virtual public ::node_ansios::node
+      virtual public ::node_ansios::node,
+      virtual public ::aura::node
    {
    public:
 
 
-      gpointer m_pGtkSettingsDefault;
-      string   m_strTheme;
 
       node();
       virtual ~node();
 
 
-
-      virtual enum_operating_system get_operating_system() const override;
-
-
-      virtual int node_init_check(int * pi, char *** ppz) override;
+      result_pointer < appindicator > new_appindicator();
+      //virtual int node_init_check(int * pi, char *** ppz) override;
 
       virtual void os_application_system_run() override;
 
       virtual ::e_status initialize(::layered * pobjectContext) override;
 
-      virtual void os_calc_user_dark_mode() override;
+      virtual ::file::path get_desktop_file_path(::apex::application * papp) const;
 
-      virtual string os_get_user_theme() override;
-
-      virtual bool os_set_user_theme(const string & strUserTheme) override;
-
-      virtual void os_process_user_theme(string strTheme) override;
-
-      virtual void enable_wallpaper_change_notification() override;
-
-      virtual string get_file_icon_path(const char * pszPath, int iSize) override;
-
-      virtual string get_file_content_type(const char * pszPath) override;
-
-      virtual bool set_wallpaper(index iScreen, string strLocalImagePath) override;
-
-      virtual string get_wallpaper(index iScreen) override;
-
-      virtual ::user::enum_desktop calc_edesktop() override;
-
-      using ::aura::node::node_fork;
-
-      virtual void node_fork(const ::promise::routine & routine) override;
-
-      virtual void node_post_quit() override;
-
-      virtual ::linux::appindicator * appindicator_allocate() override;
-
-      virtual void appindicator_destroy(::linux::appindicator * pappindicator) override;
-
-      virtual void enum_display_monitors(::aura::session * psession) override;
-
-      virtual void os_post_quit() override;
-
-      virtual bool should_launch_on_node(::promise::subject * psubject);
-
-      virtual bool launch_on_node(::promise::subject * psubject);
-
-      virtual void get_system_time_as_file_time(filetime_t * pfiletime);
 
    };
 

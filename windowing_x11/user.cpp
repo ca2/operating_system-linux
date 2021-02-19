@@ -1,150 +1,78 @@
 #include "framework.h"
-#include "gnome_gnome.h"
-//#include "apex/os/linux/appindicator.h"
 
 
 
-//
-//namespace linux
-//{
-//
-//
-//   void appindicator_destroy(appindicator * pindicator)
-//   {
-//
-//      delete pindicator;
-//
-//   }
-//
-//} // namespace linux
 
-namespace os
+
+
+
+namespace user
 {
 
-   string os_get_user_theme()
+   
+   CLASS_DECL_WINDOWING_X11 ::user::enum_key keysym_to_userkey(const lparam & lparam)
    {
 
-      // https://ubuntuforums.org/showthread.php?t=2140488
-      // gsettings set org.gnome.desktop.interface gtk-theme your_theme
+      KeySym keysym = (KeySym) (iptr)lparam.m_lparam;
 
-      // indirect wall-changer sourceforge.net contribution
-
-      string strTheme;
-
-      bool bOk = false;
-
-      auto edesktop = System.get_edesktop();
-
-      switch (edesktop)
+      switch(keysym)
       {
+         case XK_BackSpace:
+            return e_key_back;
+         case XK_Shift_L:
+            return e_key_lshift;
+         case XK_Shift_R:
+            return e_key_rshift;
+         case XK_Control_L:
+            return e_key_lcontrol;
+         case XK_Control_R:
+            return e_key_rcontrol;
+         case XK_Alt_L:
+            return e_key_lalt;
+         case XK_Alt_R:
+            return e_key_ralt;
+         case XK_Delete:
+            return e_key_delete;
+         case XK_Return:
+            return e_key_return;
+         case XK_Tab:
+            return e_key_tab;
+         case XK_Left:
+            return e_key_left;
+         case XK_Right:
+            return e_key_right;
+         case XK_Up:
+            return e_key_up;
+         case XK_Down:
+            return e_key_down;
+         case XK_Page_Up:
+            return e_key_prior;
+         case XK_Page_Down:
+            return e_key_next;
+         case XK_Home:
+            return e_key_home;
+         case XK_End:
+            return e_key_end;
 
-      case ::user::desktop_gnome:
-      case ::user::desktop_ubuntu_gnome:
-      case ::user::desktop_unity_gnome:
-
-         bOk = ::user::gsettings_get(strTheme, "org.gnome.desktop.interface", "gtk-theme");
-
-         break;
-
-      case ::user::desktop_mate:
-
-         bOk = ::user::gsettings_get(strTheme, "org.mate.background", "picture-filename");
-
-         break;
-
-      case ::user::desktop_lxde:
-
-         //call_async("pcmanfm", "-w " + strLocalImagePath, nullptr, e_display_none, false);
-
-         break;
-
-      case ::user::desktop_xfce:
-      {
-         //        Q_FOREACH(QString entry, Global::getOutputOfCommand("xfconf-query", QStringList() << "-c" << "xfce4-desktop" << "-point" << "/backdrop" << "-l").split("\n")){
-         //          if(entry.contains("image-path") || entry.contains("last-image")){
-         //            QProcess::startDetached("xfconf-query", QStringList() << "-c" << "xfce4-desktop" << "-point" << entry << "-s" << image);
-         //      }
-         //}
 
       }
 
-      //break;
+      if(keysym >= 'a' && keysym <= 'z')
+      {
 
-      default:
+         return (::user::enum_key) ((int)(::user::e_key_a) + keysym - 'a');
 
-         output_debug_string("Failed to get wallpaper setting. If your Desktop Environment is not listed at \"Preferences->Integration-> Current Desktop Environment\", then it is not supported.");
-         //return "";
+      }
+      else if(keysym >= 'A' && keysym <= 'Z')
+      {
+
+         return (::user::enum_key) ((int)(::user::e_key_a) + keysym - 'A');
 
       }
 
-      return strTheme;
+      return e_key_none;
 
    }
 
 
-   string get_wallpaper(::index iIndex)
-   {
-
-      // wall-changer sourceforge.net contribution
-
-      bool bOk = false;
-
-      string strWallpaper;
-
-      auto edesktop = System.get_edesktop();
-
-      switch (edesktop)
-      {
-
-      case ::user::desktop_gnome:
-      case ::user::desktop_ubuntu_gnome:
-      case ::user::desktop_unity_gnome:
-
-         bOk = ::user::gsettings_get(strWallpaper, "org.gnome.desktop.background", "picture-uri");
-
-         break;
-
-      case ::user::desktop_mate:
-
-         bOk = ::user::gsettings_get(strWallpaper, "org.mate.background", "picture-filename");
-
-         break;
-
-      case ::user::desktop_lxde:
-
-         //call_async("pcmanfm", "-w " + strLocalImagePath, nullptr, e_display_none, false);
-
-         break;
-
-      case ::user::desktop_xfce:
-      {
-         //        Q_FOREACH(QString entry, Global::getOutputOfCommand("xfconf-query", QStringList() << "-c" << "xfce4-desktop" << "-point" << "/backdrop" << "-l").split("\n")){
-         //          if(entry.contains("image-path") || entry.contains("last-image")){
-         //            QProcess::startDetached("xfconf-query", QStringList() << "-c" << "xfce4-desktop" << "-point" << entry << "-s" << image);
-         //      }
-         //}
-
-      }
-
-      //break;
-
-      default:
-
-         output_debug_string("Failed to get wallpaper setting. If your Desktop Environment is not listed at \"Preferences->Integration-> Current Desktop Environment\", then it is not supported.");
-         //return "";
-
-      }
-
-      ::str::begins_eat_ci(strWallpaper, "file://");
-
-      return strWallpaper;
-
-   }
-
-
-
-} // namespace os
-
-
-
-
+} // namespace user

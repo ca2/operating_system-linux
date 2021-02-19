@@ -21,6 +21,7 @@ namespace node_gnome
       gpointer m_pGtkSettingsDefault;
       string   m_strTheme;
 
+
       node();
       virtual ~node();
 
@@ -51,15 +52,25 @@ namespace node_gnome
 
       using ::aura::node::node_fork;
 
+      virtual void windowing_message_loop_step();
+
       virtual void node_fork(const ::promise::routine & routine) override;
 
       virtual void node_post_quit() override;
 
-      virtual ::linux::appindicator * appindicator_allocate() override;
+      //virtual void on_subject(::promise::subject * psubject, ::promise::context * pcontext) override;
 
-      virtual void appindicator_destroy(::linux::appindicator * pappindicator) override;
+      //virtual void _on_change_os_user_theme(string strTheme);
 
-      virtual void enum_display_monitors(::aura::session * psession) override;
+      virtual void _os_process_user_theme_color(string strTheme);
+
+      //virtual ::node_linux::appindicator * appindicator_allocate() override;
+
+      //virtual void appindicator_destroy(::linux::appindicator * pappindicator) override;
+
+      //virtual void enum_display_monitors(::aura::session * psession) override;
+
+      virtual bool _os_calc_system_dark_mode() override;
 
       virtual void os_post_quit() override;
 

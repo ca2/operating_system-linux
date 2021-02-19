@@ -34,7 +34,7 @@ __pointer_array(x11_hook) g_x11hooka;
 ::e_status x11_hook::hook()
 {
 
-   sync_lock sl(x11_mutex());
+   synchronization_lock sl(x11_mutex());
 
    g_x11hooka.add(this);
 
@@ -46,7 +46,7 @@ __pointer_array(x11_hook) g_x11hooka;
 ::e_status x11_hook::unhook()
 {
 
-   sync_lock sl(x11_mutex());
+   synchronization_lock sl(x11_mutex());
 
    g_x11hooka.remove(this);
 
@@ -69,7 +69,7 @@ bool __x11_hook_list_is_empty()
 }
 
 
-bool __x11_hook_process_event(Display * pdisplay, XEvent * pevent, XGenericEventCookie * cookie)
+bool windowing::__x11_hook_process_event(XEvent * pevent, XGenericEventCookie * cookie)
 {
 
    XEvent & e = *pevent;

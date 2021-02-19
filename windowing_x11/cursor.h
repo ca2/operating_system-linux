@@ -3,19 +3,17 @@
 #pragma once
 
 
-namespace windowing
+namespace windowing_x11
 {
 
 
-   class CLASS_DECL_AURA cursor :
-      virtual public ::layered
+   class CLASS_DECL_WINDOWING_X11 cursor :
+      virtual public ::windowing::cursor
    {
    public:
 
 
-      enum_cursor                   m_ecursor;
-      ::size_i32                    m_szHotspotOffset;
-      __pointer(::draw2d::cursor)   m_pcursor;
+      ::Cursor                   m_cursor;
 
 
       cursor();
@@ -30,10 +28,7 @@ namespace windowing
    };
 
 
-
-} // namespace windowing
-
-
+} // namespace windowing_x11
 
 
 

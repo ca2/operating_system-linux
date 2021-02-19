@@ -188,10 +188,10 @@ namespace node_gnome
 
          //x11_add_filter();
 
-System.fork([]()
-     {
+   System.fork([this]()
+   {
 
-      x11_main();
+      m_pwindowing->_main_loop();
 
      });
 
@@ -220,9 +220,22 @@ System.fork([]()
 void node::os_calc_user_dark_mode()
 {
 
-      ::node_gnome::os_calc_dark_mode();
+   ::node_linux::node::os_calc_user_dark_mode();
 
 }
+
+   void node::windowing_message_loop_step()
+   {
+
+      auto psession = Session;
+
+      auto puser = psession->user();
+
+      auto pwindowing = puser->windowing();
+
+      pwindowing->message_loop_step();
+
+   }
 
 
    string node::os_get_user_theme()
@@ -307,12 +320,12 @@ void node::os_calc_user_dark_mode()
    }
 
 
-   void node::os_process_user_theme(string strTheme)
-   {
-
-      _os_process_user_theme(strTheme);
-
-   }
+//   void node::os_process_user_theme(string strTheme)
+//   {
+//
+//      _os_process_user_theme(strTheme);
+//
+//   }
 
 
    bool node::set_wallpaper(index iScreen, string strLocalImagePath)
@@ -456,90 +469,104 @@ void node::os_calc_user_dark_mode()
    }
 
 
-   ::linux::appindicator * node::appindicator_allocate()
-   {
-
-      return new ::node_gnome::appindicator();
-
-   }
-
-
-   void node::appindicator_destroy(::linux::appindicator * pappindicator)
-   {
-
-      //::linux::appindicator_destroy(pappindicator);
-
-      delete pappindicator;
-
-   }
+//   void node::on_subject(::promise::subject * psubject, ::promise::context * pcontext)
+//   {
+//
+//      if(psubject->m_id == ::id_os_user_theme)
+//      {
+//
+//         _on_change_os_user_theme();
+//
+//      }
+//
+//
+//   }
 
 
-   void node::enum_display_monitors(::aura::session * psession)
-   {
+//   ::nlinux::appindicator * node::appindicator_allocate()
+//   {
+//
+//      return new ::node_gnome::appindicator();
+//
+//   }
+//
+//
+//   void node::appindicator_destroy(::linux::appindicator * pappindicator)
+//   {
+//
+//      //::linux::appindicator_destroy(pappindicator);
+//
+//      delete pappindicator;
+//
+//   }
 
-      node_fork(__routine([psession]
-                           {
 
-                              sync_lock sl(x11_mutex());
-
-                              xdisplay d(x11_get_display());
-
-                              GdkDisplay *pdisplay = gdk_display_get_default();
-
-                              if (pdisplay == nullptr)
-                              {
-
-                                 return;
-
-                              }
-
-                              sync_lock slSession(psession->mutex());
-
-                              ::count iMonitorCount = gdk_display_get_n_monitors(pdisplay);
-
-                              psession->m_rectaWkspace.set_size(iMonitorCount);
-
-                              psession->m_rectaMonitor.set_size(iMonitorCount);
-
-                              for (index iMonitor = 0; iMonitor < iMonitorCount; iMonitor++)
-                              {
-
-                                 GdkMonitor *pmonitor = gdk_display_get_monitor(pdisplay, iMonitor);
-
-                                 auto &rectWkspace = psession->m_rectaWkspace[iMonitor];
-
-                                 auto &rectMonitor = psession->m_rectaMonitor[iMonitor];
-
-                                 if (pmonitor == nullptr)
-                                 {
-
-                                    rectWkspace.Null();
-
-                                    rectMonitor.Null();
-
-                                    continue;
-
-                                 }
-
-                                 GdkRectangle rect;
-
-                                 __zero(rect);
-
-                                 gdk_monitor_get_workarea(pmonitor, &rect);
-
-                                 __copy(rectWkspace, rect);
-
-                                 __zero(rect);
-
-                                 gdk_monitor_get_geometry(pmonitor, &rect);
-
-                                 __copy(rectMonitor, rect);
-
-                              }
-
-                           }));
-
-   }
+//   void node::enum_display_monitors(::aura::session * psession)
+//   {
+//
+//      node_fork(__routine([psession]
+//                           {
+//
+//                              synchronization_lock sl(x11_mutex());
+//
+//                              //xdisplay d(x11_get_display());
+//
+//                              GdkDisplay *pdisplay = gdk_display_get_default();
+//
+//                              if (pdisplay == nullptr)
+//                              {
+//
+//                                 return;
+//
+//                              }
+//
+//                              synchronization_lock slSession(psession->mutex());
+//
+//                              ::count iMonitorCount = gdk_display_get_n_monitors(pdisplay);
+//
+//                              psession->m_rectaWkspace.set_size(iMonitorCount);
+//
+//                              psession->m_rectaMonitor.set_size(iMonitorCount);
+//
+//                              for (index iMonitor = 0; iMonitor < iMonitorCount; iMonitor++)
+//                              {
+//
+//                                 GdkMonitor *pmonitor = gdk_display_get_monitor(pdisplay, iMonitor);
+//
+//                                 auto &rectWkspace = psession->m_rectaWkspace[iMonitor];
+//
+//                                 auto &rectMonitor = psession->m_rectaMonitor[iMonitor];
+//
+//                                 if (pmonitor == nullptr)
+//                                 {
+//
+//                                    rectWkspace.Null();
+//
+//                                    rectMonitor.Null();
+//
+//                                    continue;
+//
+//                                 }
+//
+//                                 GdkRectangle rect;
+//
+//                                 __zero(rect);
+//
+//                                 gdk_monitor_get_workarea(pmonitor, &rect);
+//
+//                                 __copy(rectWkspace, rect);
+//
+//                                 __zero(rect);
+//
+//                                 gdk_monitor_get_geometry(pmonitor, &rect);
+//
+//                                 __copy(rectMonitor, rect);
+//
+//                              }
+//
+//                           }));
+//
+//   }
 
 
    void node::os_post_quit()
@@ -588,18 +615,20 @@ void node::os_calc_user_dark_mode()
 
       ::matter * pmatter = psubject;
 
-      node_fork([pmatter]()
-                {
+      node_fork(__routine([pmatter]()
+      {
 
-                   auto ret = g_timeout_add(300, (GSourceFunc) &node_gnome_source_func, pmatter);
+         auto ret = g_timeout_add(300, (GSourceFunc) &node_gnome_source_func, pmatter);
 
-                   printf("ret %d", ret);
+         printf("ret %d", ret);
 
-                   printf("ret %d", ret);
+         printf("ret %d", ret);
 
-//      g_idle_add(&node_gnome_source_func, pmatter);
+         g_idle_add(&node_gnome_source_func, pmatter);
 
-                });
+      }));
+
+      return true;
 
    }
 

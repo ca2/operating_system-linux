@@ -2,14 +2,14 @@
 // recreated by Camilo 2021-01-28 22:42 <3TBS, Mummi and bilbo!!
 // hi5 contribution...
 #include "framework.h"
-#if !BROAD_PRECOMPILED_HEADER
-#include "aura/user/_user.h"
-#endif
-#include "_user.h"
+//#if !BROAD_PRECOMPILED_HEADER
+//#include "aura/user/_user.h"
+//#endif
+//#include "_user.h"
 
 //#define VERI_BASIC_TEST
 
-namespace xlib
+namespace windowing_x11
 {
 
 
@@ -45,13 +45,13 @@ namespace xlib
 
       }
 
-      sync_lock sl(mutex());
+      synchronization_lock sl(mutex());
 
-      xdisplay d(m_oswindow->display());
+      display_lock displaylock(x11_window()->x11_display());
 
       XGCValues gcvalues = {};
 
-      m_gc = XCreateGC(m_oswindow->display(), m_oswindow->window(), 0, &gcvalues);
+      m_gc = XCreateGC(x11_window()->Display(), x11_window()->Window(), 0, &gcvalues);
 
       return estatus;
 
@@ -61,14 +61,21 @@ namespace xlib
    void buffer::finalize()
    {
 
-      sync_lock sl(mutex());
+      if(!x11_window())
+      {
 
-      xdisplay d(m_oswindow->display());
+         return;
+
+      }
+
+      synchronization_lock sl(mutex());
+
+      display_lock displaylock(x11_window()->x11_display());
 
       if(m_gc != nullptr)
       {
 
-         XFreeGC(m_oswindow->display(), m_gc);
+         XFreeGC(x11_window()->Display(), m_gc);
 
          m_gc = nullptr;
 
@@ -78,10 +85,10 @@ namespace xlib
    }
 
 
-   bool buffer::create_os_buffer(const ::size & size, int iStrideParam)
+   bool buffer::create_os_buffer(const ::size_i32 & size, int iStrideParam)
    {
 
-//      sync_lock sl(mutex());
+//      synchronization_lock sl(mutex());
 //
 //      destroy_os_buffer();
 //
@@ -125,7 +132,7 @@ namespace xlib
    void buffer::destroy_os_buffer()
    {
 
-//      sync_lock sl(mutex());
+//      synchronization_lock sl(mutex());
 //
 //      xdisplay d(m_oswindow->display());
 //
@@ -170,7 +177,7 @@ namespace xlib
 //   bool buffer::create_os_buffer(::image * pimage)
 //   {
 //
-//      //sync_lock sl(mutex());
+//      //synchronization_lock sl(mutex());
 //
 ////      if(!pimage)
 ////      {
@@ -251,7 +258,7 @@ namespace xlib
 
       }
 
-      if(m_pimpl->m_oswindow == nullptr)
+      if(!m_pimpl->m_pwindow)
       {
 
          return false;
@@ -272,7 +279,7 @@ namespace xlib
       if(!m_pimpl->m_puserinteraction->is_window_screen_visible())
       {
 
-         bool bReallyNotVisible = !(m_pimpl->m_puserinteraction->GetStyle() & WS_VISIBLE);
+         //bool bReallyNotVisible = !(m_pimpl->m_puserinteraction->GetStyle() & WS_VISIBLE);
 
          INFO("XPutImage not called. Ui is not visible.");
 
@@ -280,14 +287,14 @@ namespace xlib
 
       }
 
-      if(m_oswindow == nullptr)
+      if(!m_pwindow)
       {
 
          return false;
 
       }
 
-      sync_lock slGraphics(mutex());
+      synchronization_lock slGraphics(mutex());
 
       if(m_gc == nullptr)
       {
@@ -298,7 +305,7 @@ namespace xlib
 
       auto psync = get_screen_sync();
 
-      sync_lock sl(psync);
+      synchronization_lock sl(psync);
 
       auto & pimage = get_screen_image();
 
@@ -313,7 +320,7 @@ namespace xlib
 
       pimage->map();
 
-      xdisplay d(m_oswindow->display());
+      display_lock displayLock(x11_window()->x11_display());
 
       //XImage * pximage = (XImage *)pimage->payload("pximage").i64();
 
@@ -326,14 +333,14 @@ namespace xlib
 
          memcpy(colora, pimage->get_data(), sizeof(colora));
 
-         int iDefaultDepth = DefaultDepth(m_oswindow->display(), m_oswindow->m_iScreen);
+         int iDefaultDepth = DefaultDepth(x11_window()->Display(), x11_window()->m_iScreen);
 
-         int iWindowDepth = m_oswindow->m_iDepth;
+         int iWindowDepth = x11_window()->m_iDepth;
 
          pximage =
             XCreateImage(
-               m_oswindow->display(),
-               m_oswindow->visual(),
+               x11_window()->Display(),
+               x11_window()->Visual(),
                iWindowDepth,
                ZPixmap,
                0,
@@ -370,7 +377,7 @@ namespace xlib
          //if(!bComboList)
          //{
 
-            XPutImage(m_oswindow->display(), m_oswindow->window(), m_gc, pximage, 0, 0, 0, 0, iWidth, iHeight);
+            XPutImage(x11_window()->Display(), x11_window()->Window(), m_gc, pximage, 0, 0, 0, 0, iWidth, iHeight);
 
          //}
 
@@ -454,7 +461,7 @@ namespace xlib
    ::draw2d::graphics * buffer::on_begin_draw()
    {
 
-      m_iGoodStride = max(m_iGoodStride, window_size().cx);
+      m_iGoodStride = maximum(m_iGoodStride, window_size().cx);
 
       bitmap_source_buffer::on_begin_draw();
 
@@ -463,7 +470,7 @@ namespace xlib
    }
 
 
-} // namespace xlib
+} // namespace windowing_x11
 
 
 

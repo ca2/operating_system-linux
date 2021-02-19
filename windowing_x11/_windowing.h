@@ -7,7 +7,7 @@
 //!!!#include <X11/Xlib.h>
 
 
-Display * x11_get_display();
+//Display * x11_get_display();
 
 
 Visual * get_32bit_visual(Display * pdisplay);
@@ -23,12 +23,12 @@ void __x11_hook_on_idle(Display * pdisplay);
 CLASS_DECL_ACME mutex * x11_mutex();
 
 
-#include "x11_exception.h"
-#include "x11_keyboard.h"
-#include "x11_hook.h"
-#include "x11_button.h"
-#include "x11_simple_ui_display.h"
-#include "x11_message_box.h"
+//#include "x11_exception.h"
+//#include "x11_keyboard.h"
+//#include "x11_hook.h"
+//#include "x11_button.h"
+//#include "x11_simple_ui_display.h"
+//#include "x11_message_box.h"
 
 
 ::e_status defer_initialize_x11();

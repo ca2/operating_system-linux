@@ -1,8 +1,13 @@
 //
 // Created by camilo on 18/02/2021.
 //
+#pragma once
 
-#ifndef BASIS_SN_H
-#define BASIS_SN_H
 
-#endif //BASIS_SN_H
+#include "third/sn/sn.h"
+
+
+extern SnLauncheeContext * g_psncontext;
+
+
+

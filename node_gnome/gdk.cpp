@@ -2,10 +2,14 @@
 #include "acme/id.h"
 #include "_.h"
 #include "gdk.h"
-#include "acme/os/x11/_x11.h"
+#include "acme/os/ansios/pmutex_lock.h"
+#include "acme/user/os_theme_colors.h"
 #include <gio/gio.h>
 #include <gtk/gtk.h>
 #include <glib.h>
+
+
+::e_status os_defer_init_gtk();
 
 
 bool x11_message_loop_step();
@@ -14,23 +18,28 @@ bool x11_message_loop_step();
 gboolean gtk_quit_callback(gpointer data);
 
 
-void __copy(::color & color, const GdkRGBA & rgba)
+void __copy(::color::color & color, const GdkRGBA & rgba)
 {
 
    color.set(rgba.red, rgba.green, rgba.blue, rgba.alpha);
 
 }
 
-void __gtk_style_context_get_color(GtkStyleContext *context, GtkStateFlags state, const char * pszProperty, ::color & color)
+
+void __gtk_style_context_get_color(GtkStyleContext *context, GtkStateFlags state, const char * pszProperty, ::u32 & u32)
 {
 
    GdkRGBA * prgba = nullptr;
 
    gtk_style_context_get (context, state, pszProperty, &prgba, NULL);
 
+   ::color::color color;
+
    __copy(color, *prgba);
 
    gdk_rgba_free (prgba);
+
+   u32 = color.u32;
 
 }
 
@@ -40,16 +49,16 @@ namespace node_gnome
 
    ::logic::bit g_bitLastDarkMode;
 
-   char * gsettings_get_malloc(const char * pszSchema, const char * pszKey);
+   char *gsettings_get_malloc(const char *pszSchema, const char *pszKey);
 
    CLASS_DECL_ACME void _os_process_user_theme_color(string strTheme);
 
-   bool gsettings_get(string & str, const char * pszSchema, const char * pszKey)
+   bool gsettings_get(string &str, const char *pszSchema, const char *pszKey)
    {
 
-      char * psz = gsettings_get_malloc(pszSchema, pszKey);
+      char *psz = gsettings_get_malloc(pszSchema, pszKey);
 
-      if(psz == nullptr)
+      if (psz == nullptr)
       {
 
          return false;
@@ -62,7 +71,7 @@ namespace node_gnome
          str = psz;
 
       }
-      catch(...)
+      catch (...)
       {
 
       }
@@ -73,7 +82,7 @@ namespace node_gnome
          ::free(psz);
 
       }
-      catch(...)
+      catch (...)
       {
 
       }
@@ -89,31 +98,31 @@ namespace node_gnome
    pthread_mutex_t g_mutexG;
 
 
-   bool gsettings_set(const char * pszSchema, const char * pszKey, const char * pszValue)
+   bool gsettings_set(const char *pszSchema, const char *pszKey, const char *pszValue)
    {
 
-      if(pszSchema == nullptr)
+      if (pszSchema == nullptr)
       {
 
          return false;
 
       }
 
-      if(pszKey == nullptr)
+      if (pszKey == nullptr)
       {
 
          return false;
 
       }
 
-      if(pszValue == nullptr)
+      if (pszValue == nullptr)
       {
 
          return false;
 
       }
 
-      if(!os_defer_init_gtk())
+      if (!os_defer_init_gtk())
       {
 
          return false;
@@ -122,7 +131,7 @@ namespace node_gnome
 
       GSettings *settings = g_settings_new(pszSchema);
 
-      if(settings == nullptr)
+      if (settings == nullptr)
       {
 
          return false;
@@ -134,7 +143,7 @@ namespace node_gnome
       if (settings != nullptr)
       {
 
-         g_object_unref (settings);
+         g_object_unref(settings);
 
       }
 
@@ -146,38 +155,38 @@ namespace node_gnome
    bool gsettings_sync()
    {
 
-      if(!os_defer_init_gtk())
+      if (!os_defer_init_gtk())
       {
 
          return false;
 
       }
 
-      g_settings_sync ();
+      g_settings_sync();
 
       return true;
 
    }
 
 
-   char * gsettings_get_malloc(const char * pszSchema, const char * pszKey)
+   char *gsettings_get_malloc(const char *pszSchema, const char *pszKey)
    {
 
-      if(pszSchema == nullptr)
+      if (pszSchema == nullptr)
       {
 
          return nullptr;
 
       }
 
-      if(pszKey == nullptr)
+      if (pszKey == nullptr)
       {
 
          return nullptr;
 
       }
 
-      if(!os_defer_init_gtk())
+      if (!os_defer_init_gtk())
       {
 
          return nullptr;
@@ -186,36 +195,36 @@ namespace node_gnome
 
       GSettings *settings = g_settings_new(pszSchema);
 
-      if(settings == nullptr)
+      if (settings == nullptr)
       {
 
          return nullptr;
 
       }
 
-      gchar * pgchar = g_settings_get_string (settings, pszKey);
+      gchar *pgchar = g_settings_get_string(settings, pszKey);
 
-      if(pgchar == nullptr)
+      if (pgchar == nullptr)
       {
 
-         g_object_unref (settings);
+         g_object_unref(settings);
 
          return nullptr;
 
       }
 
-      char * psz = strdup(pgchar);
+      char *psz = strdup(pgchar);
 
-      g_free (pgchar);
+      g_free(pgchar);
 
-      g_object_unref (settings);
+      g_object_unref(settings);
 
       return psz;
 
    }
 
 
-   void wallpaper_change_notification (GSettings * settings, const gchar * key, gpointer data)
+   void wallpaper_change_notification(GSettings *settings, const gchar *key, gpointer data)
    {
 
       System.process_subject(id_wallpaper_change);
@@ -223,13 +232,13 @@ namespace node_gnome
    }
 
 
-   GAction * g_pactionWallpaper = nullptr;
+   GAction *g_pactionWallpaper = nullptr;
 
 
-   bool g_enable_wallpaper_change_notification(const char * pszSchema, const char * pszKey)
+   bool g_enable_wallpaper_change_notification(const char *pszSchema, const char *pszKey)
    {
 
-      if(!g_bGInitialized)
+      if (!g_bGInitialized)
       {
 
          return false;
@@ -238,27 +247,27 @@ namespace node_gnome
 
       pmutex_lock lock(&g_mutexG);
 
-      if(g_pactionWallpaper != nullptr)
+      if (g_pactionWallpaper != nullptr)
       {
 
          return true;
 
       }
 
-      GSettings * settings = g_settings_new(pszSchema);
+      GSettings *settings = g_settings_new(pszSchema);
 
-      if(settings == nullptr)
+      if (settings == nullptr)
       {
 
          return false;
 
       }
 
-      g_pactionWallpaper = g_settings_create_action (settings, pszKey);
+      g_pactionWallpaper = g_settings_create_action(settings, pszKey);
 
-      g_object_unref (settings);
+      g_object_unref(settings);
 
-      g_signal_connect (g_pactionWallpaper, "notify::state", G_CALLBACK (wallpaper_change_notification), nullptr);
+      g_signal_connect (g_pactionWallpaper, "notify::state", G_CALLBACK(wallpaper_change_notification), nullptr);
 
       return true;
 
@@ -268,7 +277,7 @@ namespace node_gnome
    void g_defer_init()
    {
 
-      if(g_bGInitialized)
+      if (g_bGInitialized)
       {
 
          return;
@@ -285,7 +294,7 @@ namespace node_gnome
    void g_defer_term()
    {
 
-      if(!g_bGInitialized)
+      if (!g_bGInitialized)
       {
 
          return;
@@ -294,7 +303,7 @@ namespace node_gnome
 
       g_bGInitialized = false;
 
-      if(g_pactionWallpaper != nullptr)
+      if (g_pactionWallpaper != nullptr)
       {
 
          g_object_unref(g_pactionWallpaper);
@@ -336,7 +345,7 @@ namespace node_gnome
    string _os_get_user_theme()
    {
 
-      if(!g_bInitializedUserTheme)
+      if (!g_bInitializedUserTheme)
       {
 
          g_bInitializedUserTheme = true;
@@ -359,42 +368,43 @@ namespace node_gnome
       switch (edesktop)
       {
 
-      case ::user::e_desktop_gnome:
-      case ::user::e_desktop_ubuntu_gnome:
-      case ::user::e_desktop_unity_gnome:
+         case ::user::e_desktop_gnome:
+         case ::user::e_desktop_ubuntu_gnome:
+         case ::user::e_desktop_unity_gnome:
 
-         bOk = gsettings_get(strTheme, "org.gnome.desktop.interface", "gtk-theme");
+            bOk = gsettings_get(strTheme, "org.gnome.desktop.interface", "gtk-theme");
 
-         break;
+            break;
 
-      case ::user::e_desktop_mate:
+         case ::user::e_desktop_mate:
 
-         bOk = gsettings_get(strTheme, "org.mate.background", "picture-filename");
+            bOk = gsettings_get(strTheme, "org.mate.background", "picture-filename");
 
-         break;
+            break;
 
-      case ::user::e_desktop_lxde:
+         case ::user::e_desktop_lxde:
 
-         //call_async("pcmanfm", "-w " + strLocalImagePath, nullptr, e_display_none, false);
+            //call_async("pcmanfm", "-w " + strLocalImagePath, nullptr, e_display_none, false);
 
-         break;
+            break;
 
-      case ::user::e_desktop_xfce:
-      {
-         //        Q_FOREACH(QString entry, Global::getOutputOfCommand("xfconf-query", QStringList() << "-c" << "xfce4-desktop" << "-point" << "/backdrop" << "-l").split("\n")){
-         //          if(entry.contains("image-path") || entry.contains("last-image")){
-         //            QProcess::startDetached("xfconf-query", QStringList() << "-c" << "xfce4-desktop" << "-point" << entry << "-s" << image);
-         //      }
-         //}
+         case ::user::e_desktop_xfce:
+         {
+            //        Q_FOREACH(QString entry, Global::getOutputOfCommand("xfconf-query", QStringList() << "-c" << "xfce4-desktop" << "-point" << "/backdrop" << "-l").split("\n")){
+            //          if(entry.contains("image-path") || entry.contains("last-image")){
+            //            QProcess::startDetached("xfconf-query", QStringList() << "-c" << "xfce4-desktop" << "-point" << entry << "-s" << image);
+            //      }
+            //}
 
-      }
+         }
 
-      //break;
+            //break;
 
-      default:
+         default:
 
-         output_debug_string("Failed to get wallpaper setting. If your Desktop Environment is not listed at \"Preferences->Integration-> Current Desktop Environment\", then it is not supported.");
-         //return "";
+            output_debug_string(
+               "Failed to get wallpaper setting. If your Desktop Environment is not listed at \"Preferences->Integration-> Current Desktop Environment\", then it is not supported.");
+            //return "";
 
       }
 
@@ -417,42 +427,43 @@ namespace node_gnome
       switch (edesktop)
       {
 
-      case ::user::e_desktop_gnome:
-      case ::user::e_desktop_ubuntu_gnome:
-      case ::user::e_desktop_unity_gnome:
+         case ::user::e_desktop_gnome:
+         case ::user::e_desktop_ubuntu_gnome:
+         case ::user::e_desktop_unity_gnome:
 
-         bOk = gsettings_get(strWallpaper, "org.gnome.desktop.background", "picture-uri");
+            bOk = gsettings_get(strWallpaper, "org.gnome.desktop.background", "picture-uri");
 
-         break;
+            break;
 
-      case ::user::e_desktop_mate:
+         case ::user::e_desktop_mate:
 
-         bOk = gsettings_get(strWallpaper, "org.mate.background", "picture-filename");
+            bOk = gsettings_get(strWallpaper, "org.mate.background", "picture-filename");
 
-         break;
+            break;
 
-      case ::user::e_desktop_lxde:
+         case ::user::e_desktop_lxde:
 
-         //call_async("pcmanfm", "-w " + strLocalImagePath, nullptr, e_display_none, false);
+            //call_async("pcmanfm", "-w " + strLocalImagePath, nullptr, e_display_none, false);
 
-         break;
+            break;
 
-      case ::user::e_desktop_xfce:
-      {
-         //        Q_FOREACH(QString entry, Global::getOutputOfCommand("xfconf-query", QStringList() << "-c" << "xfce4-desktop" << "-point" << "/backdrop" << "-l").split("\n")){
-         //          if(entry.contains("image-path") || entry.contains("last-image")){
-         //            QProcess::startDetached("xfconf-query", QStringList() << "-c" << "xfce4-desktop" << "-point" << entry << "-s" << image);
-         //      }
-         //}
+         case ::user::e_desktop_xfce:
+         {
+            //        Q_FOREACH(QString entry, Global::getOutputOfCommand("xfconf-query", QStringList() << "-c" << "xfce4-desktop" << "-point" << "/backdrop" << "-l").split("\n")){
+            //          if(entry.contains("image-path") || entry.contains("last-image")){
+            //            QProcess::startDetached("xfconf-query", QStringList() << "-c" << "xfce4-desktop" << "-point" << entry << "-s" << image);
+            //      }
+            //}
 
-      }
+         }
 
-      //break;
+            //break;
 
-      default:
+         default:
 
-         output_debug_string("Failed to get wallpaper setting. If your Desktop Environment is not listed at \"Preferences->Integration-> Current Desktop Environment\", then it is not supported.");
-         //return "";
+            output_debug_string(
+               "Failed to get wallpaper setting. If your Desktop Environment is not listed at \"Preferences->Integration-> Current Desktop Environment\", then it is not supported.");
+            //return "";
 
       }
 
@@ -463,10 +474,10 @@ namespace node_gnome
    }
 
 
-   ::user::os_theme_colors * new_os_theme_colors(string strTheme)
+   ::os_theme_colors *new_os_theme_colors(string strTheme)
    {
 
-      auto pthemecolors = new ::user::os_theme_colors;
+      auto pthemecolors = new ::os_theme_colors;
 
       GtkStyleContext *pstylecontext = gtk_style_context_new();
 
@@ -483,16 +494,16 @@ namespace node_gnome
          gtk_style_context_set_path(pstylecontext, ppath);
 
          __gtk_style_context_get_color(
-                 pstylecontext,
-                 GTK_STATE_FLAG_NORMAL,
-                 GTK_STYLE_PROPERTY_BACKGROUND_COLOR,
-                 pthemecolors->m_colorBack);
+            pstylecontext,
+            GTK_STATE_FLAG_NORMAL,
+            GTK_STYLE_PROPERTY_BACKGROUND_COLOR,
+            pthemecolors->m_colorBack.u32);
 
          __gtk_style_context_get_color(
-                 pstylecontext,
-                 GTK_STATE_FLAG_NORMAL,
-                 GTK_STYLE_PROPERTY_COLOR,
-                 pthemecolors->m_colorFore);
+            pstylecontext,
+            GTK_STATE_FLAG_NORMAL,
+            GTK_STYLE_PROPERTY_COLOR,
+            pthemecolors->m_colorFore.u32);
 
          gtk_widget_destroy(pdialog);
 
@@ -507,14 +518,14 @@ namespace node_gnome
          gtk_style_context_set_path(pstylecontext, ppath);
 
          __gtk_style_context_get_color(
-                 pstylecontext,
-                 GTK_STATE_FLAG_NORMAL,
-                 GTK_STYLE_PROPERTY_BACKGROUND_COLOR,
-                 pthemecolors->m_colorFace);
+            pstylecontext,
+            GTK_STATE_FLAG_NORMAL,
+            GTK_STYLE_PROPERTY_BACKGROUND_COLOR,
+            pthemecolors->m_colorFace.u32);
 
          double dAlpha = pthemecolors->m_colorFace.get_a_rate();
 
-         if(dAlpha < 0.95)
+         if (dAlpha < 0.95)
          {
 
             pthemecolors->m_colorFace.blend(pthemecolors->m_colorBack, 1.0 - dAlpha);
@@ -522,14 +533,14 @@ namespace node_gnome
          }
 
          __gtk_style_context_get_color(
-                 pstylecontext,
-                 GTK_STATE_FLAG_PRELIGHT,
-                 GTK_STYLE_PROPERTY_BACKGROUND_COLOR,
-                 pthemecolors->m_colorFaceHover);
+            pstylecontext,
+            GTK_STATE_FLAG_PRELIGHT,
+            GTK_STYLE_PROPERTY_BACKGROUND_COLOR,
+            pthemecolors->m_colorFaceHover.u32);
 
          dAlpha = pthemecolors->m_colorFaceHover.get_a_rate();
 
-         if(dAlpha < 0.95)
+         if (dAlpha < 0.95)
          {
 
             pthemecolors->m_colorFaceHover.blend(pthemecolors->m_colorBack, 1.0 - dAlpha);
@@ -537,14 +548,14 @@ namespace node_gnome
          }
 
          __gtk_style_context_get_color(
-                 pstylecontext,
-                 GTK_STATE_FLAG_ACTIVE,
-                 GTK_STYLE_PROPERTY_BACKGROUND_COLOR,
-                 pthemecolors->m_colorFacePress);
+            pstylecontext,
+            GTK_STATE_FLAG_ACTIVE,
+            GTK_STYLE_PROPERTY_BACKGROUND_COLOR,
+            pthemecolors->m_colorFacePress.u32);
 
          dAlpha = pthemecolors->m_colorFacePress.get_a_rate();
 
-         if(dAlpha < 0.95)
+         if (dAlpha < 0.95)
          {
 
             pthemecolors->m_colorFacePress.blend(pthemecolors->m_colorBack, 1.0 - dAlpha);
@@ -552,22 +563,22 @@ namespace node_gnome
          }
 
          __gtk_style_context_get_color(
-                 pstylecontext,
-                 GTK_STATE_FLAG_NORMAL,
-                 GTK_STYLE_PROPERTY_COLOR,
-                 pthemecolors->m_colorButton);
+            pstylecontext,
+            GTK_STATE_FLAG_NORMAL,
+            GTK_STYLE_PROPERTY_COLOR,
+            pthemecolors->m_colorButton.u32);
 
          __gtk_style_context_get_color(
-                 pstylecontext,
-                 GTK_STATE_FLAG_PRELIGHT,
-                 GTK_STYLE_PROPERTY_COLOR,
-                 pthemecolors->m_colorButtonHover);
+            pstylecontext,
+            GTK_STATE_FLAG_PRELIGHT,
+            GTK_STYLE_PROPERTY_COLOR,
+            pthemecolors->m_colorButtonHover.u32);
 
          __gtk_style_context_get_color(
-                 pstylecontext,
-                 GTK_STATE_FLAG_NORMAL,
-                 GTK_STYLE_PROPERTY_BORDER_COLOR,
-                 pthemecolors->m_colorBorder);
+            pstylecontext,
+            GTK_STATE_FLAG_NORMAL,
+            GTK_STYLE_PROPERTY_BORDER_COLOR,
+            pthemecolors->m_colorBorder.u32);
 
 
 //         pthemecolors->m_colorBorderHover4 = pthemecolors->m_colorBorderHover;
@@ -588,10 +599,10 @@ namespace node_gnome
          gtk_style_context_set_path(pstylecontext, ppath);
 
          __gtk_style_context_get_color(
-                 pstylecontext,
-                 GTK_STATE_FLAG_SELECTED,
-                 GTK_STYLE_PROPERTY_BACKGROUND_COLOR,
-                 pthemecolors->m_colorBorderHover);
+            pstylecontext,
+            GTK_STATE_FLAG_SELECTED,
+            GTK_STYLE_PROPERTY_BACKGROUND_COLOR,
+            pthemecolors->m_colorBorderHover.u32);
 
          pthemecolors->m_colorBorderPress = pthemecolors->m_colorBorderHover;
 
@@ -608,10 +619,10 @@ namespace node_gnome
          pthemecolors->m_colorBorderHover3.blend(pthemecolors->m_colorBack, 0.9);
 
          __gtk_style_context_get_color(
-                 pstylecontext,
-                 GTK_STATE_FLAG_SELECTED,
-                 GTK_STYLE_PROPERTY_COLOR,
-                 pthemecolors->m_colorButtonPress);
+            pstylecontext,
+            GTK_STATE_FLAG_SELECTED,
+            GTK_STYLE_PROPERTY_COLOR,
+            pthemecolors->m_colorButtonPress.u32);
 
          gtk_widget_destroy(pwidget);
 
@@ -622,24 +633,24 @@ namespace node_gnome
    }
 
 
-   CLASS_DECL_ACME void _os_process_user_theme(string strTheme)
+   void node::os_process_user_theme(string strTheme)
    {
 
       _os_process_user_theme_color(strTheme);
 
-      os_calc_dark_mode();
+      os_calc_user_dark_mode();
 
    }
 
 
-   CLASS_DECL_ACME void _os_process_user_theme_color(string strTheme)
+   void node::_os_process_user_theme_color(string strTheme)
    {
 
       auto pthemecolors = new_os_theme_colors(strTheme);
 
       auto pthemecolorsOld = ::user::os_get_theme_colors();
 
-      if(!pthemecolorsOld || memcmp(pthemecolors, pthemecolorsOld, sizeof(::user::os_theme_colors)))
+      if (!pthemecolorsOld || memcmp(pthemecolors, pthemecolorsOld, sizeof(::os_theme_colors)))
       {
 
          ::user::os_set_theme_colors(pthemecolors);
@@ -661,8 +672,7 @@ namespace node_gnome
    }
 
 
-
-   bool _os_calc_dark_mode()
+   bool node::_os_calc_system_dark_mode()
    {
 
       auto pthemecolors = ::user::os_get_theme_colors();
@@ -685,27 +695,27 @@ namespace node_gnome
    }
 
 
-   void os_calc_dark_mode()
-   {
-
-      bool bDarkMode = _os_calc_dark_mode();
-
-      if(g_bitLastDarkMode != bDarkMode)
-      {
-
-         ::user::set_app_dark_mode(bDarkMode);
-
-         ::user::set_system_dark_mode(bDarkMode);
-
-         g_bitLastDarkMode = bDarkMode;
-
-         System.deliver(id_os_dark_mode);
-
-         x11_kick_idle();
-
-      }
-
-   }
+//   void os_calc_dark_mode()
+//   {
+//
+//      bool bDarkMode = _os_calc_dark_mode();
+//
+//      if(g_bitLastDarkMode != bDarkMode)
+//      {
+//
+//         ::user::set_app_dark_mode(bDarkMode);
+//
+//         ::user::set_system_dark_mode(bDarkMode);
+//
+//         g_bitLastDarkMode = bDarkMode;
+//
+//         System.deliver(id_os_dark_mode);
+//
+//         x11_kick_idle();
+//
+//      }
+//
+//   }
 
 } // namespace user
 
@@ -783,20 +793,22 @@ CLASS_DECL_APEX void main_branch(::matter * prunnable, e_priority epriority)
 //}
 
 
-gboolean x11_source_func(gpointer)
+gboolean x11_source_func(gpointer p)
 {
 
-   x11_message_loop_step();
+   ::node_gnome::node * pnode = (::node_gnome::node *) p;
+
+   pnode->windowing_message_loop_step();
 
    return TRUE;
 
 }
 
 
-void x11_add_idle_source()
+void x11_add_idle_source(::node_gnome::node * pnode)
 {
 
-   gdk_threads_add_idle(&x11_source_func, nullptr);
+   gdk_threads_add_idle(&x11_source_func, pnode);
 
 }
 
@@ -809,12 +821,19 @@ GdkFilterReturn x11_event_func(GdkXEvent *xevent, GdkEvent *event, gpointer  dat
 
    XEvent * pevent = (XEvent *) xevent;
 
-   if(x11_message_handler(pevent))
-   {
+   ::node_gnome::node * pnode = (::node_gnome::node *) data;
 
-      //return GDK_FILTER_REMOVE;
+   auto pwindowing = pnode->windowing();
 
-   }
+   pwindowing->_message_handler(pevent);
+
+   //if(pwindowing)
+
+//   {
+
+  //    return GDK_FILTER_REMOVE;
+
+   //}
 
    return GDK_FILTER_CONTINUE;
 

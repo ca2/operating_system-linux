@@ -576,14 +576,14 @@ CLASS_DECL_APEX void main_branch(::matter * prunnable, e_priority epriority)
 //}
 
 
-gboolean x11_source_func(gpointer)
-{
-
-   x11_message_loop_step();
-
-   return TRUE;
-
-}
+//gboolean x11_source_func(gpointer)
+//{
+//
+//   x11_message_loop_step();
+//
+//   return TRUE;
+//
+//}
 
 
 void x11_add_idle_source()

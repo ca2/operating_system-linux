@@ -4,7 +4,7 @@
 #include "_windowing.h"
 
 
-namespace windowing
+namespace windowing_x11
 {
 
 
@@ -49,7 +49,7 @@ namespace windowing
    }
 
 
-} // namespace windowing
+} // namespace windowing_x11
 
 
 

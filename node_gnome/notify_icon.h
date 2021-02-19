@@ -12,20 +12,12 @@
 //#endif
 
 
-namespace user
+namespace node_gnome
 {
 
 
-   class notify_icon_listener;
-
-
    class CLASS_DECL_AURA notify_icon :
-#ifdef WINDOWS_DESKTOP
-      virtual public ::user::interaction
-#else
-      virtual public ::layered
-#endif
-      , virtual public user_notify_icon_bridge
+      virtual public ::user::notify_icon
    {
    public:
 
@@ -38,17 +30,17 @@ namespace user
       };
 
 
-      ::u32                                  m_uiId;
-      bool                                   m_bCreated;
-      string                                 m_strId;
+      ::u32                                             m_uiId;
+      bool                                              m_bCreated;
+      string                                            m_strId;
 //#ifdef WINDOWS_DESKTOP
 //      NOTIFYICONDATA m_nid;
 //#elif defined(LINUX)
-//      ::linux::appindicator *       m_pindicator;
+      __pointer(::node_linux::appindicator)        m_pindicator;
 //#endif
-      notify_icon_listener *                 m_plistener;
-      __pointer_array(::user::interaction)   m_wndptraHidden;
-      __pointer(::windowing::icon)           m_piconCurrent;
+      __pointer(::user::notify_icon_listener)      m_plistener;
+      __pointer_array(::user::interaction)         m_wndptraHidden;
+      __pointer(::windowing::icon)                 m_picon;
 
 
       notify_icon();
@@ -76,7 +68,7 @@ namespace user
 
       bool modify_icon(::windowing::icon * picon);
 
-      virtual bool create_notify_icon(::u32 id, notify_icon_listener * plistener, ::windowing::icon * picon);
+      virtual bool create_notify_icon(::u32 id, ::user::notify_icon_listener * plistener, ::windowing::icon * picon) override;
 
       //DECL_GEN_SIGNAL(_001OnNotifyIconMessage);
       //DECL_GEN_SIGNAL(_001OnDestroy);

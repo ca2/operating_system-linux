@@ -9,7 +9,7 @@ namespace node_gnome
 
 
    class appindicator :
-      virtual public ::linux::appindicator
+      virtual public ::node_linux::appindicator
    {
    public:
 

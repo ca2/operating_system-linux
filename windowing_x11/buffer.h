@@ -5,7 +5,7 @@
 //#include <X11/extensions/Xrender.h>
 
 //#include "app/base/graphics/graphics_window_buffer.h"
-namespace xlib
+namespace windowing_x11
 {
 
 
@@ -22,7 +22,7 @@ namespace xlib
       //memory                        m_mem;
       //XImage *                      m_pimage;
       //bool                          m_bMapped;
-      ::rect                        m_rectLast;
+      ::rectangle_i32                 m_rectLast;
       //::image_pointer                         m_pimage;
 
 
@@ -30,12 +30,15 @@ namespace xlib
       virtual ~buffer();
 
 
+      ::windowing_x11::window * x11_window() { return (::windowing_x11::window *) (m_pwindow ? m_pwindow->layer(LAYERED_X11) : nullptr); }
+
+
       virtual ::e_status initialize_graphics_graphics(::user::interaction_impl * pimpl) override;
       virtual void finalize() override;
 
 
-      virtual bool create_os_buffer(const ::size & size, int iStride = -1);
-      virtual void destroy_os_buffer();
+      virtual bool create_os_buffer(const ::size_i32 & size, int iStride = -1) ;
+      virtual void destroy_os_buffer() ;
 
 //      virtual bool create_os_buffer(::image::image * pimage);
 //      virtual void destroy_os_buffer(::image::image * pimage);
@@ -54,7 +57,7 @@ namespace xlib
    };
 
 
-} // namespace xlib
+} // namespace windowing_x11
 
 
 

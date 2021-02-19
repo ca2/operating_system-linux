@@ -12,7 +12,7 @@ namespace user
 
    //class keyboard_layout;
 
-   class CLASS_DECL_AURA keyboard :
+   class CLASS_DECL_WINDOWING_X11 keyboard :
    virtual public ::object
 {
    public:

@@ -17,7 +17,7 @@ static ::user::notify_icon * g_pnotifyiconLast = nullptr;
 #endif
 
 
-namespace user
+namespace node_gnome
 {
 
 
@@ -44,7 +44,7 @@ namespace user
    notify_icon::~notify_icon()
    {
 
-      DestroyWindow();
+      //DestroyWindow();
 
       if(g_pnotifyiconLast== this)
       {
@@ -71,7 +71,7 @@ namespace user
    }*/
 
 
-   bool notify_icon::create_notify_icon(::u32 uId, notify_icon_listener * plistener, ::windowing::icon * picon)
+   bool notify_icon::create_notify_icon(::u32 uId, ::user::notify_icon_listener * plistener, ::windowing::icon * picon)
    {
 
       if(m_bCreated)
@@ -140,7 +140,7 @@ namespace user
 
       {
 
-         string strAppId = pvisualicon->get_tray_icon_name();
+         string strAppId = m_picon->get_tray_icon_name();
 
          string strId(strAppId);
 
@@ -170,7 +170,7 @@ namespace user
          pnode->node_sync(5_s, __routine([this, pnode, strNotifyIcon, pathFolder]()
                                          {
 
-                                            m_pindicator = pnode->appindicator_allocate();
+                                            m_pindicator = pnode->new_appindicator();
 
                                             m_pindicator->create(m_strId, strNotifyIcon + "_128", pathFolder, this);
 
@@ -546,7 +546,7 @@ namespace user
 //#endif
 
 
-} // namespace user
+} // namespace node_gnome
 
 
 

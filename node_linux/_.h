@@ -2,7 +2,7 @@
 
 
 #include "node_ansios/_.h"
-
+#include "aura/_.h"
 
 
 #if defined(_NODE_LINUX_LIBRARY)
@@ -19,6 +19,10 @@ namespace node_linux
 
 
 } // namespace node_gnome
+
+
+
+#include "appindicator.h"
 
 
 #include "node.h"

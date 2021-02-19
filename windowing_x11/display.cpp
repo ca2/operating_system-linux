@@ -3,42 +3,44 @@
 // hi5 contribution...
 #include "framework.h"
 #include "apex/platform/app_core.h"
-#include "_user.h"
+#include "windowing_x11.h"
+//#include "_user.h"
 //#include <gdk/gdk.h>
 
 
-extern ::app_core * g_pappcore;
+extern ::app_core *g_pappcore;
 
-Display * x11_get_display();
+Display *x11_get_display();
 
-mutex * x11_mutex();
+mutex *x11_mutex();
 
 #define CA2_X11_WINDOW_LONG "ca2_ccwarehouse_window_long"
 #define CA2_X11_WINDOW_LONG_STYLE "ca2_ccwarehouse_window_long_style"
 #define CA2_X11_WINDOW_LONG_STYLE_EX "ca2_ccwarehouse_window_long_style_ex"
 
 
-void windowing_output_debug_string(const char * pszDebugString);
+void windowing_output_debug_string(const char *pszDebugString);
 
 namespace windowing_x11
 {
 
 
-   osdisplay_data *g_posdisplaydataMain = nullptr;
+   display *g_posdisplaydataMain = nullptr;
 
    void defer_init_ui();
 
-   osdisplay_data *x11_main_display()
+   display *x11_main_display()
    {
 
       return g_posdisplaydataMain;
 
    }
 
-   osdisplay_data::osdisplay_data()
+   display::display()
    {
 
-      m_pcsOsDisplayData = new critical_section();
+      set_layer(LAYERED_X11, this);
+      //m_pcsOsDisplayData = new critical_section();
       m_pdisplay = nullptr;
       m_atomLongType = None;
       m_atomLongStyle = None;
@@ -50,119 +52,357 @@ namespace windowing_x11
    }
 
 
-   osdisplay_data::~ osdisplay_data()
+   display::~ display()
    {
 
 //   ::acme::del(m_pmutexInput);
 
-      ::acme::del(m_pcsOsDisplayData);
+      //::acme::del(m_pcsOsDisplayData);
 
    }
 
 
-   i32 osdisplay_find(Display *pdisplay)
+#ifdef DEBUG
+
+
+   i64 display::get_ref_count()
    {
 
-      single_lock slOsWindow(::osdisplay_data::s_pmutex, true);
+      return m_countReference;
 
-      for (i32 i = 0; i < osdisplay_data::s_pdataptra->get_count(); i++)
+   }
+
+
+   i64 display::add_ref(OBJ_REF_DBG_PARAMS)
+   {
+
+#ifdef WINDOWS
+
+      return InterlockedIncrement64(&m_countReference);
+
+#elif defined(RASPBIAN) && defined(OS32BIT)
+
+      return __sync_add_and_fetch_4(&m_countReference,1);
+
+#else
+
+      return __sync_add_and_fetch(&m_countReference, 1);
+
+#endif
+
+   }
+
+
+   i64 display::dec_ref(OBJ_REF_DBG_PARAMS)
+   {
+
+#ifdef WINDOWS
+
+      return InterlockedDecrement64(&m_countReference);
+
+#elif defined(RASPBIAN) && defined(OS32BIT)
+
+      return __sync_sub_and_fetch_4(&m_countReference,1);
+
+#else
+
+      return __sync_sub_and_fetch(&m_countReference, 1);
+
+#endif
+
+   }
+
+
+   i64 display::release(OBJ_REF_DBG_PARAMS)
+   {
+
+      i64 i = dec_ref(OBJ_REF_DBG_ARGS);
+
+      if (i == 0)
       {
-         if (osdisplay_data::s_pdataptra->element_at(i)->m_pdisplay == pdisplay)
-         {
-            return i;
-         }
+
+         //osdisplay_remove(m_pdisplay);
+
       }
 
-      return -1;
+      return i;
 
    }
 
 
-   osdisplay_data *osdisplay_get(Display *pdisplay)
+#endif // DEBUG
+
+   ::e_status display::open()
    {
 
-      if (pdisplay == nullptr)
+      if(::is_set(m_pdisplay))
+      {
+
+         return ::success;
+
+      }
+
+      m_pdisplay =  XOpenDisplay(NULL);
+
+      if(::is_null(m_pdisplay))
+      {
+
+         return ::error_failed;
+
+      }
+
+      return ::success;
+
+   }
+
+
+   ::windowing_x11::window *display::_window(Window window)
+   {
+
+      if (!window)
       {
 
          return nullptr;
 
       }
 
-      single_lock slOsWindow(::osdisplay_data::s_pmutex, true);
+      critical_section_lock synchronizationlock(&m_criticalsectionWindowMap);
 
-      iptr iFind = osdisplay_find(pdisplay);
+      auto &pwindow = m_windowmap[window];
 
-      if (iFind >= 0)
+      if (!pwindow)
       {
 
-         return osdisplay_data::s_pdataptra->element_at(iFind);
+         pwindow = __new(::windowing_x11::window());
 
       }
 
-      osdisplay_data *pdisplaydata = new osdisplay_data;
-
-      pdisplaydata->m_pdisplay = pdisplay;
-      pdisplaydata->m_atomLongType = XInternAtom(pdisplay, CA2_X11_WINDOW_LONG, False);
-      pdisplaydata->m_atomLongStyle = XInternAtom(pdisplay, CA2_X11_WINDOW_LONG_STYLE, False);
-      pdisplaydata->m_atomLongStyleEx = XInternAtom(pdisplay, CA2_X11_WINDOW_LONG_STYLE_EX, False);
-
-      ::osdisplay_data::s_pdataptra->add(pdisplaydata);
-
-      if (!::g_pappcore->m_bGtkApp)
-      {
-
-         if (!g_posdisplaydataMain)
-         {
-
-            g_posdisplaydataMain = pdisplaydata;
-
-            //defer_init_ui();
-
-         }
-
-      }
-
-      return pdisplaydata;
+      return pwindow;
 
    }
 
 
-   bool osdisplay_remove(Display *pdisplay)
+   void display::lock_display()
    {
 
-      single_lock slOsWindow(::osdisplay_data::s_pmutex, true);
+      XLockDisplay(m_pdisplay);
 
-      iptr iFind = osdisplay_find(pdisplay);
+   }
 
-      if (iFind < 0)
-         return false;
 
-      osdisplay_data *pdata = ::osdisplay_data::s_pdataptra->element_at(iFind);
+   void display::unlock_display()
+   {
 
-      XCloseDisplay(pdata->m_pdisplay);
+      XUnlockDisplay(m_pdisplay);
 
-      ::osdisplay_data::s_pdataptra->remove_at(iFind);
+   }
+
+
+   ::Display *display::Display()
+   {
+
+      return ::is_null(this) ? nullptr : m_pdisplay;
+
+   }
+
+
+   ::Display *display::Display() const
+   {
+
+      return ::is_null(this) ? nullptr : m_pdisplay;
+
+   }
+
+
+   Atom display::atom_long_type()
+   {
+
+      return ::is_null(this) ? 0 : m_atomLongType;
+
+   }
+
+
+   Atom display::atom_long_style()
+   {
+
+      return ::is_null(this) ? 0 : m_atomLongStyle;
+
+   }
+
+
+   Atom display::atom_long_style_ex()
+   {
+
+      return ::is_null(this) ? 0 : m_atomLongStyleEx;
+
+   }
+
+
+   bool display::is_null() const
+   {
+
+      return ::is_null(this);
+
+   }
+
+
+
+   bool display::get_monitor_rect(index iMonitor, RECTANGLE_I32 * prectangle)
+   {
+      return ::windowing::display::get_monitor_rect(iMonitor, prectangle);
+//
+//      synchronization_lock synchronizationlock(mutex());
+//
+//      if (iMonitor < 0 || iMonitor >= get_monitor_count())
+//      {
+//
+//         return false;
+//
+//      }
+//
+//      *prectangle = m_rectaMonitor[iMonitor];
 
       return true;
 
    }
 
 
-   Atom osdisplay_data::get_window_long_atom(i32 nIndex)
+   ::e_status display::release_mouse_capture()
+   {
+
+      synchronization_lock synchronizationlock(x11_mutex());
+
+//    if(g_oswindowCapture == nullptr)
+//    {
+
+//       return false;
+
+//    }
+
+      windowing_output_debug_string("\noswindow_data::ReleaseCapture 1");
+
+      display_lock displaylock(this);
+
+      int_bool bRet = XUngrabPointer(Display(), CurrentTime) != false;
+
+//      //if(bRet)
+//      {
+//
+//         g_oswindowCapture = nullptr;
+//
+//      }
+
+      windowing_output_debug_string("\noswindow_data::ReleaseCapture 2");
+
+      return bRet;
+
+   }
+
+
+//   i32 display::osdisplay_find(Display *pdisplay)
+//   {
+//
+//      single_lock slOsWindow(::display::s_pmutex, true);
+//
+//      for (i32 i = 0; i < display::s_pdataptra->get_count(); i++)
+//      {
+//
+//         if (display::s_pdataptra->element_at(i)->m_pdisplay == pdisplay)
+//         {
+//
+//            return i;
+//
+//         }
+//
+//      }
+//
+//      return -1;
+//
+//   }
+
+
+//   display *osdisplay_get(Display *pdisplay)
+//   {
+//
+//      if (pdisplay == nullptr)
+//      {
+//
+//         return nullptr;
+//
+//      }
+//
+//      single_lock slOsWindow(::display::s_pmutex, true);
+//
+//      iptr iFind = osdisplay_find(pdisplay);
+//
+//      if (iFind >= 0)
+//      {
+//
+//         return display::s_pdataptra->element_at(iFind);
+//
+//      }
+//
+//      display *pdisplaydata = new display;
+//
+//      pdisplaydata->m_pdisplay = pdisplay;
+//      pdisplaydata->m_atomLongType = XInternAtom(pdisplay, CA2_X11_WINDOW_LONG, False);
+//      pdisplaydata->m_atomLongStyle = XInternAtom(pdisplay, CA2_X11_WINDOW_LONG_STYLE, False);
+//      pdisplaydata->m_atomLongStyleEx = XInternAtom(pdisplay, CA2_X11_WINDOW_LONG_STYLE_EX, False);
+//
+//      ::display::s_pdataptra->add(pdisplaydata);
+//
+//      if (!::g_pappcore->m_bGtkApp)
+//      {
+//
+//         if (!g_posdisplaydataMain)
+//         {
+//
+//            g_posdisplaydataMain = pdisplaydata;
+//
+//            //defer_init_ui();
+//
+//         }
+//
+//      }
+//
+//      return pdisplaydata;
+//
+//   }
+
+
+//   bool osdisplay_remove(Display *pdisplay)
+//   {
+//
+//      single_lock slOsWindow(::display::s_pmutex, true);
+//
+//      iptr iFind = osdisplay_find(pdisplay);
+//
+//      if (iFind < 0)
+//         return false;
+//
+//      display *pdata = ::display::s_pdataptra->element_at(iFind);
+//
+//      XCloseDisplay(pdata->m_pdisplay);
+//
+//      ::display::s_pdataptra->remove_at(iFind);
+//
+//      return true;
+//
+//   }
+
+
+   Atom display::get_window_long_atom(i32 nIndex)
    {
 
       if (::is_null(this))
+      {
+
          return 0;
+
+      }
 
       switch (nIndex)
       {
-         case GWL_STYLE:
-
-            return m_atomLongStyle;
-
-         case GWL_EXSTYLE:
-
-            return m_atomLongStyleEx;
 
          default:
          {
@@ -171,15 +411,16 @@ namespace windowing_x11
 
             strProperty = CA2_X11_WINDOW_LONG + ansi_string_from_i64(nIndex);
 
-            return XInternAtom(m_pdisplay, strProperty, False);
+            return XInternAtom(Display(), strProperty, False);
 
          }
+
       }
 
    }
 
 
-   Atom osdisplay_data::intern_atom(const char *pszAtomName, bool bCreate)
+   Atom display::intern_atom(const char *pszAtomName, bool bCreate)
    {
 
       if (m_pdisplay == nullptr)
@@ -205,10 +446,18 @@ namespace windowing_x11
    }
 
 
-   Atom osdisplay_data::intern_atom(e_net_wm_state estate, bool bCreate)
+   ::e_status display::remove_window(::windowing::window * pwindow)
    {
 
-      if (estate < net_wm_state_above || estate >= net_wm_state_count)
+      return error_failed;
+
+   }
+
+
+   Atom display::intern_atom(enum_net_wm_state estate, bool bCreate)
+   {
+
+      if (estate < e_net_wm_state_above || estate >= e_net_wm_state_count)
       {
 
          return None;
@@ -227,7 +476,7 @@ namespace windowing_x11
    }
 
 
-   Atom osdisplay_data::net_wm_state_atom(bool bCreate)
+   Atom display::net_wm_state_atom(bool bCreate)
    {
 
       if (m_atomNetWmState == None)
@@ -242,34 +491,394 @@ namespace windowing_x11
    }
 
 
-   Window osdisplay_data::default_root_window()
+//   void enum_display_monitors(::aura::session *psession)
+//   {
+//
+//      auto pnode = Node;
+//
+//      if (pnode)
+//      {
+//
+//         pnode->enum_display_monitors(psession);
+//
+//      }
+//
+//   }
+
+
+//   virtual ::Display * Display();
+//{
+//
+//   return ::is_null(this) ? nullptr : m_osdisplay->display();
+//
+//}
+
+//Display * display() const
+//{
+//   return ::is_null(this) ? nullptr : m_osdisplay->display();
+//}
+
+//Window window()
+//{
+//   return ::is_null(this) ? None : m_window;
+//}
+
+//Window window() const
+//{
+//   return ::is_null(this) ? None : m_window;
+//}
+
+//Visual * visual()
+//{
+//   return ::is_null(this) ? nullptr : &m_visual;
+//}
+
+//Visual * visual() const
+//{
+//   return ::is_null(this) ? nullptr : (Visual * ) & m_visual;
+//}
+//
+//Window root_window_raw() const
+//{
+//   return ::is_null(this) || ::is_null(m_osdisplay) ? None : RootWindow(display(), m_iScreen);
+//}
+//
+
+
+//   ::Display * display::Display()
+//   {
+//
+//      return ::is_null(this) ? nullptr : m_osdisplay->display();
+//
+//   }
+
+
+//   ::Display * display::display() const
+//   {
+//
+//      return ::is_null(this) ? nullptr : m_osdisplay->display();
+//
+//   }
+
+//
+//   Window display::window()
+//   {
+//      return ::is_null(this) ? None : m_window;
+//   }
+
+//   Window display::window() const
+//   {
+//      return ::is_null(this) ? None : m_window;
+//   }
+
+//   Visual * display::Visual()
+//   {
+//
+//      return ::is_null(this) ? nullptr : &m_visual;
+//
+//   }
+//
+//
+//   Visual * display::Visual() const
+//   {
+//
+//      return ::is_null(this) ? nullptr : (Visual * ) & m_visual;
+//
+//   }
+
+
+//   Window display::root_window_raw() const
+//   {
+//
+//      return ::is_null(this) || ::is_null(m_osdisplay) ? None : RootWindow(display(), m_iScreen);
+//
+//   }
+
+
+   Picture display::xrender_create_picture(::image_pointer pimage)
    {
 
-      if (m_pdisplay == nullptr)
+      Pixmap pixmap = _x11_create_pixmap(pimage);
+
+      if (pixmap == 0)
       {
 
-         return None;
+         return 0;
 
       }
 
-      return DefaultRootWindow(m_pdisplay);
+      //	bool hasNamePixmap = false;
+      //
+      //	int event_base, error_base;
+      //
+      //	if (XCompositeQueryExtension(window->display(), &event_base, &error_base))
+      //	{
+      //
+      //		int major = 0;
+      //
+      //		int minor = 2;
+      //
+      //		XCompositeQueryVersion(window->display(), &major, &minor);
+      //
+      //		if(major > 0 || minor >= 2 )
+      //		{
+      //
+      //         hasNamePixmap = true;
+      //
+      //      }
+      //
+      //	}
+
+      auto dpy = Display();
+
+      auto vis = Visual();
+
+      XRenderPictFormat *pformat = XRenderFindVisualFormat(dpy, &vis);
+
+      bool hasAlpha = (pformat->type == PictTypeDirect && pformat->direct.alphaMask);
+      int x = 0;
+      int y = 0;
+      int width = pimage->width();
+      int height = pimage->height();
+
+      XRenderPictureAttributes pa = {};
+
+      Picture picture = XRenderCreatePicture(Display(), pixmap, pformat, CPSubwindowMode, &pa);
+
+      return picture;
 
    }
 
 
-   void enum_display_monitors(::aura::session *psession)
+//   Picture display::xrender_create_picture(::image_pointer pimage)
+//   {
+//
+//      Picture picture = 0;
+//
+//      m_pwindowing->user_sync([&]()
+//                              {
+//
+//                                 synchronization_lock synchronizationlock(x11_mutex());
+//
+//                                 windowing_output_debug_string("\n::xrender_create_picture 1");
+//
+//                                 xdisplay d(window->display());
+//
+//                                 if(d.is_null())
+//                                 {
+//
+//                                    windowing_output_debug_string("\n::xrender_create_picture 1.1");
+//
+//                                    return;
+//
+//                                 }
+//
+//                                 picture = _xrender_create_picture(window, pimage);
+//
+//                              });
+//
+//      return picture;
+//
+//   }
+
+
+   ::windowing_x11::window *display::_get_active_window(::thread *pthread)
    {
 
-      auto pnode = Node;
+      int screen = XDefaultScreen(Display());
 
-      if (pnode)
+      Window windowRoot = RootWindow(Display(), screen);
+
+      Window window = x11_get_long_property(Display(), windowRoot, (char *) "_NET_ACTIVE_WINDOW");
+
+      auto pwindow = _window(window);
+
+      windowing_output_debug_string("\n::GetActiveWindow 2");
+
+      return pwindow;
+
+   }
+
+
+   ::windowing_x11::window *display::get_keyboard_focus()
+   {
+
+      synchronization_lock synchronizationlock(x11_mutex());
+
+      oswindow oswindow = nullptr;
+
+      windowing_output_debug_string("\n::GetFocus 1");
+
+#ifdef display_lock_LOCK_LOG
+
+      b_prevent_display_lock_lock_log = false;
+
+#endif
+
+      display_lock displaylock(this);
+
+      windowing_output_debug_string("\n::GetFocus 1.01");
+
+      Window window = None;
+
+      int revert_to = 0;
+
+      bool bOk = XGetInputFocus(Display(), &window, &revert_to) != 0;
+
+      if (!bOk)
       {
 
-         pnode->enum_display_monitors(psession);
+         windowing_output_debug_string("\n::GetFocus 1.2");
+
+         return nullptr;
 
       }
+
+      if (window == None || window == PointerRoot)
+      {
+
+         windowing_output_debug_string("\n::GetFocus 1.3");
+
+         return nullptr;
+
+      }
+
+      auto pwindow = _window(window);
+
+      windowing_output_debug_string("\n::GetFocus 2");
+
+      return pwindow;
+
+   }
+
+
+   bool display::get_cursor_pos(POINT_I32 *ppointCursor)
+   {
+
+      Window root_return;
+      Window child_return;
+      i32 win_x_return;
+      i32 win_y_return;
+      u32 mask_return;
+
+#ifdef display_lock_LOCK_LOG
+
+      b_prevent_display_lock_lock_log = true;
+
+#endif
+
+      synchronization_lock synchronizationlock(x11_mutex());
+
+      windowing_output_debug_string("\n::GetCursorPos 1");
+
+      display_lock displaylock(this);
+
+      XQueryPointer(Display(), DefaultRootWindow(Display()), &root_return, &child_return, &ppointCursor->x,
+                    &ppointCursor->y, &win_x_return, &win_y_return, &mask_return);
+
+#ifdef display_lock_LOCK_LOG
+
+      b_prevent_display_lock_lock_log = false;
+
+#endif
+
+      windowing_output_debug_string("\n::GetCursorPos 2");
+
+      return true;
+
+   }
+
+
+   XImage *display::_x11_create_image(::image_pointer pimage)
+   {
+
+      pimage->map();
+
+      char *image32 = (char *) pimage->get_data();
+
+      int width = pimage->width();
+
+      int height = pimage->height();
+
+      int depth = 32; // works fine with depth = 24
+
+      int bitmap_pad = 32; // 32 for 24 and 32 bpp, 16, for 15&16
+
+      int bytes_per_line = pimage->scan_size(); // number of bytes in the client image between the start of one scanline and the start of the next
+
+      XImage *pximage = XCreateImage(Display(), CopyFromParent, depth, ZPixmap, 0, image32, width, height,
+                                     bitmap_pad, bytes_per_line);
+
+      return pximage;
+
+   }
+
+
+   XImage *display::x11_create_image(::image_pointer pimage)
+   {
+
+      synchronization_lock synchronizationlock(x11_mutex());
+
+      windowing_output_debug_string("\n::x11_create_image 1");
+
+      display_lock displaylock(this);
+
+      return _x11_create_image(pimage);
+
+   }
+
+
+   Pixmap display::_x11_create_pixmap(::image_pointer pimage)
+   {
+
+      if (!pimage)
+      {
+
+         return 0;
+
+      }
+
+      XImage *pximage = _x11_create_image(pimage);
+
+      if (pximage == nullptr)
+      {
+
+         return 0;
+
+      }
+
+      int depth = 32; // works fine with depth = 24
+
+      Pixmap pixmap = XCreatePixmap(Display(), DefaultRootWindow(Display()), pimage->width(), pimage->height(), depth);
+
+      XGCValues gcvalues = {};
+
+      GC gc = XCreateGC(Display(), pixmap, 0, &gcvalues);
+
+      XPutImage(Display(), pixmap, gc, pximage, 0, 0, 0, 0, pimage->width(), pimage->height());
+
+      XFreeGC(Display(), gc);
+
+      return pixmap;
+
+   }
+
+
+   Pixmap display::x11_create_pixmap(::image_pointer pimage)
+   {
+
+      synchronization_lock synchronizationlock(x11_mutex());
+
+      windowing_output_debug_string("\n::x11_create_pixmap 1");
+
+      display_lock displaylock(this);
+
+      return _x11_create_pixmap(pimage);
 
    }
 
 
 } // namespace windowing_x11
+
+
+

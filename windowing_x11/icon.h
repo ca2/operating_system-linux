@@ -3,12 +3,12 @@
 #pragma once
 
 
-namespace windowing
+namespace windowing_x11
 {
 
 
-   class CLASS_DECL_AURA icon :
-      virtual public ::matter
+   class CLASS_DECL_WINDOWING_X11 icon :
+      virtual public ::windowing::icon
    {
    public:
 

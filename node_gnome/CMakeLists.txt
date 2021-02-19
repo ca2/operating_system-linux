@@ -20,7 +20,7 @@ set(LIBRARY_OUTPUT_PATH ${CMAKE_CURRENT_SOURCE_DIR}/../../../time-${PLATFORM_NAM
 set(EXECUTABLE_OUTPUT_PATH ${CMAKE_CURRENT_SOURCE_DIR}/../../../time-${PLATFORM_NAME}/cmake)
 
 
-list(APPEND audio_alsa_source
+list(APPEND node_gnome_source
    _.cpp
    _.h
    appindicator.cpp
@@ -30,6 +30,8 @@ list(APPEND audio_alsa_source
    clipboard_data.h
    copydesk.cpp
    copydesk.h
+   display.cpp
+   display.h
    enum_display_monitors.cpp
    factory_exchange.cpp
    factory_exchange.h
@@ -39,16 +41,24 @@ list(APPEND audio_alsa_source
    gdk.h
    gnome_direct.cpp
    gtk_clipboard.cpp
+   monitor.cpp
+   monitor.h
    node.cpp
    node.h
+   windowing.cpp
+   windowing.h
    )
 
 
 list(APPEND library_references
+   sn
    acme
+   node_ansios
    apex
    aqua
    aura
+   node_linux
+   windowing_x11
    )
 
 
@@ -59,7 +69,7 @@ else ()
 endif ()
 
 
-add_library(node_gnome SHARED ${audio_alsa_source} notify_icon.cpp)
+add_library(node_gnome SHARED ${node_gnome_source} notify_icon.cpp)
 
 target_precompile_headers(node_gnome PRIVATE framework.h)
 
@@ -82,11 +92,11 @@ elseif (LINUX)
    target_link_libraries(node_gnome PRIVATE ${library_references} ${PKGCONFIG_LIBRARIES})
    target_link_libraries(node_gnome PRIVATE asound)
    target_link_options(node_gnome PRIVATE -Wl,-z,defs)
-   add_dependencies(node_gnome draw2d_cairo node_linux)
+   add_dependencies(node_gnome draw2d_cairo)
 endif ()
 
 
-add_dependencies(node_gnome experience_core)
+#add_dependencies(node_gnome windowing_x11)
 
 
 target_link_directories(node_gnome PRIVATE ${LIBRARY_OUTPUT_PATH})

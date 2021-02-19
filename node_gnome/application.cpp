@@ -113,7 +113,12 @@ void apex_application_activate(GApplication * application)
 
 #ifndef RASPBIAN
 
-   sn_start_context();
+   auto pnode = Node;
+
+   auto pwindowing = pnode->windowing();
+
+   pwindowing->_libsn_start_context();
+
 
 #endif
 

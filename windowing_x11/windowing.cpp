@@ -2,8 +2,8 @@
 // recreated by Camilo 2021-01-28 22:35 <3TBS, Mummi and bilbo!!
 // hi5 contribution...
 #include "framework.h"
-
-
+#include "windowing_x11.h"
+#include <X11/cursorfont.h>
 
 
 //extern ::app_core * g_pappcore;
@@ -51,9 +51,6 @@
 //#endif // !RASPBIAN
 
 
-
-
-
 //::e_status app_core::system_start()
 //{
 //
@@ -96,9 +93,9 @@ i32 _c_XErrorHandler(Display * display, XErrorEvent * perrorevent);
 //void x11_add_gdk_filter();
 
 
-
-namespace windowing
+namespace windowing_x11
 {
+
 
    windowing::windowing()
    {
@@ -110,6 +107,83 @@ namespace windowing
    windowing::~windowing()
    {
 
+
+   }
+
+
+   ::windowing::window * windowing::new_window(::user::interaction_impl * pimpl)
+   {
+
+      __pointer(::windowing_x11::window) pwindow = __create < ::windowing::window >();
+
+      if(!pwindow)
+      {
+
+         return nullptr;
+
+      }
+
+      pwindow->m_pwindowing = this;
+
+      pwindow->m_pimpl = pimpl;
+
+      pwindow->create_window(pimpl);
+
+      //pwindow->initialize_x11_window(m_pdisplay).
+
+      return pwindow;
+
+   }
+
+
+    ::e_status windowing::remove_window(::windowing::window * pwindow)
+   {
+
+      return m_pdisplay->remove_window(pwindow);
+
+   }
+
+
+   ::e_status windowing::initialize(::layered *pobjectContext)
+   {
+
+      auto estatus = ::windowing::windowing::initialize(pobjectContext);
+
+      if(!estatus)
+      {
+
+         return estatus;
+
+      }
+
+      auto pdisplay = __create < ::windowing::display >();
+
+      if(!pdisplay)
+      {
+
+         return pdisplay.status();
+
+      }
+
+      m_pdisplay = pdisplay;
+
+      if(!pdisplay)
+      {
+
+         return error_no_interface;
+
+      }
+
+      estatus = m_pdisplay->open();
+
+      if(!estatus)
+      {
+
+         return estatus;
+
+      }
+
+      return ::success;
 
    }
 
@@ -184,63 +258,115 @@ namespace windowing
 
       return ::success;
 
+   }
+
+
+   ::windowing::display * windowing::display()
+   {
+
+      //__throw(interface_only_exception());
+
+      return m_pdisplay;
 
    }
 
-   HCURSOR windowing::load_default_cursor(e_cursor ecursor)
+
+   ::windowing_x11::window * windowing::_window(Window window)
    {
+
+      if (!m_pdisplay)
+      {
+
+         return nullptr;
+
+      }
+
+      auto pwindow = m_pdisplay->_window(window);
+
+      return pwindow;
+
+   }
+
+
+   __pointer(::windowing::cursor) windowing::load_default_cursor(enum_cursor ecursor)
+   {
+
+      synchronization_lock synchronizationlock(mutex());
+
+      if (m_pcursorset.is_null())
+      {
+
+         auto estatus = __construct_new(m_pcursorset);
+
+         if (!estatus)
+         {
+
+            return nullptr;
+
+         }
+
+      }
+
+      auto & pcursor = m_pcursorset->m_cursormap[ecursor];
+
+      if(pcursor)
+      {
+
+         return pcursor;
+
+      }
 
       int iCursor = 0;
 
-      if(ecursor == cursor_size_top_left)
+      if(ecursor == e_cursor_size_top_left)
       {
 
          iCursor = XC_top_left_corner;
 
       }
-      else if(ecursor == cursor_size_top_right)
+      else if(ecursor == e_cursor_size_top_right)
       {
 
          iCursor = XC_top_right_corner;
 
       }
-      else if(ecursor == cursor_size_top)
+      else if(ecursor == e_cursor_size_top)
       {
 
          iCursor = XC_top_side;
 
       }
-      else if(ecursor == cursor_size_right)
+      else if(ecursor == e_cursor_size_right)
       {
 
          iCursor = XC_right_side;
 
       }
-      else if(ecursor == cursor_size_left)
+      else if(ecursor == e_cursor_size_left)
       {
 
          iCursor = XC_left_side;
 
       }
-      else if(ecursor == cursor_size_bottom)
+      else if(ecursor == e_cursor_size_bottom)
       {
 
          iCursor = XC_bottom_side;
 
       }
-      else if(ecursor == cursor_size_bottom_left)
+      else if(ecursor == e_cursor_size_bottom_left)
       {
 
          iCursor = XC_bottom_left_corner;
 
       }
-      else if(ecursor == cursor_size_bottom_right)
+      else if(ecursor == e_cursor_size_bottom_right)
       {
 
          iCursor = XC_bottom_right_corner;
 
       }
-      else if(ecursor == cursor_arrow)
+      else if(ecursor == e_cursor_arrow)
       {
 
          iCursor = XC_arrow;
@@ -250,145 +376,117 @@ namespace windowing
       if(iCursor == 0)
       {
 
-         return 0;
+         return nullptr;
 
       }
 
-      sync_lock sl(x11_mutex());
+      synchronization_lock sl(x11_mutex());
 
       windowing_output_debug_string("\n::x11_GetWindowRect 1");
 
-      xdisplay d(x11_get_display());
+      display_lock lock(m_pdisplay);
 
-      if(d.is_null())
-      {
+      auto cursor = XCreateFontCursor(m_pdisplay->Display(), iCursor);
 
-         windowing_output_debug_string("\n::x11_GetWindowRect 1.1");
+      auto pcursorX11 = __create < ::windowing_x11::cursor >();
 
-         return 0;
+      pcursor = pcursorX11;
 
-      }
+      pcursorX11->m_cursor = cursor;
 
-      HCURSOR hcursor = XCreateFontCursor(d.display(), iCursor);
+//      if(lock)
+//      {
+//
+//         windowing_output_debug_string("\n::x11_GetWindowRect 1.1");
+//
+//         return 0;
+//
+//      }
 
-      return hcursor;
-
-
-   }
-
-
-   int_bool application::window_set_mouse_cursor(window * pwindow, HCURSOR hcursor)
-   {
-
-      if(::is_null(window))
-      {
-
-         return FALSE;
-
-      }
-
-      if(window->m_hcursorLast == hcursor)
-      {
-
-         return TRUE;
-
-      }
-
-      sync_lock sl(x11_mutex());
-
-      windowing_output_debug_string("\n::SetCursor 1");
-
-      xdisplay d(window->display());
-
-      if(d.is_null())
-      {
-
-         windowing_output_debug_string("\n::SetCursor 1.1");
-
-         return FALSE;
-
-      }
-
-      XDefineCursor(d, window->window(), hcursor);
-
-      window->m_hcursorLast = hcursor;
-
-      return TRUE;
-
-   }
-
-   bool windowing::sn_start_context()
-   {
-
-
-      Display * dpy = get();
-
-      SnDisplay * pd = sn_display_new(dpy, &x_display_error_trap_push, &x_display_error_trap_pop);
-
-      int iScreen = DefaultScreen(dpy);
-
-      g_psncontext = sn_launchee_context_new(pd, iScreen, ::g_pappcore->m_strProgName);
-
-      return true;
-
-   }
-
-   bool windowing::set_window_icon(window * pwindow, const ::file::path & path)
-   {
-
-
-      xdisplay
-      d(oswindow->display());
-
-      Atom net_wm_icon = XInternAtom(oswindow->display(), "_BAMF_DESKTOP_FILE", False);
-
-      Atom cardinal = XInternAtom(oswindow->display(), "STRING", False);
-
-      int ixa = XA_STRING;
-
-      int status = XChangeProperty(
-         oswindow->display(),
-         oswindow->window(),
-         net_wm_icon,
-         ixa,
-         8,
-         PropModeReplace,
-         (const unsigned char *) (const char *) path,
-         path.get_length());
-
-      output_debug_string("\nlinux::interaction_impl::bamf_set_icon END");
-
-      fflush(stdout);
-
-      if (status != 0)
-      {
-
-         return false;
-
-      }
-
-      return true;
+      return pcursor;
 
    }
 
 
-   int windowing::message_box(const char* pszMessage, const char* pszTitle, const ::e_message_box & emessagebox)
+
+
+//   bool windowing::_libsn_start_context()
+//   {
+//
+//      Display * dpy = get();
+//
+//      SnDisplay * pd = sn_display_new(dpy, &x_display_error_trap_push, &x_display_error_trap_pop);
+//
+//      int iScreen = DefaultScreen(dpy);
+//
+//      g_psncontext = sn_launchee_context_new(pd, iScreen, ::g_pappcore->m_strProgName);
+//
+//      return true;
+//
+//   }
+//
+//
+
+
+//   int windowing::message_box(const char* pszMessage, const char* pszTitle, const ::e_message_box & emessagebox)
+//   {
+//
+//      return x11_message_box(pszMessage, pszTitle, emessagebox);
+//
+//   }
+
+
+//   ::windowing::window * windowing::new_message_window(::user::interaction_impl * pimpl)
+//   {
+//
+//      auto pwindowNew = __create < ::windowing_x11::window > ();
+//
+//      auto & pwindow = m_pdisplay->m_windowmap[pimpl->get_oswindow()];
+//
+//      if(pwindow.)
+//
+//
+//
+//      return pwindow;
+//
+//   }
+
+
+   void windowing::_message_handler(void * p)
    {
 
-      return x11_message_box(pszMessage, pszTitle, emessagebox);
+      XEvent * pevent = (XEvent *) p;
 
    }
 
+//
+//   SnLauncheeContext* g_psncontext = nullptr;
+//
+//   void x_display_error_trap_push(SnDisplay * sndisplay, Display * display);
+//
+//   void x_display_error_trap_pop(SnDisplay * sndisplay, Display * display);
+//
+//
 
-   ::windowing::window windowing::new_message_window(::user::interaction_impl * pimpl)
+
+
+   ::windowing::window * windowing::get_keyboard_focus(::thread *)
    {
 
+      if(!m_pdisplay)
+      {
 
+         return nullptr;
+
+      }
+
+      display_lock lock(m_pdisplay);
+
+      auto pwindow = m_pdisplay->get_keyboard_focus();
 
       return pwindow;
 
    }
-
 
 
 } // namespace windowing

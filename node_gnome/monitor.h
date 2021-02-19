@@ -2,19 +2,19 @@
 #pragma once
 
 
-namespace windowing
+namespace node_gnome
 {
 
 
    class CLASS_DECL_AURA monitor :
-      virtual public ::matter
+         virtual public ::windowing::monitor
    {
    public:
 
 
-      ::index                                               m_iIndex;
-      ::rectangle_i32                                       m_rectangle;
-      ::rectangle_i32                                       m_rectangleWorkspace;
+      //::index                                               m_iIndex;
+      //::rectangle_i32                                       m_rectangle;
+      //::rectangle_i32                                       m_rectangleWorkspace;
 
 
       monitor();
@@ -23,8 +23,10 @@ namespace windowing
 
       virtual ::e_status update_cache();
 
-      virtual ::u32 get_monitor_color_temperature();
-      virtual bool adjust_monitor( ::u32 dwTemperature, double dBrightness, double dwGamma);
+      virtual ::u32 get_monitor_color_temperature() override;
+      virtual bool adjust_monitor( ::u32 dwTemperature, double dBrightness, double dwGamma) override;
+
+      virtual bool get_monitor_rect(::rectangle_i32 * prectangle) override;
 
 
    };
@@ -33,7 +35,7 @@ namespace windowing
    //using monitor_map = iptr_map < __pointer(monitor) >;
 
 
-} // namespace windowing
+} // namespace node_gnome
 
 
 

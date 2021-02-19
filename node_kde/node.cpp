@@ -533,7 +533,7 @@ namespace node_kde
       node_fork(__routine([psession]
                           {
 
-                             sync_lock sl(x11_mutex());
+                             synchronization_lock sl(x11_mutex());
 
                              xdisplay d(x11_get_display());
 
@@ -546,7 +546,7 @@ namespace node_kde
 
                              }
 
-                             sync_lock slSession(psession->mutex());
+                             synchronization_lock slSession(psession->mutex());
 
                              ::count iMonitorCount = gdk_display_get_n_monitors(pdisplay);
 
