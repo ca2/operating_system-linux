@@ -220,7 +220,7 @@ System.fork([]()
 void node::os_calc_user_dark_mode()
 {
 
-      ::node_gnome::os_calc_dark_mode();
+   ::node_gnome::os_calc_dark_mode();
 
 }
 
@@ -480,7 +480,7 @@ void node::os_calc_user_dark_mode()
       node_fork(__routine([psession]
                            {
 
-                              sync_lock sl(x11_mutex());
+                              synchronization_lock sl(x11_mutex());
 
                               xdisplay d(x11_get_display());
 
@@ -493,7 +493,7 @@ void node::os_calc_user_dark_mode()
 
                               }
 
-                              sync_lock slSession(psession->mutex());
+                              synchronization_lock slSession(psession->mutex());
 
                               ::count iMonitorCount = gdk_display_get_n_monitors(pdisplay);
 

@@ -59,7 +59,7 @@ namespace node_gnome
 
       virtual void appindicator_destroy(::linux::appindicator * pappindicator) override;
 
-      virtual void enum_display_monitors(::aura::session * psession) override;
+      //virtual void enum_display_monitors(::aura::session * psession) override;
 
       virtual void os_post_quit() override;
 
