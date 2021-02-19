@@ -685,27 +685,27 @@ namespace node_gnome
    }
 
 
-   void os_calc_dark_mode()
-   {
-
-      bool bDarkMode = _os_calc_dark_mode();
-
-      if(g_bitLastDarkMode != bDarkMode)
-      {
-
-         ::user::set_app_dark_mode(bDarkMode);
-
-         ::user::set_system_dark_mode(bDarkMode);
-
-         g_bitLastDarkMode = bDarkMode;
-
-         System.deliver(id_os_dark_mode);
-
-         x11_kick_idle();
-
-      }
-
-   }
+//   void os_calc_dark_mode()
+//   {
+//
+//      bool bDarkMode = _os_calc_dark_mode();
+//
+//      if(g_bitLastDarkMode != bDarkMode)
+//      {
+//
+//         ::user::set_app_dark_mode(bDarkMode);
+//
+//         ::user::set_system_dark_mode(bDarkMode);
+//
+//         g_bitLastDarkMode = bDarkMode;
+//
+//         System.deliver(id_os_dark_mode);
+//
+//         x11_kick_idle();
+//
+//      }
+//
+//   }
 
 } // namespace user
 

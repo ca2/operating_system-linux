@@ -2,7 +2,7 @@
 // Created by camilo on 20/01/2021. <3ThomasBS!!
 //
 #include "framework.h"
-#include "clipboard_data.h"
+#include "gtk_things/clipboard_data.h"
 #include <gtk/gtk.h>
 
 
@@ -78,7 +78,7 @@ void clipboard_image_received_func(GtkClipboard * clipboard, GdkPixbuf * pixbuf,
          if(!bHasAlpha)
          {
 
-            pdata->m_pimage->fill_channel(255, ::color::channel_alpha);
+            pdata->m_pimage->fill_channel(255, ::color::e_channel_alpha);
 
          }
 
