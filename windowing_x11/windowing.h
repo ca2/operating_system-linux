@@ -39,7 +39,7 @@ namespace windowing_x11
 
       virtual bool post_ui_message(const MESSAGE & message);
 
-      virtual ::e_status os_application_system_run();
+      virtual ::e_status start() override;
 
       virtual void _libsn_start_context()  override;
       virtual ::windowing::display * display() override;
@@ -90,6 +90,8 @@ namespace windowing_x11
       //virtual bool __x11_hook_list_is_empty();
 
       virtual bool x11_message_loop_step();
+
+      virtual ::windowing::window * window(oswindow oswindow) override;
 
       //virtual void _libsn_start_context() override;
 

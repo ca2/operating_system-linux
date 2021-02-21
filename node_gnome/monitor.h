@@ -26,7 +26,7 @@ namespace node_gnome
       virtual ::u32 get_monitor_color_temperature() override;
       virtual bool adjust_monitor( ::u32 dwTemperature, double dBrightness, double dwGamma) override;
 
-      virtual bool get_monitor_rect(::rectangle_i32 * prectangle) override;
+      virtual bool get_monitor_rect(::RECTANGLE_I32 * prectangle) override;
 
 
    };

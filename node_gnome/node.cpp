@@ -6,6 +6,7 @@
 #include "gnome_shared.h"
 #include "appindicator.h"
 #include "gdk.h"
+#include "windowing_x11/windowing_x11.h"
 
 
 void x11_add_idle_source(::node_gnome::node * pnode);
@@ -80,6 +81,8 @@ namespace node_gnome
    node::node()
    {
 
+      defer_initialize_x11();
+
       m_pGtkSettingsDefault = nullptr;
 
    }
@@ -108,7 +111,7 @@ namespace node_gnome
    }
 
 
-   void node::os_application_system_run()
+   ::e_status node::start()
    {
 
       if (System.m_bGtkApp)
@@ -120,9 +123,9 @@ namespace node_gnome
       else
       {
 
-         g_set_application_name(System.m_strAppId);
+         //g_set_application_name(System.m_strAppId);
 
-         g_set_prgname(System.m_strProgName);
+         //g_set_prgname(System.m_strProgName);
       ////
       ////      //auto idle_source = g_idle_source_new();
       ////
@@ -140,64 +143,67 @@ namespace node_gnome
       ////
       ////#endif
 
-         node_fork([this]()
-                   {
+            node_fork([this]()
+            {
+
+             // This seems not to work with "foreign" windows
+             // (X11 windows not created with Gdk)
+             //x11_add_filter();
 
 
+             auto pgtksettingsDefault = gtk_settings_get_default();
 
-                      // This seems not to work with "foreign" windows
-                      // (X11 windows not created with Gdk)
-                      //x11_add_filter();
-
-
-                      auto pgtksettingsDefault = gtk_settings_get_default();
-
-                      if(pgtksettingsDefault)
-                      {
+             if(pgtksettingsDefault)
+             {
 
 
-                         m_pGtkSettingsDefault = G_OBJECT(pgtksettingsDefault);
+                m_pGtkSettingsDefault = G_OBJECT(pgtksettingsDefault);
 
-                         g_object_ref (m_pGtkSettingsDefault);
+                g_object_ref (m_pGtkSettingsDefault);
 
-                         gchar *theme_name = nullptr;
+                gchar *theme_name = nullptr;
 
-                         g_object_get(m_pGtkSettingsDefault, "gtk-theme-name", &theme_name, NULL);
+                g_object_get(m_pGtkSettingsDefault, "gtk-theme-name", &theme_name, NULL);
 
-                         m_strTheme = theme_name;
+                m_strTheme = theme_name;
 
-                         g_free(theme_name);
+                g_free(theme_name);
 
-                         auto preturn = g_signal_connect_data(
-                            m_pGtkSettingsDefault,
-                            "notify::gtk-theme-name",
-                            G_CALLBACK(gtk_settings_gtk_theme_name_callback),
-                            this,
-                            NULL,
-                            G_CONNECT_AFTER);
+                auto preturn = g_signal_connect_data(
+                   m_pGtkSettingsDefault,
+                   "notify::gtk-theme-name",
+                   G_CALLBACK(gtk_settings_gtk_theme_name_callback),
+                   this,
+                   NULL,
+                   G_CONNECT_AFTER);
 
-                         //g_object_ref(preturn);
+                //g_object_ref(preturn);
 
-                         //printf("return %" PRIiPTR, preturn);
+                //printf("return %" PRIiPTR, preturn);
 
-                         //printf("return %" PRIiPTR, preturn);
+                //printf("return %" PRIiPTR, preturn);
 
-                      }
+             }
 
-                      x11_add_idle_source(this);
+            x11_add_idle_source(this);
 
+             System.on_start();
 
-                   });
+          });
 
 
          //x11_add_filter();
+//
+//         System.fork([this]()
+//         {
+//
+//            //m_pwindowing->windowing_main();
+//
+//         });
 
-         System.fork([this]()
-         {
+         //x11_add_idle_source(this);
 
-            //m_pwindowing->windowing_main();
-
-         });
+         //x11_add_idle_source(this);
 
          gtk_main();
 
@@ -207,26 +213,28 @@ namespace node_gnome
       //
       //::parallelization::post_quit_and_wait(get_context_system(), one_minute());
 
+      return ::success;
 
    }
 
 
-::e_status node::initialize(::layered *pobjectContext)
-{
+   ::e_status node::initialize(::layered *pobjectContext)
+   {
 
-   ::node_gnome::g_defer_init();
+      ::node_gnome::g_defer_init();
 
-   return ::success;
+      return ::success;
 
-}
+   }
 
 
-void node::os_calc_user_dark_mode()
-{
+   void node::os_calc_user_dark_mode()
+   {
 
-   ::node_linux::node::os_calc_user_dark_mode();
+      ::node_linux::node::os_calc_user_dark_mode();
 
-}
+   }
+
 
    void node::windowing_message_loop_step()
    {

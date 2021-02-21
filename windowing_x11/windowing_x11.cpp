@@ -1623,6 +1623,31 @@ Retrieved from: http://en.literateprograms.org/Hello_World_(C,_Cairo)?oldid=1038
 
       switch (e.type)
       {
+         case LeaveNotify:
+         {
+
+            ::minimum(m_pointCursor.x);
+
+            ::minimum(m_pointCursor.y);
+
+            msg.m_id = e_message_mouse_leave;
+            msg.wParam = 0;
+            msg.lParam = 0;
+            msg.time = e.xcrossing.time;
+
+            post_ui_message(msg);
+
+         }
+         break;
+         case EnterNotify:
+         {
+
+            //::minimum(m_pointCursor.x);
+
+            //::minimum(m_pointCursor.y);
+
+         }
+            break;
          case MotionNotify:
          {
 
@@ -3534,6 +3559,55 @@ bool x11_runnable_step()
    }
 
    return bDoneMuchThings;
+
+}
+
+
+::mutex * g_pmutexX11 = nullptr;
+
+
+::e_status initialize_x11()
+{
+
+   if (!XInitThreads())
+   {
+
+      return ::error_failed;
+
+   }
+
+   XSetErrorHandler(_c_XErrorHandler);
+
+   g_pmutexX11 = new ::mutex();
+
+   return ::success;
+
+}
+
+
+::e_status g_estatusInitializeX11 = error_not_initialized;
+
+
+::e_status defer_initialize_x11()
+{
+
+   if(g_estatusInitializeX11 == error_not_set)
+   {
+
+      g_estatusInitializeX11 = initialize_x11();
+
+   }
+
+   return g_estatusInitializeX11;
+
+}
+
+
+mutex * x11_mutex()
+{
+
+   return g_pmutexX11;
+
 
 }
 

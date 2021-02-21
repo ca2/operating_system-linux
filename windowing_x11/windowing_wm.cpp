@@ -330,6 +330,35 @@ namespace windowing_x11
 
 
    /// must be run in x11 thread (user thread)
+   void window::wm_normalwindow()
+   {
+
+      Atom atomWindowType;
+
+      atomWindowType = x11_display()->intern_atom("_NET_WM_WINDOW_TYPE", False);
+
+      if(atomWindowType != None)
+      {
+
+         Atom atomWindowTypeNormal;
+
+         atomWindowTypeNormal = x11_display()->intern_atom("_NET_WM_WINDOW_TYPE_NORMAL", False);
+
+         if(atomWindowTypeNormal != None)
+         {
+
+            XChangeProperty(Display(), Window(), atomWindowType, XA_ATOM, 32, PropModeReplace, (unsigned char *) &atomWindowTypeNormal, 1);
+
+         }
+
+      }
+
+      windowing_output_debug_string("\n::windowing_x11::window::wm_normalwindow");
+
+   }
+
+
+   /// must be run in x11 thread (user thread)
    void window::wm_hidden_state(bool bHidden)
    {
 
@@ -693,10 +722,15 @@ namespace windowing_x11
       if (atomMotifHints != None)
       {
 
-         MWMHints hints = {MWM_HINTS_DECORATIONS, 0, MWM_DECOR_NONE, 0, 0};
+         MWMHints hints = {};
 
-         XChangeProperty(Display(), Window(), atomMotifHints, atomMotifHints, 32, PropModeReplace,
-                         (unsigned char *) &hints, sizeof(MWMHints) / 4);
+         hints.flags = MWM_HINTS_DECORATIONS;
+         hints.decorations = MWM_DECOR_NONE;
+
+         //XChangeProperty(Display(), Window(), atomMotifHints, atomMotifHints, 32, PropModeReplace,
+           //              (unsigned char *) &hints, sizeof(MWMHints) / 4);
+         XChangeProperty(Display(), Window(), atomMotifHints, atomMotifHints, 8, PropModeReplace,
+                       (unsigned char *) &hints, 5);
 
       }
 

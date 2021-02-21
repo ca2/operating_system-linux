@@ -207,6 +207,7 @@ namespace windowing_x11
       virtual void wm_state_below( WINDOWING_X11_WINDOW_MEMBER bool bSet);
       virtual void wm_state_hidden( WINDOWING_X11_WINDOW_MEMBER bool bSet);
       virtual void wm_toolwindow( WINDOWING_X11_WINDOW_MEMBER bool bToolWindow);
+      virtual void wm_normalwindow();
       virtual void wm_hidden_state( WINDOWING_X11_WINDOW_MEMBER bool bHidden);
       virtual void wm_desktopwindow( WINDOWING_X11_WINDOW_MEMBER bool bDesktopWindow);
       virtual void wm_centerwindow( WINDOWING_X11_WINDOW_MEMBER bool bCenterWindow);

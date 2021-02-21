@@ -28,7 +28,7 @@ namespace node_gnome
 
       virtual int node_init_check(int * pi, char *** ppz) override;
 
-      virtual void os_application_system_run() override;
+      virtual ::e_status start() override;
 
       virtual ::e_status initialize(::layered * pobjectContext) override;
 

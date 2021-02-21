@@ -6,15 +6,14 @@
 #include <X11/cursorfont.h>
 
 
-i32 _c_XErrorHandler(Display * display, XErrorEvent * perrorevent);
-
-
 namespace windowing_x11
 {
 
 
    windowing::windowing()
    {
+
+      defer_initialize_x11();
 
       set_layer(LAYERED_X11, this);
 
@@ -105,20 +104,13 @@ namespace windowing_x11
    }
 
 
-   ::e_status windowing::os_application_system_run()
+   ::e_status windowing::start()
    {
 
       if (System.m_bUser)
       {
 
-         if (!XInitThreads())
-         {
-
-            return false;
-
-         }
-
-         XSetErrorHandler(_c_XErrorHandler);
+         defer_initialize_x11();
 
       }
 
@@ -129,7 +121,7 @@ namespace windowing_x11
 
          _libsn_start_context();
 
-         pnode->os_application_system_run();
+         pnode->start();
 
       }
       else
@@ -298,11 +290,21 @@ namespace windowing_x11
 
       }
 
+      synchronization_lock synchronizationlock(x11_mutex());
+
       display_lock lock(m_pdisplay);
 
       auto pwindow = m_pdisplay->get_keyboard_focus();
 
       return pwindow;
+
+   }
+
+
+   ::windowing::window * windowing::window(oswindow oswindow)
+   {
+
+      return oswindow;
 
    }
 

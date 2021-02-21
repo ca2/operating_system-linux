@@ -48,7 +48,7 @@ namespace node_gnome
 
 
    /// should be run in user thread
-   bool monitor::get_monitor_rect(::rectangle_i32 * prectangle)
+   bool monitor::get_monitor_rect(::RECTANGLE_I32 * prectangle)
    {
 
       synchronization_lock sl(x11_mutex());

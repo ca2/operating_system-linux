@@ -73,6 +73,8 @@ namespace windowing_x11
    ::e_status window::create_window(::user::interaction_impl * pimpl)
    {
 
+      synchronization_lock synchronizationlock(x11_mutex());
+
       bool bOk = true;
 
       auto pusersystem = pimpl->m_puserinteraction->m_pusersystem;
@@ -206,7 +208,7 @@ namespace windowing_x11
 
       attr.event_mask =
          PropertyChangeMask | ExposureMask | ButtonPressMask | ButtonReleaseMask | KeyPressMask | KeyReleaseMask |
-         PointerMotionMask | StructureNotifyMask | FocusChangeMask;
+         PointerMotionMask | StructureNotifyMask | FocusChangeMask | LeaveWindowMask | EnterWindowMask;
 
       attr.background_pixmap = None;
 
@@ -301,6 +303,8 @@ namespace windowing_x11
       if (pwindowing->m_pSnLauncheeContext != nullptr && !papp->m_bSnLauncheeSetup)
       {
 
+         Application.os_on_start_application();
+
          on_sn_launch_context(pwindowing->m_pSnLauncheeContext, window);
 
          papp->m_bSnLauncheeSetup = true;
@@ -327,11 +331,17 @@ namespace windowing_x11
          wm_centerwindow(true);
 
       }
-
-      if (pimpl->m_puserinteraction->m_ewindowflag & e_window_flag_satellite_window)
+      else if (pimpl->m_puserinteraction->m_ewindowflag & e_window_flag_satellite_window
+      || pimpl->m_puserinteraction->m_bToolWindow)
       {
 
          wm_toolwindow(true);
+
+      }
+      else
+      {
+
+         wm_normalwindow();
 
       }
 
@@ -356,7 +366,6 @@ namespace windowing_x11
 
       m_hthread = hthread;
 
-
       if (!XGetWindowAttributes(Display(), Window(), &m_px11data->m_attr))
       {
 
@@ -368,19 +377,37 @@ namespace windowing_x11
 
       pimpl->m_bComposite = XGetSelectionOwner(Display(), x11_display()->intern_atom("_NET_WM_CM_S0", True));
 
+      string strName;
+
       if (pusersystem && pusersystem->m_createstruct.lpszName != nullptr && strlen(pusersystem->m_createstruct.lpszName) > 0)
       {
 
-         XStoreName(Display(), Window(), pusersystem->m_createstruct.lpszName);
+         strName = pusersystem->m_createstruct.lpszName;
 
       }
 
-      if (pimpl->m_puserinteraction->m_bToolWindow)
+      if(strName.is_empty())
       {
 
-         wm_toolwindow(true);
+         string strWindowText = pimpl->m_puserinteraction->get_window_text();
+
+         if (strWindowText.has_char())
+         {
+
+            strName = strWindowText;
+
+         }
 
       }
+
+      if(strName.has_char())
+      {
+
+         XStoreName(Display(), Window(), strName);
+
+      }
+
+      bamf_set_icon();
 
       _wm_nodecorations(0);
 
@@ -462,7 +489,14 @@ namespace windowing_x11
       if(bOk)
       {
 
-         pimpl->m_puserinteraction->send_message(e_message_create, 0, (lparam) &pusersystem->m_createstruct);
+         auto lresult = pimpl->m_puserinteraction->send_message(e_message_create, 0, (lparam) &pusersystem->m_createstruct);
+
+         if(lresult == -1)
+         {
+
+            return false;
+
+         }
 
          pimpl->m_puserinteraction->m_ewindowflag |= e_window_flag_window_created;
 
@@ -475,6 +509,8 @@ namespace windowing_x11
 
    void window::set_wm_class(const char *psz)
    {
+
+      synchronization_lock synchronizationlock(x11_mutex());
 
       m_strWMClass = psz;
 
@@ -495,6 +531,8 @@ namespace windowing_x11
    {
 
       int i = 0;
+
+      synchronization_lock synchronizationlock(x11_mutex());
 
       {
 
@@ -530,6 +568,8 @@ namespace windowing_x11
 
    i32 window::unmap_window(bool bWithdraw)
    {
+
+      synchronization_lock synchronizationlock(x11_mutex());
 
       windowing_output_debug_string("\nwindow::unmap_window");
 
@@ -809,6 +849,8 @@ namespace windowing_x11
    bool window::bamf_set_icon()
    {
 
+      synchronization_lock synchronizationlock(x11_mutex());
+
       auto pnode = Node;
 
       ::file::path path = pnode->get_desktop_file_path(&Application);
@@ -950,6 +992,8 @@ namespace windowing_x11
 
       windowing_output_debug_string("\nwindow::set_icon");
 
+      synchronization_lock synchronizationlock(x11_mutex());
+
       display_lock displaylock(x11_display());
 
       Atom net_wm_icon = x11_display()->intern_atom("_NET_WM_ICON", False);
@@ -1066,6 +1110,8 @@ namespace windowing_x11
 
       windowing_output_debug_string("\nwindow::store_name");
 
+      synchronization_lock synchronizationlock(x11_mutex());
+
       display_lock displaylock(x11_display());
 
       int i = XStoreName(Display(), Window(), psz);
@@ -1082,6 +1128,8 @@ namespace windowing_x11
 
       windowing_output_debug_string("\nwindow::select_input");
 
+      synchronization_lock synchronizationlock(x11_mutex());
+
       display_lock displaylock(x11_display());
 
       int i = XSelectInput(Display(), Window(), iInput);
@@ -1097,6 +1145,8 @@ namespace windowing_x11
    {
 
       windowing_output_debug_string("\nwindow::select_all_input");
+
+      synchronization_lock synchronizationlock(x11_mutex());
 
       display_lock displaylock(x11_display());
 
@@ -1241,6 +1291,8 @@ namespace windowing_x11
 
       }
 
+      synchronization_lock synchronizationlock(x11_mutex());
+
       display_lock displaylock(x11_display());
 
       XReparentWindow(Display(), Window(), pwindowx11NewParent->Window(), 0, 0);
@@ -1376,6 +1428,8 @@ va_end(argp);
 
       windowing_output_debug_string("\n::window::show_window 1");
 
+      synchronization_lock synchronizationlock(x11_mutex());
+
       display_lock displaylock(x11_display());
 
       XWindowAttributes attr;
@@ -1449,6 +1503,8 @@ va_end(argp);
 
       windowing_output_debug_string("\n::window::full_screen 1");
 
+      synchronization_lock synchronizationlock(x11_mutex());
+
       display_lock displaylock(x11_display());
 
 //      if (x11_display()->is_null())
@@ -1514,6 +1570,8 @@ va_end(argp);
    void window::exit_iconify()
    {
 
+      synchronization_lock synchronizationlock(x11_mutex());
+
       display_lock displaylock(x11_display());
 
       XWindowAttributes attr;
@@ -1541,6 +1599,8 @@ va_end(argp);
 
    void window::exit_full_screen()
    {
+
+      synchronization_lock synchronizationlock(x11_mutex());
 
       display_lock displaylock(x11_display());
 
@@ -1654,6 +1714,8 @@ va_end(argp);
 
       windowing_output_debug_string("\n::window::get_state 1");
 
+      synchronization_lock synchronizationlock(x11_mutex());
+
       display_lock displaylock(x11_display());
 
       static const long WM_STATE_ELEMENTS = 2L;
@@ -1737,6 +1799,8 @@ va_end(argp);
    {
 
       windowing_output_debug_string("\n::window::is_window_visible 1");
+
+      synchronization_lock synchronizationlock(x11_mutex());
 
       display_lock displaylock(x11_display());
 
@@ -2363,6 +2427,8 @@ va_end(argp);
 
    ::e_status window::set_cursor2(::windowing::cursor *pcursor)
    {
+
+      synchronization_lock synchronizationlock(x11_mutex());
 
       display_lock displaylock(x11_display());
 
@@ -3161,6 +3227,8 @@ va_end(argp);
    /// should be run at user_thread
    ::e_status window::set_foreground_window()
    {
+
+      synchronization_lock synchronizationlock(x11_mutex());
 
       display_lock displaylock(x11_display());
 

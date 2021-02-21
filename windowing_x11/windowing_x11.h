@@ -8,6 +8,9 @@
 
 
 
+::e_status defer_initialize_x11();
+
+
 //::e_status acme_defer_os_init_windowing();
 ::e_status sn_start_context();
 

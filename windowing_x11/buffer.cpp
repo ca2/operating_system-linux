@@ -2,6 +2,7 @@
 // recreated by Camilo 2021-01-28 22:42 <3TBS, Mummi and bilbo!!
 // hi5 contribution...
 #include "framework.h"
+#include "windowing_x11.h"
 //#if !BROAD_PRECOMPILED_HEADER
 //#include "aura/user/_user.h"
 //#endif
@@ -45,7 +46,7 @@ namespace windowing_x11
 
       }
 
-      synchronization_lock sl(mutex());
+      synchronization_lock synchronizationlock(x11_mutex());
 
       display_lock displaylock(x11_window()->x11_display());
 
@@ -68,7 +69,7 @@ namespace windowing_x11
 
       }
 
-      synchronization_lock sl(mutex());
+      synchronization_lock synchronizationlock(x11_mutex());
 
       display_lock displaylock(x11_window()->x11_display());
 
@@ -319,6 +320,8 @@ namespace windowing_x11
       slGraphics.unlock();
 
       pimage->map();
+
+      synchronization_lock synchronizationlock(x11_mutex());
 
       display_lock displayLock(x11_window()->x11_display());
 
