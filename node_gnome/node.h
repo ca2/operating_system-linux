@@ -28,6 +28,8 @@ namespace node_gnome
 
       virtual int node_init_check(int * pi, char *** ppz) override;
 
+      virtual void defer_notify_startup_complete() override;
+
       virtual ::e_status start() override;
 
       virtual ::e_status initialize(::layered * pobjectContext) override;
@@ -52,7 +54,7 @@ namespace node_gnome
 
       using ::aura::node::node_fork;
 
-      virtual void windowing_message_loop_step();
+      virtual bool windowing_message_loop_step();
 
       virtual void node_fork(const ::promise::routine & routine) override;
 

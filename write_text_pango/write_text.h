@@ -2,11 +2,11 @@
 #pragma once
 
 
-namespace write_text_win32
+namespace write_text_pango
 {
 
 
-   class CLASS_DECL_WRITE_TEXT_WIN32 write_text :
+   class CLASS_DECL_WRITE_TEXT_PANGO write_text :
       virtual public ::write_text::write_text
    {
    public:
@@ -23,7 +23,7 @@ namespace write_text_win32
    };
 
 
-} // namespace write_text_win32
+} // namespace write_text_pango
 
 
 

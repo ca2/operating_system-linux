@@ -1,5 +1,6 @@
 #include "framework.h"
 #include "application.h"
+#include <glib.h>
 
 
 void sn_start_context();
@@ -276,16 +277,25 @@ gboolean gtk_quit_callback(gpointer data)
 
 
 
-
-
-
-void os_post_quit()
+namespace node_gnome
 {
 
-   auto idle_source = g_idle_source_new();
 
-   g_source_set_callback(idle_source, &gtk_quit_callback, nullptr, nullptr);
+   void node::node_post_quit()
+   {
 
-   g_source_attach(idle_source, g_main_context_default());
+      //auto idle_source = g_idle_source_new();
 
-}
+      //g_source_set_callback(idle_source, &gtk_quit_callback, nullptr, nullptr);
+
+      //g_source_attach(idle_source, g_main_context_default());
+
+      gdk_threads_add_idle(&gtk_quit_callback, nullptr);
+
+   }
+
+
+} // namespace node_gnome
+
+
+

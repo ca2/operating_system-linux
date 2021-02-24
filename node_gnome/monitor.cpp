@@ -47,8 +47,8 @@ namespace node_gnome
    }
 
 
-   /// should be run in user thread
-   bool monitor::get_monitor_rect(::RECTANGLE_I32 * prectangle)
+   /// ??should be run in user thread?? (for monitor/screen api maybe not needed)
+   bool monitor::get_monitor_rectangle(::RECTANGLE_I32 * prectangle)
    {
 
       synchronization_lock sl(x11_mutex());
@@ -82,6 +82,41 @@ namespace node_gnome
    }
 
 
+   /// ??should be run in user thread?? (for monitor/screen api maybe not needed)
+   bool monitor::get_workspace_rectangle(::RECTANGLE_I32 *prectangle)
+   {
+
+      synchronization_lock sl(x11_mutex());
+
+      GdkDisplay * pdisplay = gdk_display_get_default();
+
+      if (pdisplay == nullptr)
+      {
+
+         return false;
+
+      }
+
+      GdkMonitor * pmonitor = gdk_display_get_monitor(pdisplay, m_iIndex);
+
+      if (pmonitor != nullptr)
+      {
+
+         GdkRectangle  rect;
+
+         gdk_monitor_get_workarea(pmonitor, &rect);
+
+         __copy(prectangle, rect);
+
+         return true;
+
+      }
+
+      return false;
+
+   }
+
+
    //      node_fork(__routine([psession]
 //                           {
 //
@@ -102,7 +137,7 @@ namespace node_gnome
 //
 //                              ::count iMonitorCount = gdk_display_get_n_monitors(pdisplay);
 //
-//                              psession->m_rectaWkspace.set_size(iMonitorCount);
+//                              psession->m_rectaWorkspace.set_size(iMonitorCount);
 //
 //                              psession->m_rectaMonitor.set_size(iMonitorCount);
 //
@@ -111,14 +146,14 @@ namespace node_gnome
 //
 //                                 GdkMonitor *pmonitor = gdk_display_get_monitor(pdisplay, iMonitor);
 //
-//                                 auto &rectWkspace = psession->m_rectaWkspace[iMonitor];
+//                                 auto &rectWorkspace = psession->m_rectaWorkspace[iMonitor];
 //
 //                                 auto &rectMonitor = psession->m_rectaMonitor[iMonitor];
 //
 //                                 if (pmonitor == nullptr)
 //                                 {
 //
-//                                    rectWkspace.Null();
+//                                    rectWorkspace.Null();
 //
 //                                    rectMonitor.Null();
 //
@@ -132,7 +167,7 @@ namespace node_gnome
 //
 //                                 gdk_monitor_get_workarea(pmonitor, &rect);
 //
-//                                 __copy(rectWkspace, rect);
+//                                 __copy(rectWorkspace, rect);
 //
 //                                 __zero(rect);
 //

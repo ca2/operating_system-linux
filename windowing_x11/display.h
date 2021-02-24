@@ -34,6 +34,7 @@ namespace windowing_x11
       //static osdisplay_dataptra *                s_pdataptra;
       //static ::mutex *                           s_pmutex;
       __pointer(::windowing_x11::window)      m_pwindowActive;
+      __pointer(::windowing_x11::window)       m_pwindowCapture;
 
 
       display();
@@ -52,6 +53,10 @@ namespace windowing_x11
 #endif
 
       virtual ::windowing_x11::window * _window(Window window);
+
+      inline ::windowing_x11::windowing * x11_windowing() { return (::windowing_x11::windowing *) m_pwindowing->layer(LAYERED_X11); }
+
+      virtual void _on_capture_changed_to(::windowing_x11::window * pwindowWithCapture);
 
       virtual void lock_display();
 
@@ -79,10 +84,15 @@ namespace windowing_x11
       virtual bool is_null() const;
 
 
-      virtual bool get_monitor_rect(index iMonitor, RECTANGLE_I32 * prectangle);
+      virtual bool get_monitor_rectangle(index iMonitor, RECTANGLE_I32 * prectangle);
+
+
+      virtual bool get_workspace_rectangle(index iWorkspace, RECTANGLE_I32 * prectangle);
 
 
       virtual ::e_status release_mouse_capture();
+
+
 
       Atom get_window_long_atom(i32 nIndex);
 
@@ -104,7 +114,7 @@ namespace windowing_x11
       virtual bool x11_window_list(WINDOWING_X11_DISPLAY_MEMBER array < Window > & windowa);
       //virtual oswindow get_focus();
 
-      virtual bool get_cursor_pos(WINDOWING_X11_DISPLAY_MEMBER POINT_I32 * ppointCursor);
+      virtual bool get_cursor_position(WINDOWING_X11_DISPLAY_MEMBER POINT_I32 * ppointCursor);
       //virtual oswindow _x11_get_active_window(WINDOWING_X11_DISPLAY_MEMBER);
       //virtual oswindow _x11_get_active_window();
       virtual Window * x11_window_list(WINDOWING_X11_DISPLAY_MEMBER unsigned long * len);

@@ -31,8 +31,8 @@ namespace windowing_x11
       int                                          m_iXic;
       XIC                                          m_xic;
       //__pointer(::windowing_x11::display)     m_pdisplay;
-      Window                                       m_window;
-      Visual                                       m_visual;
+      ::Window                                     m_window;
+      ::Visual                                     m_visual;
       int                                          m_iDepth;
       int                                          m_iScreen;
       bool                                         m_bMessageOnlyWindow;
@@ -153,7 +153,13 @@ namespace windowing_x11
       virtual ::e_status set_mouse_capture() override;
       virtual ::e_status set_active_window() override;
 
+
       virtual ::e_status set_foreground_window() override;
+
+
+      virtual bool has_mouse_capture() const override;
+
+
 
 
       //virtual Atom get_window_long_atom(i32 nIndex);
@@ -249,7 +255,7 @@ namespace windowing_x11
    };
 
 
-   using window_map = map < Window, __pointer(window) >;
+   using window_map = map < ::Window, __pointer(window) >;
 
 
 } // namespace windowing_x11

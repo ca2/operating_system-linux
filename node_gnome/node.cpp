@@ -111,6 +111,18 @@ namespace node_gnome
    }
 
 
+   void node::defer_notify_startup_complete()
+   {
+
+      string strApplicationServerName = System.get_application_server_name();
+
+      gdk_notify_startup_complete_with_id (strApplicationServerName);
+
+      gdk_notify_startup_complete();
+
+   }
+
+
    ::e_status node::start()
    {
 
@@ -189,7 +201,8 @@ namespace node_gnome
 
              System.on_start();
 
-          });
+
+         });
 
 
          //x11_add_filter();
@@ -236,16 +249,42 @@ namespace node_gnome
    }
 
 
-   void node::windowing_message_loop_step()
+   bool node::windowing_message_loop_step()
    {
 
-      auto psession = Session;
+      auto pcontextsession = get_context_session();
 
-      auto puser = psession->user();
+      if(::is_null(pcontextsession))
+      {
 
-      auto pwindowing = puser->windowing();
+         return false;
 
-      pwindowing->message_loop_step();
+      }
+
+      auto psession = Sess(pcontextsession);
+
+      if(::is_set(psession))
+      {
+
+         auto puser = psession->user();
+
+         if(::is_set(puser))
+         {
+
+            auto pwindowing = puser->windowing();
+
+            if(pwindowing)
+            {
+
+               return pwindowing->message_loop_step();
+
+            }
+
+         }
+
+      }
+
+      return false;
 
    }
 
@@ -473,12 +512,12 @@ namespace node_gnome
    }
 
 
-   void node::node_post_quit()
-   {
-
-      os_post_quit();
-
-   }
+//   void node::node_post_quit()
+//   {
+//
+//      os_post_quit();
+//
+//   }
 
 
 //   void node::on_subject(::promise::subject * psubject, ::promise::context * pcontext)
@@ -536,7 +575,7 @@ namespace node_gnome
 //
 //                              ::count iMonitorCount = gdk_display_get_n_monitors(pdisplay);
 //
-//                              psession->m_rectaWkspace.set_size(iMonitorCount);
+//                              psession->m_rectaWorkspace.set_size(iMonitorCount);
 //
 //                              psession->m_rectaMonitor.set_size(iMonitorCount);
 //
@@ -545,14 +584,14 @@ namespace node_gnome
 //
 //                                 GdkMonitor *pmonitor = gdk_display_get_monitor(pdisplay, iMonitor);
 //
-//                                 auto &rectWkspace = psession->m_rectaWkspace[iMonitor];
+//                                 auto &rectWorkspace = psession->m_rectaWorkspace[iMonitor];
 //
 //                                 auto &rectMonitor = psession->m_rectaMonitor[iMonitor];
 //
 //                                 if (pmonitor == nullptr)
 //                                 {
 //
-//                                    rectWkspace.Null();
+//                                    rectWorkspace.Null();
 //
 //                                    rectMonitor.Null();
 //
@@ -566,7 +605,7 @@ namespace node_gnome
 //
 //                                 gdk_monitor_get_workarea(pmonitor, &rect);
 //
-//                                 __copy(rectWkspace, rect);
+//                                 __copy(rectWorkspace, rect);
 //
 //                                 __zero(rect);
 //

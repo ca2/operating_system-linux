@@ -10,8 +10,9 @@
 #include <X11/Xatom.h>
 
 
-void on_sn_launch_context(void * pSnContext, Window window);
-void on_sn_launch_complete(void * pSnContext);
+
+//void on_sn_launch_context(void * pSnContext, Window window);
+//void on_sn_launch_complete(void * pSnContext);
 
 
 mutex * x11_mutex();
@@ -269,6 +270,16 @@ namespace windowing_x11
 
       m_pimpl = pimpl;
 
+      pimpl->m_pwindow = this;
+
+      set_os_data((::windowing::window *)this);
+
+      pimpl->set_os_data((::windowing::window *)this);
+
+      set_os_data(LAYERED_X11, (::windowing_x11::window *)this);
+
+      pimpl->set_os_data(LAYERED_X11, (::windowing_x11::window *)this);
+
       pimpl->m_puserinteraction->m_pimpl = pimpl;
 
       pimpl->m_puserinteraction->add_ref(OBJ_REF_DBG_P_NOTE(this, "native_create_window"));
@@ -280,17 +291,11 @@ namespace windowing_x11
 
          XClassHint *pupdate = XAllocClassHint();
 
-         string strPrgName = papp->m_strAppId;
+         string strApplicationServerName = System.get_application_server_name();
 
-         strPrgName.replace("/", ".");
+         pupdate->res_class = (char *) (const char *) strApplicationServerName;
 
-         strPrgName.replace("_", "-");
-
-         strPrgName = "com." + strPrgName;
-
-         pupdate->res_class = (char *) (const char *) strPrgName;
-
-         pupdate->res_name = (char *) (const char *) strPrgName;
+         pupdate->res_name = (char *) (const char *) strApplicationServerName;
 
          XSetClassHint(display, window, pupdate);
 
@@ -305,7 +310,7 @@ namespace windowing_x11
 
          Application.os_on_start_application();
 
-         on_sn_launch_context(pwindowing->m_pSnLauncheeContext, window);
+         //on_sn_launch_context(pwindowing->m_pSnLauncheeContext, window);
 
          papp->m_bSnLauncheeSetup = true;
 
@@ -469,7 +474,11 @@ namespace windowing_x11
                if (pimpl->m_puserinteraction->layout().sketch().display() == e_display_undefined)
                {
 
-                  pimpl->m_puserinteraction->move_to(windowing().get_cursor_pos());
+                  auto pwindowing = windowing();
+
+                  auto pointCursor = pwindowing->get_cursor_position();
+
+                  pimpl->m_puserinteraction->move_to(pointCursor);
 
                   pimpl->m_puserinteraction->set_size(0, 0);
 
@@ -544,20 +553,27 @@ namespace windowing_x11
 
       }
 
-#ifdef WITH_SN
+//#ifdef WITH_SN
 
       auto pwindowing = x11_windowing();
 
-      if (pwindowing->m_pSnLauncheeContext != nullptr)
+    //  if (pwindowing->m_pSnLauncheeContext != nullptr)
+      if(!pwindowing->m_bFirstWindowMap)
       {
 
-         on_sn_launch_complete(pwindowing->m_pSnLauncheeContext);
+         pwindowing->m_bFirstWindowMap = true;
 
-         pwindowing->m_pSnLauncheeContext = nullptr;
+         auto pnode = Node;
+
+         pnode->defer_notify_startup_complete();
+
+         //on_sn_launch_complete(pwindowing->m_pSnLauncheeContext);
+
+  //       pwindowing->m_pSnLauncheeContext = nullptr;
 
       }
 
-#endif // RASPBIAN
+//#endif // RASPBIAN
 
       windowing_output_debug_string("\nwindow::map_window END");
 
@@ -1912,6 +1928,8 @@ va_end(argp);
       return true;
 
    }
+
+
 //   void oswindow_data::wm_full_screen(const ::rectangle_i32 & rectangle)
 //   {
 //
@@ -1984,41 +2002,41 @@ va_end(argp);
 //
 
 
-::e_status window::x11_post_message(MESSAGE & msg)
-{
-
-   try
+   ::e_status window::x11_post_message(MESSAGE & msg)
    {
 
-      if(msg.oswindow == nullptr)
+      try
       {
 
-         System.post_message(msg.m_id, msg.wParam, msg.lParam);
-
-      }
-      else
-      {
-
-         if(msg.oswindow != nullptr && msg.oswindow->m_pimpl != nullptr && msg.oswindow->m_pimpl->m_puserinteraction != nullptr)
+         if(msg.oswindow == nullptr)
          {
 
-            ::user::interaction * pinteraction = msg.oswindow->m_pimpl->m_puserinteraction;
+            System.post_message(msg.m_id, msg.wParam, msg.lParam);
 
-            pinteraction->post_message(msg.m_id, msg.wParam, msg.lParam);
+         }
+         else
+         {
+
+            if(msg.oswindow != nullptr && msg.oswindow->m_pimpl != nullptr && msg.oswindow->m_pimpl->m_puserinteraction != nullptr)
+            {
+
+               ::user::interaction * pinteraction = msg.oswindow->m_pimpl->m_puserinteraction;
+
+               pinteraction->post_message(msg.m_id, msg.wParam, msg.lParam);
+
+            }
 
          }
 
       }
+      catch(...)
+      {
+
+      }
+
+      return ::success;
 
    }
-   catch(...)
-   {
-
-   }
-
-   return ::success;
-
-}
 
 
    ::e_status window::post_ui_message(const MESSAGE & message)
@@ -2099,48 +2117,50 @@ va_end(argp);
 
    }
 
-::e_status window::mq_remove_window_from_all_queues()
-{
 
-   ::user::interaction * pinteraction = m_pimpl->m_puserinteraction;
-
-   if(pinteraction == nullptr)
+   ::e_status window::mq_remove_window_from_all_queues()
    {
 
-      return false;
+      ::user::interaction * pinteraction = m_pimpl->m_puserinteraction;
+
+      if(pinteraction == nullptr)
+      {
+
+         return false;
+
+      }
+
+      if(pinteraction->get_context_application() == nullptr)
+      {
+
+         return false;
+
+      }
+
+      ithread_t idthread = pinteraction->get_context_application()->get_ithread();
+
+      message_queue * pmq = get_message_queue(idthread, false);
+
+      if(pmq == nullptr)
+      {
+
+         return false;
+
+      }
+
+      synchronization_lock ml(pmq->mutex());
+
+      pmq->m_messagea.predicate_remove([this](MESSAGE & item)
+      {
+
+         return item.oswindow == this;
+
+      });
+
+      return true;
 
    }
 
-   if(pinteraction->get_context_application() == nullptr)
-   {
-
-      return false;
-
-   }
-
-   ithread_t idthread = pinteraction->get_context_application()->get_ithread();
-
-   message_queue * pmq = get_message_queue(idthread, false);
-
-   if(pmq == nullptr)
-   {
-
-      return false;
-
-   }
-
-   synchronization_lock ml(pmq->mutex());
-
-   pmq->m_messagea.predicate_remove([this](MESSAGE & item)
-   {
-
-      return item.oswindow == this;
-
-   });
-
-   return true;
-
-}
 
    bool window::set_window_position(const class ::zorder & zorder, i32 x, i32 y, i32 cx, i32 cy, ::u32 nFlags)
    {
@@ -2694,14 +2714,16 @@ va_end(argp);
             window = windowa[0];
 
          }
-            break;
+         break;
+
          case e_relative_last_sibling:
          {
 
             window = windowa[numItems - 1];
 
          }
-            break;
+         break;
+
          case e_relative_next_sibling:
          case e_relative_previous_sibling:
          {
@@ -3241,6 +3263,39 @@ va_end(argp);
    }
 
 
+   bool window::has_mouse_capture() const
+   {
+
+      auto pdisplay = x11_display();
+
+      if(::is_null(pdisplay))
+      {
+
+         return false;
+
+      }
+
+      auto pwindowCapture = pdisplay->m_pwindowCapture;
+
+      if(::is_null(pwindowCapture))
+      {
+
+         return false;
+
+      }
+
+      if(pwindowCapture != this)
+      {
+
+         return false;
+
+      }
+
+      return true;
+
+   }
+
+
    /// should be run in user thread
    ::e_status window::x11_store_name(const char *pszName)
    {
@@ -3362,7 +3417,35 @@ va_end(argp);
       m_pwindowing->user_fork(__routine([this]()
       {
 
-         m_pimpl->m_puserinteraction->m_pimpl2->m_pprodevian->update_screen();
+         auto pimpl = m_pimpl;
+
+         if(::is_set(pimpl))
+         {
+
+            auto puserinteraction = pimpl->m_puserinteraction;
+
+            if(::is_set(puserinteraction))
+            {
+
+               auto pimpl2 = puserinteraction->m_pimpl2;
+
+               if(::is_set(pimpl2))
+               {
+
+                  auto pprodevian = pimpl2->m_pprodevian;
+
+                  if(::is_set(pprodevian))
+                  {
+
+                     pprodevian->update_screen();
+
+                  }
+
+               }
+
+            }
+
+         }
 
       }));
 
@@ -3375,12 +3458,127 @@ va_end(argp);
       m_pwindowing->user_fork(__routine([this]()
       {
 
-         m_pimpl->m_puserinteraction->m_pimpl2->window_show();
+         auto pimpl = m_pimpl;
+
+         if(::is_set(pimpl))
+         {
+
+            auto puserinteraction = pimpl->m_puserinteraction;
+
+            if(::is_set(puserinteraction))
+            {
+
+               auto pimpl2 = puserinteraction->m_pimpl2;
+
+               if(::is_set(pimpl2))
+               {
+
+                  pimpl2->window_show();
+
+               }
+
+            }
+
+         }
 
       }));
 
 
    }
+
+
+   ::e_status window::set_mouse_capture()
+   {
+
+      synchronization_lock synchronizationlock(x11_mutex());
+
+      if (Display() == nullptr)
+      {
+
+         return error_failed;
+
+      }
+
+      if (Window() == None)
+      {
+
+         return error_failed;
+
+      }
+
+      windowing_output_debug_string("\noswindow_data::SetCapture 1");
+
+      display_lock displaylock(x11_display());
+
+      auto grabStatus = XGrabPointer(Display(), Window(), False, ButtonPressMask | ButtonReleaseMask | PointerMotionMask,
+                                     GrabModeAsync, GrabModeAsync, None, None, CurrentTime);
+
+      if (grabStatus != GrabSuccess)
+      {
+
+         windowing_output_debug_string("\noswindow_data::SetCapture 2.1");
+
+         return error_failed;
+
+      }
+
+      auto pdisplay = x11_display();
+
+      if(pdisplay)
+      {
+
+         pdisplay->_on_capture_changed_to(this);
+
+      }
+
+      windowing_output_debug_string("\noswindow_data::SetCapture 2");
+
+      return ::success;
+
+   }
+
+
+   ::e_status window::set_keyboard_focus()
+   {
+
+      synchronization_lock synchronizationlock(x11_mutex());
+
+      if (Window() == 0)
+      {
+
+         return error_failed;
+
+      }
+
+      windowing_output_debug_string("\noswindow_data::SetFocus 1");
+
+      display_lock displaylock(x11_display());
+
+      if (!is_window())
+      {
+
+         windowing_output_debug_string("\noswindow_data::SetFocus 1.1");
+
+         return error_failed;
+
+      }
+
+      if (!XSetInputFocus(Display(), Window(), RevertToNone, CurrentTime))
+      {
+
+         windowing_output_debug_string("\noswindow_data::SetFocus 1.3");
+
+         return error_failed;
+
+      }
+
+      windowing_output_debug_string("\noswindow_data::SetFocus 2");
+
+      return ::success;
+
+   }
+
+
 
 
 } // namespace windowing_x11

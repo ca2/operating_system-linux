@@ -34,7 +34,7 @@ namespace windowing_x11
    void display_lock::lock()
    {
 
-      if(!m_bLocked)
+      if(!m_bLocked && ::is_set(m_pdisplay))
       {
 
          m_bLocked = true;
@@ -49,7 +49,7 @@ namespace windowing_x11
    void display_lock::unlock()
    {
 
-      if(m_bLocked)
+      if(m_bLocked && ::is_set(m_pdisplay))
       {
 
          m_pdisplay->unlock_display();

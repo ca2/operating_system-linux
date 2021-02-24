@@ -184,13 +184,13 @@ namespace node_linux
 
       path /= ".local/share/applications";
 
-      string strPrgName = papplication->m_strAppId;
+      string strApplicationServerName = papplication->m_strAppId;
 
-      strPrgName.replace("/", ".");
+      strApplicationServerName.replace("/", ".");
 
-      strPrgName.replace("_", "-");
+      strApplicationServerName.replace("_", "-");
 
-      path /= ("com." + strPrgName + ".desktop");
+      path /= (strApplicationServerName + ".desktop");
 
       return path;
 

@@ -1,53 +1,34 @@
 cmake_minimum_required(VERSION 3.17)
-project(draw2d_gdiplus CXX)
+project(write_text_pango CXX)
 
-set(CMAKE_CXX_STANDARD 14)
-set(CMAKE_CXX_EXTENSIONS OFF)
+
+add_compile_options("$<$<CONFIG:DEBUG>:-DDEBUG>")
 
 
 message(STATUS "CMAKE_SYSTEM_NAME is ${CMAKE_SYSTEM_NAME}")
-
-
-if(${CMAKE_SYSTEM_NAME} STREQUAL "Linux")
-    set(LINUX TRUE)
-    set(PLATFORM_NAME "linux")
-    include(FindPkgConfig)
-elseif(WIN32)
-    set(PLATFORM_NAME "windows")
-endif()
 
 
 set(LIBRARY_OUTPUT_PATH ${CMAKE_CURRENT_SOURCE_DIR}/../../../time-${PLATFORM_NAME}/cmake)
 set(EXECUTABLE_OUTPUT_PATH ${CMAKE_CURRENT_SOURCE_DIR}/../../../time-${PLATFORM_NAME}/cmake)
 
 
-list(APPEND draw2d_gdiplus_source
+list(APPEND write_text_pango_references
+        acme
+        apex
+        aqua
+        aura)
+
+
+list(APPEND write_text_pango_source
         _.cpp
         _.h
-        bitmap.cpp
-        bitmap.h
-        brush.cpp
-        brush.h
         factory_exchange.cpp
-        font.cpp
-        font.h
+        font_department.cpp
+        font_department.h
         framework.cpp
         framework.h
-        graphics.cpp
-        graphics.h
-        image.cpp
-        image.h
-        object.cpp
-        object.h
-        path.cpp
-        path.h
-        pen.cpp
-        pen.h
-        preview_dc.cpp
-        region.cpp
-        region.h
-        text.cpp)
-
+        write_text.cpp
+        write_text.h)
 
 
 if (MSVC)
@@ -57,50 +38,59 @@ else()
 endif()
 
 
-add_library(draw2d_gdiplus SHARED ${draw2d_gdiplus_source})
+add_library(write_text_pango SHARED ${write_text_pango_source})
 
-target_precompile_headers(draw2d_gdiplus PRIVATE framework.h)
+target_precompile_headers(write_text_pango PRIVATE framework.h)
 
-set_target_properties(draw2d_gdiplus PROPERTIES LINKER_LANGUAGE CXX)
+set_target_properties(write_text_pango PROPERTIES LINKER_LANGUAGE CXX)
 
 if (MSVC)
-    target_compile_options(draw2d_gdiplus PRIVATE "/MD$<$<CONFIG:Debug>:d>")
-    target_link_options(draw2d_gdiplus PRIVATE "/DEFAULTLIB:msvcrt$<$<CONFIG:Debug>:d>")
-    target_link_options(draw2d_gdiplus PRIVATE "/IMPLIB:${LIBRARY_OUTPUT_PATH}/draw2d_gdiplus.lib")
-    target_link_options(draw2d_gdiplus PRIVATE "/DEF:${CMAKE_CURRENT_SOURCE_DIR}/draw2d_gdiplus.def")
-    target_link_libraries(draw2d_gdiplus PRIVATE acme apex aqua aura Gdiplus)
+    target_compile_options(write_text_pango PRIVATE "/MD$<$<CONFIG:Debug>:d>")
+    target_link_options(write_text_pango PRIVATE "/DEFAULTLIB:msvcrt$<$<CONFIG:Debug>:d>")
+    target_link_options(write_text_pango PRIVATE "/IMPLIB:${LIBRARY_OUTPUT_PATH}/write_text_pango.lib")
+    target_link_options(write_text_pango PRIVATE "/DEF:${CMAKE_CURRENT_SOURCE_DIR}/write_text_pango.def")
+    target_link_libraries(write_text_pango PRIVATE acme apex aqua aura Gdiplus)
 elseif(LINUX)
     #pkg_check_modules(PKGCONFIG glib-2.0 gtk+-3.0 gdk-3.0 appindicator-0.1)
-    pkg_check_modules(PKGCONFIG glib-2.0 freetype2 gtk+-3.0 gdk-3.0)
-    target_compile_options(draw2d_gdiplus PRIVATE ${PKGCONFIG_CFLAGS})
-    #target_compile_options(draw2d_gdiplus PRIVATE -std=c++14)
-    #target_link_options(draw2d_gdiplus PRIVATE ${GTK_LDFLAGS})
-    target_link_options(draw2d_gdiplus PRIVATE -Wl,-rpath=\$ORIGIN)
-    target_link_libraries(draw2d_gdiplus PRIVATE z dl pthread ncurses X11 Xrender Xinerama Xft ${PKGCONFIG_LIBRARIES})
-    target_link_options(draw2d_gdiplus PRIVATE -Wl,-z,defs)
+    pkg_check_modules(PKGCONFIG pangocairo)
+    target_compile_options(write_text_pango PRIVATE ${PKGCONFIG_CFLAGS})
+    #target_compile_options(write_text_pango PRIVATE -std=c++14)
+    #target_link_options(write_text_pango PRIVATE ${GTK_LDFLAGS})
+    target_link_options(write_text_pango PRIVATE -Wl,-rpath=\$ORIGIN)
+    target_link_libraries(write_text_pango PRIVATE ${PKGCONFIG_LIBRARIES} ${write_text_pango_references})
+    target_link_options(write_text_pango PRIVATE -Wl,-z,defs)
     message("PKGCONFIG_LIBRARIES is " ${PKGCONFIG_LIBRARIES})
+    #target_link_libraries(write_text_pango PRIVATE )
+    #add_dependencies(write_text_pango draw2d_cairo imaging_freeimage)
 endif()
 
-target_link_directories(draw2d_gdiplus PRIVATE ${LIBRARY_OUTPUT_PATH})
-target_link_directories(draw2d_gdiplus PRIVATE ${CMAKE_CURRENT_SOURCE_DIR}/../../../archive/storage-${PLATFORM_NAME}/library/x64/basis)
-target_link_directories(draw2d_gdiplus PRIVATE ${CMAKE_CURRENT_SOURCE_DIR}/../../../archive/storage-${PLATFORM_NAME}/third/library/x64/basis)
+
+#add_dependencies(write_text_pango ${app_common_dependencies} )
 
 
-target_include_directories(draw2d_gdiplus PRIVATE $ENV{HOME}/__config)
-target_include_directories(draw2d_gdiplus PRIVATE ${CMAKE_CURRENT_SOURCE_DIR}/../..)
-target_include_directories(draw2d_gdiplus PRIVATE ${CMAKE_CURRENT_SOURCE_DIR}/..)
-target_include_directories(draw2d_gdiplus PRIVATE ${CMAKE_CURRENT_SOURCE_DIR}/../../../source)
-target_include_directories(draw2d_gdiplus PRIVATE ${CMAKE_CURRENT_SOURCE_DIR}/../../../source/app)
-target_include_directories(draw2d_gdiplus PRIVATE ${CMAKE_CURRENT_SOURCE_DIR}/../../../source/app/_include)
-target_include_directories(draw2d_gdiplus PRIVATE ${CMAKE_CURRENT_SOURCE_DIR}/../../../source/include)
-target_include_directories(draw2d_gdiplus PRIVATE ${CMAKE_CURRENT_SOURCE_DIR}/../../../archive/platform-${PLATFORM_NAME})
-target_include_directories(draw2d_gdiplus PRIVATE ${CMAKE_CURRENT_SOURCE_DIR}/../../../archive/platform-${PLATFORM_NAME}/_include)
-target_include_directories(draw2d_gdiplus PRIVATE ${CMAKE_CURRENT_SOURCE_DIR}/../../../archive/third-${PLATFORM_NAME}/include)
-target_include_directories(draw2d_gdiplus PRIVATE ${CMAKE_CURRENT_SOURCE_DIR}/../../../archive/third-${PLATFORM_NAME}/third/include)
-target_include_directories(draw2d_gdiplus PRIVATE ${CMAKE_CURRENT_SOURCE_DIR}/../../../archive/third-${PLATFORM_NAME}/third/include/include)
-target_include_directories(draw2d_gdiplus PRIVATE ${CMAKE_CURRENT_SOURCE_DIR})
+target_link_directories(write_text_pango PRIVATE ${LIBRARY_OUTPUT_PATH})
+target_link_directories(write_text_pango PRIVATE ${CMAKE_CURRENT_SOURCE_DIR}/../../../archive/storage-${PLATFORM_NAME}/library/x64/basis)
+target_link_directories(write_text_pango PRIVATE ${CMAKE_CURRENT_SOURCE_DIR}/../../../archive/storage-${PLATFORM_NAME}/third/library/x64/basis)
 
 
-target_compile_definitions(draw2d_gdiplus PRIVATE _DRAW2D_GDIPLUS_LIBRARY)
-target_compile_definitions(draw2d_gdiplus PRIVATE UNICODE)
-target_compile_definitions(draw2d_gdiplus PRIVATE _UNICODE)
+target_include_directories(write_text_pango PRIVATE $ENV{HOME}/__config)
+target_include_directories(write_text_pango PRIVATE ${CMAKE_CURRENT_SOURCE_DIR}/../..)
+target_include_directories(write_text_pango PRIVATE ${CMAKE_CURRENT_SOURCE_DIR}/..)
+target_include_directories(write_text_pango PRIVATE ${CMAKE_CURRENT_SOURCE_DIR}/../../../source)
+target_include_directories(write_text_pango PRIVATE ${CMAKE_CURRENT_SOURCE_DIR}/../../../source/app)
+target_include_directories(write_text_pango PRIVATE ${CMAKE_CURRENT_SOURCE_DIR}/../../../source/app/_include)
+target_include_directories(write_text_pango PRIVATE ${CMAKE_CURRENT_SOURCE_DIR}/../../../source/include)
+target_include_directories(write_text_pango PRIVATE ${CMAKE_CURRENT_SOURCE_DIR}/../../../archive/platform-${PLATFORM_NAME})
+target_include_directories(write_text_pango PRIVATE ${CMAKE_CURRENT_SOURCE_DIR}/../../../archive/platform-${PLATFORM_NAME}/_include)
+target_include_directories(write_text_pango PRIVATE ${CMAKE_CURRENT_SOURCE_DIR}/../../../archive/third-${PLATFORM_NAME}/include)
+target_include_directories(write_text_pango PRIVATE ${CMAKE_CURRENT_SOURCE_DIR}/../../../archive/third-${PLATFORM_NAME}/third/include)
+target_include_directories(write_text_pango PRIVATE ${CMAKE_CURRENT_SOURCE_DIR}/../../../archive/third-${PLATFORM_NAME}/third/include/include)
+target_include_directories(write_text_pango PRIVATE ${CMAKE_CURRENT_SOURCE_DIR})
+
+
+target_compile_definitions(write_text_pango PRIVATE _WRITE_TEXT_PANGO_LIBRARY)
+target_compile_definitions(write_text_pango PRIVATE UNICODE)
+target_compile_definitions(write_text_pango PRIVATE _UNICODE)
+
+
+

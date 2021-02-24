@@ -2,7 +2,7 @@
 #include "framework.h"
 
 
-namespace write_text_win32
+namespace write_text_pango
 {
 
    
@@ -20,8 +20,7 @@ namespace write_text_win32
    }
 
 
-
-} // namespace write_text_win32
+} // namespace write_text_pango
 
 
 

@@ -25,16 +25,19 @@ namespace windowing_x11
 {
 
 
-   display *g_posdisplaydataMain = nullptr;
+   //display *g_posdisplaydataMain = nullptr;
 
-   void defer_init_ui();
 
-   display *x11_main_display()
-   {
+   //void defer_init_ui();
 
-      return g_posdisplaydataMain;
 
-   }
+   //display *x11_main_display()
+   //{
+
+   //   return g_posdisplaydataMain;
+
+   //}
+
 
    display::display()
    {
@@ -131,6 +134,7 @@ namespace windowing_x11
 
 
 #endif // DEBUG
+
 
    ::e_status display::open()
    {
@@ -247,9 +251,9 @@ namespace windowing_x11
 
 
 
-   bool display::get_monitor_rect(index iMonitor, RECTANGLE_I32 * prectangle)
+   bool display::get_monitor_rectangle(index iMonitor, RECTANGLE_I32 * prectangle)
    {
-      return ::windowing::display::get_monitor_rect(iMonitor, prectangle);
+      return ::windowing::display::get_monitor_rectangle(iMonitor, prectangle);
 //
 //      synchronization_lock synchronizationlock(mutex());
 //
@@ -267,17 +271,20 @@ namespace windowing_x11
    }
 
 
+   bool display::get_workspace_rectangle(index iMonitor, RECTANGLE_I32 * prectangle)
+   {
+
+      return ::windowing::display::get_workspace_rectangle(iMonitor, prectangle);
+
+   }
+
+
    ::e_status display::release_mouse_capture()
    {
 
       synchronization_lock synchronizationlock(x11_mutex());
 
-//    if(g_oswindowCapture == nullptr)
-//    {
-
-//       return false;
-
-//    }
+      _on_capture_changed_to(nullptr);
 
       windowing_output_debug_string("\noswindow_data::ReleaseCapture 1");
 
@@ -285,16 +292,49 @@ namespace windowing_x11
 
       int_bool bRet = XUngrabPointer(Display(), CurrentTime) != false;
 
-//      //if(bRet)
-//      {
-//
-//         g_oswindowCapture = nullptr;
-//
-//      }
-
       windowing_output_debug_string("\noswindow_data::ReleaseCapture 2");
 
       return bRet;
+
+   }
+
+
+//   bool display::has_mouse_capture() const
+//   {
+//
+//      if(::is_null(m_pwindowCapture))
+//      {
+//
+//         return false;
+//
+//      }
+//
+//
+//   }
+
+
+   void display::_on_capture_changed_to(::windowing_x11::window * pwindowCaptureNew)
+   {
+
+      auto pwindowCaptureOld = m_pwindowCapture;
+
+      m_pwindowCapture = pwindowCaptureNew;
+
+      if (pwindowCaptureOld && pwindowCaptureOld != pwindowCaptureNew)
+      {
+
+         MESSAGE msg;
+
+         msg.oswindow = pwindowCaptureOld;
+         msg.m_id = e_message_capture_changed;
+         msg.wParam = 0;
+         msg.lParam = pwindowCaptureNew;
+
+         auto pwindowing = x11_windowing();
+
+         pwindowing->post_ui_message(msg);
+
+      }
 
    }
 
@@ -752,7 +792,7 @@ namespace windowing_x11
    }
 
 
-   bool display::get_cursor_pos(POINT_I32 *ppointCursor)
+   bool display::get_cursor_position(POINT_I32 *ppointCursor)
    {
 
       Window root_return;

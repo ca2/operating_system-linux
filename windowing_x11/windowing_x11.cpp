@@ -6,7 +6,7 @@
 #include "aura/os/x11/_x11.h"
 #include "acme/const/id.h"
 #include "acme/const/message.h"
-#include "third/sn/sn.h"
+////#include "third/sn/sn.h"
 #include <fcntl.h> // library for fcntl function
 #include <sys/stat.h>
 #include <X11/extensions/xf86vmode.h> // libxxf86vm-dev
@@ -298,97 +298,11 @@ namespace windowing_x11
    //bool __x11_hook_list_is_empty();
 
 
-   ::e_status window::set_mouse_capture()
-   {
-
-      synchronization_lock synchronizationlock(x11_mutex());
-
-      oswindow windowOld(g_oswindowCapture);
-
-      if (Display() == nullptr)
-      {
-
-         return error_failed;
-
-      }
-
-      if (Window() == None)
-      {
-
-         return error_failed;
-
-      }
-
-      windowing_output_debug_string("\noswindow_data::SetCapture 1");
-
-      display_lock displaylock(x11_display());
-
-      if (XGrabPointer(Display(), Window(), False, ButtonPressMask | ButtonReleaseMask | PointerMotionMask,
-                       GrabModeAsync, GrabModeAsync, None, None, CurrentTime) == GrabSuccess)
-      {
-
-         //g_oswindowCapture = window;
-
-         windowing_output_debug_string("\noswindow_data::SetCapture 2");
-
-         return ::success;
-
-      }
-
-      windowing_output_debug_string("\noswindow_data::SetCapture 2.1");
-
-      return error_failed;
-
-   }
-
-
-   ::e_status window::set_keyboard_focus()
-   {
-
-      synchronization_lock synchronizationlock(x11_mutex());
-
-      if (Window() == 0)
-      {
-
-         return error_failed;
-
-      }
-
-      windowing_output_debug_string("\noswindow_data::SetFocus 1");
-
-      display_lock displaylock(x11_display());
-
-      if (!is_window())
-      {
-
-         windowing_output_debug_string("\noswindow_data::SetFocus 1.1");
-
-         return error_failed;
-
-      }
-
-      if (!XSetInputFocus(Display(), Window(), RevertToNone, CurrentTime))
-      {
-
-         windowing_output_debug_string("\noswindow_data::SetFocus 1.3");
-
-         return error_failed;
-
-      }
-
-      windowing_output_debug_string("\noswindow_data::SetFocus 2");
-
-      return ::success;
-
-   }
-
-
 #ifdef display_lock_LOCK_LOG
 
    extern bool b_prevent_display_lock_lock_log;
 
 #endif
-
 
    oswindow g_oswindowActive;
 
@@ -1006,7 +920,6 @@ Retrieved from: http://en.literateprograms.org/Hello_World_(C,_Cairo)?oldid=1038
    Atom g_atomKickIdle = 0;
 
 
-   bool g_bFinishX11Thread = false;
 
 
 //void start_x11_thread(osdisplay_data * pdisplaydata)
@@ -1050,15 +963,14 @@ Retrieved from: http://en.literateprograms.org/Hello_World_(C,_Cairo)?oldid=1038
 //}
 
 
-   bool g_bInitX11Thread = false;
 
 
-   void finish_x11_thread()
+   void windowing::windowing_post_quit()
    {
 
-      g_bFinishX11Thread = true;
+      m_bFinishX11Thread = true;
 
-      g_bInitX11Thread = false;
+      m_bInitX11Thread = false;
 
    }
 
@@ -1244,7 +1156,7 @@ Retrieved from: http://en.literateprograms.org/Hello_World_(C,_Cairo)?oldid=1038
 
       }
 
-      while (!g_bFinishX11Thread)
+      while (!m_bFinishX11Thread)
       {
 
          try
@@ -1265,7 +1177,7 @@ Retrieved from: http://en.literateprograms.org/Hello_World_(C,_Cairo)?oldid=1038
 
       }
 
-      if (g_bFinishX11Thread)
+      if (m_bFinishX11Thread)
       {
 
 #ifdef WITH_XI
@@ -1292,14 +1204,6 @@ Retrieved from: http://en.literateprograms.org/Hello_World_(C,_Cairo)?oldid=1038
 
 
 
-      Display *pdisplay = m_pdisplay->Display();
-
-      if (pdisplay == nullptr)
-      {
-
-         return true;
-
-      }
 
 //   if(!g_bInitX11Thread)
 //   {
@@ -1332,7 +1236,16 @@ Retrieved from: http://en.literateprograms.org/Hello_World_(C,_Cairo)?oldid=1038
 
          display_lock displayLock(m_pdisplay);
 
-         while (XPending(pdisplay) && !g_bFinishX11Thread)
+         Display *pdisplay = m_pdisplay->Display();
+
+         if (pdisplay == nullptr)
+         {
+
+            return true;
+
+         }
+
+         while (XPending(pdisplay) && !m_bFinishX11Thread)
          {
 
             try
@@ -1402,7 +1315,7 @@ Retrieved from: http://en.literateprograms.org/Hello_World_(C,_Cairo)?oldid=1038
 
       }
 
-      while (!g_bFinishX11Thread)
+      while (!m_bFinishX11Thread)
       {
 
          try
@@ -1423,7 +1336,7 @@ Retrieved from: http://en.literateprograms.org/Hello_World_(C,_Cairo)?oldid=1038
 
       }
 
-      if (g_bFinishX11Thread)
+      if (m_bFinishX11Thread)
       {
 
 #ifdef WITH_XI
@@ -1630,6 +1543,21 @@ Retrieved from: http://en.literateprograms.org/Hello_World_(C,_Cairo)?oldid=1038
 
             ::minimum(m_pointCursor.y);
 
+//            if(e.xcrossing.mode == NotifyUngrab)
+//            {
+//
+//  //             MESSAGE msgCaptureChanged;
+//
+////               msgCaptureChanged.oswindow = m_pwindowCapture;
+//               msg.m_id = e_message_capture_changed;
+//               msg.wParam = 0;
+//               msg.lParam = (lparam) (oswindow) (msg.oswindow == m_pwindowCapture ? nullptr : m_pwindowCapture.m_p);
+//               msg.time = e.xcrossing.time;
+//
+//               post_ui_message(msg);
+//
+//            }
+
             msg.m_id = e_message_mouse_leave;
             msg.wParam = 0;
             msg.lParam = 0;
@@ -1641,6 +1569,8 @@ Retrieved from: http://en.literateprograms.org/Hello_World_(C,_Cairo)?oldid=1038
          break;
          case EnterNotify:
          {
+
+
 
             //::minimum(m_pointCursor.x);
 
@@ -3017,23 +2947,25 @@ Retrieved from: http://en.literateprograms.org/Hello_World_(C,_Cairo)?oldid=1038
 
    //void ui_post_quit();
 
-   void defer_term_ui()
-   {
-
-      synchronization_lock synchronizationlock(x11_mutex());
-
-      g_iX11Ref--;
-
-      if (g_iX11Ref <= 0)
-      {
-
-         finish_x11_thread();
-
-         //ui_post_quit();
-
-      }
-
-   }
+//   void defer_term_ui()
+//   {
+//
+//      synchronization_lock synchronizationlock(x11_mutex());
+//
+//      g_iX11Ref--;
+//
+//      if (g_iX11Ref <= 0)
+//      {
+//
+//         auto
+//
+//         windowing_post_quit();
+//
+//         //ui_post_quit();
+//
+//      }
+//
+//   }
 
 
 //void x11_thread(osdisplay_data * pdisplaydata);
@@ -3205,7 +3137,7 @@ Retrieved from: http://en.literateprograms.org/Hello_World_(C,_Cairo)?oldid=1038
    void windowing::x11_main()
    {
 
-      while (!g_bFinishX11Thread)
+      while (!m_bFinishX11Thread)
       {
 
          x11_message_loop_step();
@@ -3213,10 +3145,6 @@ Retrieved from: http://en.literateprograms.org/Hello_World_(C,_Cairo)?oldid=1038
       }
 
    }
-
-
-
-
 
 
 //
@@ -3241,7 +3169,7 @@ Retrieved from: http://en.literateprograms.org/Hello_World_(C,_Cairo)?oldid=1038
 //int get_best_ordered_monitor(::user::interaction * pinteraction, int & l, int & t, int & cx, int & cy);
 //int get_best_monitor(::user::interaction * pinteraction, int & l, int & t, int & cx, int & cy);
 
-   extern SnLauncheeContext *g_psncontext;
+//extern SnLauncheeContext *g_psncontext;
 //Display * Display();
 //void wm_toolwindow(oswindow w, bool bToolWindow);
 //void wm_state_hidden(oswindow w, bool bSet);
@@ -3591,7 +3519,7 @@ bool x11_runnable_step()
 ::e_status defer_initialize_x11()
 {
 
-   if(g_estatusInitializeX11 == error_not_set)
+   if(g_estatusInitializeX11 == error_not_initialized)
    {
 
       g_estatusInitializeX11 = initialize_x11();

@@ -796,9 +796,14 @@ CLASS_DECL_APEX void main_branch(::matter * prunnable, e_priority epriority)
 gboolean x11_source_func(gpointer p)
 {
 
-   ::node_gnome::node * pnode = (::node_gnome::node *) p;
+   ::node_gnome::node *pnode = (::node_gnome::node *) p;
 
-   pnode->windowing_message_loop_step();
+   if (!pnode->windowing_message_loop_step())
+   {
+
+      return FALSE;
+
+   }
 
    return TRUE;
 

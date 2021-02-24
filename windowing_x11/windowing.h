@@ -14,8 +14,14 @@ namespace windowing_x11
    public:
 
 
+      bool                                            m_bFirstWindowMap : 1;
+
       __pointer(::windowing_x11::display)        m_pdisplay;
       void *                                          m_pSnLauncheeContext;
+      bool                                            m_bFinishX11Thread;
+      bool                                            m_bInitX11Thread;
+
+
 
 #ifdef WITH_XI
 
@@ -45,6 +51,13 @@ namespace windowing_x11
       virtual ::windowing::display * display() override;
 
       virtual void windowing_main() override;
+
+
+      virtual void windowing_post_quit() override;
+
+
+      virtual ::e_status release_mouse_capture() override;
+
 
       virtual void x11_main();
 
@@ -78,6 +91,7 @@ namespace windowing_x11
 
       virtual ::windowing::window * get_keyboard_focus(::thread * pthread) override;
 
+      virtual ::windowing::window * get_mouse_capture(::thread * pthread) override;
 
       //virtual ::e_status clear_active_window(::thread * pthread);
 

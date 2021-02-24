@@ -310,7 +310,7 @@ namespace windowing_x11
 
       auto & pimage = get_screen_image();
 
-      if(!pimage)
+      if(!::is_ok(pimage))
       {
 
          return false;
