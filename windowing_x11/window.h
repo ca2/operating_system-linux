@@ -159,6 +159,8 @@ namespace windowing_x11
 
       virtual bool has_mouse_capture() const override;
 
+      virtual bool has_keyboard_focus() const override;
+
 
 
 

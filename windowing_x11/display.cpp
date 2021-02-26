@@ -8,11 +8,11 @@
 //#include <gdk/gdk.h>
 
 
-extern ::app_core *g_pappcore;
+extern ::app_core * g_pappcore;
 
-Display *x11_get_display();
+Display * x11_get_display();
 
-mutex *x11_mutex();
+mutex * x11_mutex();
 
 #define CA2_X11_WINDOW_LONG "ca2_ccwarehouse_window_long"
 #define CA2_X11_WINDOW_LONG_STYLE "ca2_ccwarehouse_window_long_style"
@@ -20,6 +20,7 @@ mutex *x11_mutex();
 
 
 void windowing_output_debug_string(const char *pszDebugString);
+
 
 namespace windowing_x11
 {
@@ -313,22 +314,22 @@ namespace windowing_x11
 //   }
 
 
-   void display::_on_capture_changed_to(::windowing_x11::window * pwindowCaptureNew)
+   void display::_on_capture_changed_to(::windowing_x11::window * pwindowMouseCaptureNew)
    {
 
-      auto pwindowCaptureOld = m_pwindowCapture;
+      auto pwindowMouseCaptureOld = m_pwindowMouseCapture;
 
-      m_pwindowCapture = pwindowCaptureNew;
+      m_pwindowMouseCapture = pwindowMouseCaptureNew;
 
-      if (pwindowCaptureOld && pwindowCaptureOld != pwindowCaptureNew)
+      if (pwindowMouseCaptureOld && pwindowMouseCaptureOld != pwindowMouseCaptureNew)
       {
 
          MESSAGE msg;
 
-         msg.oswindow = pwindowCaptureOld;
+         msg.oswindow = pwindowMouseCaptureOld;
          msg.m_id = e_message_capture_changed;
          msg.wParam = 0;
-         msg.lParam = pwindowCaptureNew;
+         msg.lParam = pwindowMouseCaptureNew;
 
          auto pwindowing = x11_windowing();
 
@@ -741,6 +742,14 @@ namespace windowing_x11
 
 
    ::windowing_x11::window *display::get_keyboard_focus()
+   {
+
+      return m_pwindowKeyboardFocus;
+
+   }
+
+
+   ::windowing_x11::window *display::_get_keyboard_focus()
    {
 
       synchronization_lock synchronizationlock(x11_mutex());

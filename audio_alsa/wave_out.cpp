@@ -1,5 +1,6 @@
 #include "framework.h"
 #include "aura/message.h"
+#include <sys/time.h>
 
 
 long long timestamp2ns(snd_htimestamp_t t)

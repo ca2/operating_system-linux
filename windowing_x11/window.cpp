@@ -3275,7 +3275,7 @@ va_end(argp);
 
       }
 
-      auto pwindowCapture = pdisplay->m_pwindowCapture;
+      auto pwindowCapture = pdisplay->m_pwindowMouseCapture;
 
       if(::is_null(pwindowCapture))
       {
@@ -3285,6 +3285,57 @@ va_end(argp);
       }
 
       if(pwindowCapture != this)
+      {
+
+         return false;
+
+      }
+
+      return true;
+
+   }
+
+
+   bool window::has_keyboard_focus() const
+   {
+
+      auto pdisplay = x11_display();
+
+      if(::is_null(pdisplay))
+      {
+
+         return false;
+
+      }
+
+      auto pwindowFocus = pdisplay->m_pwindowKeyboardFocus;
+
+      if(::is_null(pwindowFocus))
+      {
+
+         return false;
+
+      }
+
+      auto pimplFocus = pwindowFocus->m_pimpl;
+
+      if (::is_null(pimplFocus))
+      {
+
+         return false;
+
+      }
+
+      auto pinteractionFocus = pimplFocus->m_puserinteraction;
+
+      if(::is_null(pinteractionFocus))
+      {
+
+         return false;
+
+      }
+
+      if(!(pinteractionFocus->m_ewindowflag & ::e_window_flag_focus))
       {
 
          return false;

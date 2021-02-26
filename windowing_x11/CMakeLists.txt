@@ -66,7 +66,6 @@ list(APPEND audio_alsa_source
 
 
 list(APPEND library_references
-   sn
    acme
    apex
    aqua
@@ -81,7 +80,7 @@ else ()
 endif ()
 
 
-add_library(windowing_x11 SHARED ${audio_alsa_source})
+add_library(windowing_x11 SHARED ${audio_alsa_source} text_composition_client.cpp text_composition_client.h)
 
 target_precompile_headers(windowing_x11 PRIVATE framework.h)
 

@@ -70,9 +70,10 @@ elseif(LINUX)
     target_link_libraries(audio_alsa PRIVATE ${library_references})
     target_link_libraries(audio_alsa PRIVATE asound)
     target_link_options(audio_alsa PRIVATE -Wl,-z,defs)
-    add_dependencies(audio_alsa draw2d_cairo)
 endif()
 
+add_dependencies(audio_alsa ${default_draw2d} ${default_imaging} ${default_write_text})
+add_dependencies(audio_alsa ${default_audio})
 add_dependencies(audio_alsa experience_core)
 
 

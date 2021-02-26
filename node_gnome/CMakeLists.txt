@@ -51,7 +51,6 @@ list(APPEND node_gnome_source
 
 
 list(APPEND library_references
-   sn
    acme
    node_ansios
    apex

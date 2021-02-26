@@ -2477,6 +2477,7 @@ Retrieved from: http://en.literateprograms.org/Hello_World_(C,_Cairo)?oldid=1038
 
          }
             break;
+
          case FocusIn:
          {
 
@@ -2484,10 +2485,34 @@ Retrieved from: http://en.literateprograms.org/Hello_World_(C,_Cairo)?oldid=1038
 
             msg.m_id = e_message_set_focus;
 
-            if (msg.oswindow->m_pimpl != nullptr && msg.oswindow->m_pimpl->m_puserinteraction != nullptr)
+            auto oswindow = msg.oswindow;
+
+            if (::is_set(oswindow))
             {
 
-               msg.oswindow->m_pimpl->m_puserinteraction->m_ewindowflag |= ::e_window_flag_focus;
+               m_pdisplay->m_pwindowKeyboardFocus = oswindow;
+
+               auto pimpl = msg.oswindow->m_pimpl;
+
+                if (::is_set(pimpl))
+                {
+
+                    auto pinteraction = pimpl->m_puserinteraction;
+
+                    if (::is_set(pinteraction))
+                    {
+
+                        msg.m_id = e_message_set_focus;
+
+                        pinteraction->m_ewindowflag |= ::e_window_flag_focus;
+
+                        post_ui_message(msg);
+
+                    }
+
+                }
+
+            }
 
                //msg.wParam = (WPARAM) oswindow_get(display(), e.xfocus.window);
 
@@ -2536,24 +2561,10 @@ Retrieved from: http://en.literateprograms.org/Hello_World_(C,_Cairo)?oldid=1038
 //      synchronization_lock synchronizationlock(pdata->m_pmutexInput);
 //
 //      pdata->m_messsageaInput.add(msg);
-               post_ui_message(msg);
 
-            }
+        }
 
-         }
-            break;
-         case DestroyNotify:
-         {
-
-            msg.oswindow = m_pdisplay->_window(e.xdestroywindow.window);
-            msg.m_id = e_message_destroy;
-
-            post_ui_message(msg);
-
-            return true;
-
-         }
-            break;
+        break;
          case FocusOut:
          {
 
@@ -2563,6 +2574,13 @@ Retrieved from: http://en.literateprograms.org/Hello_World_(C,_Cairo)?oldid=1038
 
             if (::is_set(oswindow))
             {
+
+               if(m_pdisplay->m_pwindowKeyboardFocus == oswindow)
+               {
+
+                  m_pdisplay->m_pwindowKeyboardFocus = nullptr;
+
+               }
 
                auto pimpl = msg.oswindow->m_pimpl;
 
@@ -2596,6 +2614,19 @@ Retrieved from: http://en.literateprograms.org/Hello_World_(C,_Cairo)?oldid=1038
 
          }
             break;
+
+         case DestroyNotify:
+         {
+
+            msg.oswindow = m_pdisplay->_window(e.xdestroywindow.window);
+            msg.m_id = e_message_destroy;
+
+            post_ui_message(msg);
+
+            return true;
+
+         }
+         break;
          default:
          {
             output_debug_string("axis_x11 case default:");

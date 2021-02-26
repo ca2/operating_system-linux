@@ -27,14 +27,15 @@ namespace windowing_x11
       Atom                                         m_atomNetWmState;
       Atom                                         m_atomaNetWmState[e_net_wm_state_count];
       iptr                                         m_countReference;
-      __pointer(class window)                 m_pwindowRoot;
+      __pointer(class window)                   m_pwindowRoot;
+      __pointer(class window)                   m_pwindowKeyboardFocus;
       //array < MESSAGE >                          m_messsageaInput;
       //::mutex *                                  m_pmutexInput;
 
       //static osdisplay_dataptra *                s_pdataptra;
       //static ::mutex *                           s_pmutex;
       __pointer(::windowing_x11::window)      m_pwindowActive;
-      __pointer(::windowing_x11::window)       m_pwindowCapture;
+      __pointer(::windowing_x11::window)       m_pwindowMouseCapture;
 
 
       display();
@@ -106,6 +107,8 @@ namespace windowing_x11
 
 
       virtual ::windowing_x11::window * get_keyboard_focus();
+
+      virtual ::windowing_x11::window * _get_keyboard_focus();
 
 
       virtual ::windowing_x11::window * _get_active_window(::thread * pthread);
