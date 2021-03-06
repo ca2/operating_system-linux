@@ -4,13 +4,13 @@
 #include "framework.h"
 #ifdef WITH_SN
 #include "sn.h"
-#include "windowing_x11.h"
+#include "windowing_xcb.h"
 
 
 int g_iIgnoreXDisplayError = 0;
 
 
-//void on_sn_launch_context(void * pSnContext , Window window)
+//void on_sn_launch_context(void * pSnContext , xcb_window_t window)
 //{
 //
 //   SnLauncheeContext * pcontext = (SnLauncheeContext *) pSnContext;
@@ -30,7 +30,7 @@ int g_iIgnoreXDisplayError = 0;
 //}
 
 
-//void x_display_error_trap_push(SnDisplay * sndisplay, Display * display)
+//void x_display_error_trap_push(SnDisplay * sndisplay, xcb_connection_t * display)
 //{
 //
 //   g_iIgnoreXDisplayError++;
@@ -38,10 +38,10 @@ int g_iIgnoreXDisplayError = 0;
 //}
 
 
-//void x_display_error_trap_pop(SnDisplay * sndisplay, Display * display)
+//void x_display_error_trap_pop(SnDisplay * sndisplay, xcb_connection_t * display)
 //{
 //
-//   synchronization_lock sl(x11_mutex());
+//   synchronization_lock sl(user_mutex());
 //
 //   g_iIgnoreXDisplayError--;
 //
@@ -55,14 +55,14 @@ int g_iIgnoreXDisplayError = 0;
 //}
 
 
-namespace windowing_x11
+namespace windowing_xcb
 {
 
 
    void windowing::_libsn_start_context()
    {
 
-//      Display * pdisplay = m_pdisplay->Display();
+//      xcb_connection_t * pdisplay = m_pdisplay->xcb_connection();
 //
 //      SnDisplay * psndisplay = sn_display_new(pdisplay, &x_display_error_trap_push, &x_display_error_trap_pop);
 //
@@ -73,7 +73,7 @@ namespace windowing_x11
    }
 
 
-} // namespace windowing_x11
+} // namespace windowing_xcb
 
 
 #endif

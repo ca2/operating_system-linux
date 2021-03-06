@@ -4,22 +4,23 @@
 #pragma once
 
 
-namespace windowing_x11
+namespace windowing_xcb
 {
 
 
-   class CLASS_DECL_WINDOWING_X11 windowing :
+   class CLASS_DECL_WINDOWING_XCB windowing :
       virtual public ::windowing::windowing
    {
    public:
 
 
-      bool                                            m_bFirstWindowMap : 1;
+      bool                                      m_bFirstWindowMap : 1;
+      bool                                      m_bFinishXcbThread;
 
-      __pointer(::windowing_x11::display)        m_pdisplay;
-      void *                                          m_pSnLauncheeContext;
-      bool                                            m_bFinishX11Thread;
-      bool                                            m_bInitX11Thread;
+      __pointer(::windowing_xcb::display)       m_pdisplay;
+      void *                                    m_pSnLauncheeContext;
+      bool                                      m_bFinishX11Thread;
+      bool                                      m_bInitX11Thread;
 
 
 
@@ -59,7 +60,7 @@ namespace windowing_x11
       virtual ::e_status release_mouse_capture() override;
 
 
-      virtual void x11_main();
+      virtual void xcb_main();
 
       //virtual HCURSOR load_default_cursor(e_cursor ecursor) override;
       virtual __pointer(::windowing::cursor) load_default_cursor(enum_cursor ecursor);
@@ -74,17 +75,17 @@ namespace windowing_x11
 
       virtual ::e_status remove_window(::windowing::window * pwindow) override;
 
-      virtual ::windowing_x11::window * _window(Window window);
+      virtual ::windowing_xcb::window * _window(xcb_window_t window);
 
 
       virtual void _message_handler(void * p);
 
 //      SnLauncheeContext* g_psncontext = nullptr;
 
-      //void x_display_error_trap_push(SnDisplay * sndisplay, Display * display);
+      //void x_display_error_trap_push(SnDisplay * sndisplay, xcb_connection_t * display);
 
-      //void x_display_error_trap_pop(SnDisplay * sndisplay, Display * display);
-      //void x_display_error_trap_pop(SnDisplay * sndisplay, Display * display);
+      //void x_display_error_trap_pop(SnDisplay * sndisplay, xcb_connection_t * display);
+      //void x_display_error_trap_pop(SnDisplay * sndisplay, xcb_connection_t * display);
 
 
       virtual ::windowing::window * get_active_window(::thread * pthread) override;
@@ -95,15 +96,15 @@ namespace windowing_x11
 
       //virtual ::e_status clear_active_window(::thread * pthread);
 
-      virtual bool x11_on_event(XEvent * pevent);
+      virtual bool xcb_on_event(xcb_generic_event_t * pevent);
 
-      virtual bool x11_message_handler(XEvent * pevent);
+      virtual bool xcb_message_handler(xcb_generic_event_t * pevent);
 
-      //virtual bool __x11_hook_process_event(XEvent * pevent, XGenericEventCookie * cookie);
+      //virtual bool __xcb_hook_process_event(xcb_generic_event_t * pevent, XGenericEventCookie * cookie);
 
-      //virtual bool __x11_hook_list_is_empty();
+      //virtual bool __xcb_hook_list_is_empty();
 
-      virtual bool x11_message_loop_step();
+      virtual bool xcb_message_loop_step();
 
       virtual ::windowing::window * window(oswindow oswindow) override;
 
@@ -111,12 +112,13 @@ namespace windowing_x11
 
 #ifdef WITH_XI
 
-      void x11_register_extended_event_listener(::matter * pdata, bool bMouse, bool bKeyboard);
-      bool x11_process_event(XEvent * pevent, XGenericEventCookie *cookie);
+      void xcb_register_extended_event_listener(::matter * pdata, bool bMouse, bool bKeyboard);
+      //bool xcb_process_event(xcb_generic_event_t* xcbevent, XGenericEventCookie *cookie);
+      bool xcb_process_event(xcb_generic_event_t* xcbevent);
 
 #else
 
-      bool x11_process_event(Display * pdisplay, XEvent * pevent);
+      bool xcb_process_event(xcb_connection_t * pdisplay, xcb_generic_event_t * pevent);
 
 #endif
 

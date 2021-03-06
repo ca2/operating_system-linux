@@ -2,7 +2,7 @@
 // recreated by Camilo 2021-01-28 22:42 <3TBS, Mummi and bilbo!!
 // hi5 contribution...
 #include "framework.h"
-#include "windowing_x11.h"
+#include "windowing_xcb.h"
 //#if !BROAD_PRECOMPILED_HEADER
 //#include "aura/user/_user.h"
 //#endif
@@ -10,14 +10,14 @@
 
 //#define VERI_BASIC_TEST
 
-namespace windowing_x11
+namespace windowing_xcb
 {
 
 
    buffer::buffer()
    {
 
-      m_gc = nullptr;
+//      m_gc = nullptr;
 
 //      m_pimage = nullptr;
 
@@ -46,13 +46,15 @@ namespace windowing_x11
 
       }
 
-      synchronization_lock synchronizationlock(x11_mutex());
+      synchronization_lock synchronizationlock(user_mutex());
 
-      display_lock displaylock(x11_window()->x11_display());
+      display_lock displaylock(xcb_window()->xcb_display());
 
-      XGCValues gcvalues = {};
+      m_pdisplay = xcb_window()->xcb_display();
 
-      m_gc = XCreateGC(x11_window()->Display(), x11_window()->Window(), 0, &gcvalues);
+      //XGCValues gcvalues = {};
+
+      //m_gc = XCreateGC(xcb_window()->xcb_connection(), xcb_window()->xcb_window(), 0, &gcvalues);
 
       return estatus;
 
@@ -62,25 +64,25 @@ namespace windowing_x11
    void buffer::finalize()
    {
 
-      if(!x11_window())
+      if(!xcb_window())
       {
 
          return;
 
       }
 
-      synchronization_lock synchronizationlock(x11_mutex());
+      synchronization_lock synchronizationlock(user_mutex());
 
-      display_lock displaylock(x11_window()->x11_display());
+      display_lock displaylock(xcb_window()->xcb_display());
 
-      if(m_gc != nullptr)
-      {
-
-         XFreeGC(x11_window()->Display(), m_gc);
-
-         m_gc = nullptr;
-
-      }
+//      if(m_gc != nullptr)
+//      {
+//
+//         XFreeGC(xcb_window()->xcb_connection(), m_gc);
+//
+//         m_gc = nullptr;
+//
+//      }
 
 
    }
@@ -297,12 +299,12 @@ namespace windowing_x11
 
       synchronization_lock slGraphics(mutex());
 
-      if(m_gc == nullptr)
-      {
-
-         return false;
-
-      }
+//      if(m_gc == nullptr)
+//      {
+//
+//         return false;
+//
+//      }
 
       auto psync = get_screen_sync();
 
@@ -319,68 +321,100 @@ namespace windowing_x11
 
       slGraphics.unlock();
 
-      pimage->map();
+      //pimage->map();
 
-      synchronization_lock synchronizationlock(x11_mutex());
+      synchronization_lock synchronizationlock(user_mutex());
 
-      display_lock displayLock(x11_window()->x11_display());
+      display_lock displayLock(xcb_window()->xcb_display());
 
-      //XImage * pximage = (XImage *)pimage->payload("pximage").i64();
+      //xcb_image_t * pximage = (xcb_image_t *)pimage->payload("pximage").i64();
 
-      XImage * pximage;
+//      xcb_image_t * pximage;
+//
+//      //if(!pximage)
+//      {
+//
+//         color32_t colora[8];
+//
+//         memcpy(colora, pimage->get_data(), sizeof(colora));
+//
+//         //int iDefaultDepth = DefaultDepth(xcb_window()->xcb_connection(), xcb_window()->m_iScreen);
+//
+//         //int iWindowDepth = xcb_window()->m_iDepth;
+//
+//         pximage =
+//            xcb_image_create (pimage->width(),
+//                              pimage->height(),
+//                              XCB_IMAGE_FORMAT_XY_BITMAP,
+//            0,
+//            1,
+//            32,
+//            0,
+//                              XCB_IMAGE_ORDER_LSB_FIRST,
+//                              XCB_IMAGE_ORDER_LSB_FIRST,
+//            nullptr,
+//            pimage->width() * pimage->height() * 4,
+//                              (uint8_t *) pimage->get_data());
+////            xcb_image_create(
+////               xcb_window()->xcb_connection(),
+////               xcb_window()->Visual(),
+////               iWindowDepth,
+////               ZPixmap,
+////               0,
+////               (char *) pimage->get_data(),
+////               pimage->width(),
+////               pimage->height(),
+////               sizeof(color32_t) * 8,
+////               pimage->scan_size());
+////
+//         //pimage->payload("pximage") = (::i64) pximage;
+//
+//      }
 
-      //if(!pximage)
-      {
+      auto pxcbconnection = m_pdisplay->xcb_connection();
 
-         color32_t colora[8];
-
-         memcpy(colora, pimage->get_data(), sizeof(colora));
-
-         int iDefaultDepth = DefaultDepth(x11_window()->Display(), x11_window()->m_iScreen);
-
-         int iWindowDepth = x11_window()->m_iDepth;
-
-         pximage =
-            XCreateImage(
-               x11_window()->Display(),
-               x11_window()->Visual(),
-               iWindowDepth,
-               ZPixmap,
-               0,
-               (char *) pimage->get_data(),
-               pimage->width(),
-               pimage->height(),
-               sizeof(color32_t) * 8,
-               pimage->scan_size());
-
-         //pimage->payload("pximage") = (::i64) pximage;
-
-      }
+      //auto pixmap = m_pdisplay->_xcb_create_pixmap(pimage);
 
       //printf("pimage (%d, %d, %d)\n", pimage->width(), pimage->height(), pimage->get_pixel(100, 600));
 
-      if(!pximage || pximage->width <= 0 || pximage->height <= 0)
-      {
+      //if(!pximage || pximage->width <= 0 || pximage->height <= 0)
+      //{
 
-         return false;
+        // return false;
 
-      }
+      //}
 
       try
       {
+
+         //auto pixmap =
 
          //XGCValues gcvalues = {};
 
 //       auto gc = XCreateGC(m_oswindow->display(), m_oswindow->window(), 0, &gcvalues);
 
-         int iWidth = pximage->width;
+         int iWidth = pimage->width();
 
-         int iHeight = pximage->height;
+         int iHeight = pimage->height();
 
          //if(!bComboList)
          //{
+         int xTotalOffsetInBytes = 0;
+         //buffer.pixels +
+         //buffer.bytes_per_row * y
 
-            XPutImage(x11_window()->Display(), x11_window()->Window(), m_gc, pximage, 0, 0, 0, 0, iWidth, iHeight);
+         xcb_put_image(
+            pxcbconnection,
+            XCB_IMAGE_FORMAT_XY_BITMAP,
+            xcb_window()->xcb_window(),
+            m_gcontext,
+            iWidth,
+            iHeight,
+            0, 0, 0, 32,
+            iWidth * 4,
+            (uint8_t *) pimage->get_data());
+
+            //XPutImage(xcb_window()->xcb_connection(), xcb_window()->xcb_window(), m_gc, pximage, 0, 0, 0, 0, iWidth, iHeight);
 
          //}
 
@@ -433,9 +467,9 @@ namespace windowing_x11
 
       }
 
-      pximage->data = nullptr;
+      //pximage->data = nullptr;
 
-      XDestroyImage(pximage);
+      //xcb_free_pixmap(pxcbconnection, pixmap);
 
       if(m_pimpl->m_puserinteraction->m_ewindowflag & e_window_flag_arbitrary_positioning)
       {
@@ -473,7 +507,7 @@ namespace windowing_x11
    }
 
 
-} // namespace windowing_x11
+} // namespace windowing_xcb
 
 
 

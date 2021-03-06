@@ -4,7 +4,7 @@
 //!!!#include <X11/Xft/Xft.h>
 
 
-class x11_button :
+class xcb_button :
    virtual public matter
 {
 public:
@@ -19,9 +19,9 @@ public:
    enum_dialog_result   m_edialogresult;
 
 
-   x11_button(const char * psz, enum_dialog_result edialogresult);
+   xcb_button(const char * psz, enum_dialog_result edialogresult);
 
-   virtual ~x11_button();
+   virtual ~xcb_button();
 
 
 };

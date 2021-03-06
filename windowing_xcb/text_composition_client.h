@@ -4,10 +4,11 @@
 #pragma once
 
 
-namespace windowing_x11
+namespace windowing_xcb
 {
 
-   class CLASS_DECL_WINDOWING_X11 text_composition_client :
+
+   class CLASS_DECL_WINDOWING_XCB text_composition_client :
       virtual public ::user::text_composition_client
    {
    public:
@@ -16,10 +17,11 @@ namespace windowing_x11
       text_composition_client();
       virtual ~text_composition_client();
 
+
    };
 
 
-} // namespace windowing_x11
+} // namespace windowing_xcb
 
 
 

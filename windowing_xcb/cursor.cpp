@@ -4,7 +4,7 @@
 #include "_windowing.h"
 
 
-namespace windowing_x11
+namespace windowing_xcb
 {
 
 
@@ -32,7 +32,7 @@ namespace windowing_x11
    ::e_status cursor::create_from_image(const ::image * pimage, ::i32 xHotspot, ::i16 yHotspot)
    {
 
-      __throw(interface_only_exception());
+      __throw(error_interface_only);
       
       return error_interface_only;
 
@@ -42,14 +42,14 @@ namespace windowing_x11
    ::e_status cursor::load_default_cursor(enum_cursor ecursor)
    {
 
-      __throw(interface_only_exception());
+      __throw(error_interface_only);
 
       return error_interface_only;
 
    }
 
 
-} // namespace windowing_x11
+} // namespace windowing_xcb
 
 
 

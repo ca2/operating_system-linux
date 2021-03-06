@@ -1,7 +1,7 @@
 #include "framework.h"
 #include "os/cross/windows/_windows.h"
 #include "acme/id.h"
-#include "_x11.h"
+#include "_xcb.h"
 //!!!#include <X11/extensions/Xinerama.h>
 
 
@@ -31,34 +31,34 @@ simple_ui_display::simple_ui_display(const string & strMessageParam, const strin
    switch(uType)
    {
       case MB_OKCANCEL:
-         m_buttona.add(__new(x11_button("OK", e_dialog_result_ok)));
-         m_buttona.add(__new(x11_button("Cancel", e_dialog_result_cancel)));
+         m_buttona.add(__new(xcb_button("OK", e_dialog_result_ok)));
+         m_buttona.add(__new(xcb_button("Cancel", e_dialog_result_cancel)));
          break;
       case MB_ABORTRETRYIGNORE:
-         m_buttona.add(__new(x11_button("Abort", e_dialog_result_abort)));
-         m_buttona.add(__new(x11_button("Retry", e_dialog_result_retry)));
-         m_buttona.add(__new(x11_button("Ignore", e_dialog_result_ignore)));
+         m_buttona.add(__new(xcb_button("Abort", e_dialog_result_abort)));
+         m_buttona.add(__new(xcb_button("Retry", e_dialog_result_retry)));
+         m_buttona.add(__new(xcb_button("Ignore", e_dialog_result_ignore)));
          break;
       case MB_YESNOCANCEL:
-         m_buttona.add(__new(x11_button("Yes", e_dialog_result_yes)));
-         m_buttona.add(__new(x11_button("No", e_dialog_result_no)));
-         m_buttona.add(__new(x11_button("Cancel", e_dialog_result_cancel)));
+         m_buttona.add(__new(xcb_button("Yes", e_dialog_result_yes)));
+         m_buttona.add(__new(xcb_button("No", e_dialog_result_no)));
+         m_buttona.add(__new(xcb_button("Cancel", e_dialog_result_cancel)));
          break;
       case MB_YESNO:
-         m_buttona.add(__new(x11_button("Yes", e_dialog_result_yes)));
-         m_buttona.add(__new(x11_button("No", e_dialog_result_no)));
+         m_buttona.add(__new(xcb_button("Yes", e_dialog_result_yes)));
+         m_buttona.add(__new(xcb_button("No", e_dialog_result_no)));
          break;
       case MB_RETRYCANCEL:
-         m_buttona.add(__new(x11_button("Retry", e_dialog_result_retry)));
-         m_buttona.add(__new(x11_button("Cancel", e_dialog_result_cancel)));
+         m_buttona.add(__new(xcb_button("Retry", e_dialog_result_retry)));
+         m_buttona.add(__new(xcb_button("Cancel", e_dialog_result_cancel)));
          break;
       case MB_CANCELTRYCONTINUE:
-         m_buttona.add(__new(x11_button("Cancel", e_dialog_result_cancel)));
-         m_buttona.add(__new(x11_button("Try", e_dialog_result_retry)));
-         m_buttona.add(__new(x11_button("Continue", e_dialog_result_continue)));
+         m_buttona.add(__new(xcb_button("Cancel", e_dialog_result_cancel)));
+         m_buttona.add(__new(xcb_button("Try", e_dialog_result_retry)));
+         m_buttona.add(__new(xcb_button("Continue", e_dialog_result_continue)));
          break;
       default:
-         m_buttona.add(__new(x11_button("OK", e_dialog_result_ok)));
+         m_buttona.add(__new(xcb_button("OK", e_dialog_result_ok)));
          break;
    }
 
@@ -68,7 +68,7 @@ simple_ui_display::simple_ui_display(const string & strMessageParam, const strin
 i64 simple_ui_display::add_ref(OBJ_REF_DBG_PARAMS_DEF)
 {
 
-   return x11_hook::add_ref(OBJ_REF_DBG_ARGS);
+   return xcb_hook::add_ref(OBJ_REF_DBG_ARGS);
 
 }
 
@@ -76,7 +76,7 @@ i64 simple_ui_display::add_ref(OBJ_REF_DBG_PARAMS_DEF)
 i64 simple_ui_display::dec_ref(OBJ_REF_DBG_PARAMS_DEF)
 {
 
-   return x11_hook::dec_ref(OBJ_REF_DBG_ARGS);
+   return xcb_hook::dec_ref(OBJ_REF_DBG_ARGS);
 
 }
 
@@ -84,7 +84,7 @@ i64 simple_ui_display::dec_ref(OBJ_REF_DBG_PARAMS_DEF)
 i64 simple_ui_display::release(OBJ_REF_DBG_PARAMS_DEF)
 {
 
-   return x11_hook::release(OBJ_REF_DBG_ARGS);
+   return xcb_hook::release(OBJ_REF_DBG_ARGS);
 
 }
 
@@ -108,9 +108,9 @@ void simple_ui_display::common_construct()
 simple_ui_display::~ simple_ui_display()
 {
 
-   synchronization_lock sl(x11_mutex());
+   synchronization_lock sl(user_mutex());
 
-   Display * pdisplay = x11_get_display();
+   xcb_connection_t * pdisplay = xcb_get_display();
 
    XLockDisplay(pdisplay);
 
@@ -127,7 +127,7 @@ simple_ui_display::~ simple_ui_display()
 }
 
 
-void simple_ui_display::on_alloc_colors(Display * pdisplay)
+void simple_ui_display::on_alloc_colors(xcb_connection_t * pdisplay)
 {
 
    auto pthemecolors = ::user::os_get_theme_colors();
@@ -197,7 +197,7 @@ void simple_ui_display::on_alloc_colors(Display * pdisplay)
 }
 
 
-void simple_ui_display::on_free_colors(Display * pdisplay)
+void simple_ui_display::on_free_colors(xcb_connection_t * pdisplay)
 {
 
    XftColorFree(pdisplay, m_pvisual, m_colormap, &m_colorBack);
@@ -218,7 +218,7 @@ void simple_ui_display::on_free_colors(Display * pdisplay)
 }
 
 
-void simple_ui_display::on_colors(Display * pdisplay)
+void simple_ui_display::on_colors(xcb_connection_t * pdisplay)
 {
 
    on_free_colors(pdisplay);
@@ -228,7 +228,7 @@ void simple_ui_display::on_colors(Display * pdisplay)
 }
 
 
-void simple_ui_display::call_expose(Display * pdisplay)
+void simple_ui_display::call_expose(xcb_connection_t * pdisplay)
 {
 
    XWindowAttributes a{};
@@ -269,12 +269,12 @@ void simple_ui_display::invalidate()
 
    m_bInvalidated = true;
 
-   x11_kick_idle();
+   xcb_kick_idle();
 
 }
 
 
-void simple_ui_display::on_idle(Display * pdisplay)
+void simple_ui_display::on_idle(xcb_connection_t * pdisplay)
 {
 
    if(m_bInvalidated)
@@ -289,7 +289,7 @@ void simple_ui_display::on_idle(Display * pdisplay)
 }
 
 
-void simple_ui_display::on_expose(Display * pdisplay)
+void simple_ui_display::on_expose(xcb_connection_t * pdisplay)
 {
 
    if(m_bOsUserThemeColorModified)
@@ -304,7 +304,7 @@ void simple_ui_display::on_expose(Display * pdisplay)
 
       int iDraw = 1;
 
-      XSync(pdisplay, False);
+      XSync(pdisplay, false);
 
       if(iDraw == 1)
       {
@@ -463,9 +463,9 @@ int simple_ui_display::show()
 
    {
 
-      synchronization_lock sl(x11_mutex());
+      synchronization_lock sl(user_mutex());
 
-      Display * pdisplay = x11_get_display();
+      xcb_connection_t * pdisplay = xcb_get_display();
 
       XLockDisplay(pdisplay);
 
@@ -478,7 +478,7 @@ int simple_ui_display::show()
 
          auto windowRoot = DefaultRootWindow(pdisplay);
 
-         //printf("Default Root Window %" PRId64 "\n", windowRoot);
+         //printf("Default Root xcb_window_t %" PRId64 "\n", windowRoot);
 
          XSetWindowAttributes attr={};
 
@@ -541,7 +541,7 @@ int simple_ui_display::show()
                CWEventMask,
                &attr);
 
-         //printf("Window created %" PRId64 "\n", m_window);
+         //printf("xcb_window_t created %" PRId64 "\n", m_window);
          XStoreName(pdisplay, m_window, m_strTitle);
 
          const char * pszFont = "Ubuntu:size=12";
@@ -576,14 +576,14 @@ int simple_ui_display::show()
 
    }
 
-   x11_defer_handle_just_hooks();
+   xcb_defer_handle_just_hooks();
 
    return m_iResult;
 
 }
 
 
-void simple_ui_display::on_layout(Display * pdisplay)
+void simple_ui_display::on_layout(xcb_connection_t * pdisplay)
 {
 
    ::size sizeLine;
@@ -711,7 +711,7 @@ void simple_ui_display::on_layout(Display * pdisplay)
 }
 
 
-bool simple_ui_display::process_event(Display * pdisplay, XEvent & e, XGenericEventCookie * cookie)
+bool simple_ui_display::process_event(xcb_connection_t * pdisplay, XEvent & e, XGenericEventCookie * cookie)
 {
 
    if(e.xany.window == m_window)
@@ -841,7 +841,7 @@ bool simple_ui_display::process_event(Display * pdisplay, XEvent & e, XGenericEv
 void simple_ui_display::close_window()
 {
 
-   XUnmapWindow(x11_get_display(), m_window);
+   XUnmapWindow(xcb_get_display(), m_window);
 
    unhook();
 

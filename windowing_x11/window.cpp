@@ -15,7 +15,7 @@
 //void on_sn_launch_complete(void * pSnContext);
 
 
-mutex * x11_mutex();
+mutex * user_mutex();
 
 
 #undef ALOG_CONTEXT
@@ -74,7 +74,7 @@ namespace windowing_x11
    ::e_status window::create_window(::user::interaction_impl * pimpl)
    {
 
-      synchronization_lock synchronizationlock(x11_mutex());
+      synchronization_lock synchronizationlock(user_mutex());
 
       bool bOk = true;
 
@@ -167,8 +167,6 @@ namespace windowing_x11
 
       }
 
-      m_iScreen = DefaultScreen(display);
-
       ::Window rootwin = RootWindow(display, m_iScreen);
 
       XEvent e;
@@ -205,7 +203,7 @@ namespace windowing_x11
 
       __zero(attr);
 
-      attr.colormap = XCreateColormap(display, rootwin, visual, AllocNone);
+      attr.colormap = x11_display()->m_colormap;
 
       attr.event_mask =
          PropertyChangeMask | ExposureMask | ButtonPressMask | ButtonReleaseMask | KeyPressMask | KeyReleaseMask |
@@ -519,7 +517,7 @@ namespace windowing_x11
    void window::set_wm_class(const char *psz)
    {
 
-      synchronization_lock synchronizationlock(x11_mutex());
+      synchronization_lock synchronizationlock(user_mutex());
 
       m_strWMClass = psz;
 
@@ -541,7 +539,7 @@ namespace windowing_x11
 
       int i = 0;
 
-      synchronization_lock synchronizationlock(x11_mutex());
+      synchronization_lock synchronizationlock(user_mutex());
 
       {
 
@@ -585,7 +583,7 @@ namespace windowing_x11
    i32 window::unmap_window(bool bWithdraw)
    {
 
-      synchronization_lock synchronizationlock(x11_mutex());
+      synchronization_lock synchronizationlock(user_mutex());
 
       windowing_output_debug_string("\nwindow::unmap_window");
 
@@ -865,7 +863,7 @@ namespace windowing_x11
    bool window::bamf_set_icon()
    {
 
-      synchronization_lock synchronizationlock(x11_mutex());
+      synchronization_lock synchronizationlock(user_mutex());
 
       auto pnode = Node;
 
@@ -1008,7 +1006,7 @@ namespace windowing_x11
 
       windowing_output_debug_string("\nwindow::set_icon");
 
-      synchronization_lock synchronizationlock(x11_mutex());
+      synchronization_lock synchronizationlock(user_mutex());
 
       display_lock displaylock(x11_display());
 
@@ -1126,7 +1124,7 @@ namespace windowing_x11
 
       windowing_output_debug_string("\nwindow::store_name");
 
-      synchronization_lock synchronizationlock(x11_mutex());
+      synchronization_lock synchronizationlock(user_mutex());
 
       display_lock displaylock(x11_display());
 
@@ -1144,7 +1142,7 @@ namespace windowing_x11
 
       windowing_output_debug_string("\nwindow::select_input");
 
-      synchronization_lock synchronizationlock(x11_mutex());
+      synchronization_lock synchronizationlock(user_mutex());
 
       display_lock displaylock(x11_display());
 
@@ -1162,7 +1160,7 @@ namespace windowing_x11
 
       windowing_output_debug_string("\nwindow::select_all_input");
 
-      synchronization_lock synchronizationlock(x11_mutex());
+      synchronization_lock synchronizationlock(user_mutex());
 
       display_lock displaylock(x11_display());
 
@@ -1307,7 +1305,7 @@ namespace windowing_x11
 
       }
 
-      synchronization_lock synchronizationlock(x11_mutex());
+      synchronization_lock synchronizationlock(user_mutex());
 
       display_lock displaylock(x11_display());
 
@@ -1361,7 +1359,7 @@ namespace windowing_x11
    void window::mapped_net_state_raw(bool add, int iScreen, Atom state1, Atom state2)
    {
 
-      synchronization_lock synchronizationlock(x11_mutex());
+      synchronization_lock synchronizationlock(user_mutex());
 
       XClientMessageEvent xclient;
 
@@ -1388,7 +1386,7 @@ namespace windowing_x11
    void window::unmapped_net_state_raw(Atom atom1, ...)
 {
 
-   synchronization_lock synchronizationlock(x11_mutex());
+   synchronization_lock synchronizationlock(user_mutex());
 
    XEvent xevent;
 
@@ -1444,7 +1442,7 @@ va_end(argp);
 
       windowing_output_debug_string("\n::window::show_window 1");
 
-      synchronization_lock synchronizationlock(x11_mutex());
+      synchronization_lock synchronizationlock(user_mutex());
 
       display_lock displaylock(x11_display());
 
@@ -1519,7 +1517,7 @@ va_end(argp);
 
       windowing_output_debug_string("\n::window::full_screen 1");
 
-      synchronization_lock synchronizationlock(x11_mutex());
+      synchronization_lock synchronizationlock(user_mutex());
 
       display_lock displaylock(x11_display());
 
@@ -1586,7 +1584,7 @@ va_end(argp);
    void window::exit_iconify()
    {
 
-      synchronization_lock synchronizationlock(x11_mutex());
+      synchronization_lock synchronizationlock(user_mutex());
 
       display_lock displaylock(x11_display());
 
@@ -1616,7 +1614,7 @@ va_end(argp);
    void window::exit_full_screen()
    {
 
-      synchronization_lock synchronizationlock(x11_mutex());
+      synchronization_lock synchronizationlock(user_mutex());
 
       display_lock displaylock(x11_display());
 
@@ -1646,7 +1644,7 @@ va_end(argp);
    void window::exit_zoomed()
    {
 
-      synchronization_lock sl(x11_mutex());
+      synchronization_lock sl(user_mutex());
 
       display_lock displaylock(x11_display());
 
@@ -1730,7 +1728,7 @@ va_end(argp);
 
       windowing_output_debug_string("\n::window::get_state 1");
 
-      synchronization_lock synchronizationlock(x11_mutex());
+      synchronization_lock synchronizationlock(user_mutex());
 
       display_lock displaylock(x11_display());
 
@@ -1816,7 +1814,7 @@ va_end(argp);
 
       windowing_output_debug_string("\n::window::is_window_visible 1");
 
-      synchronization_lock synchronizationlock(x11_mutex());
+      synchronization_lock synchronizationlock(user_mutex());
 
       display_lock displaylock(x11_display());
 
@@ -2165,7 +2163,7 @@ va_end(argp);
    bool window::set_window_position(const class ::zorder & zorder, i32 x, i32 y, i32 cx, i32 cy, ::u32 nFlags)
    {
 
-      synchronization_lock sl(x11_mutex());
+      synchronization_lock sl(user_mutex());
 
       windowing_output_debug_string("\n::window::set_window_pos 1");
 
@@ -2448,7 +2446,7 @@ va_end(argp);
    ::e_status window::set_cursor2(::windowing::cursor *pcursor)
    {
 
-      synchronization_lock synchronizationlock(x11_mutex());
+      synchronization_lock synchronizationlock(user_mutex());
 
       display_lock displaylock(x11_display());
 
@@ -2512,7 +2510,7 @@ va_end(argp);
 
       }
 
-      synchronization_lock sl(x11_mutex());
+      synchronization_lock sl(user_mutex());
 
       windowing_output_debug_string("\n::SetCursor 1");
 
@@ -2567,10 +2565,10 @@ va_end(argp);
    }
 
 
-   void window::upper_window_rects(rect_array &ra)
+   void window::upper_window_rects(rectangle_i32_array &ra)
    {
 
-      synchronization_lock synchronizationlock(x11_mutex());
+      synchronization_lock synchronizationlock(user_mutex());
 
       ra.remove_all();
 
@@ -2643,7 +2641,7 @@ va_end(argp);
    ::e_status window::set_active_window()
    {
 
-      synchronization_lock synchronizationlock(x11_mutex());
+      synchronization_lock synchronizationlock(user_mutex());
 
       {
 
@@ -2802,7 +2800,7 @@ va_end(argp);
    ::windowing::window * window::get_window(enum_relative erelative)
    {
 
-      synchronization_lock synchronizationlock(x11_mutex());
+      synchronization_lock synchronizationlock(user_mutex());
 
       ::Window window = 0;
 
@@ -2985,7 +2983,7 @@ va_end(argp);
 //      x11_fork([window]()
 //               {
 
-                  synchronization_lock synchronizationlock(x11_mutex());
+                  synchronization_lock synchronizationlock(user_mutex());
 
                   //Display *Display() = Display();
 
@@ -3034,7 +3032,7 @@ va_end(argp);
    Atom *window::wm_get_list_raw(Atom atomList, unsigned long int *pnum_items)
    {
 
-      synchronization_lock synchronizationlock(x11_mutex());
+      synchronization_lock synchronizationlock(user_mutex());
 
       if (atomList == None)
       {
@@ -3062,7 +3060,7 @@ va_end(argp);
    int window::wm_test_list_raw(Atom atomList, Atom atomFlag)
    {
 
-      synchronization_lock synchronizationlock(x11_mutex());
+      synchronization_lock synchronizationlock(user_mutex());
 
       Atom actual_type;
 
@@ -3105,7 +3103,7 @@ va_end(argp);
    int window::wm_test_state_raw(const char *pszNetStateFlag)
    {
 
-      synchronization_lock synchronizationlock(x11_mutex());
+      synchronization_lock synchronizationlock(user_mutex());
 
       Atom atomFlag = x11_display()->intern_atom(pszNetStateFlag, 1);
 
@@ -3137,7 +3135,7 @@ va_end(argp);
    int window::wm_test_state(const char *pszNetStateFlag)
    {
 
-      synchronization_lock synchronizationlock(x11_mutex());
+      synchronization_lock synchronizationlock(user_mutex());
 
       windowing_output_debug_string("\n::wm_test_state 1");
 
@@ -3164,7 +3162,7 @@ va_end(argp);
    bool window::wm_add_remove_list_raw(Atom atomList, Atom atomFlag, bool bSet)
    {
 
-      synchronization_lock synchronizationlock(x11_mutex());
+      synchronization_lock synchronizationlock(user_mutex());
 
       if (atomFlag == None)
       {
@@ -3250,7 +3248,7 @@ va_end(argp);
    ::e_status window::set_foreground_window()
    {
 
-      synchronization_lock synchronizationlock(x11_mutex());
+      synchronization_lock synchronizationlock(user_mutex());
 
       display_lock displaylock(x11_display());
 
@@ -3351,7 +3349,7 @@ va_end(argp);
    ::e_status window::x11_store_name(const char *pszName)
    {
 
-      synchronization_lock synchronizationlock(x11_mutex());
+      synchronization_lock synchronizationlock(user_mutex());
 
       display_lock displaylock(x11_display());
 
@@ -3423,7 +3421,7 @@ va_end(argp);
 //   int_bool window::get_client_rect(RECTANGLE_I32 *prectangle)
 //   {
 //
-//      synchronization_lock synchronizationlock(x11_mutex());
+//      synchronization_lock synchronizationlock(user_mutex());
 //
 //      display_lock displaylock(x11_display());
 //
@@ -3541,7 +3539,7 @@ va_end(argp);
    ::e_status window::set_mouse_capture()
    {
 
-      synchronization_lock synchronizationlock(x11_mutex());
+      synchronization_lock synchronizationlock(user_mutex());
 
       if (Display() == nullptr)
       {
@@ -3592,7 +3590,7 @@ va_end(argp);
    ::e_status window::set_keyboard_focus()
    {
 
-      synchronization_lock synchronizationlock(x11_mutex());
+      synchronization_lock synchronizationlock(user_mutex());
 
       if (Window() == 0)
       {

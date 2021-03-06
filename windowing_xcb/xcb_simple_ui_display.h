@@ -2,7 +2,7 @@
 
 
 class simple_ui_display :
-   virtual public ::x11_hook
+   virtual public ::xcb_hook
 {
 public:
 
@@ -13,14 +13,14 @@ public:
    string                           m_strTitle;
    string                           m_strFontName;
 
-   Window                           m_window;
+   xcb_window_t                           m_window;
    ::point                          m_point;
    ::size                           m_size;
 
    int                              m_iLineHeight;
    int                              m_iTextAscent;
 
-   __pointer_array(x11_button)      m_buttona;
+   __pointer_array(xcb_button)      m_buttona;
 
    int                              m_iButtonTop;
    int                              m_iButtonHeight;
@@ -81,23 +81,23 @@ public:
 
    virtual void invalidate();
 
-   virtual void on_idle(Display * pdisplay) override;
+   virtual void on_idle(xcb_connection_t * pdisplay) override;
 
-   void on_expose(Display * pdisplay);
+   void on_expose(xcb_connection_t * pdisplay);
 
-   void call_expose(Display * pdisplay);
+   void call_expose(xcb_connection_t * pdisplay);
 
    virtual void on_subject(::promise::subject * psubject, ::promise::context * pcontext) override;
 
-   void on_layout(Display * pdisplay);
+   void on_layout(xcb_connection_t * pdisplay);
 
-   void on_colors(Display * pdisplay);
+   void on_colors(xcb_connection_t * pdisplay);
 
-   void on_alloc_colors(Display * pdisplay);
+   void on_alloc_colors(xcb_connection_t * pdisplay);
 
-   void on_free_colors(Display * pdisplay);
+   void on_free_colors(xcb_connection_t * pdisplay);
 
-   virtual bool process_event(Display * pdisplay, XEvent & e, XGenericEventCookie * cookie) override;
+   virtual bool process_event(xcb_connection_t * pdisplay, XEvent & e, XGenericEventCookie * cookie) override;
 
    int show();
 

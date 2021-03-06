@@ -12,7 +12,7 @@ extern ::app_core * g_pappcore;
 
 Display * x11_get_display();
 
-mutex * x11_mutex();
+mutex * user_mutex();
 
 #define CA2_X11_WINDOW_LONG "ca2_ccwarehouse_window_long"
 #define CA2_X11_WINDOW_LONG_STYLE "ca2_ccwarehouse_window_long_style"
@@ -156,6 +156,31 @@ namespace windowing_x11
 
       }
 
+      if (XMatchVisualInfo(display, DefaultScreen(display), 32, TrueColor, &m_px11data->m_visualinfo))
+      {
+
+         visual = m_px11data->m_visualinfo.visual;
+
+      }
+      else
+      {
+
+         __zero(m_px11data->m_visualinfo);
+
+      }
+
+
+      m_iScreen = DefaultScreen(display);
+
+
+      m_iDepth = m_px11data->m_visualinfo.depth;
+
+      XSetWindowAttributes attr;
+
+      __zero(attr);
+
+      m_colormap = XCreateColormap(display, rootwin, visual, AllocNone);
+
       return ::success;
 
    }
@@ -178,7 +203,9 @@ namespace windowing_x11
       if (!pwindow)
       {
 
-         pwindow = __new(::windowing_x11::window());
+         __construct(pwindow);
+
+         pwindow->set_os_data((void *) (iptr) window);
 
       }
 
@@ -283,7 +310,7 @@ namespace windowing_x11
    ::e_status display::release_mouse_capture()
    {
 
-      synchronization_lock synchronizationlock(x11_mutex());
+      synchronization_lock synchronizationlock(user_mutex());
 
       _on_capture_changed_to(nullptr);
 
@@ -699,7 +726,7 @@ namespace windowing_x11
 //      m_pwindowing->user_sync([&]()
 //                              {
 //
-//                                 synchronization_lock synchronizationlock(x11_mutex());
+//                                 synchronization_lock synchronizationlock(user_mutex());
 //
 //                                 windowing_output_debug_string("\n::xrender_create_picture 1");
 //
@@ -752,7 +779,7 @@ namespace windowing_x11
    ::windowing_x11::window *display::_get_keyboard_focus()
    {
 
-      synchronization_lock synchronizationlock(x11_mutex());
+      synchronization_lock synchronizationlock(user_mutex());
 
       oswindow oswindow = nullptr;
 
@@ -816,7 +843,7 @@ namespace windowing_x11
 
 #endif
 
-      synchronization_lock synchronizationlock(x11_mutex());
+      synchronization_lock synchronizationlock(user_mutex());
 
       windowing_output_debug_string("\n::GetCursorPos 1");
 
@@ -866,7 +893,7 @@ namespace windowing_x11
    XImage *display::x11_create_image(::image_pointer pimage)
    {
 
-      synchronization_lock synchronizationlock(x11_mutex());
+      synchronization_lock synchronizationlock(user_mutex());
 
       windowing_output_debug_string("\n::x11_create_image 1");
 
@@ -916,13 +943,178 @@ namespace windowing_x11
    Pixmap display::x11_create_pixmap(::image_pointer pimage)
    {
 
-      synchronization_lock synchronizationlock(x11_mutex());
+      synchronization_lock synchronizationlock(user_mutex());
 
       windowing_output_debug_string("\n::x11_create_pixmap 1");
 
       display_lock displaylock(this);
 
       return _x11_create_pixmap(pimage);
+
+   }
+
+   xcb_window_t *display::xcb_window_list(unsigned long *len)
+   {
+
+      xcb_atom_t prop = intern_atom("_NET_CLIENT_LIST_STACKING", False);
+
+      if (prop == 0)
+      {
+
+         prop = intern_atom("_NET_CLIENT_LIST", False);
+
+      }
+
+      if (prop == 0)
+      {
+
+         return nullptr;
+
+      }
+
+      xcb_atom_t type;
+      int form;
+      unsigned long remain;
+      unsigned char *list;
+
+      errno = 0;
+      auto cookie = (xcb_get_property(xcb_connection(), 0,  m_windowRoot, prop, 0, 1024, False, XA_WINDOW,
+                                      &type, &form, len, &remain, &list) != Success)
+      {
+         output_debug_string("winlist() -- GetWinProp");
+         return nullptr;
+      }
+
+      return (xcb_window_t *) list;
+
+   }
+
+
+   bool display::xcb_window_list(array<xcb_window_t> &windowa)
+   {
+
+      unsigned long len = 0;
+
+      xcb_window_t *list = (xcb_window_t *) xcb_window_list(&len);
+
+
+      if (list == nullptr)
+      {
+
+         return false;
+
+      }
+
+      for (int i = 0; i < (int) len; i++)
+      {
+
+         windowa.add(list[i]);
+
+      }
+
+      XFree(list);
+
+      return true;
+
+   }
+
+   bool display::point_is_window_origin(POINT_I32 pointHitTest, ::windowing::window *pwindowExclude, int iMargin)
+   {
+
+      bool bIsOrigin = false;
+
+      auto pnode = Node;
+
+      pnode->node_sync(10_s, [this, pointHitTest, pwindowExclude, iMargin, &bIsOrigin]()
+      {
+
+         ::windowing_xcb::window *pwindowxcbExclude = nullptr;
+
+         if (pwindowExclude)
+         {
+
+            pwindowxcbExclude = dynamic_cast < ::windowing_xcb::window * >(pwindowExclude);
+
+         }
+
+         synchronization_lock synchronizationlock(user_mutex());
+
+         windowing_output_debug_string("\n::GetFocus 1");
+
+#ifdef display_lock_LOCK_LOG
+
+         b_prevent_display_lock_lock_log = false;
+
+#endif
+
+         if (!xcb_connection_t())
+         {
+
+            windowing_output_debug_string("\n::GetFocus 1.1");
+
+            return;
+
+         }
+
+         display_lock display(this);
+
+         windowing_output_debug_string("\n::GetFocus 1.01");
+
+
+         comparable_array<xcb_window_t> windowa;
+
+         if (!xcb_window_list(windowa))
+         {
+
+            bIsOrigin = true;
+
+            return;
+
+         }
+
+         ::rectangle_i32 rectTest;
+
+         for (index i = 0; i < windowa.get_size(); i++)
+         {
+
+            string strItem = ::xcb_get_name(xcb_connection(), windowa[i]);
+
+            ::rectangle_i32 rectHigher;
+
+            if (::is_set(pwindowxcbExclude) && windowa[i] == pwindowxcbExclude->xcb_window_t())
+            {
+
+               continue;
+
+            }
+
+            if (::xcb_get_window_rect(xcb_connection(), windowa[i], rectHigher))
+            {
+
+               ::rectangle_i32 rectHitTest;
+
+               rectHitTest.set(rectHigher.origin(), ::size_i32());
+
+               rectHitTest.inflate(iMargin + 1);
+
+               if (rectHitTest.contains(pointHitTest))
+               {
+
+                  bIsOrigin = true;
+
+                  return;
+
+               }
+
+            }
+
+         }
+
+      });
+//
+//            });
+
+      return bIsOrigin;
 
    }
 

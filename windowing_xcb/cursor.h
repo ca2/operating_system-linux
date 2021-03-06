@@ -3,21 +3,22 @@
 #pragma once
 
 
-namespace windowing_x11
+namespace windowing_xcb
 {
 
 
-   class CLASS_DECL_WINDOWING_X11 cursor :
+   class CLASS_DECL_WINDOWING_XCB cursor :
       virtual public ::windowing::cursor
    {
    public:
 
 
-      ::Cursor                   m_cursor;
+      xcb_cursor_t               m_cursor;
 
 
       cursor();
       virtual ~cursor();
+
 
       virtual ::e_status initialize_system_default();
 
@@ -25,10 +26,11 @@ namespace windowing_x11
 
       virtual ::e_status load_default_cursor(enum_cursor ecursor);
 
+
    };
 
 
-} // namespace windowing_x11
+} // namespace windowing_xcb
 
 
 

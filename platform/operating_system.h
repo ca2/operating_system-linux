@@ -151,13 +151,6 @@ extern "C" void _BPT();
 
 
 
-#ifdef __cplusplus
-
-
-inline void debug_break() { asm("int $3"); }
-
-
-#endif
 
 
 #ifndef SIZE_T_MAX

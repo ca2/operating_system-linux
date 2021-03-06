@@ -2,18 +2,9 @@ cmake_minimum_required(VERSION 3.17)
 project(windowing_x11 CXX)
 
 
-set(CMAKE_CXX_STANDARD 20)
-set(CMAKE_CXX_EXTENSIONS OFF)
 add_compile_options("$<$<CONFIG:DEBUG>:-DDEBUG>")
 
 
-if (${CMAKE_SYSTEM_NAME} STREQUAL "Linux")
-   set(LINUX TRUE)
-   set(PLATFORM_NAME "linux")
-   include(FindPkgConfig)
-elseif (WIN32)
-   set(PLATFORM_NAME "windows")
-endif ()
 
 
 set(LIBRARY_OUTPUT_PATH ${CMAKE_CURRENT_SOURCE_DIR}/../../../time-${PLATFORM_NAME}/cmake)
@@ -53,6 +44,8 @@ list(APPEND audio_alsa_source
    #node.h
    sn.cpp
    sn.h
+   text_composition_client.cpp
+   text_composition_client.h
    user.cpp
    window.cpp
    window.h
@@ -80,7 +73,7 @@ else ()
 endif ()
 
 
-add_library(windowing_x11 SHARED ${audio_alsa_source} text_composition_client.cpp text_composition_client.h)
+add_library(windowing_x11 SHARED ${audio_alsa_source})
 
 target_precompile_headers(windowing_x11 PRIVATE framework.h)
 
@@ -94,9 +87,6 @@ if (MSVC)
    target_link_libraries(windowing_x11 PRIVATE ${library_references})
    add_dependencies(windowing_x11 draw2d_gdiplus)
 elseif (LINUX)
-   #pkg_check_modules(PKGCONFIG glib-2.0 gtk+-3.0 gdk-3.0 appindicator-0.1)
-   # sudo apt install libgtk-3-dev
-   #pkg_check_modules(PKGCONFIG glib-2.0 gtk+-3.0 gdk-3.0)
    pkg_check_modules(PKGCONFIG x11 xrender xi)
    target_compile_options(windowing_x11 PRIVATE -fpermissive)
    target_compile_options(windowing_x11 PRIVATE ${PKGCONFIG_CFLAGS})

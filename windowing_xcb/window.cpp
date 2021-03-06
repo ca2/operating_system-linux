@@ -3,7 +3,7 @@
 // hi5 contribution...
 #include "framework.h"
 #include "aura/user/_user.h"
-#include "windowing_x11.h"
+#include "windowing_xcb.h"
 #include "acme/os/_user.h"
 #include "aura/user/interaction_prodevian.h"
 #include "aura/platform/message_queue.h"
@@ -11,18 +11,18 @@
 
 
 
-//void on_sn_launch_context(void * pSnContext, Window window);
+//void on_sn_launch_context(void * pSnContext, xcb_window_t window);
 //void on_sn_launch_complete(void * pSnContext);
 
 
-mutex * x11_mutex();
+mutex * user_mutex();
 
 
 #undef ALOG_CONTEXT
 #define ALOG_CONTEXT ::trace_object(::trace_category_windowing)
 
 
-namespace windowing_x11
+namespace windowing_xcb
 {
 
 
@@ -31,36 +31,21 @@ namespace windowing_x11
 
       set_layer(LAYERED_X11, this);
 
-      m_iXic = 0;
+      m_pkeyboarcontext = nullptr;
 
-      m_xic = nullptr;
+      m_iKeyboardX11DeviceId = -1;
 
-      for (auto &i : m_iaNetWmState)
-      {
-
-         i = -1;
-
-      }
+      m_pkeystate = nullptr;
 
       m_cursorLast = 0;
 
       m_hthread = 0;
 
-      m_window = None;
+      m_window = 0;
 
       m_pimpl = nullptr;
 
       m_bMessageOnlyWindow = false;
-
-      __zero(m_visual);
-
-      m_iDepth = -1;
-
-      m_iScreen = -1;
-
-      m_colormap = None;
-
-      m_iXic = 0;
 
    }
 
@@ -68,13 +53,15 @@ namespace windowing_x11
    window::~window()
    {
 
+      release_keyboard();
+
    }
 
 
    ::e_status window::create_window(::user::interaction_impl * pimpl)
    {
 
-      synchronization_lock synchronizationlock(x11_mutex());
+      synchronization_lock synchronizationlock(user_mutex());
 
       bool bOk = true;
 
@@ -82,13 +69,13 @@ namespace windowing_x11
 
       pimpl->m_puserinteraction->m_bMessageWindow = false;
 
-      auto pwindowing = x11_windowing();
+      auto pwindowing = xcb_windowing();
 
       auto pwindowingdisplay = pwindowing->display();
 
-      auto pdisplayx11 = dynamic_cast < ::windowing_x11::display * > (pwindowingdisplay);
+      auto pdisplayxcb = dynamic_cast < ::windowing_xcb::display * > (pwindowingdisplay);
 
-      ::Display * display = pdisplayx11->Display();
+      xcb_connection_t * display = pdisplayxcb->xcb_connection();
 
       if (display == nullptr)
       {
@@ -101,7 +88,7 @@ namespace windowing_x11
 
       }
 
-      display_lock displaylock(pdisplayx11);
+      display_lock displaylock(pdisplayxcb);
 
       int x = m_pimpl->m_puserinteraction->layout().sketch().origin().x;
 
@@ -112,46 +99,6 @@ namespace windowing_x11
       int cy = m_pimpl->m_puserinteraction->layout().sketch().height();
 
       bool bVisible = m_pimpl->m_puserinteraction->layout().sketch().is_screen_visible();
-
-      if(pusersystem)
-      {
-
-         if (pusersystem->m_createstruct.x <= 0)
-         {
-
-            x = pusersystem->m_createstruct.x;
-
-         }
-
-         if (pusersystem->m_createstruct.y <= 0)
-         {
-
-            y = pusersystem->m_createstruct.y;
-
-         }
-
-         if (pusersystem->m_createstruct.cx <= 0)
-         {
-
-            cx = 1;
-
-         }
-
-         if (pusersystem->m_createstruct.cy <= 0)
-         {
-
-            cy = 1;
-
-         }
-
-         if (pusersystem->m_createstruct.style & WS_VISIBLE)
-         {
-
-            bVisible = true;
-
-         }
-
-      }
 
       if(cx <= 0)
       {
@@ -167,74 +114,52 @@ namespace windowing_x11
 
       }
 
-      m_iScreen = DefaultScreen(display);
+      uint32_t attrs[5];
 
-      ::Window rootwin = RootWindow(display, m_iScreen);
+      auto & back_pixmap = attrs[0] = 0;
 
-      XEvent e;
+      auto & border_pixel = attrs[1] = 0;
 
-      // query Visual for "TrueColor" and 32 bits depth (RGBA)
+      auto & override_redirect = attrs[2] = pimpl->m_puserinteraction->m_ewindowflag & e_window_flag_arbitrary_positioning ? 1 : 0;
 
-      ::Visual * visual = DefaultVisual(display, DefaultScreen(display));
+      auto & event_mask = attrs[3] =
+         XCB_EVENT_MASK_PROPERTY_CHANGE
+         | XCB_EVENT_MASK_EXPOSURE
+         | XCB_EVENT_MASK_BUTTON_PRESS
+         | XCB_EVENT_MASK_BUTTON_RELEASE
+         | XCB_EVENT_MASK_KEY_PRESS
+         | XCB_EVENT_MASK_KEY_RELEASE
+         | XCB_EVENT_MASK_POINTER_MOTION
+         | XCB_EVENT_MASK_STRUCTURE_NOTIFY
+         | XCB_EVENT_MASK_FOCUS_CHANGE
+         | XCB_EVENT_MASK_LEAVE_WINDOW
+         | XCB_EVENT_MASK_ENTER_WINDOW
+         ;
 
-      m_iDepth = 0;
-
-      if (m_px11data.is_null())
-      {
-
-         m_px11data = __new(x11data);
-
-      }
-
-      if (XMatchVisualInfo(display, DefaultScreen(display), 32, TrueColor, &m_px11data->m_visualinfo))
-      {
-
-         visual = m_px11data->m_visualinfo.visual;
-
-      }
-      else
-      {
-
-         __zero(m_px11data->m_visualinfo);
-
-      }
-
-      m_iDepth = m_px11data->m_visualinfo.depth;
-
-      XSetWindowAttributes attr;
-
-      __zero(attr);
-
-      attr.colormap = XCreateColormap(display, rootwin, visual, AllocNone);
-
-      attr.event_mask =
-         PropertyChangeMask | ExposureMask | ButtonPressMask | ButtonReleaseMask | KeyPressMask | KeyReleaseMask |
-         PointerMotionMask | StructureNotifyMask | FocusChangeMask | LeaveWindowMask | EnterWindowMask;
-
-      attr.background_pixmap = None;
-
-      attr.border_pixmap = None;
-
-      attr.border_pixel = 0;
-
-      attr.override_redirect =
-         pimpl->m_puserinteraction->m_ewindowflag & e_window_flag_arbitrary_positioning ? True : False;
-
-      //attr.override_redirect = True;
+      auto & colormap = attrs[4] = xcb_display()->m_colormap;
 
       INFO("XCreateWindow (l=%d, t=%d) (w=%d, h=%d)", x, y, cx, cy);
 
-      ::Window window = XCreateWindow(display, DefaultRootWindow(display),
-                                      x, y,
-                                      cx, cy,
-                                      0,
-                                      m_iDepth,
-                                      InputOutput,
-                                      visual,
-                                      CWColormap | CWEventMask | CWBackPixmap | CWBorderPixel
-                                      | CWOverrideRedirect, &attr);
+      xcb_window_t window = xcb_generate_id(xcb_display()->m_pconnection);
 
-      auto &windowstate3 = pimpl->m_puserinteraction->m_layout.window();
+      auto cookie = xcb_create_window(
+         xcb_connection(),
+         xcb_display()->m_pdepth->depth,
+         window,
+         xcb_display()->m_windowRoot,
+         x, y,
+         cx, cy,
+         0,
+         XCB_WINDOW_CLASS_INPUT_OUTPUT,
+         xcb_display()->m_pvisualtype->visual_id,
+         XCB_CW_BACK_PIXMAP
+         | XCB_CW_BORDER_PIXEL
+         | XCB_CW_OVERRIDE_REDIRECT
+         | XCB_CW_EVENT_MASK
+         | XCB_CW_COLORMAP,
+         &attrs);
+
+      auto & windowstate3 = pimpl->m_puserinteraction->m_layout.window();
 
       windowstate3.origin() = {INT_MIN, INT_MIN};
 
@@ -250,7 +175,7 @@ namespace windowing_x11
 
       state.screen_origin() = state.origin();
 
-      if (window == 0)
+      if (m_window == 0)
       {
 
          bOk = false;
@@ -259,7 +184,11 @@ namespace windowing_x11
 
       }
 
-      auto estatus = initialize_x11_window(pdisplayx11, window, visual, m_iDepth, m_iScreen, attr.colormap);
+      auto estatus = initialize_xcb_window(
+         pdisplayxcb,
+         window,
+         xcb_display()->m_pdepth->depth,
+         attrs[4]);
 
       if (!estatus)
       {
@@ -276,9 +205,9 @@ namespace windowing_x11
 
       pimpl->set_os_data((::windowing::window *)this);
 
-      set_os_data(LAYERED_X11, (::windowing_x11::window *)this);
+      set_os_data(LAYERED_X11, (::windowing_xcb::window *)this);
 
-      pimpl->set_os_data(LAYERED_X11, (::windowing_x11::window *)this);
+      pimpl->set_os_data(LAYERED_X11, (::windowing_xcb::window *)this);
 
       pimpl->m_puserinteraction->m_pimpl = pimpl;
 
@@ -289,17 +218,13 @@ namespace windowing_x11
       if (!(pimpl->m_puserinteraction->m_ewindowflag & e_window_flag_satellite_window))
       {
 
-         XClassHint *pupdate = XAllocClassHint();
+         string strApplicationServerName = System->get_application_server_name();
 
-         string strApplicationServerName = System.get_application_server_name();
+         string strClass = strApplicationServerName;
 
-         pupdate->res_class = (char *) (const char *) strApplicationServerName;
+         string strName = strApplicationServerName;
 
-         pupdate->res_name = (char *) (const char *) strApplicationServerName;
-
-         XSetClassHint(display, window, pupdate);
-
-         XFree(pupdate);
+         _set_class_hint(strName, strClass);
 
       }
 
@@ -321,75 +246,87 @@ namespace windowing_x11
       if (pimpl->m_puserinteraction->m_ewindowflag & e_window_flag_dock_window)
       {
 
-         wm_dockwindow(true);
+         _set_dock_window();
 
       }
       else if (pimpl->m_puserinteraction->m_ewindowflag & e_window_flag_desktop_window)
       {
 
-         wm_desktopwindow(true);
+         _set_desktop_window();
 
       }
       else if (pimpl->m_puserinteraction->layout().sketch().activation() & e_activation_on_center_of_screen)
       {
 
-         wm_centerwindow(true);
+         _set_center_window();
 
       }
       else if (pimpl->m_puserinteraction->m_ewindowflag & e_window_flag_satellite_window
       || pimpl->m_puserinteraction->m_bToolWindow)
       {
 
-         wm_toolwindow(true);
+         _set_tool_window();
 
       }
       else
       {
 
-         wm_normalwindow();
+         _set_normal_window();
 
       }
 
-      //m_px11data->m_pgdkwindow = gdk_x11_window_foreign_new_for_display(gdk_display_get_default(), window);
+      ::xcb_window_t root = 0;
 
-      ::Window root = 0;
-
-      ::Window *pchildren = nullptr;
+      ::xcb_window_t *pchildren = nullptr;
 
       u32 ncount = 0;
-
-      XQueryTree(display, window, &root, &m_parent, &pchildren, &ncount);
-
-      if (pchildren != nullptr)
-      {
-
-         XFree(pchildren);
-
-      }
 
       hthread_t hthread = ::get_current_hthread();
 
       m_hthread = hthread;
 
-      if (!XGetWindowAttributes(Display(), Window(), &m_px11data->m_attr))
+      estatus = _get_window_attributes();
+
+      if(!estatus)
       {
 
-         INFO("linux::interaction_impl::_native_create_window_ex XGetWindowAttributes failed.");
+         return estatus;
+
+      }
+
+      estatus = _get_geometry();
+
+      if(!estatus)
+      {
+
+         return estatus;
 
       }
 
       int event_base, error_base, major_version, minor_version;
 
-      pimpl->m_bComposite = XGetSelectionOwner(Display(), x11_display()->intern_atom("_NET_WM_CM_S0", True));
+      bool bComposite = false;
 
-      string strName;
-
-      if (pusersystem && pusersystem->m_createstruct.lpszName != nullptr && strlen(pusersystem->m_createstruct.lpszName) > 0)
       {
 
-         strName = pusersystem->m_createstruct.lpszName;
+         auto atomNetWmCmS0 = xcb_display()->atom(x_window::e_atom_net_wm_cm_s0);
+
+         auto cookie = xcb_get_selection_owner(xcb_connection(), atomNetWmCmS0);
+
+         auto preply = __malloc(xcb_get_selection_owner_reply(xcb_connection(), cookie, nullptr));
+
+         if (preply)
+         {
+
+            bComposite = preply->owner != 0;
+
+         }
 
       }
+
+      pimpl->m_bComposite = bComposite;
+
+      string strName;
 
       if(strName.is_empty())
       {
@@ -408,19 +345,18 @@ namespace windowing_x11
       if(strName.has_char())
       {
 
-         XStoreName(Display(), Window(), strName);
+         _store_name(strName);
 
       }
 
       bamf_set_icon();
 
-      _wm_nodecorations(0);
+      _set_nodecorations(0);
 
-      //if (pusersystem->m_createstruct.style & WS_VISIBLE)
       if(bVisible)
       {
 
-         map_window();
+         _map_window();
 
       }
       else
@@ -430,75 +366,12 @@ namespace windowing_x11
 
       }
 
-      //if(m_px11data->m_attr.map_state != IsUnmapped)
-      {
-
-         if (!attr.override_redirect)
-         {
-
-            if (is_docking_appearance(pimpl->m_puserinteraction->layout().sketch().display()))
-            {
-
-               // window managers generally "don't like" windows that starts "docked/snapped".
-               // initial (XCreateWindow) size_i32 and position maybe not be honored.
-               // so requesting the same change again in a effort to set the "docked/snapped" size_i32 and position.
-
-               set_window_position(e_zorder_top, pusersystem->m_createstruct.x, pusersystem->m_createstruct.y,
-                                   pusersystem->m_createstruct.cx, pusersystem->m_createstruct.cy, SWP_SHOWWINDOW);
-
-            }
-
-         }
-
-      }
-
       displaylock.unlock();
-
-      //if(pshowwindow->m_bShow)
-      {
-
-         //::rectangle_i32 rect32;
-
-         //(::get_window_rect((oswindow) get_handle(), rect32))
-         {
-
-
-            if (get_context_session() != nullptr)
-            {
-
-               // Initial position of window below the cursor position
-               // with invalid (empty) size.
-               // (Hinting for monitor placement, if no stored information
-               // available).
-
-               if (pimpl->m_puserinteraction->layout().sketch().display() == e_display_undefined)
-               {
-
-                  auto pwindowing = windowing();
-
-                  auto pointCursor = pwindowing->get_cursor_position();
-
-                  pimpl->m_puserinteraction->move_to(pointCursor);
-
-                  pimpl->m_puserinteraction->set_size(0, 0);
-
-               }
-
-            }
-
-         }
-
-   //   }
-
-      //});
-   //}
-
-      }
 
       if(bOk)
       {
 
-         auto lresult = pimpl->m_puserinteraction->send_message(e_message_create, 0, (lparam) &pusersystem->m_createstruct);
+         auto lresult = pimpl->m_puserinteraction->send_message(e_message_create, 0, (lparam) pusersystem.m_p);
 
          if(lresult == -1)
          {
@@ -516,48 +389,21 @@ namespace windowing_x11
    }
 
 
-   void window::set_wm_class(const char *psz)
-   {
-
-      synchronization_lock synchronizationlock(x11_mutex());
-
-      m_strWMClass = psz;
-
-      display_lock displaylock(x11_display());
-
-      XClassHint classHint;
-
-      classHint.res_name = m_strWMClass;
-
-      classHint.res_class = m_strWMClass;
-
-      XSetClassHint(Display(), Window(), &classHint);
-
-   }
-
-
-   i32 window::map_window()
+   ::e_status window::_map_window()
    {
 
       int i = 0;
 
-      synchronization_lock synchronizationlock(x11_mutex());
+      synchronization_lock synchronizationlock(user_mutex());
 
-      {
+      windowing_output_debug_string("\nwindow::map_window");
 
-         windowing_output_debug_string("\nwindow::map_window");
+      display_lock displaylock(xcb_display());
 
-         display_lock displaylock(x11_display());
+      auto estatus = _map_window();
 
-         i = XMapWindow(Display(), Window());
+      auto pwindowing = xcb_windowing();
 
-      }
-
-//#ifdef WITH_SN
-
-      auto pwindowing = x11_windowing();
-
-    //  if (pwindowing->m_pSnLauncheeContext != nullptr)
       if(!pwindowing->m_bFirstWindowMap)
       {
 
@@ -567,252 +413,84 @@ namespace windowing_x11
 
          pnode->defer_notify_startup_complete();
 
-         //on_sn_launch_complete(pwindowing->m_pSnLauncheeContext);
-
-  //       pwindowing->m_pSnLauncheeContext = nullptr;
-
       }
-
-//#endif // RASPBIAN
 
       windowing_output_debug_string("\nwindow::map_window END");
 
-      return i;
+      if(!estatus)
+      {
+
+         return estatus;
+
+      }
+
+      return estatus;
 
    }
 
 
-   i32 window::unmap_window(bool bWithdraw)
+   ::e_status window::_unmap_window()
    {
 
-      synchronization_lock synchronizationlock(x11_mutex());
+      synchronization_lock synchronizationlock(user_mutex());
 
       windowing_output_debug_string("\nwindow::unmap_window");
 
-      display_lock displaylock(x11_display());
+      display_lock displaylock(xcb_display());
 
-      int i;
+      ::e_status estatus;
 
-      if (bWithdraw)
-      {
+      auto cookie = xcb_unmap_window(xcb_connection(), xcb_window());
 
-         i = XWithdrawWindow(Display(), Window(), m_iScreen);
-
-      }
-      else
-      {
-
-         i = XUnmapWindow(Display(), Window());
-
-      }
+      estatus =_request_check(cookie);
 
       windowing_output_debug_string("\nwindow::unmap_window END");
 
-      return i;
+      if(!estatus)
+      {
+
+         return estatus;
+
+      }
+
+      return estatus;
 
    }
 
 
-//   oswindow_dataptra *window::s_pdataptra = nullptr;
-//
-//
-//   ::mutex *window::s_pmutex = nullptr;
-
-
-//   i32 oswindow_find_message_only_window(::user::interaction_impl *pimpl)
-//   {
-//
-//      if (pimpl == nullptr)
-//      {
-//
-//         return -1;
-//
-//      }
-//
-//      single_lock slOsWindow(window::s_pmutex, true);
-//
-//      for (i32 i = 0; i < ::window::s_pdataptra->get_count(); i++)
-//      {
-//
-//         if (::window::s_pdataptra->element_at(i)->m_bMessageOnlyWindow
-//             && ::window::s_pdataptra->element_at(i)->m_pimpl == pimpl)
-//         {
-//
-//            return i;
-//
-//         }
-//
-//      }
-//
-//      return -1;
-//
-//   }
-
-//   i32 oswindow_find(Display *Display(), Window window)
-//   {
-//
-//      single_lock slOsWindow(::window::s_pmutex, true);
-//
-//      for (i32 i = 0; i < ::window::s_pdataptra->get_count(); i++)
-//      {
-//         if (!::window::s_pdataptra->element_at(i)->m_bMessageOnlyWindow
-//             && ::window::s_pdataptra->element_at(i)->m_osdisplay->display() == Display()
-//             && ::window::s_pdataptra->element_at(i)->m_window == window)
-//         {
-//            return i;
-//         }
-//      }
-//
-//      return -1;
-//
-//   }
-
-//   i32 oswindow_find(Window window)
-//   {
-//
-//      single_lock slOsWindow(::window::s_pmutex, true);
-//
-//      for (i32 i = 0; i < ::window::s_pdataptra->get_count(); i++)
-//      {
-//         if (!::window::s_pdataptra->element_at(i)->m_bMessageOnlyWindow
-//             && ::window::s_pdataptra->element_at(i)->m_window == window)
-//         {
-//            return i;
-//         }
-//      }
-//
-//      return -1;
-//
-//   }
-
-//
-//   window *oswindow_get_message_only_window(::user::interaction_impl *pinteraction)
-//   {
-//
-//      if (pinteraction == nullptr)
-//      {
-//
-//         return nullptr;
-//
-//      }
-//
-//      single_lock slOsWindow(::window::s_pmutex, true);
-//
-//      iptr iFind = oswindow_find_message_only_window(pinteraction);
-//
-//      if (iFind >= 0)
-//      {
-//
-//         return ::window::s_pdataptra->element_at(iFind);
-//
-//      }
-//
-//      ::window *pdata = new window;
-//
-//      pdata->m_bMessageOnlyWindow = true;
-//      pdata->m_window = None;
-//      pdata->m_pimpl = pinteraction;
-//      pdata->m_osdisplay = nullptr;
-//      pdata->m_parent = 0;
-//      pdata->m_pmq = pinteraction->m_puserinteraction->m_pthreadUserInteraction->get_mq();
-//
-//      ::window::s_pdataptra->add(pdata);
-//
-//      return pdata;
-//
-//   }
-
-//
-//   window *oswindow_defer_get(Display *Display(), Window window)
-//   {
-//
-//      single_lock slOsWindow(::window::s_pmutex, true);
-//
-//      iptr iFind = oswindow_find(Display(), window);
-//
-//      if (iFind < 0)
-//      {
-//
-//         return nullptr;
-//
-//      }
-//
-//      return ::window::s_pdataptra->element_at(iFind);
-//
-//   }
-
-
-   ::e_status window::initialize_x11_window(::windowing_x11::display * pdisplay, ::Window window, ::Visual *pvisual, int iDepth, int iScreen, Colormap colormap)
+   ::e_status window::initialize_xcb_window(::windowing_xcb::display * pdisplay, ::xcb_window_t window, int iDepth, xcb_colormap_t colormap)
    {
 
-      //single_lock slOsWindow(::window::s_pmutex, true);
-
-//      iptr iFind = oswindow_find(Display(), window);
-//
-//      if (iFind >= 0)
-//      {
-//
-//         return ::window::s_pdataptra->element_at(iFind);
-//
-//      }
-//
-//      ::window *pdata = new ::window;
-
       m_bMessageOnlyWindow = false;
-      //m_osdisplay = osdisplay_get(Display());
+
       m_pdisplay = pdisplay;
+
       m_window = window;
 
-      if (pvisual != nullptr)
-      {
-
-         m_visual = *pvisual;
-
-      }
-
-      m_iDepth = iDepth;
-      m_iScreen = iScreen;
-      m_colormap = colormap;
-      //m_parent = 0;
-
-      //::window::s_pdataptra->add(pdata);
-
-      x11_display()->m_windowmap[m_window] = this;
+      xcb_display()->m_windowmap[m_window] = this;
 
       return ::success;
 
    }
 
 
-   //void x11_on_start_session()
-   //{
-
-   //   Display * dpy = x11_get_display();
-   //
-   //   g_oswindowDesktop = oswindow_get(dpy, DefaultRootWindow(dpy));
-   //
-   //   g_oswindowDesktop->m_pimpl = nullptr;
-   //
-   //   XSelectInput(g_oswindowDesktop->Display(), g_oswindowDesktop->Window(), StructureNotifyMask);
-   //
-   //}
-
-   Display * window::Display()
+   xcb_connection_t * window::xcb_connection()
    {
 
-      return x11_display()->Display();
-
-   }
-
-   Display * window::Display() const
-   {
-
-      return x11_display()->Display();
+      return xcb_display()->xcb_connection();
 
    }
 
 
-   Window window::Window()
+   xcb_connection_t * window::xcb_connection() const
+   {
+
+      return xcb_display()->xcb_connection();
+
+   }
+
+
+   xcb_window_t window::xcb_window()
    {
 
       return m_window;
@@ -820,52 +498,18 @@ namespace windowing_x11
    }
 
 
-   Window window::Window() const
+   xcb_window_t window::xcb_window() const
    {
 
       return m_window;
 
    }
-
-
-   Visual * window::Visual()
-   {
-
-      return &m_visual;
-
-   }
-
-
-   const Visual * window::Visual() const
-   {
-
-      return &m_visual;
-
-   }
-
-//   window *oswindow_get(Window window)
-//   {
-//
-//      single_lock slOsWindow(::window::s_pmutex, true);
-//
-//      iptr iFind = oswindow_find(window);
-//
-//      if (iFind < 0)
-//      {
-//
-//         return nullptr;
-//
-//      }
-//
-//      return ::window::s_pdataptra->element_at(iFind);
-//
-//   }
 
 
    bool window::bamf_set_icon()
    {
 
-      synchronization_lock synchronizationlock(x11_mutex());
+      synchronization_lock synchronizationlock(user_mutex());
 
       auto pnode = Node;
 
@@ -875,102 +519,112 @@ namespace windowing_x11
 
       fflush(stdout);
 
-      display_lock displaylock(x11_display());
+      display_lock displaylock(xcb_display());
 
-      Atom net_wm_icon = x11_display()->intern_atom("_BAMF_DESKTOP_FILE", False);
+      xcb_atom_t net_wm_icon = xcb_display()->intern_atom("_BAMF_DESKTOP_FILE", false);
 
-      Atom cardinal = x11_display()->intern_atom("STRING", False);
-
-      int ixa = XA_STRING;
-
-      int status = XChangeProperty(
-         Display(),
-         Window(),
-         net_wm_icon,
-         ixa,
-         8,
-         PropModeReplace,
-         (const unsigned char*) (const char *) path,
-         path.get_length());
+      auto estatus = _replace_string_property(net_wm_icon, path);
 
       output_debug_string("\nlinux::interaction_impl::bamf_set_icon END");
 
       fflush(stdout);
 
-      if(status != 0)
+      if(!estatus)
       {
 
-         return false;
+         return estatus;
 
       }
 
-      return true;
+      return estatus;
 
    }
 
 
-
-   int
-   window::x_change_property(Atom property, Atom type, int format, int mode, const unsigned char *data, int nelements)
+   ::e_status window::_change_property(xcb_atom_t property, xcb_atom_t type, int mode, int format, int nelements, const void * data)
    {
 
-      return XChangeProperty(Display(), Window(), property, type, format, mode, data, nelements);
+      auto cookie = xcb_change_property(
+         xcb_connection(),
+         mode,
+         xcb_window(),
+         property,
+         type,
+         format,
+         nelements,
+         data
+         );
+
+      auto estatus = _request_check(cookie);
+
+      if(!estatus)
+      {
+
+         return estatus;
+
+      }
+
+      return estatus;
 
    }
 
 
-//   Atom window::x11_display()->intern_atom(const char *pszAtomName, bool bCreate)
-//   {
-//
-//      return m_osdisplay->x11_display()->intern_atom(pszAtomName, bCreate);
-//
-//   }
+   ::e_status window::_delete_property(xcb_atom_t property)
+   {
+
+      auto cookie = xcb_delete_property(
+         xcb_connection(),
+         xcb_window(),
+         property
+      );
+
+      auto estatus = _request_check(cookie);
+
+      if(!estatus)
+      {
+
+         return estatus;
+
+      }
+
+      return estatus;
+
+   }
 
 
-//   Atom window::x11_display()->intern_atom(e_net_wm_state estate, bool bCreate)
-//   {
-//
-//      return m_osdisplay->x11_display()->intern_atom(estate, bCreate);
-//
-//   }
+   ::e_status window::_replace_string_property(xcb_atom_t property, const ::block & block)
+   {
+
+      auto estatus = _change_property(
+         property,
+         XCB_ATOM_STRING,
+         XCB_PROP_MODE_REPLACE,
+         8,
+         block.get_size(),
+         block.get_data());
+
+      if(!estatus)
+      {
+
+         return estatus;
+
+      }
+
+      return estatus;
+
+   }
+
+
+   ::e_status window::_request_check(xcb_void_cookie_t cookie)
+   {
+
+      return xcb_display()->_request_check(cookie);
+
+   }
 
 
    bool window::set_icon(::image *pimage)
    {
-
-      // http://stackoverflow.com/questions/10699927/xlib-argb-window-icon
-      // http://stackoverflow.com/users/432509/ideasman42
-
-#if 0
-
-      unsigned int buffer[] =
-      {
-         16, 16,
-         4294901760, 4294901760, 4294901760, 4294901760, 4294901760, 4294901760, 4294901760, 4294901760, 338034905, 3657433343, 0, 184483840, 234881279, 3053453567, 3221225727, 1879048447, 0, 0, 0, 0, 0, 0, 0, 1224737023, 3305111807, 3875537151,0, 0, 2063597823, 1291845887, 0, 67109119, 4294901760, 4294901760, 4294901760, 4294901760, 4294901760, 4294901760, 4294901760, 4294901760, 50266112, 3422552319, 0, 0, 3070230783, 2063597823, 2986344703, 771752191, 0, 0, 0, 0, 0, 0, 0, 0, 0, 3422552319, 0, 0, 3372220671, 1509949695, 704643327, 3355443455, 4294901760, 4294901760, 4294901760, 4294901760, 4294901760, 4294901760, 4294901760, 4294901760, 0, 3422552319, 0, 134152192, 3187671295, 251658495, 0, 3439329535, 0, 0, 0, 0, 0, 0, 0, 0, 0, 3422552319, 0, 0, 2332033279, 1342177535, 167772415, 3338666239, 4294901760, 4294901760, 4294901760, 4294901760, 4294901760, 4294901760, 4294901760, 4294901760, 0, 3422552319, 0, 0, 436207871, 3322085628, 3456106751, 1375731967, 4278255360, 4026597120, 3758161664, 3489726208, 3204513536, 2952855296, 2684419840, 2399207168, 2130771712, 1845559040, 1593900800, 1308688128, 1040252672, 755040000, 486604544, 234946304, 4278255360, 4043374336, 3774938880, 3506503424, 3221290752, 2952855296, 2667642624, 2399207168, 2130771712, 1862336256, 1627453957, 1359017481, 1073805064, 788591627, 503379721, 218169088, 4278255360, 4043374336, 3758161664, 3506503424, 3221290752, 2952855296, 2684419840, 2415984384, 2130771712, 1862336256, 1577123584, 1308688128, 1040252672, 755040000, 486604544, 218169088, 4278190335, 4026532095, 3758096639, 3489661183, 3221225727, 2952790271, 2667577599, 2415919359, 2130706687, 1862271231, 1593835775, 1325400319, 1056964863, 771752191, 520093951, 234881279, 4278190335, 4026532095, 3758096639, 3489661183, 3221225727, 2952790271, 2667577599, 2415919359, 2130706687, 1862271231, 1593835775, 1325400319, 1056964863, 771752191, 503316735, 234881279, 4278190335, 4026532095, 3758096639, 3489661183, 3221225727, 2952790271, 2684354815, 2399142143, 2130706687, 1862271231, 1593835775, 1325400319, 1040187647, 771752191, 520093951, 234881279, 4294901760, 4043243520, 3774808064, 3506372608, 3221159936, 2952724480, 2684289024, 2399076352, 2147418112, 1862205440, 1593769984, 1308557312, 1040121856, 771686400, 503250944, 234815488, 4294901760, 4060020736, 3758030848, 3506372608, 3221159936, 2952724480, 2684289024, 2415853568, 2130640896, 1862205440, 1593769984, 1308557312, 1040121856, 771686400, 503250944, 234815488, 4294901760, 4043243520, 3774808064, 3489595392, 3237937152, 2952724480, 2684289024, 2415853568, 2147418112, 1862205440, 1593769984, 1325334528, 1056899072, 788463616, 503250944, 234815488,
-         32, 32,
-         4294901760, 4294901760, 4294901760, 4294901760, 4294901760, 4294901760, 4294901760, 4294901760, 4294901760, 4294901760, 4294901760, 4294901760, 4294901760, 4294901760, 4294901760, 4294901760, 0, 0, 0, 0, 0, 0, 0, 0, 0, 268369920, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 4294901760, 4294901760, 4294901760, 4294901760, 4294901760, 4294901760, 4294901760, 4294901760, 4294901760, 4294901760, 4294901760, 4294901760, 4294901760, 4294901760, 4294901760, 4294901760, 1509949695, 3120562431, 4009754879, 4194304255, 3690987775, 2130706687, 83886335, 0, 50331903, 1694499071, 3170894079, 3992977663, 4211081471, 3657433343, 1879048447, 16777471, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 3087007999, 2281701631, 1191182591, 1040187647, 2030043391, 4127195391, 2566914303, 0, 16777471, 3254780159, 2181038335, 1191182591, 973078783, 2030043391,4177527039, 2130706687, 4294901760, 4294901760, 4294901760, 4294901760, 4294901760, 4294901760, 4294901760, 4294901760, 4294901760, 4294901760, 4294901760, 4294901760, 4294901760, 4294901760, 4294901760, 4294901760, 0, 0, 0, 0, 0, 2214592767, 4093640959, 0, 0, 0, 0, 0, 0, 0, 2298478847, 3909091583, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 2214592767, 3607101695, 0, 0, 0, 0, 0, 0, 0, 1946157311, 4093640959, 4294901760, 4294901760, 4294901760, 4294901760, 4294901760, 4294901760, 4294901760, 4294901760, 4294901760, 4294901760, 4294901760, 4294901760, 4294901760, 4294901760, 4294901760, 4294901760, 0, 0, 536871167, 1191182591, 2281701631,3019899135, 637534463, 0, 0, 0, 100597760, 251592704, 33488896, 0, 3321889023, 2919235839, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 2550137087, 4278190335, 4278190335, 3405775103, 570425599, 0, 0, 0, 0, 0, 0, 2046820607, 4043309311, 620757247, 4294901760, 4294901760, 4294901760, 4294901760, 4294901760, 4294901760, 4294901760, 4294901760, 4294901760, 4294901760, 4294901760, 4294901760, 4294901760, 4294901760, 4294901760, 4294901760, 33488896, 0, 0, 218104063, 1291845887, 3841982719, 3388997887, 0, 0, 0, 0, 0, 1996488959, 4093640959, 1073742079, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1761607935, 4278190335, 150995199, 0, 0, 67109119, 2550137087, 3909091583, 889192703, 0, 0, 4294901760, 4294901760, 4294901760, 4294901760, 4294901760, 4294901760, 4294901760, 4294901760, 4294901760, 4294901760, 4294901760, 4294901760, 4294901760, 4294901760, 4294901760, 4294901760, 0, 0, 0, 0, 0, 2181038335, 3925868799, 0, 0, 218104063, 3070230783, 3623878911, 570425599, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 805306623, 3288334591, 1795162367, 1040187647, 1023410431, 2231369983, 4211081471, 1694499071, 0, 369099007, 3456106751, 3825205503, 1174405375, 872415487, 872415487, 872415487, 872415487, 4294901760, 4294901760, 4294901760, 4294901760, 4294901760, 4294901760, 4294901760, 4294901760, 4294901760, 4294901760, 4294901760, 4294901760, 4294901760, 4294901760, 4294901760, 4293984270, 2046951677, 3422552319, 4110418175, 4177527039, 3405775103, 1409286399, 0, 0, 1409286399, 4278190335, 4278190335, 4278190335, 4278190335, 4278190335, 4278190335, 4278190335, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 4294901760, 4294901760, 4294901760, 4294901760, 4294901760, 4294901760, 4294901760, 4294901760,4294901760, 4294901760, 4294901760, 4294901760, 4294901760, 4294901760, 4294901760, 4294901760, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 4278255360, 4144037632, 4009819904, 3875602176, 3741384448, 3607166720, 3472948992, 3338731264, 3204513536, 3053518592, 2936078080, 2801860352, 2650865408, 2516647680, 2382429952, 2264989440, 2113994496, 1996553984, 1862336256, 1728118528, 1577123584, 1459683072, 1325465344, 1191247616, 1040252672, 922812160, 771817216, 637599488, 503381760, 385941248, 234946304, 100728576, 4278255360, 4144037632, 4009819904, 3875602176, 3724607232, 3607166720, 3472948992, 3338731264, 3204513536, 3070295808, 2936078080, 2801860352, 2667642624, 2516647680, 2399207168, 2264989440, 2130771712, 1996553984, 1845559040, 1728118528, 1593900800, 1459683072, 1308688128, 1191247616, 1057029888, 922812160, 788594432, 637599488, 503381760, 369164032, 234946304, 117505792, 4278255360, 4144037632, 4009819904, 3875602176, 3741384448, 3607166720, 3472948992, 3338731264, 3204513536, 3053518592, 2919300864, 2801860352, 2650865408, 2533424896, 2399207168, 2264989440, 2113994496, 1996553984, 1862336256, 1728118528,1593900800, 1459683072, 1325465344, 1191247616, 1040252672, 906034944, 771817216, 654376704, 503381760, 369164032, 234946304, 117505792, 4278255360, 4144037632, 4009819904, 3858824960, 3741384448, 3607166720, 3472948992, 3338731264, 3204513536, 3070295808, 2936078080, 2801860352, 2667642624, 2533424896, 2382429952, 2264989440, 2130771712, 1979776768, 1862336256, 1728118528, 1577123584, 1442905856, 1325465344, 1191247616, 1040252672, 922812160, 771817216, 637599488, 503381760, 369164032, 234946304, 100728576, 4278255360, 4144037632, 4009819904, 3875602176, 3741384448, 3607166720, 3472948992, 3338731264, 3204513536, 3070295808, 2919300864, 2801860352, 2667642624, 2533424896, 2399207168, 2264989440, 2113994496, 1996553984, 1862336256, 1728118528, 1593900800, 1442905856, 1342241795, 1174470400, 1057029888, 906034944, 788594432, 654376704, 503381760, 385941248, 251723520, 100728576, 4278190335, 4160749823, 4026532095, 3892314367, 3741319423, 3623878911, 3472883967, 3338666239, 3221225727, 3070230783, 2952790271, 2818572543, 2667577599, 2533359871, 2399142143, 2264924415, 2147483903, 1996488959, 1862271231, 1728053503, 1593835775, 1459618047, 1325400319, 1191182591, 1056964863, 922747135, 788529407, 654311679, 520093951,385876223, 251658495, 117440767, 4278190335, 4160749823, 4026532095, 3892314367, 3741319423, 3623878911, 3489661183, 3355443455, 3221225727, 3087007999, 2936013055, 2801795327, 2667577599, 2533359871, 2399142143, 2281701631, 2130706687, 1996488959, 1862271231, 1728053503, 1593835775,1459618047, 1325400319, 1191182591, 1056964863, 922747135, 788529407, 654311679, 520093951, 385876223, 234881279, 100663551, 4278190335, 4160749823, 4026532095, 3892314367, 3758096639, 3623878911, 3489661183, 3355443455, 3221225727, 3087007999, 2936013055, 2801795327, 2667577599, 2550137087, 2415919359, 2264924415, 2130706687, 1996488959, 1862271231, 1728053503, 1593835775, 1459618047, 1325400319, 1191182591, 1056964863, 922747135, 788529407, 654311679, 503316735, 369099007, 251658495, 100663551, 4278190335, 4160749823, 4026532095, 3892314367, 3758096639, 3623878911, 3489661183, 3355443455, 3204448511, 3087007999, 2936013055, 2818572543, 2667577599, 2533359871, 2399142143, 2264924415, 2130706687, 1996488959, 1879048447, 1728053503, 1593835775, 1459618047, 1325400319, 1191182591, 1056964863, 922747135, 788529407, 654311679, 520093951, 385876223, 251658495, 117440767, 4278190335, 4160749823, 4026532095, 3892314367, 3758096639, 3623878911, 3489661183, 3355443455, 3221225727, 3087007999, 2952790271, 2818572543, 2667577599, 2533359871, 2399142143, 2264924415, 2147483903, 2013266175, 1862271231, 1744830719, 1610612991, 1476395263, 1342177535, 1191182591, 1056964863, 922747135, 788529407, 654311679, 520093951, 385876223, 251658495, 100663551, 4294901760, 4160684032, 4026466304, 3909025792, 3774808064, 3623813120, 3489595392, 3355377664, 3237937152, 3103719424, 2952724480, 2818506752, 2684289024, 2550071296, 2415853568, 2281635840, 2147418112, 2013200384, 1878982656, 1744764928, 1593769984, 1476329472,1325334528, 1207894016, 1056899072, 939458560, 788463616, 654245888, 520028160, 385810432, 251592704, 117374976, 4294901760, 4177461248, 4043243520, 3909025792, 3774808064, 3640590336, 3506372608, 3355377664, 3221159936, 3086942208, 2952724480, 2818506752, 2701066240, 2550071296, 2415853568, 2281635840, 2147418112, 2013200384, 1878982656, 1727987712, 1610547200, 1476329472, 1325334528, 1191116800, 1073676288, 922681344, 788463616, 654245888, 520028160, 385810432, 251592704, 100597760, 4294901760, 4177461248, 4043243520, 3909025792, 3774808064, 3640590336, 3489595392, 3372154880, 3237937152, 3103719424, 2952724480, 2818506752, 2700935170, 2550071296, 2415853568, 2281635840, 2147418112, 2013200384, 1878982656, 1744764928, 1610547200, 1459552256, 1342111744, 1191116800, 1056899072, 922681344, 788463616, 671023104, 520028160, 385810432, 251592704, 100597760, 4294901760, 4177461248, 4043243520, 3909025792, 3774808064, 3640590336, 3489595392, 3372154880, 3237937152, 3086942208, 2969501696, 2818506752, 2684289024, 2550071296, 2432630784, 2281635840, 2147418112, 2013200384, 1862205440, 1744764928, 1610547200, 1476329472, 1342111744, 1191116800, 1056899072, 922681344, 788463616, 654245888, 520028160, 385810432, 251592704, 117374976, 4294901760, 4177461248, 4043243520, 3909025792, 3774808064, 3623813120, 3506372608, 3372154880, 3237937152, 3103719424, 2952724480, 2835283968, 2684289024, 2550071296, 2432630784, 2281635840, 2147418112, 2046492676, 1862205440, 1744764928, 1610547200, 1476329472, 1342111744,1207894016, 1056899072, 939458560, 788463616, 654245888, 536281096, 385810432, 251592704, 134152192,
-      };
-
-      display_lock displaylock(x11_display());
-
-      int iScreen = DefaultScreen(d);
-
-      Atom net_wm_icon = x11_display()->intern_atom("_NET_WM_ICON", False);
-
-      Atom cardinal = x11_display()->intern_atom("CARDINAL", False);
-
-      int length = 2 + 16 * 16 + 2 + 32 * 32;
-
-      int status = XChangeProperty(Display(), w->Window(), net_wm_icon, cardinal, 32, PropModeReplace, (const unsigned char*) buffer, length);
-
-      if(status != 0)
-      {
-
-         return false;
-
-      }
-
-#elif 1
 
       auto d1 = create_image({32, 32});
 
@@ -1008,22 +662,15 @@ namespace windowing_x11
 
       windowing_output_debug_string("\nwindow::set_icon");
 
-      synchronization_lock synchronizationlock(x11_mutex());
+      synchronization_lock synchronizationlock(user_mutex());
 
-      display_lock displaylock(x11_display());
+      display_lock displaylock(xcb_display());
 
-      Atom net_wm_icon = x11_display()->intern_atom("_NET_WM_ICON", False);
+      xcb_atom_t net_wm_icon = xcb_display()->intern_atom("_NET_WM_ICON", false);
 
-      Atom cardinal = x11_display()->intern_atom("CARDINAL", False);
+      int status = _change_property(net_wm_icon, XCB_ATOM_CARDINAL, XCB_PROP_MODE_REPLACE, 32, length, pcr);
 
-      int status = x_change_property(net_wm_icon, cardinal, 32, PropModeReplace, (const unsigned char *) pcr, length);
-
-      if (status == BadAlloc)
-      {
-
-
-      }
-      else if (status != 0)
+      if (status != 0)
       {
 
          return false;
@@ -1032,145 +679,85 @@ namespace windowing_x11
 
       windowing_output_debug_string("\nwindow::set_icon END");
 
-      fflush(stdout);
-
-#else
-
-      image d1(w->m_pimpl->m_puserinteraction->create_new, this);
-
-      if(!d1->create(24, 24))
-      {
-
-         return false;
-
-      }
-
-      d1->get_graphics()->set_interpolation_mode(e_interpolation_mode_high_quality_bicubic);
-
-      d1->get_graphics()->StretchBlt(0, 0, d1.width(), d1.height(), point->get_graphics(), 0, 0, point.width(), point.height());
-
-      image d2(w->m_pimpl->m_puserinteraction->create_new, this);
-
-      if(!d2->create(54, 54))
-      {
-
-         return false;
-
-      }
-
-      d2->get_graphics()->set_interpolation_mode(e_interpolation_mode_high_quality_bicubic);
-
-      d2->get_graphics()->StretchBlt(0, 0, d2.width(), d2.height(), point->get_graphics(), 0, 0, point.width(), point.height());
-
-      memory m(w->m_pimpl->m_puserinteraction->get_context_application());
-
-      int length = 2 + d1->area() + 2 + d2->area();
-
-      m.set_size(length * 4);
-
-      unsigned int * pcr = (unsigned int *) m.get_data();
-
-      pcr[0] = d1.width();
-
-      pcr[1] = d1.height();
-
-      int c = d1->area();
-
-      for(int i = 0; i < c; i++)
-      {
-
-         pcr[i+2] = d1->m_pcolorref[i];
-
-      }
-
-      memsize o;
-
-      o = 2 + d1->area();
-
-      pcr[o] = d2.width();
-
-      pcr[o+1] = d2.height();
-
-      c = d2->area();
-
-      for(int i = 0; i < c; i++)
-      {
-
-         pcr[i+o+2] = d2->m_pcolorref[i];
-
-      }
-
-      Display *display = w->display();
-
-      Atom net_wm_icon = XInternAtom(display, "_NET_WM_ICON", False);
-
-      Atom cardinal = XInternAtom(display, "CARDINAL", False);
-
-      int status = XChangeProperty(display, w->Window(), net_wm_icon, cardinal, 32, PropModeReplace, (const unsigned char*) pcr, length);
-
-      if(status != 0)
-      {
-
-         //file_put_contents("/home/camilo/window.txt", __str((int)w->Window()));
-         return false;
-
-      }
-#endif
       return true;
 
    }
 
 
-   i32 window::store_name(const char *psz)
+   ::e_status window::_store_name(const char *psz)
    {
 
       windowing_output_debug_string("\nwindow::store_name");
 
-      synchronization_lock synchronizationlock(x11_mutex());
+      synchronization_lock synchronizationlock(user_mutex());
 
-      display_lock displaylock(x11_display());
+      display_lock displaylock(xcb_display());
 
-      int i = XStoreName(Display(), Window(), psz);
+      auto estatus = _replace_string_property(XCB_ATOM_WM_NAME, psz);
 
       windowing_output_debug_string("\nwindow::store_name END");
 
-      return i;
+      if(!estatus)
+      {
+
+         return estatus;
+
+      }
+
+      return estatus;
 
    }
 
 
-   i32 window::select_input(i32 iInput)
+   ::e_status window::_select_input(i32 iInput)
    {
 
       windowing_output_debug_string("\nwindow::select_input");
 
-      synchronization_lock synchronizationlock(x11_mutex());
+      synchronization_lock synchronizationlock(user_mutex());
 
-      display_lock displaylock(x11_display());
+      display_lock displaylock(xcb_display());
 
-      int i = XSelectInput(Display(), Window(), iInput);
+      uint32_t value[1];
+
+      value[0]=iInput;
+
+      auto cookie = xcb_change_window_attributes(
+         xcb_connection(),
+         xcb_window(),
+         XCB_CW_EVENT_MASK,
+         value);
+
+      auto estatus = _request_check(cookie);
 
       windowing_output_debug_string("\nwindow::select_input END");
 
-      return i;
+      if(!estatus)
+      {
+
+         return estatus;
+
+      }
+
+      return estatus;
 
    }
 
 
-   i32 window::select_all_input()
+   ::e_status window::_select_all_input()
    {
 
       windowing_output_debug_string("\nwindow::select_all_input");
 
-      synchronization_lock synchronizationlock(x11_mutex());
+      synchronization_lock synchronizationlock(user_mutex());
 
-      display_lock displaylock(x11_display());
+      display_lock displaylock(xcb_display());
 
-      int i = select_input(ExposureMask | ButtonPressMask);
+      auto estatus = _select_input(XCB_EVENT_MASK_EXPOSURE | XCB_EVENT_MASK_BUTTON_PRESS);
 
       windowing_output_debug_string("\nwindow::select_all_input");
 
-      return i;
+      return estatus;
 
    }
 
@@ -1191,28 +778,16 @@ namespace windowing_x11
    void window::set_user_interaction(::user::interaction_impl *pimpl)
    {
 
-//      single_lock sl(ms_pmutex, true);
-//
-//      if (::is_null(this))
-//      {
-//
-//         __throw(::exception::exception("error, m_pdata cannot be nullptr to ::oswindow::set_user_interaction"));
-//
-//      }
-
       m_pimpl = pimpl;
 
       m_hthread = pimpl->get_context_application()->get_os_handle();
 
       m_pmessagequeue = pimpl->m_puserinteraction->m_pthreadUserInteraction->get_message_queue();
 
-      //oswindow_assign(this, pimpl);
-
    }
 
 
-   bool window::is_child(::oswindow
-                         oswindow)
+   bool window::is_child(::oswindow oswindow)
    {
 
       if (oswindow == nullptr || oswindow->m_pimpl == nullptr || oswindow->m_pimpl->m_puserinteraction == nullptr)
@@ -1229,9 +804,7 @@ namespace windowing_x11
 
       }
 
-      return m_pimpl->m_puserinteraction->
-         is_child(oswindow
-                     ->m_pimpl->m_puserinteraction);
+      return m_pimpl->m_puserinteraction->is_child(oswindow->m_pimpl->m_puserinteraction);
 
    }
 
@@ -1244,41 +817,12 @@ namespace windowing_x11
    }
 
 
-   //virtual ::Window get_parent_handle();
    oswindow window::get_parent_oswindow() const
    {
 
       return nullptr;
 
    }
-
-
-//   ::Window window::get_parent_handle()
-//   {
-//
-//      //single_lock slOsWindow(s_pmutex, true);
-//
-//      //if (::is_null(this))
-//        // return 0;
-//
-//      return m_parent;
-//
-//   }
-
-
-//   oswindow window::get_parent()
-//   {
-//
-//      if (::is_null(this))
-//      {
-//
-//         return nullptr;
-//
-//      }
-//
-//      return nullptr;
-//
-//   }
 
 
    ::e_status window::set_parent(::windowing::window * pwindowNewParent)
@@ -1298,195 +842,173 @@ namespace windowing_x11
 
       }
 
-      auto pwindowx11NewParent = dynamic_cast < ::windowing_x11::window * > (pwindowNewParent);
+      auto pwindowxcbNewParent = dynamic_cast < ::windowing_xcb::window * > (pwindowNewParent);
 
-      if (::is_null(pwindowx11NewParent))
+      if (::is_null(pwindowxcbNewParent))
       {
 
          return error_failed;
 
       }
 
-      synchronization_lock synchronizationlock(x11_mutex());
+      synchronization_lock synchronizationlock(user_mutex());
 
-      display_lock displaylock(x11_display());
+      display_lock displaylock(xcb_display());
 
-      XReparentWindow(Display(), Window(), pwindowx11NewParent->Window(), 0, 0);
+      xcb_reparent_window(xcb_connection(), xcb_window(), pwindowxcbNewParent->xcb_window(), 0, 0);
 
       return ::success;
 
    }
 
 
-/// Post an event from the client to the X server
-   void window::send_client_event(Atom atom, unsigned int numArgs, ...)
+    /// Post an event from the client to the X server
+   ::e_status window::_send_client_event(xcb_atom_t atom, unsigned int numArgs, ...)
    {
 
-      XEvent xevent;
+      va_list argList;
 
-      unsigned int i;
+      va_start(argList, numArgs);
 
-      va_list argp;
+      auto estatus = xcb_display()->_send_client_event_v(xcb_window(), atom, numArgs, argList);
 
-      va_start(argp, numArgs);
+      va_end(argList);
 
-      __zero(xevent);
+      return estatus;
 
-      xevent.xclient.type = ClientMessage;
-      xevent.xclient.serial = 0;
-      xevent.xclient.send_event = False;
-      xevent.xclient.display = Display();
-      xevent.xclient.window = Window();
-      xevent.xclient.message_type = atom;
-      xevent.xclient.format = 32;
+   }
 
-      for (i = 0; i < numArgs; i++)
+
+   ::e_status window::_mapped_net_state_raw(bool add, xcb_atom_t state1, xcb_atom_t state2)
+   {
+
+      synchronization_lock synchronizationlock(user_mutex());
+
+      auto estatus = _send_client_event(
+         xcb_display()->intern_atom("_NET_WM_STATE", false),
+         3,
+         add ?
+         xcb_display()->intern_atom("_NET_WM_STATE_ADD", false)
+         : xcb_display()->intern_atom("_NET_WM_STATE_REMOVE", false),
+         state1,
+         state2,
+         1);
+
+      if(!estatus)
       {
 
-         xevent.xclient.data.l[i] = va_arg(argp, int);
+         return estatus;
 
       }
 
-      XSendEvent(Display(), RootWindow(Display(), m_iScreen), False, SubstructureRedirectMask | SubstructureNotifyMask,
-                 &xevent);
-
-      va_end(argp);
+      return estatus;
 
    }
 
 
-   Atom get_window_long_atom(i32 nIndex);
-
-// Change _NET_WM_STATE if Window is Mapped
-   void window::mapped_net_state_raw(bool add, int iScreen, Atom state1, Atom state2)
+   ::e_status window::_unmapped_net_state_raw(xcb_atom_t atom1, ...)
    {
 
-      synchronization_lock synchronizationlock(x11_mutex());
+      synchronization_lock synchronizationlock(user_mutex());
 
-      XClientMessageEvent xclient;
+      array<xcb_atom_t> atoms;
 
-#define _NET_WM_STATE_REMOVE        0    /* remove/unset property */
-#define _NET_WM_STATE_ADD           1    /* add/set property */
-#define _NET_WM_STATE_TOGGLE        2    /* toggle property  */
+      {
 
-      __zero(xclient);
-      xclient.type = ClientMessage;
-      xclient.window = Window();
-      xclient.message_type =x11_display()->intern_atom("_NET_WM_STATE", False);
-      xclient.format = 32;
-      xclient.data.l[0] = add ? _NET_WM_STATE_ADD : _NET_WM_STATE_REMOVE;
-      xclient.data.l[1] = state1;
-      xclient.data.l[2] = state2;
-      xclient.data.l[3] = 1; /* source indication */
-      xclient.data.l[4] = 0;
+         va_list argp;
 
-      XSendEvent (Display(), RootWindow(Display(), iScreen), False, SubstructureRedirectMask | SubstructureNotifyMask, (XEvent *)&xclient);
+         va_start(argp, atom1);
+
+         atoms.add(atom1);
+
+         while (true)
+         {
+
+            xcb_atom_t atom = va_arg(argp, int);
+
+            if (atom == 0)
+            {
+
+               break;
+
+            }
+
+            atoms.add(atom);
+
+         }
+
+         va_end(argp);
+
+      }
+
+      auto estatus = _change_property(
+         xcb_display()->intern_atom("_NET_WM_STATE", false),
+         XCB_ATOM_ATOM,
+         XCB_PROP_MODE_REPLACE,
+         32,
+         atoms.get_count(),
+         atoms.get_data()
+         );
+
+      if(!estatus)
+      {
+
+         return estatus;
+
+      }
+
+      return estatus;
 
    }
 
 
-   void window::unmapped_net_state_raw(Atom atom1, ...)
-{
-
-   synchronization_lock synchronizationlock(x11_mutex());
-
-   XEvent xevent;
-
-   unsigned int i;
-
-   va_list argp;
-
-   va_start(argp, atom1);
-
-   __zero(xevent);
-
-   array < Atom > atoms;
-
-   atoms.add(atom1);
-
-   while(true)
-{
-
-   Atom atom = va_arg(argp, int);
-
-   if(atom == 0)
-{
-
-   break;
-
-}
-
-atoms.add(atom);
-
-}
-
-if(atoms.has_elements())
-{
-
-XChangeProperty(Display(), Window(), x11_display()->intern_atom("_NET_WM_STATE", False),
-XA_ATOM, 32, PropModeReplace,
-(const unsigned char *) atoms.get_data(), atoms.get_size());
-}
-else
-{
-
-XDeleteProperty(Display(), Window(), x11_display()->intern_atom("_NET_WM_STATE", False));
-
-}
-
-va_end(argp);
-
-}
-
-
-::e_status window::show_window(const ::e_display &edisplay, const ::e_activation &eactivationi)
+   ::e_status window::show_window(const ::e_display &edisplay, const ::e_activation &eactivationi)
    {
 
       windowing_output_debug_string("\n::window::show_window 1");
 
-      synchronization_lock synchronizationlock(x11_mutex());
+      synchronization_lock synchronizationlock(user_mutex());
 
-      display_lock displaylock(x11_display());
+      display_lock displaylock(xcb_display());
 
-      XWindowAttributes attr;
+      auto estatus = _get_window_attributes();
 
-      if (!XGetWindowAttributes(Display(), Window(), &attr))
+      if(!estatus)
       {
 
-         windowing_output_debug_string("\n::window::show_window 1.2");
-
-         return false;
+         return estatus;
 
       }
 
       if (edisplay == e_display_zoomed)
       {
 
-         if (attr.map_state == IsUnmapped)
+         if (m_attributes.map_state == XCB_MAP_STATE_UNMAPPED)
          {
 
-            XMapWindow(Display(), Window());
+            estatus = _map_window();
 
          }
 
-         mapped_net_state_raw(true, m_iScreen,
-                              x11_display()->intern_atom(e_net_wm_state_maximized_horz, false),
-                              x11_display()->intern_atom(e_net_wm_state_maximized_vert, false));
+         estatus = _mapped_net_state_raw(
+            true,
+            xcb_display()->atom(x_window::e_atom_net_wm_state_maximized_horz),
+            xcb_display()->atom(x_window::e_atom_net_wm_state_maximized_vert));
 
       }
       else if (edisplay == e_display_iconic)
       {
 
-         wm_iconify_window();
+         estatus = _set_iconify_window();
 
       }
       else if (::is_visible(edisplay))
       {
 
-         if (attr.map_state == IsUnmapped)
+         if (m_attributes.map_state == XCB_MAP_STATE_UNMAPPED)
          {
 
-            XMapWindow(Display(), Window());
+            estatus = _map_window();
 
          }
 
@@ -1494,10 +1016,10 @@ va_end(argp);
       else
       {
 
-         if (attr.map_state != IsUnmapped)
+         if (m_attributes.map_state != XCB_MAP_STATE_UNMAPPED)
          {
 
-            XWithdrawWindow(Display(), Window(), m_iScreen);
+            estatus = _withdraw_window();
 
          }
 
@@ -1505,12 +1027,19 @@ va_end(argp);
 
       windowing_output_debug_string("\n::window::show_window 2");
 
-      return true;
+      if(!estatus)
+      {
+
+         return estatus;
+
+      }
+
+      return estatus;
 
    }
 
 
-   void window::full_screen(const ::rectangle_i32 &rectangle)
+   ::e_status window::full_screen(const ::rectangle_i32 &rectangle)
    {
 
       ::rectangle_i32 rBest;
@@ -1519,60 +1048,56 @@ va_end(argp);
 
       windowing_output_debug_string("\n::window::full_screen 1");
 
-      synchronization_lock synchronizationlock(x11_mutex());
+      synchronization_lock synchronizationlock(user_mutex());
 
-      display_lock displaylock(x11_display());
+      display_lock displaylock(xcb_display());
 
-//      if (x11_display()->is_null())
-//      {
-//
-//         windowing_output_debug_string("\n::window::full_screen 1.1");
-//
-//         return;
-//
-//      }
+      auto estatus = _get_window_attributes();
 
-      XWindowAttributes attr;
-
-      if (!XGetWindowAttributes(Display(), Window(), &attr))
+      if(!estatus)
       {
 
-         windowing_output_debug_string("\n::window::full_screen 1.2");
+         return estatus;
 
-         fflush(stdout);
+      }
 
-         return;
+      estatus = _get_geometry();
+
+      if(!estatus)
+      {
+
+         return estatus;
 
       }
 
       ::rectangle_i32 rWindow;
 
-      rWindow.left = attr.x;
-      rWindow.top = attr.y;
-      rWindow.right = attr.x + attr.width;
-      rWindow.bottom = attr.y + attr.height;
+      rWindow.left = m_geometry.x;
+      rWindow.top = m_geometry.y;
+      rWindow.right = m_geometry.x + m_geometry.width;
+      rWindow.bottom = m_geometry.y + m_geometry.height;
 
       if (rBest != rWindow)
       {
 
          m_pimpl->m_puserinteraction->place(rBest);
 
-         XMoveResizeWindow(Display(), Window(), rBest.left, rBest.top, rBest.width(), rBest.height());
+         estatus = _move_resize(rBest.left, rBest.top, rBest.width(), rBest.height());
 
       }
 
-      if (attr.map_state == IsViewable)
+      if (m_attributes.map_state == XCB_MAP_STATE_VIEWABLE)
       {
 
-         mapped_net_state_raw(true, m_iScreen, x11_display()->intern_atom(e_net_wm_state_fullscreen, false), 0);
+         estatus = _mapped_net_state_raw(true, xcb_display()->atom(x_window::e_atom_net_wm_state_fullscreen), 0);
 
       }
       else
       {
 
-         unmapped_net_state_raw(x11_display()->intern_atom(e_net_wm_state_fullscreen, false), 0);
+         estatus = _unmapped_net_state_raw(xcb_display()->atom(x_window::e_atom_net_wm_state_fullscreen), 0);
 
-         XMapWindow(Display(), Window());
+         estatus = _map_window();
 
       }
 
@@ -1580,133 +1105,104 @@ va_end(argp);
 
       ::fflush(stdout);
 
+      if(!estatus)
+      {
+
+         return estatus;
+
+      }
+
+      return estatus;
+
    }
 
 
-   void window::exit_iconify()
+   ::e_status window::exit_iconify()
    {
 
-      synchronization_lock synchronizationlock(x11_mutex());
+      synchronization_lock synchronizationlock(user_mutex());
 
-      display_lock displaylock(x11_display());
+      display_lock displaylock(xcb_display());
 
-      XWindowAttributes attr;
+      auto estatus = _get_window_attributes();
 
-      if (!XGetWindowAttributes(Display(), Window(), &attr))
+      if(!estatus)
       {
 
-         windowing_output_debug_string("\n::window::exit_full_screen 1.2");
-
-         fflush(stdout);
-
-         return;
+         return estatus;
 
       }
 
-      if (attr.map_state == IsViewable)
+      if (m_attributes.map_state == XCB_MAP_STATE_VIEWABLE)
       {
 
-         mapped_net_state_raw(false, m_iScreen, x11_display()->intern_atom(e_net_wm_state_hidden, false), 0);
+         _mapped_net_state_raw(false, xcb_display()->atom(x_window::e_atom_net_wm_state_hidden), 0);
 
       }
+
+      return ::success;
 
    }
 
 
-   void window::exit_full_screen()
+   ::e_status window::exit_full_screen()
    {
 
-      synchronization_lock synchronizationlock(x11_mutex());
+      synchronization_lock synchronizationlock(user_mutex());
 
-      display_lock displaylock(x11_display());
+      display_lock displaylock(xcb_display());
 
-      XWindowAttributes attr;
+      auto estatus = _get_window_attributes();
 
-      if (!XGetWindowAttributes(Display(), Window(), &attr))
+      if(!estatus)
       {
 
-         windowing_output_debug_string("\n::window::exit_full_screen 1.2");
-
-         fflush(stdout);
-
-         return;
+         return estatus;
 
       }
 
-      if (attr.map_state == IsViewable)
+      if (m_attributes.map_state == XCB_MAP_STATE_VIEWABLE)
       {
 
-         mapped_net_state_raw(false, m_iScreen, x11_display()->intern_atom("_NET_WM_STATE_FULLSCREEN", false), 0);
+         _mapped_net_state_raw(false, xcb_display()->intern_atom("_NET_WM_STATE_FULLSCREEN", false), 0);
 
       }
+
+      return ::success;
 
    }
 
 
-   void window::exit_zoomed()
+   ::e_status window::exit_zoomed()
    {
 
-      synchronization_lock sl(x11_mutex());
+      synchronization_lock sl(user_mutex());
 
-      display_lock displaylock(x11_display());
+      display_lock displaylock(xcb_display());
 
-      XWindowAttributes attr;
+      auto estatus = _get_window_attributes();
 
-      if (!XGetWindowAttributes(Display(), Window(), &attr))
+      if(!estatus)
       {
 
-         windowing_output_debug_string("\n::window::exit_zoomed 1.2");
-
-         fflush(stdout);
-
-         return;
+         return estatus;
 
       }
 
-      if (attr.map_state == IsViewable)
+      if (m_attributes.map_state == XCB_MAP_STATE_VIEWABLE)
       {
 
-         mapped_net_state_raw(false, m_iScreen,
-                              x11_display()->intern_atom("_NET_WM_STATE_MAXIMIZED_HORZ", false),
-                              x11_display()->intern_atom("_NET_WM_STATE_MAXIMIZED_VERT", false));
+         estatus = _mapped_net_state_raw(
+            false,
+            xcb_display()->atom(x_window::e_atom_net_wm_state_maximized_horz),
+            xcb_display()->atom(x_window::e_atom_net_wm_state_maximized_vert)
+            );
 
       }
+
+      return ::success;
 
    }
-
-
-//   iptr window::get_window_long_ptr(i32 nIndex)
-//   {
-//
-//      return m_pimpl->get_window_long_ptr(nIndex);
-//
-//   }
-
-
-//   iptr window::set_window_long_ptr(i32 nIndex, iptr i)
-//   {
-//
-//      return m_pimpl->set_window_long_ptr(nIndex, i);
-//
-//      //iptr iOld = m_plongmap->operator[](nIndex);
-//
-//      //   if(nIndex == GWL_EXSTYLE)
-//      //   {
-//      //
-//      //      if(is_different((l & WS_EX_TOOLWINDOW), (m_plongmap->operator[](nIndex) & WS_EX_TOOLWINDOW)))
-//      //      {
-//      //
-//      //         wm_toolwindow(this, (l & WS_EX_TOOLWINDOW) != 0);
-//      //
-//      //      }
-//      //
-//      //   }
-//
-//      //m_plongmap->operator[](nIndex) = i;
-//
-//      //return iOld;
-//
-//   }
 
 
    bool window::_001ClientToScreen(POINT_I32 *ppoint)
@@ -1725,14 +1221,16 @@ va_end(argp);
    }
 
 
-   long window::get_state()
+   long window::_get_wm_state()
    {
+
+      long state = -1;
 
       windowing_output_debug_string("\n::window::get_state 1");
 
-      synchronization_lock synchronizationlock(x11_mutex());
+      synchronization_lock synchronizationlock(user_mutex());
 
-      display_lock displaylock(x11_display());
+      display_lock displaylock(xcb_display());
 
       static const long WM_STATE_ELEMENTS = 2L;
 
@@ -1740,73 +1238,41 @@ va_end(argp);
 
       unsigned long leftover = 0;
 
-      Atom atomWmState = 0;
+      xcb_atom_t atomWmState = xcb_display()->atom(x_window::e_atom_net_wm_state);
 
-      Atom actual_type = 0;
+      xcb_atom_t actual_type = 0;
 
       i32 actual_format = 0;
 
       i32 status = 0;
 
-      unsigned char *point = nullptr;
+      unsigned char * pchar = nullptr;
 
-      if (x11_display()->m_atomWmState == None)
+      auto cookie = xcb_get_property(xcb_connection(), 0, xcb_window(), atomWmState, WM_STATE_ELEMENTS, 0, 1);
+
+      auto preply = __malloc(xcb_get_property_reply(xcb_connection(), cookie, nullptr));
+
+      if (!preply)
       {
 
-         x11_display()->m_atomWmState = x11_display()->intern_atom("WM_STATE", false);
+         return -1;
 
       }
 
-      atomWmState = x11_display()->m_atomWmState;
+      int len = xcb_get_property_value_length(preply);
 
-      status = XGetWindowProperty(Display(), Window(), atomWmState, 0L, WM_STATE_ELEMENTS, False, AnyPropertyType, &actual_type,
-                                  &actual_format, &nitems, &leftover, &point);
-
-      if (status == 0)
+      if (len > 0)
       {
 
-         long lStatus = -1;
+         auto pchar = (char *) xcb_get_property_value(preply);
 
-         if (point != nullptr)
-         {
-
-            lStatus = (long) *point;
-
-         }
-
-         XFree(point);
-
-         windowing_output_debug_string("\n::window::get_state 1.1");
-
-         return lStatus;
+         state = *pchar;
 
       }
 
       windowing_output_debug_string("\n::window::get_state 2");
 
-      return -1;
-
-   }
-
-
-   bool window::is_iconic()
-   {
-
-#ifdef XDISPLAY_LOCK_LOG
-
-      b_prevent_xdisplay_lock_log = true;
-
-#endif
-
-      bool b = get_state() == IconicState;
-
-#ifdef XDISPLAY_LOCK_LOG
-
-      b_prevent_xdisplay_lock_log = false;
-
-#endif
-
-      return b;
+      return state;
 
    }
 
@@ -1816,11 +1282,11 @@ va_end(argp);
 
       windowing_output_debug_string("\n::window::is_window_visible 1");
 
-      synchronization_lock synchronizationlock(x11_mutex());
+      synchronization_lock synchronizationlock(user_mutex());
 
-      display_lock displaylock(x11_display());
+      display_lock displaylock(xcb_display());
 
-      if (x11_display()->is_null())
+      if (xcb_display()->is_null())
       {
 
          windowing_output_debug_string("\n::window::is_window_visible 1.1");
@@ -1829,20 +1295,18 @@ va_end(argp);
 
       }
 
-      XWindowAttributes attr;
-
-      if (!XGetWindowAttributes(Display(), Window(), &attr))
+      auto estatus = _get_window_attributes();
+      
+      if(!estatus)
       {
-
-         windowing_output_debug_string("\n::window::is_window_visible 1.2");
-
+         
          return false;
-
+         
       }
 
       windowing_output_debug_string("\n::window::is_window_visible 2");
 
-      return attr.map_state == IsViewable;
+      return m_attributes.map_state == XCB_MAP_STATE_VIEWABLE;
 
    }
 
@@ -1876,133 +1340,32 @@ va_end(argp);
    }
 
 
-#undef SET_WINDOW_POS_LOG
-
-
-//   bool window::set_window_pos(class ::zorder zorder, i32 x, i32 y, i32 cx, i32 cy, ::u32 nFlags)
-//   {
-//
-//      bool bOk = false;
-//
-//
-//                  bOk = _set_window_pos(zorder, x, y, cx, cy, nFlags);
-//
-//               });
-//
-//      return bOk;
-//
-//   }
-
 
    ::e_status window::set_window_icon(const ::file::path &path)
    {
 
 
-      Atom net_wm_icon = x11_display()->intern_atom("_BAMF_DESKTOP_FILE", False);
+      xcb_atom_t net_wm_icon = xcb_display()->intern_atom("_BAMF_DESKTOP_FILE", false);
 
-      Atom cardinal = x11_display()->intern_atom("STRING", False);
-
-      int ixa = XA_STRING;
-
-      int status = XChangeProperty(
-         Display(),
-         Window(),
-         net_wm_icon,
-         ixa,
-         8,
-         PropModeReplace,
-         (const unsigned char *) (const char *) path,
-         path.get_length());
+      auto estatus = _replace_string_property(net_wm_icon, path);
 
       output_debug_string("\nlinux::interaction_impl::bamf_set_icon END");
 
       fflush(stdout);
 
-      if (status != 0)
+      if(!estatus)
       {
 
-         return false;
+         return estatus;
 
       }
 
-      return true;
+      return estatus;
 
    }
 
 
-//   void oswindow_data::wm_full_screen(const ::rectangle_i32 & rectangle)
-//   {
-//
-//      ::rectangle_i32 rBest;
-//
-//      int iMonitor = best_xinerama_monitor(m_pimpl->m_puserinteraction, rectangle, rBest);
-//
-//      windowing_output_debug_string("\n::oswindow_data::full_screen 1");
-//
-//      xdisplay d(display());
-//
-//      if(d.is_null())
-//      {
-//
-//         windowing_output_debug_string("\n::oswindow_data::full_screen 1.1");
-//
-//         return;
-//
-//      }
-//
-//      XWindowAttributes attr;
-//
-//      if(!XGetWindowAttributes(display(), window(), &attr))
-//      {
-//
-//         windowing_output_debug_string("\n::oswindow_data::full_screen 1.2");
-//
-//         fflush(stdout);
-//
-//         return;
-//
-//      }
-//
-//      ::rectangle_i32 rWindow;
-//
-//      rWindow.left      = attr.x;
-//      rWindow.top       = attr.y;
-//      rWindow.right     = attr.x    + attr.width;
-//      rWindow.bottom    = attr.y    + attr.height;
-//
-//      if(rBest != rWindow)
-//      {
-//
-//         m_pimpl->m_puserinteraction->place(rBest);
-//
-//         XMoveResizeWindow(d, m_window, rBest.left, rBest.top, rBest.width(), rBest.height());
-//
-//      }
-//
-//      if(attr.map_state == IsViewable)
-//      {
-//
-//         mapped_net_state_raw(true, d, window(), m_iScreen, intern_atom(net_wm_state_fullscreen, false), 0);
-//
-//      }
-//      else
-//      {
-//
-//         unmapped_net_state_raw(d, window(), intern_atom(net_wm_state_fullscreen, false), 0);
-//
-//         XMapWindow(display(), window());
-//
-//      }
-//
-//      windowing_output_debug_string("\n::oswindow_data::full_screen 2");
-//
-//      ::fflush(stdout);
-//
-//   }
-//
-
-
-   ::e_status window::x11_post_message(MESSAGE & msg)
+   ::e_status window::xcb_post_message(MESSAGE & msg)
    {
 
       try
@@ -2011,7 +1374,7 @@ va_end(argp);
          if(msg.oswindow == nullptr)
          {
 
-            System.post_message(msg.m_id, msg.wParam, msg.lParam);
+            System->post_message(msg.m_id, msg.wParam, msg.lParam);
 
          }
          else
@@ -2165,18 +1528,16 @@ va_end(argp);
    bool window::set_window_position(const class ::zorder & zorder, i32 x, i32 y, i32 cx, i32 cy, ::u32 nFlags)
    {
 
-      synchronization_lock sl(x11_mutex());
+      synchronization_lock sl(user_mutex());
 
       windowing_output_debug_string("\n::window::set_window_pos 1");
 
-      display_lock displaylock(x11_display());
+      display_lock displaylock(xcb_display());
 
-      XWindowAttributes attrs = {};
+      auto estatus = _get_window_attributes();
 
-      if (!XGetWindowAttributes(Display(), Window(), &attrs))
+      if (!estatus)
       {
-
-         windowing_output_debug_string("\n::window::set_window_pos 1.1 xgetwindowattr failed");
 
          return false;
 
@@ -2185,16 +1546,18 @@ va_end(argp);
       if (nFlags & SWP_SHOWWINDOW)
       {
 
-         if (attrs.map_state == IsUnmapped)
+         if (m_attributes.map_state != XCB_MAP_STATE_VIEWABLE)
          {
 
-            windowing_output_debug_string("\n::window::set_window_pos Mapping Window 1.2");
+            windowing_output_debug_string("\n::window::set_window_pos Mapping xcb_window_t 1.2");
 
-            XMapWindow(Display(), Window());
+            estatus = _map_window();
 
          }
 
-         if (!XGetWindowAttributes(Display(), Window(), &attrs))
+         estatus = _get_window_attributes();
+
+         if (!estatus)
          {
 
             windowing_output_debug_string("\n::window::set_window_pos 1.3 xgetwindowattr failed");
@@ -2215,13 +1578,7 @@ va_end(argp);
          if (bSize)
          {
 
-            windowing_output_debug_string("\n::window::set_window_pos Move Resize Window 1.4");
-
-#ifdef SET_WINDOW_POS_LOG
-
-            INFO("XMoveResizeWindow (%Display(), %d) - (%Display(), %d)", x, y, cx, cy);
-
-#endif
+            windowing_output_debug_string("\n::window::set_window_pos Move Resize xcb_window_t 1.4");
 
             if (cx <= 0 || cy <= 0)
             {
@@ -2230,23 +1587,16 @@ va_end(argp);
 
                cy = 1;
 
-#ifdef SET_WINDOW_POS_LOG
-
-               INFO("Changing parameters... (%Display(), %d) - (%Display(), %d)", x, y, cx, cy);
-
-#endif
-
             }
 
-            XMoveResizeWindow(Display(), Window(), x, y, cx, cy);
+            estatus = _move_resize(x, y, cx, cy);
 
-         }
-         else
+         } else
          {
 
-            windowing_output_debug_string("\n::window::set_window_pos Move Window 1.4.1");
+            windowing_output_debug_string("\n::window::set_window_pos Move xcb_window_t 1.4.1");
 
-            XMoveWindow(Display(), Window(), x, y);
+            estatus = _move(x, y);
 
          }
 
@@ -2254,54 +1604,29 @@ va_end(argp);
       else if (bSize)
       {
 
-         windowing_output_debug_string("\n::window::set_window_pos Resize Window 1.4.2");
+         windowing_output_debug_string("\n::window::set_window_pos Resize xcb_window_t 1.4.2");
 
-         XResizeWindow(Display(), Window(), cx, cy);
+         estatus = _resize(cx, cy);
 
       }
-
-      //   if(bMove || bSize)
-      //   {
-      //
-      //      if(attrs.override_redirect)
-      //      {
-      //
-      //         if(!(m_pimpl->m_puserinteraction->m_ewindowflag & e_window_flag_arbitrary_positioning))
-      //         {
-      //
-      //            XSetWindowAttributes set;
-      //
-      //            set.override_redirect = False;
-      //
-      //            if(!XChangeWindowAttributes(Display(), Window(), CWOverrideRedirect, &set))
-      //            {
-      //
-      //               INFO("linux::interaction_impl::_native_create_window_ex failed to clear override_redirect");
-      //
-      //            }
-      //
-      //         }
-      //
-      //      }
-      //
-      //   }
-
 
       if (nFlags & SWP_HIDEWINDOW)
       {
 
-         if (attrs.map_state == IsViewable)
+         if (m_attributes.map_state == XCB_MAP_STATE_VIEWABLE)
          {
 
-            windowing_output_debug_string("\n::window::set_window_pos Withdraw Window 1.4.3");
+            windowing_output_debug_string("\n::window::set_window_pos Withdraw xcb_window_t 1.4.3");
 
-            XWithdrawWindow(Display(), Window(), m_iScreen);
+            estatus = _withdraw_window();
 
          }
 
       }
 
-      if (!XGetWindowAttributes(Display(), Window(), &attrs))
+      estatus = _get_window_attributes();
+
+      if (!estatus)
       {
 
          windowing_output_debug_string("\n::window::set_window_pos xgetwndattr 1.4.4");
@@ -2310,7 +1635,7 @@ va_end(argp);
 
       }
 
-      if (attrs.map_state == IsViewable || (nFlags & SWP_SHOWWINDOW))
+      if (m_attributes.map_state == XCB_MAP_STATE_VIEWABLE || (nFlags & SWP_SHOWWINDOW))
       {
 
          if (!(nFlags & SWP_NOZORDER))
@@ -2319,128 +1644,55 @@ va_end(argp);
             if (zorder.m_ezorder == e_zorder_top_most)
             {
 
-               if (m_iaNetWmState[e_net_wm_state_above] != 1)
-               {
+               estatus = _add_net_wm_state_above();
 
-                  wm_state_above_raw(true);
-
-               }
-
-               XRaiseWindow(Display(), Window());
+               xcb_circulate_window(xcb_connection(), XCB_CIRCULATE_RAISE_LOWEST, xcb_window());
 
             }
             else if (zorder.m_ezorder == e_zorder_top)
             {
 
-               if (m_iaNetWmState[e_net_wm_state_above] != 0
-                   || m_iaNetWmState[e_net_wm_state_below] != 0
-                   || m_iaNetWmState[e_net_wm_state_hidden] != 0
-                   || m_iaNetWmState[e_net_wm_state_maximized_horz] != 0
-                   || m_iaNetWmState[e_net_wm_state_maximized_vert] != 0
-                   || m_iaNetWmState[e_net_wm_state_fullscreen] != 0)
-               {
+               estatus = _clear_net_wm_state();
 
-                  wm_state_clear_raw(false);
+               auto cookie = xcb_circulate_window(xcb_connection(), XCB_CIRCULATE_RAISE_LOWEST, xcb_window());
 
-               }
-
-               XRaiseWindow(Display(), Window());
+               estatus = _request_check(cookie);
 
             }
             else if (zorder.m_ezorder == e_zorder_bottom)
             {
 
-               if (m_iaNetWmState[e_net_wm_state_below] != 1)
-               {
+               estatus = _add_net_wm_state_below();
 
-                  wm_state_below_raw(true);
+               auto cookie = xcb_circulate_window(xcb_connection(), XCB_CIRCULATE_LOWER_HIGHEST, xcb_window());
 
-               }
-
-               XLowerWindow(Display(), Window());
+               estatus = _request_check(cookie);
 
             }
 
          }
 
-         m_pimpl->m_puserinteraction->ModifyStyle(0, WS_VISIBLE, 0);
+         m_pimpl->m_puserinteraction->m_bVisible = true;
 
       }
       else
       {
 
-         m_pimpl->m_puserinteraction->ModifyStyle(WS_VISIBLE, 0, 0);
+         m_pimpl->m_puserinteraction->m_bVisible = false;
 
       }
 
-      //m_pimpl->on_change_visibility();
-
       windowing_output_debug_string("\n::window::set_window_pos 2");
 
-      return 1;
+      return true;
 
    }
-
-
-//   int_bool window::show_window(
-//                        const ::e_display &edisplay,
-//                        const ::e_activation &eactivation
-//   )
-//   {
-//
-//      x11_sync([oswindow, edisplay, eactivation]()
-//               {
-//
-//                  return oswindow->
-//                     show_window(edisplay, eactivation
-//                  );
-//
-//               });
-//
-//      return true;
-//
-//   }
-
-
-//   iptr get_window_long_ptr(window *pdata, int
-//   nIndex)
-//   {
-//
-//      return pdata->
-//         get_window_long_ptr(nIndex);
-//
-//   }
-
-
-//   iptr set_window_long_ptr(window *pdata, int
-//   nIndex,
-//                            iptr i
-//   )
-//   {
-//
-//      return pdata->
-//         set_window_long_ptr(nIndex, i
-//      );
-//
-//   }
 
 
    void window::set_window_text(const char *pszString)
    {
 
-//      m_strWindowText = pszString;
-
-      //windowing_output_debug_string("\nlinux::interaction_impl::set_window_text");
-
-      //fflush(stdout);
-
-      //x11_store_name(m_oswindow, m_strWindowText);
-
-      x11_store_name(pszString);
-
-      //windowing_output_debug_string("\nlinux::interaction_impl::set_window_text END");
-
-      //fflush(stdout);
+      auto estatus = _store_name(pszString);
 
    }
 
@@ -2448,40 +1700,28 @@ va_end(argp);
    ::e_status window::set_cursor2(::windowing::cursor *pcursor)
    {
 
-      synchronization_lock synchronizationlock(x11_mutex());
+      synchronization_lock synchronizationlock(user_mutex());
 
-      display_lock displaylock(x11_display());
+      display_lock displaylock(xcb_display());
 
-      Atom net_wm_icon = x11_display()->intern_atom("_BAMF_DESKTOP_FILE", False);
-
-      Atom cardinal = x11_display()->intern_atom("STRING", False);
-
-      int ixa = XA_STRING;
+      xcb_atom_t net_wm_icon = xcb_display()->intern_atom("_BAMF_DESKTOP_FILE", false);
 
       ::file::path path = pcursor->get_file_path();
 
-      int status = XChangeProperty(
-         Display(),
-         Window(),
-         net_wm_icon,
-         ixa,
-         8,
-         PropModeReplace,
-         (const unsigned char *) (const char *) path,
-         path.get_length());
+      auto estatus = _replace_string_property(net_wm_icon, path);
 
       output_debug_string("\nlinux::interaction_impl::bamf_set_icon END");
 
       fflush(stdout);
 
-      if (status != 0)
+      if (!estatus)
       {
 
-         return false;
+         return estatus;
 
       }
 
-      return true;
+      return estatus;
 
    }
 
@@ -2496,188 +1736,41 @@ va_end(argp);
 
       }
 
-      auto pcursorx11 = dynamic_cast < ::windowing_x11::cursor * >(pcursor);
+      auto pcursorxcb = dynamic_cast < ::windowing_xcb::cursor * >(pcursor);
 
-      if(::is_null(pcursorx11))
+      if(::is_null(pcursorxcb))
       {
 
          return error_failed;
 
       }
 
-      if (m_cursorLast == pcursorx11->m_cursor)
+      if (m_cursorLast == pcursorxcb->m_cursor)
       {
 
          return true;
 
       }
 
-      synchronization_lock sl(x11_mutex());
+      synchronization_lock sl(user_mutex());
 
       windowing_output_debug_string("\n::SetCursor 1");
 
-      display_lock displaylock(x11_display());;
+      display_lock displaylock(xcb_display());;
 
-      XDefineCursor(Display(), Window(), pcursorx11->m_cursor);
+      uint32_t value[1];
 
-      m_cursorLast = pcursorx11->m_cursor;
+      value[0] = pcursorxcb->m_cursor;
 
-      return true;
+      auto cookie = xcb_change_window_attributes(
+         xcb_connection(),
+         xcb_window(),
+         XCB_CW_EVENT_MASK,
+         value);
 
-   }
+      auto estatus = _request_check(cookie);
 
-
-   string window::x11_get_name()
-   {
-
-      return ::x11_get_name(Display(), Window());
-
-   }
-
-
-   bool window::x11_get_window_rect(RECTANGLE_I32 *prectangle)
-   {
-
-      return ::x11_get_window_rect(Display(), Window(), prectangle);
-
-   }
-
-
-   ::e_status window::get_window_rect(RECTANGLE_I32 *prectangle)
-   {
-
-      return x11_get_window_rect(prectangle);
-
-   }
-
-
-   bool window::x11_get_client_rect(RECTANGLE_I32 *prectangle)
-   {
-
-      return ::x11_get_client_rect(Display(), Window(), prectangle);
-
-   }
-
-
-   ::e_status window::get_client_rect(RECTANGLE_I32 *prectangle)
-   {
-
-      return x11_get_client_rect(prectangle);
-
-   }
-
-
-   void window::upper_window_rects(rect_array &ra)
-   {
-
-      synchronization_lock synchronizationlock(x11_mutex());
-
-      ra.remove_all();
-
-      windowing_output_debug_string("\n::GetFocus 1");
-
-#ifdef display_lock_LOCK_LOG
-
-      b_prevent_display_lock_lock_log = false;
-
-#endif
-
-      display_lock displaylock(x11_display());
-
-      windowing_output_debug_string("\n::GetFocus 1.01");
-
-      comparable_array<::Window> windowa;
-
-      if (!x11_display()->x11_window_list(windowa))
-      {
-
-         return;
-
-      }
-
-      if (windowa.last() == Window())
-      {
-
-         return;
-
-      }
-
-      index iFind = windowa.find_last(Window());
-
-      if (iFind < 0)
-      {
-
-         return;
-
-      }
-
-      ::rectangle_i32 rectangle;
-
-      x11_get_window_rect(rectangle);
-
-//r = oswindow->m_pimpl->m_puserinteraction->get_window_rect();
-
-//string strTopic = x11_get_name(x11_display(), Window());
-
-      ::rectangle_i32 rectTest;
-
-      for (iFind++; iFind < windowa.get_size(); iFind++)
-      {
-
-//string strItem = x11_get_name(x11_display(), windowa[iFind]);
-
-         ::rectangle_i32 rectHigher;
-
-         if (::x11_get_window_rect(Display(), windowa[iFind], rectHigher))
-         {
-
-            ra.add(rectHigher);
-
-         }
-
-      }
-
-   }
-
-
-   ::e_status window::set_active_window()
-   {
-
-      synchronization_lock synchronizationlock(x11_mutex());
-
-      {
-
-         windowing_output_debug_string("\n::set_active_window 1");
-
-         display_lock displaylock(x11_display());
-
-         XEvent xev;
-
-         __zero(xev);
-
-         auto windowRoot = DefaultRootWindow(Display());
-
-         Atom atomActiveWindow = x11_display()->intern_atom("_NET_ACTIVE_WINDOW", False);
-
-         xev.xclient.type = ClientMessage;
-         xev.xclient.send_event = True;
-         xev.xclient.display = Display();
-         xev.xclient.window = Window();
-         xev.xclient.message_type = atomActiveWindow;
-         xev.xclient.format = 32;
-         xev.xclient.data.l[0] = 1;
-         xev.xclient.data.l[1] = 0;
-         xev.xclient.data.l[2] = 0;
-         xev.xclient.data.l[3] = 0;
-         xev.xclient.data.l[4] = 0;
-
-         XSendEvent(Display(), windowRoot, False, SubstructureRedirectMask | SubstructureNotifyMask, &xev);
-
-         windowing_output_debug_string("\n::set_active_window 2");
-
-      }
-
-      auto estatus = set_keyboard_focus();
+      m_cursorLast = pcursorxcb->m_cursor;
 
       if(!estatus)
       {
@@ -2691,7 +1784,161 @@ va_end(argp);
    }
 
 
-   Window window::_get_window_relative(enum_relative erelative, ::Window *windowa, int numItems)
+   ::e_status window::_get_window_rectangle(RECTANGLE_I32 *prectangle)
+   {
+
+      auto estatus = _get_geometry();
+
+      if(!estatus)
+      {
+
+         return estatus;
+
+      }
+
+      auto pgeometry = &m_geometry;
+
+      prectangle->left = pgeometry->x;
+      prectangle->top = pgeometry->y;
+      prectangle->right = pgeometry->x + pgeometry->width;
+      prectangle->top = pgeometry->y + pgeometry->height;
+
+      return estatus;
+
+   }
+
+
+   ::e_status window::_get_client_rectangle(RECTANGLE_I32 *prectangle)
+   {
+
+      auto estatus = _get_geometry();
+
+      if(!estatus)
+      {
+
+         return estatus;
+
+      }
+
+      prectangle->left = 0;
+      prectangle->top = 0;
+      prectangle->right = m_geometry.width;
+      prectangle->top = m_geometry.height;
+
+      return estatus;
+
+   }
+
+
+   ::rectangle_i32_array window::upper_window_rects()
+   {
+
+      synchronization_lock synchronizationlock(user_mutex());
+
+      rectangle_i32_array recta;
+
+      windowing_output_debug_string("\n::GetFocus 1");
+
+      display_lock displaylock(xcb_display());
+
+      windowing_output_debug_string("\n::GetFocus 1.01");
+
+      auto windowa = xcb_display()->_window_enumerate();
+
+      if(windowa.is_empty())
+      {
+
+         return recta;
+
+      }
+
+      if (windowa.last() == xcb_window())
+      {
+
+         return recta;
+
+      }
+
+      index iFind = windowa.find_last(xcb_window());
+
+      if (iFind < 0)
+      {
+
+         return recta;
+
+      }
+
+      ::rectangle_i32 rectangle;
+
+      auto estatus = _get_window_rectangle(&rectangle);
+
+      if(!estatus)
+      {
+
+         return recta;
+
+      }
+
+      for (iFind++; iFind < windowa.get_size(); iFind++)
+      {
+
+         ::rectangle_i32 rectangleHigher;
+
+         if (xcb_display()->_window_get_window_rectangle(windowa[iFind], rectangleHigher))
+         {
+
+            recta.add(rectangleHigher);
+
+         }
+
+      }
+
+      return recta;
+
+   }
+
+
+   ::e_status window::set_active_window()
+   {
+
+      synchronization_lock synchronizationlock(user_mutex());
+
+      windowing_output_debug_string("\n::set_active_window 1");
+
+      display_lock displaylock(xcb_display());
+
+      xcb_atom_t atomActiveWindow = xcb_display()->atom(x_window::e_atom_net_active_window);
+
+      auto estatus = xcb_display()->_send_client_event(
+         xcb_display()->m_windowRoot,
+         atomActiveWindow,
+         1,
+         1);
+
+      if(!estatus)
+      {
+
+         return estatus;
+
+      }
+
+      windowing_output_debug_string("\n::set_active_window 2");
+
+      estatus = set_keyboard_focus();
+
+      if(!estatus)
+      {
+
+         return estatus;
+
+      }
+
+      return estatus;
+
+   }
+
+
+   xcb_window_t window::_get_window_relative(enum_relative erelative, ::xcb_window_t *windowa, int numItems)
    {
 
       if (::is_null(windowa))
@@ -2703,7 +1950,7 @@ va_end(argp);
 
       }
 
-      ::Window window = 0;
+      ::xcb_window_t window = 0;
 
       switch (erelative)
       {
@@ -2733,7 +1980,7 @@ va_end(argp);
             for (int i = 0; i < numItems; i++)
             {
 
-               if (windowa[i] == Window())
+               if (windowa[i] == xcb_window_t())
                {
 
                   iFound = i;
@@ -2802,13 +2049,13 @@ va_end(argp);
    ::windowing::window * window::get_window(enum_relative erelative)
    {
 
-      synchronization_lock synchronizationlock(x11_mutex());
+      synchronization_lock synchronizationlock(user_mutex());
 
-      ::Window window = 0;
+      ::xcb_window_t window = 0;
 
       windowing_output_debug_string("\n::get_window 1");
 
-      display_lock displaylock(x11_display());
+      display_lock displaylock(xcb_display());
 
       if (erelative == e_relative_first_sibling ||
           erelative == e_relative_last_sibling ||
@@ -2821,69 +2068,73 @@ va_end(argp);
          if (oswindowParent == nullptr)
          {
 
-            Atom atomNetClientListStacking = x11_display()->intern_atom("_NET_CLIENT_LIST_STACKING", False);
+            __throw(todo);
 
-            Atom atomActualType;
-
-            int format;
-
-            unsigned long numItems, bytesAfter;
-
-            ::Window * windowa = nullptr;
-
-            int status = XGetWindowProperty(
-               Display(),
-               RootWindow(Display(), m_iScreen),
-               atomNetClientListStacking,
-               0L,
-               1024,
-               false,
-               AnyPropertyType,
-               &atomActualType,
-               &format,
-               &numItems,
-               &bytesAfter,
-               (unsigned char **) &windowa);
-
-            if (status >= Success && numItems)
-            {
-
-               window = _get_window_relative(erelative, windowa, numItems);
-
-            }
-
-            if (windowa != NULL)
-            {
-
-               XFree(windowa);
-
-            }
+//            xcb_atom_t atomNetClientListStacking = xcb_display()->atom(x_window::e_atom_net_client_list_stacking);
+//
+//            xcb_atom_t atomActualType;
+//
+//            int format;
+//
+//            unsigned long numItems, bytesAfter;
+//
+//            ::xcb_window_t * windowa = nullptr;
+//
+//            int status = XGetWindowProperty(
+//               xcb_connection(),
+//               xcb_display()->m_windowRoot,
+//               atomNetClientListStacking,
+//               0L,
+//               1024,
+//               false,
+//               AnyPropertyType,
+//               &atomActualType,
+//               &format,
+//               &numItems,
+//               &bytesAfter,
+//               (unsigned char **) &windowa);
+//
+//            if (status >= Success && numItems)
+//            {
+//
+//               window = _get_window_relative(erelative, windowa, numItems);
+//
+//            }
+//
+//            if (windowa != NULL)
+//            {
+//
+//               XFree(windowa);
+//
+//            }
 
          }
          else
          {
 
-            ::Window root = 0;
-            ::Window parent = 0;
-            ::Window *pchildren = nullptr;
-            u32 numItems = 0;
+            __throw(todo);
 
-            int status = XQueryTree(Display(), Window(),
-                                    &root, &parent, &pchildren, &numItems);
-
-            if (status >= Success && numItems)
-            {
-
-               window = _get_window_relative(erelative, pchildren, numItems);
-
-            }
-
-            if (pchildren != nullptr)
-            {
-
-               XFree(pchildren);
-
-            }
+//            ::xcb_window_t root = 0;
+//            ::xcb_window_t parent = 0;
+//            ::xcb_window_t *pchildren = nullptr;
+//            u32 numItems = 0;
+//
+//            int status = XQueryTree(xcb_connection(), xcb_window(),
+//                                    &root, &parent, &pchildren, &numItems);
+//
+//            if (status >= Success && numItems)
+//            {
+//
+//               window = _get_window_relative(erelative, pchildren, numItems);
+//
+//            }
+//
+//            if (pchildren != nullptr)
+//            {
+//
+//               XFree(pchildren);
+//
+//            }
 
          }
 
@@ -2891,51 +2142,53 @@ va_end(argp);
       else
       {
 
-         ::Window root = 0;
-         ::Window parent = 0;
-         ::Window *pchildren = nullptr;
-         u32 numItems = 0;
+         __throw(todo);
 
-         int status = XQueryTree(Display(), Window(),
-                                 &root, &parent, &pchildren, &numItems);
-
-         if (status >= Success && numItems)
-         {
-
-            if (erelative == e_relative_first_child)
-            {
-
-               window = pchildren[0];
-
-            }
-            else if (erelative == e_relative_last_child)
-            {
-
-               window = pchildren[numItems - 1];
-
-            }
-
-         }
-
-         if (pchildren != nullptr)
-         {
-
-            XFree(pchildren);
-
-         }
+//         ::xcb_window_t root = 0;
+//         ::xcb_window_t parent = 0;
+//         ::xcb_window_t *pchildren = nullptr;
+//         u32 numItems = 0;
+//
+//         int status = XQueryTree(xcb_connection(), xcb_window(),
+//                                 &root, &parent, &pchildren, &numItems);
+//
+//         if (status >= Success && numItems)
+//         {
+//
+//            if (erelative == e_relative_first_child)
+//            {
+//
+//               window = pchildren[0];
+//
+//            }
+//            else if (erelative == e_relative_last_child)
+//            {
+//
+//               window = pchildren[numItems - 1];
+//
+//            }
+//
+//         }
+//
+//         if (pchildren != nullptr)
+//         {
+//
+//            XFree(pchildren);
+//
+//         }
 
       }
 
-      auto pwindowx11 = x11_display()->_window(window);
+      auto pwindowxcb = xcb_display()->_window(window);
 
-      if(::is_null(pwindowx11))
+      if(::is_null(pwindowxcb))
       {
 
          return nullptr;
 
       }
 
-      return pwindowx11;
+      return pwindowxcb;
 
    }
 
@@ -2960,55 +2213,26 @@ va_end(argp);
             pinteraction->send_message(e_message_ncdestroy, 0, 0);
 
          }
-         else
-         {
-
-            try
-            {
-
-//window->m_pimpl->release();
-
-            }
-            catch (...)
-            {
-
-            }
-
-         }
-
-         //oswindow_remove_impl(window->m_pimpl);
 
          m_pwindowing->remove_window(this);
 
       }
 
-//      x11_fork([window]()
-//               {
+      synchronization_lock synchronizationlock(user_mutex());
 
-                  synchronization_lock synchronizationlock(x11_mutex());
+      bool bIs = is_window();
 
-                  //Display *Display() = Display();
+      m_pwindowing->remove_window(this);
 
-                  //Window win = window->window();
+      windowing_output_debug_string("\n::DestroyWindow 1");
 
-                  //oswindow_data * pdata = (oswindow_data * )(void * )
-                  //window;
+      display_lock displaylock(xcb_display());
 
-                  bool bIs = is_window();
+      _unmap_window();
 
-                  m_pwindowing->remove_window(this);
+      _destroy_window();
 
-                  windowing_output_debug_string("\n::DestroyWindow 1");
-
-                  display_lock displaylock(x11_display());
-
-                  XUnmapWindow(Display(), Window());
-
-                  XDestroyWindow(Display(), Window());
-
-                  windowing_output_debug_string("\n::DestroyWindow 2");
-//
-//               });
+      windowing_output_debug_string("\n::DestroyWindow 2");
 
       return ::success;
 
@@ -3018,226 +2242,94 @@ va_end(argp);
    bool window::is_window()
    {
 
-//      if (::oswindow_data::s_pdataptra->find_first(oswindow) < 0)
-//      {
-//
-//         return false;
-//
-//      }
+      return true;
 
-      //return true;
+   }
+
+
+   bool window::_has_net_wm_state(xcb_atom_t propertyItem)
+   {
+
+      auto atomWmState = xcb_display()->atom(x_window::e_atom_net_wm_state);
+
+      return _list_has_atom(atomWmState, propertyItem);
+
+   }
+
+
+   bool window::_list_has_atom(xcb_atom_t propertyList, xcb_atom_t propertyItem)
+   {
+
+      return xcb_display()->_window_has_atom_list_atom(xcb_window(), propertyList, propertyItem);
+
+   }
+
+
+   ::e_status window::_list_add_atom(xcb_atom_t atomList, xcb_atom_t atomFlag)
+   {
+
+      synchronization_lock synchronizationlock(user_mutex());
+
+      if (atomFlag == 0)
+      {
+
+         return false;
+
+      }
+
+      if (atomList == 0)
+      {
+
+         return false;
+
+      }
+
+      if (!_list_add_atom(atomList, atomFlag))
+      {
+
+         _change_property(atomList, XCB_ATOM_ATOM, XCB_PROP_MODE_APPEND, 32, 1, &atomFlag);
+
+      }
 
       return true;
 
    }
 
-   Atom *window::wm_get_list_raw(Atom atomList, unsigned long int *pnum_items)
+
+   ::e_status window::_remove_add_atom(xcb_atom_t atomList, xcb_atom_t atomFlag)
    {
 
-      synchronization_lock synchronizationlock(x11_mutex());
+      synchronization_lock synchronizationlock(user_mutex());
 
-      if (atomList == None)
-      {
-
-         return nullptr;
-
-      }
-
-      Atom actual_type;
-
-      int actual_format;
-
-      unsigned long int bytes_after;
-
-      Atom *atoms = nullptr;
-
-      XGetWindowProperty(Display(), Window(), atomList, 0, 1024, False, XA_ATOM, &actual_type, &actual_format, pnum_items,
-                         &bytes_after, (unsigned char **) &atoms);
-
-      return atoms;
-
-   }
-
-
-   int window::wm_test_list_raw(Atom atomList, Atom atomFlag)
-   {
-
-      synchronization_lock synchronizationlock(x11_mutex());
-
-      Atom actual_type;
-
-      int actual_format;
-
-      unsigned long i, num_items;
-
-      Atom *atoms = wm_get_list_raw(atomList, &num_items);
-
-      if (atoms == nullptr)
-      {
-
-         return 0;
-
-      }
-
-      bool bFind = false;
-
-      for (i = 0; i < num_items; i++)
-      {
-
-         if (atoms[i] == atomFlag)
-         {
-
-            bFind = true;
-
-            break;
-
-         }
-
-      }
-
-      XFree(atoms);
-
-      return bFind ? 1 : 0;
-
-   }
-
-
-   int window::wm_test_state_raw(const char *pszNetStateFlag)
-   {
-
-      synchronization_lock synchronizationlock(x11_mutex());
-
-      Atom atomFlag = x11_display()->intern_atom(pszNetStateFlag, 1);
-
-      if (atomFlag == None)
-      {
-
-         windowing_output_debug_string("ERROR: cannot find atom for " + string(pszNetStateFlag) + "!\n");
-
-         return 0;
-
-      }
-
-      Atom atomNetState = x11_display()->intern_atom("_NET_WM_STATE", 1);
-
-      if (atomNetState == None)
-      {
-
-         windowing_output_debug_string("ERROR: cannot find atom for _NET_WM_STATE !\n");
-
-         return 0;
-
-      }
-
-      return wm_test_list_raw(atomNetState, atomFlag);
-
-   }
-
-
-   int window::wm_test_state(const char *pszNetStateFlag)
-   {
-
-      synchronization_lock synchronizationlock(x11_mutex());
-
-      windowing_output_debug_string("\n::wm_test_state 1");
-
-      display_lock displaylock(x11_display());
-
-      if (x11_display()->is_null())
-      {
-
-         windowing_output_debug_string("\n::wm_test_state 1.1");
-
-         return 0;
-
-      }
-
-      int i = wm_test_state_raw(pszNetStateFlag);
-
-      windowing_output_debug_string("\n::wm_test_state 2");
-
-      return i;
-
-   }
-
-
-   bool window::wm_add_remove_list_raw(Atom atomList, Atom atomFlag, bool bSet)
-   {
-
-      synchronization_lock synchronizationlock(x11_mutex());
-
-      if (atomFlag == None)
+      if (atomFlag == 0)
       {
 
          return false;
 
       }
 
-      if (atomList == None)
+      if (atomList == 0)
       {
 
          return false;
 
       }
 
-      int scr = DefaultScreen(Display());
+      auto atoma = _list_atom(atomList);
 
-      auto defaultRootWindow = RootWindow(Display(), DefaultScreen(Display()));
-
-      if (bSet)
+      if (atoma.is_empty())
       {
 
-         if (!wm_test_list_raw(atomList, atomFlag))
-         {
-
-            XChangeProperty(Display(), Window(), atomList, XA_ATOM, 32, PropModeAppend, (unsigned char *) &atomFlag, 1);
-
-         }
+         return false;
 
       }
-      else
+
+      ::count cRemove = atoma.remove(atomFlag);
+
+      if (count > 0)
       {
 
-         unsigned long num_items;
-
-         Atom *plist = wm_get_list_raw(atomList, &num_items);
-
-         if (plist == nullptr)
-         {
-
-            return false;
-
-         }
-
-         int iFind = -1;
-
-         int i;
-
-         for (i = 0; i < num_items; i++)
-         {
-
-            if (plist[i] == atomFlag)
-            {
-
-               iFind = i;
-
-               break;
-
-            }
-
-         }
-
-         if (iFind >= 0)
-         {
-
-            __memmov(&plist[iFind], &plist[iFind + 1], (num_items - iFind - 1) * sizeof(Atom));
-
-            XChangeProperty(Display(), Window(), atomList, XA_ATOM, 32, PropModeReplace, (unsigned char *) plist,
-                            num_items - 1);
-
-         }
-
-         XFree(plist);
+         _change_property(atomList, XCB_ATOM_ATOM, XCB_PROP_MODE_REPLACE, 32, atoma.get_count(), atoma.get_count());
 
       }
 
@@ -3250,13 +2342,13 @@ va_end(argp);
    ::e_status window::set_foreground_window()
    {
 
-      synchronization_lock synchronizationlock(x11_mutex());
+      synchronization_lock synchronizationlock(user_mutex());
 
-      display_lock displaylock(x11_display());
+      display_lock displaylock(xcb_display());
 
-      XRaiseWindow(Display(), Window());
+      XRaiseWindow(xcb_connection(), xcb_window_t());
 
-      XSetInputFocus(Display(), Window(), RevertToNone, CurrentTime);
+      XSetInputFocus(xcb_connection(), xcb_window(), RevertToNone, CurrentTime);
 
       return true;
 
@@ -3266,7 +2358,7 @@ va_end(argp);
    bool window::has_mouse_capture() const
    {
 
-      auto pdisplay = x11_display();
+      auto pdisplay = xcb_display();
 
       if(::is_null(pdisplay))
       {
@@ -3299,7 +2391,7 @@ va_end(argp);
    bool window::has_keyboard_focus() const
    {
 
-      auto pdisplay = x11_display();
+      auto pdisplay = xcb_display();
 
       if(::is_null(pdisplay))
       {
@@ -3348,27 +2440,27 @@ va_end(argp);
 
 
    /// should be run in user thread
-   ::e_status window::x11_store_name(const char *pszName)
-   {
+//   ::e_status window::xcb_store_name(const char *pszName)
+//   {
+//
+//      synchronization_lock synchronizationlock(user_mutex());
+//
+//      display_lock displaylock(xcb_display());
+//
+//      XStoreName(xcb_connection(), xcb_window(), pszName);
+//
+//      return ::success;
+//
+//   }
 
-      synchronization_lock synchronizationlock(x11_mutex());
 
-      display_lock displaylock(x11_display());
-
-      XStoreName(Display(), Window(), pszName);
-
-      return ::success;
-
-   }
-
-
-//   string window::x11_get_name()
+//   string window::xcb_get_name()
 //   {
 //
 //      string str;
 //
 //      char *name = NULL;
-//      int status = XFetchName(Display(), Window(), &name);
+//      int status = XFetchName(xcb_connection(), xcb_window(), &name);
 //      if (status >= Success)
 //      {
 //         str = name;
@@ -3379,15 +2471,15 @@ va_end(argp);
 //   }
 
 //// should be called in user_thread
-//   int_bool window::x11_get_window_rect(RECTANGLE_I32 *prectangle)
+//   int_bool window::xcb_get_window_rect(RECTANGLE_I32 *prectangle)
 //   {
 //
 //      XWindowAttributes attrs;
 //
-//      if (!XGetWindowAttributes(Display(), window, &attrs))
+//      if (!XGetWindowAttributes(xcb_connection(), window, &attrs))
 //      {
 //
-//         windowing_output_debug_string("\n::x11_get_window_rect 1.1 (xgetwindowattributes failed)");
+//         windowing_output_debug_string("\n::xcb_get_window_rect 1.1 (xgetwindowattributes failed)");
 //
 //         return false;
 //
@@ -3397,13 +2489,13 @@ va_end(argp);
 //
 //      int y = 0;
 //
-//      int screen = XDefaultScreen((Display *) d);
+//      int screen = XDefaultScreen((xcb_connection_t *) d);
 //
-//      Window windowRoot = RootWindow((Display *) Display(), screen);
+//      xcb_window_t windowRoot = RootWindow((xcb_connection_t *) xcb_connection(), screen);
 //
-//      Window child;
+//      xcb_window_t child;
 //
-//      XTranslateCoordinates(Display(), window, windowRoot, 0, 0, &x, &y, &child);
+//      XTranslateCoordinates(xcb_connection(), window, windowRoot, 0, 0, &x, &y, &child);
 //
 //      prectangle->left = x + attrs.x;
 //
@@ -3414,7 +2506,7 @@ va_end(argp);
 //      prectangle->bottom = y + attrs.y + attrs.height;
 //
 //
-//      windowing_output_debug_string("\n::x11_get_window_rect 2");
+//      windowing_output_debug_string("\n::xcb_get_window_rect 2");
 //
 //      return true;
 //
@@ -3423,11 +2515,11 @@ va_end(argp);
 //   int_bool window::get_client_rect(RECTANGLE_I32 *prectangle)
 //   {
 //
-//      synchronization_lock synchronizationlock(x11_mutex());
+//      synchronization_lock synchronizationlock(user_mutex());
 //
-//      display_lock displaylock(x11_display());
+//      display_lock displaylock(xcb_display());
 //
-//      if (x11_display()->is_null())
+//      if (xcb_display()->is_null())
 //      {
 //
 //         windowing_output_debug_string("\n::get_client_rect 1.1 (display is null)");
@@ -3438,7 +2530,7 @@ va_end(argp);
 //
 //      XWindowAttributes attr;
 //
-//      if (XGetWindowAttributes(Display(), Window(), &attr) == 0)
+//      if (XGetWindowAttributes(xcb_connection(), xcb_window(), &attr) == 0)
 //      {
 //
 //         windowing_output_debug_string("\n::get_client_rect 1.2 (xgetwindowattributes failed");
@@ -3541,16 +2633,16 @@ va_end(argp);
    ::e_status window::set_mouse_capture()
    {
 
-      synchronization_lock synchronizationlock(x11_mutex());
+      synchronization_lock synchronizationlock(user_mutex());
 
-      if (Display() == nullptr)
+      if (xcb_connection() == nullptr)
       {
 
          return error_failed;
 
       }
 
-      if (Window() == None)
+      if (xcb_window()) == 0)
       {
 
          return error_failed;
@@ -3559,10 +2651,10 @@ va_end(argp);
 
       windowing_output_debug_string("\noswindow_data::SetCapture 1");
 
-      display_lock displaylock(x11_display());
+      display_lock displaylock(xcb_display());
 
-      auto grabStatus = XGrabPointer(Display(), Window(), False, ButtonPressMask | ButtonReleaseMask | PointerMotionMask,
-                                     GrabModeAsync, GrabModeAsync, None, None, CurrentTime);
+      auto grabStatus = XGrabPointer(xcb_connection(), xcb_window(), false, ButtonPressMask | ButtonReleaseMask | PointerMotionMask,
+                                     GrabModeAsync, GrabModeAsync, 0, 0, CurrentTime);
 
       if (grabStatus != GrabSuccess)
       {
@@ -3573,7 +2665,7 @@ va_end(argp);
 
       }
 
-      auto pdisplay = x11_display();
+      auto pdisplay = xcb_display();
 
       if(pdisplay)
       {
@@ -3592,9 +2684,9 @@ va_end(argp);
    ::e_status window::set_keyboard_focus()
    {
 
-      synchronization_lock synchronizationlock(x11_mutex());
+      synchronization_lock synchronizationlock(user_mutex());
 
-      if (Window() == 0)
+      if (xcb_window()) == 0)
       {
 
          return error_failed;
@@ -3603,7 +2695,7 @@ va_end(argp);
 
       windowing_output_debug_string("\noswindow_data::SetFocus 1");
 
-      display_lock displaylock(x11_display());
+      display_lock displaylock(xcb_display());
 
       if (!is_window())
       {
@@ -3614,7 +2706,7 @@ va_end(argp);
 
       }
 
-      if (!XSetInputFocus(Display(), Window(), RevertToNone, CurrentTime))
+      if (!XSetInputFocus(xcb_connection(), xcb_window(), RevertToNone, CurrentTime))
       {
 
          windowing_output_debug_string("\noswindow_data::SetFocus 1.3");
@@ -3630,9 +2722,194 @@ va_end(argp);
    }
 
 
+   void window::_set_class_hint(const char * pszName, const char * pszClass)
+   {
+
+      memory memory;
+
+      memory.append(pszName);
+      memory.append_byte(0);
+      memory.append(pszName);
+
+      _replace_string_property (XCB_ATOM_WM_CLASS, memory);
+
+   }
 
 
-} // namespace windowing_x11
+   ::e_status window::_get_window_attributes()
+   {
+
+      auto cookie = xcb_get_window_attributes(xcb_connection(), xcb_window_t());
+
+      auto preply = __malloc(xcb_get_window_attributes_reply(xcb_connection(), cookie, nullptr));
+
+      if(!preply)
+      {
+
+         INFO("linux::interaction_impl::_native_create_window_ex XGetWindowAttributes failed.");
+
+         return error_failed;
+
+      }
+
+      m_attributes = *preply;
+
+      return success;
+
+   }
+
+
+   ::e_status window::_get_geometry()
+   {
+
+      auto cookie = xcb_get_geometry(xcb_connection(), xcb_window_t());
+
+      auto preply = __malloc(xcb_get_geometry_reply(xcb_connection(), cookie, nullptr));
+
+      if(!preply)
+      {
+
+         INFO("linux::interaction_impl::_native_create_window_ex XGetWindowAttributes failed.");
+
+         return error_failed;
+
+      }
+
+      m_geometry = *preply;
+
+      return success;
+
+   }
+
+
+   ::e_status window::_move_resize(int x, int y, int cx, int cy)
+   {
+
+      uint16_t mask = 0;
+
+      mask |= XCB_CONFIG_WINDOW_X;
+      mask |= XCB_CONFIG_WINDOW_Y;
+      mask |= XCB_CONFIG_WINDOW_WIDTH;
+      mask |= XCB_CONFIG_WINDOW_HEIGHT;
+
+      const uint32_t values[] = {
+         x,
+         y,
+         cx,
+         cy
+      };
+
+      auto cookie = xcb_configure_window(xcb_connection(), xcb_window(), mask, values);
+
+      auto estatus = _request_check(cookie);
+
+      if(!estatus)
+      {
+
+         return estatus;
+
+      }
+
+      return estatus;
+
+   }
+
+
+   ::e_status window::_move(int x, int y)
+   {
+
+      uint16_t mask = 0;
+
+      mask |= XCB_CONFIG_WINDOW_X;
+      mask |= XCB_CONFIG_WINDOW_Y;
+
+      const uint32_t values[] = {
+         x,
+         y
+      };
+
+      auto cookie = xcb_configure_window(xcb_connection(), xcb_window(), mask, values);
+
+      auto estatus = _request_check(cookie);
+
+      if(!estatus)
+      {
+
+         return estatus;
+
+      }
+
+      return estatus;
+
+   }
+
+
+   ::e_status window::_resize(int cx, int cy)
+   {
+
+      uint16_t mask = 0;
+
+      mask |= XCB_CONFIG_WINDOW_WIDTH;
+      mask |= XCB_CONFIG_WINDOW_HEIGHT;
+
+      const uint32_t values[] = {
+         cx,
+         cy
+      };
+
+      auto cookie = xcb_configure_window(xcb_connection(), xcb_window(), mask, values);
+
+      auto estatus = _request_check(cookie);
+
+      if(!estatus)
+      {
+
+         return estatus;
+
+      }
+
+      return estatus;
+
+   }
+
+
+   ::e_status window::_withdraw_window()
+   {
+
+      auto estatus = delete_property(xcb_display()->m_atomWmState);
+
+      if(!estatus)
+      {
+
+         return estatus;
+
+      }
+
+      return estatus;
+
+   }
+
+
+   ::e_status window::_destroy_window()
+   {
+
+      auto cookie = xcb_destroy_window(xcb_connection(), xcb_window());
+
+      auto estatus = _request_check(cookie);
+
+      if(!estatus)
+      {
+
+         return estatus;
+
+      }
+
+      return estatus;
+
+   }
+
+
+} // namespace windowing_xcb
 
 
 

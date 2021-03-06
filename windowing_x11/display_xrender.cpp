@@ -13,7 +13,7 @@ namespace windowing_x11
    Cursor display::create_alpha_cursor(const ::image *pimage, int xHotSpot, int yHotSpot)
    {
 
-      synchronization_lock synchronizationlock(x11_mutex());
+      synchronization_lock synchronizationlock(user_mutex());
 
       windowing_output_debug_string("\n::CreateAlphaCursor 1");
 

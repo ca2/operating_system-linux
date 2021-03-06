@@ -11,7 +11,7 @@ extern ::app_core * g_pappcore;
 
 Display * x11_get_display();
 
-mutex * x11_mutex();
+mutex * user_mutex();
 
 
 void windowing_output_debug_string(const char * pszDebugString);

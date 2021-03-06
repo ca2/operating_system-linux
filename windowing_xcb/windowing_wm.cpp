@@ -2,352 +2,350 @@
 // Created by camilo on 17/02/2021. 15:16 BRT <3TBS_!!
 //
 #include "framework.h"
-#include "windowing_x11.h"
+#include "aura/user/_user.h"
+#include "windowing_xcb.h"
+#include "acme/os/_user.h"
+#include "aura/user/interaction_prodevian.h"
+#include "aura/platform/message_queue.h"
 #include <X11/Xatom.h>
 
 
-namespace windowing_x11
+namespace windowing_xcb
 {
 
+   
    /// must be run in x11 thread (user thread)
-   void window::wm_add_remove_state_mapped_raw(enum_net_wm_state estate, bool bSet)
+   ::e_status window::_mapped_add_net_wm_state(x_window::enum_atom eatomNetWmState)
    {
 
-      synchronization_lock synchronizationlock(x11_mutex());
+      synchronization_lock synchronizationlock(user_mutex());
 
-      if (m_iaNetWmState[estate] == (bSet ? 1 : 0))
+      auto atomFlag = xcb_display()->atom(eatomNetWmState);
+
+      auto atomWmNetState = xcb_display()->atom(x_window::e_atom_net_wm_state);
+
+      if (_list_has_atom(atomWmNetState, atomFlag))
       {
 
-         return;
+         return success_none;
 
       }
 
-      m_iaNetWmState[estate] = (bSet ? 1 : 0);
+      auto estatus = _send_client_event(atomWmNetState, _NET_WM_STATE_ADD, atomFlag);
 
-      auto windowRoot = DefaultRootWindow(Display());
-
-      auto atomFlag = x11_display()->intern_atom(estate, true);
-
-      auto atomWmNetState = x11_display()->net_wm_state_atom(true);
-
-      if (wm_test_list_raw(atomWmNetState, atomFlag))
+      if(!estatus)
       {
 
-         if (bSet)
-         {
-
-            return;
-
-         }
-
-      }
-      else
-      {
-
-         if (!bSet)
-         {
-
-            return;
-
-         }
+         return estatus;
 
       }
 
-      XClientMessageEvent xclient;
+      return estatus;
 
-      __zero(xclient);
+   }
 
-      xclient.type = ClientMessage;
-      xclient.window = Window();
-      xclient.message_type = atomWmNetState;
-      xclient.format = 32;
-      xclient.data.l[0] = bSet ? _NET_WM_STATE_ADD : _NET_WM_STATE_REMOVE;
-      xclient.data.l[1] = atomFlag;
-      xclient.data.l[2] = 0;
-      xclient.data.l[3] = 0;
-      xclient.data.l[4] = 0;
 
-      XSendEvent(Display(), windowRoot, False, SubstructureRedirectMask | SubstructureNotifyMask, (XEvent *) &xclient);
+   ::e_status window::_mapped_remove_net_wm_state(x_window::enum_atom eatomNetWmState)
+   {
+
+      synchronization_lock synchronizationlock(user_mutex());
+
+      auto atomFlag = xcb_display()->atom(eatomNetWmState);
+
+      auto atomWmNetState = xcb_display()->atom(x_window::e_atom_net_wm_state);
+
+      if (!_list_has_atom(atomWmNetState, atomFlag))
+      {
+
+          return success_none;
+
+      }
+
+      auto estatus = _send_client_event(atomWmNetState, _NET_WM_STATE_REMOVE, atomFlag);
+
+      if(!estatus)
+      {
+
+         return estatus;
+
+      }
+
+      return estatus;
 
    }
 
 
    /// must be run in x11 thread (user thread)
-   void window::wm_add_remove_state_mapped(enum_net_wm_state estate, bool bSet)
+   ::e_status window::_add_net_wm_state(x_window::enum_atom eatomNetWmState)
    {
 
-      synchronization_lock synchronizationlock(x11_mutex());
+      synchronization_lock synchronizationlock(user_mutex());
 
-      windowing_output_debug_string("\n::wm_add_remove_state_mapped 1");
+      windowing_output_debug_string("\n::wm_add_remove_state 1");
 
-      display_lock displaylock(x11_display());
+      display_lock displaylock(xcb_display());
 
-      wm_add_remove_state_mapped_raw(estate, bSet);
+      auto estatus = _add_net_wm_state(eatomNetWmState);
 
-      windowing_output_debug_string("\n::wm_add_remove_state_mapped 2");
+      windowing_output_debug_string("\n::wm_add_remove_state 2");
 
-   }
-
-
-   /// must be run in x11 thread (user thread)
-   void window::wm_add_remove_state_unmapped_raw(enum_net_wm_state estate, bool bSet)
-   {
-
-      synchronization_lock synchronizationlock(x11_mutex());
-
-      if (m_iaNetWmState[estate] == (bSet ? 1 : 0))
+      if(!estatus)
       {
 
-         return;
+         return estatus;
 
       }
 
-      m_iaNetWmState[estate] = (bSet ? 1 : 0);
-
-      
-
-      
-
-      int iScreen = DefaultScreen(Display());
-
-      auto windowRoot = RootWindow(Display(), iScreen);
-
-      Atom atomFlag = x11_display()->intern_atom(estate, true);
-
-      Atom atomWmNetState = x11_display()->net_wm_state_atom(true);
-
-      wm_add_remove_list_raw(atomWmNetState, atomFlag, bSet);
+      return estatus;
 
    }
 
 
    /// must be run in x11 thread (user thread)
-   void window::wm_add_remove_state_unmapped(enum_net_wm_state estate, bool bSet)
+   ::e_status window::_remove_net_wm_state(x_window::enum_atom eatomNetWmState)
    {
 
-      synchronization_lock synchronizationlock(x11_mutex());
+      synchronization_lock synchronizationlock(user_mutex());
 
-      windowing_output_debug_string("\n::wm_add_remove_state_unmapped 1");
-
-      display_lock displaylock(x11_display());
-
-      wm_add_remove_state_unmapped_raw(estate, bSet);
-
-      windowing_output_debug_string("\n::wm_add_remove_state_unmapped 2");
-
-   }
-
-
-   /// must be run in x11 thread (user thread)
-   void window::wm_add_remove_state_raw(enum_net_wm_state estate, bool bSet)
-   {
-
-      synchronization_lock synchronizationlock(x11_mutex());
+      ::e_status estatus;
 
       if (IsWindowVisibleRaw())
       {
 
-         wm_add_remove_state_mapped_raw(estate, bSet);
+         estatus = _mapped_remove_net_wm_state(eatomNetWmState);
 
       }
       else
       {
 
-         wm_add_remove_state_unmapped_raw(estate, bSet);
+         estatus = _unmapped_remove_net_wm_state(eatomNetWmState);
 
       }
 
-   }
+      if(!estatus)
+      {
 
+         return estatus;
 
-   /// must be run in x11 thread (user thread)
-   void window::wm_add_remove_state(enum_net_wm_state estate, bool bSet)
-   {
+      }
 
-      synchronization_lock synchronizationlock(x11_mutex());
-
-      windowing_output_debug_string("\n::wm_add_remove_state 1");
-
-      display_lock displaylock(x11_display());
-
-      wm_add_remove_state_raw(estate, bSet);
-
-      windowing_output_debug_string("\n::wm_add_remove_state 2");
+      return estatus;
 
    }
 
 
    /// must be run in x11 thread (user thread)
-   void window::wm_state_clear_raw(bool bSet)
+   ::e_status window::_clear_net_wm_state()
    {
 
-      synchronization_lock synchronizationlock(x11_mutex());
+      synchronization_lock synchronizationlock(user_mutex());
 
-      wm_add_remove_state_raw(e_net_wm_state_above, false);
-      wm_add_remove_state_raw(e_net_wm_state_below, false);
-      wm_add_remove_state_raw(e_net_wm_state_hidden, false);
+      auto estatus1 = _remove_net_wm_state(x_window::e_atom_net_wm_state_above);
 
+      auto estatus2 = _remove_net_wm_state(x_window::e_atom_net_wm_state_below);
+
+      auto estatus3 = _remove_net_wm_state(x_window::e_atom_net_wm_state_hidden);
+
+      if(!estatus1 || !estatus2 || estatus3)
+      {
+
+         return error_failed;
+
+      }
+
+      return ::success;
+      
    }
 
 
-//    wm_add_remove_state_raw(net_wm_state_maximized_horz, false);
-//    wm_add_remove_state_raw(net_wm_state_maximized_vert, false);
-//    wm_add_remove_state_raw(net_wm_state_fullscreen, false);
-
-
-    /// must be run in x11 thread (user thread)
-   void window::wm_state_below_raw(bool bSet)
+   /// must be run in x11 thread (user thread)
+   ::e_status window::_add_net_wm_state_below()
    {
 
-      synchronization_lock synchronizationlock(x11_mutex());
+      synchronization_lock synchronizationlock(user_mutex());
 
-      wm_add_remove_state_raw(e_net_wm_state_hidden, false);
-      wm_add_remove_state_raw(e_net_wm_state_above, false);
-      wm_add_remove_state_raw(e_net_wm_state_below, bSet);
+      auto estatus1 = _remove_net_wm_state_hidden();
+
+      auto estatus2 = _remove_net_wm_state_above();
+
+      auto estatus3 = _add_net_wm_state(x_window::e_atom_net_wm_state_below);
+
+      if(!estatus1 || !estatus2 || estatus3)
+      {
+
+         return error_failed;
+
+      }
+
+      return ::success;
+      
+   }
+
+
+   /// must be run in x11 thread (user thread)
+   ::e_status window::_add_net_wm_state_above()
+   {
+
+      synchronization_lock synchronizationlock(user_mutex());
+
+      auto estatus1 = _remove_net_wm_state_hidden();
+      auto estatus2 = _add_net_wm_state(x_window::e_atom_net_wm_state_above);
+      auto estatus3 = _remove_net_wm_state_hidden();
+
+      if(!estatus1 || !estatus2 || estatus3)
+      {
+
+         return error_failed;
+
+      }
+
+      return ::success;
 
    }
 
 
    /// must be run in x11 thread (user thread)
-   void window::wm_state_above_raw(bool bSet)
+   ::e_status window::_add_net_wm_state_hidden()
    {
 
-      synchronization_lock synchronizationlock(x11_mutex());
+      synchronization_lock synchronizationlock(user_mutex());
 
-      wm_add_remove_state_raw(e_net_wm_state_hidden, false);
-      wm_add_remove_state_raw(e_net_wm_state_below, false);
-      wm_add_remove_state_raw(e_net_wm_state_above, bSet);
+      auto estatus1 = _add_net_wm_state(x_window::e_atom_net_wm_state_hidden);
+      auto estatus2 = _remove_net_wm_state_above();
+      auto estatus3 = _remove_net_wm_state_below();
+
+      if(!estatus1 || !estatus2 || estatus3)
+      {
+
+         return error_failed;
+
+      }
+
+      return ::success;
 
    }
 
 
    /// must be run in x11 thread (user thread)
-   void window::wm_state_hidden_raw(bool bSet)
+   ::e_status window::_remove_net_wm_state_below()
    {
 
-      synchronization_lock synchronizationlock(x11_mutex());
+      synchronization_lock synchronizationlock(user_mutex());
 
-      wm_add_remove_state_raw(e_net_wm_state_below, false);
-      wm_add_remove_state_raw(e_net_wm_state_above, false);
-      wm_add_remove_state_raw(e_net_wm_state_hidden, bSet);
+      auto estatus = _remove_net_wm_state(x_window::e_atom_net_wm_state_below);
 
-   }
+      if(!estatus)
+      {
 
+         return error_failed;
 
-//void wm_state_hidden(oswindow w, bool bSet)
-//{
-//
-//   synchronization_lock synchronizationlock(x11_mutex());
-//
-//   windowing_output_debug_string("\n::wm_state_above 1");
-//
-//   display_lock displaylock(x11_display());
-//
-//   wm_state_hidden_raw(bSet);
-//
-//}
+      }
 
-
-    /// must be run in x11 thread (user thread)
-   void window::wm_state_above(bool bSet)
-   {
-
-      synchronization_lock synchronizationlock(x11_mutex());
-
-      windowing_output_debug_string("\n::wm_state_above 1");
-
-      display_lock displaylock(x11_display());
-
-      wm_state_above_raw(bSet);
-
-      windowing_output_debug_string("\n::wm_state_above 2");
+      return ::success;
 
    }
 
 
    /// must be run in x11 thread (user thread)
-   void window::wm_state_below(bool bSet)
+   ::e_status window::_remove_net_wm_state_above()
    {
 
-      synchronization_lock synchronizationlock(x11_mutex());
+      synchronization_lock synchronizationlock(user_mutex());
 
-      windowing_output_debug_string("\n::wm_state_below 1");
+      auto estatus = _remove_net_wm_state(x_window::e_atom_net_wm_state_above);
 
-      display_lock displaylock(x11_display());
+      if(!estatus)
+      {
 
-      wm_state_above_raw(bSet);
+         return error_failed;
 
-      windowing_output_debug_string("\n::wm_state_below 2");
+      }
+
+      return ::success;
 
    }
 
 
    /// must be run in x11 thread (user thread)
-   void window::wm_state_hidden(bool bSet)
+   ::e_status window::_remove_net_wm_state_hidden()
    {
 
-      synchronization_lock synchronizationlock(x11_mutex());
+      synchronization_lock synchronizationlock(user_mutex());
 
-      windowing_output_debug_string("\n::wm_state_hidden 1");
+      auto estatus = _remove_net_wm_state(x_window::e_atom_net_wm_state_hidden);
 
-      display_lock displaylock(x11_display());
+      if(!estatus)
+      {
 
-      wm_state_hidden_raw(bSet);
+         return error_failed;
 
-      windowing_output_debug_string("\n::wm_state_hidden 2");
+      }
+
+      return ::success;
 
    }
 
 
    /// must be run in x11 thread (user thread)
-   void window::wm_toolwindow(bool bToolWindow)
+   ::e_status window::_set_tool_window(bool bToolWindow)
    {
 
       windowing_output_debug_string("\n::wm_toolwindow 1");
 
-      synchronization_lock synchronizationlock(x11_mutex());
+      synchronization_lock synchronizationlock(user_mutex());
 
-      display_lock displaylock(x11_display());
+      display_lock displaylock(xcb_display());
 
-      if (!m_pdisplay)
+      ::e_status estatus;
+
+      if(bToolWindow)
       {
 
-         windowing_output_debug_string("\n::wm_toolwindow 1.1");
+         estatus = _add_net_wm_state(x_window::e_atom_net_wm_state_skip_taskbar);
 
-         fflush(stdout);
+      }
+      else
+      {
 
-         return;
+         estatus = _remove_net_wm_state(x_window::e_atom_net_wm_state_skip_taskbar);
 
       }
 
-      
-
-      wm_add_remove_state_raw(e_net_wm_state_skip_taskbar, bToolWindow);
-
       windowing_output_debug_string("\n::wm_toolwindow 2");
 
+      if(!estatus)
+      {
+
+         return estatus;
+
+      }
+
+      return estatus;
+   
    }
 
 
    /// must be run in x11 thread (user thread)
-   void window::wm_normalwindow()
+   ::e_status window::_set_normal_window()
    {
 
-      Atom atomWindowType;
+      ::e_status estatus = ::error_failed;
 
-      atomWindowType = x11_display()->intern_atom("_NET_WM_WINDOW_TYPE", False);
+      xcb_atom_t atomWindowType;
 
-      if(atomWindowType != None)
+      atomWindowType = xcb_display()->atom(x_window::e_atom_net_wm_window_type_normal);
+
+      if(atomWindowType != XCB_ATOM_NONE)
       {
 
-         Atom atomWindowTypeNormal;
+         xcb_atom_t atomWindowTypeValue;
 
-         atomWindowTypeNormal = x11_display()->intern_atom("_NET_WM_WINDOW_TYPE_NORMAL", False);
+         atomWindowTypeValue = xcb_display()->atom(x_window::e_atom_net_wm_window_type_normal);
 
-         if(atomWindowTypeNormal != None)
+         if(atomWindowTypeValue != XCB_ATOM_NONE)
          {
 
-            XChangeProperty(Display(), Window(), atomWindowType, XA_ATOM, 32, PropModeReplace, (unsigned char *) &atomWindowTypeNormal, 1);
+            estatus = _change_atom_atom(atomWindowType, atomWindowTypeValue);
 
          }
 
@@ -355,150 +353,93 @@ namespace windowing_x11
 
       windowing_output_debug_string("\n::windowing_x11::window::wm_normalwindow");
 
+      if(!estatus)
+      {
+
+         return estatus;
+
+      }
+
+      return estatus;
+
    }
 
 
    /// must be run in x11 thread (user thread)
-   void window::wm_hidden_state(bool bHidden)
+   ::e_status window::_set_hidden_state(bool bHidden)
    {
 
       windowing_output_debug_string("\n::wm_hidden_state 1");
 
-      synchronization_lock synchronizationlock(x11_mutex());
+      synchronization_lock synchronizationlock(user_mutex());
 
-      display_lock displaylock(x11_display());
+      display_lock displaylock(xcb_display());
 
-      if (!m_pdisplay)
+      ::e_status estatus;
+
+      if(bHidden)
       {
 
-         windowing_output_debug_string("\n::wm_hidden_state 1.1");
+         estatus = _add_net_wm_state(x_window::e_atom_net_wm_state_skip_taskbar);
 
-         fflush(stdout);
+      }
+      else
+      {
 
-         return;
+         estatus = _remove_net_wm_state(x_window::e_atom_net_wm_state_skip_taskbar);
 
       }
 
-      
-
-      wm_add_remove_state_raw(e_net_wm_state_skip_taskbar, bHidden);
-
       windowing_output_debug_string("\n::wm_hidden_state 2");
+
+      if(!estatus)
+      {
+
+         return estatus;
+
+      }
+
+      return estatus;
 
    }
 
 
-//void wm_arbitrarypositionwindow(oswindow w, bool bArbitraryPositionWindow)
-//{
-//
-//   x11_fork([=]()
-//            {
-//
-//               windowing_output_debug_string("\n::wm_arbitrarypositionwindow 1");
-//
-//               synchronization_lock synchronizationlock(x11_mutex());
-//
-//               display_lock displaylock(x11_display());
-//
-//               if(!m_pdisplay)
-//               {
-//
-//                  windowing_output_debug_string("\n::wm_arbitrarypositionwindow 1.1");
-//
-//                  fflush(stdout);
-//
-//                  return;
-//
-//               }
-//
-//               
-//
-//               auto windowRoot = DefaultRootWindow(Display());
-//
-//               Atom atomWindowType = x11_display()->intern_atom("_NET_WM_WINDOW_TYPE", False);
-//
-//               if(atomWindowType != None)
-//               {
-//
-//                  Atom atomWindowTypeValue;
-//
-//                  if(bArbitraryPositionWindow)
-//                  {
-//
-//                     atomWindowTypeValue = x11_display()->intern_atom("_NET_WM_WINDOW_TYPE_UTILITY", False);
-//
-//                  }
-//                  else
-//                  {
-//
-//                     atomWindowTypeValue = x11_display()->intern_atom("_NET_WM_WINDOW_TYPE_NORMAL", False);
-//
-//                  }
-//
-//                  if(atomWindowType != None)
-//                  {
-//
-//                     XChangeProperty(Display(), Window(), atomWindowType, XA_ATOM, 32, PropModeReplace, (unsigned char *) &atomWindowTypeValue, 1);
-//
-//                  }
-//
-//               }
-//
-//               windowing_output_debug_string("\n::wm_arbitrarypositionwindow 2");
-//
-//            });
-//
-//}
-
-
-    /// must be run in x11 thread (user thread)
-   void window::wm_desktopwindow(bool bDesktopWindow)
+   /// must be run in x11 thread (user thread)
+   ::e_status window::_set_desktop_window(bool bDesktopWindow)
    {
+
+      ::e_status estatus = ::error_failed;
 
       windowing_output_debug_string("\n::wm_desktopwindow 1");
 
-      synchronization_lock synchronizationlock(x11_mutex());
+      synchronization_lock synchronizationlock(user_mutex());
 
-      display_lock displaylock(x11_display());
+      display_lock displaylock(xcb_display());
 
-      if (!m_pdisplay)
+      xcb_atom_t atomWindowType = xcb_display()->intern_atom("_NET_WM_WINDOW_TYPE", false);
+
+      if (atomWindowType != XCB_ATOM_NONE)
       {
 
-         windowing_output_debug_string("\n::wm_desktopwindow 1.1");
-
-         fflush(stdout);
-
-         return;
-
-      }
-
-      auto windowRoot = DefaultRootWindow(Display());
-
-      Atom atomWindowType = x11_display()->intern_atom("_NET_WM_WINDOW_TYPE", False);
-
-      if (atomWindowType != None)
-      {
-
-         Atom atomWindowTypeValue;
+         xcb_atom_t atomWindowTypeValue;
 
          if (bDesktopWindow)
          {
 
-            atomWindowTypeValue = x11_display()->intern_atom("_NET_WM_WINDOW_TYPE_DESKTOP", False);
+            atomWindowTypeValue = xcb_display()->intern_atom("_NET_WM_WINDOW_TYPE_DESKTOP", false);
 
          }
          else
          {
 
-            atomWindowTypeValue = x11_display()->intern_atom("_NET_WM_WINDOW_TYPE_NORMAL", False);
+            atomWindowTypeValue = xcb_display()->intern_atom("_NET_WM_WINDOW_TYPE_NORMAL", false);
 
          }
 
-         if (atomWindowType != None)
+         if (atomWindowType != XCB_ATOM_NONE)
          {
 
-            XChangeProperty(Display(), Window(), atomWindowType, XA_ATOM, 32, PropModeReplace,
-                            (unsigned char *) &atomWindowTypeValue, 1);
+            estatus = _change_atom_atom(atomWindowType, atomWindowTypeValue);
 
          }
 
@@ -506,57 +447,54 @@ namespace windowing_x11
 
       windowing_output_debug_string("\n::wm_desktopwindow 2");
 
+      if(!estatus)
+      {
+
+         return estatus;
+
+      }
+
+      return estatus;
+
    }
 
 
    /// must be run in x11 thread (user thread)
-   void window::wm_centerwindow(bool bCenterWindow)
+   ::e_status window::_set_center_window(bool bCenterWindow)
    {
+
+      ::e_status estatus = ::error_failed;
 
       windowing_output_debug_string("\n::wm_centerwindow 1");
 
-      synchronization_lock synchronizationlock(x11_mutex());
+      synchronization_lock synchronizationlock(user_mutex());
 
-      display_lock displaylock(x11_display());
+      display_lock displaylock(xcb_display());
 
-      if (!m_pdisplay)
+      xcb_atom_t atomWindowType = xcb_display()->intern_atom("_NET_WM_WINDOW_TYPE", false);
+
+      if (atomWindowType != XCB_ATOM_NONE)
       {
 
-         windowing_output_debug_string("\n::wm_centerwindow 1.1");
-
-         fflush(stdout);
-
-         return;
-
-      }
-
-      auto windowRoot = DefaultRootWindow(Display());
-
-      Atom atomWindowType = x11_display()->intern_atom("_NET_WM_WINDOW_TYPE", False);
-
-      if (atomWindowType != None)
-      {
-
-         Atom atomWindowTypeValue;
+         xcb_atom_t atomWindowTypeValue;
 
          if (bCenterWindow)
          {
 
-            atomWindowTypeValue = x11_display()->intern_atom("_NET_WM_WINDOW_TYPE_SPLASH", False);
+            atomWindowTypeValue = xcb_display()->intern_atom("_NET_WM_WINDOW_TYPE_SPLASH", false);
 
          }
          else
          {
 
-            atomWindowTypeValue = x11_display()->intern_atom("_NET_WM_WINDOW_TYPE_NORMAL", False);
+            atomWindowTypeValue = xcb_display()->intern_atom("_NET_WM_WINDOW_TYPE_NORMAL", false);
 
          }
 
-         if (atomWindowType != None)
+         if (atomWindowType != XCB_ATOM_NONE)
          {
 
-            XChangeProperty(Display(), Window(), atomWindowType, XA_ATOM, 32, PropModeReplace,
-                            (unsigned char *) &atomWindowTypeValue, 1);
+            estatus = _change_atom_atom(atomWindowType, atomWindowTypeValue);
 
          }
 
@@ -564,57 +502,55 @@ namespace windowing_x11
 
       windowing_output_debug_string("\n::wm_centerwindow 2");
 
+      if(!estatus)
+      {
+
+         return estatus;
+
+      }
+
+      return estatus;
+
+
    }
 
 
    /// must be run in x11 thread (user thread)
-   void window::wm_splashwindow(bool bCenterWindow)
+   ::e_status window::_set_splash_window(bool bSplashWindow)
    {
+
+      ::e_status estatus = ::error_failed;
 
       windowing_output_debug_string("\n::wm_centerwindow 1");
 
-      synchronization_lock synchronizationlock(x11_mutex());
+      synchronization_lock synchronizationlock(user_mutex());
 
-      display_lock displaylock(x11_display());
+      display_lock displaylock(xcb_display());
 
-      if (!m_pdisplay)
+      xcb_atom_t atomWindowType = xcb_display()->intern_atom("_NET_WM_WINDOW_TYPE", false);
+
+      if (atomWindowType != XCB_ATOM_NONE)
       {
 
-         windowing_output_debug_string("\n::wm_centerwindow 1.1");
+         xcb_atom_t atomWindowTypeValue;
 
-         fflush(stdout);
-
-         return;
-
-      }
-
-      auto windowRoot = DefaultRootWindow(Display());
-
-      Atom atomWindowType = x11_display()->intern_atom("_NET_WM_WINDOW_TYPE", False);
-
-      if (atomWindowType != None)
-      {
-
-         Atom atomWindowTypeValue;
-
-         if (bCenterWindow)
+         if (bSplashWindow)
          {
 
-            atomWindowTypeValue = x11_display()->intern_atom("_NET_WM_WINDOW_TYPE_SPLASH", False);
+            atomWindowTypeValue = xcb_display()->intern_atom("_NET_WM_WINDOW_TYPE_SPLASH", false);
 
          }
          else
          {
 
-            atomWindowTypeValue = x11_display()->intern_atom("_NET_WM_WINDOW_TYPE_NORMAL", False);
+            atomWindowTypeValue = xcb_display()->intern_atom("_NET_WM_WINDOW_TYPE_NORMAL", false);
 
          }
 
-         if (atomWindowType != None)
+         if (atomWindowType != XCB_ATOM_NONE)
          {
 
-            XChangeProperty(Display(), Window(), atomWindowType, XA_ATOM, 32, PropModeReplace,
-                            (unsigned char *) &atomWindowTypeValue, 1);
+            estatus = _change_atom_atom(atomWindowType, atomWindowTypeValue);
 
          }
 
@@ -622,59 +558,54 @@ namespace windowing_x11
 
       windowing_output_debug_string("\n::wm_centerwindow 2");
 
+      if(!estatus)
+      {
+
+         return estatus;
+
+      }
+
+      return estatus;
+
    }
 
 
    /// must be run in x11 thread (user thread)
-   void window::wm_dockwindow( bool bDockWindow)
+   ::e_status window::_set_dock_window( bool bDockWindow)
    {
+
+      ::e_status estatus = ::error_failed;
 
       windowing_output_debug_string("\n::wm_dockwindow 1");
 
-      synchronization_lock synchronizationlock(x11_mutex());
+      synchronization_lock synchronizationlock(user_mutex());
 
-      display_lock displaylock(x11_display());
+      display_lock displaylock(xcb_display());
 
-      if (!m_pdisplay)
+      xcb_atom_t atomWindowType = xcb_display()->intern_atom("_NET_WM_WINDOW_TYPE", false);
+
+      if (atomWindowType != XCB_ATOM_NONE)
       {
 
-         windowing_output_debug_string("\n::wm_dockwindow 1.1");
-
-         fflush(stdout);
-
-         return;
-
-      }
-
-      
-
-      auto windowRoot = DefaultRootWindow(Display());
-
-      Atom atomWindowType = x11_display()->intern_atom("_NET_WM_WINDOW_TYPE", False);
-
-      if (atomWindowType != None)
-      {
-
-         Atom atomWindowTypeValue;
+         xcb_atom_t atomWindowTypeValue;
 
          if (bDockWindow)
          {
 
-            atomWindowTypeValue = x11_display()->intern_atom("_NET_WM_WINDOW_TYPE_DOCK", False);
+            atomWindowTypeValue = xcb_display()->intern_atom("_NET_WM_WINDOW_TYPE_DOCK", false);
 
          }
          else
          {
 
-            atomWindowTypeValue = x11_display()->intern_atom("_NET_WM_WINDOW_TYPE_NORMAL", False);
+            atomWindowTypeValue = xcb_display()->intern_atom("_NET_WM_WINDOW_TYPE_NORMAL", false);
 
          }
 
-         if (atomWindowType != None)
+         if (atomWindowType != XCB_ATOM_NONE)
          {
 
-            XChangeProperty(Display(), Window(), atomWindowType, XA_ATOM, 32, PropModeReplace,
-                            (unsigned char *) &atomWindowTypeValue, 1);
+            estatus = _change_atom_atom(atomWindowType, atomWindowTypeValue);
 
          }
 
@@ -682,44 +613,27 @@ namespace windowing_x11
 
       windowing_output_debug_string("\n::wm_dockwindow 2");
 
-   }
-
-
-   /// must be run in x11 thread (user thread)
-   void window::wm_nodecorations(int bMap)
-   {
-
-      windowing_output_debug_string("\n::wm_nodecorations 1");
-
-      synchronization_lock synchronizationlock(x11_mutex());
-
-      display_lock displaylock(x11_display());
-
-      if (!m_pdisplay)
+      if(!estatus)
       {
 
-         return;
+         return estatus;
 
       }
 
-      _wm_nodecorations(bMap);
+      return estatus;
 
    }
 
 
    /// must be run in x11 thread (user thread)
-   void window::_wm_nodecorations(int bMap)
+   ::e_status window::_set_nodecorations(int bMap)
    {
 
-      
+      ::e_status estatus = ::error_failed;
 
-      auto windowRoot = DefaultRootWindow(Display());
+      xcb_atom_t atomMotifHints = xcb_display()->intern_atom("_MOTIF_WM_HINTS", true);
 
-      bool bCreateAtom = true;
-
-      Atom atomMotifHints = XInternAtom(Display(), "_MOTIF_WM_HINTS", bCreateAtom ? True : False);
-
-      if (atomMotifHints != None)
+      if (atomMotifHints != XCB_ATOM_NONE)
       {
 
          MWMHints hints = {};
@@ -727,57 +641,51 @@ namespace windowing_x11
          hints.flags = MWM_HINTS_DECORATIONS;
          hints.decorations = MWM_DECOR_NONE;
 
-         //XChangeProperty(Display(), Window(), atomMotifHints, atomMotifHints, 32, PropModeReplace,
-           //              (unsigned char *) &hints, sizeof(MWMHints) / 4);
-         XChangeProperty(Display(), Window(), atomMotifHints, atomMotifHints, 8, PropModeReplace,
-                       (unsigned char *) &hints, 5);
+         //XChangeProperty(xcb_connection(), xcb_window(), atomMotifHints, atomMotifHints, 32, PropModeReplace,
+         //              (unsigned char *) &hints, sizeof(MWMHints) / 4);
+         estatus = _change_property(atomMotifHints, atomMotifHints, XCB_PROP_MODE_REPLACE, 32, 5, &hints);
 
       }
 
       if (bMap)
       {
 
-         XUnmapWindow(Display(), Window());
+         xcb_unmap_window(xcb_connection(), xcb_window());
 
-         XMapWindow(Display(), Window());
+         xcb_map_window(xcb_connection(), xcb_window());
 
       }
 
       windowing_output_debug_string("\n::wm_nodecorations 2");
 
-   }
-
-
-   //int_bool IsWindowVisibleRaw(Display *Display(), Window window);
-
-
-   /// must be run in x11 thread (user thread)
-   void window::wm_iconify_window()
-   {
-
-      synchronization_lock synchronizationlock(x11_mutex());
-
-      display_lock displaylock(x11_display());
-
-      windowing_output_debug_string("\n::wm_iconify_window 1");
-
-      if (!m_pdisplay)
+      if(!estatus)
       {
 
-         windowing_output_debug_string("\n::wm_iconify_window 1.1");
-
-         return;
+         return estatus;
 
       }
 
-      auto window = Window();
+      return estatus;
 
-      int iScreen = DefaultScreen(Display());
+   }
+
+
+   /// must be run in x11 thread (user thread)
+   ::e_status window::_set_iconify_window()
+   {
+
+      synchronization_lock synchronizationlock(user_mutex());
+
+      display_lock displaylock(xcb_display());
+
+      windowing_output_debug_string("\n::wm_iconify_window 1");
+      
+      ::e_status estatus;
 
       if (IsWindowVisibleRaw())
       {
 
-         XIconifyWindow(Display(), Window(), iScreen);
+         estatus = _mapped_net_state_raw(1, xcb_display()->intern_atom("_NET_WM_STATE_HIDDEN", false), 0);
 
       }
       else
@@ -790,11 +698,20 @@ namespace windowing_x11
 
          }
 
-         unmapped_net_state_raw(x11_display()->intern_atom("_NET_WM_STATE_HIDDEN", False));
+         estatus = _unmapped_net_state_raw(xcb_display()->intern_atom("_NET_WM_STATE_HIDDEN", false));
 
       }
 
       windowing_output_debug_string("\n::wm_iconify_window 2");
+
+      if(!estatus)
+      {
+
+         return estatus;
+
+      }
+
+      return estatus;
 
    }
 
@@ -803,23 +720,23 @@ namespace windowing_x11
    int_bool window::IsWindowVisibleRaw()
    {
 
-      synchronization_lock synchronizationlock(x11_mutex());
+      synchronization_lock synchronizationlock(user_mutex());
 
-      XWindowAttributes attr;
+      auto estatus = _get_window_attributes();
 
-      if (!XGetWindowAttributes(Display(), Window(), &attr))
+      if(!estatus)
       {
 
          return false;
 
       }
 
-      return attr.map_state == IsViewable;
+      return m_attributes.map_state == XCB_MAP_STATE_VIEWABLE;
 
    }
 
 
-} // namespace windowing_x11
+} // namespace windowing_xcb
 
 
 

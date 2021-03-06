@@ -9,25 +9,25 @@
 //class ::mutex;
 
 
-//CLASS_DECL_AURA i32 osdisplay_find(Display * pdisplay);
-//CLASS_DECL_AURA osdisplay_data * osdisplay_get(Display * pdisplay);
-//CLASS_DECL_AURA bool osdisplay_remove(Display * pdisplay);
+//CLASS_DECL_AURA i32 osdisplay_find(xcb_connection_t * pdisplay);
+//CLASS_DECL_AURA osdisplay_data * osdisplay_get(xcb_connection_t * pdisplay);
+//CLASS_DECL_AURA bool osdisplay_remove(xcb_connection_t * pdisplay);
 
 
-namespace windowing_x11
+namespace windowing_xcb
 {
 
 
-   class CLASS_DECL_WINDOWING_X11 display_lock
+   class CLASS_DECL_WINDOWING_XCB display_lock
    {
    public:
 
 
-      __pointer(::windowing_x11::display)        m_pdisplay;
+      __pointer(::windowing_xcb::display)        m_pdisplay;
       bool                                            m_bLocked;
 
 
-      display_lock(::windowing_x11::display * pdisplay, bool bInitialLock = true);
+      display_lock(::windowing_xcb::display * pdisplay, bool bInitialLock = true);
       ~display_lock();
 
 
@@ -41,7 +41,7 @@ namespace windowing_x11
    };
 
 
-} // namespace windowing_x11
+} // namespace windowing_xcb
 
 
 

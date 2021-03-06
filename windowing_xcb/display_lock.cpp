@@ -4,11 +4,11 @@
 #include "framework.h"
 
 
-namespace windowing_x11
+namespace windowing_xcb
 {
 
 
-   display_lock::display_lock(::windowing_x11::display * pdisplay, bool bInitialLock) :
+   display_lock::display_lock(::windowing_xcb::display * pdisplay, bool bInitialLock) :
       m_pdisplay(pdisplay),
       m_bLocked(false)
    {
@@ -61,7 +61,7 @@ namespace windowing_x11
    }
 
 
-} // namespace windowing_x11
+} // namespace windowing_xcb
 
 
 

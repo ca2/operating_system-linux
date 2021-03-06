@@ -2,18 +2,8 @@ cmake_minimum_required(VERSION 3.17)
 project(node_linux CXX)
 
 
-set(CMAKE_CXX_STANDARD 20)
-set(CMAKE_CXX_EXTENSIONS OFF)
 add_compile_options("$<$<CONFIG:DEBUG>:-DDEBUG>")
 
-
-if (${CMAKE_SYSTEM_NAME} STREQUAL "Linux")
-   set(LINUX TRUE)
-   set(PLATFORM_NAME "linux")
-   include(FindPkgConfig)
-elseif (WIN32)
-   set(PLATFORM_NAME "windows")
-endif ()
 
 
 set(LIBRARY_OUTPUT_PATH ${CMAKE_CURRENT_SOURCE_DIR}/../../../time-${PLATFORM_NAME}/cmake)
@@ -66,14 +56,12 @@ if (MSVC)
    target_link_libraries(node_linux PRIVATE ${library_references})
    add_dependencies(node_linux draw2d_gdiplus)
 elseif (LINUX)
-   #pkg_check_modules(PKGCONFIG glib-2.0 gtk+-3.0 gdk-3.0)
    target_compile_options(node_linux PRIVATE -fpermissive)
    target_compile_options(node_linux PRIVATE ${PKGCONFIG_CFLAGS})
    target_link_options(node_linux PRIVATE -Wl,-rpath=\$ORIGIN)
    target_link_libraries(node_linux PRIVATE ${library_references} ${PKGCONFIG_LIBRARIES})
-   target_link_libraries(node_linux PRIVATE asound)
+   #target_link_libraries(node_linux PRIVATE asound)
    target_link_options(node_linux PRIVATE -Wl,-z,defs)
-   #add_dependencies(node_linux node_ansios)
 endif ()
 
 

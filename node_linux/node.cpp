@@ -30,7 +30,7 @@ namespace node_linux
    }
 
 
-   result_pointer < appindicator > node::new_appindicator()
+   ::extended::transport < appindicator > node::new_appindicator()
    {
 
       auto pappindicator = __create < appindicator >();

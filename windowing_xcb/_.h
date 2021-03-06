@@ -6,53 +6,48 @@
 #include "aura/os/linux/appindicator.h"
 #include "acme/os/ansios/_pthread.h"
 #include "acme/os/linux/_user.h"
+#include "platform/x_window.h"
+
 
 #define WITH_XI
 #define WITH_SN
 
-//#include <gtk/gtk.h>
-//#include <gdk/gdkx.h>
+
+#include <xcb/xcb.h>
+#include <xcb/xcb_image.h>
+#include <xcb/render.h>
 
 
-#include <X11/Xlib.h>
-#include <X11/Xutil.h>
-#include <X11/extensions/Xrender.h>
-#include <X11/Xatom.h>
-
-
-#if defined(_WINDOWING_X11_LIBRARY)
-   #define CLASS_DECL_WINDOWING_X11  CLASS_DECL_EXPORT
+#if defined(_WINDOWING_XCB_LIBRARY)
+   #define CLASS_DECL_WINDOWING_XCB  CLASS_DECL_EXPORT
 #else
-   #define CLASS_DECL_WINDOWING_X11  CLASS_DECL_IMPORT
+   #define CLASS_DECL_WINDOWING_XCB  CLASS_DECL_IMPORT
 #endif
 
 
-namespace windowing_x11
+namespace windowing_xcb
 {
 
 
    class windowing;
    class display;
    class window;
-   class x11data;
+
+
+   template < typename TYPE >
+   using visual_id_map = map < xcb_visualid_t, TYPE >;
+
+   using visual_pictformat_map = visual_id_map < xcb_render_pictformat_t >;
+
+   using visual_depth_map = visual_id_map < uint32_t >;
+
+   template < typename TYPE >
+   using pictformat_map = map < xcb_render_pictformat_t, TYPE >;
+
+   using pictformat_info_map = pictformat_map < const xcb_render_pictforminfo_t * >;
 
 
 } // namespace node_gnome
-
-
-//namespace user
-//{
-//
-//   char * gsettings_get_malloc(const char * pszSchema, const char * pszKey);
-//
-//
-//}
-
-
-//#include "node.h"
-
-
-//#include "copydesk.h"
 
 
 #include "buffer.h"

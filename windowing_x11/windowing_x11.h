@@ -44,7 +44,7 @@ struct MWMHints
 CLASS_DECL_WINDOWING_X11 void x11_main();
 
 
-CLASS_DECL_WINDOWING_X11 ::mutex * x11_mutex();
+CLASS_DECL_WINDOWING_X11 ::mutex * user_mutex();
 
 
 enum_net_wm_state net_wm_state(const char *pszText);
@@ -87,7 +87,6 @@ namespace windowing_x11
    public:
 
       XWindowAttributes m_attr;
-      XVisualInfo m_visualinfo;
       //GdkWindow *                   m_pgdkwindow;
 
    };

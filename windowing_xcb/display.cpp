@@ -3,55 +3,36 @@
 // hi5 contribution...
 #include "framework.h"
 #include "apex/platform/app_core.h"
-#include "windowing_x11.h"
-//#include "_user.h"
-//#include <gdk/gdk.h>
+#include "windowing_xcb.h"
 
 
 extern ::app_core * g_pappcore;
 
-Display * x11_get_display();
 
-mutex * x11_mutex();
+xcb_connection_t * xcb_get_display();
 
-#define CA2_X11_WINDOW_LONG "ca2_ccwarehouse_window_long"
-#define CA2_X11_WINDOW_LONG_STYLE "ca2_ccwarehouse_window_long_style"
-#define CA2_X11_WINDOW_LONG_STYLE_EX "ca2_ccwarehouse_window_long_style_ex"
+
+mutex * user_mutex();
 
 
 void windowing_output_debug_string(const char *pszDebugString);
 
 
-namespace windowing_x11
+namespace windowing_xcb
 {
-
-
-   //display *g_posdisplaydataMain = nullptr;
-
-
-   //void defer_init_ui();
-
-
-   //display *x11_main_display()
-   //{
-
-   //   return g_posdisplaydataMain;
-
-   //}
 
 
    display::display()
    {
 
       set_layer(LAYERED_X11, this);
-      //m_pcsOsDisplayData = new critical_section();
-      m_pdisplay = nullptr;
-      m_atomLongType = None;
-      m_atomLongStyle = None;
-      m_atomNetWmState = None;
-      m_atomLongStyleEx = 0;
-      m_countReference = 1;
-//   m_pmutexInput           = new ::mutex();
+
+      m_pconnection = nullptr;
+      m_pdepth = nullptr;
+      m_pvisualtype = nullptr;
+      m_pscreen = nullptr;
+      m_colormap = 0;
+      m_fontCursor = 0;
 
    }
 
@@ -59,9 +40,14 @@ namespace windowing_x11
    display::~ display()
    {
 
-//   ::acme::del(m_pmutexInput);
+      if(m_pconnection)
+      {
 
-      //::acme::del(m_pcsOsDisplayData);
+         xcb_disconnect(m_pconnection);
+
+         m_pconnection = nullptr;
+
+      }
 
    }
 
@@ -80,19 +66,7 @@ namespace windowing_x11
    i64 display::add_ref(OBJ_REF_DBG_PARAMS)
    {
 
-#ifdef WINDOWS
-
-      return InterlockedIncrement64(&m_countReference);
-
-#elif defined(RASPBIAN) && defined(OS32BIT)
-
-      return __sync_add_and_fetch_4(&m_countReference,1);
-
-#else
-
-      return __sync_add_and_fetch(&m_countReference, 1);
-
-#endif
+      return ::windowing::display::add_ref(OBJ_REF_DBG_ARGS);
 
    }
 
@@ -100,19 +74,7 @@ namespace windowing_x11
    i64 display::dec_ref(OBJ_REF_DBG_PARAMS)
    {
 
-#ifdef WINDOWS
-
-      return InterlockedDecrement64(&m_countReference);
-
-#elif defined(RASPBIAN) && defined(OS32BIT)
-
-      return __sync_sub_and_fetch_4(&m_countReference,1);
-
-#else
-
-      return __sync_sub_and_fetch(&m_countReference, 1);
-
-#endif
+      return ::windowing::display::add_ref(OBJ_REF_DBG_ARGS);
 
    }
 
@@ -120,16 +82,7 @@ namespace windowing_x11
    i64 display::release(OBJ_REF_DBG_PARAMS)
    {
 
-      i64 i = dec_ref(OBJ_REF_DBG_ARGS);
-
-      if (i == 0)
-      {
-
-         //osdisplay_remove(m_pdisplay);
-
-      }
-
-      return i;
+      return ::windowing::display::release(OBJ_REF_DBG_ARGS);
 
    }
 
@@ -140,19 +93,200 @@ namespace windowing_x11
    ::e_status display::open()
    {
 
-      if(::is_set(m_pdisplay))
+      if(::is_set(m_pconnection))
       {
 
          return ::success;
 
       }
 
-      m_pdisplay =  XOpenDisplay(NULL);
+      m_pconnection =  xcb_connect (nullptr, nullptr);
 
-      if(::is_null(m_pdisplay))
+      if(::is_null(m_pconnection))
       {
 
          return ::error_failed;
+
+      }
+
+      if (xcb_connection_has_error(m_pconnection))
+      {
+
+         fprintf(stderr, "ERROR: failed to connection to X server\n");
+
+         return error_failed;
+
+      }
+
+      auto cookie = xcb_render_query_pict_formats_unchecked(xcb_connection());
+
+      auto preply = __malloc(xcb_render_query_pict_formats_reply(xcb_connection(), cookie, nullptr));
+
+      m_prender_query_pict_formats_reply2 = preply;
+
+      // Init the visual ID -> format ID hash table
+      for (auto screens = xcb_render_query_pict_formats_screens_iterator(preply); screens.rem; xcb_render_pictscreen_next(&screens))
+      {
+
+         for (auto depths = xcb_render_pictscreen_depths_iterator(screens.data); depths.rem; xcb_render_pictdepth_next(&depths))
+         {
+
+            const xcb_render_pictvisual_t * visuals = xcb_render_pictdepth_visuals(depths.data);
+
+            const int len = xcb_render_pictdepth_visuals_length(depths.data);
+
+            for (int i = 0; i < len; i++)
+            {
+
+               m_mapVisualPictFormat.set_at(visuals[i].visual, visuals[i].format);
+
+            }
+
+         }
+
+      }
+
+      // Init the format ID -> xcb_render_directformat_t* hash table
+      const xcb_render_pictforminfo_t * formats = xcb_render_query_pict_formats_formats(preply);
+
+      const int len = xcb_render_query_pict_formats_formats_length(preply);
+
+      for (int i = 0; i < len; i++)
+      {
+
+         if (formats[i].type == XCB_RENDER_PICT_TYPE_DIRECT)
+         {
+
+            m_mapFormatInfo.set_at(formats[i].id, &formats[i]);
+
+         }
+
+         // Init the visual ID -> depth hash table
+         const xcb_setup_t * psetup = xcb_get_setup(xcb_connection());
+
+         for (auto screen = xcb_setup_roots_iterator(psetup); screen.rem; xcb_screen_next(&screen))
+         {
+
+            for (auto depth = xcb_screen_allowed_depths_iterator(screen.data); depth.rem; xcb_depth_next(&depth))
+            {
+
+               const int len = xcb_depth_visuals_length(depth.data);
+
+               const xcb_visualtype_t * visualtypea = xcb_depth_visuals(depth.data);
+
+               for (int i = 0; i < len; i++)
+               {
+
+                  m_mapVisualDepth.set_at(visualtypea[i].visual_id, depth.data->depth);
+
+               }
+
+            }
+
+         }
+
+      }
+
+      const xcb_setup_t * psetup = xcb_get_setup(m_pconnection);
+
+      m_pscreen = xcb_setup_roots_iterator(psetup).data;
+
+      m_windowRoot = m_pscreen->root;
+
+      xcb_depth_iterator_t depthiterator = xcb_screen_allowed_depths_iterator(m_pscreen);
+
+      m_pdepth = nullptr;
+
+      while (depthiterator.rem)
+      {
+
+         if (depthiterator.data->depth == 32 && depthiterator.data->visuals_len)
+         {
+
+            m_pdepth = depthiterator.data;
+
+            break;
+
+         }
+
+         xcb_depth_next(&depthiterator);
+
+      }
+
+      if (!m_pdepth)
+      {
+
+         fprintf(stderr, "ERROR: screen does not support 32 bit color depth\n");
+
+         xcb_disconnect(m_pconnection);
+
+         return error_failed;
+
+      }
+
+      xcb_visualtype_iterator_t visualtypeiterator = xcb_depth_visuals_iterator(m_pdepth);
+
+      while (visualtypeiterator.rem)
+      {
+
+         if (visualtypeiterator.data->_class == XCB_VISUAL_CLASS_TRUE_COLOR)
+         {
+
+            m_pvisualtype = visualtypeiterator.data;
+
+            break;
+
+         }
+
+         xcb_visualtype_next(&visualtypeiterator);
+
+      }
+
+      if (!m_pvisualtype)
+      {
+
+         fprintf(stderr, "ERROR: screen does not support true Color\n");
+
+         xcb_disconnect(m_pconnection);
+
+         return error_failed;
+
+      }
+
+      m_colormap = xcb_generate_id(xcb_connection());
+
+      {
+
+         auto cookie = xcb_create_colormap_checked(
+            m_pconnection,
+            XCB_COLORMAP_ALLOC_NONE,
+            m_colormap,
+            m_pscreen->root,
+            m_pvisualtype->visual_id);
+
+         auto estatus = _request_check(cookie);
+
+         if (estatus)
+         {
+
+            fprintf(stderr, "ERROR: failed to create colormap\n");
+
+            xcb_disconnect(m_pconnection);
+
+            return estatus;
+
+         }
+
+      }
+
+      for(::index iAtomName = 0; iAtomName < x_window::e_atom_count; iAtomName++)
+      {
+
+         auto pszWindowName = x_window::atom_name((x_window::enum_atom)iAtomName);
+
+         auto atom = intern_atom(pszWindowName);
+
+         m_atoma[iAtomName] = atom;
 
       }
 
@@ -161,7 +295,7 @@ namespace windowing_x11
    }
 
 
-   ::windowing_x11::window *display::_window(Window window)
+   ::windowing_xcb::window * display::_window(xcb_window_t window)
    {
 
       if (!window)
@@ -178,7 +312,9 @@ namespace windowing_x11
       if (!pwindow)
       {
 
-         pwindow = __new(::windowing_x11::window());
+         __construct(pwindow);
+
+         pwindow->set_os_data((void *) (iptr) window);
 
       }
 
@@ -190,55 +326,27 @@ namespace windowing_x11
    void display::lock_display()
    {
 
-      XLockDisplay(m_pdisplay);
-
    }
 
 
    void display::unlock_display()
    {
 
-      XUnlockDisplay(m_pdisplay);
+   }
+
+
+   xcb_connection_t *display::xcb_connection()
+   {
+
+      return ::is_null(this) ? nullptr : m_pconnection;
 
    }
 
 
-   ::Display *display::Display()
+   xcb_connection_t *display::xcb_connection() const
    {
 
-      return ::is_null(this) ? nullptr : m_pdisplay;
-
-   }
-
-
-   ::Display *display::Display() const
-   {
-
-      return ::is_null(this) ? nullptr : m_pdisplay;
-
-   }
-
-
-   Atom display::atom_long_type()
-   {
-
-      return ::is_null(this) ? 0 : m_atomLongType;
-
-   }
-
-
-   Atom display::atom_long_style()
-   {
-
-      return ::is_null(this) ? 0 : m_atomLongStyle;
-
-   }
-
-
-   Atom display::atom_long_style_ex()
-   {
-
-      return ::is_null(this) ? 0 : m_atomLongStyleEx;
+      return ::is_null(this) ? nullptr : m_pconnection;
 
    }
 
@@ -251,23 +359,10 @@ namespace windowing_x11
    }
 
 
-
    bool display::get_monitor_rectangle(index iMonitor, RECTANGLE_I32 * prectangle)
    {
-      return ::windowing::display::get_monitor_rectangle(iMonitor, prectangle);
-//
-//      synchronization_lock synchronizationlock(mutex());
-//
-//      if (iMonitor < 0 || iMonitor >= get_monitor_count())
-//      {
-//
-//         return false;
-//
-//      }
-//
-//      *prectangle = m_rectaMonitor[iMonitor];
 
-      return true;
+      return ::windowing::display::get_monitor_rectangle(iMonitor, prectangle);
 
    }
 
@@ -283,7 +378,7 @@ namespace windowing_x11
    ::e_status display::release_mouse_capture()
    {
 
-      synchronization_lock synchronizationlock(x11_mutex());
+      synchronization_lock synchronizationlock(user_mutex());
 
       _on_capture_changed_to(nullptr);
 
@@ -291,30 +386,16 @@ namespace windowing_x11
 
       display_lock displaylock(this);
 
-      int_bool bRet = XUngrabPointer(Display(), CurrentTime) != false;
+      xcb_ungrab_pointer(xcb_connection(), XCB_CURRENT_TIME);
 
       windowing_output_debug_string("\noswindow_data::ReleaseCapture 2");
 
-      return bRet;
+      return ::success;
 
    }
 
 
-//   bool display::has_mouse_capture() const
-//   {
-//
-//      if(::is_null(m_pwindowCapture))
-//      {
-//
-//         return false;
-//
-//      }
-//
-//
-//   }
-
-
-   void display::_on_capture_changed_to(::windowing_x11::window * pwindowMouseCaptureNew)
+   void display::_on_capture_changed_to(::windowing_xcb::window * pwindowMouseCaptureNew)
    {
 
       auto pwindowMouseCaptureOld = m_pwindowMouseCapture;
@@ -331,7 +412,7 @@ namespace windowing_x11
          msg.wParam = 0;
          msg.lParam = pwindowMouseCaptureNew;
 
-         auto pwindowing = x11_windowing();
+         auto pwindowing = xcb_windowing();
 
          pwindowing->post_ui_message(msg);
 
@@ -340,99 +421,7 @@ namespace windowing_x11
    }
 
 
-//   i32 display::osdisplay_find(Display *pdisplay)
-//   {
-//
-//      single_lock slOsWindow(::display::s_pmutex, true);
-//
-//      for (i32 i = 0; i < display::s_pdataptra->get_count(); i++)
-//      {
-//
-//         if (display::s_pdataptra->element_at(i)->m_pdisplay == pdisplay)
-//         {
-//
-//            return i;
-//
-//         }
-//
-//      }
-//
-//      return -1;
-//
-//   }
-
-
-//   display *osdisplay_get(Display *pdisplay)
-//   {
-//
-//      if (pdisplay == nullptr)
-//      {
-//
-//         return nullptr;
-//
-//      }
-//
-//      single_lock slOsWindow(::display::s_pmutex, true);
-//
-//      iptr iFind = osdisplay_find(pdisplay);
-//
-//      if (iFind >= 0)
-//      {
-//
-//         return display::s_pdataptra->element_at(iFind);
-//
-//      }
-//
-//      display *pdisplaydata = new display;
-//
-//      pdisplaydata->m_pdisplay = pdisplay;
-//      pdisplaydata->m_atomLongType = XInternAtom(pdisplay, CA2_X11_WINDOW_LONG, False);
-//      pdisplaydata->m_atomLongStyle = XInternAtom(pdisplay, CA2_X11_WINDOW_LONG_STYLE, False);
-//      pdisplaydata->m_atomLongStyleEx = XInternAtom(pdisplay, CA2_X11_WINDOW_LONG_STYLE_EX, False);
-//
-//      ::display::s_pdataptra->add(pdisplaydata);
-//
-//      if (!::g_pappcore->m_bGtkApp)
-//      {
-//
-//         if (!g_posdisplaydataMain)
-//         {
-//
-//            g_posdisplaydataMain = pdisplaydata;
-//
-//            //defer_init_ui();
-//
-//         }
-//
-//      }
-//
-//      return pdisplaydata;
-//
-//   }
-
-
-//   bool osdisplay_remove(Display *pdisplay)
-//   {
-//
-//      single_lock slOsWindow(::display::s_pmutex, true);
-//
-//      iptr iFind = osdisplay_find(pdisplay);
-//
-//      if (iFind < 0)
-//         return false;
-//
-//      display *pdata = ::display::s_pdataptra->element_at(iFind);
-//
-//      XCloseDisplay(pdata->m_pdisplay);
-//
-//      ::display::s_pdataptra->remove_at(iFind);
-//
-//      return true;
-//
-//   }
-
-
-   Atom display::get_window_long_atom(i32 nIndex)
+   xcb_atom_t display::intern_atom(const char * pszAtomName, bool bCreate)
    {
 
       if (::is_null(this))
@@ -442,45 +431,18 @@ namespace windowing_x11
 
       }
 
-      switch (nIndex)
-      {
+      auto cookie = xcb_intern_atom(xcb_connection(), !bCreate, strlen(pszAtomName), pszAtomName);
 
-         default:
-         {
+      auto preply = __malloc(xcb_intern_atom_reply(xcb_connection(), cookie, nullptr));
 
-            string strProperty;
-
-            strProperty = CA2_X11_WINDOW_LONG + ansi_string_from_i64(nIndex);
-
-            return XInternAtom(Display(), strProperty, False);
-
-         }
-
-      }
-
-   }
-
-
-   Atom display::intern_atom(const char *pszAtomName, bool bCreate)
-   {
-
-      if (m_pdisplay == nullptr)
+      if(!preply)
       {
 
          return 0;
 
       }
 
-      auto atom = XInternAtom(m_pdisplay, pszAtomName, bCreate ? True : False);
-
-      if (atom == None)
-      {
-
-         windowing_output_debug_string("ERROR: cannot find atom for " + string(pszAtomName) + "\n");
-
-         return None;
-
-      }
+      auto atom = preply->atom;
 
       return atom;
 
@@ -495,242 +457,10 @@ namespace windowing_x11
    }
 
 
-   Atom display::intern_atom(enum_net_wm_state estate, bool bCreate)
+   ::windowing_xcb::window * display::_get_active_window(::thread *pthread)
    {
 
-      if (estate < e_net_wm_state_above || estate >= e_net_wm_state_count)
-      {
-
-         return None;
-
-      }
-
-      if (m_atomaNetWmState[estate] == None)
-      {
-
-         m_atomaNetWmState[estate] = intern_atom(net_wm_state_text(estate), bCreate);
-
-      }
-
-      return m_atomaNetWmState[estate];
-
-   }
-
-
-   Atom display::net_wm_state_atom(bool bCreate)
-   {
-
-      if (m_atomNetWmState == None)
-      {
-
-         m_atomNetWmState = intern_atom("_NET_WM_STATE", bCreate);
-
-      }
-
-      return m_atomNetWmState;
-
-   }
-
-
-//   void enum_display_monitors(::aura::session *psession)
-//   {
-//
-//      auto pnode = Node;
-//
-//      if (pnode)
-//      {
-//
-//         pnode->enum_display_monitors(psession);
-//
-//      }
-//
-//   }
-
-
-//   virtual ::Display * Display();
-//{
-//
-//   return ::is_null(this) ? nullptr : m_osdisplay->display();
-//
-//}
-
-//Display * display() const
-//{
-//   return ::is_null(this) ? nullptr : m_osdisplay->display();
-//}
-
-//Window window()
-//{
-//   return ::is_null(this) ? None : m_window;
-//}
-
-//Window window() const
-//{
-//   return ::is_null(this) ? None : m_window;
-//}
-
-//Visual * visual()
-//{
-//   return ::is_null(this) ? nullptr : &m_visual;
-//}
-
-//Visual * visual() const
-//{
-//   return ::is_null(this) ? nullptr : (Visual * ) & m_visual;
-//}
-//
-//Window root_window_raw() const
-//{
-//   return ::is_null(this) || ::is_null(m_osdisplay) ? None : RootWindow(display(), m_iScreen);
-//}
-//
-
-
-//   ::Display * display::Display()
-//   {
-//
-//      return ::is_null(this) ? nullptr : m_osdisplay->display();
-//
-//   }
-
-
-//   ::Display * display::display() const
-//   {
-//
-//      return ::is_null(this) ? nullptr : m_osdisplay->display();
-//
-//   }
-
-//
-//   Window display::window()
-//   {
-//      return ::is_null(this) ? None : m_window;
-//   }
-
-//   Window display::window() const
-//   {
-//      return ::is_null(this) ? None : m_window;
-//   }
-
-//   Visual * display::Visual()
-//   {
-//
-//      return ::is_null(this) ? nullptr : &m_visual;
-//
-//   }
-//
-//
-//   Visual * display::Visual() const
-//   {
-//
-//      return ::is_null(this) ? nullptr : (Visual * ) & m_visual;
-//
-//   }
-
-
-//   Window display::root_window_raw() const
-//   {
-//
-//      return ::is_null(this) || ::is_null(m_osdisplay) ? None : RootWindow(display(), m_iScreen);
-//
-//   }
-
-
-   Picture display::xrender_create_picture(::image_pointer pimage)
-   {
-
-      Pixmap pixmap = _x11_create_pixmap(pimage);
-
-      if (pixmap == 0)
-      {
-
-         return 0;
-
-      }
-
-      //	bool hasNamePixmap = false;
-      //
-      //	int event_base, error_base;
-      //
-      //	if (XCompositeQueryExtension(window->display(), &event_base, &error_base))
-      //	{
-      //
-      //		int major = 0;
-      //
-      //		int minor = 2;
-      //
-      //		XCompositeQueryVersion(window->display(), &major, &minor);
-      //
-      //		if(major > 0 || minor >= 2 )
-      //		{
-      //
-      //         hasNamePixmap = true;
-      //
-      //      }
-      //
-      //	}
-
-      auto dpy = Display();
-
-      auto vis = Visual();
-
-      XRenderPictFormat *pformat = XRenderFindVisualFormat(dpy, &vis);
-
-      bool hasAlpha = (pformat->type == PictTypeDirect && pformat->direct.alphaMask);
-      int x = 0;
-      int y = 0;
-      int width = pimage->width();
-      int height = pimage->height();
-
-      XRenderPictureAttributes pa = {};
-
-      Picture picture = XRenderCreatePicture(Display(), pixmap, pformat, CPSubwindowMode, &pa);
-
-      return picture;
-
-   }
-
-
-//   Picture display::xrender_create_picture(::image_pointer pimage)
-//   {
-//
-//      Picture picture = 0;
-//
-//      m_pwindowing->user_sync([&]()
-//                              {
-//
-//                                 synchronization_lock synchronizationlock(x11_mutex());
-//
-//                                 windowing_output_debug_string("\n::xrender_create_picture 1");
-//
-//                                 xdisplay d(window->display());
-//
-//                                 if(d.is_null())
-//                                 {
-//
-//                                    windowing_output_debug_string("\n::xrender_create_picture 1.1");
-//
-//                                    return;
-//
-//                                 }
-//
-//                                 picture = _xrender_create_picture(window, pimage);
-//
-//                              });
-//
-//      return picture;
-//
-//   }
-
-
-   ::windowing_x11::window *display::_get_active_window(::thread *pthread)
-   {
-
-      int screen = XDefaultScreen(Display());
-
-      Window windowRoot = RootWindow(Display(), screen);
-
-      Window window = x11_get_long_property(Display(), windowRoot, (char *) "_NET_ACTIVE_WINDOW");
+      auto window = (xcb_window_t) _window_get_long_property(m_windowRoot, atom(x_window::e_atom_net_active_window));
 
       auto pwindow = _window(window);
 
@@ -741,7 +471,49 @@ namespace windowing_x11
    }
 
 
-   ::windowing_x11::window *display::get_keyboard_focus()
+   xcb_cursor_t display::_create_font_cursor (uint16_t glyph)
+   {
+
+      if(!m_fontCursor)
+      {
+
+         m_fontCursor = xcb_generate_id (xcb_connection());
+
+         string strFontName("cursor");
+
+         xcb_open_font (xcb_connection(), m_fontCursor, strFontName.get_length(), strFontName.c_str());
+
+      }
+
+      xcb_cursor_t cursor = m_mapGlyphCursor[glyph];
+
+      if(cursor)
+      {
+
+         return cursor;
+
+      }
+
+      cursor = xcb_generate_id (xcb_connection());
+
+      xcb_create_glyph_cursor (
+         xcb_connection(),
+         cursor,
+         m_fontCursor,
+         m_fontCursor,
+         glyph,
+         glyph + 1,
+         0, 0, 0,
+         0xffff, 0xffff, 0xffff);  /* rgb, rgb */
+
+      m_mapGlyphCursor.set_at(glyph, cursor);
+
+      return cursor;
+
+   }
+
+
+   ::windowing_xcb::window * display::get_keyboard_focus()
    {
 
       return m_pwindowKeyboardFocus;
@@ -749,54 +521,39 @@ namespace windowing_x11
    }
 
 
-   ::windowing_x11::window *display::_get_keyboard_focus()
+   ::windowing_xcb::window *display::_get_keyboard_focus()
    {
 
-      synchronization_lock synchronizationlock(x11_mutex());
+      synchronization_lock synchronizationlock(user_mutex());
 
       oswindow oswindow = nullptr;
 
       windowing_output_debug_string("\n::GetFocus 1");
 
-#ifdef display_lock_LOCK_LOG
-
-      b_prevent_display_lock_lock_log = false;
-
-#endif
-
       display_lock displaylock(this);
 
       windowing_output_debug_string("\n::GetFocus 1.01");
 
-      Window window = None;
+      xcb_window_t window = 0;
 
       int revert_to = 0;
 
-      bool bOk = XGetInputFocus(Display(), &window, &revert_to) != 0;
+      auto cookie = xcb_get_input_focus(xcb_connection());
 
-      if (!bOk)
+      auto preply = __malloc(xcb_get_input_focus_reply(xcb_connection(), cookie, nullptr));
+
+      if(!preply)
       {
-
-         windowing_output_debug_string("\n::GetFocus 1.2");
 
          return nullptr;
 
       }
 
-      if (window == None || window == PointerRoot)
-      {
-
-         windowing_output_debug_string("\n::GetFocus 1.3");
-
-         return nullptr;
-
-      }
-
-      auto pwindow = _window(window);
+      auto pwindowFocus = _window(preply->focus);
 
       windowing_output_debug_string("\n::GetFocus 2");
 
-      return pwindow;
+      return pwindowFocus;
 
    }
 
@@ -804,46 +561,44 @@ namespace windowing_x11
    bool display::get_cursor_position(POINT_I32 *ppointCursor)
    {
 
-      Window root_return;
-      Window child_return;
+      xcb_window_t root_return;
+      xcb_window_t child_return;
       i32 win_x_return;
       i32 win_y_return;
       u32 mask_return;
 
-#ifdef display_lock_LOCK_LOG
-
-      b_prevent_display_lock_lock_log = true;
-
-#endif
-
-      synchronization_lock synchronizationlock(x11_mutex());
+      synchronization_lock synchronizationlock(user_mutex());
 
       windowing_output_debug_string("\n::GetCursorPos 1");
 
       display_lock displaylock(this);
 
-      XQueryPointer(Display(), DefaultRootWindow(Display()), &root_return, &child_return, &ppointCursor->x,
-                    &ppointCursor->y, &win_x_return, &win_y_return, &mask_return);
+      auto cookie = xcb_query_pointer(xcb_connection(), m_windowRoot);
 
-#ifdef display_lock_LOCK_LOG
+      auto preply = __malloc(xcb_query_pointer_reply(xcb_connection(), cookie, nullptr));
 
-      b_prevent_display_lock_lock_log = false;
+      if(!preply)
+      {
 
-#endif
+         return false;
+
+      }
 
       windowing_output_debug_string("\n::GetCursorPos 2");
+
+      ppointCursor->x = preply->root_x;
+
+      ppointCursor->y = preply->root_y;
 
       return true;
 
    }
 
 
-   XImage *display::_x11_create_image(::image_pointer pimage)
+   xcb_image_t * display::_create_image(const ::image * pimage)
    {
 
       pimage->map();
-
-      char *image32 = (char *) pimage->get_data();
 
       int width = pimage->width();
 
@@ -855,29 +610,16 @@ namespace windowing_x11
 
       int bytes_per_line = pimage->scan_size(); // number of bytes in the client image between the start of one scanline and the start of the next
 
-      XImage *pximage = XCreateImage(Display(), CopyFromParent, depth, ZPixmap, 0, image32, width, height,
-                                     bitmap_pad, bytes_per_line);
+      xcb_image_t * pxcbimage = xcb_image_create_native(xcb_connection(), width, height, XCB_IMAGE_FORMAT_Z_PIXMAP, 32, NULL, ~0, NULL);
 
-      return pximage;
+      pxcbimage->data  = (uint8_t *) pimage->get_data();
 
-   }
-
-
-   XImage *display::x11_create_image(::image_pointer pimage)
-   {
-
-      synchronization_lock synchronizationlock(x11_mutex());
-
-      windowing_output_debug_string("\n::x11_create_image 1");
-
-      display_lock displaylock(this);
-
-      return _x11_create_image(pimage);
+      return pxcbimage;
 
    }
 
 
-   Pixmap display::_x11_create_pixmap(::image_pointer pimage)
+   xcb_pixmap_t display::_create_pixmap(const ::image * pimage)
    {
 
       if (!pimage)
@@ -887,47 +629,445 @@ namespace windowing_x11
 
       }
 
-      XImage *pximage = _x11_create_image(pimage);
+      xcb_image_t * pxcbimage = _create_image(pimage);
 
-      if (pximage == nullptr)
+      if (pxcbimage == nullptr)
       {
 
          return 0;
 
       }
 
-      int depth = 32; // works fine with depth = 24
+      int w = pimage->width();
 
-      Pixmap pixmap = XCreatePixmap(Display(), DefaultRootWindow(Display()), pimage->width(), pimage->height(), depth);
+      int h = pimage->height();
 
-      XGCValues gcvalues = {};
+      auto psetup = xcb_get_setup(xcb_connection());
 
-      GC gc = XCreateGC(Display(), pixmap, 0, &gcvalues);
+      xcb_screen_iterator_t screeniterator = xcb_setup_roots_iterator(psetup);
 
-      XPutImage(Display(), pixmap, gc, pximage, 0, 0, 0, 0, pimage->width(), pimage->height());
+      xcb_screen_t * screen = screeniterator.data;
 
-      XFreeGC(Display(), gc);
+      xcb_window_t windowRoot = screen->root;
+
+      xcb_pixmap_t pixmap = xcb_generate_id(xcb_connection());
+
+      {
+
+         auto cookie = ::xcb_create_pixmap(xcb_connection(), 32, pixmap, windowRoot, w, h);
+
+         auto estatus = _request_check(cookie);
+
+         if(!estatus)
+         {
+
+            return 0;
+
+         }
+
+      }
+
+      xcb_gcontext_t gcontext = xcb_generate_id(xcb_connection());
+
+      {
+
+         auto cookie = xcb_create_gc(m_pconnection, gcontext, windowRoot, 0, nullptr);
+
+         auto estatus = _request_check(cookie);
+
+         if(!estatus)
+         {
+
+            return 0;
+
+         }
+
+      }
+
+      xcb_image_put(xcb_connection(), pixmap, gcontext, pxcbimage, 0, 0, 0);
+
+      xcb_free_gc(xcb_connection(), gcontext);
+
+      pxcbimage->data = nullptr;
+
+      xcb_image_destroy(pxcbimage);
 
       return pixmap;
 
    }
 
 
-   Pixmap display::x11_create_pixmap(::image_pointer pimage)
+   xcb_render_picture_t display::_create_picture(const ::image * pimage)
    {
 
-      synchronization_lock synchronizationlock(x11_mutex());
+      xcb_pixmap_t pixmap = _create_pixmap(pimage);
 
-      windowing_output_debug_string("\n::x11_create_pixmap 1");
+      if (pixmap == 0)
+      {
 
-      display_lock displaylock(this);
+         return 0;
 
-      return _x11_create_pixmap(pimage);
+      }
+
+      xcb_render_picture_t picture = xcb_generate_id(xcb_connection());
+
+      auto pvisualtype = m_pvisualtype;
+
+      auto pformat = m_mapFormatInfo[m_mapVisualPictFormat[pvisualtype->visual_id]];
+
+      bool hasAlpha = (pformat->type == XCB_RENDER_PICT_TYPE_DIRECT && pformat->direct.alpha_mask);
+      int x = 0;
+      int y = 0;
+      int width = pimage->width();
+      int height = pimage->height();
+
+      {
+
+         auto cookie = xcb_render_create_picture(m_pconnection, picture, pixmap, pformat->id, 0, nullptr);
+
+         auto estatus = _request_check(cookie);
+
+         if(!estatus)
+         {
+
+            return 0;
+
+         }
+
+      }
+
+      xcb_free_pixmap(m_pconnection, pixmap);
+
+      return picture;
 
    }
 
 
-} // namespace windowing_x11
+   bool display::_window_has_atom_list_atom(xcb_window_t window, xcb_atom_t propertyList, xcb_atom_t propertyItem)
+   {
+
+      synchronization_lock synchronizationlock(user_mutex());
+
+      array < xcb_atom_t > atoma;
+
+      auto cookie = xcb_get_property(
+         m_pconnection,
+         0,
+         window,
+         propertyList,
+         XCB_ATOM_ATOM,
+         0,
+         0);
+
+      auto preply = __malloc(xcb_get_property_reply(
+         m_pconnection,
+         cookie,
+         nullptr
+      ));
+
+      if(!preply)
+      {
+
+         return atoma;
+
+      }
+
+      auto len = xcb_get_property_value_length(preply);
+
+      auto patom = (xcb_atom_t *) xcb_get_property_value(preply);
+
+      auto count = len / sizeof(xcb_atom_t);
+
+      for(int i = 0; i < count; i++)
+      {
+
+         if(patom[i] == propertyItem)
+         {
+
+            return true;
+
+         }
+
+      }
+
+      return false;
+
+   }
+
+
+   array < xcb_atom_t > display::_window_get_atom_array(xcb_window_t window, xcb_atom_t property)
+   {
+
+      synchronization_lock synchronizationlock(user_mutex());
+
+      array < xcb_atom_t > atoma;
+
+      auto cookie = xcb_get_property(
+         m_pconnection,
+         0,
+         window,
+         property,
+         XCB_ATOM_ATOM,
+         0,
+         0);
+
+      auto preply = __malloc(xcb_get_property_reply(
+         m_pconnection,
+         cookie,
+         nullptr
+         ));
+
+      if(!preply)
+      {
+
+         return atoma;
+
+      }
+
+      auto size = xcb_get_property_value_length(preply);
+
+      auto patom = xcb_get_property_value(preply);
+
+      atoma.set_size(size / sizeof(xcb_atom_t));
+
+      memcpy(atoma.get_data(), patom, atoma.get_size_in_bytes());
+
+      return atoma;
+
+   }
+
+
+   ::e_status display::_send_client_event(xcb_window_t window, xcb_atom_t atom, unsigned int numArgs, ...)
+   {
+
+      va_list argList;
+
+      va_start(argList, numArgs);
+
+      auto estatus = _send_client_event_v(window, atom, numArgs, argList);
+
+      va_end(argList);
+
+      return estatus;
+
+   }
+
+
+   ::e_status display::_send_client_event_v(xcb_window_t window, xcb_atom_t atom, unsigned int numArgs, va_list argList)
+   {
+
+      xcb_client_message_event_t event;
+
+      __zero(event);
+
+      event.response_type = XCB_CLIENT_MESSAGE;
+      event.sequence = 0;
+      event.window = window;
+      event.type = atom;
+      event.format = 32;
+
+      for (int i = 0; i < 5; i++)
+      {
+
+         if (i < numArgs)
+         {
+
+            event.data.data32[i] = va_arg(argList, int);
+
+         }
+         else
+         {
+
+            event.data.data32[i] = 0;
+
+         }
+
+      }
+
+      auto cookie = xcb_send_event(
+         xcb_connection(),
+         m_windowRoot,
+         false,
+         XCB_EVENT_MASK_SUBSTRUCTURE_REDIRECT | XCB_EVENT_MASK_STRUCTURE_NOTIFY,
+         (const char *) &event);
+
+      auto estatus = _request_check(cookie);
+
+      if(!estatus)
+      {
+
+         return estatus;
+
+      }
+
+      return estatus;
+
+   }
+
+
+   string display::_window_get_string_property(xcb_window_t window, xcb_atom_t property)
+   {
+
+      int iDelete = 0;
+
+      auto cookie = xcb_get_property(m_pconnection, iDelete, window, property, XCB_ATOM_STRING, 0, 0);
+
+      auto preply = __malloc(xcb_get_property_reply(m_pconnection, cookie, nullptr));
+
+      if(!preply)
+      {
+
+         return "";
+
+      }
+
+      auto len = xcb_get_property_value_length(preply);
+
+      auto data = xcb_get_property_value(preply);
+
+      string strProperty((const char *) data, len);
+
+      return strProperty;
+
+   }
+
+
+   long display::_window_get_long_property(xcb_window_t window, xcb_atom_t property)
+   {
+
+      int iDelete = 0;
+
+      auto cookie = xcb_get_property(m_pconnection, iDelete, window, property, XCB_ATOM_INTEGER, 0, 0);
+
+      auto preply = __malloc(xcb_get_property_reply(m_pconnection, cookie, nullptr));
+
+      if(!preply)
+      {
+
+         return 0;
+
+      }
+
+      auto len = xcb_get_property_value_length(preply);
+
+      if(len != 4)
+      {
+
+         ASSERT(FALSE);
+
+         return 0;
+
+      }
+
+      auto pint = (int *) xcb_get_property_value(preply);
+
+      if(!pint)
+      {
+
+         return 0;
+
+      }
+
+      return *pint;
+
+   }
+
+
+   string display::_window_get_name(xcb_window_t window)
+   {
+
+      return _window_get_string_property(window, atom(x_window::e_atom_wm_name));
+
+   }
+
+
+   status < xcb_get_geometry_reply_t > display::_window_get_geometry(xcb_window_t window)
+   {
+
+      auto cookie = xcb_get_geometry(m_pconnection, window);
+
+      auto preply = __malloc(xcb_get_geometry_reply(m_pconnection, cookie, nullptr));
+
+      if(!preply)
+      {
+
+         return error_failed;
+
+      }
+
+      return *preply;
+
+   }
+
+
+   ::e_status display::_window_get_window_rectangle(xcb_window_t window, RECTANGLE_I32 * prectangle)
+   {
+
+      auto geometry = _window_get_geometry(window);
+
+      if(!geometry)
+      {
+
+         return geometry.estatus();
+
+      }
+
+      auto pgeometry = &geometry;
+
+      prectangle->left = pgeometry->x;
+      prectangle->top = pgeometry->y;
+      prectangle->right = pgeometry->x + pgeometry->width;
+      prectangle->top = pgeometry->y + pgeometry->height;
+
+      return geometry.estatus();
+
+   }
+
+
+   ::e_status display::_window_get_client_rectangle(xcb_window_t window, RECTANGLE_I32 * prectangle)
+   {
+
+      auto geometry = _window_get_geometry(window);
+
+      if(!geometry)
+      {
+
+         return geometry.estatus();
+
+      }
+
+      auto pgeometry = &geometry;
+
+      prectangle->left = 0;
+      prectangle->top = 0;
+      prectangle->right = pgeometry->width;
+      prectangle->top = pgeometry->height;
+
+      return geometry.estatus();
+
+   }
+
+
+   ::e_status display::_request_check(xcb_void_cookie_t cookie)
+   {
+
+      auto perror = __malloc(xcb_request_check(m_pconnection, cookie));
+
+      if(!perror)
+      {
+
+         int iErrorCode = perror->error_code;
+
+         return error_failed;
+
+      }
+
+      return success;
+
+   }
+
+
+} // namespace windowing_xcb
 
 
 

@@ -5,7 +5,7 @@
 //#include <X11/extensions/Xrender.h>
 
 //#include "app/base/graphics/graphics_window_buffer.h"
-namespace windowing_x11
+namespace windowing_xcb
 {
 
 
@@ -16,21 +16,15 @@ namespace windowing_x11
    public:
 
 
-      //::mutex                         m_mutexPixmap;
-      //pixmap                        m_pixmap;
-      GC                            m_gc;
-      //memory                        m_mem;
-      //XImage *                      m_pimage;
-      //bool                          m_bMapped;
-      ::rectangle_i32                 m_rectLast;
-      //::image_pointer                         m_pimage;
-
+      ::rectangle_i32                              m_rectLast;
+      __pointer(windowing_xcb::display)         m_pdisplay;
+      xcb_gcontext_t                               m_gcontext;
 
       buffer();
       virtual ~buffer();
 
 
-      ::windowing_x11::window * x11_window() { return (::windowing_x11::window *) (m_pwindow ? m_pwindow->layer(LAYERED_X11) : nullptr); }
+      ::windowing_xcb::window * xcb_window() { return (::windowing_xcb::window *) (m_pwindow ? m_pwindow->layer(LAYERED_X11) : nullptr); }
 
 
       virtual ::e_status initialize_graphics_graphics(::user::interaction_impl * pimpl) override;
@@ -57,7 +51,7 @@ namespace windowing_x11
    };
 
 
-} // namespace windowing_x11
+} // namespace windowing_xcb
 
 
 

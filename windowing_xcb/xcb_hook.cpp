@@ -1,80 +1,80 @@
 #include "framework.h"
-#include "_x11.h"
+#include "_xcb.h"
 
 
-//__pointer_array(x11_hook) * g_px11hooka;
+//__pointer_array(xcb_hook) * g_pxcbhooka;
 
-//void x11_hook_init()
+//void xcb_hook_init()
 //{
 //
-//  g_px11hooka = new __pointer_array(x11_hook);
+//  g_pxcbhooka = new __pointer_array(xcb_hook);
 //
 //}
 
 
-//void x11_hook_term()
+//void xcb_hook_term()
 //{
 //
-//   ::acme::del(g_px11hooka);
+//   ::acme::del(g_pxcbhooka);
 //
 //}
 
-//LPFN_X11_PROCESS_EVENT g_x11processeventa[8];
+//LPFN_X11_PROCESS_EVENT g_xcbprocesseventa[8];
 
 
-x11_hook::x11_hook()
+xcb_hook::xcb_hook()
 {
 
 }
 
 
-__pointer_array(x11_hook) g_x11hooka;
+__pointer_array(xcb_hook) g_xcbhooka;
 
 
-::e_status x11_hook::hook()
+::e_status xcb_hook::hook()
 {
 
-   synchronization_lock sl(x11_mutex());
+   synchronization_lock sl(user_mutex());
 
-   g_x11hooka.add(this);
+   g_xcbhooka.add(this);
 
    return ::success;
 
 }
 
 
-::e_status x11_hook::unhook()
+::e_status xcb_hook::unhook()
 {
 
-   synchronization_lock sl(x11_mutex());
+   synchronization_lock sl(user_mutex());
 
-   g_x11hooka.remove(this);
+   g_xcbhooka.remove(this);
 
    return ::success;
 
 }
 
 
-void x11_hook::on_idle(Display * pdisplay)
+void xcb_hook::on_idle(xcb_connection_t * pdisplay)
 {
 
 }
 
 
-bool __x11_hook_list_is_empty()
+bool __xcb_hook_list_is_empty()
 {
 
-   return g_x11hooka.is_empty();
+   return g_xcbhooka.is_empty();
 
 }
 
 
-bool windowing::__x11_hook_process_event(XEvent * pevent, XGenericEventCookie * cookie)
+bool windowing::__xcb_hook_process_event(xcb_generic_event_t * pevent, XGenericEventCookie * cookie)
 {
 
    XEvent & e = *pevent;
 
-   for(auto & phook : g_x11hooka)
+   for(auto & phook : g_xcbhooka)
    {
 
       if(phook->process_event(pdisplay, e, cookie))
@@ -91,10 +91,10 @@ bool windowing::__x11_hook_process_event(XEvent * pevent, XGenericEventCookie * 
 }
 
 
-void __x11_hook_on_idle(Display * pdisplay)
+void __xcb_hook_on_idle(xcb_connection_t * pdisplay)
 {
 
-   for(auto & phook : g_x11hooka)
+   for(auto & phook : g_xcbhooka)
    {
 
       phook->on_idle(pdisplay);
@@ -106,19 +106,19 @@ void __x11_hook_on_idle(Display * pdisplay)
 
 #if !defined(RASPBIAN)
 
-bool x11_process_event(Display * pdisplay, XEvent & e, XGenericEventCookie * cookie);
+bool xcb_process_event(xcb_connection_t * pdisplay, XEvent & e, XGenericEventCookie * cookie);
 
 #else
 
-bool x11_process_event(Display * pdisplay, XEvent & e);
+bool xcb_process_event(xcb_connection_t * pdisplay, XEvent & e);
 
 #endif
 
 
-bool __x11_hook_process_event(Display * pdisplay, XEvent & e);
+bool __xcb_hook_process_event(xcb_connection_t * pdisplay, XEvent & e);
 
 
-bool x11_hook::process_event(Display * pdisplay, XEvent & e, XGenericEventCookie * cookie)
+bool xcb_hook::process_event(xcb_connection_t * pdisplay, XEvent & e, XGenericEventCookie * cookie)
 {
 
    return false;
@@ -126,26 +126,26 @@ bool x11_hook::process_event(Display * pdisplay, XEvent & e, XGenericEventCookie
 }
 
 
-void x11_hook_init()
+void xcb_hook_init()
 {
 
 
 }
 
 
-void x11_hook_term()
+void xcb_hook_term()
 {
 
-    g_x11hooka.remove_all();
+    g_xcbhooka.remove_all();
 
 }
 
 
 
-//bool __x11_hook_process_event(Display * pdisplay, XEvent & e, XGenericEventCookie * cookie)
+//bool __xcb_hook_process_event(xcb_connection_t * pdisplay, XEvent & e, XGenericEventCookie * cookie)
 //{
 //
-//   for(auto & phook : g_x11hooka)
+//   for(auto & phook : g_xcbhooka)
 //   {
 //
 //      if(phook->process_event(pdisplay, e, cookie))

@@ -12,138 +12,115 @@
 #define WINDOWING_X11_WINDOW_MEMBER
 
 
-namespace windowing_x11
+struct xkb_context;
+struct xkb_keymap;
+struct xkb_state;
+
+
+namespace windowing_xcb
 {
 
 
-   class CLASS_DECL_WINDOWING_X11 window :
+   class CLASS_DECL_WINDOWING_XCB window :
       virtual public ::windowing::window
    {
    public:
 
 
-      XWindowAttributes                            m_attr;
-      XVisualInfo                                  m_visualinfo;
-      void *                                       m_pgdkwindow;
-      __pointer(::windowing_x11::x11data)     m_px11data;
-      ::Window                                     m_parent;
-      Cursor                                       m_cursorLast;
-      int                                          m_iXic;
-      XIC                                          m_xic;
-      //__pointer(::windowing_x11::display)     m_pdisplay;
-      ::Window                                     m_window;
-      ::Visual                                     m_visual;
-      int                                          m_iDepth;
-      int                                          m_iScreen;
-      bool                                         m_bMessageOnlyWindow;
-      //__pointer(::user::interaction_impl)     m_pimpl;
-      //__pointer(::message_queue)              m_pmessagequeue;
+      xkb_context *                                m_pkeyboarcontext;
+      int                                          m_iKeyboardX11DeviceId;
+      xkb_keymap *                                 m_pkeymap;
+      xkb_state *                                  m_pkeystate;
+
+
+      xcb_get_window_attributes_reply_t            m_attributes;
+      xcb_get_geometry_reply_t                     m_geometry;
+
+
+      xcb_window_t                                 m_parent;
+      xcb_cursor_t                                 m_cursorLast;
+      xcb_window_t                                 m_window;
+      xcb_visualid_t                               m_visualid;
       hthread_t                                    m_hthread;
-      Colormap                                     m_colormap;
       millis                                       m_millisLastMouseMove;
-      //Window                                       m_parent;
       ::rectangle_i32                              m_rect;
-      string                                       m_strWMClass;
-      int                                          m_iaNetWmState[e_net_wm_state_count];
-
-      //static oswindow_dataptra *                 s_pdataptra;
-      //static::mutex *                            s_pmutex;
-
-      //static Atom                                s_atomLongType;
-      //static Atom                                s_atomLongStyle;
-      //static Atom                                s_atomLongStyleEx;
 
 
       window();
-      //oswindow_data(::user::interaction * puibaseMessageOnlyWindow);
-      //oswindow_data(const void * p);
-      //oswindow_data(const LPARAM & lparam);
-      //oswindow_data(const WPARAM & wparam);
       virtual ~window();
 
 
       virtual ::e_status create_window(::user::interaction_impl * pimpl) override;
 
 
-      static Atom get_window_long_atom(i32 nIndex);
+      virtual xcb_connection_t * xcb_connection();
+      virtual xcb_connection_t * xcb_connection() const;
 
 
+      virtual xcb_window_t xcb_window();
+      virtual xcb_window_t xcb_window() const;
 
-      virtual ::Display * Display();
 
-      virtual ::Display * Display() const;
+      ::windowing_xcb::windowing * xcb_windowing() const {return (::windowing_xcb::windowing *) m_pwindowing->layer(LAYERED_X11); }
+      ::windowing_xcb::display * xcb_display() const {return (::windowing_xcb::display *) m_pdisplay->layer(LAYERED_X11); }
 
-      virtual ::Window Window();
 
-      virtual ::Window Window() const;
+      ::e_status get_wm_hints(void * p_xcb_icccm_wm_hints_t);
 
-      virtual ::Visual * Visual();
 
-      virtual const ::Visual * Visual() const;
+      virtual ::e_status initialize_xcb_window(::windowing_xcb::display * pdisplay, xcb_window_t window, int iDepth, xcb_colormap_t colormap);
 
-      //virtual ::Window root_window_raw() const;
 
-      virtual void unmapped_net_state_raw(Atom atom1, ...);
+      virtual ::e_status destroy_window();
+      virtual bool is_window();
 
-      virtual ::e_status initialize_x11_window(::windowing_x11::display * pdisplay, ::Window window, ::Visual *pvisual, int iDepth, int iScreen, Colormap colormap);
 
-      virtual void send_client_event(Atom atom, unsigned int numArgs, ...);
-      virtual i32 store_name(const char * psz);
-      virtual i32 select_input(i32 iInput);
-      virtual i32 select_all_input();
-      virtual i32 map_window();
-      virtual i32 unmap_window(bool bWithdraw);
-      virtual void set_wm_class(const char * psz);
+      virtual void set_window_text(const char * pszString);
 
-      virtual void exit_iconify();
 
-      virtual void full_screen(const ::rectangle_i32 & rect = nullptr);
+      virtual bool set_window_position(const class ::zorder & zorder, i32 x, i32 y, i32 cx, i32 cy, ::u32 nFlags) override;
 
-      virtual void exit_full_screen();
 
-      virtual void exit_zoomed();
+      virtual int_bool IsWindowVisibleRaw();
 
       virtual void set_user_interaction(::user::interaction_impl * pinteraction);
 
       virtual void post_nc_destroy();
 
+
       virtual ::e_status set_window_icon(const ::file::path & path);
 
-      virtual bool is_child( WINDOWING_X11_WINDOW_MEMBER ::windowing::window * candidateChildOrDescendant); // or descendant
+
+      virtual bool is_child( ::windowing::window * candidateChildOrDescendant); // or descendant
       virtual ::windowing::window * get_parent() const;
-      //virtual ::Window get_parent_handle();
       virtual oswindow get_parent_oswindow() const;
 
-      //virtual ::Window get_parent_handle() const;
 
-      ::windowing_x11::windowing * x11_windowing() const {return (::windowing_x11::windowing *) m_pwindowing->layer(LAYERED_X11); }
-      ::windowing_x11::display * x11_display() const {return (::windowing_x11::display *) m_pdisplay->layer(LAYERED_X11); }
-
-      virtual ::e_status set_parent(::windowing::window * pwindowNewParent);
-      //virtual ::e_status set_parent(::windowing::window * pwindowNewParent) override;
-      virtual long get_state();
       virtual bool is_iconic();
       virtual bool is_window_visible();
+
+
       virtual ::e_status show_window(const ::e_display & edisplay, const ::e_activation & eactivation);
-      //virtual iptr get_window_long_ptr(i32 nIndex);
-      //virtual iptr set_window_long_ptr(i32 nIndex, iptr l);
+
+      virtual ::e_status exit_iconify()override;
+      virtual ::e_status full_screen(const ::rectangle_i32 & rect = nullptr)override;
+      virtual ::e_status exit_full_screen()override;
+      virtual ::e_status exit_zoomed() override;
+
+
+      virtual ::e_status set_parent(::windowing::window * pwindowNewParent);
+
+      virtual long _get_wm_state();
+
       virtual bool _001ClientToScreen(POINT_I32 * ppoint);
 
       virtual bool _001ScreenToClient(POINT_I32 * ppoint);
 
-
-      //virtual bool set_window_pos(class::zorder zorder, i32 x, i32 y, i32 cx, i32 cy,::u32 nFlags);
-      //virtual bool _set_window_pos(class::zorder zorder, i32 x, i32 y, i32 cx, i32 cy,::u32 nFlags);
-      
-
       virtual bool is_destroying();
       
-
       virtual bool bamf_set_icon();
 
       virtual bool set_icon(::image * pimage);
-
-      virtual int x_change_property(Atom property, Atom type, int format, int mode, const unsigned char * data, int nelements);
 
       virtual ::e_status set_cursor(::windowing::cursor * pcursor);
 
@@ -162,105 +139,104 @@ namespace windowing_x11
       virtual bool has_keyboard_focus() const override;
 
 
-
-
-      //virtual Atom get_window_long_atom(i32 nIndex);
-      virtual void mapped_net_state_raw(bool add,  WINDOWING_X11_WINDOW_MEMBER int iScreen, Atom state1, Atom state2);
-      //virtual void unmapped_net_state_raw( WINDOWING_X11_WINDOW_MEMBER ...);
-      virtual bool x11_get_window_rect(  WINDOWING_X11_WINDOW_MEMBER  RECTANGLE_I32 * prectangle);
-      virtual bool x11_get_client_rect(  WINDOWING_X11_WINDOW_MEMBER  RECTANGLE_I32 * prectangle);
-      //virtual oswindow set_capture( WINDOWING_X11_WINDOW_MEMBER );
-      //virtual int_bool release_capture();
-      //virtual oswindow set_focus( WINDOWING_X11_WINDOW_MEMBER );
-      //virtual void x11_check_status(int status, unsigned long window);
-      //virtual unsigned long x11_get_long_property( WINDOWING_X11_WINDOW_MEMBER char* property_name);
-      virtual string x11_get_name( WINDOWING_X11_WINDOW_MEMBER );
-      //virtual ::e_status set_active_window();
-      virtual void upper_window_rects( WINDOWING_X11_WINDOW_MEMBER  rect_array & ra);
-      //virtual oswindow set_active_window( WINDOWING_X11_WINDOW_MEMBER );
-//      virtual  WINDOWING_X11_WINDOW_MEMBER _get_if_found(Window w);
-      //virtual oswindow get_parent( WINDOWING_X11_WINDOW_MEMBER );
-      virtual ::Window _get_window_relative( WINDOWING_X11_WINDOW_MEMBER enum_relative erelative, ::Window * windowa, int numItems);
-      virtual ::windowing::window * get_window( WINDOWING_X11_WINDOW_MEMBER enum_relative erelative);
-
-      virtual ::e_status destroy_window();
-      //virtual int_bool destroy_window( WINDOWING_X11_WINDOW_MEMBER );
-      virtual bool is_window();
-      //virtual int_bool is_window( WINDOWING_X11_WINDOW_MEMBER );
-
-
-      virtual void set_window_text(const char * pszString);
-
-
-      virtual bool set_window_position(const class ::zorder & zorder, i32 x, i32 y, i32 cx, i32 cy, ::u32 nFlags) override;
+      virtual rectangle_i32_array upper_window_rects();
 
 
 
-      virtual Atom * wm_get_list_raw( WINDOWING_X11_WINDOW_MEMBER Atom atomList, unsigned long int * items);
-      virtual int wm_test_state( WINDOWING_X11_WINDOW_MEMBER const char * pszNetStateFlag);
-      virtual int wm_test_state_raw( WINDOWING_X11_WINDOW_MEMBER const char * pszNetStateFlag);
-      virtual int wm_test_list_raw( WINDOWING_X11_WINDOW_MEMBER Atom atomList, Atom atomFlag);
-      virtual bool wm_add_remove_list_raw( WINDOWING_X11_WINDOW_MEMBER Atom atomList, Atom atomFlag, bool bSet);
-      virtual void wm_add_remove_state_mapped_raw( WINDOWING_X11_WINDOW_MEMBER enum_net_wm_state estate, bool bSet);
-      virtual void wm_add_remove_state_mapped( WINDOWING_X11_WINDOW_MEMBER enum_net_wm_state estate, bool bSet);
-      virtual void wm_add_remove_state_unmapped_raw( WINDOWING_X11_WINDOW_MEMBER enum_net_wm_state estate, bool bSet);
-      virtual void wm_add_remove_state_unmapped( WINDOWING_X11_WINDOW_MEMBER enum_net_wm_state estate, bool bSet);
-      virtual void wm_add_remove_state_raw( WINDOWING_X11_WINDOW_MEMBER enum_net_wm_state estate, bool bSet);
-      virtual void wm_add_remove_state( WINDOWING_X11_WINDOW_MEMBER enum_net_wm_state estate, bool bSet);
-      virtual void wm_state_clear_raw( WINDOWING_X11_WINDOW_MEMBER bool bSet);
-      virtual void wm_state_below_raw( WINDOWING_X11_WINDOW_MEMBER bool bSet);
-      virtual void wm_state_above_raw( WINDOWING_X11_WINDOW_MEMBER bool bSet);
-      virtual void wm_state_hidden_raw( WINDOWING_X11_WINDOW_MEMBER bool bSet);
-      virtual void wm_state_above( WINDOWING_X11_WINDOW_MEMBER bool bSet);
-      virtual void wm_state_below( WINDOWING_X11_WINDOW_MEMBER bool bSet);
-      virtual void wm_state_hidden( WINDOWING_X11_WINDOW_MEMBER bool bSet);
-      virtual void wm_toolwindow( WINDOWING_X11_WINDOW_MEMBER bool bToolWindow);
-      virtual void wm_normalwindow();
-      virtual void wm_hidden_state( WINDOWING_X11_WINDOW_MEMBER bool bHidden);
-      virtual void wm_desktopwindow( WINDOWING_X11_WINDOW_MEMBER bool bDesktopWindow);
-      virtual void wm_centerwindow( WINDOWING_X11_WINDOW_MEMBER bool bCenterWindow);
-      virtual void wm_splashwindow( WINDOWING_X11_WINDOW_MEMBER bool bCenterWindow);
-      virtual void wm_dockwindow( WINDOWING_X11_WINDOW_MEMBER bool bDockWindow);
-      virtual void wm_nodecorations( WINDOWING_X11_WINDOW_MEMBER int bMap);
-      virtual void _wm_nodecorations( WINDOWING_X11_WINDOW_MEMBER int bMap);
-      virtual int_bool IsWindowVisibleRaw( WINDOWING_X11_WINDOW_MEMBER);
-      virtual void wm_iconify_window( WINDOWING_X11_WINDOW_MEMBER );
-      //virtual int_bool IsWindowVisibleRaw( WINDOWING_X11_WINDOW_MEMBER);
-      //virtual int_bool IsWindowVisibleRaw(oswindow w);
-//      virtual Atom * wm_get_list_raw( WINDOWING_X11_WINDOW_MEMBER Atom atomList, unsigned long int * pnum_items);
-//      virtual int wm_test_list_raw( WINDOWING_X11_WINDOW_MEMBER Atom atomList, Atom atomFlag);
-//      virtual int wm_test_state_raw( WINDOWING_X11_WINDOW_MEMBER const char * pszNetStateFlag);
-//      virtual int wm_test_state( WINDOWING_X11_WINDOW_MEMBER const char * pszNetStateFlag);
-//      virtual bool wm_add_remove_list_raw( WINDOWING_X11_WINDOW_MEMBER Atom atomList, Atom atomFlag, bool bSet);
+      virtual ::e_status _get_window_rectangle(RECTANGLE_I32 * prectangle);
+      virtual ::e_status _get_client_rectangle(RECTANGLE_I32 * prectangle);
+      virtual xcb_window_t _get_window_relative(enum_relative erelative, xcb_window_t * windowa, int numItems);
+      virtual ::windowing::window * get_window(enum_relative erelative);
 
 
-      virtual ::e_status x11_post_message(MESSAGE & msg);
+      virtual ::e_status _unmapped_net_state_raw(xcb_atom_t atom1, ...);
+      virtual ::e_status _mapped_net_state_raw(bool add,  xcb_atom_t state1, xcb_atom_t state2);
+
+      virtual string _get_wm_name();
+
+
+      virtual comparable_array < xcb_atom_t > _list_atom(xcb_atom_t atomList);
+      virtual bool _has_net_wm_state(xcb_atom_t propertyItem);
+      virtual bool _list_has_atom(xcb_atom_t propertyList, xcb_atom_t propertyItem);
+      virtual ::e_status _list_add_atom(xcb_atom_t atomList, xcb_atom_t atomFlag);
+      virtual ::e_status _list_remove_atom(xcb_atom_t atomList, xcb_atom_t atomFlag);
+      virtual ::e_status _mapped_add_net_wm_state(x_window::enum_atom eatomNetWmState);
+      virtual ::e_status _mapped_remove_net_wm_state(x_window::enum_atom eatomNetWmState);
+      virtual ::e_status _unmapped_add_net_wm_state(x_window::enum_atom eatomNetWmState);
+      virtual ::e_status _unmapped_remove_net_wm_state(x_window::enum_atom eatomNetWmState);
+      virtual ::e_status _add_net_wm_state(x_window::enum_atom eatomNetWmState);
+      virtual ::e_status _remove_net_wm_state(x_window::enum_atom eatomNetWmState);
+      virtual ::e_status _clear_net_wm_state();
+      virtual ::e_status _add_net_wm_state_below();
+      virtual ::e_status _add_net_wm_state_above();
+      virtual ::e_status _add_net_wm_state_hidden();
+      virtual ::e_status _remove_net_wm_state_below();
+      virtual ::e_status _remove_net_wm_state_above();
+      virtual ::e_status _remove_net_wm_state_hidden();
+      virtual ::e_status _set_tool_window(bool bToolWindow = true);
+      virtual ::e_status _set_normal_window();
+      virtual ::e_status _set_hidden_state(bool bHidden);
+      virtual ::e_status _set_desktop_window(bool bDesktopWindow = true);
+      virtual ::e_status _set_center_window(bool bCenterWindow = true);
+      virtual ::e_status _set_splash_window(bool bSplashWindow = true);
+      virtual ::e_status _set_dock_window(bool bDockWindow = true);
+      virtual ::e_status _set_nodecorations(int bMap);
+      virtual ::e_status _set_iconify_window();
+
+
+      virtual ::e_status xcb_post_message(MESSAGE & msg);
       virtual ::e_status post_ui_message(const MESSAGE & message);
-      //virtual bool x11_process_event(osdisplay_data * pdisplaydata, XEvent * pevent, XGenericEventCookie *cookie);
-      //virtual ::e_status set_window_position( WINDOWING_X11_WINDOW_MEMBER const ::zorder & zorder, i32 x, i32 y, i32 cx, i32 cy, ::u32 nFlags);
-      virtual ::e_status get_window_rect( WINDOWING_X11_WINDOW_MEMBER RECTANGLE_I32 * prectangle);
-      virtual ::e_status get_client_rect(  WINDOWING_X11_WINDOW_MEMBER  RECTANGLE_I32 * prectangle);
-      //virtual ::e_status wm_full_screen( WINDOWING_X11_WINDOW_MEMBER const ::rectangle_i32 & rectangle);
+      virtual ::e_status get_window_rect(RECTANGLE_I32 * prectangle);
+      virtual ::e_status get_client_rect(RECTANGLE_I32 * prectangle);
+      virtual ::e_status mq_remove_window_from_all_queues( );
 
-      virtual ::e_status x11_store_name(const char * pszName);
-      //virtual ::e_status set_foreground_window();
-      //virtual ::e_status set_active_window();
-      //virtual void wm_toolwindow( WINDOWING_X11_WINDOW_MEMBER bool bToolWindow);
-      //virtual void wm_state_hidden( WINDOWING_X11_WINDOW_MEMBER bool bSet);
-      //virtual void wm_state_hidden_raw( WINDOWING_X11_WINDOW_MEMBER bool bSet);
-      virtual ::e_status mq_remove_window_from_all_queues( WINDOWING_X11_WINDOW_MEMBER );
 
       virtual void update_screen() override;
       virtual void window_show() override;
 
 
+      virtual ::e_status defer_update_keyboard_context();
+      virtual int keycode_to_keysym(xcb_keycode_t code);
+      virtual void release_keyboard();
+      virtual string _on_key_down(xcb_keycode_t code);
+
+
+      static xcb_atom_t _get_window_long_atom(i32 nIndex);
+
+
+      virtual ::e_status _change_atom_atom(xcb_atom_t atomWindowType, xcb_atom_t atomWindowTypeValue);
+      virtual ::e_status _change_property(xcb_atom_t property, xcb_atom_t type, int mode, int format, int nelements, const void * data);
+      virtual ::e_status _delete_property(xcb_atom_t property);
+      virtual ::e_status _replace_string_property(xcb_atom_t property, const ::block & block);
+      virtual ::e_status _request_check(xcb_void_cookie_t cookie);
+
+
+      virtual ::e_status _send_client_event(xcb_atom_t atom, unsigned int numArgs, ...);
+      virtual ::e_status _store_name(const char * psz);
+      virtual ::e_status _select_input(i32 iInput);
+      virtual ::e_status _select_all_input();
+      virtual ::e_status _map_window();
+      //virtual ::e_status _unmap_window(bool bWithdraw);
+      virtual ::e_status _unmap_window();
+      virtual ::e_status _withdraw_window();
+      virtual ::e_status _destroy_window();
+
+
+      virtual ::e_status _set_class_hint(const char * pszName, const char * pszClass);
+      virtual ::e_status _get_window_attributes();
+      virtual ::e_status _get_geometry();
+      virtual ::e_status _move_resize(int x, int y, int cx, int cy);
+      virtual ::e_status _move(int x, int y);
+      virtual ::e_status _resize(int cx, int cy);
+
+
    };
 
 
-   using window_map = map < ::Window, __pointer(window) >;
+   using window_map = map < ::xcb_window_t, __pointer(window) >;
 
 
-} // namespace windowing_x11
+} // namespace windowing_xcb
 
 
 

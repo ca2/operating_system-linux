@@ -3,7 +3,7 @@
 ////#include "third/sn/sn.h"
 
 
-extern ::mutex * x11_mutex();
+extern ::mutex * user_mutex();
 
 
 //int g_iIgnoreXDisplayError = 0;
@@ -20,7 +20,7 @@ extern ::mutex * x11_mutex();
 //void x_display_error_trap_pop(SnDisplay * sndisplay, Display * display)
 //{
 //
-//   synchronization_lock sl(x11_mutex());
+//   synchronization_lock sl(user_mutex());
 //
 //   g_iIgnoreXDisplayError--;
 //

@@ -46,7 +46,7 @@ namespace windowing_x11
 
       }
 
-      synchronization_lock synchronizationlock(x11_mutex());
+      synchronization_lock synchronizationlock(user_mutex());
 
       display_lock displaylock(x11_window()->x11_display());
 
@@ -69,7 +69,7 @@ namespace windowing_x11
 
       }
 
-      synchronization_lock synchronizationlock(x11_mutex());
+      synchronization_lock synchronizationlock(user_mutex());
 
       display_lock displaylock(x11_window()->x11_display());
 
@@ -321,7 +321,7 @@ namespace windowing_x11
 
       pimage->map();
 
-      synchronization_lock synchronizationlock(x11_mutex());
+      synchronization_lock synchronizationlock(user_mutex());
 
       display_lock displayLock(x11_window()->x11_display());
 

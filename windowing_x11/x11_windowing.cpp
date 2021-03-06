@@ -20,7 +20,7 @@ bool __x11_hook_process_event(Display * pdisplay, XEvent & e, XGenericEventCooki
 bool __x11_hook_list_is_empty();
 
 
-extern ::mutex * x11_mutex();
+extern ::mutex * user_mutex();
 
 
 Display * g_pdisplayX11= nullptr;
@@ -227,7 +227,7 @@ void x11_wait_timer_or_event(Display * pdisplay)
 //      try
 //      {
 //
-//         synchronization_lock sl(x11_mutex());
+//         synchronization_lock sl(user_mutex());
 //
 //         XLockDisplay(pdisplay);
 //

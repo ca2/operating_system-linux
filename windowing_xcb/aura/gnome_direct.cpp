@@ -1,7 +1,7 @@
 #include "framework.h"
 #include "platform/platform_setup.h"
 #include <limits.h>
-#include "acme/os/x11/_x11.h"
+#include "acme/os/xcb/_xcb.h"
 #include "__standard_type.h"
 #include "gnome.h"
 #include "gnome_gnome.h"
@@ -809,17 +809,17 @@ int gdk_launch_uri(const char * pszUri, char * pszError, int iBufferSize)
 
 }
 
-bool x11_on_event(XEvent * pevent);
+bool xcb_on_event(xcb_generic_event_t * pevent);
 
-GdkFilterReturn x11_gdk_filter(GdkXEvent *xevent, GdkEvent *event, gpointer data)
+GdkFilterReturn xcb_gdk_filter(GdkXEvent *xevent, GdkEvent *event, gpointer data)
 {
 
-   XEvent *pevent = (XEvent *) xevent;
+   xcb_generic_event_t *pevent = (xcb_generic_event_t *) xevent;
 
    try
    {
 
-      if (x11_on_event(pevent))
+      if (xcb_on_event(pevent))
       {
 
          return GDK_FILTER_REMOVE;
@@ -843,9 +843,9 @@ GdkFilterReturn x11_gdk_filter(GdkXEvent *xevent, GdkEvent *event, gpointer data
 
 
 
-//      osdisplay_data * pdisplaydata = (osdisplay_data *) x11_main_display();
+//      osdisplay_data * pdisplaydata = (osdisplay_data *) xcb_main_display();
 //
-//   Display * pdisplay = pdisplaydata->display();
+//   xcb_connection_t * pdisplay = pdisplaydata->display();
 ////
 ////   if(pdisplay == nullptr)
 ////   {
@@ -859,11 +859,11 @@ GdkFilterReturn x11_gdk_filter(GdkXEvent *xevent, GdkEvent *event, gpointer data
 //////
 //////      g_bInitX11Thread = true;
 //////
-//////      synchronization_lock sl(x11_mutex());
+//////      synchronization_lock sl(user_mutex());
 //////
 //////      xdisplay d(pdisplay);
 //////
-//////      g_atomKickIdle = XInternAtom(pdisplay, "__WM_KICKIDLE", False);
+//////      g_atomKickIdle = XInternAtom(pdisplay, "__WM_KICKIDLE", false);
 //////
 //////      g_windowX11Client = XCreateSimpleWindow(pdisplay, DefaultRootWindow(pdisplay), 10, 10, 10, 10, 0, 0, 0);
 //////
@@ -881,7 +881,7 @@ GdkFilterReturn x11_gdk_filter(GdkXEvent *xevent, GdkEvent *event, gpointer data
 ////   try
 ////   {
 ////
-////      synchronization_lock sl(x11_mutex());
+////      synchronization_lock sl(user_mutex());
 ////
 ////      xdisplay d(pdisplay);
 ////
@@ -918,16 +918,16 @@ GdkFilterReturn x11_gdk_filter(GdkXEvent *xevent, GdkEvent *event, gpointer data
 //
 //   //         XNextEvent(pdisplay, &e);
 //
-//   if(!__x11_hook_process_event(pdisplaydata->display(), e, cookie))
+//   if(!__xcb_hook_process_event(pdisplaydata->display(), e, cookie))
 //   {
 //
 //#if !defined(RASPBIAN)
 //
-//      if(!x11_process_event(pdisplaydata, e, cookie))
+//      if(!xcb_process_event(pdisplaydata, e, cookie))
 //
 //#else
 //
-//         if(!x11_process_event(pdisplaydata, e))
+//         if(!xcb_process_event(pdisplaydata, e))
 //
 //#endif
 //      {

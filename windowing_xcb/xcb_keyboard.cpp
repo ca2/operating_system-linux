@@ -9,8 +9,8 @@
 //
 // $Id: XKeyboard.cpp 53 2008-07-18 08:38:47Z jay $
 #include "framework.h"
-#include "x11_keyboard.h"
-#include "x11_exception.h"
+#include "xcb_keyboard.h"
+#include "xcb_exception.h"
 //!!!#include <X11/XKBlib.h>
 //!!!#include <X11/keysym.h>
 #include "acme/user/_const_key.h"
@@ -23,7 +23,7 @@ XKeyboard::XKeyboard()
       _deviceId(XkbUseCoreKbd)
 {
 
-    XkbIgnoreExtension(False);
+    XkbIgnoreExtension(false);
 
     char* displayName = strdup("");
     int eventCode;
@@ -50,7 +50,7 @@ XKeyboard::XKeyboard()
         break;
     }
 
-    if (initializeXkb() != True) {
+    if (initializeXkb() != true) {
         throw X11Exception("XKB not initialized.");
     }
 
@@ -74,7 +74,7 @@ Bool XKeyboard::initializeXkb()
     XkbDescRec* kbdDescPtr = XkbAllocKeyboard();
     if (kbdDescPtr == NULL) {
         //std::cerr << "Failed to get keyboard description." << std::endl;
-        return False;
+        return false;
     }
 
     kbdDescPtr->dpy = _display;
@@ -88,17 +88,17 @@ Bool XKeyboard::initializeXkb()
 
     if (kbdDescPtr->names == NULL) {
 //        std::cerr << "Failed to get keyboard description." << std::endl;
-        return False;
+        return false;
     }
 
     // Count the number of configured groups.
-    const Atom* groupSource = kbdDescPtr->names->groups;
+    const xcb_atom_t* groupSource = kbdDescPtr->names->groups;
     if (kbdDescPtr->ctrls != NULL) {
         _groupCount = kbdDescPtr->ctrls->num_groups;
     } else {
         _groupCount = 0;
         while (_groupCount < XkbNumKbdGroups &&
-               groupSource[_groupCount] != None) {
+               groupSource[_groupCount] != 0) {
             _groupCount++;
         }
     }
@@ -109,11 +109,11 @@ Bool XKeyboard::initializeXkb()
     }
 
     // Get the group names.
-    const Atom* tmpGroupSource = kbdDescPtr->names->groups;
-    Atom curGroupAtom;
+    const xcb_atom_t* tmpGroupSource = kbdDescPtr->names->groups;
+    xcb_atom_t curGroupAtom;
     string groupName;
     for (int i = 0; i < _groupCount; i++) {
-        if ((curGroupAtom = tmpGroupSource[i]) != None) {
+        if ((curGroupAtom = tmpGroupSource[i]) != 0) {
             char* groupNameC = XGetAtomName(_display, curGroupAtom);
             if (groupNameC == NULL) {
                 _groupNames.push_back("");
@@ -130,17 +130,17 @@ Bool XKeyboard::initializeXkb()
     }
 
     // Get the symbol name and parse it for on_layout symbols.
-    Atom symNameAtom = kbdDescPtr->names->symbols;
+    xcb_atom_t symNameAtom = kbdDescPtr->names->symbols;
     string symName;
-    if (symNameAtom != None) {
+    if (symNameAtom != 0) {
         char* symNameC = XGetAtomName(_display, symNameAtom);
         symName = symNameC;
         XFree(symNameC);
         if (symName.empty()) {
-            return False;
+            return false;
         }
     } else {
-        return False;
+        return false;
     }
 
     XkbSymbolParser symParser;
@@ -178,7 +178,7 @@ Bool XKeyboard::initializeXkb()
     XkbGetState(_display, _deviceId, &xkbState);
     _currentGroupNum = xkbState.group;
 
-    return True;
+    return true;
 }
 
 string XKeyboard::getSymbolNameByResNum(int groupResNum)
@@ -268,7 +268,7 @@ bool XKeyboard::setGroupByNum(int groupNum)
     }
 
     Bool result = XkbLockGroup(_display, _deviceId, groupNum);
-    if (result == False) {
+    if (result == false) {
         return false;
     }
     accomodateGroupXkb();
@@ -279,7 +279,7 @@ bool XKeyboard::changeGroup(int increment)
 {
     Bool result = XkbLockGroup(_display, _deviceId,
                                (_currentGroupNum + increment) % _groupCount);
-    if (result == False) {
+    if (result == false) {
         return false;
     }
     accomodateGroupXkb();
@@ -403,7 +403,7 @@ int compareNoCase(const string& s1, const string& s2)
 // }
 
 
-void x11_keyboard_get_current_group_info(string & strGroupName, string & strGroupSymbol)
+void xcb_keyboard_get_current_group_info(string & strGroupName, string & strGroupSymbol)
 {
 
    XKeyboard xkb;
@@ -415,7 +415,7 @@ void x11_keyboard_get_current_group_info(string & strGroupName, string & strGrou
 }
 
 
-string x11_keyboard_get_current_group_name()
+string xcb_keyboard_get_current_group_name()
 {
 
    XKeyboard xkb;
@@ -425,7 +425,7 @@ string x11_keyboard_get_current_group_name()
 }
 
 
-string x11_keyboard_get_current_group_symbol()
+string xcb_keyboard_get_current_group_symbol()
 {
 
    XKeyboard xkb;

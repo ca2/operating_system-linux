@@ -1,13 +1,13 @@
 #include "platform/config.h"
 //!!!#include <X11/Xlib.h>
 //!!!#include <X11/extensions/Xinerama.h>
-#define pointer x11pointer
+#define pointer xcbpointer
 //!!!#include <X11/extensions/Xrender.h>
 
 
 #if defined(RASPBIAN)
 
-Visual * get_32bit_visual(Display * disp)
+Visual * get_32bit_visual(xcb_connection_t * disp)
 {
 
    // return fallback Visual
@@ -20,10 +20,10 @@ Visual * get_32bit_visual(Display * disp)
 
 //http://rosettacode.org/wiki/Window_creation/X11
 
-Visual * get_32bit_visual(Display * disp)
+Visual * get_32bit_visual(xcb_connection_t * disp)
 {
 
-//Window win;
+//xcb_window_t win;
 //XSetWindowAttributes attr;
 XWindowAttributes att;
 XVisualInfo *xvi;

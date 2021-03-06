@@ -72,7 +72,7 @@ else ()
 endif ()
 
 
-add_library(windowing_xcb SHARED ${audio_alsa_source} )
+add_library(windowing_xcb SHARED ${audio_alsa_source} windowing_xkb.cpp xcb_icccm.cpp)
 
 target_precompile_headers(windowing_xcb PRIVATE framework.h)
 
@@ -86,9 +86,6 @@ if (MSVC)
    target_link_libraries(windowing_xcb PRIVATE ${library_references})
    add_dependencies(windowing_xcb draw2d_gdiplus)
 elseif (LINUX)
-   #pkg_check_modules(PKGCONFIG glib-2.0 gtk+-3.0 gdk-3.0 appindicator-0.1)
-   # sudo apt install libgtk-3-dev
-   #pkg_check_modules(PKGCONFIG glib-2.0 gtk+-3.0 gdk-3.0)
    pkg_check_modules(PKGCONFIG xcb xrender xi)
    target_compile_options(windowing_xcb PRIVATE -fpermissive)
    target_compile_options(windowing_xcb PRIVATE ${PKGCONFIG_CFLAGS})

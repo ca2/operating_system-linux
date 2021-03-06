@@ -8,12 +8,12 @@
 #include <stdio.h>
 #include <string.h>
 #include <stdlib.h>
-#include "_x11.h"
+#include "_xcb.h"
 
 #if !defined(RASPBIAN)
-bool x11_message_box_process_event(Display * pdisplay, XEvent & e, XGenericEventCookie * cookie);
+bool xcb_message_box_process_event(xcb_connection_t * pdisplay, XEvent & e, XGenericEventCookie * cookie);
 #else
-bool x11_message_box_process_event(Display * pdisplay, XEvent & e);
+bool xcb_message_box_process_event(xcb_connection_t * pdisplay, XEvent & e);
 #endif
 
 
@@ -42,12 +42,12 @@ struct Dimensions{
 struct Dimensions dim = {400, 0, 5, 50, 30, 10, 30, 30, 20, 75, 25, 8};
 
 
-void setWindowTitle(const char* title, const Window *win, Display *dpy){
-    Atom wm_Name = XInternAtom(dpy, "_NET_WM_NAME", False);
-    Atom utf8Str = XInternAtom(dpy, "UTF8_STRING", False);
+void setWindowTitle(const char* title, const xcb_window_t *win, xcb_connection_t *dpy){
+    xcb_atom_t wm_Name = XInternAtom(dpy, "_NET_WM_NAME", false);
+    xcb_atom_t utf8Str = XInternAtom(dpy, "UTF8_STRING", false);
 
-    Atom winType = XInternAtom(dpy, "_NET_WM_WINDOW_TYPE", False );
-    Atom typeDialog = XInternAtom(dpy, "_NET_WM_WINDOW_TYPE_DIALOG", False );
+    xcb_atom_t winType = XInternAtom(dpy, "_NET_WM_WINDOW_TYPE", false );
+    xcb_atom_t typeDialog = XInternAtom(dpy, "_NET_WM_WINDOW_TYPE_DIALOG", false );
 
     XChangeProperty(dpy, *win, wm_Name, utf8Str, 8, PropModeReplace, (const unsigned char*)title, (int)strlen(title));
 
@@ -76,7 +76,7 @@ void setWindowTitle(const char* title, const Window *win, Display *dpy){
 //    free(data);
 //}
 
-// void x11_text_extents(XFontSet* fs, wchar_t** texts, int size, unsigned int spaceBetweenLines,
+// void xcb_text_extents(XFontSet* fs, wchar_t** texts, int size, unsigned int spaceBetweenLines,
 //                      unsigned int *w,  unsigned  int *h)
 // {
 //     int i;
@@ -91,11 +91,11 @@ void setWindowTitle(const char* title, const Window *win, Display *dpy){
 //     }
 // }
 
-//::e_status x11MessageBoxA(const char* title, const char * text, const Button* buttons, int numButtons);
+//::e_status xcbMessageBoxA(const char* title, const char * text, const Button* buttons, int numButtons);
 
 
 
-// void createGC(GC* gc, const Colormap* cmap, Display* dpy, const  Window* win,
+// void createGC(GC* gc, const Colormap* cmap, xcb_connection_t* dpy, const  xcb_window_t* win,
 //               unsigned char red, unsigned char green, unsigned char blue){
 //     float coloratio = (float) 65535 / 255;
 //     XColor color;
@@ -111,7 +111,7 @@ void setWindowTitle(const char* title, const Window *win, Display *dpy){
 
 
 
-//::e_status x11MessageBoxA(const char* title, const char * text, const Button* btsData, int numButtons)
+//::e_status xcbMessageBoxA(const char* title, const char * text, const Button* btsData, int numButtons)
 //{
 //    //setlocale(LC_ALL,"");
 //
@@ -125,16 +125,16 @@ void setWindowTitle(const char* title, const Window *win, Display *dpy){
 //
 //   stra.add_lines(text);
 //
-//   synchronization_lock sl(x11_mutex());
+//   synchronization_lock sl(user_mutex());
 //
-//    xdisplay d(x11_get_display());
+//    xdisplay d(xcb_get_display());
 //    if(!d.display()){
 //
 //        return ::error_failed;
 //    }
 //
 //    int ds = DefaultScreen(d.display());
-//    Window win = 0;
+//    xcb_window_t win = 0;
 //
 //        if(::user::is_app_dark_mode())
 //        {
@@ -153,7 +153,7 @@ void setWindowTitle(const char* title, const Window *win, Display *dpy){
 //    //XMapWindow(dpy, win);
 //
 //    //allow windows to be closed by pressing cross button (but it wont close - see ClientMessage on switch)
-//    Atom WM_DELETE_WINDOW = XInternAtom(dpy, "WM_DELETE_WINDOW", False);
+//    xcb_atom_t WM_DELETE_WINDOW = XInternAtom(dpy, "WM_DELETE_WINDOW", false);
 //    XSetWMProtocols(dpy, win, &WM_DELETE_WINDOW, 1);
 //
 //    //--create the gc for drawing text----------------------------------------------------------------------------------
@@ -195,7 +195,7 @@ void setWindowTitle(const char* title, const Window *win, Display *dpy){
 //    unsigned int textW, textH;
 //
 //    //calculate the ideal window's size
-//    x11_text_extents(&fs, text_splitted, textLines, dim.lineSpacing, &textW, &textH);
+//    xcb_text_extents(&fs, text_splitted, textLines, dim.lineSpacing, &textW, &textH);
 //    unsigned int newWidth = textW + dim.pad_left + dim.pad_right;
 //    unsigned int newHeight = textH + dim.pad_up + dim.pad_down + dim.barHeight;
 //    winW = (newWidth > dim.winMinWidth)? newWidth: dim.winMinWidth;
@@ -325,9 +325,9 @@ void setWindowTitle(const char* title, const Window *win, Display *dpy){
 //}
 //
 //#if !defined(RASPBIAN)
-//bool x11_message_box_process_event(osdisplay_data * pdisplaydata, XEvent & e, XGenericEventCookie * cookie)
+//bool xcb_message_box_process_event(osdisplay_data * pdisplaydata, XEvent & e, XGenericEventCookie * cookie)
 //#else
-//bool x11_message_box_process_event(osdisplay_data * pdisplaydata, XEvent & e)
+//bool xcb_message_box_process_event(osdisplay_data * pdisplaydata, XEvent & e)
 //#endif
 //{
 //

@@ -1,7 +1,7 @@
 //
 // Created by camilo on 16/02/2021.
 //
-#include "framework.h"
+#include "platform-linux/windowing_xcb/framework.h"
 #include "aura/user/_user.h"
 #include "aura/os/x11/_x11.h"
 #include "acme/const/id.h"
@@ -30,11 +30,11 @@
 bool x11_runnable_step();
 
 
-::mutex * g_pmutexX11Runnable = nullptr;
-list < __pointer(::matter) > * g_prunnableptrlX11 = nullptr;
+//::mutex * g_pmutexX11Runnable = nullptr;
+//list < __pointer(::matter) > * g_prunnableptrlX11 = nullptr;
 
 
-::point_i32 g_pointX11Cursor;
+//::point_i32 g_pointX11Cursor;
 
 
 message_queue * get_message_queue(ithread_t idthread, bool bCreate);
@@ -406,7 +406,7 @@ namespace windowing_x11
 //oswindow windowing::get_active_window()
 //{
 //
-//   synchronization_lock synchronizationlock(x11_mutex());
+//   synchronization_lock synchronizationlock(user_mutex());
 //
 //   oswindow oswindow = nullptr;
 //
@@ -529,7 +529,7 @@ namespace windowing_x11
 
                   }
 
-                  synchronization_lock synchronizationlock(x11_mutex());
+                  synchronization_lock synchronizationlock(user_mutex());
 
                   windowing_output_debug_string("\n::GetFocus 1");
 
@@ -612,7 +612,7 @@ namespace windowing_x11
 // int_bool is_window_occluded(oswindow oswindow)
 // {
 
-//    synchronization_lock synchronizationlock(x11_mutex());
+//    synchronization_lock synchronizationlock(user_mutex());
 
 //    windowing_output_debug_string("\n::GetFocus 1");
 
@@ -774,7 +774,7 @@ Retrieved from: http://en.literateprograms.org/Hello_World_(C,_Cairo)?oldid=1038
 //void message_box_paint(::draw2d::graphics_pointer & pgraphics, string_array & stra, bool_array  & baTab, int_array  & ya,SIZE_I32 * psize)
 //{
 //
-//   synchronization_lock synchronizationlock(x11_mutex());
+//   synchronization_lock synchronizationlock(user_mutex());
 //
 //   pgraphics->fill_rectangle(::rectangle_i32(*psize), rgb(84, 90, 80));
 //
@@ -810,7 +810,7 @@ Retrieved from: http://en.literateprograms.org/Hello_World_(C,_Cairo)?oldid=1038
 //int_bool IsWindowVisibleRaw(oswindow w)
 //{
 //
-//   synchronization_lock synchronizationlock(x11_mutex());
+//   synchronization_lock synchronizationlock(user_mutex());
 //
 //   Display * display = w->display();
 //
@@ -851,7 +851,7 @@ Retrieved from: http://en.literateprograms.org/Hello_World_(C,_Cairo)?oldid=1038
 //::e_status x11_hook::hook()
 //{
 //
-//   synchronization_lock synchronizationlock(x11_mutex());
+//   synchronization_lock synchronizationlock(user_mutex());
 //
 //   g_x11hooka.add(this);
 //
@@ -862,7 +862,7 @@ Retrieved from: http://en.literateprograms.org/Hello_World_(C,_Cairo)?oldid=1038
 //::e_status x11_hook::unhook()
 //{
 //
-//   synchronization_lock synchronizationlock(x11_mutex());
+//   synchronization_lock synchronizationlock(user_mutex());
 //
 //   g_x11hooka.remove(this);
 //
@@ -940,7 +940,7 @@ Retrieved from: http://en.literateprograms.org/Hello_World_(C,_Cairo)?oldid=1038
 //
 //   {
 //
-//      synchronization_lock synchronizationlock(x11_mutex());
+//      synchronization_lock synchronizationlock(user_mutex());
 //
 //      display_lock d(pdisplay);
 //
@@ -1092,7 +1092,7 @@ Retrieved from: http://en.literateprograms.org/Hello_World_(C,_Cairo)?oldid=1038
       try
       {
 
-         synchronization_lock synchronizationlock(x11_mutex());
+         synchronization_lock synchronizationlock(user_mutex());
 
          display_lock displaylock(m_pdisplay);
 
@@ -1210,7 +1210,7 @@ Retrieved from: http://en.literateprograms.org/Hello_World_(C,_Cairo)?oldid=1038
 //
 //      g_bInitX11Thread = true;
 //
-//      synchronization_lock synchronizationlock(x11_mutex());
+//      synchronization_lock synchronizationlock(user_mutex());
 //
 //      display_lock d(pdisplay);
 //
@@ -1232,7 +1232,7 @@ Retrieved from: http://en.literateprograms.org/Hello_World_(C,_Cairo)?oldid=1038
       try
       {
 
-         synchronization_lock synchronizationlock(x11_mutex());
+         synchronization_lock synchronizationlock(user_mutex());
 
          display_lock displayLock(m_pdisplay);
 
@@ -2732,7 +2732,7 @@ Retrieved from: http://en.literateprograms.org/Hello_World_(C,_Cairo)?oldid=1038
 //int_bool set_window_position(oswindow hwnd, oswindow hwndInsertAfter, i32 x, i32 y, i32 cx, i32 cy, ::u32 nFlags)
 //{
 //
-//   synchronization_lock synchronizationlock(x11_mutex());
+//   synchronization_lock synchronizationlock(user_mutex());
 //
 //   return hwnd->set_window_position(hwndInsertAfter, x, y, cx, cy, nFlags);
 //
@@ -2745,7 +2745,7 @@ Retrieved from: http://en.literateprograms.org/Hello_World_(C,_Cairo)?oldid=1038
 //int_bool get_window_rect(oswindow hwnd, RECTANGLE_I32 * prectangle)
 //{
 //
-//   synchronization_lock synchronizationlock(x11_mutex());
+//   synchronization_lock synchronizationlock(user_mutex());
 //
 //   display_lock d(hwnd->display());
 //
@@ -2787,7 +2787,7 @@ Retrieved from: http://en.literateprograms.org/Hello_World_(C,_Cairo)?oldid=1038
 //   x11_sync([&]()
 //            {
 //
-//               synchronization_lock synchronizationlock(x11_mutex());
+//               synchronization_lock synchronizationlock(user_mutex());
 //
 //               x11_get_cursor_pos(ppointCursor);
 //
@@ -2981,7 +2981,7 @@ Retrieved from: http://en.literateprograms.org/Hello_World_(C,_Cairo)?oldid=1038
 //   void defer_term_ui()
 //   {
 //
-//      synchronization_lock synchronizationlock(x11_mutex());
+//      synchronization_lock synchronizationlock(user_mutex());
 //
 //      g_iX11Ref--;
 //
@@ -3382,7 +3382,7 @@ unsigned long x11_get_long_property(Display *d, Window w, char *property_name)
 bool x11_get_client_rect(Display * pdisplay, Window window, RECTANGLE_I32 *prectangle)
 {
 
-   synchronization_lock synchronizationlock(x11_mutex());
+   synchronization_lock synchronizationlock(user_mutex());
 
    XWindowAttributes attr;
 
@@ -3472,58 +3472,6 @@ bool x11_get_window_rect(Display * d, Window window, RECTANGLE_I32 * prectangle)
 }
 
 
-bool x11_runnable_step()
-{
-
-   bool bDoneMuchThings = false;
-
-//   {
-//
-//      synchronization_lock synchronizationlock(g_pmutexX11Sync);
-//
-//      if (g_prunnableX11Sync)
-//      {
-//
-//         g_prunnableX11Sync->operator()();
-//
-//         g_prunnableX11Sync.release();
-//
-//         g_peventX11Sync->SetEvent();
-//
-//         bDoneMuchThings = true;
-//
-//      }
-//
-//   }
-
-   {
-
-      synchronization_lock synchronizationlock(g_pmutexX11Runnable);
-
-      while (g_prunnableptrlX11->has_elements() && ::thread_get_run())
-      {
-
-         __pointer(::matter) prunnable = g_prunnableptrlX11->pop_front();
-
-         synchronizationlock.unlock();
-
-         prunnable->operator()();
-
-         synchronizationlock.lock();
-
-         bDoneMuchThings = true;
-
-      }
-
-   }
-
-   return bDoneMuchThings;
-
-}
-
-
-::mutex * g_pmutexX11 = nullptr;
-
 
 ::e_status initialize_x11()
 {
@@ -3562,7 +3510,7 @@ bool x11_runnable_step()
 }
 
 
-mutex * x11_mutex()
+mutex * user_mutex()
 {
 
    return g_pmutexX11;

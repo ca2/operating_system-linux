@@ -2,13 +2,13 @@
 #include "acme/id.h"
 #include "_.h"
 #include "gdk.h"
-#include "acme/os/x11/_x11.h"
+#include "acme/os/xcb/_xcb.h"
 #include <gio/gio.h>
 #include <gtk/gtk.h>
 #include <glib.h>
 
 
-bool x11_message_loop_step();
+bool xcb_message_loop_step();
 
 
 gboolean gtk_quit_callback(gpointer data);
@@ -324,7 +324,7 @@ namespace node_gnome
 //
 //         System.set_modified(id_os_user_theme);
 //
-//         x11_kick_idle();
+//         xcb_kick_idle();
 //
 //      }
 //
@@ -701,7 +701,7 @@ namespace node_gnome
 //
 //         System.deliver(id_os_dark_mode);
 //
-//         x11_kick_idle();
+//         xcb_kick_idle();
 //
 //      }
 //
@@ -783,33 +783,33 @@ CLASS_DECL_APEX void main_branch(::matter * prunnable, e_priority epriority)
 //}
 
 
-gboolean x11_source_func(gpointer)
+gboolean xcb_source_func(gpointer)
 {
 
-   x11_message_loop_step();
+   xcb_message_loop_step();
 
    return TRUE;
 
 }
 
 
-void x11_add_idle_source()
+void xcb_add_idle_source()
 {
 
-   gdk_threads_add_idle(&x11_source_func, nullptr);
+   gdk_threads_add_idle(&xcb_source_func, nullptr);
 
 }
 
 
-bool x11_message_handler(XEvent * pevent);
+bool xcb_message_handler(xcb_generic_event_t * pevent);
 
 
-GdkFilterReturn x11_event_func(GdkXEvent *xevent, GdkEvent *event, gpointer  data)
+GdkFilterReturn xcb_event_func(GdkXEvent *xevent, GdkEvent *event, gpointer  data)
 {
 
-   XEvent * pevent = (XEvent *) xevent;
+   xcb_generic_event_t * pevent = (xcb_generic_event_t *) xevent;
 
-   if(x11_message_handler(pevent))
+   if(xcb_message_handler(pevent))
    {
 
       //return GDK_FILTER_REMOVE;

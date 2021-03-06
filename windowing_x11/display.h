@@ -19,7 +19,14 @@ namespace windowing_x11
 
       critical_section                             m_criticalsectionWindowMap;
       window_map                                   m_windowmap;
+
+
       ::Display *                                  m_pdisplay;
+      XVisualInfo                                  m_visualinfo;
+      Colormap                                     m_colormap;
+      int                                          m_iScreen;
+
+
       Atom                                         m_atomLongType;
       Atom                                         m_atomLongStyle;
       Atom                                         m_atomLongStyleEx;

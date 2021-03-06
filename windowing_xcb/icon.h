@@ -3,11 +3,11 @@
 #pragma once
 
 
-namespace windowing_x11
+namespace windowing_xcb
 {
 
 
-   class CLASS_DECL_WINDOWING_X11 icon :
+   class CLASS_DECL_WINDOWING_XCB icon :
       virtual public ::windowing::icon
    {
    public:

@@ -7,8 +7,8 @@
 
 
 //#if defined(LINUX) || defined(SOLARIS)
-////#include "base/base/os/x11/x11_keyboard.h"
-//string x11_keyboard_get_current_group_symbol();
+////#include "base/base/os/xcb/xcb_keyboard.h"
+//string xcb_keyboard_get_current_group_symbol();
 //#elif defined(MACOS)
 //string keyboard_input_source();
 //#endif
@@ -290,7 +290,7 @@ namespace user
          return false;
       }
 
-      __throw(todo("xml"));
+      __throw(todo, "xml");
 
       //::xml::document doc;
 
@@ -571,7 +571,7 @@ namespace user
 //
 //#elif defined(LINUX) || defined(SOLARIS)
 //
-//      string strSymbol = x11_keyboard_get_current_group_symbol();
+//      string strSymbol = xcb_keyboard_get_current_group_symbol();
 //
 //      for(i32 i = 0; i < layoutida.get_count(); i++)
 //      {

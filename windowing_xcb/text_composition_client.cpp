@@ -5,7 +5,7 @@
 #include "text_composition_client.h"
 
 
-namespace windowing_x11
+namespace windowing_xcb
 {
 
 
@@ -23,7 +23,7 @@ namespace windowing_x11
    }
 
 
-} // namespace windowing_x11
+} // namespace windowing_xcb
 
 
 

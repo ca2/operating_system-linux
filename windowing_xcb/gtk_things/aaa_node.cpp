@@ -40,16 +40,16 @@ const char * linux_g_direct_get_file_icon_path(const char * pszPath, int iSize);
 const char * linux_g_direct_get_file_content_type(const char * pszPath);
 
 
-void x11_add_idle_source();
+void xcb_add_idle_source();
 
 
-void x11_add_filter();
+void xcb_add_filter();
 
 
-void x11_main();
+void xcb_main();
 
 
-mutex * x11_mutex();
+mutex * user_mutex();
 
 
 gboolean node_gnome_source_func(gpointer pUserdata);
@@ -144,9 +144,9 @@ namespace node_gnome
          node_fork([this]()
                    {
 
-                      //x11_add_idle_source();
+                      //xcb_add_idle_source();
 
-                      //x11_add_filter();
+                      //xcb_add_filter();
 
                       auto pgtksettingsDefault = gtk_settings_get_default();
 
@@ -186,18 +186,18 @@ namespace node_gnome
                    });
 
 
-         //x11_add_filter();
+         //xcb_add_filter();
 
 System.fork([]()
      {
 
-      x11_main();
+      xcb_main();
 
      });
 
          gtk_main();
 
-         //x11_main();
+         //xcb_main();
 
       }
       //
@@ -480,9 +480,9 @@ void node::os_calc_user_dark_mode()
       node_fork(__routine([psession]
                            {
 
-                              synchronization_lock sl(x11_mutex());
+                              synchronization_lock sl(user_mutex());
 
-                              xdisplay d(x11_get_display());
+                              xdisplay d(xcb_get_display());
 
                               GdkDisplay *pdisplay = gdk_display_get_default();
 
@@ -551,11 +551,11 @@ void node::os_calc_user_dark_mode()
 //   void * node::node_wrap_window(void * pvoidDisplay, i64 window)
 //   {
 //
-//      Display * pdisplay = (Display *) pvoidDisplay;
+//      xcb_connection_t * pdisplay = (xcb_connection_t *) pvoidDisplay;
 //
-//      GdkDisplay * pd = gdk_x11_lookup_xdisplay (pdisplay);
+//      GdkDisplay * pd = gdk_xcb_lookup_xdisplay (pdisplay);
 //
-//      auto pwindow = gdk_x11_window_foreign_new_for_display(GDK_DISPLAY(pd), (Window) window);
+//      auto pwindow = gdk_xcb_window_foreign_new_for_display(GDK_DISPLAY(pd), (xcb_window_t) window);
 //
 //      return pwindow;
 //

@@ -49,7 +49,7 @@ void x11_add_filter();
 void x11_main();
 
 
-mutex * x11_mutex();
+mutex * user_mutex();
 
 
 gboolean node_gnome_source_func(gpointer pUserdata);
@@ -533,7 +533,7 @@ namespace node_kde
       node_fork(__routine([psession]
                           {
 
-                             synchronization_lock sl(x11_mutex());
+                             synchronization_lock sl(user_mutex());
 
                              xdisplay d(x11_get_display());
 

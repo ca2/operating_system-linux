@@ -15,6 +15,15 @@
 #define platform_char char
 
 
+#ifdef __cplusplus
+
+
+#define DEBUG_BREAK asm("int $3")
+
+
+#endif
+
+
 #include <features.h>
 
 

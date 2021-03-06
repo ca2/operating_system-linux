@@ -278,7 +278,7 @@ namespace windowing_x11
 
       }
 
-      synchronization_lock sl(x11_mutex());
+      synchronization_lock sl(user_mutex());
 
       windowing_output_debug_string("\n::x11_GetWindowRect 1");
 
@@ -315,7 +315,7 @@ namespace windowing_x11
 
       }
 
-      synchronization_lock synchronizationlock(x11_mutex());
+      synchronization_lock synchronizationlock(user_mutex());
 
       display_lock lock(m_pdisplay);
 
@@ -336,7 +336,7 @@ namespace windowing_x11
 
       }
 
-      synchronization_lock synchronizationlock(x11_mutex());
+      synchronization_lock synchronizationlock(user_mutex());
 
       display_lock lock(m_pdisplay);
 
@@ -370,6 +370,7 @@ namespace windowing_x11
       return estatus;
 
    }
+
 
 
 } // namespace windowing

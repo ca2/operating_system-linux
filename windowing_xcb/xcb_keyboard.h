@@ -16,9 +16,9 @@
 //!!!#include <X11/Xlib.h>
 
 
-void x11_keyboard_get_current_group_info(string & strGroupName, string & strGroupSymbol);
-string x11_keyboard_get_current_group_name();
-string x11_keyboard_get_current_group_symbol();
+void xcb_keyboard_get_current_group_info(string & strGroupName, string & strGroupSymbol);
+string xcb_keyboard_get_current_group_name();
+string xcb_keyboard_get_current_group_symbol();
 
 
 typedef string_array StringVector;
@@ -50,7 +50,7 @@ private:
     int groupLookup(int srcValue, StringVector fromText, StringVector toText, int count);
     void accomodateGroupXkb();
 
-    Display* _display;
+    xcb_connection_t* _display;
     int _groupCount;
     StringVector _groupNames;
     StringVector _symbolNames;

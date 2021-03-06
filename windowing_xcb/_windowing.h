@@ -7,35 +7,36 @@
 //!!!#include <X11/Xlib.h>
 
 
-//Display * x11_get_display();
+//xcb_connection_t * xcb_get_display();
 
 
-Visual * get_32bit_visual(Display * pdisplay);
+//Visual * get_32bit_visual(xcb_connection_t * pdisplay);
 
 
-void x11_kick_idle();
+void xcb_kick_idle();
 
 
-void x11_wait_timer_or_event(Display * pdisplay);
-void __x11_hook_on_idle(Display * pdisplay);
+void xcb_wait_timer_or_event(xcb_connection_t * pdisplay);
+void __xcb_hook_on_idle(xcb_connection_t * pdisplay);
 
 
-CLASS_DECL_ACME mutex * x11_mutex();
+CLASS_DECL_ACME mutex * user_mutex();
 
 
-//#include "x11_exception.h"
-//#include "x11_keyboard.h"
-//#include "x11_hook.h"
-//#include "x11_button.h"
-//#include "x11_simple_ui_display.h"
-//#include "x11_message_box.h"
+//#include "xcb_exception.h"
+//#include "xcb_keyboard.h"
+//#include "xcb_hook.h"
+//#include "xcb_button.h"
+//#include "xcb_simple_ui_display.h"
+//#include "xcb_message_box.h"
 
 
-::e_status defer_initialize_x11();
-void x11_handle_just_hooks();
-void x11_defer_handle_just_hooks();
-int x11_message_box(const string & str, const string & strTitle, const ::e_message_box & emessagebox);
-bool __x11_hook_process_event(Display * pdisplay, XEvent * pevent, XGenericEventCookie * cookie);
+::e_status defer_initialize_xcb();
+void xcb_handle_just_hooks();
+void xcb_defer_handle_just_hooks();
+int xcb_message_box(const string & str, const string & strTitle, const ::e_message_box & emessagebox);
+//bool __xcb_hook_process_event(xcb_connection_t * pdisplay, xcb_generic_event_t * pevent, XGenericEventCookie * cookie);
+bool __xcb_hook_process_event(xcb_connection_t * pdisplay, xcb_generic_event_t * pevent);
 
 #include "display.h"
 #include "window.h"

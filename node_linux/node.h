@@ -24,7 +24,7 @@ namespace node_linux
       virtual ~node();
 
 
-      result_pointer < appindicator > new_appindicator();
+      ::extended::transport < appindicator > new_appindicator();
       //virtual int node_init_check(int * pi, char *** ppz) override;
 
       virtual ::e_status start() override;

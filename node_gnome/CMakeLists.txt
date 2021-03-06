@@ -83,8 +83,6 @@ if (MSVC)
    add_dependencies(node_gnome draw2d_gdiplus)
 elseif (LINUX)
    pkg_check_modules(PKGCONFIG glib-2.0 gtk+-3.0 gdk-3.0 appindicator-0.1)
-   # sudo apt install libgtk-3-dev
-   pkg_check_modules(PKGCONFIG glib-2.0 gtk+-3.0 gdk-3.0)
    target_compile_options(node_gnome PRIVATE -fpermissive)
    target_compile_options(node_gnome PRIVATE ${PKGCONFIG_CFLAGS})
    target_link_options(node_gnome PRIVATE -Wl,-rpath=\$ORIGIN)

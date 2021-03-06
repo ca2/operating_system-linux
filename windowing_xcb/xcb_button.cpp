@@ -1,8 +1,8 @@
 #include "framework.h"
-#include "_x11.h"
+#include "_xcb.h"
 
 
-x11_button::x11_button(const char * psz, enum_dialog_result edialogresult) :
+xcb_button::xcb_button(const char * psz, enum_dialog_result edialogresult) :
    m_strLabel(psz),
    m_edialogresult(edialogresult)
 {
@@ -14,7 +14,7 @@ x11_button::x11_button(const char * psz, enum_dialog_result edialogresult) :
 }
 
 
-x11_button::~x11_button()
+xcb_button::~xcb_button()
 {
 
 }

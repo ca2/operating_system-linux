@@ -1,16 +1,21 @@
 #include "framework.h"
-
-
-
-
-
-
+#include <X11/XKBlib.h>
+#define XK_MISCELLANY
+#define XK_XKB_KEYS
+#define XK_LATIN1
+#define XK_LATIN2
+#define XK_LATIN3
+#define XK_LATIN4
+#define XK_CYRILLIC
+#define XK_GREEK
+#define XK_ARMENIAN
+#include <X11/keysymdef.h>
 
 namespace user
 {
 
    
-   CLASS_DECL_WINDOWING_X11 ::user::enum_key keysym_to_userkey(const lparam & lparam)
+   CLASS_DECL_WINDOWING_XCB ::user::enum_key keysym_to_userkey(const lparam & lparam)
    {
 
       KeySym keysym = (KeySym) (iptr)lparam.m_lparam;

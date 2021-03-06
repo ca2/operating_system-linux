@@ -6,12 +6,11 @@
 #include "aura/os/linux/appindicator.h"
 #include "acme/os/ansios/_pthread.h"
 #include "acme/os/linux/_user.h"
+#include "platform/x_window.h"
+
 
 #define WITH_XI
 #define WITH_SN
-
-//#include <gtk/gtk.h>
-//#include <gdk/gdkx.h>
 
 
 #include <X11/Xlib.h>
@@ -38,21 +37,6 @@ namespace windowing_x11
 
 
 } // namespace node_gnome
-
-
-//namespace user
-//{
-//
-//   char * gsettings_get_malloc(const char * pszSchema, const char * pszKey);
-//
-//
-//}
-
-
-//#include "node.h"
-
-
-//#include "copydesk.h"
 
 
 #include "buffer.h"
