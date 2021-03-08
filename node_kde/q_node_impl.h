@@ -3,40 +3,37 @@
 //
 #pragma once
 
+// apt install qt5-default
+//             qtbase5-dev
+//             qttools5-dev
+//             QtCore5.pc
 
-#include <qmetatype.h>
-#include <QApplication>
-#include <QPalette>
-#include <QAbstractNativeEventFilter>
+//#include "_aura_type.h"
+//#include "_aura_integer.h"
+//#include "node_impl.h"
+//#include "acme/user/os_theme_colors.h"
+//
 
-#include "node_impl.h"
-#include "acme/user/os_theme_colors.h"
-
-
-
-
-class q_node_impl :
-   virtual public node_impl,
-   virtual public QAbstractNativeEventFilter
-
-{
-public:
-
-
-   QApplication m_qapplication;
-
-   QPalette m_qpalette;
-
-
-   q_node_impl(int argc, char ** ppsz);
-   virtual ~q_node_impl();
-
-
-   virtual os_theme_colors *  new_os_theme_colors() override;
-   virtual void exec() override;
-
-   virtual bool nativeEventFilter(const QByteArray &eventType, void *message, long *result);
-
-};
+//
+//
+//class q_node_impl :
+//   virtual public node_impl,
+//
+//
+//{
+//public:
+//
+//
+//
+//   q_node_impl(int argc, char ** ppsz);
+//   virtual ~q_node_impl();
+//
+//
+//   virtual os_theme_colors *  new_os_theme_colors() override;
+//   virtual void exec(int argc, char ** argv) override;
+//
+//   virtual bool nativeEventFilter(const QByteArray &eventType, void *message, long *result);
+//
+//};
 
 

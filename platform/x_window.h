@@ -22,6 +22,7 @@ namespace x_window
       e_atom_wm_state,
       e_atom_net_active_window,
       e_atom_net_client_list_stacking,
+      e_atom_net_client_list,
       e_atom_net_wm_window_type,
       e_atom_net_wm_window_type_normal,
       e_atom_net_wm_window_type_splash,

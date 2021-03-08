@@ -541,6 +541,29 @@ namespace windowing_xcb
    }
 
 
+   ::e_status window::_change_atom_atom(xcb_atom_t atomWindowType, xcb_atom_t atomWindowTypeValue)
+   {
+
+      auto estatus = _change_property(
+         atomWindowType,
+         atomWindowTypeValue,
+         XCB_PROP_MODE_REPLACE,
+         32,
+         1,
+         &atomWindowTypeValue);
+
+      if(!estatus)
+      {
+
+         return estatus;
+
+      }
+
+      return estatus;
+
+   }
+
+
    ::e_status window::_change_property(xcb_atom_t property, xcb_atom_t type, int mode, int format, int nelements, const void * data)
    {
 
@@ -1662,7 +1685,8 @@ namespace windowing_xcb
             else if (zorder.m_ezorder == e_zorder_bottom)
             {
 
-               estatus = _add_net_wm_state_below();
+//               estatus = _add_net_wm_state_below();
+               estatus = _clear_net_wm_state();
 
                auto cookie = xcb_circulate_window(xcb_connection(), XCB_CIRCULATE_LOWER_HIGHEST, xcb_window());
 
@@ -2265,6 +2289,14 @@ namespace windowing_xcb
    }
 
 
+   comparable_array < xcb_atom_t > window::_list_atom(xcb_atom_t property)
+   {
+
+      return xcb_display()->_window_get_atom_array(xcb_window(), property);
+
+   }
+
+
    ::e_status window::_list_add_atom(xcb_atom_t atomList, xcb_atom_t atomFlag)
    {
 
@@ -2296,7 +2328,7 @@ namespace windowing_xcb
    }
 
 
-   ::e_status window::_remove_add_atom(xcb_atom_t atomList, xcb_atom_t atomFlag)
+   ::e_status window::_list_remove_atom(xcb_atom_t atomList, xcb_atom_t atomFlag)
    {
 
       synchronization_lock synchronizationlock(user_mutex());
@@ -2326,10 +2358,10 @@ namespace windowing_xcb
 
       ::count cRemove = atoma.remove(atomFlag);
 
-      if (count > 0)
+      if (cRemove > 0)
       {
 
-         _change_property(atomList, XCB_ATOM_ATOM, XCB_PROP_MODE_REPLACE, 32, atoma.get_count(), atoma.get_count());
+         _change_property(atomList, XCB_ATOM_ATOM, XCB_PROP_MODE_REPLACE, 32, atoma.get_count(), atoma.get_data());
 
       }
 
@@ -2346,11 +2378,62 @@ namespace windowing_xcb
 
       display_lock displaylock(xcb_display());
 
-      XRaiseWindow(xcb_connection(), xcb_window_t());
+      _raise_window();
 
-      XSetInputFocus(xcb_connection(), xcb_window(), RevertToNone, CurrentTime);
+      auto cookie = xcb_set_input_focus(xcb_connection(), XCB_INPUT_FOCUS_NONE, xcb_window(), XCB_CURRENT_TIME);
 
-      return true;
+      auto estatus = _request_check(cookie);
+
+      if(!estatus)
+      {
+
+         return estatus;
+
+      }
+
+      return estatus;
+
+   }
+
+
+   ::e_status window::_raise_window()
+   {
+
+      auto estatus = _clear_net_wm_state();
+
+      auto cookie = xcb_circulate_window(xcb_connection(), XCB_CIRCULATE_RAISE_LOWEST, xcb_window());
+
+      estatus = _request_check(cookie);
+
+      if(!estatus)
+      {
+
+         return estatus;
+
+      }
+
+      return estatus;
+
+   }
+
+
+   ::e_status window::_lower_window()
+   {
+
+      auto estatus = _clear_net_wm_state();
+
+      auto cookie = xcb_circulate_window(xcb_connection(), XCB_CIRCULATE_LOWER_HIGHEST, xcb_window());
+
+      estatus = _request_check(cookie);
+
+      if(!estatus)
+      {
+
+         return estatus;
+
+      }
+
+      return estatus;
 
    }
 
@@ -2439,121 +2522,6 @@ namespace windowing_xcb
    }
 
 
-   /// should be run in user thread
-//   ::e_status window::xcb_store_name(const char *pszName)
-//   {
-//
-//      synchronization_lock synchronizationlock(user_mutex());
-//
-//      display_lock displaylock(xcb_display());
-//
-//      XStoreName(xcb_connection(), xcb_window(), pszName);
-//
-//      return ::success;
-//
-//   }
-
-
-//   string window::xcb_get_name()
-//   {
-//
-//      string str;
-//
-//      char *name = NULL;
-//      int status = XFetchName(xcb_connection(), xcb_window(), &name);
-//      if (status >= Success)
-//      {
-//         str = name;
-//      }
-//      XFree(name);
-//      return str;
-//
-//   }
-
-//// should be called in user_thread
-//   int_bool window::xcb_get_window_rect(RECTANGLE_I32 *prectangle)
-//   {
-//
-//      XWindowAttributes attrs;
-//
-//      if (!XGetWindowAttributes(xcb_connection(), window, &attrs))
-//      {
-//
-//         windowing_output_debug_string("\n::xcb_get_window_rect 1.1 (xgetwindowattributes failed)");
-//
-//         return false;
-//
-//      }
-//
-//      int x = 0;
-//
-//      int y = 0;
-//
-//      int screen = XDefaultScreen((xcb_connection_t *) d);
-//
-//      xcb_window_t windowRoot = RootWindow((xcb_connection_t *) xcb_connection(), screen);
-//
-//      xcb_window_t child;
-//
-//      XTranslateCoordinates(xcb_connection(), window, windowRoot, 0, 0, &x, &y, &child);
-//
-//      prectangle->left = x + attrs.x;
-//
-//      prectangle->top = y + attrs.y;
-//
-//      prectangle->right = x + attrs.x + attrs.width;
-//
-//      prectangle->bottom = y + attrs.y + attrs.height;
-//
-//
-//      windowing_output_debug_string("\n::xcb_get_window_rect 2");
-//
-//      return true;
-//
-//   }
-
-//   int_bool window::get_client_rect(RECTANGLE_I32 *prectangle)
-//   {
-//
-//      synchronization_lock synchronizationlock(user_mutex());
-//
-//      display_lock displaylock(xcb_display());
-//
-//      if (xcb_display()->is_null())
-//      {
-//
-//         windowing_output_debug_string("\n::get_client_rect 1.1 (display is null)");
-//
-//         return false;
-//
-//      }
-//
-//      XWindowAttributes attr;
-//
-//      if (XGetWindowAttributes(xcb_connection(), xcb_window(), &attr) == 0)
-//      {
-//
-//         windowing_output_debug_string("\n::get_client_rect 1.2 (xgetwindowattributes failed");
-//
-//         return false;
-//
-//      }
-//
-//      prectangle->left = 0;
-//
-//      prectangle->top = 0;
-//
-//      prectangle->right = prectangle->left + attr.width;
-//
-//      prectangle->bottom = prectangle->top + attr.height;
-//
-//      windowing_output_debug_string("\n::get_client_rect 2");
-//
-//      return true;
-//
-//   }
-
-
    void window::update_screen()
    {
 
@@ -2626,7 +2594,6 @@ namespace windowing_xcb
 
       }));
 
-
    }
 
 
@@ -2642,7 +2609,7 @@ namespace windowing_xcb
 
       }
 
-      if (xcb_window()) == 0)
+      if (xcb_window() == 0)
       {
 
          return error_failed;
@@ -2653,13 +2620,27 @@ namespace windowing_xcb
 
       display_lock displaylock(xcb_display());
 
-      auto grabStatus = XGrabPointer(xcb_connection(), xcb_window(), false, ButtonPressMask | ButtonReleaseMask | PointerMotionMask,
-                                     GrabModeAsync, GrabModeAsync, 0, 0, CurrentTime);
+      int owner_events = 0;
 
-      if (grabStatus != GrabSuccess)
+      xcb_window_t confine_to = XCB_WINDOW_NONE;
+
+      xcb_cursor_t cursor = XCB_CURSOR_NONE;
+
+      auto cookie = xcb_grab_pointer(
+         xcb_connection(),
+         owner_events,
+         xcb_window(),
+         XCB_EVENT_MASK_BUTTON_PRESS | XCB_EVENT_MASK_BUTTON_RELEASE | XCB_EVENT_MASK_POINTER_MOTION,
+         XCB_GRAB_MODE_ASYNC,
+         XCB_GRAB_MODE_ASYNC,
+         confine_to,
+         cursor,
+         XCB_CURRENT_TIME);
+
+      auto preply = __malloc(xcb_grab_pointer_reply(xcb_connection(), cookie, nullptr));
+
+      if (!preply)
       {
-
-         windowing_output_debug_string("\noswindow_data::SetCapture 2.1");
 
          return error_failed;
 
@@ -2686,7 +2667,7 @@ namespace windowing_xcb
 
       synchronization_lock synchronizationlock(user_mutex());
 
-      if (xcb_window()) == 0)
+      if (xcb_window() == 0)
       {
 
          return error_failed;
@@ -2706,12 +2687,14 @@ namespace windowing_xcb
 
       }
 
-      if (!XSetInputFocus(xcb_connection(), xcb_window(), RevertToNone, CurrentTime))
+      auto cookie = xcb_set_input_focus(xcb_connection(), XCB_INPUT_FOCUS_NONE, xcb_window(), XCB_CURRENT_TIME);
+
+      auto estatus = _request_check(cookie);
+
+      if(!estatus)
       {
 
-         windowing_output_debug_string("\noswindow_data::SetFocus 1.3");
-
-         return error_failed;
+         return estatus;
 
       }
 
@@ -2722,7 +2705,7 @@ namespace windowing_xcb
    }
 
 
-   void window::_set_class_hint(const char * pszName, const char * pszClass)
+   ::e_status window::_set_class_hint(const char * pszName, const char * pszClass)
    {
 
       memory memory;
@@ -2731,7 +2714,16 @@ namespace windowing_xcb
       memory.append_byte(0);
       memory.append(pszName);
 
-      _replace_string_property (XCB_ATOM_WM_CLASS, memory);
+      auto estatus = _replace_string_property (XCB_ATOM_WM_CLASS, memory);
+
+      if(!estatus)
+      {
+
+         return estatus;
+
+      }
+
+      return estatus;
 
    }
 
@@ -2792,7 +2784,7 @@ namespace windowing_xcb
       mask |= XCB_CONFIG_WINDOW_WIDTH;
       mask |= XCB_CONFIG_WINDOW_HEIGHT;
 
-      const uint32_t values[] = {
+      const int32_t values[] = {
          x,
          y,
          cx,
@@ -2823,7 +2815,7 @@ namespace windowing_xcb
       mask |= XCB_CONFIG_WINDOW_X;
       mask |= XCB_CONFIG_WINDOW_Y;
 
-      const uint32_t values[] = {
+      const int32_t values[] = {
          x,
          y
       };
@@ -2852,7 +2844,7 @@ namespace windowing_xcb
       mask |= XCB_CONFIG_WINDOW_WIDTH;
       mask |= XCB_CONFIG_WINDOW_HEIGHT;
 
-      const uint32_t values[] = {
+      const int32_t values[] = {
          cx,
          cy
       };
@@ -2876,7 +2868,7 @@ namespace windowing_xcb
    ::e_status window::_withdraw_window()
    {
 
-      auto estatus = delete_property(xcb_display()->m_atomWmState);
+      auto estatus = _delete_property(xcb_display()->atom(x_window::e_atom_net_wm_state));
 
       if(!estatus)
       {

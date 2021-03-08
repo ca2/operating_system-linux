@@ -31,7 +31,7 @@ CLASS_DECL_ACME mutex * user_mutex();
 //#include "xcb_message_box.h"
 
 
-::e_status defer_initialize_xcb();
+//::e_status defer_initialize_xcb();
 void xcb_handle_just_hooks();
 void xcb_defer_handle_just_hooks();
 int xcb_message_box(const string & str, const string & strTitle, const ::e_message_box & emessagebox);

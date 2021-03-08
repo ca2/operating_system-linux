@@ -64,16 +64,16 @@ GC xcb_create_gc(Colormap colormap, xcb_connection_t* pdisplay, xcb_window_t win
 }
 
 
-int xcb_message_box(const string & str, const string & strTitle, const ::e_message_box & emessagebox)
-{
-
-   defer_initialize_xcb();
-
-   auto pdisplay = __new(simple_ui_display(str, strTitle, emessagebox));
-
-   return pdisplay->show();
-
-}
+//int xcb_message_box(const string & str, const string & strTitle, const ::e_message_box & emessagebox)
+//{
+//
+//   defer_initialize_xcb();
+//
+//   auto pdisplay = __new(simple_ui_display(str, strTitle, emessagebox));
+//
+//   return pdisplay->show();
+//
+//}
 
 
 

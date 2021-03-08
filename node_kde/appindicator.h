@@ -4,11 +4,12 @@
 #pragma once
 
 
-namespace node_kde{
+namespace node_kde
+{
 
 
    class appindicator :
-      virtual public ::linux::appindicator
+      virtual public ::node_linux::appindicator
    {
    public:
 

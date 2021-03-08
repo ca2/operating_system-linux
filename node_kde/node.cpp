@@ -9,29 +9,29 @@
 
 
 
-void x11_kick_idle();
-
-void gtk_settings_gtk_theme_name_callback(GObject* object, GParamSpec* pspec, gpointer data)
-{
-
-   node_kde::node * pnode = (node_kde::node *) data;
-
-   if(pnode)
-   {
-
-      gchar *theme_name = nullptr;
-
-      g_object_get(pnode->m_pGtkSettingsDefault, "gtk-theme-name", &theme_name, NULL);
-
-      pnode->m_strTheme = theme_name;
-
-      g_free(theme_name);
-
-   }
-
-   System.process_subject(id_os_user_theme);
-
-}
+//void x11_kick_idle();
+//
+//void gtk_settings_gtk_theme_name_callback(GObject* object, GParamSpec* pspec, gpointer data)
+//{
+//
+//   node_kde::node * pnode = (node_kde::node *) data;
+//
+//   if(pnode)
+//   {
+//
+//      gchar *theme_name = nullptr;
+//
+//      g_object_get(pnode->m_pGtkSettingsDefault, "gtk-theme-name", &theme_name, NULL);
+//
+//      pnode->m_strTheme = theme_name;
+//
+//      g_free(theme_name);
+//
+//   }
+//
+//   System.process_subject(id_os_user_theme);
+//
+//}
 
 
 const char * linux_g_direct_get_file_icon_path(const char * pszPath, int iSize);
@@ -52,7 +52,7 @@ void x11_main();
 mutex * user_mutex();
 
 
-gboolean node_gnome_source_func(gpointer pUserdata);
+//gboolean node_gnome_source_func(gpointer pUserdata);
 
 
 namespace node_kde{
@@ -79,7 +79,9 @@ namespace node_kde
    node::node()
    {
 
-      m_pGtkSettingsDefault = nullptr;
+      m_qpalette = QApplication::palette();
+
+      //m_pGtkSettingsDefault = nullptr;
       m_pnodeimpl = nullptr;
 
    }
@@ -88,12 +90,12 @@ namespace node_kde
    node::~node()
    {
 
-      if (m_pGtkSettingsDefault)
-      {
-
-         g_object_unref(m_pGtkSettingsDefault);
-
-      }
+//      if (m_pGtkSettingsDefault)
+//      {
+//
+//         g_object_unref(m_pGtkSettingsDefault);
+//
+//      }
 
       if(m_pnodeimpl)
       {
@@ -134,7 +136,7 @@ namespace node_kde
    }
 
 
-   bool node::_calc_dark_mode()
+   bool node::_os_calc_app_dark_mode()
    {
 
       auto pthemecolors = ::user::os_get_theme_colors();
@@ -148,7 +150,7 @@ namespace node_kde
 
       }
 
-      ::color colorBack(pthemecolors->m_colorBack);
+      ::color::color colorBack(pthemecolors->m_colorBack);
 
       auto dLuminance = colorBack.get_luminance();
 
@@ -161,18 +163,18 @@ namespace node_kde
    void node::on_os_dark_mode_change()
    {
 
-      x11_kick_idle();
+      //x11_kick_idle();
 
    }
 
 
-   void node::os_application_system_run()
+   ::e_status node::start()
    {
 
-      if (System.m_bGtkApp)
+      if (System->m_bGtkApp)
       {
 
-         apex_application_run(System.m_strAppId, System.m_strProgName);
+         apex_application_run(System->m_strAppId, System->m_strProgName);
 
       }
       else
@@ -201,43 +203,43 @@ namespace node_kde
          node_fork([this]()
                    {
 
-                      //x11_add_idle_source();
-
-                      //x11_add_filter();
-
-                      auto pgtksettingsDefault = gtk_settings_get_default();
-
-                      if (pgtksettingsDefault)
-                      {
-
-
-                         m_pGtkSettingsDefault = G_OBJECT(pgtksettingsDefault);
-
-                         g_object_ref(m_pGtkSettingsDefault);
-
-                         gchar *theme_name = nullptr;
-
-                         g_object_get(m_pGtkSettingsDefault, "gtk-theme-name", &theme_name, NULL);
-
-                         m_strTheme = theme_name;
-
-                         g_free(theme_name);
-
-                         auto preturn = g_signal_connect_data(
-                            m_pGtkSettingsDefault,
-                            "notify::gtk-theme-name",
-                            G_CALLBACK(gtk_settings_gtk_theme_name_callback),
-                            this,
-                            NULL,
-                            G_CONNECT_AFTER);
-
-                         //g_object_ref(preturn);
-
-                         //printf("return %" PRIiPTR, preturn);
-
-                         //printf("return %" PRIiPTR, preturn);
-
-                      }
+//                      //x11_add_idle_source();
+//
+//                      //x11_add_filter();
+//
+//                      auto pgtksettingsDefault = gtk_settings_get_default();
+//
+//                      if (pgtksettingsDefault)
+//                      {
+//
+//
+//                         m_pGtkSettingsDefault = G_OBJECT(pgtksettingsDefault);
+//
+//                         g_object_ref(m_pGtkSettingsDefault);
+//
+//                         gchar *theme_name = nullptr;
+//
+//                         g_object_get(m_pGtkSettingsDefault, "gtk-theme-name", &theme_name, NULL);
+//
+//                         m_strTheme = theme_name;
+//
+//                         g_free(theme_name);
+//
+//                         auto preturn = g_signal_connect_data(
+//                            m_pGtkSettingsDefault,
+//                            "notify::gtk-theme-name",
+//                            G_CALLBACK(gtk_settings_gtk_theme_name_callback),
+//                            this,
+//                            NULL,
+//                            G_CONNECT_AFTER);
+//
+//                         //g_object_ref(preturn);
+//
+//                         //printf("return %" PRIiPTR, preturn);
+//
+//                         //printf("return %" PRIiPTR, preturn);
+//
+//                      }
 
 
                    });
@@ -245,14 +247,14 @@ namespace node_kde
 
          //x11_add_filter();
 
-         System.fork([]()
+         System->fork([]()
                      {
 
                         //x11_main();
 
                      });
 
-         m_pnodeimpl->exec();
+         m_pnodeimpl->exec(System->m_argc, System->m_argv);
 
          //x11_main();
 
@@ -260,6 +262,7 @@ namespace node_kde
       //
       //::parallelization::post_quit_and_wait(get_context_system(), one_minute());
 
+      return ::success;
 
    }
 
@@ -290,7 +293,7 @@ namespace node_kde
 
       // indirect wall-changer sourceforge.net contribution
 
-      auto edesktop = System.get_edesktop();
+      auto edesktop = System->get_edesktop();
 
       switch (edesktop)
       {
@@ -372,7 +375,7 @@ namespace node_kde
 
       auto pnode = Node;
 
-      auto edesktop = System.get_edesktop();
+      auto edesktop = System->get_edesktop();
 
       switch (edesktop)
       {
@@ -422,7 +425,7 @@ namespace node_kde
    void node::enable_wallpaper_change_notification()
    {
 
-      auto edesktop = System.get_edesktop();
+      auto edesktop = System->get_edesktop();
 
       switch (edesktop)
       {
@@ -493,7 +496,7 @@ namespace node_kde
    }
 
 
-   void node::node_fork(const ::promise::routine &routine)
+   void node::node_fork(const ::routine &routine)
    {
 
       gdk_branch(routine);
@@ -509,90 +512,90 @@ namespace node_kde
    }
 
 
-   ::linux::appindicator *node::appindicator_allocate()
-   {
+//   ::node_linux::appindicator *node::appindicator_allocate()
+//   {
+//
+//      return new ::node_kde::appindicator();
+//
+//   }
+//
+//
+//   void node::appindicator_destroy(::linux::appindicator *pappindicator)
+//   {
+//
+//      //::linux::appindicator_destroy(pappindicator);
+//
+//      delete pappindicator;
+//
+//   }
 
-      return new ::node_kde::appindicator();
-
-   }
-
-
-   void node::appindicator_destroy(::linux::appindicator *pappindicator)
-   {
-
-      //::linux::appindicator_destroy(pappindicator);
-
-      delete pappindicator;
-
-   }
-
-
-   void node::enum_display_monitors(::aura::session *psession)
-   {
-
-      node_fork(__routine([psession]
-                          {
-
-                             synchronization_lock sl(user_mutex());
-
-                             xdisplay d(x11_get_display());
-
-                             GdkDisplay *pdisplay = gdk_display_get_default();
-
-                             if (pdisplay == nullptr)
-                             {
-
-                                return;
-
-                             }
-
-                             synchronization_lock slSession(psession->mutex());
-
-                             ::count iMonitorCount = gdk_display_get_n_monitors(pdisplay);
-
-                             psession->m_rectaWorkspace.set_size(iMonitorCount);
-
-                             psession->m_rectaMonitor.set_size(iMonitorCount);
-
-                             for (index iMonitor = 0; iMonitor < iMonitorCount; iMonitor++)
-                             {
-
-                                GdkMonitor *pmonitor = gdk_display_get_monitor(pdisplay, iMonitor);
-
-                                auto &rectWorkspace = psession->m_rectaWorkspace[iMonitor];
-
-                                auto &rectMonitor = psession->m_rectaMonitor[iMonitor];
-
-                                if (pmonitor == nullptr)
-                                {
-
-                                   rectWorkspace.Null();
-
-                                   rectMonitor.Null();
-
-                                   continue;
-
-                                }
-
-                                GdkRectangle rect;
-
-                                __zero(rect);
-
-                                gdk_monitor_get_workarea(pmonitor, &rect);
-
-                                __copy(rectWorkspace, rect);
-
-                                __zero(rect);
-
-                                gdk_monitor_get_geometry(pmonitor, &rect);
-
-                                __copy(rectMonitor, rect);
-
-                             }
-
-                          }));
-
-   }
+//
+//   void node::enum_display_monitors(::aura::session *psession)
+//   {
+//
+//      node_fork(__routine([psession]
+//                          {
+//
+//                             synchronization_lock sl(user_mutex());
+//
+//                             xdisplay d(x11_get_display());
+//
+//                             GdkDisplay *pdisplay = gdk_display_get_default();
+//
+//                             if (pdisplay == nullptr)
+//                             {
+//
+//                                return;
+//
+//                             }
+//
+//                             synchronization_lock slSession(psession->mutex());
+//
+//                             ::count iMonitorCount = gdk_display_get_n_monitors(pdisplay);
+//
+//                             psession->m_rectaWorkspace.set_size(iMonitorCount);
+//
+//                             psession->m_rectaMonitor.set_size(iMonitorCount);
+//
+//                             for (index iMonitor = 0; iMonitor < iMonitorCount; iMonitor++)
+//                             {
+//
+//                                GdkMonitor *pmonitor = gdk_display_get_monitor(pdisplay, iMonitor);
+//
+//                                auto &rectWorkspace = psession->m_rectaWorkspace[iMonitor];
+//
+//                                auto &rectMonitor = psession->m_rectaMonitor[iMonitor];
+//
+//                                if (pmonitor == nullptr)
+//                                {
+//
+//                                   rectWorkspace.Null();
+//
+//                                   rectMonitor.Null();
+//
+//                                   continue;
+//
+//                                }
+//
+//                                GdkRectangle rect;
+//
+//                                __zero(rect);
+//
+//                                gdk_monitor_get_workarea(pmonitor, &rect);
+//
+//                                __copy(rectWorkspace, rect);
+//
+//                                __zero(rect);
+//
+//                                gdk_monitor_get_geometry(pmonitor, &rect);
+//
+//                                __copy(rectMonitor, rect);
+//
+//                             }
+//
+//                          }));
+//
+//   }
 
 
    void node::os_post_quit()
@@ -614,7 +617,7 @@ namespace node_kde
 //
 //   }
 
-   bool node::should_launch_on_node(::promise::subject *psubject)
+   bool node::should_launch_on_node(::subject::subject *psubject)
    {
 
       if (::is_null(psubject))
@@ -636,23 +639,73 @@ namespace node_kde
    }
 
 
-   bool node::launch_on_node(::promise::subject *psubject)
+   bool node::launch_on_node(::subject::subject *psubject)
    {
 
       ::matter *pmatter = psubject;
 
-      node_fork([pmatter]()
-                {
+//      node_fork([pmatter]()
+//                {
+//
+//                   auto ret = g_timeout_add(300, (GSourceFunc) &node_gnome_source_func, pmatter);
+//
+//                   printf("ret %d", ret);
+//
+//                   printf("ret %d", ret);
+//
+////      g_idle_add(&node_gnome_source_func, pmatter);
+//
+//                });
 
-                   auto ret = g_timeout_add(300, (GSourceFunc) &node_gnome_source_func, pmatter);
+   }
 
-                   printf("ret %d", ret);
 
-                   printf("ret %d", ret);
 
-//      g_idle_add(&node_gnome_source_func, pmatter);
+   os_theme_colors * node::new_os_theme_colors()
+   {
 
-                });
+      auto pthemecolors = ::new_os_theme_colors();
+
+      pthemecolors->m_colorBack.color32 = m_qpalette.color(QPalette::Window).rgba();
+      pthemecolors->m_colorFore.color32 = m_qpalette.color(QPalette::WindowText).rgba();
+      pthemecolors->m_colorFace.color32 = m_qpalette.color(QPalette::Button).rgba();
+
+      return pthemecolors;
+
+   }
+
+
+   bool node::nativeEventFilter(const QByteArray &eventType, void *message, long *result)
+   {
+
+      if(eventType == "xcb_generic_event_t")
+      {
+
+         xcb_generic_event_t * pevent = (xcb_generic_event_t *) message;
+
+         if(xcb_on_event(pevent))
+         {
+
+            return true;
+
+         }
+
+      }
+
+      return false;
+
+   }
+
+
+   void node::exec()
+   {
+
+
+      m_qapplication.installNativeEventFilter(this);
+
+
+      m_qapplication.exec();
+
 
    }
 
@@ -660,21 +713,21 @@ namespace node_kde
 } // namespace node_kde
 
 
-gboolean node_gnome_source_func(gpointer pUserdata)
-{
-
-   ::matter * pmatter = (::matter *) pUserdata;
-
-   if(!pmatter->step())
-   {
-
-      return false;
-
-   }
-
-   return true;
-
-}
+//gboolean node_gnome_source_func(gpointer pUserdata)
+//{
+//
+//   ::matter * pmatter = (::matter *) pUserdata;
+//
+//   if(!pmatter->step())
+//   {
+//
+//      return false;
+//
+//   }
+//
+//   return true;
+//
+//}
 
 
 

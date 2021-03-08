@@ -4,10 +4,10 @@
 //#include "apex/os/linux/gnome_gnome.h"
 #include "aura/node/linux/_linux.h"
 #include "clipboard_data.h"
-#include <gtk/gtk.h>
+//#include <gtk/gtk.h>
 
 
-gboolean clipboard_callback(gpointer data);
+//gboolean clipboard_callback(gpointer data);
 
 //#include <gtk/gtk.h>
 
@@ -86,14 +86,14 @@ namespace node_kde{
 
       auto pnode = Node;
 
-      pnode->node_fork([this, str]
-      {
-
-         GtkClipboard * clipboard = gtk_clipboard_get(GDK_SELECTION_CLIPBOARD);
-
-         gtk_clipboard_set_text(clipboard, str.c_str(), str.get_length());
-
-      });
+//      pnode->node_fork([this, str]
+//      {
+//
+//         GtkClipboard * clipboard = gtk_clipboard_get(GDK_SELECTION_CLIPBOARD);
+//
+//         gtk_clipboard_set_text(clipboard, str.c_str(), str.get_length());
+//
+//      });
 
       return true;
 
@@ -103,26 +103,26 @@ namespace node_kde{
    bool copydesk::_get_plain_text(string & str)
    {
 
-      __pointer(clipboard_data) pdata = __new(clipboard_data(get_context_application(), e_clipboard_get_plain_text));
-
-      pdata->add_ref(OBJ_REF_DBG_P_NOTE(this, "copydesk::_get_plain_text"));
-
-      auto idle_source = g_idle_source_new();
-
-      g_source_set_callback(idle_source, &clipboard_callback, pdata, nullptr);
-
-      g_source_attach(idle_source, g_main_context_default());
-
-      if(!pdata->m_event.wait(seconds(5)).succeeded())
-      {
-
-         return false;
-
-      }
-
-      g_source_destroy(idle_source);
-
-      str = pdata->m_str;
+//      __pointer(clipboard_data) pdata = __new(clipboard_data(get_context_application(), e_clipboard_get_plain_text));
+//
+//      pdata->add_ref(OBJ_REF_DBG_P_NOTE(this, "copydesk::_get_plain_text"));
+//
+//      auto idle_source = g_idle_source_new();
+//
+//      g_source_set_callback(idle_source, &clipboard_callback, pdata, nullptr);
+//
+//      g_source_attach(idle_source, g_main_context_default());
+//
+//      if(!pdata->m_event.wait(seconds(5)).succeeded())
+//      {
+//
+//         return false;
+//
+//      }
+//
+//      g_source_destroy(idle_source);
+//
+//      str = pdata->m_str;
 
       return true;
 

@@ -22,7 +22,7 @@ namespace windowing_xcb
 
       m_bFinishX11Thread = false;
 
-      defer_initialize_xcb();
+      //defer_initialize_xcb();
 
       set_layer(LAYERED_X11, this);
 
@@ -135,12 +135,12 @@ namespace windowing_xcb
    ::e_status windowing::start()
    {
 
-      if (System->m_bUser)
-      {
-
-         defer_initialize_xcb();
-
-      }
+//      if (System->m_bUser)
+//      {
+//
+//         defer_initialize_xcb();
+//
+//      }
 
       auto pnode = Node;
 

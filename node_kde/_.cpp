@@ -1,5 +1,5 @@
 #include "framework.h"
-#include <gtk/gtk.h>
+//#include <gtk/gtk.h>
 
 
 bool g_bInitGtk = false;
@@ -16,18 +16,18 @@ bool g_bInitGtk = false;
 
       g_bInitGtk = true;
 
-      if (!gtk_init_check(process_get_pargc(), process_get_pargv()))
-      {
-
-         g_estatusInitGtk = ::error_failed;
-
-      }
-      else
-      {
-
-         g_estatusInitGtk = ::success;
-
-      }
+//      if (!gtk_init_check(process_get_pargc(), process_get_pargv()))
+//      {
+//
+//         g_estatusInitGtk = ::error_failed;
+//
+//      }
+//      else
+//      {
+//
+//         g_estatusInitGtk = ::success;
+//
+//      }
 
    }
 

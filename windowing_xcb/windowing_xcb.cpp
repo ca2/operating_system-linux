@@ -151,8 +151,8 @@ xcb_window_t g_windowXcbClient = 0;
 int_bool _xcb_get_cursor_pos(xcb_connection_t * d, POINT_I32 * ppointCursor);
 
 
-extern ::mutex *g_pmutexXcbRunnable;
-extern list<__pointer(::matter) > *g_prunnableptrlXcb;
+//extern ::mutex *g_pmutexXcbRunnable;
+//extern list<__pointer(::matter) > *g_prunnableptrlXcb;
 //extern ::mutex *g_pmutexXcbSync;
 //extern manual_reset_event *g_peventXcbSync;
 //extern __pointer(::matter) g_prunnableXcbSync;
@@ -721,9 +721,9 @@ Retrieved from: http://en.literateprograms.org/Hello_World_(C,_Cairo)?oldid=1038
    bool windowing::initialize_windowing()
    {
 
-      g_pmutexXcbRunnable = new ::mutex();
+      //g_pmutexXcbRunnable = new ::mutex();
 
-      g_prunnableptrlXcb = new list<__pointer(::matter) >();
+      //g_prunnableptrlXcb = new list<__pointer(::matter) >();
 
 //      g_pmutexXcbSync = new ::mutex();
 
@@ -753,15 +753,15 @@ Retrieved from: http://en.literateprograms.org/Hello_World_(C,_Cairo)?oldid=1038
 
       //::acme::del(oswindow_data::s_pdataptra);
 
-      {
-
-         synchronization_lock synchronizationlock(g_pmutexXcbRunnable);
-
-         ::acme::del(g_prunnableptrlXcb);
-
-      }
-
-      ::acme::del(g_pmutexXcbRunnable);
+//      {
+//
+//         synchronization_lock synchronizationlock(g_pmutexXcbRunnable);
+//
+//         ::acme::del(g_prunnableptrlXcb);
+//
+//      }
+//
+//      ::acme::del(g_pmutexXcbRunnable);
 
 //      ::acme::del(g_peventXcbSync);
 
@@ -807,20 +807,20 @@ Retrieved from: http://en.literateprograms.org/Hello_World_(C,_Cairo)?oldid=1038
 
 
 
-   void xcb_async_runnable(::matter *prunnable)
-   {
-
-      {
-
-         synchronization_lock synchronizationlock(g_pmutexXcbRunnable);
-
-         g_prunnableptrlXcb->add_tail(prunnable);
-
-      }
-
-      //xcb_kick_idle();
-
-   }
+//   void xcb_async_runnable(::matter *prunnable)
+//   {
+//
+////      {
+////
+////         synchronization_lock synchronizationlock(g_pmutexXcbRunnable);
+////
+////         g_prunnableptrlXcb->add_tail(prunnable);
+////
+////      }
+//
+//      //xcb_kick_idle();
+//
+//   }
 
 
    int g_iXcbRef = 0;
@@ -1310,86 +1310,86 @@ Retrieved from: http://en.literateprograms.org/Hello_World_(C,_Cairo)?oldid=1038
 //}
 
 
-bool xcb_runnable_step()
-{
-
-   bool bDoneMuchThings = false;
-
+//bool xcb_runnable_step()
+//{
+//
+//   bool bDoneMuchThings = false;
+//
+////   {
+////
+////      synchronization_lock synchronizationlock(g_pmutexXcbSync);
+////
+////      if (g_prunnableXcbSync)
+////      {
+////
+////         g_prunnableXcbSync->operator()();
+////
+////         g_prunnableXcbSync.release();
+////
+////         g_peventXcbSync->SetEvent();
+////
+////         bDoneMuchThings = true;
+////
+////      }
+////
+////   }
+//
 //   {
 //
-//      synchronization_lock synchronizationlock(g_pmutexXcbSync);
+//      synchronization_lock synchronizationlock(g_pmutexXcbRunnable);
 //
-//      if (g_prunnableXcbSync)
+//      while (g_prunnableptrlXcb->has_elements() && ::thread_get_run())
 //      {
 //
-//         g_prunnableXcbSync->operator()();
+//         __pointer(::matter) prunnable = g_prunnableptrlXcb->pop_front();
 //
-//         g_prunnableXcbSync.release();
+//         synchronizationlock.unlock();
 //
-//         g_peventXcbSync->SetEvent();
+//         prunnable->operator()();
+//
+//         synchronizationlock.lock();
 //
 //         bDoneMuchThings = true;
 //
 //      }
 //
 //   }
-
-   {
-
-      synchronization_lock synchronizationlock(g_pmutexXcbRunnable);
-
-      while (g_prunnableptrlXcb->has_elements() && ::thread_get_run())
-      {
-
-         __pointer(::matter) prunnable = g_prunnableptrlXcb->pop_front();
-
-         synchronizationlock.unlock();
-
-         prunnable->operator()();
-
-         synchronizationlock.lock();
-
-         bDoneMuchThings = true;
-
-      }
-
-   }
-
-   return bDoneMuchThings;
-
-}
+//
+//   return bDoneMuchThings;
+//
+//}
 
 
-::e_status initialize_xcb();
-
-
-::mutex * g_pmutexXcb = nullptr;
-
-
-::e_status g_estatusInitializeXcb = error_not_initialized;
-
-
-::e_status defer_initialize_xcb()
-{
-
-   if(g_estatusInitializeXcb == error_not_initialized)
-   {
-
-      g_estatusInitializeXcb = initialize_xcb();
-
-   }
-
-   return g_estatusInitializeXcb;
-
-}
-
-
-mutex * user_mutex()
-{
-
-   return g_pmutexXcb;
-
-}
+//::e_status initialize_xcb();
+//
+//
+//::mutex * g_pmutexXcb = nullptr;
+//
+//
+//::e_status g_estatusInitializeXcb = error_not_initialized;
+//
+//
+//::e_status defer_initialize_xcb()
+//{
+//
+//   if(g_estatusInitializeXcb == error_not_initialized)
+//   {
+//
+//      g_estatusInitializeXcb = initialize_xcb();
+//
+//   }
+//
+//   return g_estatusInitializeXcb;
+//
+//}
+//
+//
+//mutex * user_mutex()
+//{
+//
+//   return g_pmutexXcb;
+//
+//}
 
 
 

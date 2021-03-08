@@ -21,6 +21,7 @@ namespace x_window
       "WM_STATE",
       "_NET_ACTIVE_WINDOW",
       "_NET_CLIENT_LIST_STACKING",
+      "_NET_CLIENT_LIST",
       "_NET_WM_WINDOW_TYPE",
       "_NET_WM_WINDOW_TYPE_NORMAL",
       "_NET_WM_WINDOW_TYPE_SPLASH",

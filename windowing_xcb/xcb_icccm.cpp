@@ -27,9 +27,9 @@ namespace windowing_xcb
 
       }
 
-      auto response = __malloc(xcb_icccm_get_wm_hints_from_reply(phints, preply));
+      xcb_get_property_reply_t reply;
 
-      if(!response)
+      if(!xcb_icccm_get_wm_hints_from_reply(phints, &reply))
       {
 
          return ::error_failed;

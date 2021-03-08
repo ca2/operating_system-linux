@@ -226,6 +226,55 @@ namespace windowing_xcb
    }
 
 
+
+
+   /// must be run in x11 thread (user thread)
+   ::e_status window::_unmapped_add_net_wm_state(x_window::enum_atom eatomNetWmState)
+   {
+
+      synchronization_lock synchronizationlock(user_mutex());
+
+      auto atomNetWmState = xcb_display()->atom(x_window::e_atom_net_wm_state);
+
+      auto atomWmNetState = xcb_display()->atom(eatomNetWmState);
+
+      auto estatus = _list_add_atom(atomWmNetState, atomWmNetState);
+
+      if(!estatus)
+      {
+
+         return estatus;
+
+      }
+
+      return estatus;
+
+   }
+
+
+   ::e_status window::_unmapped_remove_net_wm_state(x_window::enum_atom eatomNetWmState)
+   {
+
+      synchronization_lock synchronizationlock(user_mutex());
+
+      auto atomNetWmState = xcb_display()->atom(x_window::e_atom_net_wm_state);
+
+      auto atomWmNetState = xcb_display()->atom(eatomNetWmState);
+
+      auto estatus = _list_remove_atom(atomWmNetState, atomWmNetState);
+
+      if(!estatus)
+      {
+
+         return estatus;
+
+      }
+
+      return estatus;
+
+   }
+
+
    /// must be run in x11 thread (user thread)
    ::e_status window::_remove_net_wm_state_below()
    {

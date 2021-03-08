@@ -1,15 +1,13 @@
 #pragma once
 
 
-#include <gtk/gtk.h>
-
-
+//#include <gtk/gtk.h>
 
 
 typedef struct
 {
 
-  GtkApplication parent_instance;
+  //GtkApplication parent_instance;
 
   //g::u32 quit_inhibit;
   //GMenu *time;
@@ -17,7 +15,7 @@ typedef struct
 
 } ApexApplication; // you can search for ApexApplication in 2017 and so Internet
 
-typedef GtkApplicationClass ApexApplicationClass;
+//typedef GtkApplicationClass ApexApplicationClass;
 
 
 

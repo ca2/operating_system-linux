@@ -182,12 +182,14 @@ namespace windowing_xcb
       virtual ::e_status _set_dock_window(bool bDockWindow = true);
       virtual ::e_status _set_nodecorations(int bMap);
       virtual ::e_status _set_iconify_window();
+      virtual ::e_status _raise_window();
+      virtual ::e_status _lower_window();
 
 
       virtual ::e_status xcb_post_message(MESSAGE & msg);
       virtual ::e_status post_ui_message(const MESSAGE & message);
-      virtual ::e_status get_window_rect(RECTANGLE_I32 * prectangle);
-      virtual ::e_status get_client_rect(RECTANGLE_I32 * prectangle);
+      //virtual ::e_status get_window_rect(RECTANGLE_I32 * prectangle);
+      //virtual ::e_status get_client_rect(RECTANGLE_I32 * prectangle);
       virtual ::e_status mq_remove_window_from_all_queues( );
 
 

@@ -40,7 +40,7 @@ namespace windowing_xcb
    display::~ display()
    {
 
-      if(m_pconnection)
+      if (m_pconnection)
       {
 
          xcb_disconnect(m_pconnection);
@@ -93,16 +93,16 @@ namespace windowing_xcb
    ::e_status display::open()
    {
 
-      if(::is_set(m_pconnection))
+      if (::is_set(m_pconnection))
       {
 
          return ::success;
 
       }
 
-      m_pconnection =  xcb_connect (nullptr, nullptr);
+      m_pconnection = xcb_connect(nullptr, nullptr);
 
-      if(::is_null(m_pconnection))
+      if (::is_null(m_pconnection))
       {
 
          return ::error_failed;
@@ -125,10 +125,12 @@ namespace windowing_xcb
       m_prender_query_pict_formats_reply2 = preply;
 
       // Init the visual ID -> format ID hash table
-      for (auto screens = xcb_render_query_pict_formats_screens_iterator(preply); screens.rem; xcb_render_pictscreen_next(&screens))
+      for (auto screens = xcb_render_query_pict_formats_screens_iterator(
+         preply); screens.rem; xcb_render_pictscreen_next(&screens))
       {
 
-         for (auto depths = xcb_render_pictscreen_depths_iterator(screens.data); depths.rem; xcb_render_pictdepth_next(&depths))
+         for (auto depths = xcb_render_pictscreen_depths_iterator(screens.data); depths.rem; xcb_render_pictdepth_next(
+            &depths))
          {
 
             const xcb_render_pictvisual_t * visuals = xcb_render_pictdepth_visuals(depths.data);
@@ -279,10 +281,10 @@ namespace windowing_xcb
 
       }
 
-      for(::index iAtomName = 0; iAtomName < x_window::e_atom_count; iAtomName++)
+      for (::index iAtomName = 0; iAtomName < x_window::e_atom_count; iAtomName++)
       {
 
-         auto pszWindowName = x_window::atom_name((x_window::enum_atom)iAtomName);
+         auto pszWindowName = x_window::atom_name((x_window::enum_atom) iAtomName);
 
          auto atom = intern_atom(pszWindowName);
 
@@ -307,7 +309,7 @@ namespace windowing_xcb
 
       critical_section_lock synchronizationlock(&m_criticalsectionWindowMap);
 
-      auto &pwindow = m_windowmap[window];
+      auto & pwindow = m_windowmap[window];
 
       if (!pwindow)
       {
@@ -335,7 +337,7 @@ namespace windowing_xcb
    }
 
 
-   xcb_connection_t *display::xcb_connection()
+   xcb_connection_t * display::xcb_connection()
    {
 
       return ::is_null(this) ? nullptr : m_pconnection;
@@ -343,7 +345,7 @@ namespace windowing_xcb
    }
 
 
-   xcb_connection_t *display::xcb_connection() const
+   xcb_connection_t * display::xcb_connection() const
    {
 
       return ::is_null(this) ? nullptr : m_pconnection;
@@ -435,7 +437,7 @@ namespace windowing_xcb
 
       auto preply = __malloc(xcb_intern_atom_reply(xcb_connection(), cookie, nullptr));
 
-      if(!preply)
+      if (!preply)
       {
 
          return 0;
@@ -457,7 +459,7 @@ namespace windowing_xcb
    }
 
 
-   ::windowing_xcb::window * display::_get_active_window(::thread *pthread)
+   ::windowing_xcb::window * display::_get_active_window(::thread * pthread)
    {
 
       auto window = (xcb_window_t) _window_get_long_property(m_windowRoot, atom(x_window::e_atom_net_active_window));
@@ -471,32 +473,32 @@ namespace windowing_xcb
    }
 
 
-   xcb_cursor_t display::_create_font_cursor (uint16_t glyph)
+   xcb_cursor_t display::_create_font_cursor(uint16_t glyph)
    {
 
-      if(!m_fontCursor)
+      if (!m_fontCursor)
       {
 
-         m_fontCursor = xcb_generate_id (xcb_connection());
+         m_fontCursor = xcb_generate_id(xcb_connection());
 
          string strFontName("cursor");
 
-         xcb_open_font (xcb_connection(), m_fontCursor, strFontName.get_length(), strFontName.c_str());
+         xcb_open_font(xcb_connection(), m_fontCursor, strFontName.get_length(), strFontName.c_str());
 
       }
 
       xcb_cursor_t cursor = m_mapGlyphCursor[glyph];
 
-      if(cursor)
+      if (cursor)
       {
 
          return cursor;
 
       }
 
-      cursor = xcb_generate_id (xcb_connection());
+      cursor = xcb_generate_id(xcb_connection());
 
-      xcb_create_glyph_cursor (
+      xcb_create_glyph_cursor(
          xcb_connection(),
          cursor,
          m_fontCursor,
@@ -521,7 +523,7 @@ namespace windowing_xcb
    }
 
 
-   ::windowing_xcb::window *display::_get_keyboard_focus()
+   ::windowing_xcb::window * display::_get_keyboard_focus()
    {
 
       synchronization_lock synchronizationlock(user_mutex());
@@ -542,7 +544,7 @@ namespace windowing_xcb
 
       auto preply = __malloc(xcb_get_input_focus_reply(xcb_connection(), cookie, nullptr));
 
-      if(!preply)
+      if (!preply)
       {
 
          return nullptr;
@@ -558,7 +560,7 @@ namespace windowing_xcb
    }
 
 
-   bool display::get_cursor_position(POINT_I32 *ppointCursor)
+   bool display::get_cursor_position(POINT_I32 * ppointCursor)
    {
 
       xcb_window_t root_return;
@@ -577,7 +579,7 @@ namespace windowing_xcb
 
       auto preply = __malloc(xcb_query_pointer_reply(xcb_connection(), cookie, nullptr));
 
-      if(!preply)
+      if (!preply)
       {
 
          return false;
@@ -610,9 +612,10 @@ namespace windowing_xcb
 
       int bytes_per_line = pimage->scan_size(); // number of bytes in the client image between the start of one scanline and the start of the next
 
-      xcb_image_t * pxcbimage = xcb_image_create_native(xcb_connection(), width, height, XCB_IMAGE_FORMAT_Z_PIXMAP, 32, NULL, ~0, NULL);
+      xcb_image_t * pxcbimage = xcb_image_create_native(xcb_connection(), width, height, XCB_IMAGE_FORMAT_Z_PIXMAP, 32,
+                                                        NULL, ~0, NULL);
 
-      pxcbimage->data  = (uint8_t *) pimage->get_data();
+      pxcbimage->data = (uint8_t *) pimage->get_data();
 
       return pxcbimage;
 
@@ -658,7 +661,7 @@ namespace windowing_xcb
 
          auto estatus = _request_check(cookie);
 
-         if(!estatus)
+         if (!estatus)
          {
 
             return 0;
@@ -675,7 +678,7 @@ namespace windowing_xcb
 
          auto estatus = _request_check(cookie);
 
-         if(!estatus)
+         if (!estatus)
          {
 
             return 0;
@@ -727,7 +730,7 @@ namespace windowing_xcb
 
          auto estatus = _request_check(cookie);
 
-         if(!estatus)
+         if (!estatus)
          {
 
             return 0;
@@ -739,6 +742,56 @@ namespace windowing_xcb
       xcb_free_pixmap(m_pconnection, pixmap);
 
       return picture;
+
+   }
+
+
+   comparable_raw_array < xcb_window_t > display::_window_enumerate()
+   {
+
+      comparable_raw_array < xcb_window_t > windowa;
+
+      auto property = atom(x_window::e_atom_net_client_list_stacking);
+
+      unsigned long remain;
+
+      unsigned char * list;
+
+      //int errno = 0;
+
+      int iDelete = 0;
+
+      auto cookie = xcb_get_property(
+         xcb_connection(),
+         iDelete,
+         m_windowRoot,
+         property,
+         XCB_ATOM_ATOM,
+         0,
+         0);
+
+      auto preply = xcb_get_property_reply(
+         xcb_connection(),
+         cookie,
+         nullptr
+         );
+
+      if(!preply)
+      {
+
+         return windowa;
+
+      }
+
+      auto len = xcb_get_property_value_length(preply);
+
+      xcb_window_t * p = (xcb_window_t *) xcb_get_property_value(preply);
+
+      windowa.set_size(len/sizeof(xcb_window_t));
+
+      memcpy(windowa.get_data(), p, windowa.get_size_in_bytes());
+
+      return windowa;
 
    }
 
@@ -795,12 +848,12 @@ namespace windowing_xcb
    }
 
 
-   array < xcb_atom_t > display::_window_get_atom_array(xcb_window_t window, xcb_atom_t property)
+   comparable_array < xcb_atom_t > display::_window_get_atom_array(xcb_window_t window, xcb_atom_t property)
    {
 
       synchronization_lock synchronizationlock(user_mutex());
 
-      array < xcb_atom_t > atoma;
+      comparable_array < xcb_atom_t > atoma;
 
       auto cookie = xcb_get_property(
          m_pconnection,
@@ -1063,6 +1116,99 @@ namespace windowing_xcb
       }
 
       return success;
+
+   }
+
+
+   bool display::point_is_window_origin(POINT_I32 pointHitTest, ::windowing::window *pwindowExclude, int iMargin)
+   {
+
+      bool bIsOrigin = false;
+
+      auto pnode = Node;
+
+      pnode->node_sync(10_s, [this, pointHitTest, pwindowExclude, iMargin, &bIsOrigin]()
+      {
+
+         ::windowing_xcb::window *pwindowxcbExclude = nullptr;
+
+         if (pwindowExclude)
+         {
+
+            pwindowxcbExclude = dynamic_cast < ::windowing_xcb::window * >(pwindowExclude);
+
+         }
+
+         synchronization_lock synchronizationlock(user_mutex());
+
+         windowing_output_debug_string("\n::GetFocus 1");
+
+#ifdef display_lock_LOCK_LOG
+
+         b_prevent_display_lock_lock_log = false;
+
+#endif
+
+         if (!xcb_connection())
+         {
+
+            windowing_output_debug_string("\n::GetFocus 1.1");
+
+            return;
+
+         }
+
+         display_lock display(this);
+
+         windowing_output_debug_string("\n::GetFocus 1.01");
+
+         comparable_raw_array < xcb_window_t > windowa;
+
+         windowa = _window_enumerate();
+
+         ::rectangle_i32 rectangleTest;
+
+         for (index i = 0; i < windowa.get_size(); i++)
+         {
+
+            //string strItem = ::_window_get(xcb_connection(), windowa[i]);
+
+            ::rectangle_i32 rectangleHigher;
+
+            if (::is_set(pwindowxcbExclude) && windowa[i] == pwindowxcbExclude->xcb_window())
+            {
+
+               continue;
+
+            }
+
+            if (_window_get_window_rectangle(windowa[i], rectangleHigher))
+            {
+
+               ::rectangle_i32 rectangleHitTest;
+
+               rectangleHitTest.set(rectangleHigher.origin(), ::size_i32());
+
+               rectangleHitTest.inflate(iMargin + 1);
+
+               if (rectangleHitTest.contains(pointHitTest))
+               {
+
+                  bIsOrigin = true;
+
+                  return;
+
+               }
+
+            }
+
+         }
+
+      });
+//
+//            });
+
+      return bIsOrigin;
 
    }
 

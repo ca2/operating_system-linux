@@ -7,7 +7,7 @@
 #include "acme/os/linux/_user.h"
 
 
-::e_status defer_initialize_xcb();
+//::e_status defer_initialize_xcb();
 
 
 ::e_status sn_start_context();

@@ -54,7 +54,7 @@ namespace windowing_xcb
       virtual void windowing_main() override;
 
 
-      virtual void windowing_post_quit() override;
+      //virtual void windowing_post_quit() override;
 
 
       virtual ::e_status release_mouse_capture() override;

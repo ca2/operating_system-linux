@@ -86,11 +86,9 @@ namespace windowing_xcb
 
       virtual bool is_null() const;
 
-
       virtual bool get_monitor_rectangle(index iMonitor, RECTANGLE_I32 * prectangle);
 
       virtual bool get_workspace_rectangle(index iWorkspace, RECTANGLE_I32 * prectangle);
-
 
       virtual ::e_status release_mouse_capture();
 
@@ -122,7 +120,7 @@ namespace windowing_xcb
       virtual comparable_raw_array < xcb_window_t > _window_enumerate();
 
 
-      virtual array < xcb_atom_t > _window_get_atom_array(xcb_window_t window, xcb_atom_t property);
+      virtual comparable_array < xcb_atom_t > _window_get_atom_array(xcb_window_t window, xcb_atom_t property);
       virtual bool _window_has_atom_list_atom(xcb_window_t window, xcb_atom_t propertyList, xcb_atom_t propertyItem);
       virtual string _window_get_string_property(xcb_window_t window, xcb_atom_t property);
       virtual long _window_get_long_property(xcb_window_t window, xcb_atom_t property);

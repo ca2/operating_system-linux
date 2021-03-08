@@ -2,38 +2,38 @@
 #include "acme/id.h"
 #include "_.h"
 #include "gdk.h"
-#include "acme/os/x11/_x11.h"
-#include <gio/gio.h>
-#include <gtk/gtk.h>
-#include <glib.h>
+//#include "acme/os/x11/_x11.h"
+//#include <gio/gio.h>
+//#include <gtk/gtk.h>
+//#include <glib.h>
 
 
 bool x11_message_loop_step();
 
 
-gboolean gtk_quit_callback(gpointer data);
+//gboolean gtk_quit_callback(gpointer data);
+//
+//
+//void __copy(::color & color, const GdkRGBA & rgba)
+//{
+//
+//   color.set(rgba.red, rgba.green, rgba.blue, rgba.alpha);
+//
+//}
 
-
-void __copy(::color & color, const GdkRGBA & rgba)
-{
-
-   color.set(rgba.red, rgba.green, rgba.blue, rgba.alpha);
-
-}
-
-void __gtk_style_context_get_color(GtkStyleContext *context, GtkStateFlags state, const char * pszProperty, ::color & color)
-{
-
-   GdkRGBA * prgba = nullptr;
-
-   gtk_style_context_get (context, state, pszProperty, &prgba, NULL);
-
-   __copy(color, *prgba);
-
-   gdk_rgba_free (prgba);
-
-}
-
+//void __gtk_style_context_get_color(GtkStyleContext *context, GtkStateFlags state, const char * pszProperty, ::color & color)
+//{
+//
+//   GdkRGBA * prgba = nullptr;
+//
+//   gtk_style_context_get (context, state, pszProperty, &prgba, NULL);
+//
+//   __copy(color, *prgba);
+//
+//   gdk_rgba_free (prgba);
+//
+//}
+//
 
 namespace node_kde{
 
@@ -112,156 +112,158 @@ namespace node_kde{
 
       }
 
-      if(!os_defer_init_gtk())
-      {
+//      if(!os_defer_init_gtk())
+//      {
+//
+//         return false;
+//
+//      }
+//
+//      GSettings *settings = g_settings_new(pszSchema);
+//
+//      if(settings == nullptr)
+//      {
+//
+//         return false;
+//
+//      }
+//
+//      gboolean bOk = g_settings_set_string(settings, pszKey, pszValue);
+//
+//      if (settings != nullptr)
+//      {
+//
+//         g_object_unref (settings);
+//
+//      }
 
-         return false;
-
-      }
-
-      GSettings *settings = g_settings_new(pszSchema);
-
-      if(settings == nullptr)
-      {
-
-         return false;
-
-      }
-
-      gboolean bOk = g_settings_set_string(settings, pszKey, pszValue);
-
-      if (settings != nullptr)
-      {
-
-         g_object_unref (settings);
-
-      }
+bool bOk = true;
 
       return bOk;
 
    }
 
 
-   bool gsettings_sync()
-   {
-
-      if(!os_defer_init_gtk())
-      {
-
-         return false;
-
-      }
-
-      g_settings_sync ();
-
-      return true;
-
-   }
-
-
-   char * gsettings_get_malloc(const char * pszSchema, const char * pszKey)
-   {
-
-      if(pszSchema == nullptr)
-      {
-
-         return nullptr;
-
-      }
-
-      if(pszKey == nullptr)
-      {
-
-         return nullptr;
-
-      }
-
-      if(!os_defer_init_gtk())
-      {
-
-         return nullptr;
-
-      }
-
-      GSettings *settings = g_settings_new(pszSchema);
-
-      if(settings == nullptr)
-      {
-
-         return nullptr;
-
-      }
-
-      gchar * pgchar = g_settings_get_string (settings, pszKey);
-
-      if(pgchar == nullptr)
-      {
-
-         g_object_unref (settings);
-
-         return nullptr;
-
-      }
-
-      char * psz = strdup(pgchar);
-
-      g_free (pgchar);
-
-      g_object_unref (settings);
-
-      return psz;
-
-   }
+//   bool gsettings_sync()
+//   {
+//
+////      if(!os_defer_init_gtk())
+////      {
+////
+////         return false;
+////
+////      }
+////
+////      g_settings_sync ();
+//
+//      return true;
+//
+//   }
 
 
-   void wallpaper_change_notification (GSettings * settings, const gchar * key, gpointer data)
-   {
-
-      System.process_subject(id_wallpaper_change);
-
-   }
-
-
-   GAction * g_pactionWallpaper = nullptr;
-
-
-   bool g_enable_wallpaper_change_notification(const char * pszSchema, const char * pszKey)
-   {
-
-      if(!g_bGInitialized)
-      {
-
-         return false;
-
-      }
-
-      pmutex_lock lock(&g_mutexG);
-
-      if(g_pactionWallpaper != nullptr)
-      {
-
-         return true;
-
-      }
-
-      GSettings * settings = g_settings_new(pszSchema);
-
-      if(settings == nullptr)
-      {
-
-         return false;
-
-      }
-
-      g_pactionWallpaper = g_settings_create_action (settings, pszKey);
-
-      g_object_unref (settings);
-
-      g_signal_connect (g_pactionWallpaper, "notify::state", G_CALLBACK (wallpaper_change_notification), nullptr);
-
-      return true;
-
-   }
+//   char * gsettings_get_malloc(const char * pszSchema, const char * pszKey)
+//   {
+//
+//      if(pszSchema == nullptr)
+//      {
+//
+//         return nullptr;
+//
+//      }
+//
+//      if(pszKey == nullptr)
+//      {
+//
+//         return nullptr;
+//
+//      }
+//
+//      if(!os_defer_init_gtk())
+//      {
+//
+//         return nullptr;
+//
+//      }
+//
+//      GSettings *settings = g_settings_new(pszSchema);
+//
+//      if(settings == nullptr)
+//      {
+//
+//         return nullptr;
+//
+//      }
+//
+//      gchar * pgchar = g_settings_get_string (settings, pszKey);
+//
+//      if(pgchar == nullptr)
+//      {
+//
+//         g_object_unref (settings);
+//
+//         return nullptr;
+//
+//      }
+//
+//      char * psz = strdup(pgchar);
+//
+//      g_free (pgchar);
+//
+//      g_object_unref (settings);
+//
+//      return psz;
+//
+//   }
+//
+//
+//   void wallpaper_change_notification (GSettings * settings, const gchar * key, gpointer data)
+//   {
+//
+//      System.process_subject(id_wallpaper_change);
+//
+//   }
+//
+//
+//   GAction * g_pactionWallpaper = nullptr;
+//
+//
+//   bool g_enable_wallpaper_change_notification(const char * pszSchema, const char * pszKey)
+//   {
+//
+//      if(!g_bGInitialized)
+//      {
+//
+//         return false;
+//
+//      }
+//
+//      pmutex_lock lock(&g_mutexG);
+//
+//      if(g_pactionWallpaper != nullptr)
+//      {
+//
+//         return true;
+//
+//      }
+//
+//      GSettings * settings = g_settings_new(pszSchema);
+//
+//      if(settings == nullptr)
+//      {
+//
+//         return false;
+//
+//      }
+//
+//      g_pactionWallpaper = g_settings_create_action (settings, pszKey);
+//
+//      g_object_unref (settings);
+//
+//      g_signal_connect (g_pactionWallpaper, "notify::state", G_CALLBACK (wallpaper_change_notification), nullptr);
+//
+//      return true;
+//
+//   }
 
 
    void g_defer_init()
@@ -293,14 +295,14 @@ namespace node_kde{
 
       g_bGInitialized = false;
 
-      if(g_pactionWallpaper != nullptr)
-      {
-
-         g_object_unref(g_pactionWallpaper);
-
-         g_pactionWallpaper = nullptr;
-
-      }
+//      if(g_pactionWallpaper != nullptr)
+//      {
+//
+//         g_object_unref(g_pactionWallpaper);
+//
+//         g_pactionWallpaper = nullptr;
+//
+//      }
 
       pthread_mutex_destroy(&g_mutexG);
 
@@ -340,7 +342,7 @@ namespace node_kde{
 
          g_bInitializedUserTheme = true;
 
-         System.start_subject_handling(id_os_user_theme);
+         System->start_subject_handling(id_os_user_theme);
 
       }
 
@@ -353,7 +355,7 @@ namespace node_kde{
 
       bool bOk = false;
 
-      auto edesktop = System.get_edesktop();
+      auto edesktop = System->get_edesktop();
 
       switch (edesktop)
       {
@@ -411,7 +413,7 @@ namespace node_kde{
 
       string strWallpaper;
 
-      auto edesktop = System.get_edesktop();
+      auto edesktop = System->get_edesktop();
 
       switch (edesktop)
       {
@@ -506,20 +508,20 @@ namespace node_kde{
 
 
 
-#ifdef LINUX
-static void
-log_handler (const gchar   *log_domain,
-             GLogLevelFlags log_level,
-             const gchar   *message,
-             gpointer       user_data)
-{
-   g_log_default_handler (log_domain, log_level, message, user_data);
-
-   g_on_error_query (nullptr);
-}
-
-
-#endif
+//#ifdef LINUX
+//static void
+//log_handler (const gchar   *log_domain,
+//             GLogLevelFlags log_level,
+//             const gchar   *message,
+//             gpointer       user_data)
+//{
+//   g_log_default_handler (log_domain, log_level, message, user_data);
+//
+//   g_on_error_query (nullptr);
+//}
+//
+//
+//#endif
 
 
 
@@ -527,31 +529,31 @@ log_handler (const gchar   *log_domain,
 ::e_status     run_runnable(::matter * pobjectTask);
 
 
-gboolean gdk_callback_run_runnable(gpointer pdata)
-{
+//gboolean gdk_callback_run_runnable(gpointer pdata)
+//{
+//
+//   run_runnable((matter *) pdata);
+//
+//   return FALSE;
+//
+//}
 
-   run_runnable((matter *) pdata);
 
-   return FALSE;
-
-}
-
-
-void gdk_branch(matter * prunnable, e_priority epriority)
-{
-
-   prunnable->add_ref(OBJ_REF_DBG_P_NOTE(nullptr, "gdk_branch"));
-
-   auto idle_source = g_idle_source_new();
-
-   g_source_set_priority(idle_source, G_PRIORITY_DEFAULT);
-
-   g_source_set_callback(idle_source, &gdk_callback_run_runnable, prunnable, nullptr);
-
-   g_source_attach(idle_source, g_main_context_default());
-
-}
-
+//void gdk_branch(matter * prunnable, e_priority epriority)
+//{
+//
+//   prunnable->add_ref(OBJ_REF_DBG_P_NOTE(nullptr, "gdk_branch"));
+//
+//   auto idle_source = g_idle_source_new();
+//
+//   g_source_set_priority(idle_source, G_PRIORITY_DEFAULT);
+//
+//   g_source_set_callback(idle_source, &gdk_callback_run_runnable, prunnable, nullptr);
+//
+//   g_source_attach(idle_source, g_main_context_default());
+//
+//}
+//
 
 CLASS_DECL_APEX void main_branch(::matter * prunnable, e_priority epriority)
 {
@@ -585,36 +587,36 @@ CLASS_DECL_APEX void main_branch(::matter * prunnable, e_priority epriority)
 //
 //}
 
-
-void x11_add_idle_source()
-{
-
-   gdk_threads_add_idle(&x11_source_func, nullptr);
-
-}
-
-
-bool x11_message_handler(XEvent * pevent);
-
-
-GdkFilterReturn x11_event_func(GdkXEvent *xevent, GdkEvent *event, gpointer  data)
-{
-
-   XEvent * pevent = (XEvent *) xevent;
-
-   if(x11_message_handler(pevent))
-   {
-
-      //return GDK_FILTER_REMOVE;
-
-   }
-
-   return GDK_FILTER_CONTINUE;
-
-}
-
-
-
+//
+//void x11_add_idle_source()
+//{
+//
+//   gdk_threads_add_idle(&x11_source_func, nullptr);
+//
+//}
+//
+//
+//bool x11_message_handler(XEvent * pevent);
+//
+//
+//GdkFilterReturn x11_event_func(GdkXEvent *xevent, GdkEvent *event, gpointer  data)
+//{
+//
+//   XEvent * pevent = (XEvent *) xevent;
+//
+//   if(x11_message_handler(pevent))
+//   {
+//
+//      //return GDK_FILTER_REMOVE;
+//
+//   }
+//
+//   return GDK_FILTER_CONTINUE;
+//
+//}
+//
+//
+//
 
 
 

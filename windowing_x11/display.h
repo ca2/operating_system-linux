@@ -121,13 +121,13 @@ namespace windowing_x11
       virtual ::windowing_x11::window * _get_active_window(::thread * pthread);
 
 
-      virtual bool x11_window_list(WINDOWING_X11_DISPLAY_MEMBER array < Window > & windowa);
+      virtual bool x11_window_list(array < Window > & windowa);
       //virtual oswindow get_focus();
 
-      virtual bool get_cursor_position(WINDOWING_X11_DISPLAY_MEMBER POINT_I32 * ppointCursor);
+      virtual bool get_cursor_position(POINT_I32 * ppointCursor);
       //virtual oswindow _x11_get_active_window(WINDOWING_X11_DISPLAY_MEMBER);
       //virtual oswindow _x11_get_active_window();
-      virtual Window * x11_window_list(WINDOWING_X11_DISPLAY_MEMBER unsigned long * len);
+      virtual Window * x11_window_list(unsigned long * len);
 
       virtual Cursor create_alpha_cursor(const ::image *pimage, int xHotSpot, int yHotSpot);
       virtual Pixmap _x11_create_pixmap(::image_pointer pimage);
