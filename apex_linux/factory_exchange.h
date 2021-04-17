@@ -5,11 +5,11 @@
 //{
 //
 //
-//   namespace windows
+//   namespace linux
 //   {
 //
 //
-//      class CLASS_DECL_APEX_WINDOWS factory_exchange:
+//      class CLASS_DECL_APEX_LINUX factory_exchange:
 //         virtual public ::object
 //      {
 //      public:
@@ -22,7 +22,7 @@
 //      };
 //
 //
-//   } // namespace windows
+//   } // namespace linux
 //
 //
 //} // namespace apex

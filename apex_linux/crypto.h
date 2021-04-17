@@ -1,11 +1,11 @@
 #pragma once
 
 
-namespace windows
+namespace linux
 {
 
 
-   class CLASS_DECL_APEX_WINDOWS crypto :
+   class CLASS_DECL_APEX_LINUX crypto :
       virtual public ::crypto::crypto
    {
    public:

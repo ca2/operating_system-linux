@@ -1,106 +1,75 @@
 #include "framework.h"
 #include "apex/operating_system.h"
-//#include "apex/node/windows/_windows.h"
-#include "file_os_watcher.h"
+//#include "apex/node/linux/_linux.h"
+//#include "file_os_watcher.h"
 #include "apex/platform/launcher.h"
 #include "launcher.h"
 #include "dir_system.h"
 #include "dir_context.h"
 #include "file_system.h"
 #include "file_context.h"
-#include "process.h"
+//#include "process.h"
 #include "os_context.h"
 #include "service_handler.h"
-#include "acme/node/windows/pipe.h"
 #include "crypto.h"
 #include "ip_enum.h"
 #include "interprocess_communication.h"
-//#include "apex/node/windows/buffer.h"
+//#include "apex/node/linux/buffer.h"
 //#include "apex/os/console.h"
 //#include "console.h"
 #include "apex/platform/node.h"
-#include "acme_windows/acme.h"
-#include "apex.h"
+#include "node.h"
 
 
-
-//namespace apex
-//{
-//
-//
-//   namespace windows
-//   {
-//
-//
-//      factory_exchange::factory_exchange()
-//      {
-//
-//
-//
-//         //::windows::shell::theWindowsShell.Initialize();
-//
-//      }
-//
-//
-//      factory_exchange::~factory_exchange()
-//      {
-//
-//      }
-//
-//
-//   } // namespace windows
-//
-//
-//} // namespace apex
+extern "C"
+void apex_posix_factory_exchange(::factory_map * pfactorymap);
 
 
-void CLASS_DECL_APEX_WINDOWS __cdecl _ca2_purecall();
-
-
-void apex_windows_factory_exchange(::factory_map * pfactorymap)
+extern "C"
+void apex_linux_factory_exchange(::factory_map * pfactorymap)
 {
 
-   _set_purecall_handler(_ca2_purecall);
+   apex_posix_factory_exchange(pfactorymap);
 
-   pfactorymap->create_factory < ::windows::dir_system, ::dir_system >();
-   pfactorymap->create_factory < ::windows::file_system, ::file_system >();
+   pfactorymap->create_factory < ::linux::dir_system, ::dir_system >();
+   pfactorymap->create_factory < ::linux::file_system, ::file_system >();
 
-   pfactorymap->create_factory < ::windows::dir_context, ::dir_context >();
-   pfactorymap->create_factory < ::windows::file_context, ::file_context >();
+   pfactorymap->create_factory < ::linux::dir_context, ::dir_context >();
+   pfactorymap->create_factory < ::linux::file_context, ::file_context >();
 
-   //create_factory < ::windows::stdio_file, ::file::text_file >();
-   //create_factory < ::windows::file, ::file::file >();
-   pfactorymap->create_factory < ::windows::os_context, ::os_context >();
-   pfactorymap->create_factory < ::windows::pipe, ::process::pipe >();
-   pfactorymap->create_factory < ::windows::process, ::process::process >();
+   //create_factory < ::linux::stdio_file, ::file::text_file >();
+   //create_factory < ::linux::file, ::file::file >();
+   pfactorymap->create_factory < ::linux::os_context, ::os_context >();
+   //pfactorymap->create_factory < ::linux::pipe, ::process::pipe >();
+   //pfactorymap->create_factory < ::linux::process, ::process::process >();
 
-   //create_factory < ::windows::console, ::console::console >();
-   pfactorymap->create_factory < ::windows::crypto, ::crypto::crypto >();
-   pfactorymap->create_factory < ::windows::ip_enum, ::net::ip_enum >();
-
-
-   pfactorymap->create_factory < ::windows::interprocess_communication_base, ::interprocess_communication::base >();
-   pfactorymap->create_factory < ::windows::interprocess_communication_rx, ::interprocess_communication::rx >();
-   pfactorymap->create_factory < ::windows::interprocess_communication_tx, ::interprocess_communication::tx >();
-   //create_factory < ::windows::interprocess_communication, ::interprocess_communication::interprocess_communication >();
+   //create_factory < ::linux::console, ::console::console >();
+   pfactorymap->create_factory < ::linux::crypto, ::crypto::crypto >();
+   pfactorymap->create_factory < ::linux::ip_enum, ::net::ip_enum >();
 
 
-   //create_factory < ::windows::buffer, ::graphics::graphics >();
-   //create_factory < ::windows::interaction_impl, ::user::interaction_impl >();
+   pfactorymap->create_factory < ::linux::interprocess_communication_base, ::interprocess_communication::base >();
+   pfactorymap->create_factory < ::linux::interprocess_communication_rx, ::interprocess_communication::rx >();
+   pfactorymap->create_factory < ::linux::interprocess_communication_tx, ::interprocess_communication::tx >();
+   //create_factory < ::linux::interprocess_communication, ::interprocess_communication::interprocess_communication >();
 
-   pfactorymap->create_factory < ::file::os_watcher, ::file::watcher >();
-   pfactorymap->create_factory < ::file::os_watch, ::file::watch >();
 
-   pfactorymap->create_factory < ::windows::file_context, ::file_context >();
-   pfactorymap->create_factory < ::windows::service_handler, ::service_handler >();
+   //create_factory < ::linux::buffer, ::graphics::graphics >();
+   //create_factory < ::linux::interaction_impl, ::user::interaction_impl >();
 
-   pfactorymap->create_factory < ::windows::apex, ::acme::node >();
+   //pfactorymap->create_factory < ::file::os_watcher, ::file::watcher >();
+   //pfactorymap->create_factory < ::file::os_watch, ::file::watch >();
 
-   //create_factory < ::windows::copydesk, ::user::cop
+   pfactorymap->create_factory < ::linux::file_context, ::file_context >();
+   pfactorymap->create_factory < ::linux::service_handler, ::service_handler >();
+
+   pfactorymap->create_factory < ::linux::apex::node, ::acme::node >();
+
+   //create_factory < ::linux::copydesk, ::user::cop
    // 
    // 
    // ydesk >();
-   ////create_factory < ::windows::shell, ::user::shell >();
+   ////create_factory < ::linux::shell, ::user::shell >();
 
 
 }

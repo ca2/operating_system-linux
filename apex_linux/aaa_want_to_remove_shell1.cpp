@@ -1,5 +1,5 @@
 ﻿#include "framework.h"
-#include "apex/node/windows/_windows.h"
+#include "apex/node/linux/_linux.h"
 
 
 /***
@@ -236,7 +236,7 @@ return 0;
 return 1;
 }*/
 
-namespace windows
+namespace linux
 {
 
    shell shell::theWindowsShell;
@@ -807,6 +807,6 @@ namespace windows
    //}
    //*/
 
-} // namespace windows
+} // namespace linux
 
 

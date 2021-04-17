@@ -1,15 +1,20 @@
 #include "framework.h"
-#include "acme/node/windows/registry.h"
-#include "acme_windows/acme.h"
-#include "apex_windows/apex.h"
-#include "aura.h"
+//#include "acme/node/windows/registry.h"
+//#include "acme_linux/acme.h"
+//#include "apex_windows/apex.h"
+//#include "aura.h"
+
+extern "C"
+void apex_linux_factory_exchange(::factory_map * pfactorymap);
 
 
 extern "C"
-void aura_windows_factory_exchange(::factory_map * pfactorymap)
+void aura_linux_factory_exchange(::factory_map * pfactorymap)
 {
 
-   pfactorymap->create_factory < ::windows::aura, ::acme::node >();
+   apex_linux_factory_exchange( pfactorymap);
+
+   pfactorymap->create_factory < ::linux::aura::node, ::acme::node >();
 
 }
 

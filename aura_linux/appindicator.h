@@ -15,21 +15,17 @@ namespace linux
    {
 
 
-      class CLASS_DECL_NODE_LINUX appindicator :
+      class CLASS_DECL_AURA_LINUX appindicator :
          virtual public ::matter
       {
          public:
 
 
          appindicator();
-
-         virtual ~
-
-         appindicator();
+         virtual ~appindicator();
 
 
-         virtual bool
-         create(const char * pszId, const char * pszIcon, const char * pszFolder, user_notify_icon_bridge * pbridge) = 0;
+         virtual bool create(const char * pszId, const char * pszIcon, const char * pszFolder, user_notify_icon_bridge * pbridge) = 0;
 
 
       };

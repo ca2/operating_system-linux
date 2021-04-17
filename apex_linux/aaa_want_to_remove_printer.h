@@ -1,7 +1,7 @@
 #pragma once
 
 
-namespace windows
+namespace linux
 {
 
 
@@ -25,7 +25,7 @@ namespace windows
          virtual ~document_properties();
 
 
-         virtual bool initialize(::windows::printer * pprinter, DEVMODE * pdevmode = nullptr);
+         virtual bool initialize(::linux::printer * pprinter, DEVMODE * pdevmode = nullptr);
          virtual bool close();
          virtual ::draw2d::graphics * create_graphics();
 

@@ -12,11 +12,11 @@ Copyright (ca) 1998 by PJ Naughter.
 */
 
 
-namespace windows
+namespace linux
 {
 
 
-   class CLASS_DECL_APEX_WINDOWS ip_enum :
+   class CLASS_DECL_APEX_LINUX ip_enum :
       virtual public ::net::ip_enum
    {
    public:
@@ -35,7 +35,7 @@ namespace windows
    };
 
 
-} // namespace windows
+} // namespace linux
 
 
 

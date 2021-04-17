@@ -24,6 +24,9 @@ namespace linux
       virtual void terminate_processes_by_title(const char * lpszName) override;
 
 
+      virtual bool linux_can_exec(const char *file);
+
+
       //virtual ::file::path get_module_path(HMODULE hmodule) override;
 
 

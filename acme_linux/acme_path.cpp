@@ -1,10 +1,8 @@
 // Create on 2021-03-22 09:12 <3ThomasBS_
 #include "framework.h"
-#include "acme/filesystem/filesystem/acme_path.h"
-#include "acme_path.h"
 
 
-namespace windows
+namespace linux
 {
 
    
@@ -26,22 +24,50 @@ namespace windows
    ::file::path acme_path::app_module()
    {
 
-      wstring wstrPath(get_buffer, MAX_PATH * 16);
+      ::file::path path;
 
-      if (!GetModuleFileNameW(nullptr, wstrPath, (DWORD)wstrPath.get_length()))
+      char * pszModule = nullptr;
+
+      if((pszModule = br_find_exe(nullptr)) == nullptr)
       {
 
-         return "";
+         if (!br_init_lib(nullptr))
+         {
+
+            char path[PATH_MAX * 4];
+
+            char dest[PATH_MAX * 4];
+
+            pid_t pid = getpid();
+
+            sprintf(path, "/proc/%d/exe", pid);
+
+            auto iSize = readlink(path, dest, PATH_MAX);
+
+            if (iSize > 0)
+            {
+
+               dest[iSize] = '\0';
+
+               pszModule = strdup(dest);
+
+
+            }
+
+         }
 
       }
 
-      return wstrPath.release_string_buffer();
+      path = pszModule;
+
+      ::free(pszModule);
+
+      return path;
 
    }
 
 
-
-} // namespace windows
+} // namespace linux
 
 
 

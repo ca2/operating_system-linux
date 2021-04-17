@@ -12,7 +12,7 @@
 // CHandleMap
 //
 //  Note: Do not access the members of this class directly.
-//      Use ::windows::window::from_handle, ::windows::graphics::from_handle, etc.
+//      Use ::linux::window::from_handle, ::linux::graphics::from_handle, etc.
 //      The actual definition is only included because it is
 //      necessary for the definition of WindowsThread.
 //
@@ -75,7 +75,7 @@ inline ::u32 HashKey < HIMAGELIST >(HIMAGELIST key)
 }
 
 
-namespace windows
+namespace linux
 {
 
    class window;
@@ -119,7 +119,7 @@ namespace windows
    typedef handle1 < HGDIOBJ > hgdiobj_handle;
    typedef handle1 < HIMAGELIST > himagelist_handle;
 
-} // namespace windows
+} // namespace linux
 
 
 template<class TYPE>
@@ -185,27 +185,27 @@ public:
 };
 
 class CLASS_DECL_APEX oswindow_map :
-   public handle_map < ::windows::oswindow_handle, ::windows::window >
+   public handle_map < ::linux::oswindow_handle, ::linux::window >
 {
 public:
-   oswindow_map(::object * pobject) : handle_map < ::windows::oswindow_handle, ::windows::window >(pobject) {}
+   oswindow_map(::object * pobject) : handle_map < ::linux::oswindow_handle, ::linux::window >(pobject) {}
 };
 
 /*class CLASS_DECL_APEX hdc_map :
-   public handle_map < ::windows::hdc_handle, ::windows::graphics >
+   public handle_map < ::linux::hdc_handle, ::linux::graphics >
 {
 public:
 };*/
 
 /*class hgdiobj_map :
-   public handle_map < ::windows::hgdiobj_handle, ::windows::object >
+   public handle_map < ::linux::hgdiobj_handle, ::linux::object >
 {
 public:
 };*/
 
 /*
 class CLASS_DECL_APEX hdc_map :
-   public handle_map < ::windows::hmenu_handle, ::windows::menu >
+   public handle_map < ::linux::hmenu_handle, ::linux::menu >
 {
 public:
 };

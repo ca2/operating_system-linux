@@ -1,9 +1,10 @@
 #include "framework.h"
-#include "apex/operating_system.h"
-#include "file_system.h"
+//#include "_linux.h"
+#include "acme/filesystem/filesystem/acme_path.h"
+#include "acme/filesystem/filesystem/acme_dir.h"
 
 
-namespace windows
+namespace linux
 {
 
 
@@ -19,12 +20,12 @@ namespace windows
    }
 
 
-   ::e_status file_system::init_system()
+   ::e_status file_system::initialize(::object * pobject)
    {
 
-      auto estatus = ::file_system::init_system();
+      auto estatus = ::file_system::initialize(pobject);
 
-      if (!estatus)
+      if(!estatus)
       {
 
          return estatus;
@@ -35,21 +36,52 @@ namespace windows
 
    }
 
-   
-   ::e_status file_system::update_module_path()
+
+   ::e_status file_system::init_system()
    {
 
-      m_pathModule = ::path::module(nullptr);
+      if(!update_module_path())
+      {
 
-      m_pathCa2Module = ::path::module(::GetModuleHandleA("apex.dll"));
+         return ::error_failed;
 
-      return true;
+      }
+
+      return ::success;
 
    }
 
 
+   ::e_status file_system::update_module_path()
+   {
 
-} // namespace windows
+      auto estatus = ::file_system::update_module_path();
+
+      if(!estatus)
+      {
+
+         return estatus;
+
+      }
+
+      ::file::path pathAppModule = m_psystem->m_pacmepath->app_module();
+
+      m_pathModule = pathAppModule;
+
+      auto psystem = m_psystem;
+
+      auto pacmedir = psystem->m_pacmedir;
+
+      ::file::path pathCa2AppModule = pacmedir->module();
+
+      m_pathCa2Module = pathCa2AppModule;
+
+      return estatus;
+
+   }
+
+
+} // namespace linux
 
 
 

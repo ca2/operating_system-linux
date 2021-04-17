@@ -4,13 +4,13 @@
 #include "aura/_.h"
 #include "aura/operating_system.h"
 #include "apex/operating_system.h"
-#include "apex_windows/_.h"
+#include "apex_linux/_.h"
 
 
-#if defined(_AURA_WINDOWS_LIBRARY)
-#define CLASS_DECL_AURA_WINDOWS  CLASS_DECL_EXPORT
+#if defined(_AURA_LINUX_LIBRARY)
+#define CLASS_DECL_AURA_LINUX  CLASS_DECL_EXPORT
 #else
-#define CLASS_DECL_AURA_WINDOWS  CLASS_DECL_IMPORT
+#define CLASS_DECL_AURA_LINUX  CLASS_DECL_IMPORT
 #endif
 
 
@@ -63,8 +63,14 @@
 //#include "tts_speaker.h"
 
 
+#include "appindicator.h"
 
-//#include "node.h"
+
+
+#include "_const.h"
+
+
+#include "node.h"
 
 
 

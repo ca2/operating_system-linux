@@ -1,37 +1,41 @@
 #include "framework.h"
-#include "apex/platform/node.h"
+//#include "node/platform/node.h"
 #include "acme/filesystem/filesystem/acme_dir.h"
 #include "acme/filesystem/filesystem/acme_path.h"
-#include "acme_linux/acme.h"
-#include "apex.h"
+//#include "acme_linux/acme.h"
+#include "node.h"
 #include "aura/os/linux/_c.h"
 
 
-bool __node_apex_pre_init();
-bool __node_apex_pos_init();
+bool __node_node_pre_init();
+bool __node_node_pos_init();
 
 
 namespace linux
 {
-
-
-   apex::apex()
-   {
-
-      m_papexnode = this;
-
-   }
-
-
-   apex::~apex()
+   
+   
+   namespace apex
    {
 
 
-   }
+      node::node()
+      {
+
+         //m_pnodenode = this;
+
+      }
 
 
-   string apex::get_user_name()
-   {
+      node::~node()
+      {
+
+
+      }
+
+
+      string node::get_user_name()
+      {
 
 //      WCHAR wsz[1024];
 //
@@ -41,44 +45,44 @@ namespace linux
 //
 //      return string(wsz);
 
-      return "";
+         return "";
 
-   }
+      }
 
-   
-   ::e_status apex::initialize(::object* pobject)
-   {
 
-      auto estatus = ::linux::acme::node::initialize(pobject);
-
-      if (!estatus)
+      ::e_status node::initialize(::object * pobject)
       {
+
+         auto estatus = ::linux::acme::node::initialize(pobject);
+
+         if (!estatus)
+         {
+
+            return estatus;
+
+         }
+
+//         if (!__node_node_pre_init())
+//         {
+//
+//            return error_failed;
+//
+//         }
+
+
+//         if (!__node_node_pos_init())
+//         {
+//
+//            return error_failed;
+//
+//         }
 
          return estatus;
 
       }
 
-      if (!__node_apex_pre_init())
-      {
 
-         return error_failed;
-
-      }
-
-
-      if (!__node_apex_pos_init())
-      {
-
-         return error_failed;
-
-      }
-
-      return estatus;
-
-   }
-
-
-//   bool apex::_os_calc_app_dark_mode()
+//   bool node::_os_calc_app_dark_mode()
 //   {
 //
 //      try
@@ -119,7 +123,7 @@ namespace linux
 //   }
 
 
-//   bool apex::_os_calc_system_dark_mode()
+//   bool node::_os_calc_system_dark_mode()
 //   {
 //
 //      try
@@ -160,7 +164,7 @@ namespace linux
 //   }
 
 
-//   ::color::color apex::get_default_color(::u64 u)
+//   ::color::color node::get_default_color(::u64 u)
 //   {
 //
 //      switch (u)
@@ -185,8 +189,8 @@ namespace linux
 //
 //   }
 
-   
-//   void apex::set_console_colors(::u32 dwScreenColors, ::u32 dwPopupColors, ::u32 dwWindowAlpha)
+
+//   void node::set_console_colors(::u32 dwScreenColors, ::u32 dwPopupColors, ::u32 dwWindowAlpha)
 //   {
 //
 //      ::linux::registry::key key(HKEY_CURRENT_USER, "Console", true);
@@ -199,7 +203,7 @@ namespace linux
 
 
 
-//   ::e_status apex::set_system_dark_mode1(bool bSet)
+//   ::e_status node::set_system_dark_mode1(bool bSet)
 //   {
 //
 //      ::linux::registry::key key(HKEY_CURRENT_USER, "Software\\Microsoft\\Windows\\CurrentVersion\\Themes\\Personalize", true);
@@ -220,7 +224,7 @@ namespace linux
 //   }
 
 
-//   ::e_status apex::set_app_dark_mode1(bool bSet)
+//   ::e_status node::set_app_dark_mode1(bool bSet)
 //   {
 //
 //      ::linux::registry::key key(HKEY_CURRENT_USER, "Software\\Microsoft\\Windows\\CurrentVersion\\Themes\\Personalize", true);
@@ -241,8 +245,8 @@ namespace linux
 //
 //   }
 
-   
-//   double apex::get_time_zone()
+
+//   double node::get_time_zone()
 //   {
 //
 //      double dTimeZone = 0.;
@@ -300,7 +304,7 @@ namespace linux
 //   }
 
 
-//   ::e_status apex::open_folder(::file::path & pathFolder)
+//   ::e_status node::open_folder(::file::path & pathFolder)
 //   {
 //
 //      wstring wstrFolder(pathFolder);
@@ -358,7 +362,7 @@ namespace linux
 //   }
 
 
-//   ::e_status apex::register_dll(const ::file::path & pathDll)
+//   ::e_status node::register_dll(const ::file::path & pathDll)
 //   {
 //
 //
@@ -431,10 +435,10 @@ namespace linux
 //   }
 
 
-//   ::e_status apex::start()
+//   ::e_status node::start()
 //   {
 //
-//      auto estatus = m_psystem->m_papexsystem->m_papexnode->thread_initialize(m_psystem->m_papexsystem);
+//      auto estatus = m_psystem->m_pnodesystem->m_pnodenode->thread_initialize(m_psystem->m_pnodesystem);
 //
 //      if (!estatus)
 //      {
@@ -476,7 +480,7 @@ namespace linux
 //   }
 
 
-//   ::e_status apex::get_firefox_installation_info(string& strPathToExe, string& strInstallDirectory)
+//   ::e_status node::get_firefox_installation_info(string& strPathToExe, string& strInstallDirectory)
 //   {
 //
 //#ifdef LINUX_DESKTOP
@@ -515,30 +519,30 @@ namespace linux
 //   }
 
 
-   ::e_status apex::_001InitializeShellOpen()
-   {
+      ::e_status node::_001InitializeShellOpen()
+      {
 
-      //ASSERT(m_atomApp == nullptr && m_atomSystemTopic == nullptr); // do once
+         //ASSERT(m_atomApp == nullptr && m_atomSystemTopic == nullptr); // do once
 
-      //m_atomApp            = ::GlobalAddAtomW(::str::international::utf8_to_unicode(m_strAppName));
+         //m_atomApp            = ::GlobalAddAtomW(::str::international::utf8_to_unicode(m_strAppName));
 
-      //m_atomSystemTopic    = ::GlobalAddAtomW(L"system");
+         //m_atomSystemTopic    = ::GlobalAddAtomW(L"system");
 
-      return ::success;
+         return ::success;
 
-   }
-
-
-   ::e_status apex::process_init()
-   {
-
-      //defer_initialize_winsock();
-      return success;
-
-   }
+      }
 
 
-//   string apex::veriwell_multimedia_music_midi_get_default_library_name()
+      ::e_status node::process_init()
+      {
+
+         //defer_initialize_winsock();
+         return success;
+
+      }
+
+
+//   string node::veriwell_multimedia_music_midi_get_default_library_name()
 //   {
 //
 //      return "music_midi_mmsystem";
@@ -546,7 +550,7 @@ namespace linux
 //   }
 //
 //
-//   string apex::multimedia_audio_mixer_get_default_library_name()
+//   string node::multimedia_audio_mixer_get_default_library_name()
 //   {
 //
 //      return "audio_mixer_mmsystem";
@@ -554,7 +558,7 @@ namespace linux
 //   }
 //
 //
-//   string apex::multimedia_audio_get_default_library_name()
+//   string node::multimedia_audio_get_default_library_name()
 //   {
 //
 //      string str;
@@ -592,45 +596,53 @@ namespace linux
 //   }
 
 
-   bool apex::is_application_installed(const ::file::path& pathExe, string strAppId, string& strBuild, const char* pszPlatform, const char* pszConfiguration, const char* pszLocale, const char* pszSchema)
-   {
+      bool node::is_application_installed(const ::file::path & pathExe, string strAppId, string & strBuild,
+                                          const char * pszPlatform, const char * pszConfiguration,
+                                          const char * pszLocale, const char * pszSchema)
+      {
 
-      ::file::path path;
+         ::file::path path;
 
-      path = m_psystem->m_papexsystem->m_pdirsystem->application_installer_folder(pathExe, strAppId, pszPlatform, pszConfiguration, pszLocale, pszSchema) / "installed.txt";
+         path = m_psystem->m_papexsystem->m_pdirsystem->application_installer_folder(pathExe, strAppId, pszPlatform,
+                                                                                     pszConfiguration, pszLocale,
+                                                                                     pszSchema) / "installed.txt";
 
-      strBuild = file_as_string(path);
+         strBuild = file_as_string(path);
 
-      return strBuild.has_char();
+         return strBuild.has_char();
 
-   }
-
-
-   bool apex::set_application_installed(const ::file::path& pathExe, string strAppId, const char* pszBuild, const char* pszPlatform, const char* pszConfiguration, const char* pszLocale, const char* pszSchema)
-   {
-
-      ::file::path path;
-
-      path = m_psystem->m_papexsystem->m_pdirsystem->application_installer_folder(pathExe, strAppId, pszPlatform, pszConfiguration, pszLocale, pszSchema) / "installed.txt";
-
-      return file_put_contents(path, pszBuild);
-
-   }
+      }
 
 
-   bool apex::set_last_run_application_path(string strAppId)
-   {
+      bool node::set_application_installed(const ::file::path & pathExe, string strAppId, const char * pszBuild,
+                                           const char * pszPlatform, const char * pszConfiguration,
+                                           const char * pszLocale, const char * pszSchema)
+      {
 
-      ::file::path path = m_psystem->m_pacmepath->app_module();
+         ::file::path path;
 
-      ::file::path pathFile = m_psystem->m_papexsystem->m_pdirsystem->get_last_run_application_path_file(strAppId);
+         path = m_psystem->m_papexsystem->m_pdirsystem->application_installer_folder(pathExe, strAppId, pszPlatform,
+                                                                                     pszConfiguration, pszLocale,
+                                                                                     pszSchema) / "installed.txt";
 
-      return file_put_contents(pathFile, path);
+         return file_put_contents(path, pszBuild);
 
-   }
+      }
 
 
-//   string apex::get_version()
+      bool node::set_last_run_application_path(string strAppId)
+      {
+
+         ::file::path path = m_psystem->m_pacmepath->app_module();
+
+         ::file::path pathFile = m_psystem->m_papexsystem->m_pdirsystem->get_last_run_application_path_file(strAppId);
+
+         return file_put_contents(pathFile, path);
+
+      }
+
+
+//   string node::get_version()
 //   {
 //
 //      unichar pszModuleFilePath[MAX_PATH + 1];
@@ -718,7 +730,7 @@ namespace linux
 //   }
 
 
-//   void apex::show_wait_cursor(bool bShow)
+//   void node::show_wait_cursor(bool bShow)
 //   {
 //
 //      if (bShow)
@@ -741,7 +753,7 @@ namespace linux
 //   }
 
 
-//   ::u32 apex::get_current_directory(string& str)
+//   ::u32 node::get_current_directory(string& str)
 //   {
 //
 //      return ::GetCurrentDirectoryW(MAX_PATH * 8, wtostring(str, MAX_PATH * 8));
@@ -749,7 +761,7 @@ namespace linux
 //   }
 
 
-//   ::u32 apex::get_temp_path(string& str)
+//   ::u32 node::get_temp_path(string& str)
 //   {
 //
 //      return ::GetTempPathW(MAX_PATH * 8, wtostring(str, MAX_PATH * 8));
@@ -757,7 +769,7 @@ namespace linux
 //   }
 
 
-//   ::i32 apex::reg_query_value(HKEY hkey, const char* pszSubKey, string& str)
+//   ::i32 node::reg_query_value(HKEY hkey, const char* pszSubKey, string& str)
 //   {
 //
 //      DWORD dwType = 0;
@@ -791,7 +803,7 @@ namespace linux
 //   }
 
 
-//   HICON apex::extract_icon(HINSTANCE hInst, const char* pszExeFileName, ::u32 nIconIndex)
+//   HICON node::extract_icon(HINSTANCE hInst, const char* pszExeFileName, ::u32 nIconIndex)
 //
 //   {
 //
@@ -801,7 +813,7 @@ namespace linux
 //   }
 
 
-//   bool apex::delete_file(const char* pFileName)
+//   bool node::delete_file(const char* pFileName)
 //
 //   {
 //
@@ -810,66 +822,68 @@ namespace linux
 //
 //   }
 
-   //CLASS_DECL_ACME::file::path user_appdata_local();
+      //CLASS_DECL_ACME::file::path user_appdata_local();
 
-   //void apex::time_to_filetime(::matter* pobject, const ::datetime::time& time, LPFILETIME pFileTime)
-   //{
+      //void node::time_to_filetime(::matter* pobject, const ::datetime::time& time, LPFILETIME pFileTime)
+      //{
 
-   //   SYSTEMTIME sysTime;
+      //   SYSTEMTIME sysTime;
 
-   //   sysTime.wYear = (::u16)time.GetYear();
-   //   sysTime.wMonth = (::u16)time.GetMonth();
-   //   sysTime.wDay = (::u16)time.GetDay();
-   //   sysTime.wHour = (::u16)time.GetHour();
-   //   sysTime.wMinute = (::u16)time.GetMinute();
-   //   sysTime.wSecond = (::u16)time.GetSecond();
-   //   sysTime.wMilliseconds = 0;
+      //   sysTime.wYear = (::u16)time.GetYear();
+      //   sysTime.wMonth = (::u16)time.GetMonth();
+      //   sysTime.wDay = (::u16)time.GetDay();
+      //   sysTime.wHour = (::u16)time.GetHour();
+      //   sysTime.wMinute = (::u16)time.GetMinute();
+      //   sysTime.wSecond = (::u16)time.GetSecond();
+      //   sysTime.wMilliseconds = 0;
 
-   //   // convert system time to local file time
-   //   FILETIME localTime;
+      //   // convert system time to local file time
+      //   FILETIME localTime;
 
-   //   DWORD dwLastError = ::GetLastError();
+      //   DWORD dwLastError = ::GetLastError();
 
-   //   if (!SystemTimeToFileTime((LPSYSTEMTIME)&sysTime, &localTime))
-   //      ::file::throw_os_error(dwLastError);
+      //   if (!SystemTimeToFileTime((LPSYSTEMTIME)&sysTime, &localTime))
+      //      ::file::throw_os_error(dwLastError);
 
-   //   // convert local file time to UTC file time
-   //   if (!LocalFileTimeToFileTime(&localTime, pFileTime))
-   //      ::file::throw_os_error(dwLastError);
+      //   // convert local file time to UTC file time
+      //   if (!LocalFileTimeToFileTime(&localTime, pFileTime))
+      //      ::file::throw_os_error(dwLastError);
 
-   //}
-
-
-
-   //::file::path apex::user_appdata_local()
-   //{
-
-   //   return shell_get_special_folder_path(CSIDL_LOCAL_APPDATA);
-
-   //}
+      //}
 
 
 
-   //::file::path get_known_folder(REFKNOWNFOLDERID kfid)
-   //{
+      //::file::path node::user_appdata_local()
+      //{
 
-   //   ::file::path str;
+      //   return shell_get_special_folder_path(CSIDL_LOCAL_APPDATA);
 
-   //   ::cotaskptr < PWSTR > pwszPath;
+      //}
 
-   //   HANDLE hToken = nullptr;
 
-   //   ::OpenProcessToken(::GetCurrentProcess(), TOKEN_QUERY | TOKEN_IMPERSONATE | TOKEN_DUPLICATE, &hToken);
 
-   //   HRESULT hr = SHGetKnownFolderPath(kfid, 0, hToken, &pwszPath);
+      //::file::path get_known_folder(REFKNOWNFOLDERID kfid)
+      //{
 
-   //   return pwszPath;
+      //   ::file::path str;
 
-   //}
+      //   ::cotaskptr < PWSTR > pwszPath;
+
+      //   HANDLE hToken = nullptr;
+
+      //   ::OpenProcessToken(::GetCurrentProcess(), TOKEN_QUERY | TOKEN_IMPERSONATE | TOKEN_DUPLICATE, &hToken);
+
+      //   HRESULT hr = SHGetKnownFolderPath(kfid, 0, hToken, &pwszPath);
+
+      //   return pwszPath;
+
+      //}
+
+
+   } // namespace apex
 
 
 } // namespace linux
-
 
 
 
@@ -893,13 +907,13 @@ namespace linux
 
 
 //
-//bool __node_apex_pre_init()
+//bool __node_node_pre_init()
 //{
 //
 //
 //   defer_initialize_winsock();
 //
-//   //xxdebug_box("__node_apex_pre_init","box",e_message_box_ok);
+//   //xxdebug_box("__node_node_pre_init","box",e_message_box_ok);
 //
 //   //g_pgdiplusStartupInput = new Gdiplus::GdiplusStartupInput();
 //
@@ -944,7 +958,7 @@ namespace linux
 //   //    catch (...)
 //   //    {
 //
-//   //       ::message_box(nullptr, "Failure to initialize FreeImage (::apex::init_core)", "FreeImage_Initialise failure", e_message_box_icon_exclamation);
+//   //       ::message_box(nullptr, "Failure to initialize FreeImage (::node::init_core)", "FreeImage_Initialise failure", e_message_box_icon_exclamation);
 //
 //   //       return false;
 //
@@ -959,7 +973,7 @@ namespace linux
 //}
 
 //
-//bool __node_apex_pos_init()
+//bool __node_node_pos_init()
 //{
 //
 //   //_set_purecall_handler(_ca2_purecall);

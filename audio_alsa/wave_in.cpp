@@ -305,7 +305,7 @@ Opened:
       ::e_status wave_in::in_stop()
       {
 
-         synchronization_lock sl(mutex());
+         synchronous_lock sl(mutex());
 
          if(m_estate != state_recording)
          {
@@ -420,7 +420,7 @@ Opened:
 
       ::e_status wave_in::in_reset()
       {
-         synchronization_lock sl(mutex());
+         synchronous_lock sl(mutex());
          m_bResetting = true;
          if(m_ppcm == NULL)
          {

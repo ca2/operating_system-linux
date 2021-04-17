@@ -4,12 +4,12 @@
 #pragma once
 
 
-namespace node_gnome
+namespace node_kde
 {
 
 
-   class CLASS_DECL_WINDOWING_X11 windowing :
-      virtual public ::windowing_x11::windowing
+   class CLASS_DECL_WINDOWING_KDE windowing :
+      virtual public ::windowing_xcb::windowing
    {
    public:
 
@@ -29,7 +29,7 @@ namespace node_gnome
    };
 
 
-} // namespace node_gnome
+} // namespace node_kde
 
 
 

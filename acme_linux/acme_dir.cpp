@@ -1,12 +1,8 @@
 // Create on 2021-03-21 20:00 <3ThomasBS_
 #include "framework.h"
-#include "acme/filesystem/filesystem/acme_dir.h"
-#include "acme_dir.h"
-#include "acme/filesystem/filesystem/acme_path.h"
-#include "acme_path.h"
 
 
-namespace windows
+namespace linux
 {
 
    
@@ -28,20 +24,7 @@ namespace windows
    string acme_dir::dir_root()
    {
 
-      ::string path;
-
-      path = _get_known_folder(FOLDERID_RoamingAppData);
-
-      if (path.length() > 0 && path[path.length() - 1] != '\\')
-      {
-
-         path += "\\";
-
-      }
-
-      path += "ca2";
-
-      return path;
+      return home() / ".config/ca2";
 
    }
 
@@ -49,27 +32,23 @@ namespace windows
    ::file::path acme_dir::get_memory_map_base_folder_path() 
    {
 
-      auto path = _get_known_folder(FOLDERID_RoamingAppData);
-
-      path /= "ca2/memory_map";
-
-      return path;
+      return home() / ".config/ca2/memory_map";
 
    }
 
 
-   ::file::path acme_dir::home()
-   {
-
-      return _get_known_folder(FOLDERID_Profile);
-
-   }
+//   ::file::path acme_dir::home()
+//   {
+//
+//      return getenv("HOME");
+//
+//   }
 
 
    ::file::path acme_dir::program_data()
    {
 
-      return _get_known_folder(FOLDERID_ProgramData);
+      return home() / "application";
 
    }
 
@@ -77,7 +56,7 @@ namespace windows
    ::file::path acme_dir::roaming()
    {
 
-      return _get_known_folder(FOLDERID_RoamingAppData);
+      return home() / ".config";
 
    }
 
@@ -125,7 +104,7 @@ namespace windows
    ::file::path acme_dir::sensitive()
    {
 
-   #ifdef WINDOWS
+   #ifdef LINUX
 
       return "C:\\sensitive\\sensitive";
 
@@ -205,7 +184,7 @@ namespace windows
    ::file::path acme_dir::inplace_install(string strAppId, string strPlatform, string strConfiguration)
    {
 
-   #ifdef WINDOWS_DESKTOP
+   #ifdef LINUX_DESKTOP
 
       ::file::path path;
 
@@ -262,7 +241,7 @@ namespace windows
    ::file::path acme_dir::inplace_matter_install(string strAppId, string strPlatform, string strConfiguration)
    {
 
-   #ifdef WINDOWS_DESKTOP
+   #ifdef LINUX_DESKTOP
 
       ::file::path path;
 
@@ -337,7 +316,7 @@ namespace windows
 
 
 
-   #ifdef WINDOWS_DESKTOP
+   #ifdef LINUX_DESKTOP
 
 
    #include <Shlobj.h>
@@ -429,7 +408,7 @@ namespace windows
    }
 
 
-   #ifdef LINUX
+//   #ifdef LINUX
 
 
    ::file::path acme_dir::home()
@@ -440,18 +419,22 @@ namespace windows
    }
 
 
-   #endif
+//   #endif
 
 
    #if defined(_UWP) || defined(__APPLE__) || defined(LINUX) || defined(ANDROID)
 
 
-   ::file::path acme_dir::bookmark()
-   {
-
-      return pacmedir->localconfig() / "bookmark";
-
-   }
+//   ::file::path acme_dir::bookmark()
+//   {
+//
+//      auto psystem = m_psystem;
+//
+//      auto pacmedir = psystem->m_pacmedir;
+//
+//      return pacmedir->localconfig() / "bookmark";
+//
+//   }
 
 
    #endif
@@ -633,7 +616,6 @@ namespace windows
    }
 
 
-
    //::file::path acme_dir::get_memory_map_base_folder_path()
    //{
 
@@ -645,58 +627,14 @@ namespace windows
    ::file::path acme_dir::user_appdata_local()
    {
 
-      return _shell_get_special_folder_path(CSIDL_LOCAL_APPDATA);
+      //return _shell_get_special_folder_path(CSIDL_LOCAL_APPDATA);
+
+      return home() / ".config";
 
    }
 
 
-   bool acme_dir::_shell_get_special_folder_path(HWND hwnd, ::file::path& str, i32 csidl, bool fCreate)
-   {
-
-      return ::SHGetSpecialFolderPathW(hwnd, wtostring(str, MAX_PATH * 8), csidl, fCreate) != false;
-
-   }
-
-
-   ::file::path acme_dir::_shell_get_special_folder_path(i32 csidl, bool fCreate, ::windowing::window* pwindow)
-   {
-
-      ::file::path path;
-
-      if (!_shell_get_special_folder_path(nullptr, path, csidl, fCreate))
-      {
-
-         return "";
-
-      }
-
-      return path;
-
-   }
-
-
-   ::file::path acme_dir::_get_known_folder(REFKNOWNFOLDERID kfid)
-   {
-
-      ::file::path str;
-
-      ::cotaskptr < PWSTR > pwszPath;
-
-      HANDLE hToken = nullptr;
-
-      ::OpenProcessToken(::GetCurrentProcess(), TOKEN_QUERY | TOKEN_IMPERSONATE | TOKEN_DUPLICATE, &hToken);
-
-      HRESULT hr = SHGetKnownFolderPath(kfid, 0, hToken, &pwszPath);
-
-      return pwszPath;
-
-   }
-
-
-
-
-
-} // namespace windows
+} // namespace linux
 
 
 

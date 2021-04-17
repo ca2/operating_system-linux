@@ -1,7 +1,7 @@
 #pragma once
 
 
-#ifdef WINDOWS
+#ifdef LINUX
 
 class CLASS_DECL_APEX simple_hold_handle
 {

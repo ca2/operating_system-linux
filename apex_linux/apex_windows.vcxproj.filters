@@ -38,13 +38,13 @@
     <ClInclude Include="tts_speaker.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="aaa_node_windows.h">
+    <ClInclude Include="aaa_node_linux.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="aaa_node_windows_private.h">
+    <ClInclude Include="aaa_node_linux_private.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="aaa_windows.h">
+    <ClInclude Include="aaa_linux.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="crypto.h">
@@ -176,7 +176,7 @@
     </ResourceCompile>
   </ItemGroup>
   <ItemGroup>
-    <None Include="apex_windows.def">
+    <None Include="apex_linux.def">
       <Filter>Source Files</Filter>
     </None>
   </ItemGroup>

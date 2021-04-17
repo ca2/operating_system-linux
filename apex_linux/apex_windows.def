@@ -1,5 +1,5 @@
-LIBRARY "apex_windows"
+LIBRARY "apex_linux"
 
 EXPORTS
-apex_windows_factory_exchange
+apex_linux_factory_exchange
 

@@ -2,11 +2,11 @@
 #pragma once
 
 
-namespace windows
+namespace linux
 {
 
 
-   class CLASS_DECL_ACME_WINDOWS acme_dir :
+   class CLASS_DECL_ACME_LINUX acme_dir :
       virtual public ::acme_dir
    {
    public:
@@ -62,9 +62,9 @@ namespace windows
 
       virtual void set_path_install_folder(const char* pszPath) override;
 
-      virtual  bool        _shell_get_special_folder_path(HWND hwnd, ::file::path& str, i32 csidl, bool fCreate);
-      virtual ::file::path _shell_get_special_folder_path(i32 csidl, bool fCreate = true, ::windowing::window* pwindow = nullptr);
-      virtual ::file::path _get_known_folder(REFKNOWNFOLDERID kfid);
+      //virtual  bool        _shell_get_special_folder_path(HWND hwnd, ::file::path& str, i32 csidl, bool fCreate);
+      //virtual ::file::path _shell_get_special_folder_path(i32 csidl, bool fCreate = true, ::windowing::window* pwindow = nullptr);
+      //virtual ::file::path _get_known_folder(REFKNOWNFOLDERID kfid);
 
       //virtual ::file::path pathfind(const string& pszEnv, const string& pszTopic, const string& pszMode) override;
 
@@ -73,7 +73,7 @@ namespace windows
    };
 
 
-} // namespace windows
+} // namespace linux
 
 
 

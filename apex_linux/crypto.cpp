@@ -5,19 +5,19 @@
 //#include <shlobj.h>
 
 
-//#include "windows_dir.h"
-//#include "windows_factory_exchange.h"
-//#include "windows_port_forward.h"
-//#include "windows_dir.h"
-//#include "windows_file_system.h"
-//#include "windows_file_set.h"
+//#include "linux_dir.h"
+//#include "linux_factory_exchange.h"
+//#include "linux_port_forward.h"
+//#include "linux_dir.h"
+//#include "linux_file_system.h"
+//#include "linux_file_set.h"
 #include "crypto.h"
-//#include "windows_ip_enum.h"
+//#include "linux_ip_enum.h"
 
 i32 crypto_encrypt(memory & storageEncrypt, const memory & storageDecrypt, memory & key);
 i32 crypto_decrypt(memory & storageDecrypt, const memory & storageEncrypt, memory & key);
 
-namespace windows
+namespace linux
 {
 
 
@@ -206,7 +206,7 @@ namespace windows
    }
 
 
-} // namespace windows
+} // namespace linux
 
 
 

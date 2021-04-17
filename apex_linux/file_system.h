@@ -1,11 +1,11 @@
 #pragma once
 
 
-namespace windows
+namespace linux
 {
 
 
-   class CLASS_DECL_APEX_WINDOWS file_system:
+   class CLASS_DECL_APEX file_system:
       virtual public ::file_system
    {
    public:
@@ -14,6 +14,8 @@ namespace windows
       file_system();
       virtual ~file_system();
 
+
+      virtual ::e_status initialize(::object * pobject) override;
 
       virtual ::e_status init_system() override;
 
@@ -24,7 +26,7 @@ namespace windows
    };
 
 
-} // namespace windows
+} // namespace linux
 
 
 

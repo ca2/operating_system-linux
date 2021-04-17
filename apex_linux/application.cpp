@@ -181,7 +181,7 @@
 //   }
 //
 //
-//} // namespace windows
+//} // namespace linux
 
 
 
@@ -193,7 +193,7 @@
 //{
 //
 //
-//   ::comm::command * pmaininitdata = new ::windows::command;
+//   ::comm::command * pmaininitdata = new ::linux::command;
 //
 //
 //   pmaininitdata->m_hInstance = hInstance;

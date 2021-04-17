@@ -98,7 +98,7 @@ namespace multimedia
       ::e_status wave_out::out_open_ex(thread * pthreadCallback, ::u32 uiSamplesPerSec, ::u32 uiChannelCount, ::u32 uiBitsPerSample, ::wave::e_purpose epurpose)
       {
 
-         synchronization_lock sl(mutex());
+         synchronous_lock sl(mutex());
 
          TRACE("multimedia::audio_alsa::out_open_ex");
 
@@ -257,7 +257,7 @@ namespace multimedia
       ::e_status wave_out::out_close()
       {
 
-         synchronization_lock sl(mutex());
+         synchronous_lock sl(mutex());
 
          TRACE("multimedia::audio_alsa::out_close");
 
@@ -293,7 +293,7 @@ namespace multimedia
       ::e_status wave_out::out_stop()
       {
 
-         synchronization_lock sl(mutex());
+         synchronous_lock sl(mutex());
 
          TRACE("multimedia::audio_alsa::out_stop");
 
@@ -330,7 +330,7 @@ namespace multimedia
       ::e_status wave_out::out_pause()
       {
 
-         synchronization_lock sl(mutex());
+         synchronous_lock sl(mutex());
 
          ASSERT(m_estate == e_state_playing);
 
@@ -367,7 +367,7 @@ namespace multimedia
       ::e_status wave_out::out_restart()
       {
 
-         synchronization_lock sl(mutex());
+         synchronous_lock sl(mutex());
 
          ASSERT(m_estate == e_state_paused);
 
@@ -398,7 +398,7 @@ namespace multimedia
       imedia_time wave_out::out_get_time()
       {
 
-         synchronization_lock sl(mutex());
+         synchronous_lock sl(mutex());
 
          imedia_time time = 0;
 
@@ -504,7 +504,7 @@ namespace multimedia
       void wave_out::out_filled(index iBuffer)
       {
 
-         synchronization_lock sl(mutex());
+         synchronous_lock sl(mutex());
 
          if(m_ppcm == NULL)
          {
@@ -735,7 +735,7 @@ namespace multimedia
       ::e_status wave_out::out_start(const imedia_time & time)
       {
 
-         synchronization_lock sl(mutex());
+         synchronous_lock sl(mutex());
 
          if(m_estate == e_state_playing)
          {

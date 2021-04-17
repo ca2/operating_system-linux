@@ -1,6 +1,6 @@
 #include "framework.h"
 #include "apex/platform/app_core.h"
-#include "_linux.h"
+//#include "_linux.h"
 //#include "apex/os/linux/gnome_gnome.h"
 #include <unistd.h>
 
@@ -37,106 +37,6 @@ string empty_get_file_content_type(string)
 //}
 
 
-bool os_context::linux_can_exec(const char *file)
-{
-
-   struct stat st;
-
-   string str(file);
-
-   if(::str::begins_eat_ci(str, "\""))
-   {
-
-      strsize iFind = str.find("\"");
-
-      if(iFind < 0)
-      {
-
-         return false;
-
-      }
-
-      str = str.Left(iFind);
-
-   }
-   else if(::str::begins_eat_ci(str, "\'"))
-   {
-
-      strsize iFind = str.find("\'");
-
-      if(iFind < 0)
-      {
-
-         return false;
-
-      }
-
-      str = str.Left(iFind);
-
-   }
-   else
-   {
-
-      strsize iFind = str.find(" ");
-
-      if(iFind > 0)
-      {
-
-         str = str.Left(iFind);
-
-      }
-
-
-   }
-
-   if(str == "sudo")
-   {
-
-      return true;
-
-   }
-
-   __zero(st);
-
-   if (stat(str, &st) < 0)
-   {
-
-      return false;
-
-   }
-
-   if ((st.st_mode & S_IEXEC) != 0)
-   {
-
-      auto psystem = m_psystem;
-
-      auto pnode = psystem->node();
-
-      string strContentType = pnode->get_file_content_type(str);
-
-      if(strContentType == "application/x-shellscript")
-      {
-
-         return true;
-
-      }
-      else if(strContentType == "application/x-sharedlib")
-      {
-
-         return true;
-
-      }
-
-
-      return false;
-
-   }
-
-   return false;
-
-}
-
-
 namespace linux
 {
 
@@ -154,7 +54,7 @@ namespace linux
    string os_context::get_command_line()
    {
 
-      return ::apex::get_system()->get_command_line();
+      return m_psystem->m_papexsystem->get_command_line();
 
    }
 
@@ -964,7 +864,7 @@ namespace linux
    bool os_context::get_default_browser(string & strId, ::file::path & path, string & strParam)
    {
 
-      string str = ::apex::get_system()->process().get_output("/bin/sh -c \"xdg-settings get default-web-browser\"");
+      string str = m_psystem->m_papexsystem->process().get_output("/bin/sh -c \"xdg-settings get default-web-browser\"");
 
       str.trim();
 
@@ -1021,7 +921,7 @@ namespace linux
    bool os_context::file_open(::file::path strTarget, string strParams, string strFolder)
    {
 
-      strTarget = get_context()->defer_process_path(strTarget);
+      strTarget = get_context()->m_papexcontext->defer_process_path(strTarget);
 
       if(linux_can_exec(strTarget))
       {
@@ -1073,9 +973,11 @@ namespace linux
 
          //::system("nohup xdg-open \"" + strTarget + "\" > /dev/null 2>&1&");
 
-         auto pnode = Node;
+         auto psystem = m_psystem;
 
-         pnode->node_fork([strTarget]()
+         auto pnode = psystem->node();
+
+         pnode->node_fork([this, strTarget]()
          {
 
             string strUri = strTarget;
@@ -1093,7 +995,9 @@ namespace linux
 
             char * pszError = strError.get_string_buffer(iBufferSize);
 
-            auto pnode = Node;
+            auto psystem = m_psystem;
+
+            auto pnode = psystem->node();
 
             int iBool = pnode->os_launch_uri(strUri, pszError, iBufferSize);
 
@@ -1150,10 +1054,107 @@ namespace linux
    }
 
 
+   bool os_context::linux_can_exec(const char *file)
+   {
+
+      struct stat st;
+
+      string str(file);
+
+      if(::str::begins_eat_ci(str, "\""))
+      {
+
+         strsize iFind = str.find("\"");
+
+         if(iFind < 0)
+         {
+
+            return false;
+
+         }
+
+         str = str.Left(iFind);
+
+      }
+      else if(::str::begins_eat_ci(str, "\'"))
+      {
+
+         strsize iFind = str.find("\'");
+
+         if(iFind < 0)
+         {
+
+            return false;
+
+         }
+
+         str = str.Left(iFind);
+
+      }
+      else
+      {
+
+         strsize iFind = str.find(" ");
+
+         if(iFind > 0)
+         {
+
+            str = str.Left(iFind);
+
+         }
+
+
+      }
+
+      if(str == "sudo")
+      {
+
+         return true;
+
+      }
+
+      __zero(st);
+
+      if (stat(str, &st) < 0)
+      {
+
+         return false;
+
+      }
+
+      if ((st.st_mode & S_IEXEC) != 0)
+      {
+
+         auto psystem = m_psystem;
+
+         auto pnode = psystem->node();
+
+         string strContentType = pnode->get_file_content_type(str);
+
+         if(strContentType == "application/x-shellscript")
+         {
+
+            return true;
+
+         }
+         else if(strContentType == "application/x-sharedlib")
+         {
+
+            return true;
+
+         }
+
+
+         return false;
+
+      }
+
+      return false;
+
+   }
+
+
 } // namespace linux
-
-
-
 
 
 

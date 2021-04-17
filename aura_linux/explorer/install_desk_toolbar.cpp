@@ -132,7 +132,7 @@ bool register_desk_toolbar(::aura::system* psystem)
 //
 //   //CloseHandle(pi.hProcess);
 //
-//   //CloseHandle(pi.hthread);
+//   //CloseHandle(pi.htask);
 //
 //   return true;
 //

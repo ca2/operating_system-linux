@@ -3,7 +3,7 @@
 #include "shell_launcher.h"
 
 
-namespace windows
+namespace linux
 {
 
    
@@ -33,7 +33,7 @@ namespace windows
       //      wstring(m_strFile),
       //      wstring(m_strParameters),
       //      wstring(m_strDirectory),
-      //      windows_show_window(m_edisplay, m_eactivation));
+      //      linux_show_window(m_edisplay, m_eactivation));
 
       //}
 
@@ -54,7 +54,7 @@ namespace windows
    //}
 
 
-} // namespace windows
+} // namespace linux
 
 
 

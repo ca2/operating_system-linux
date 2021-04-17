@@ -2,11 +2,11 @@
 #pragma once
 
 
-namespace windows
+namespace linux
 {
 
 
-   class CLASS_DECL_ACME_WINDOWS acme_path :
+   class CLASS_DECL_ACME_LINUX acme_path :
       virtual public ::acme_path
    {
    public:
@@ -22,7 +22,7 @@ namespace windows
    };
 
 
-} // namespace windows
+} // namespace linux
 
 
 

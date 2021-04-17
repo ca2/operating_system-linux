@@ -46,7 +46,7 @@ namespace windowing_x11
 
       }
 
-      synchronization_lock synchronizationlock(user_mutex());
+      synchronous_lock synchronouslock(user_mutex());
 
       display_lock displaylock(x11_window()->x11_display());
 
@@ -59,17 +59,17 @@ namespace windowing_x11
    }
 
 
-   void buffer::finalize()
+   ::e_status buffer::finalize()
    {
 
       if(!x11_window())
       {
 
-         return;
+         return error_failed;
 
       }
 
-      synchronization_lock synchronizationlock(user_mutex());
+      synchronous_lock synchronouslock(user_mutex());
 
       display_lock displaylock(x11_window()->x11_display());
 
@@ -82,6 +82,7 @@ namespace windowing_x11
 
       }
 
+      return ::success;
 
    }
 
@@ -89,7 +90,7 @@ namespace windowing_x11
    bool buffer::create_os_buffer(const ::size_i32 & size, int iStrideParam)
    {
 
-//      synchronization_lock sl(mutex());
+//      synchronous_lock sl(mutex());
 //
 //      destroy_os_buffer();
 //
@@ -133,7 +134,7 @@ namespace windowing_x11
    void buffer::destroy_os_buffer()
    {
 
-//      synchronization_lock sl(mutex());
+//      synchronous_lock sl(mutex());
 //
 //      xdisplay d(m_oswindow->display());
 //
@@ -178,7 +179,7 @@ namespace windowing_x11
 //   bool buffer::create_os_buffer(::image * pimage)
 //   {
 //
-//      //synchronization_lock sl(mutex());
+//      //synchronous_lock sl(mutex());
 //
 ////      if(!pimage)
 ////      {
@@ -295,7 +296,7 @@ namespace windowing_x11
 
       }
 
-      synchronization_lock slGraphics(mutex());
+      synchronous_lock slGraphics(mutex());
 
       if(m_gc == nullptr)
       {
@@ -306,7 +307,7 @@ namespace windowing_x11
 
       auto psync = get_screen_sync();
 
-      synchronization_lock sl(psync);
+      synchronous_lock sl(psync);
 
       auto & pimage = get_screen_image();
 
@@ -321,7 +322,7 @@ namespace windowing_x11
 
       pimage->map();
 
-      synchronization_lock synchronizationlock(user_mutex());
+      synchronous_lock synchronouslock(user_mutex());
 
       display_lock displayLock(x11_window()->x11_display());
 
@@ -336,7 +337,7 @@ namespace windowing_x11
 
          memcpy(colora, pimage->get_data(), sizeof(colora));
 
-         int iDefaultDepth = DefaultDepth(x11_window()->Display(), x11_window()->m_iScreen);
+         int iDefaultDepth = DefaultDepth(x11_window()->Display(), x11_window()->Screen());
 
          int iWindowDepth = x11_window()->m_iDepth;
 

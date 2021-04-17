@@ -3,24 +3,33 @@
 //
 #include "framework.h"
 
-namespace node_linux
+
+namespace linux
 {
 
-   appindicator::appindicator()
+
+   namespace aura
    {
 
 
-   }
+      appindicator::appindicator()
+      {
 
 
-   appindicator::~appindicator()
-   {
+      }
 
 
-   }
+      appindicator::~appindicator()
+      {
 
 
-}
+      }
+
+
+   } // namespace aura
+
+
+} // namespace linux
 
 
 

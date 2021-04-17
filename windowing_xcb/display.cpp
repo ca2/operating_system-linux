@@ -25,7 +25,7 @@ namespace windowing_xcb
    display::display()
    {
 
-      set_layer(LAYERED_X11, this);
+      m_pDisplay = this;
 
       m_pconnection = nullptr;
       m_pdepth = nullptr;
@@ -307,7 +307,7 @@ namespace windowing_xcb
 
       }
 
-      critical_section_lock synchronizationlock(&m_criticalsectionWindowMap);
+      critical_section_lock synchronouslock(&m_criticalsectionWindowMap);
 
       auto & pwindow = m_windowmap[window];
 
@@ -380,7 +380,7 @@ namespace windowing_xcb
    ::e_status display::release_mouse_capture()
    {
 
-      synchronization_lock synchronizationlock(user_mutex());
+      synchronous_lock synchronouslock(user_mutex());
 
       _on_capture_changed_to(nullptr);
 
@@ -526,7 +526,7 @@ namespace windowing_xcb
    ::windowing_xcb::window * display::_get_keyboard_focus()
    {
 
-      synchronization_lock synchronizationlock(user_mutex());
+      synchronous_lock synchronouslock(user_mutex());
 
       oswindow oswindow = nullptr;
 
@@ -569,7 +569,7 @@ namespace windowing_xcb
       i32 win_y_return;
       u32 mask_return;
 
-      synchronization_lock synchronizationlock(user_mutex());
+      synchronous_lock synchronouslock(user_mutex());
 
       windowing_output_debug_string("\n::GetCursorPos 1");
 
@@ -799,7 +799,7 @@ namespace windowing_xcb
    bool display::_window_has_atom_list_atom(xcb_window_t window, xcb_atom_t propertyList, xcb_atom_t propertyItem)
    {
 
-      synchronization_lock synchronizationlock(user_mutex());
+      synchronous_lock synchronouslock(user_mutex());
 
       array < xcb_atom_t > atoma;
 
@@ -851,7 +851,7 @@ namespace windowing_xcb
    comparable_array < xcb_atom_t > display::_window_get_atom_array(xcb_window_t window, xcb_atom_t property)
    {
 
-      synchronization_lock synchronizationlock(user_mutex());
+      synchronous_lock synchronouslock(user_mutex());
 
       comparable_array < xcb_atom_t > atoma;
 
@@ -1139,7 +1139,7 @@ namespace windowing_xcb
 
          }
 
-         synchronization_lock synchronizationlock(user_mutex());
+         synchronous_lock synchronouslock(user_mutex());
 
          windowing_output_debug_string("\n::GetFocus 1");
 
@@ -1209,6 +1209,77 @@ namespace windowing_xcb
 //            });
 
       return bIsOrigin;
+
+   }
+
+   xcb_window_t *display::xcb_window_list(unsigned long *len)
+   {
+
+
+      Atom propCleints = XInternAtom(pDisplay, "_NET_CLIENT_LIST_STACKING", True);
+      unsigned long ulBytesReturned = 0;
+      Window *windowList = (Window *)GetWindowProperty(pDisplay, root, propCleints, &ulBytesReturned);
+      unsigned long nchildren = ulBytesReturned / sizeof(Window);
+
+      xcb_atom_t prop = intern_atom("_NET_CLIENT_LIST_STACKING", False);
+
+      if (prop == 0)
+      {
+
+         prop = intern_atom("_NET_CLIENT_LIST", False);
+
+      }
+
+      if (prop == 0)
+      {
+
+         return nullptr;
+
+      }
+
+      xcb_atom_t type;
+      int form;
+      unsigned long remain;
+      unsigned char *list;
+
+      errno = 0;
+      auto cookie = (xcb_get_property(xcb_connection(), 0,  m_windowRoot, prop, 0, 1024, False, XA_WINDOW,
+                                      &type, &form, len, &remain, &list) != Success)
+      {
+         output_debug_string("winlist() -- GetWinProp");
+         return nullptr;
+      }
+
+      return (xcb_window_t *) list;
+
+   }
+
+
+   bool display::xcb_window_list(array<xcb_window_t> &windowa)
+   {
+
+      unsigned long len = 0;
+
+      xcb_window_t *list = (xcb_window_t *) xcb_window_list(&len);
+
+
+      if (list == nullptr)
+      {
+
+         return false;
+
+      }
+
+      for (int i = 0; i < (int) len; i++)
+      {
+
+         windowa.add(list[i]);
+
+      }
+
+      XFree(list);
+
+      return true;
 
    }
 

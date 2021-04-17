@@ -1,8 +1,23 @@
 //
-// Created by camilo on 15/04/2021.
+// Created by camilo on April 2021 <3TBS_!!
 //
 
-#ifndef BASIS__CONST_H
-#define BASIS__CONST_H
+//
+//enum enum_net_wm_state
+//{
+//
+//
+//   e_net_wm_state_above,
+//   e_net_wm_state_below,
+//   e_net_wm_state_hidden,
+//   e_net_wm_state_maximized_horz,
+//   e_net_wm_state_maximized_vert,
+//   e_net_wm_state_fullscreen,
+//   e_net_wm_state_skip_taskbar,
+//   e_net_wm_state_count
+//
+//
+//};
 
-#endif //BASIS__CONST_H
+
+

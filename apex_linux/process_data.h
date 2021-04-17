@@ -11,7 +11,7 @@
 
 #pragma once
 
-#ifdef WINDOWS
+#ifdef LINUX
 
 template<typename T> class process_data
 {

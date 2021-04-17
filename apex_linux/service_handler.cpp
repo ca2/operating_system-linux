@@ -3,27 +3,26 @@
 #include "service_handler.h"
 
 
-#ifdef WINDOWS
-u32 Win32FromHResult(HRESULT value);
-#endif
-
-
-namespace windows
+//#ifdef LINUX
+//u32 Win32FromHResult(HRESULT value);
+//#endif
+//
+//
+namespace linux
 {
 
 
    service_handler * service_handler::s_pservicehandler = nullptr;
 
 
-   service_handler::service_handler(u32 controlsAccepted) :
-      m_handle(0)
+   service_handler::service_handler()
    {
 
       s_pservicehandler = this;
 
       m_dwStopTimeout = 30 * 1000; // 30 seconds
 
-   #ifdef WINDOWS_DESKTOP
+   #ifdef LINUX_DESKTOP
       m_status.dwServiceType = SERVICE_WIN32_OWN_PROCESS;
       m_status.dwCurrentState = SERVICE_START_PENDING;
       m_status.dwControlsAccepted = controlsAccepted;
@@ -41,7 +40,7 @@ namespace windows
    void service_handler::control_start(u32 u)
    {
 
-      queue_user_work_item();
+      //queue_user_work_item();
 
    }
 
@@ -49,9 +48,7 @@ namespace windows
    void service_handler::_server()
    {
 
-
-#ifdef WINDOWS_DESKTOP
-
+#ifdef LINUX_DESKTOP
 
       SERVICE_TABLE_ENTRYW serviceTable[] =
       {
@@ -77,8 +74,6 @@ namespace windows
    }
 
 
-
-
    //*****************************************************************************
    //
    //      Name:           SetServiceStatus
@@ -98,7 +93,7 @@ namespace windows
 
       }
 
-#ifdef WINDOWS_DESKTOP
+#ifdef LINUX_DESKTOP
 
       if (!::SetServiceStatus(m_handle, &m_status))
       {
@@ -114,26 +109,26 @@ namespace windows
    }
 
 
-   ::e_status service_handler::queue_user_work_item(WINULONG flags)
-   {
-
-      if (::QueueUserWorkItem(thread_proc, this, flags))
-      {
-
-         return error_failed;
-
-      }
-
-      fork([this]()
-         {
-
-            run();
-
-         });
-
-      return ::success;
-
-   }
+//   ::e_status service_handler::queue_user_work_item(WINULONG flags)
+//   {
+//
+//      if (::QueueUserWorkItem(thread_proc, this, flags))
+//      {
+//
+//         return error_failed;
+//
+//      }
+//
+//      fork([this]()
+//         {
+//
+//            run();
+//
+//         });
+//
+//      return ::success;
+//
+//   }
 
 
    void service_handler::serve(service * pservice)
@@ -159,191 +154,189 @@ namespace windows
    }
 
 
-   DWORD WINAPI service_handler::thread_proc(void * pcontext)
-   {
-
-      service * pservice = (service *)pcontext;
-      
-      auto estatus = pservice->run();
-
-      return (DWORD) estatus.m_estatus;
-
-   }
-
-
-   //*****************************************************************************
-   //
-   //      Name:           ServiceMain
-   //      Description:    The starting point for the service.
-   //
-   //*****************************************************************************
-   void WINAPI service_handler::ServiceMain(DWORD argumentCount, PWSTR * arguments)
-   {
-
-      // Since there's no way to inform the SCM of failure before a successful
-      // call to RegisterServiceCtrlHandler, if an error occurs before we have
-      // a service status handle we don't catch any exceptions and let the
-      // process terminate. The SCM will diligently log this event.
-      //
-
-      ASSERT(s_pservicehandler != nullptr);
-
-      s_pservicehandler->m_pservice->set_arguments(argumentCount, arguments);
-
-      s_pservicehandler->run();
-
-   }
+//   DWORD WINAPI service_handler::thread_proc(void * pcontext)
+//   {
+//
+//      service * pservice = (service *)pcontext;
+//
+//      auto estatus = pservice->run();
+//
+//      return (DWORD) estatus.m_estatus;
+//
+//   }
 
 
-   //*****************************************************************************
-   //
-   //      Name:           Handler
-   //      Description:    The handler function called by the control dispatcher
-   //                      when an event occurs.
-   //
-   //*****************************************************************************
-   void WINAPI service_handler::ServiceHandler(DWORD control)
-   {
-
-      try
-      {
-
-         switch (control)
-         {
-         case SERVICE_CONTROL_CONTINUE:
-         {
-
-            s_pservicehandler->update_state(SERVICE_CONTINUE_PENDING);
-            s_pservicehandler->control_start(control);
-            s_pservicehandler->update_state(SERVICE_RUNNING);
-
-            break;
-
-         }
-         case SERVICE_CONTROL_PAUSE:
-         {
-
-            s_pservicehandler->update_state(SERVICE_PAUSE_PENDING);
-            s_pservicehandler->control_stop(control);
-            s_pservicehandler->update_state(SERVICE_PAUSED);
-
-            break;
-
-         }
-         case SERVICE_CONTROL_SHUTDOWN:
-         case SERVICE_CONTROL_STOP:
-         {
-
-            s_pservicehandler->update_state(SERVICE_STOP_PENDING);
-            s_pservicehandler->control_stop(control);
-            s_pservicehandler->update_state(SERVICE_STOPPED);
-
-            __pointer(::apex::system) psystem = s_pservicehandler->get_system();
-
-            psystem->finalize();
-
-            break;
-
-         }
-         default:
-            break;
-         }
-
-      }
-      catch (const ::exception::exception & e)
-      {
-
-         s_pservicehandler->update_state(SERVICE_STOPPED, e.m_hresult);
-
-      }
-
-   }
+//   //*****************************************************************************
+//   //
+//   //      Name:           ServiceMain
+//   //      Description:    The starting point for the service.
+//   //
+//   //*****************************************************************************
+//   void WINAPI service_handler::ServiceMain(DWORD argumentCount, PWSTR * arguments)
+//   {
+//
+//      // Since there's no way to inform the SCM of failure before a successful
+//      // call to RegisterServiceCtrlHandler, if an error occurs before we have
+//      // a service status handle we don't catch any exceptions and let the
+//      // process terminate. The SCM will diligently log this event.
+//      //
+//
+//      ASSERT(s_pservicehandler != nullptr);
+//
+//      s_pservicehandler->m_pservice->set_arguments(argumentCount, arguments);
+//
+//      s_pservicehandler->run();
+//
+//   }
 
 
-   void service_handler::_main_server(::u32 argumentCount, PWSTR * arguments)
-   {
+//   //*****************************************************************************
+//   //
+//   //      Name:           Handler
+//   //      Description:    The handler function called by the control dispatcher
+//   //                      when an event occurs.
+//   //
+//   //*****************************************************************************
+//   void WINAPI service_handler::ServiceHandler(DWORD control)
+//   {
+//
+//      try
+//      {
+//
+//         switch (control)
+//         {
+//         case SERVICE_CONTROL_CONTINUE:
+//         {
+//
+//            s_pservicehandler->update_state(SERVICE_CONTINUE_PENDING);
+//            s_pservicehandler->control_start(control);
+//            s_pservicehandler->update_state(SERVICE_RUNNING);
+//
+//            break;
+//
+//         }
+//         case SERVICE_CONTROL_PAUSE:
+//         {
+//
+//            s_pservicehandler->update_state(SERVICE_PAUSE_PENDING);
+//            s_pservicehandler->control_stop(control);
+//            s_pservicehandler->update_state(SERVICE_PAUSED);
+//
+//            break;
+//
+//         }
+//         case SERVICE_CONTROL_SHUTDOWN:
+//         case SERVICE_CONTROL_STOP:
+//         {
+//
+//            s_pservicehandler->update_state(SERVICE_STOP_PENDING);
+//            s_pservicehandler->control_stop(control);
+//            s_pservicehandler->update_state(SERVICE_STOPPED);
+//
+//            __pointer(::apex::system) psystem = s_pservicehandler->get_system();
+//
+//            psystem->finalize();
+//
+//            break;
+//
+//         }
+//         default:
+//            break;
+//         }
+//
+//      }
+//      catch (const ::exception::exception & e)
+//      {
+//
+//         s_pservicehandler->update_state(SERVICE_STOPPED, e.m_hresult);
+//
+//      }
+//
+//   }
 
-      if (1 != argumentCount || 0 == arguments || 0 == arguments[0])
-      {
 
-         __throw(error_invalid_argument);
-
-      }
-
-      s_pservicehandler->m_pservice->m_strServiceName = arguments[0];
-
-      s_pservicehandler->m_handle = ::RegisterServiceCtrlHandlerW(L"", ServiceHandler);
-
-      if (s_pservicehandler->m_handle == nullptr)
-      {
-
-         DWORD dwLastError = ::GetLastError();
-         
-         __throw(exception::exception());
-
-      }
-
-      s_pservicehandler->SetServiceStatus();
-
-      try
-      {
-
-         s_pservicehandler->control_start(0);
-
-         s_pservicehandler->update_state(SERVICE_RUNNING);
-
-      }
-      catch (const ::exception::exception & e)
-      {
-
-         //
-         // If the service can't start it should __throw( an exception from the
-         // Start method. If this happens, we catch it here and notify the
-         // SCM so that it can log the error code.
-         //
-
-         s_pservicehandler->update_state(SERVICE_STOPPED, e.m_hresult);
-
-      }
-
-
-   }
-
-
-
-
-   //*****************************************************************************
-   //
-   //      Name:           update_state
-   //      Description:    Updates the current state and exit code of the service
-   //                      and notifies the service control manager of the machine.
-   //
-   //*****************************************************************************
-   void service_handler::update_state(u32 state, HRESULT errorCode)
-   {
+//   void service_handler::_main_server(::u32 argumentCount, PWSTR * arguments)
+//   {
+//
+//      if (1 != argumentCount || 0 == arguments || 0 == arguments[0])
+//      {
+//
+//         __throw(error_invalid_argument);
+//
+//      }
+//
+//      s_pservicehandler->m_pservice->m_strServiceName = arguments[0];
+//
+//      s_pservicehandler->m_handle = ::RegisterServiceCtrlHandlerW(L"", ServiceHandler);
+//
+//      if (s_pservicehandler->m_handle == nullptr)
+//      {
+//
+//         DWORD dwLastError = ::GetLastError();
+//
+//         __throw(exception::exception());
+//
+//      }
+//
+//      s_pservicehandler->SetServiceStatus();
+//
+//      try
+//      {
+//
+//         s_pservicehandler->control_start(0);
+//
+//         s_pservicehandler->update_state(SERVICE_RUNNING);
+//
+//      }
+//      catch (const ::exception::exception & e)
+//      {
+//
+//         //
+//         // If the service can't start it should __throw( an exception from the
+//         // Start method. If this happens, we catch it here and notify the
+//         // SCM so that it can log the error code.
+//         //
+//
+//         s_pservicehandler->update_state(SERVICE_STOPPED, e.m_hresult);
+//
+//      }
+//
+//
+//   }
 
 
-      m_status.dwCurrentState = state;
-
-      ASSERT(0 == m_status.dwWin32ExitCode);
-      ASSERT(0 == m_status.dwServiceSpecificExitCode);
-
-      if (FAILED(errorCode))
-      {
-         if (FACILITY_WIN32 == HRESULT_FACILITY(errorCode))
-         {
-            m_status.dwWin32ExitCode = Win32FromHResult(errorCode);
-         }
-         else
-         {
-            m_status.dwWin32ExitCode = ERROR_SERVICE_SPECIFIC_ERROR;
-            m_status.dwServiceSpecificExitCode = errorCode;
-         }
-      }
-
-      SetServiceStatus();
-
-   }
+//   //*****************************************************************************
+//   //
+//   //      Name:           update_state
+//   //      Description:    Updates the current state and exit code of the service
+//   //                      and notifies the service control manager of the machine.
+//   //
+//   //*****************************************************************************
+//   void service_handler::update_state(u32 state, HRESULT errorCode)
+//   {
+//
+//
+//      m_status.dwCurrentState = state;
+//
+//      ASSERT(0 == m_status.dwWin32ExitCode);
+//      ASSERT(0 == m_status.dwServiceSpecificExitCode);
+//
+//      if (FAILED(errorCode))
+//      {
+//         if (FACILITY_WIN32 == HRESULT_FACILITY(errorCode))
+//         {
+//            m_status.dwWin32ExitCode = Win32FromHResult(errorCode);
+//         }
+//         else
+//         {
+//            m_status.dwWin32ExitCode = ERROR_SERVICE_SPECIFIC_ERROR;
+//            m_status.dwServiceSpecificExitCode = errorCode;
+//         }
+//      }
+//
+//      SetServiceStatus();
+//
+//   }
 
 
    ::e_status service_handler::defer_service()
@@ -370,24 +363,26 @@ namespace windows
    }
 
 
-} // namespace windows
+} // namespace linux
 
 
 
 
 
-#ifdef WINDOWS
-
-
-u32 Win32FromHResult(HRESULT value)
-{
-
-   ASSERT(FACILITY_WIN32 == HRESULT_FACILITY(value));
-
-   return value & ~0x80070000;
-
-}
-#endif
+//#ifdef LINUX
+//
+//
+//u32 Win32FromHResult(HRESULT value)
+//{
+//
+//   ASSERT(FACILITY_WIN32 == HRESULT_FACILITY(value));
+//
+//   return value & ~0x80070000;
+//
+//}
+//
+//
+//#endif
 
 
 

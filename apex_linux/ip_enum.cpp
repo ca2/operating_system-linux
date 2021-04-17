@@ -3,7 +3,7 @@
 #include "ip_enum.h"
 
 
-namespace windows
+namespace linux
 {
 
 
@@ -13,32 +13,32 @@ namespace windows
       m_bWinsockInitialized = false;
 
       //Initialise the winsock stack
-      ::u16 wVersionRequested = MAKEWORD(1, 1);
-      WSADATA wsaData;
-      i32 err = WSAStartup(wVersionRequested, &wsaData);
-      if (err != 0)
-      {
-         TRACE("Failed in call to WSAStartup, return value was %d\n", err);
-         __throw(error_not_supported);
-      }
+//      ::u16 wVersionRequested = MAKEWORD(1, 1);
+//      WSADATA wsaData;
+//      i32 err = WSAStartup(wVersionRequested, &wsaData);
+//      if (err != 0)
+//      {
+//         TRACE("Failed in call to WSAStartup, return value was %d\n", err);
+//         __throw(error_not_supported);
+//      }
 
       //remember that we have opened winsock
       m_bWinsockInitialized = true;
 
-      //Code requires at least Winsock 1.1
-      if ((LOBYTE(wsaData.wVersion) != 1) || (HIBYTE(wsaData.wVersion) != 1))
-      {
-         TRACE("Failed to find a usable winsock stack which supports Winsock 1.1\n");
-         __throw(error_not_supported);
-      }
+//      //Code requires at least Winsock 1.1
+//      if ((LOBYTE(wsaData.wVersion) != 1) || (HIBYTE(wsaData.wVersion) != 1))
+//      {
+//         TRACE("Failed to find a usable winsock stack which supports Winsock 1.1\n");
+//         __throw(error_not_supported);
+//      }
    }
 
 
    ip_enum::~ip_enum()
    {
       //release our use of winsock stack if we successfully initialised it
-      if (m_bWinsockInitialized)
-         WSACleanup();
+//      if (m_bWinsockInitialized)
+//         WSACleanup();
    }
 
 
@@ -94,7 +94,7 @@ namespace windows
       char szHostname[256];
       if (gethostname(szHostname, sizeof(szHostname)))
       {
-         TRACE("Failed in call to gethostname, WSAGetLastError returns %d\n", WSAGetLastError());
+         //TRACE("Failed in call to gethostname, WSAGetLastError returns %d\n", WSAGetLastError());
          return false;
       }
       {
@@ -165,11 +165,11 @@ namespace windows
                //else
                // printf("\tIPv6 address %s\n", ipstringbuffer);
                break;
-            case AF_NETBIOS:
-               printf("AF_NETBIOS (NetBIOS)\n");
-               break;
+//            case AF_NETBIOS:
+//               printf("AF_NETBIOS (NetBIOS)\n");
+//               break;
             default:
-               printf("Other %ld\n", ptr->ai_family);
+               printf("Other %d\n", ptr->ai_family);
                break;
             }
 
@@ -245,11 +245,11 @@ namespace windows
                //else
                // printf("\tIPv6 address %s\n", ipstringbuffer);
                break;
-            case AF_NETBIOS:
-               printf("AF_NETBIOS (NetBIOS)\n");
-               break;
+//            case AF_NETBIOS:
+//               printf("AF_NETBIOS (NetBIOS)\n");
+//               break;
             default:
-               printf("Other %ld\n", ptr->ai_family);
+               printf("Other %d\n", ptr->ai_family);
                break;
             }
 
@@ -262,7 +262,7 @@ namespace windows
    }
 
 
-} // namespace windows
+} // namespace linux
 
 
 

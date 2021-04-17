@@ -1,32 +1,69 @@
-// created by Camilo 2021-01-31 05:26 BRT <3CamiloSasukeThomasBorregaardSoerensen
+// created by Camilo 2021-02-14 16:56 BRT <3CamiloSasukeThomasBorregaardSoerensen
 #pragma once
 
 
-namespace windows
+namespace linux
 {
 
 
-   class CLASS_DECL_APEX_WINDOWS interprocess_communication_base :
+   class CLASS_DECL_APEX interprocess_communication_base :
       virtual public interprocess_communication::base
    {
    public:
 
+#ifdef _UWP
 
-      HWND              m_hwnd;
-      string            m_strBaseChannel;
+      //i32              m_iSerial;
+
+#elif defined(WINDOWS_DESKTOP)
+
+
+      //HWND             m_hwnd;
+
+      //m_osdataa[0] == = HWND;
+
+
+#elif defined(APPLEOS)
+
+
+      CFMessagePortRef     m_port;
+
+
+#elif !defined(_UWP)
+
+      key_t                m_key;
+      int                  m_iQueue;
+
+      struct data_struct
+      {
+
+
+         long     mtype;
+         long     request;
+         int      size;
+         char     data[0];
+
+
+      };
+
+
+#endif
+
+
+      string   m_strBaseChannel;
 
 
       interprocess_communication_base();
       virtual ~interprocess_communication_base();
 
 
-      HWND get_hwnd() const { return (HWND) m_hwnd; }
-      void set_hwnd(HWND hwnd) { m_hwnd = hwnd; }
+      //HWND get_hwnd() const { return (HWND) get_os_data(); }
+      //void set_hwnd(HWND hwnd) { set_os_data((void *) hwnd); }
 
    };
 
 
-   class CLASS_DECL_APEX_WINDOWS interprocess_communication_tx :
+   class CLASS_DECL_APEX interprocess_communication_tx :
       virtual public interprocess_communication_base,
       virtual public interprocess_communication::tx
    {
@@ -58,7 +95,7 @@ namespace windows
    class rx_private;
 
 
-   class CLASS_DECL_APEX_WINDOWS interprocess_communication_rx :
+   class CLASS_DECL_APEX interprocess_communication_rx :
       virtual public interprocess_communication_base,
       virtual public interprocess_communication::rx
    {
@@ -81,7 +118,11 @@ namespace windows
       virtual bool on_idle();
 
 
-      LRESULT message_queue_proc(UINT message, WPARAM wparam, LPARAM lparam);
+      virtual bool start_receiving();
+
+      virtual void * receive();
+
+      //LRESULT message_queue_proc(UINT message, WPARAM wparam, LPARAM lparam);
 
 
       bool is_rx_ok();
@@ -90,7 +131,7 @@ namespace windows
    };
 
 
-//   class CLASS_DECL_APEX_WINDOWS interprocess_communication :
+//   class CLASS_DECL_APEX interprocess_communication :
 //      virtual public interprocess_communication_base,
 //      virtual public ::interprocess_communication::interprocess_communication
 //   {
@@ -128,7 +169,7 @@ namespace windows
 //   };
 
 
-   CLASS_DECL_APEX_WINDOWS string app_install(string strPlatform = "");
+   CLASS_DECL_APEX string app_install(string strPlatform = "");
 
 
 } // namespace windows

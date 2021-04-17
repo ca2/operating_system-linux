@@ -2,14 +2,15 @@
 #pragma once
 
 
-
-namespace windows
+namespace linux
 {
 
-   class CLASS_DECL_APEX_WINDOWS launcher :
+
+   class CLASS_DECL_APEX_LINUX launcher :
       virtual public ::launcher
    {
    public:
+
 
       virtual ::e_status start() override;
 
@@ -17,5 +18,7 @@ namespace windows
    };
 
 
+} // namespace linux
 
-}//namespace windows
+
+

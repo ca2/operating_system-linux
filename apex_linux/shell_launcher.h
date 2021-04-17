@@ -1,11 +1,11 @@
 #pragma once
 
 
-namespace windows
+namespace linux
 {
 
 
-   class CLASS_DECL_APEX_WINDOWS shell_launcher :
+   class CLASS_DECL_APEX_LINUX shell_launcher :
       virtual public ::apex::shell_launcher
    {
    public:
