@@ -41,7 +41,7 @@
 #define CLASS_DECL_THREAD __thread
 
 
-#define __PLATFORM   		"linux"
+#define PLATFORM_NAME   	"linux"
 #define PLATFORM_NAMESPACE	linux
 
 

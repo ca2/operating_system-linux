@@ -14,8 +14,6 @@ namespace node_gnome
    public:
 
 
-
-
       windowing();
       virtual ~windowing();
 

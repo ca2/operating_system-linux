@@ -9,69 +9,7 @@
 #include "windowing_x11/windowing_x11.h"
 
 
-void x11_add_idle_source(::node_gnome::node * pnode);
-
-
-void gtk_settings_gtk_theme_name_callback(GObject* object, GParamSpec* pspec, gpointer data)
-{
-
-   node_gnome::node * pnode = (node_gnome::node *) data;
-
-   if(pnode)
-   {
-
-      gchar *theme_name = nullptr;
-
-      g_object_get(pnode->m_pGtkSettingsDefault, "gtk-theme-name", &theme_name, NULL);
-
-      pnode->m_strTheme = theme_name;
-
-      g_free(theme_name);
-
-   }
-
-   pnode->m_psystem->m_papexsystem->process_subject(id_os_user_theme);
-
-}
-
-
-const char * linux_g_direct_get_file_icon_path(const char * pszPath, int iSize);
-
-
-const char * linux_g_direct_get_file_content_type(const char * pszPath);
-
-
-void x11_add_idle_source();
-
-
-void x11_add_filter();
-
-
-void x11_main();
-
-
-mutex * user_mutex();
-
-
-gboolean node_gnome_source_func(gpointer pUserdata);
-
-
-namespace node_gnome
-{
-
-   class appindicator;
-
-   void appindicator_destroy(appindicator * pindicator);
-
-} // namespace node_gnome
-
-
-
-void os_post_quit();
-
-void apex_application_run(const char * pszAppName, const char * pszProgName);
-
-namespace node_gnome
+namespace desktop_environment_gnome
 {
 
 
@@ -128,111 +66,115 @@ namespace node_gnome
    ::e_status node::start_node()
    {
 
-      auto psystem = m_psystem->m_papexsystem;
+      auto estatus = node_gnome::node::start_node();
 
-      if (psystem->m_bGtkApp)
-      {
+      return estatus;
 
-         apex_application_run(psystem->m_strAppId, psystem->m_strProgName);
-
-      }
-      else
-      {
-
-         //g_set_application_name(System.m_strAppId);
-
-         //g_set_prgname(System.m_strProgName);
-      ////
-      ////      //auto idle_source = g_idle_source_new();
-      ////
-      ////      //g_source_set_callback(idle_source, &linux_start_system, (::apex::system *) m_psystem, nullptr);
-      ////
-      ////      //g_source_attach(idle_source, g_main_context_default());
-      ////
-      ////      //int c = 2;
-      ////
-      ////      //const char * argv[]={"app", "--g-fatal-warnings"};
-      ////
-      ////#if !defined(__SANITIZE_ADDRESS__)
-      ////
-      ////      gtk_init_check(&psystem->m_argc, &psystem->m_argv);
-      ////
-      ////#endif
-
-            node_fork([this]()
-            {
-
-             // This seems not to work with "foreign" windows
-             // (X11 windows not created with Gdk)
-             //x11_add_filter();
-
-
-             auto pgtksettingsDefault = gtk_settings_get_default();
-
-             if(pgtksettingsDefault)
-             {
-
-
-                m_pGtkSettingsDefault = G_OBJECT(pgtksettingsDefault);
-
-                g_object_ref (m_pGtkSettingsDefault);
-
-                gchar *theme_name = nullptr;
-
-                g_object_get(m_pGtkSettingsDefault, "gtk-theme-name", &theme_name, NULL);
-
-                m_strTheme = theme_name;
-
-                g_free(theme_name);
-
-                auto preturn = g_signal_connect_data(
-                   m_pGtkSettingsDefault,
-                   "notify::gtk-theme-name",
-                   G_CALLBACK(gtk_settings_gtk_theme_name_callback),
-                   this,
-                   NULL,
-                   G_CONNECT_AFTER);
-
-                //g_object_ref(preturn);
-
-                //printf("return %" PRIiPTR, preturn);
-
-                //printf("return %" PRIiPTR, preturn);
-
-             }
-
-            x11_add_idle_source(this);
-
-             auto psystem = m_psystem->m_papexsystem;
-
-               psystem->on_start();
-
-
-         });
-
-
-         //x11_add_filter();
+//      auto psystem = m_psystem->m_papexsystem;
 //
-//         System.fork([this]()
-//         {
+//      if (psystem->m_bGtkApp)
+//      {
 //
-//            //m_pwindowing->windowing_main();
+//         apex_application_run(psystem->m_strAppId, psystem->m_strProgName);
+//
+//      }
+//      else
+//      {
+//
+//         //g_set_application_name(System.m_strAppId);
+//
+//         //g_set_prgname(System.m_strProgName);
+//      ////
+//      ////      //auto idle_source = g_idle_source_new();
+//      ////
+//      ////      //g_source_set_callback(idle_source, &linux_start_system, (::apex::system *) m_psystem, nullptr);
+//      ////
+//      ////      //g_source_attach(idle_source, g_main_context_default());
+//      ////
+//      ////      //int c = 2;
+//      ////
+//      ////      //const char * argv[]={"app", "--g-fatal-warnings"};
+//      ////
+//      ////#if !defined(__SANITIZE_ADDRESS__)
+//      ////
+//      ////      gtk_init_check(&psystem->m_argc, &psystem->m_argv);
+//      ////
+//      ////#endif
+//
+//            node_fork([this]()
+//            {
+//
+//             // This seems not to work with "foreign" windows
+//             // (X11 windows not created with Gdk)
+//             //x11_add_filter();
+//
+//
+//             auto pgtksettingsDefault = gtk_settings_get_default();
+//
+//             if(pgtksettingsDefault)
+//             {
+//
+//
+//                m_pGtkSettingsDefault = G_OBJECT(pgtksettingsDefault);
+//
+//                g_object_ref (m_pGtkSettingsDefault);
+//
+//                gchar *theme_name = nullptr;
+//
+//                g_object_get(m_pGtkSettingsDefault, "gtk-theme-name", &theme_name, NULL);
+//
+//                m_strTheme = theme_name;
+//
+//                g_free(theme_name);
+//
+//                auto preturn = g_signal_connect_data(
+//                   m_pGtkSettingsDefault,
+//                   "notify::gtk-theme-name",
+//                   G_CALLBACK(gtk_settings_gtk_theme_name_callback),
+//                   this,
+//                   NULL,
+//                   G_CONNECT_AFTER);
+//
+//                //g_object_ref(preturn);
+//
+//                //printf("return %" PRIiPTR, preturn);
+//
+//                //printf("return %" PRIiPTR, preturn);
+//
+//             }
+//
+//            x11_add_idle_source(this);
+//
+//             auto psystem = m_psystem->m_papexsystem;
+//
+//               psystem->on_start();
+//
 //
 //         });
-
-         //x11_add_idle_source(this);
-
-         //x11_add_idle_source(this);
-
-         gtk_main();
-
-         //x11_main();
-
-      }
-      //
-      //::parallelization::post_quit_and_wait(get_context_system(), one_minute());
-
-      return ::success;
+//
+//
+//         //x11_add_filter();
+////
+////         System.fork([this]()
+////         {
+////
+////            //m_pwindowing->windowing_main();
+////
+////         });
+//
+//         //x11_add_idle_source(this);
+//
+//         //x11_add_idle_source(this);
+//
+//         gtk_main();
+//
+//         //x11_main();
+//
+//      }
+//      //
+//      //::parallelization::post_quit_and_wait(get_context_system(), one_minute());
+//
+//      return ::success;
 
    }
 
@@ -247,12 +189,12 @@ namespace node_gnome
    }
 
 
-   void node::os_calc_user_dark_mode()
-   {
-
-      ::linux::aura::node::os_calc_user_dark_mode();
-
-   }
+//   void node::os_calc_user_dark_mode()
+//   {
+//
+//      ::linux::aura::node::os_calc_user_dark_mode();
+//
+//   }
 
 
    bool node::windowing_message_loop_step()
@@ -499,7 +441,11 @@ namespace node_gnome
    string node::get_file_icon_path(const char * pszPath, int iSize)
    {
 
-      return ::linux_g_direct_get_file_icon_path(pszPath, iSize);
+      string str = ::node_gnome::node::get_file_icon_path(pszPath, iSize);
+
+      return str;
+
+      //return ::linux_g_direct_get_file_icon_path(pszPath, iSize);
 
    }
 
@@ -507,7 +453,11 @@ namespace node_gnome
    string node::get_file_content_type(const char * pszPath)
    {
 
-      return ::linux_g_direct_get_file_content_type(pszPath);
+      string str = ::node_gnome::node::get_file_content_type(pszPath);
+
+      return str;
+
+      //return ::linux_g_direct_get_file_content_type(pszPath);
 
    }
 
@@ -680,44 +630,14 @@ namespace node_gnome
    bool node::launch_on_node(::subject::subject * psubject)
    {
 
-      ::matter * pmatter = psubject;
+      auto bOk = ::node_gnome::node::launch_on_node(psubject);
 
-      node_fork(__routine([pmatter]()
-      {
-
-         auto ret = g_timeout_add(300, (GSourceFunc) &node_gnome_source_func, pmatter);
-
-         printf("ret %d", ret);
-
-         printf("ret %d", ret);
-
-         g_idle_add(&node_gnome_source_func, pmatter);
-
-      }));
-
-      return true;
+      return bOk;
 
    }
 
 
-} // namespace node_gnome
-
-
-gboolean node_gnome_source_func(gpointer pUserdata)
-{
-
-   ::matter * pmatter = (::matter *) pUserdata;
-
-   if(!pmatter->step())
-   {
-
-      return false;
-
-   }
-
-   return true;
-
-}
+} // namespace desktop_environment_gnome
 
 
 

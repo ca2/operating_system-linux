@@ -8,18 +8,19 @@
 #pragma once
 
 
-namespace node_gnome
+namespace desktop_environment_gnome
 {
 
 
-   class CLASS_DECL_ACME node :
-      virtual public ::linux::aura::node
+   class CLASS_DECL_DESKTOP_ENVIRONMENT_GNOME node :
+      virtual public ::linux::aura::node,
+      virtual public ::node_gnome::node
    {
    public:
 
 
-      gpointer m_pGtkSettingsDefault;
-      string   m_strTheme;
+      //gpointer m_pGtkSettingsDefault;
+      //string   m_strTheme;
 
 
       node();
@@ -34,15 +35,15 @@ namespace node_gnome
 
       virtual ::e_status initialize(::object * pobject) override;
 
-      virtual void os_calc_user_dark_mode() override;
+      //virtual void os_calc_user_dark_mode() override;
 
       virtual string os_get_user_theme() override;
 
-      virtual string _os_get_user_theme();
+      //virtual string _os_get_user_theme();
 
       virtual bool os_set_user_theme(const string & strUserTheme) override;
 
-      virtual void os_process_user_theme(string strTheme) override;
+      //virtual void os_process_user_theme(string strTheme) override;
 
       virtual void enable_wallpaper_change_notification() override;
 
@@ -60,13 +61,13 @@ namespace node_gnome
 
       virtual void node_branch(const ::routine & routine);
 
-      virtual void node_post_quit() override;
+      //virtual void node_post_quit() override;
 
       //virtual void on_subject(::promise::subject * psubject, ::subject::context * pcontext) override;
 
       //virtual void _on_change_os_user_theme(string strTheme);
 
-      virtual void _os_process_user_theme_color(string strTheme);
+      //virtual void _os_process_user_theme_color(string strTheme);
 
       //virtual ::node_linux::appindicator * appindicator_allocate() override;
 
@@ -74,7 +75,7 @@ namespace node_gnome
 
       //virtual void enum_display_monitors(::aura::session * psession) override;
 
-      virtual bool _os_calc_system_dark_mode() override;
+      //virtual bool _os_calc_system_dark_mode() override;
 
       virtual void os_post_quit() override;
 
@@ -86,7 +87,7 @@ namespace node_gnome
    };
 
 
-} // namespace node_gnome
+} // namespace desktop_environment_gnome
 
 
 
