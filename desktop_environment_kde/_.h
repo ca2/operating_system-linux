@@ -2,17 +2,13 @@
 
 
 #include "aura_linux/_.h"
-#include "windowing_xcb/_.h"
-#include "acme/os/linux/_linux.h"
-#include "acme/os/ansios/_pthread.h"
-#include "aura/user/_user.h"
-#include "aura/os/linux/appindicator.h"
+#include "platform-posix/node_kde/_.h"
 
 
-#if defined(_NODE_GNOME_LIBRARY)
-   #define CLASS_DECL_NODE_GNOME  CLASS_DECL_EXPORT
+#if defined(_WINDOW_MANAGER_KDE_LIBRARY)
+   #define CLASS_DECL_WINDOW_MANAGER_KDE  CLASS_DECL_EXPORT
 #else
-   #define CLASS_DECL_NODE_GNOME  CLASS_DECL_IMPORT
+   #define CLASS_DECL_WINDOW_MANAGER_KDE  CLASS_DECL_IMPORT
 #endif
 
 #undef new
