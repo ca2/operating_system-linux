@@ -147,7 +147,7 @@ namespace desktop_environment_gnome
 //
 //             auto psystem = m_psystem->m_papexsystem;
 //
-//               psystem->on_start();
+//               psystem->on_start_system();
 //
 //
 //         });
@@ -184,7 +184,25 @@ namespace desktop_environment_gnome
 
       ::node_gnome::g_defer_init();
 
-      return ::success;
+      auto estatus = ::linux::aura::node::initialize(pobject);
+
+      if(!estatus)
+      {
+
+         return estatus;
+
+      }
+
+      estatus = ::node_gnome::node::initialize(pobject);
+
+      if(!estatus)
+      {
+
+         return estatus;
+
+      }
+
+      return estatus;
 
    }
 

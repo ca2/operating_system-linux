@@ -447,7 +447,7 @@ namespace linux
 //
 //      }
 //
-//      estatus = m_psystem->on_start();
+//      estatus = m_psystem->on_start_system();
 //
 //      if (!estatus)
 //      {
