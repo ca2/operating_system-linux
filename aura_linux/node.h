@@ -18,6 +18,7 @@ namespace linux
 
       class CLASS_DECL_AURA_LINUX node :
          virtual public ::linux::apex::node,
+         virtual public ::aura::posix::node,
          virtual public ::aura::node
       {
       public:
@@ -26,6 +27,9 @@ namespace linux
          node();
 
          virtual ~node();
+
+
+         virtual e_status initialize(::object* pobject) override;
 
 
          string get_user_name();

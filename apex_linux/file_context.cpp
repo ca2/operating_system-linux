@@ -112,6 +112,24 @@ namespace linux
    }
 
 
+
+   ::extended::status file_context::del(const ::file::path & path)
+   {
+
+      auto bOk = ::file_delete(path);
+
+      if(!bOk)
+      {
+
+         return error_failed;
+
+      }
+
+      return ::success;
+
+   }
+
+
 } // namespace linux
 
 

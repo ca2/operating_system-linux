@@ -542,6 +542,13 @@ namespace linux
       }
 
 
+      int node::node_init_check(int*, char***)
+      {
+
+         return ::success;
+
+      }
+
 //   string node::veriwell_multimedia_music_midi_get_default_library_name()
 //   {
 //

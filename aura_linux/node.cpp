@@ -29,6 +29,41 @@ namespace linux
       }
 
 
+      e_status node::initialize(::object* pobject)
+      {
+
+         auto estatus = ::linux::apex::node::initialize(pobject);
+
+         if(!estatus)
+         {
+
+            return estatus;
+
+         }
+
+         estatus = ::aura::posix::node::initialize(pobject);
+
+         if(!estatus)
+         {
+
+            return estatus;
+
+         }
+
+         estatus = ::aura::node::initialize(pobject);
+
+         if(!estatus)
+         {
+
+            return estatus;
+
+         }
+
+         return estatus;
+
+      }
+
+
       string node::get_user_name()
       {
 

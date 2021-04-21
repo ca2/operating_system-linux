@@ -4,6 +4,7 @@
 #include "apex/_.h"
 #include "apex/operating_system.h"
 #include "acme_linux/_.h"
+#include "platform-posix/apex_posix/_.h"
 
 
 #if defined(_APEX_LINUX_LIBRARY)

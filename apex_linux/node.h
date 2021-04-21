@@ -18,6 +18,7 @@ namespace linux
 
       class CLASS_DECL_APEX_LINUX node :
          virtual public ::linux::acme::node,
+         virtual public ::apex::posix::node,
          virtual public ::apex::node
       {
       public:
@@ -34,6 +35,8 @@ namespace linux
          string get_user_name() override;
 
          virtual ::e_status process_init();
+
+         virtual int node_init_check(int*, char***);
 
 
          virtual ::e_status _001InitializeShellOpen() override;

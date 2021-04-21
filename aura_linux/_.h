@@ -5,6 +5,7 @@
 #include "aura/operating_system.h"
 #include "apex/operating_system.h"
 #include "apex_linux/_.h"
+#include "platform-posix/aura_posix/_.h"
 
 
 #if defined(_AURA_LINUX_LIBRARY)
@@ -58,13 +59,6 @@
 //   }
 //
 //};
-
-
-//#include "tts_speaker.h"
-
-
-#include "appindicator.h"
-
 
 
 #include "_const.h"

@@ -34,6 +34,7 @@ namespace linux
 
       virtual ::file::path dropbox_info_json() override;
 
+      virtual ::extended::status del(const ::file::path & path) override;
 
    };
 

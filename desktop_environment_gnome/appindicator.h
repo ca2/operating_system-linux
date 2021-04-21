@@ -4,12 +4,12 @@
 #pragma once
 
 
-namespace node_gnome
+namespace desktop_environment_gnome
 {
 
 
    class appindicator :
-      virtual public ::linux::aura::appindicator
+      virtual public ::node_gnome::appindicator
    {
    public:
 
@@ -25,7 +25,7 @@ namespace node_gnome
    };
 
 
-} // namespace node_gnome
+} // namespace desktop_environment_gnome
 
 
 

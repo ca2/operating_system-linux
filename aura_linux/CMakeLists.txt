@@ -2,12 +2,12 @@ cmake_minimum_required(VERSION 3.17)
 project(aura_linux CXX)
 
 
-list(APPEND draw2d_gdiplus_source
+list(APPEND aura_linux_source
     _.cpp
     _.h
     _const.h
-   appindicator.cpp
-   appindicator.h
+   #appindicator.cpp
+   #appindicator.h
     factory_exchange.cpp
     node.cpp
     node.h
@@ -15,14 +15,9 @@ list(APPEND draw2d_gdiplus_source
     )
 
 
-if (MSVC)
-    set(LIBCXX_TARGETING_MSVC ON)
-else()
-    set(LIBCXX_TARGETING_MSVC OFF)
-endif()
 
 
-add_library(aura_linux SHARED ${draw2d_gdiplus_source})
+add_library(aura_linux SHARED ${aura_linux_source})
 
 list(APPEND library_references
    acme
@@ -33,6 +28,7 @@ list(APPEND library_references
    acme_linux
    apex_posix
    apex_linux
+   aura_posix
    )
 
 
@@ -58,26 +54,9 @@ elseif(LINUX)
     message("PKGCONFIG_LIBRARIES is " ${PKGCONFIG_LIBRARIES})
 endif()
 
-target_link_directories(aura_linux PRIVATE ${LIBRARY_OUTPUT_PATH})
-target_link_directories(aura_linux PRIVATE ${CMAKE_CURRENT_SOURCE_DIR}/../../../archive/storage-${PLATFORM_NAME}/library/x64/basis)
-target_link_directories(aura_linux PRIVATE ${CMAKE_CURRENT_SOURCE_DIR}/../../../archive/storage-${PLATFORM_NAME}/third/library/x64/basis)
-
-
-target_include_directories(aura_linux PRIVATE $ENV{HOME}/__config)
 target_include_directories(aura_linux PRIVATE ${CMAKE_CURRENT_SOURCE_DIR}/../..)
 target_include_directories(aura_linux PRIVATE ${CMAKE_CURRENT_SOURCE_DIR}/..)
-target_include_directories(aura_linux PRIVATE ${CMAKE_CURRENT_SOURCE_DIR}/../../../source)
-target_include_directories(aura_linux PRIVATE ${CMAKE_CURRENT_SOURCE_DIR}/../../../source/app)
-target_include_directories(aura_linux PRIVATE ${CMAKE_CURRENT_SOURCE_DIR}/../../../source/app/_include)
-target_include_directories(aura_linux PRIVATE ${CMAKE_CURRENT_SOURCE_DIR}/../../../source/include)
-target_include_directories(aura_linux PRIVATE ${CMAKE_CURRENT_SOURCE_DIR}/../../../archive/platform-${PLATFORM_NAME})
-target_include_directories(aura_linux PRIVATE ${CMAKE_CURRENT_SOURCE_DIR}/../../../archive/platform-${PLATFORM_NAME}/_include)
-target_include_directories(aura_linux PRIVATE ${CMAKE_CURRENT_SOURCE_DIR}/../../../archive/third-${PLATFORM_NAME}/include)
-target_include_directories(aura_linux PRIVATE ${CMAKE_CURRENT_SOURCE_DIR}/../../../archive/third-${PLATFORM_NAME}/third/include)
-target_include_directories(aura_linux PRIVATE ${CMAKE_CURRENT_SOURCE_DIR}/../../../archive/third-${PLATFORM_NAME}/third/include/include)
 target_include_directories(aura_linux PRIVATE ${CMAKE_CURRENT_SOURCE_DIR})
 
 
-target_compile_definitions(aura_linux PRIVATE _DRAW2D_GDIPLUS_LIBRARY)
-target_compile_definitions(aura_linux PRIVATE UNICODE)
-target_compile_definitions(aura_linux PRIVATE _UNICODE)
+target_compile_definitions(aura_linux PRIVATE _AURA_LINUX_LIBRARY)

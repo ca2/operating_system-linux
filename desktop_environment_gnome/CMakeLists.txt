@@ -42,6 +42,7 @@ list(APPEND library_references
    apex_linux
    aqua
    aura
+   aura_posix
    aura_linux
    windowing_x11
    node_gnome
