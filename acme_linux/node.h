@@ -22,21 +22,25 @@ namespace linux
       public:
 
 
-         ::file::path m_strTimeFolder;
-         ::file::path m_strNetSeedFolder;
+         ::file::path         m_strTimeFolder;
+         ::file::path         m_strNetSeedFolder;
 
-         ::file::path m_strCommonAppData;
-         ::file::path m_strAppData;
-         ::file::path m_strPrograms;
-         ::file::path m_strCommonPrograms;
+         ::file::path         m_strCommonAppData;
+         ::file::path         m_strAppData;
+         ::file::path         m_strPrograms;
+         ::file::path         m_strCommonPrograms;
+
 
 
          node();
-
          virtual ~node();
 
 
          virtual ::e_status initialize_matter(::matter * pmatter) override;
+
+
+         virtual ::file::path _module_path();
+
 
          //virtual ::string dir_root() override;
 

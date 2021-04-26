@@ -14,16 +14,16 @@ namespace user
 } // namespace user
 
 
-void gdk_branch(::matter * preference, e_priority epriority = priority_normal);
+void gdk_branch(const ::routine & routine);
 
 
-template < typename PRED >
-auto gdk_fork(PRED pred, e_priority epriority = priority_normal)
-{
+// template < typename PRED >
+// auto gdk_fork(PRED pred, e_priority epriority = priority_normal)
+// {
 
-   return async_pred(&gdk_branch, pred, epriority);
+//    return async_pred(&gdk_branch, pred, epriority);
 
-}
+// }
 
 
 

@@ -31,7 +31,7 @@ namespace music
             message_out(midi * pmidi, string strDevice);
             virtual ~message_out();
 
-            virtual void start() override;
+            virtual ::e_status start() override;
 
             virtual ::e_status note_on(int iChannel, unsigned char uchNote, unsigned char uchVelocity) override;
             virtual ::e_status note_off(int iChannel, unsigned char uchNote, unsigned char uchVelocity) override;
@@ -40,7 +40,7 @@ namespace music
             virtual void pitch_bend(int iChannel, unsigned short ushBend) override;
             virtual void sysex(const ::block & block) override;
 
-            virtual void step();
+            virtual ::e_status step() override;
 
             virtual void general_midi_reset() override;
 

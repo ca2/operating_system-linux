@@ -542,7 +542,7 @@ namespace linux
    ::file::path acme_dir::module()
    {
 
-      return "";
+      return ::acme_dir::module();
 
    }
 

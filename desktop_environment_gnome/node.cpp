@@ -9,6 +9,9 @@
 #include "windowing_x11/windowing_x11.h"
 
 
+void gdk_branch(const ::routine & routine);
+
+
 namespace desktop_environment_gnome
 {
 
@@ -75,13 +78,13 @@ namespace desktop_environment_gnome
 //      if (psystem->m_bGtkApp)
 //      {
 //
-//         apex_application_run(psystem->m_strAppId, psystem->m_strProgName);
+//         apex_application_run(psystem->m_XstrAppId, psystem->m_strProgName);
 //
 //      }
 //      else
 //      {
 //
-//         //g_set_application_name(System.m_strAppId);
+//         //g_set_application_name(System.m_XstrAppId);
 //
 //         //g_set_prgname(System.m_strProgName);
 //      ////

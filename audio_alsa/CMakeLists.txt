@@ -2,13 +2,6 @@ cmake_minimum_required(VERSION 3.17)
 project(audio_alsa CXX)
 
 
-add_compile_options("$<$<CONFIG:DEBUG>:-DDEBUG>")
-
-
-set(LIBRARY_OUTPUT_PATH ${CMAKE_CURRENT_SOURCE_DIR}/../../../time-${PLATFORM_NAME}/cmake)
-set(EXECUTABLE_OUTPUT_PATH ${CMAKE_CURRENT_SOURCE_DIR}/../../../time-${PLATFORM_NAME}/cmake)
-
-
 list(APPEND audio_alsa_source
         _.h
         audio_mmsystem_wave_in.h
@@ -35,13 +28,6 @@ list(APPEND library_references
    )
 
 
-if (MSVC)
-    set(LIBCXX_TARGETING_MSVC ON)
-else()
-    set(LIBCXX_TARGETING_MSVC OFF)
-endif()
-
-
 add_library(audio_alsa SHARED ${audio_alsa_source})
 
 target_precompile_headers(audio_alsa PRIVATE framework.h)
@@ -53,7 +39,6 @@ if (MSVC)
     target_link_options(audio_alsa PRIVATE "/DEFAULTLIB:msvcrt$<$<CONFIG:Debug>:d>")
     target_link_options(audio_alsa PRIVATE "/SUBSYSTEM:WINDOWS")
     target_link_libraries(audio_alsa PRIVATE ${library_references})
-    add_dependencies(audio_alsa draw2d_gdiplus)
 elseif(LINUX)
     target_compile_options(audio_alsa PRIVATE -fpermissive)
     target_link_options(audio_alsa PRIVATE -Wl,-rpath=\$ORIGIN)

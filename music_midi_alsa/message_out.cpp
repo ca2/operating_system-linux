@@ -159,7 +159,7 @@ namespace music
          }
 
 
-         void message_out::step()
+         ::e_status message_out::step()
          {
 
             if(m_iWrite > 0)
@@ -183,8 +183,10 @@ namespace music
          }
 
 
-         void message_out::start()
+         ::e_status message_out::start()
          {
+
+            return ::success;
 
          }
 

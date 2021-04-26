@@ -180,7 +180,7 @@ namespace node_kde
       else
       {
          //
-         ////      g_set_application_name(psystem->m_strAppId);
+         ////      g_set_application_name(psystem->m_XstrAppId);
          ////
          ////      g_set_prgname(psystem->m_strProgName);
          ////
@@ -499,7 +499,7 @@ namespace node_kde
    void node::node_fork(const ::routine &routine)
    {
 
-      gdk_branch(routine);
+      kde_branch(routine);
 
    }
 

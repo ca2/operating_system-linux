@@ -7,6 +7,7 @@
 #include "dir_system.h"
 #include "dir_context.h"
 #include "file_system.h"
+#include "platform-posix/apex_posix/file_context.h"
 #include "file_context.h"
 //#include "process.h"
 #include "os_context.h"

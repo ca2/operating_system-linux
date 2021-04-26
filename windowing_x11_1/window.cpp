@@ -407,7 +407,7 @@ namespace windowing_x11
 
       }
 
-      bamf_set_icon();
+      bamf_set_icon(papplication);
 
       _wm_nodecorations(0);
 
@@ -879,7 +879,7 @@ namespace windowing_x11
 //   }
 
 
-   bool window::bamf_set_icon()
+   bool window::bamf_set_icon(::apex::application * papplication)
    {
 
       synchronous_lock synchronouslock(user_mutex());

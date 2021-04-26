@@ -471,7 +471,7 @@ namespace multimedia
       bool wave_out::alsa_should_play()
       {
 
-         if(!::thread_get_run())
+         if(!::task_get_run())
          {
 
             return false;
@@ -524,7 +524,7 @@ namespace multimedia
          if(false)
          {
 
-            while(::thread_get_run())
+            while(::task_get_run())
             {
 
                iFrameFreeCount = snd_pcm_avail_update(m_ppcm);

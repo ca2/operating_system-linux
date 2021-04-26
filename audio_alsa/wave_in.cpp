@@ -77,8 +77,14 @@ namespace multimedia
 
          return error_failed;
 
-         if(snd_pcm_open(SND_PCM_STREAM_CAPTURE) != 0)
-            return error_failed;
+         auto estatus = snd_pcm_open(SND_PCM_STREAM_CAPTURE);
+
+         if(!estatus)
+         {
+
+            return estatus;
+
+         }
 
 
          goto Opened;
@@ -352,7 +358,7 @@ Opened:
          int iSize;
          int err;
 
-         while(thread_get_run())
+         while(task_get_run())
          {
 
             if(in_is_recording() && in_get_buffer()->GetBufferCount() > 0)
@@ -397,7 +403,11 @@ Opened:
 
          m_iBuffer--;
 
-         ::u32 msSampleTime = Audio.multimedia_get_time();
+         auto psystem = m_psystem->m_paquasystem;
+
+         auto paudio = psystem->audio()->m_paudio;
+
+         ::u32 msSampleTime = paudio->multimedia_get_time();
 
          int iBuffer = dwParam1;
 

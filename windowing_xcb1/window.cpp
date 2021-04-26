@@ -349,7 +349,7 @@ namespace windowing_xcb
 
       }
 
-      bamf_set_icon();
+      bamf_set_icon(papplication);
 
       _set_nodecorations(0);
 
@@ -506,7 +506,7 @@ namespace windowing_xcb
    }
 
 
-   bool window::bamf_set_icon()
+   bool window::bamf_set_icon(::apex::application * papplication)
    {
 
       synchronous_lock synchronouslock(user_mutex());

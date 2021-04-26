@@ -23,7 +23,7 @@ namespace node_gnome
 } // namespace node_gnome
 
 
-void gdk_branch(matter * prunnable, e_priority epriority = priority_normal);
+//void gdk_branch(const ::routine & routine);
 
 
 
