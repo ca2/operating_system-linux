@@ -237,11 +237,11 @@ namespace linux
 
          {
 
-            __restore(listing.m_pathUser);
+            __scoped_restore(listing.m_pathUser);
 
-            __restore(listing.m_pathFinal);
+            __scoped_restore(listing.m_pathFinal);
 
-            __restore(listing.m_eextract);
+            __scoped_restore(listing.m_eextract);
 
             ::file::listing straDir;
 
@@ -279,7 +279,7 @@ namespace linux
          if(listing.m_bFile)
          {
 
-            __restore(listing.m_bRecursive);
+            __scoped_restore(listing.m_bRecursive);
 
             listing.m_bRecursive = false;
 

@@ -22,6 +22,8 @@ namespace desktop_environment_gnome
    node::node()
    {
 
+      m_pDesktopEnvironmentGnome = this;
+
       defer_initialize_x11();
 
       m_pGtkSettingsDefault = nullptr;

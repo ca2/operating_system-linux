@@ -12,6 +12,7 @@ namespace linux
       node::node()
       {
 
+         m_pAcmePlatform = this;
 
       }
 

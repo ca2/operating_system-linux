@@ -19,6 +19,8 @@ namespace linux
 
          //m_pnodenode = this;
 
+         m_pAuraNode2 = this;
+
       }
 
 

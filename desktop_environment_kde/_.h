@@ -18,7 +18,7 @@
 #include <QAbstractNativeEventFilter>
 #define new ACME_NEW
 
-namespace node_kde
+namespace desktop_environment_kde
 {
 
 
@@ -38,16 +38,19 @@ namespace user
 } // namespace user
 
 
+//#include "node.h"
+
+
+//#include "copydesk.h"
+
+
+//#include "appindicator.h"
+
+
+//#include "factory_exchange.h"
+
+
 #include "node.h"
-
-
-#include "copydesk.h"
-
-
-#include "appindicator.h"
-
-
-#include "factory_exchange.h"
 
 
 

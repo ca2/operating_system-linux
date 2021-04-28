@@ -1,7 +1,8 @@
 #pragma once
 
 
-namespace node_kde{
+namespace node_kde
+{
 
 
    class CLASS_DECL_AURA copydesk :

@@ -22,7 +22,7 @@ namespace linux
       node::node()
       {
 
-         //m_pnodenode = this;
+         m_pApexPlatform = this;
 
       }
 
