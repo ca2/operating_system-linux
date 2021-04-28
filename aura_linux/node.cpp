@@ -19,7 +19,7 @@ namespace linux
 
          //m_pnodenode = this;
 
-         m_pAuraNode2 = this;
+         m_pAuraPlatform = this;
 
       }
 
