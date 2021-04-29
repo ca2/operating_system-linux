@@ -1,5 +1,0 @@
-LIBRARY "apex_linux"
-
-EXPORTS
-apex_linux_factory_exchange
-
