@@ -17,12 +17,10 @@ namespace desktop_environment_kde
 
 
    class CLASS_DECL_ACME node :
-      virtual public ::linux::aura::node,
+      virtual public ::aura::linux::node,
       virtual public ::node_kde::node
    {
    public:
-
-
 
 
       string   m_strTheme;

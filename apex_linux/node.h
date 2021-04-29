@@ -8,18 +8,17 @@
 #pragma once
 
 
-namespace linux
+namespace apex
 {
 
 
-   namespace apex
+   namespace linux
    {
 
 
       class CLASS_DECL_APEX_LINUX node :
-         virtual public ::linux::acme::node,
-         virtual public ::apex::posix::node,
-         virtual public ::apex::node
+         virtual public ::acme::linux::node,
+         virtual public ::apex::posix::node
       {
       public:
 
@@ -110,10 +109,10 @@ namespace linux
       };
 
 
-   } // namespace apex
+   } // namespace linux
 
 
-} // namespace linux
+} // namespace apex
 
 
 

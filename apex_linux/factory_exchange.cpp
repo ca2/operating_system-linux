@@ -71,7 +71,7 @@ void apex_linux_factory_exchange(::factory_map * pfactorymap)
    pfactorymap->create_factory < ::linux::file_context, ::file_context >();
    pfactorymap->create_factory < ::linux::service_handler, ::service_handler >();
 
-   pfactorymap->create_factory < ::linux::apex::node, ::acme::node >();
+   pfactorymap->create_factory < ::apex::linux::node, ::acme::node >();
 
    //create_factory < ::linux::copydesk, ::user::cop
    // 

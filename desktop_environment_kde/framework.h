@@ -9,6 +9,9 @@
 #include "_.h"
 
 
+#include "_desktop_environment_kde.h"
+
+
 #include "aura/_defer.h"
 
 

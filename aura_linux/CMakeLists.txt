@@ -5,13 +5,14 @@ project(aura_linux CXX)
 list(APPEND aura_linux_source
     _.cpp
     _.h
+   _aura_linux.h
     _const.h
    #appindicator.cpp
    #appindicator.h
     factory_exchange.cpp
     node.cpp
     node.h
-    ../platform/x_window.cpp
+   ../../platform-posix/aura_posix/x_window_system.cpp
     )
 
 

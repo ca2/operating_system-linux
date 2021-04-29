@@ -25,7 +25,7 @@ else()
 endif()
 
 
-add_library(acme_linux SHARED ${acme_linux_source})
+add_library(acme_linux SHARED ${acme_linux_source} _acme_linux.h)
 
 
 list(APPEND library_references acme acme_posix)

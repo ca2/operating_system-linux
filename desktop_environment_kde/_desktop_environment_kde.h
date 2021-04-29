@@ -1,8 +1,15 @@
 //
-// Created by camilo on 28/04/2021.
+// Created by camilo on 28/04/2021 15:50 BRT <3ThomasBorregaardSørensen
 //
+#pragma once
 
-#ifndef BASIS__DESKTOP_ENVIRONMENT_KDE_H
-#define BASIS__DESKTOP_ENVIRONMENT_KDE_H
 
-#endif //BASIS__DESKTOP_ENVIRONMENT_KDE_H
+#include "aura_linux/_aura_linux.h"
+#include "node_kde/_node_kde.h"
+#include "aura/user/_user.h"
+
+
+#include "node.h"
+
+
+

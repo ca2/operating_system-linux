@@ -53,7 +53,7 @@ list(APPEND library_references
 
 
 
-add_library(desktop_environment_kde SHARED ${desktop_environment_kde_source})
+add_library(desktop_environment_kde SHARED ${desktop_environment_kde_source} _desktop_environment_kde.h)
 
 target_precompile_headers(desktop_environment_kde PRIVATE framework.h)
 
@@ -68,7 +68,7 @@ if (MSVC)
    target_link_options(desktop_environment_kde PRIVATE "/SUBSYSTEM:WINDOWS")
    target_link_libraries(desktop_environment_kde PRIVATE ${library_references})
 elseif (LINUX)
-   pkg_check_modules(PKGCONFIG Qt5Core Qt5UiTools)
+   pkg_check_modules(PKGCONFIG Qt5X11Extras Qt5Core Qt5UiTools)
    target_compile_options(desktop_environment_kde PRIVATE -fpermissive)
    target_compile_options(desktop_environment_kde PRIVATE ${PKGCONFIG_CFLAGS})
    target_link_options(desktop_environment_kde PRIVATE -Wl,-rpath=\$ORIGIN)

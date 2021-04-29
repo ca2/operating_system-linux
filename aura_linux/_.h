@@ -2,8 +2,6 @@
 
 
 #include "aura/_.h"
-#include "aura/operating_system.h"
-#include "apex/operating_system.h"
 #include "apex_linux/_.h"
 #include "platform-posix/aura_posix/_.h"
 
@@ -15,7 +13,12 @@
 #endif
 
 
-::e_status gdiplus_draw_text(::draw2d::graphics * pgraphics, ::draw2d::path * ppath, const string & str, rectangle_f64 & rectParam, const ::e_align & ealign, const ::e_draw_text & edrawtext, ::write_text::font * pfont, double dFontWidth, ::draw2d::brush * pbrush = nullptr, bool bMeasure = false);
+
+#include "_const.h"
+
+
+
+//::e_status gdiplus_draw_text(::draw2d::graphics * pgraphics, ::draw2d::path * ppath, const string & str, rectangle_f64 & rectParam, const ::e_align & ealign, const ::e_draw_text & edrawtext, ::write_text::font * pfont, double dFontWidth, ::draw2d::brush * pbrush = nullptr, bool bMeasure = false);
 
 
 //inline auto gdiplus_color(const ::color::color& color)
@@ -59,12 +62,3 @@
 //   }
 //
 //};
-
-
-#include "_const.h"
-
-
-#include "node.h"
-
-
-

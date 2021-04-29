@@ -8,18 +8,17 @@
 #pragma once
 
 
-namespace linux
+namespace aura
 {
 
 
-   namespace aura
+   namespace linux
    {
 
 
       class CLASS_DECL_AURA_LINUX node :
-         virtual public ::linux::apex::node,
-         virtual public ::aura::posix::node,
-         virtual public ::aura::node
+         virtual public ::apex::linux::node,
+         virtual public ::aura::posix::node
       {
       public:
 
@@ -61,10 +60,10 @@ namespace linux
       };
 
 
-   } // namespace aura
+   } // namespace linux
 
 
-} // namespace linux
+} // namespace aura
 
 
 

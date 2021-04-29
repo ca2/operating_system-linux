@@ -7,16 +7,15 @@
 #pragma once
 
 
-namespace linux
+namespace acme
 {
 
 
-   namespace acme
+   namespace linux
    {
 
 
       class CLASS_DECL_ACME_LINUX node :
-         virtual public ::acme::node,
          virtual public ::acme::posix::node
       {
       public:
@@ -72,10 +71,10 @@ namespace linux
       };
 
 
-   } // namespace acme
+   } // namespace linux
 
 
-} // namespace node_linux
+} // namespace acme
 
 
 

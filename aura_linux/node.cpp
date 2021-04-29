@@ -1,16 +1,12 @@
 #include "framework.h"
-//#include "acme/node/windows/registry.h"
-//#include "acme_windows/acme.h"
-//#include "apex_windows/apex.h"
 #include "node.h"
-//#include "node/os/linux/_c.h"
 
 
-namespace linux
+namespace aura
 {
 
 
-   namespace aura
+   namespace linux
    {
 
 
@@ -34,7 +30,7 @@ namespace linux
       e_status node::initialize(::object* pobject)
       {
 
-         auto estatus = ::linux::apex::node::initialize(pobject);
+         auto estatus = ::apex::linux::node::initialize(pobject);
 
          if(!estatus)
          {
@@ -481,27 +477,10 @@ namespace linux
 //      }
 
 
-   } // namespace node
+   } // namespace linux
 
 
-} // namespace linux
+} // namespace aura
 
 
-
-//int _os_message_box(const char * pszMessage, const char * pszTitle, const ::e_message_box & emessagebox)
-//{
-//
-//   int iMessageBox = emessagebox.m_eenum & 0x7f;
-//
-//   wstring wstrText(pszMessage);
-//
-//   wstring wstrTitle(pszTitle);
-//
-//   int iResult = ::MessageBox(nullptr, wstrText, wstrTitle, iMessageBox);
-//
-//   return iResult;
-//
-//}
-//
-//
 
