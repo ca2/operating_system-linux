@@ -8,12 +8,21 @@
 #include "platform-posix/acme_posix/_acme_posix.h"
 
 
+#include "acme/os/_const_console.h"
+#include "acme/os/console.h"
+
+
 #include "acme/filesystem/filesystem/acme_dir.h"
 #include "acme/filesystem/filesystem/acme_path.h"
 
 
 #include "acme_dir.h"
 #include "acme_path.h"
+
+
+#include "console.h"
+#include "file.h"
+#include "stdio_file.h"
 
 
 #include "node.h"

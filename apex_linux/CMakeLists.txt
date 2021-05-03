@@ -65,7 +65,6 @@ endif()
 
 target_include_directories(apex_linux PRIVATE ${CMAKE_CURRENT_SOURCE_DIR}/../..)
 target_include_directories(apex_linux PRIVATE ${CMAKE_CURRENT_SOURCE_DIR}/..)
-target_include_directories(apex_linux PRIVATE ${CMAKE_CURRENT_SOURCE_DIR}/../../../archive/third-${PLATFORM_NAME}/third/include/include)
 target_include_directories(apex_linux PRIVATE ${CMAKE_CURRENT_SOURCE_DIR})
 
 

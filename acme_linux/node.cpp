@@ -1,4 +1,5 @@
 #include "framework.h"
+#include <sys/utsname.h>
 
 
 namespace acme
@@ -762,6 +763,64 @@ namespace acme
          return path;
 
       }
+
+
+      ::e_status node::calculate_linux_distribution()
+      {
+
+         auto lines = file_as_lines("/etc/os-release");
+
+         ::string strId;
+
+         if(lines.find_first_begins_eat_ci(strId, "id="))
+         {
+
+            strId.make_lower();
+
+            if (strId == "ubuntu")
+            {
+
+               m_elinuxdistribution = e_linux_distribution_ubuntu;
+
+            }
+            else if (strId == "manjaro")
+            {
+
+               m_elinuxdistribution = e_linux_distribution_manjaro;
+
+            }
+
+         }
+
+         if(m_elinuxdistribution <= 0)
+         {
+
+            output_debug_string("WARNING: Unknown linux distribution with id \"" + strId + "\".");
+
+            m_elinuxdistribution = e_linux_distribution_unknown;
+
+         }
+
+         return ::success;
+
+      }
+
+
+      ::user::enum_desktop node::get_edesktop()
+      {
+
+         return ::get_edesktop();
+
+      }
+
+
+      ::user::enum_desktop node::calculate_edesktop()
+      {
+
+         return ::calculate_edesktop();
+
+      }
+
 
 
    } // namespace linux

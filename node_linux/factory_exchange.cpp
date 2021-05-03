@@ -1,7 +1,6 @@
 #include "framework.h"
+#include <sys/utsname.h>
 
-
-::user::enum_desktop get_edesktop();
 
 
 extern "C"
@@ -9,6 +8,8 @@ void node_linux_factory_exchange(::factory_map * pfactorymap)
 {
 
    auto edesktop = get_edesktop();
+
+   ::e_status estatus = ::success_none;
 
    if (edesktop & ::user::e_desktop_kde)
    {
@@ -19,7 +20,7 @@ void node_linux_factory_exchange(::factory_map * pfactorymap)
    else if (edesktop & ::user::e_desktop_gnome)
    {
 
-      estatus = estatus = pfactorymap->m_psystem->do_factory_exchange("desktop_environment", "gnome");
+      estatus = pfactorymap->m_psystem->do_factory_exchange("desktop_environment", "gnome");
 
    }
    else
@@ -120,7 +121,7 @@ void node_linux_factory_exchange(::factory_map * pfactorymap)
 }
 
 
-::user::enum_desktop g_edesktop = e_desktop_none;
+::user::enum_desktop g_edesktop = ::user::e_desktop_none;
 
 
 ::user::enum_desktop get_edesktop()

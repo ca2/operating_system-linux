@@ -180,6 +180,8 @@ namespace music
 
             m_iWrite = 0;
 
+            return ::success;
+
          }
 
 

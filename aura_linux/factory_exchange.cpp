@@ -16,6 +16,7 @@ void aura_linux_factory_exchange(::factory_map * pfactorymap)
    aura_posix_factory_exchange( pfactorymap);
 
    pfactorymap->create_factory < ::aura::linux::node, ::acme::node >();
+   pfactorymap->create_factory < ::linux::interaction_impl, ::user::interaction_impl >();
 
 }
 

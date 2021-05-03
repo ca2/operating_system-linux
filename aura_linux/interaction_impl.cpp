@@ -1,11 +1,11 @@
 #include "framework.h"
-#include "_linux.h"
+//#include "_linux.h"
 #include "apex/platform/app_core.h"
 #include "aura/os/linux/_linux.h"
 #include "acme/os/_user.h"
 ////#include "third/sn/sn.h"
 
-
+::user::interaction * g_puserinteractionMouseCapture123 = nullptr;
 //#define MESSAGE_WINDOW_PARENT (::oswindow((void *) (iptr) 1))
 
 
@@ -416,38 +416,40 @@ namespace linux
    void interaction_impl::_001OnMove(::message::message * pmessage)
    {
 
-      __pointer(::message::size) psize(pmessage);
+//      __pointer(::message::size) psize(pmessage);
+//
+//      if (m_bDestroyImplOnly)
+//      {
+//
+//         return;
+//
+//      }
+//
+//      if (m_puserinteraction->layout().m_eflag)
+//      {
+//
+//         pmessage->m_bRet = true;
+//
+//         return;
+//
+//      }
 
-      if (m_bDestroyImplOnly)
-      {
-
-         return;
-
-      }
-
-      if (m_puserinteraction->layout().m_eflag)
-      {
-
-         pmessage->m_bRet = true;
-
-         return;
-
-      }
-
-      __pointer(::message::move) pmove(pmessage);
-
-      m_puserinteraction->layout().window() = pmove->m_point;
-
-      if(m_puserinteraction->layout().window().origin() != m_puserinteraction->layout().sketch().origin())
-      {
-
-         m_puserinteraction->move_to(pmove->m_point);
-
-         m_puserinteraction->set_reposition();
-
-         m_puserinteraction->post_redraw();
-
-      }
+//      __pointer(::message::move) pmove(pmessage);
+//
+//      m_puserinteraction->layout().origin() = pmove->m_point;
+//
+//      m_puserinteraction->layout().screen_origin() = pmove->m_point;
+//
+//      if(m_puserinteraction->layout().window().origin() != m_puserinteraction->layout().sketch().origin())
+//      {
+//
+//         m_puserinteraction->move_to(pmove->m_point);
+//
+//         m_puserinteraction->set_reposition();
+//
+//         m_puserinteraction->post_redraw();
+//
+//      }
 
    }
 
@@ -455,23 +457,23 @@ namespace linux
    void interaction_impl::_001OnSize(::message::message * pmessage)
    {
 
-      if (m_bDestroyImplOnly)
-      {
-
-         return;
-
-      }
-
-      if (m_puserinteraction->layout().m_eflag)
-      {
-
-         pmessage->m_bRet = true;
-
-         return;
-
-      }
-
-      __pointer(::message::size) psize(pmessage);
+//      if (m_bDestroyImplOnly)
+//      {
+//
+//         return;
+//
+//      }
+//
+//      if (m_puserinteraction->layout().m_eflag)
+//      {
+//
+//         pmessage->m_bRet = true;
+//
+//         return;
+//
+//      }
+//
+//      __pointer(::message::size) psize(pmessage);
 
 //      m_puserinteraction->window_state3().m_size = psize->m_size;
 //
@@ -1262,9 +1264,41 @@ namespace linux
          if(m_puserinteractionCapture)
          {
 
+            if(g_puserinteractionMouseCapture123 == nullptr)
+            {
+
+               g_puserinteractionMouseCapture123 = m_puserinteractionCapture;
+
+            }
+            else if(g_puserinteractionMouseCapture123 != m_puserinteractionCapture)
+            {
+
+               output_debug_string("different capture (1)");
+
+            }
+
             puserinteractionMouse = m_puserinteractionCapture;
 
          }
+
+         if(g_puserinteractionMouseCapture123 != nullptr)
+         {
+
+            if(g_puserinteractionMouseCapture123 != puserinteractionMouse)
+            {
+
+               output_debug_string("different capture (2)");
+
+            }
+
+         }
+         else
+         {
+
+
+
+         }
+
 
          if(!puserinteractionMouse)
          {
@@ -1276,14 +1310,36 @@ namespace linux
          if(pmouse->m_id == e_message_left_button_down)
          {
 
+
             ::output_debug_string("left_button_down");
+
+         }
+         else if(pmouse->m_id == e_message_left_button_up)
+         {
+
+
+            ::output_debug_string("left_button_up");
 
          }
 
          if(puserinteractionMouse)
          {
 
-            puserinteractionMouse->route_message(pmouse);
+            do
+            {
+
+               puserinteractionMouse->route_message(pmouse);
+
+               if(pmouse->m_bRet)
+               {
+
+                  break;
+
+               }
+
+               puserinteractionMouse = puserinteractionMouse->get_parent();
+
+            }while(puserinteractionMouse != nullptr);
 
          }
 

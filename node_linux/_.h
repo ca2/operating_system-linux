@@ -6,15 +6,19 @@
 #include "platform-posix/aura_posix/_.h"
 
 
-#if defined(_AURA_LINUX_LIBRARY)
-#define CLASS_DECL_AURA_LINUX  CLASS_DECL_EXPORT
+#if defined(_NODE_LINUX_LIBRARY)
+#define CLASS_DECL_NODE_LINUX  CLASS_DECL_EXPORT
 #else
-#define CLASS_DECL_AURA_LINUX  CLASS_DECL_IMPORT
+#define CLASS_DECL_NODE_LINUX  CLASS_DECL_IMPORT
 #endif
 
 
 
 #include "_const.h"
+
+
+CLASS_DECL_NODE_LINUX ::user::enum_desktop get_edesktop();
+CLASS_DECL_NODE_LINUX ::user::enum_desktop calculate_edesktop();
 
 
 

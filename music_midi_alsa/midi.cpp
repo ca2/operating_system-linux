@@ -268,7 +268,7 @@ namespace music
 
          string strEngine = device_engine(strDevice);
 
-         if (strEngine.compare_ci("real_time") == 0)
+         if (strEngine.compare_ci("rtmidi") == 0)
          {
 
             return m_pmidiRealTime->get_message_out(strDevice);

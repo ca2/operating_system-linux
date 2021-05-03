@@ -5,20 +5,20 @@ project(aura_linux CXX)
 list(APPEND aura_linux_source
     _.cpp
     _.h
-   _aura_linux.h
+    _aura_linux.h
     _const.h
-   #appindicator.cpp
-   #appindicator.h
+    #appindicator.cpp
+    #appindicator.h
     factory_exchange.cpp
+    interaction_impl.cpp
+    interaction_impl.h
     node.cpp
     node.h
-   ../../platform-posix/aura_posix/x_window_system.cpp
     )
 
 
-
-
 add_library(aura_linux SHARED ${aura_linux_source})
+
 
 list(APPEND library_references
    acme

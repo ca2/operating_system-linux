@@ -5,30 +5,33 @@ project(acme_linux CXX)
 list(APPEND acme_linux_source
         _.cpp
         _.h
-        acme_dir.cpp
+   _acme_linux.h
+   acme_dir.cpp
         acme_dir.h
         acme_path.cpp
         acme_path.h
+   console.cpp
+   console.h
+   console_ncurses.cpp
         factory_exchange.cpp
         factory_exchange.h
+   file.cpp
+   file.h
         framework.cpp
         framework.h
         node.cpp
         node.h
+   stdio_file.cpp
+   stdio_file.h
     )
 
 
-if (MSVC)
-    set(LIBCXX_TARGETING_MSVC ON)
-else()
-    set(LIBCXX_TARGETING_MSVC OFF)
-endif()
 
+add_library(acme_linux SHARED ${acme_linux_source})
 
-add_library(acme_linux SHARED ${acme_linux_source} _acme_linux.h)
+set_source_files_properties(console_ncurses.cpp PROPERTIES SKIP_PRECOMPILE_HEADERS ON)
 
-
-list(APPEND library_references acme acme_posix)
+list(APPEND library_references acme acme_posix node_linux)
 
 
 target_precompile_headers(acme_linux PRIVATE framework.h)
@@ -45,26 +48,18 @@ if (MSVC)
     target_link_libraries(acme_linux PRIVATE acme apex aqua aura Gdiplus)
 elseif(LINUX)
     target_link_options(acme_linux PRIVATE -Wl,-rpath=\$ORIGIN)
-    target_link_libraries(acme_linux PRIVATE ${PKGCONFIG_LIBRARIES} ${library_references})
+    target_link_libraries(acme_linux PRIVATE dl ncurses ${PKGCONFIG_LIBRARIES} ${library_references})
     target_link_options(acme_linux PRIVATE -Wl,-z,defs)
     message("PKGCONFIG_LIBRARIES is " ${PKGCONFIG_LIBRARIES})
 endif()
 
 
-target_link_directories(acme_linux PRIVATE ${LIBRARY_OUTPUT_PATH})
-target_link_directories(acme_linux PRIVATE ${CMAKE_CURRENT_SOURCE_DIR}/../../../archive/storage-${PLATFORM_NAME}/library/x64/basis)
-target_link_directories(acme_linux PRIVATE ${CMAKE_CURRENT_SOURCE_DIR}/../../../archive/storage-${PLATFORM_NAME}/third/library/x64/basis)
-
-
-target_include_directories(acme_linux PRIVATE $ENV{HOME}/__config)
 target_include_directories(acme_linux PRIVATE ${CMAKE_CURRENT_SOURCE_DIR}/../..)
 target_include_directories(acme_linux PRIVATE ${CMAKE_CURRENT_SOURCE_DIR}/..)
 target_include_directories(acme_linux PRIVATE ${CMAKE_CURRENT_SOURCE_DIR})
 
 
 target_compile_definitions(acme_linux PRIVATE _ACME_LINUX_LIBRARY)
-target_compile_definitions(acme_linux PRIVATE UNICODE)
-target_compile_definitions(acme_linux PRIVATE _UNICODE)
 
 
 
