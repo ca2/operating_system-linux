@@ -8,13 +8,13 @@
 #pragma once
 
 
-namespace desktop_environment_gnome
+namespace desktop_environment_xfce
 {
 
 
-   class CLASS_DECL_DESKTOP_ENVIRONMENT_GNOME node :
+   class CLASS_DECL_DESKTOP_ENVIRONMENT_XFCE node :
       virtual public ::aura::linux::node,
-      virtual public ::node_gnome::node
+      virtual public ::node_xfce::node
    {
    public:
 
@@ -87,7 +87,7 @@ namespace desktop_environment_gnome
    };
 
 
-} // namespace desktop_environment_gnome
+} // namespace desktop_environment_xfce
 
 
 

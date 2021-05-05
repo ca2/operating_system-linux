@@ -44,7 +44,7 @@ void __gtk_style_context_get_color(GtkStyleContext *context, GtkStateFlags state
 }
 
 
-namespace node_gnome
+namespace node_xfce
 {
 
 
@@ -229,7 +229,7 @@ namespace node_gnome
    {
 
 
-      ::node_gnome::node * pnode = (::node_gnome::node *) data;
+      ::node_xfce::node * pnode = (::node_xfce::node *) data;
 
       pnode->m_psystem->m_papexsystem->process_subject(id_wallpaper_change);
 
@@ -361,7 +361,7 @@ namespace node_gnome
       }
 
       // https://ubuntuforums.org/showthread.php?t=2140488
-      // gsettings set org.gnome.desktop.interface gtk-theme your_theme
+      // gsettings set org.xfce.desktop.interface gtk-theme your_theme
 
       // indirect wall-changer sourceforge.net contribution
 
@@ -376,11 +376,11 @@ namespace node_gnome
       switch (edesktop)
       {
 
-         case ::user::e_desktop_gnome:
-         case ::user::e_desktop_ubuntu_gnome:
-         case ::user::e_desktop_unity_gnome:
+         case ::user::e_desktop_xfce:
+         case ::user::e_desktop_ubuntu_xfce:
+         case ::user::e_desktop_unity_xfce:
 
-            bOk = gsettings_get(strTheme, "org.gnome.desktop.interface", "gtk-theme");
+            bOk = gsettings_get(strTheme, "org.xfce.desktop.interface", "gtk-theme");
 
             break;
 
@@ -437,11 +437,11 @@ namespace node_gnome
       switch (edesktop)
       {
 
-         case ::user::e_desktop_gnome:
-         case ::user::e_desktop_ubuntu_gnome:
-         case ::user::e_desktop_unity_gnome:
+         case ::user::e_desktop_xfce:
+         case ::user::e_desktop_ubuntu_xfce:
+         case ::user::e_desktop_unity_xfce:
 
-            bOk = gsettings_get(strWallpaper, "org.gnome.desktop.background", "picture-uri");
+            bOk = gsettings_get(strWallpaper, "org.xfce.desktop.background", "picture-uri");
 
             break;
 
@@ -792,7 +792,7 @@ log_handler (const gchar   *log_domain,
 gboolean x11_source_func(gpointer p)
 {
 
-   ::node_gnome::node *pnode = (::node_gnome::node *) p;
+   ::node_xfce::node *pnode = (::node_xfce::node *) p;
 
    if (!pnode->windowing_message_loop_step())
    {
@@ -806,7 +806,7 @@ gboolean x11_source_func(gpointer p)
 }
 
 
-void x11_add_idle_source(::node_gnome::node * pnode)
+void x11_add_idle_source(::node_xfce::node * pnode)
 {
 
    gdk_threads_add_idle(&x11_source_func, pnode);
@@ -822,7 +822,7 @@ GdkFilterReturn x11_event_func(GdkXEvent *xevent, GdkEvent *event, gpointer  dat
 
    XEvent * pevent = (XEvent *) xevent;
 
-   ::node_gnome::node * pnode = (::node_gnome::node *) data;
+   ::node_xfce::node * pnode = (::node_xfce::node *) data;
 
    auto pwindowing = pnode->windowing();
 

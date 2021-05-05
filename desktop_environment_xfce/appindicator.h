@@ -4,12 +4,12 @@
 #pragma once
 
 
-namespace desktop_environment_gnome
+namespace desktop_environment_xfce
 {
 
 
    class appindicator :
-      virtual public ::node_gnome::appindicator
+      virtual public ::node_xfce::appindicator
    {
    public:
 
@@ -25,7 +25,7 @@ namespace desktop_environment_gnome
    };
 
 
-} // namespace desktop_environment_gnome
+} // namespace desktop_environment_xfce
 
 
 

@@ -3,7 +3,7 @@
 //
 #include "framework.h"
 #include "node.h"
-#include "gnome_shared.h"
+#include "xfce_shared.h"
 #include "appindicator.h"
 #include "gdk.h"
 #include "windowing_x11/windowing_x11.h"
@@ -12,7 +12,7 @@
 void gdk_branch(const ::routine & routine);
 
 
-namespace desktop_environment_gnome
+namespace desktop_environment_xfce
 {
 
 
@@ -71,7 +71,7 @@ namespace desktop_environment_gnome
    ::e_status node::start_node()
    {
 
-      auto estatus = node_gnome::node::start_node();
+      auto estatus = node_xfce::node::start_node();
 
       return estatus;
 
@@ -187,7 +187,7 @@ namespace desktop_environment_gnome
    ::e_status node::initialize(::object *pobject)
    {
 
-      ::node_gnome::g_defer_init();
+      ::node_xfce::g_defer_init();
 
       auto estatus = ::aura::linux::node::initialize(pobject);
 
@@ -198,7 +198,7 @@ namespace desktop_environment_gnome
 
       }
 
-      estatus = ::node_gnome::node::initialize(pobject);
+      estatus = ::node_xfce::node::initialize(pobject);
 
       if(!estatus)
       {
@@ -278,7 +278,7 @@ namespace desktop_environment_gnome
    {
 
       // https://ubuntuforums.org/showthread.php?t=2140488
-      // gsettings set org.gnome.desktop.interface gtk-theme your_theme
+      // gsettings set org.xfce.desktop.interface gtk-theme your_theme
 
       // indirect wall-changer sourceforge.net contribution
 
@@ -291,25 +291,25 @@ namespace desktop_environment_gnome
       switch (edesktop)
       {
 
-      case ::user::e_desktop_gnome:
-      case ::user::e_desktop_ubuntu_gnome:
-      case ::user::e_desktop_unity_gnome:
+      case ::user::e_desktop_xfce:
+      case ::user::e_desktop_ubuntu_xfce:
+      case ::user::e_desktop_unity_xfce:
       {
 
-      bool bOk1 = ::node_gnome::gsettings_set("org.gnome.desktop.interface", "gtk-theme", strUserTheme);
+      bool bOk1 = ::node_xfce::gsettings_set("org.xfce.desktop.interface", "gtk-theme", strUserTheme);
 
       bool bOk2 = true;
 
       //if(::file::system_short_name().contains_ci("manjaro"))
       {
 
-         bOk2 = ::node_gnome::gsettings_set("org.gnome.desktop.wm.preferences", "theme", strUserTheme);
+         bOk2 = ::node_xfce::gsettings_set("org.xfce.desktop.wm.preferences", "theme", strUserTheme);
 
       }
 
       sleep(300_ms);
 
-      ::node_gnome::gsettings_sync();
+      ::node_xfce::gsettings_sync();
 
       sleep(300_ms);
 
@@ -374,15 +374,15 @@ namespace desktop_environment_gnome
       switch (edesktop)
       {
 
-         case ::user::e_desktop_gnome:
-         case ::user::e_desktop_ubuntu_gnome:
-         case ::user::e_desktop_unity_gnome:
+         case ::user::e_desktop_xfce:
+         case ::user::e_desktop_ubuntu_xfce:
+         case ::user::e_desktop_unity_xfce:
 
-            return ::node_gnome::gsettings_set("org.gnome.desktop.background", "picture-uri", "file://" + strLocalImagePath);
+            return ::node_xfce::gsettings_set("org.xfce.desktop.background", "picture-uri", "file://" + strLocalImagePath);
 
          case ::user::e_desktop_mate:
 
-            return ::node_gnome::gsettings_set("org.mate.background", "picture-filename", strLocalImagePath);
+            return ::node_xfce::gsettings_set("org.mate.background", "picture-filename", strLocalImagePath);
 
          case ::user::e_desktop_lxde:
 
@@ -426,17 +426,17 @@ namespace desktop_environment_gnome
       switch (edesktop)
       {
 
-         case ::user::e_desktop_gnome:
-         case ::user::e_desktop_ubuntu_gnome:
-         case ::user::e_desktop_unity_gnome:
+         case ::user::e_desktop_xfce:
+         case ::user::e_desktop_ubuntu_xfce:
+         case ::user::e_desktop_unity_xfce:
 
-            ::node_gnome::g_enable_wallpaper_change_notification("org.gnome.desktop.background", "picture-uri");
+            ::node_xfce::g_enable_wallpaper_change_notification("org.xfce.desktop.background", "picture-uri");
 
             break;
 
          case ::user::e_desktop_mate:
 
-            ::node_gnome::g_enable_wallpaper_change_notification("org.mate.background", "picture-filename");
+            ::node_xfce::g_enable_wallpaper_change_notification("org.mate.background", "picture-filename");
 
             break;
 
@@ -470,7 +470,7 @@ namespace desktop_environment_gnome
    string node::get_file_icon_path(const char * pszPath, int iSize)
    {
 
-      string str = ::node_gnome::node::get_file_icon_path(pszPath, iSize);
+      string str = ::node_xfce::node::get_file_icon_path(pszPath, iSize);
 
       return str;
 
@@ -482,7 +482,7 @@ namespace desktop_environment_gnome
    string node::get_file_content_type(const char * pszPath)
    {
 
-      string str = ::node_gnome::node::get_file_content_type(pszPath);
+      string str = ::node_xfce::node::get_file_content_type(pszPath);
 
       return str;
 
@@ -534,7 +534,7 @@ namespace desktop_environment_gnome
 //   ::nlinux::appindicator * node::appindicator_allocate()
 //   {
 //
-//      return new ::node_gnome::appindicator();
+//      return new ::node_xfce::appindicator();
 //
 //   }
 //
@@ -661,14 +661,14 @@ namespace desktop_environment_gnome
    bool node::launch_on_node(::subject::subject * psubject)
    {
 
-      auto bOk = ::node_gnome::node::launch_on_node(psubject);
+      auto bOk = ::node_xfce::node::launch_on_node(psubject);
 
       return bOk;
 
    }
 
 
-} // namespace desktop_environment_gnome
+} // namespace desktop_environment_xfce
 
 
 

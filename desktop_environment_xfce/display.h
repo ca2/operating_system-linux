@@ -4,7 +4,7 @@
 #pragma one
 
 
-//namespace node_gnome
+//namespace node_xfce
 //{
 //
 //

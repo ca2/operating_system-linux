@@ -6,18 +6,18 @@ void aura_linux_factory_exchange(::factory_map * pfactorymap);
 
 
 extern "C"
-void node_gnome_factory_exchange(::factory_map * pfactorymap);
+void node_xfce_factory_exchange(::factory_map * pfactorymap);
 
 
 extern "C"
-void desktop_environment_gnome_factory_exchange(::factory_map * pfactorymap)
+void desktop_environment_xfce_factory_exchange(::factory_map * pfactorymap)
 {
 
    aura_linux_factory_exchange(pfactorymap);
 
-   node_gnome_factory_exchange(pfactorymap);
+   node_xfce_factory_exchange(pfactorymap);
 
-   pfactorymap->create_factory < ::desktop_environment_gnome::node, ::acme::node > ();
+   pfactorymap->create_factory < ::desktop_environment_xfce::node, ::acme::node > ();
 
 
 }

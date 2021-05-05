@@ -3,9 +3,9 @@
 #include <limits.h>
 #include "acme/os/x11/_x11.h"
 #include "__standard_type.h"
-#include "gnome.h"
-#include "gnome_gnome.h"
-#include "gnome_internal_glue.h"
+#include "xfce.h"
+#include "xfce_xfce.h"
+#include "xfce_internal_glue.h"
 #include "apex/message/global.h"
 #include "aura/const/_const.h"
 #include "acme/const/id.h"
@@ -139,7 +139,7 @@ extern "C"
 #ifndef RASPBIAN
 
 
-class gnome_appindicator :
+class xfce_appindicator :
    virtual public ::linux::appindicator
 {
 public:
@@ -148,8 +148,8 @@ public:
    AppIndicator * m_pindicator;
 
 
-   gnome_appindicator();
-   virtual ~gnome_appindicator();
+   xfce_appindicator();
+   virtual ~xfce_appindicator();
 
 
    virtual bool create(const char * pszId, const char * pszIcon, const char * pszFolder, user_notify_icon_bridge * pbridge) override;
@@ -163,13 +163,13 @@ public:
 };
 
 
-gnome_appindicator::gnome_appindicator()
+xfce_appindicator::xfce_appindicator()
 {
 
 }
 
 
-gnome_appindicator::~gnome_appindicator()
+xfce_appindicator::~xfce_appindicator()
 {
 
    close();
@@ -177,7 +177,7 @@ gnome_appindicator::~gnome_appindicator()
 }
 
 
-void gnome_appindicator::close()
+void xfce_appindicator::close()
 {
 
 
@@ -211,7 +211,7 @@ namespace linux
    appindicator * allocate_appindicator()
    {
 
-      return new ::gnome_appindicator();
+      return new ::xfce_appindicator();
 
    }
 
@@ -219,7 +219,7 @@ namespace linux
 } // namespace linux
 
 
-bool gnome_appindicator::create(const char * pszId, const char * pszIcon, const char * pszFolder, user_notify_icon_bridge * pbridge)
+bool xfce_appindicator::create(const char * pszId, const char * pszIcon, const char * pszFolder, user_notify_icon_bridge * pbridge)
 {
 
    m_pindicator = app_indicator_new_with_path(pszId, pszIcon, APP_INDICATOR_CATEGORY_APPLICATION_STATUS, pszFolder);
@@ -283,7 +283,7 @@ void g_safe_free(void * pfree)
 #ifndef RASPBIAN
 
 
-bool gnome_appindicator::init(user_notify_icon_bridge * pbridge)
+bool xfce_appindicator::init(user_notify_icon_bridge * pbridge)
 {
 
    int iCount = pbridge->_get_notification_area_action_count();
@@ -426,7 +426,7 @@ bool gnome_appindicator::init(user_notify_icon_bridge * pbridge)
 #endif
 
 
-namespace node_gnome
+namespace node_xfce
 {
 
 
@@ -636,7 +636,7 @@ namespace node_gnome
    }
 
 
-} // namespace node_gnome
+} // namespace node_xfce
 
 
 const char * linux_g_direct_get_file_icon_path(const char * pszPath, int iSize)
