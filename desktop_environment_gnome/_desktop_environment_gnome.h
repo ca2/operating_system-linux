@@ -1,8 +1,20 @@
 //
-// Created by camilo on 04/05/2021.
+// Created by camilo on 04/05/2021 20:22 BRT <3ThomasBorregaardSørensen
 //
+#pragma once
 
-#ifndef BASIS__DESKTOP_ENVIRONMENT_GNOME_H
-#define BASIS__DESKTOP_ENVIRONMENT_GNOME_H
 
-#endif //BASIS__DESKTOP_ENVIRONMENT_GNOME_H
+#include "aura_linux/_aura_linux.h"
+#include "node_gnome/_node_gnome.h"
+#include "aura/user/_user.h"
+
+
+#include <gtk/gtk.h>
+#include <gdk/gdkx.h>
+
+
+
+#include "node.h"
+
+
+

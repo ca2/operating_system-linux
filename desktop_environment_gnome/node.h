@@ -13,7 +13,7 @@ namespace desktop_environment_gnome
 
 
    class CLASS_DECL_DESKTOP_ENVIRONMENT_GNOME node :
-      virtual public ::linux::aura::node,
+      virtual public ::aura::linux::node,
       virtual public ::node_gnome::node
    {
    public:
@@ -59,7 +59,7 @@ namespace desktop_environment_gnome
 
       virtual bool windowing_message_loop_step();
 
-      virtual void node_branch(const ::routine & routine);
+      virtual ::e_status node_branch(const ::routine & routine);
 
       //virtual void node_post_quit() override;
 

@@ -16,7 +16,6 @@ list(APPEND desktop_environment_gnome_source
         #display.h
         #enum_display_monitors.cpp
    factory_exchange.cpp
-   factory_exchange.h
    framework.cpp
    framework.h
         #gdk.cpp
@@ -44,13 +43,13 @@ list(APPEND library_references
    aura
    aura_posix
    aura_linux
-   windowing_xcb
-   node_kde
+   windowing_x11
+   node_gnome
    )
 
 
 
-add_library(desktop_environment_gnome SHARED ${desktop_environment_gnome_source} )
+add_library(desktop_environment_gnome SHARED ${desktop_environment_gnome_source} _desktop_environment_gnome.h)
 
 target_precompile_headers(desktop_environment_gnome PRIVATE framework.h)
 

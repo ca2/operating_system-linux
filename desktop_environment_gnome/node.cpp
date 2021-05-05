@@ -22,7 +22,7 @@ namespace desktop_environment_gnome
    node::node()
    {
 
-      m_pDesktopEnvironmentGnome = this;
+      m_pNodeDesktopEnvironmentGnome = this;
 
       defer_initialize_x11();
 
@@ -189,7 +189,7 @@ namespace desktop_environment_gnome
 
       ::node_gnome::g_defer_init();
 
-      auto estatus = ::linux::aura::node::initialize(pobject);
+      auto estatus = ::aura::linux::node::initialize(pobject);
 
       if(!estatus)
       {
@@ -284,7 +284,9 @@ namespace desktop_environment_gnome
 
       auto psystem = m_psystem->m_papexsystem;
 
-      auto edesktop = psystem->get_edesktop();
+      auto pnode = psystem->node();
+
+      auto edesktop = pnode->get_edesktop();
 
       switch (edesktop)
       {
@@ -365,7 +367,9 @@ namespace desktop_environment_gnome
 
       auto psystem = m_psystem->m_papexsystem;
 
-      auto edesktop = psystem->get_edesktop();
+      auto pnode =  psystem->node();
+
+      auto edesktop = pnode->get_edesktop();
 
       switch (edesktop)
       {
@@ -415,7 +419,9 @@ namespace desktop_environment_gnome
 
       auto psystem = m_psystem->m_papexsystem;
 
-      auto edesktop = psystem->get_edesktop();
+      auto pnode = psystem->node();
+
+      auto edesktop = pnode->get_edesktop();
 
       switch (edesktop)
       {
@@ -493,10 +499,12 @@ namespace desktop_environment_gnome
    }
 
 
-   void node::node_branch(const ::routine & routine)
+   ::e_status node::node_branch(const ::routine & routine)
    {
 
       gdk_branch(routine);
+
+      return ::success;
 
    }
 

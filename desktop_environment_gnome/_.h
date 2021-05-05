@@ -2,11 +2,7 @@
 
 
 #include "aura_linux/_.h"
-#include "platform-posix/node_gnome/_.h"
-
-
-#include <gtk/gtk.h>
-#include <gdk/gdkx.h>
+#include "node_gnome/_.h"
 
 
 #if defined(_DESKTOP_ENVIRONMENT_GNOME_LIBRARY)
@@ -24,12 +20,6 @@ namespace desktop_environment_gnome
 
 
 } // namespace node_gnome
-
-
-#include "node.h"
-
-
-#include "factory_exchange.h"
 
 
 
