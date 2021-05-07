@@ -1,7 +1,8 @@
 //
 // Created by camilo on 01/05/2021. 00:11 BRT <3TBS_!!
 //
-// sudo apt install ncurses-dev
+// apt install ncurses-dev
+// dnf install ncurses-devel
 #include <ncurses.h>
 #include "acme/os/_const_console.h"
 
