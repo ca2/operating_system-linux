@@ -958,6 +958,17 @@ namespace linux
    void interaction_impl::message_handler(::message::message * pmessage)
    {
 
+      bool bKeyMessage = false;
+
+      ::message::key * pkey = nullptr;
+
+      if (pre_message_handler(pkey, bKeyMessage, pmessage))
+      {
+
+         return;
+
+      }
+
       if(pmessage->m_id == e_message_timer)
       {
 
@@ -996,12 +1007,12 @@ namespace linux
 
       }
 
-      if(::is_set(m_puserinteraction))
-      {
-
-         m_puserinteraction->pre_translate_message(pmessage);
-
-      }
+//      if(::is_set(m_puserinteraction))
+//      {
+//
+//         m_puserinteraction->pre_translate_message(pmessage);
+//
+//      }
 
       if(tickDebugmessage_handlerTime.timeout(1))
       {
@@ -1058,51 +1069,51 @@ namespace linux
 
 
 
-      if(pmessage->m_id == e_message_key_down || pmessage->m_id == e_message_key_up || pmessage->m_id == e_message_char)
-      {
-
-         auto psession = get_session();
-
-         auto puser = psession->user();
-
-         auto pwindowing = puser->windowing();
-
-         __pointer(::message::key) pkey = pmessage;
-
-         pwindowing->set(pkey, get_oswindow(), m_pwindow, pkey->m_id, pkey->m_wparam, pkey->m_lparam);
-
-         if(pmessage->m_id == e_message_key_down)
-         {
-
-            try
-            {
-
-               psession->set_key_pressed(pkey->m_ekey, true);
-
-            }
-            catch(...)
-            {
-
-            }
-
-         }
-         else if(pmessage->m_id == e_message_key_up)
-         {
-
-            try
-            {
-
-               psession->set_key_pressed(pkey->m_ekey, false);
-
-            }
-            catch(...)
-            {
-
-            }
-
-         }
-
-      }
+//      if(bKeyMessage)
+//      {
+//
+//         auto psession = get_session();
+//
+//         auto puser = psession->user();
+//
+//         auto pwindowing = puser->windowing();
+//
+//         __pointer(::message::key) pkey = pmessage;
+//
+//         //pwindowing->set(pkey, get_oswindow(), m_pwindow, pkey->m_id, pkey->m_wparam, pkey->m_lparam);
+//
+////         if(pmessage->m_id == e_message_key_down)
+////         {
+////
+////            try
+////            {
+////
+////               psession->set_key_pressed(pkey->m_ekey, true);
+////
+////            }
+////            catch(...)
+////            {
+////
+////            }
+////
+////         }
+////         else if(pmessage->m_id == e_message_key_up)
+////         {
+////
+////            try
+////            {
+////
+////               psession->set_key_pressed(pkey->m_ekey, false);
+////
+////            }
+////            catch(...)
+////            {
+////
+////            }
+////
+////         }
+//
+//      }
 
       pmessage->m_lresult = 0;
 
@@ -1346,12 +1357,11 @@ namespace linux
          return;
 
       }
-      else if(pmessage->m_id == e_message_key_down ||
+/*      else if(pmessage->m_id == e_message_key_down ||
               pmessage->m_id == e_message_key_up ||
-              pmessage->m_id == e_message_char)
+              pmessage->m_id == e_message_char)*/
+      else if(bKeyMessage)
       {
-
-         __pointer(::message::key) pkey = pmessage;
 
          __pointer(::user::interaction) puiFocus =  get_keyboard_focus();
 
