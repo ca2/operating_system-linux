@@ -249,6 +249,19 @@ namespace linux
 
             m_pwindow = pwindowing->new_window(this);
 
+            if(m_pwindow)
+            {
+
+               output_debug_string("window created");
+
+            }
+            else
+            {
+
+               output_debug_string("window not created");
+
+            }
+
          }));
 
       }
