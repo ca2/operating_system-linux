@@ -46,20 +46,13 @@ list(APPEND library_references
    )
 
 
-
-
 #set_source_files_properties(q_node_impl.cpp PROPERTIES SKIP_PRECOMPILE_HEADERS ON)
-
-
-
 
 add_library(desktop_environment_kde SHARED ${desktop_environment_kde_source} _desktop_environment_kde.h)
 
 target_precompile_headers(desktop_environment_kde PRIVATE framework.h)
 
 set_target_properties(desktop_environment_kde PROPERTIES LINKER_LANGUAGE CXX)
-
-
 
 
 if (MSVC)
@@ -81,7 +74,6 @@ elseif (LINUX)
    endif()
    target_link_options(desktop_environment_kde PRIVATE -Wl,-z,defs)
 endif ()
-
 
 
 target_include_directories(desktop_environment_kde PRIVATE ${CMAKE_CURRENT_SOURCE_DIR}/../..)

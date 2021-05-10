@@ -4,8 +4,9 @@
 #include "app-core/audio/audio/_.h"
 
 
-// Ubuntu libasound2-dev
+// apt install libasound2-dev
 // dnf install alsa-lib-devel
+// zypper install alsa-devel
 #include <alsa/asoundlib.h>
 
 
