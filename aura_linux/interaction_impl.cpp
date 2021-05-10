@@ -1027,29 +1027,29 @@ namespace linux
 //
 //      }
 
-      if(tickDebugmessage_handlerTime.timeout(1))
-      {
-
-         iDebugmessage_handlerTime = 0;
-
-      }
-      else
-      {
-
-         if(iDebugmessage_handlerTime > 20)
-         {
-
-            ::output_debug_string("interaction_impl::message handler flooded?\n");
-
-         }
-         else
-         {
-
-            iDebugmessage_handlerTime++;
-
-         }
-
-      }
+//      if(tickDebugmessage_handlerTime.timeout(1))
+//      {
+//
+//         iDebugmessage_handlerTime = 0;
+//
+//      }
+//      else
+//      {
+//
+//         if(iDebugmessage_handlerTime > 20)
+//         {
+//
+//            ::output_debug_string("interaction_impl::message handler flooded?\n");
+//
+//         }
+//         else
+//         {
+//
+//            iDebugmessage_handlerTime++;
+//
+//         }
+//
+//      }
 
       if(m_puserinteraction != nullptr)
       {
