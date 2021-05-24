@@ -44,7 +44,7 @@ void __gtk_style_context_get_color(GtkStyleContext *context, GtkStateFlags state
 }
 
 
-namespace node_gnome
+namespace desktop_environment_gnome
 {
 
 
@@ -371,7 +371,7 @@ namespace node_gnome
 
       auto psystem = m_psystem->m_papexsystem;
 
-      auto edesktop = psystem->get_edesktop();
+      auto edesktop = get_edesktop();
 
       switch (edesktop)
       {
@@ -665,6 +665,8 @@ namespace node_gnome
 
          ::user::os_set_theme_colors(pthemecolors);
 
+         os_calc_dark_mode();
+
 //         auto psubject = System.subject(id_os_user_theme);
 //
 //         psubject->m_esubject = e_subject_deliver;
@@ -682,7 +684,7 @@ namespace node_gnome
    }
 
 
-   bool node::_os_calc_system_dark_mode()
+   bool node::_os_calc_dark_mode()
    {
 
       auto pthemecolors = ::user::os_get_theme_colors();
@@ -727,7 +729,7 @@ namespace node_gnome
 //
 //   }
 
-} // namespace user
+} // namespace desktop_environment_gnome
 
 
 

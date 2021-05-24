@@ -16,7 +16,7 @@ namespace desktop_environment_gnome
 {
 
 
-   CLASS_DECL_ACME void _os_process_user_theme(string strTheme);
+   CLASS_DECL_ACME void _os_process_user_theme_color(string strTheme);
 
 
    node::node()
@@ -517,18 +517,45 @@ namespace desktop_environment_gnome
 //   }
 
 
-//   void node::on_subject(::promise::subject * psubject, ::subject::context * pcontext)
-//   {
-//
-//      if(psubject->m_id == ::id_os_user_theme)
-//      {
-//
-//         _on_change_os_user_theme();
-//
-//      }
-//
-//
-//   }
+   void node::on_subject(::subject::subject * psubject, ::subject::context * pcontext)
+   {
+
+      if(psubject->m_id == ::id_os_user_theme)
+      {
+
+         _os_process_user_theme_color(m_strTheme);
+
+      }
+
+
+   }
+
+
+   void node::os_calc_dark_mode()
+   {
+
+      bool bDarkMode = _os_calc_dark_mode();
+
+      if(m_bitDarkMode != bDarkMode)
+      {
+
+         //::user::set_app_dark_mode(bDarkMode);
+
+         //::user::set_system_dark_mode(bDarkMode);
+
+         m_bitDarkMode = bDarkMode;
+
+         //System.deliver(id_os_dark_mode);
+
+         auto psystem = m_psystem->m_papexsystem;
+
+         psystem->process_subject(id_os_dark_mode);
+
+         //x11_kick_idle();
+
+      }
+
+   }
 
 
 //   ::nlinux::appindicator * node::appindicator_allocate()

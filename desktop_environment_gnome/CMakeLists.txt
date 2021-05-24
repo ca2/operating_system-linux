@@ -18,8 +18,8 @@ list(APPEND desktop_environment_gnome_source
    factory_exchange.cpp
    framework.cpp
    framework.h
-        #gdk.cpp
-        #gdk.h
+        gdk.cpp
+        gdk.h
         #gnome_direct.cpp
         #gtk_clipboard.cpp
         #monitor.cpp

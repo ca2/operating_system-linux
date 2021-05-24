@@ -22,6 +22,8 @@ namespace desktop_environment_gnome
       //gpointer m_pGtkSettingsDefault;
       //string   m_strTheme;
 
+      ::logic::bit         m_bitDarkMode;
+
 
       node();
       virtual ~node();
@@ -35,9 +37,13 @@ namespace desktop_environment_gnome
 
       virtual ::e_status initialize(::object * pobject) override;
 
-      //virtual void os_calc_user_dark_mode() override;
+      virtual void os_calc_dark_mode();
+
+      virtual bool _os_calc_dark_mode();
 
       virtual string os_get_user_theme() override;
+
+      string _os_get_user_theme() override;
 
       //virtual string _os_get_user_theme();
 
@@ -63,7 +69,7 @@ namespace desktop_environment_gnome
 
       //virtual void node_post_quit() override;
 
-      //virtual void on_subject(::promise::subject * psubject, ::subject::context * pcontext) override;
+      void on_subject(::subject::subject * psubject, ::subject::context * pcontext) override;
 
       //virtual void _on_change_os_user_theme(string strTheme);
 
