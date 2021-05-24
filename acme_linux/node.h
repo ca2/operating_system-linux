@@ -32,13 +32,13 @@ namespace acme
 
 
          node();
-         virtual ~node();
+         ~node() override;
 
 
-         virtual ::e_status initialize_matter(::matter * pmatter) override;
+         ::e_status initialize_matter(::matter * pmatter) override;
 
 
-         virtual ::file::path _module_path();
+         ::file::path _module_path() override;
 
 
          //virtual ::string dir_root() override;
@@ -52,7 +52,7 @@ namespace acme
          //virtual ::file::path roaming() override;
 
 
-         virtual void install_crash_dump_reporting(const string & strModuleNameWithTheExeExtension) override;
+         void install_crash_dump_reporting(const string & strModuleNameWithTheExeExtension) override;
 
 
          //virtual bool memcnts();
@@ -65,16 +65,47 @@ namespace acme
          //virtual ::e_status last_error_to_status(::u32 dwLastError);
 
 
-         virtual string audio_get_default_library_name() override;
+         string audio_get_default_library_name() override;
 
 
-         virtual ::e_status calculate_linux_distribution() override;
+         ::e_status calculate_linux_distribution() override;
 
 
-         virtual ::user::enum_desktop get_edesktop() override;
+         ::user::enum_desktop get_edesktop() override;
 
 
-         virtual ::user::enum_desktop calculate_edesktop() override;
+         ::user::enum_desktop calculate_edesktop() override;
+
+
+
+         virtual bool process_modules(string_array& stra, u32 processID);
+
+         virtual bool load_modules_diff(string_array& straOld, string_array& straNew, const char* pszExceptDir);
+
+         virtual id_array get_pids();
+
+         virtual id_array module_path_get_pid(const char* pszModulePath, bool bModuleNameIsPropertyFormatted);
+
+         virtual string module_path_from_pid(u32 pid);
+
+         virtual string command_line_from_pid(u32 pid);
+
+         virtual bool is_shared_library_busy(u32 processid, const string_array& stra);
+
+         virtual bool is_shared_library_busy(const string_array& stra);
+
+         virtual bool process_contains_module(string& strImage, ::u32 processID, const char* pszLibrary);
+
+         virtual void shared_library_process(dword_array& dwa, string_array& straProcesses, const char* pszLibrary);
+
+         virtual bool is_process_running(::u32 pid);
+
+         virtual string get_environment_variable(const char* pszEnvironmentVariable);
+
+         virtual string expand_env(string str);
+
+
+         virtual array <::serial::port_info> list_serial_ports();
 
 
       };

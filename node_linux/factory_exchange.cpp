@@ -23,6 +23,12 @@ void node_linux_factory_exchange(::factory_map * pfactorymap)
       estatus = pfactorymap->m_psystem->do_factory_exchange("desktop_environment", "gnome");
 
    }
+   else if (edesktop & ::user::e_desktop_xfce)
+   {
+
+      estatus = pfactorymap->m_psystem->do_factory_exchange("desktop_environment", "xfce");
+
+   }
    else
    {
 

@@ -2,8 +2,12 @@
 
 
 #include "app-core/audio/audio/_.h"
+
+
+// apt install libasound2-dev
+// dnf install alsa-lib-devel
+// zypper install alsa-devel
 #include <alsa/asoundlib.h>
-// Ubuntu libasound2-dev
 
 
 #if defined(_AUDIO_ALSA_LIBRARY)

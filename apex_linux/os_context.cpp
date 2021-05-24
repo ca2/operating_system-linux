@@ -936,7 +936,12 @@ namespace linux
 
          // 2018-01-29 call_async("/bin/bash", "-c \"" + strTarget + "\"", strFolder, SW_SHOWDEFAULT, false);
 
-         call_async(strTarget, strParams, strFolder, e_display_default, false);
+         auto psystem = m_psystem;
+
+         auto pnode = psystem->node();
+
+         pnode->call_async(strTarget, strParams, strFolder, e_display_default, false);
+
 
 //         char * pszCommandLine = strdup(strTarget + " " + strParams);
 
@@ -1028,6 +1033,10 @@ namespace linux
 
       ::dir::ls_dir(stra, "/proc/");
 
+      auto psystem = m_psystem;
+
+      auto pnode = psystem->node();
+
       for(auto & strPid : stra)
       {
 
@@ -1036,7 +1045,7 @@ namespace linux
          if(iPid > 0)
          {
 
-            ::file::path path = module_path_from_pid(iPid);
+            ::file::path path = pnode->module_path_from_pid(iPid);
 
             if(path.has_char())
             {

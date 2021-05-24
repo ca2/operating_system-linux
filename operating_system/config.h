@@ -25,6 +25,8 @@
 
 #define _OPENGL 1
 
+#define HAVE_TERMIOS_H 1
+
 #define BSD_STYLE_SOCKETS
 #define HAVE_MYSQL 1
 #define HAVE_OPENSSL 1

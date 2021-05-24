@@ -2,7 +2,7 @@ cmake_minimum_required(VERSION 3.17)
 project(desktop_environment_gnome CXX)
 
 
-list(APPEND desktop_environment_gnome_source
+list(APPEND library_source
    _.cpp
    _.h
         #appindicator.cpp
@@ -44,12 +44,13 @@ list(APPEND library_references
    aura_posix
    aura_linux
    windowing_x11
+   node_gtk
    node_gnome
    )
 
 
 
-add_library(desktop_environment_gnome SHARED ${desktop_environment_gnome_source} _desktop_environment_gnome.h)
+add_library(desktop_environment_gnome SHARED ${library_source} _desktop_environment_gnome.h)
 
 target_precompile_headers(desktop_environment_gnome PRIVATE framework.h)
 
