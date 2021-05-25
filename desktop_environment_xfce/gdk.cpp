@@ -421,7 +421,7 @@ namespace node_xfce
    }
 
 
-   string get_wallpaper(::acme::system * psystem, ::index iIndex)
+   string get_wallpaper(::system * psystem, ::index iIndex)
    {
 
       // wall-changer sourceforge.net contribution

@@ -421,7 +421,7 @@ namespace desktop_environment_gnome
    }
 
 
-   string get_wallpaper(::acme::system * psystem, ::index iIndex)
+   string get_wallpaper(class ::system * psystem, ::index iIndex)
    {
 
       // wall-changer sourceforge.net contribution
@@ -432,7 +432,9 @@ namespace desktop_environment_gnome
 
       auto papexsystem = psystem->m_papexsystem;
 
-      auto edesktop = papexsystem->get_edesktop();
+      auto pnode = papexsystem->node();
+
+      auto edesktop = pnode->get_edesktop();
 
       switch (edesktop)
       {

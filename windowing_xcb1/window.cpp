@@ -506,7 +506,7 @@ namespace windowing_xcb
    }
 
 
-   bool window::bamf_set_icon(::apex::application * papplication)
+   bool window::bamf_set_icon(::application * papplication)
    {
 
       synchronous_lock synchronouslock(user_mutex());

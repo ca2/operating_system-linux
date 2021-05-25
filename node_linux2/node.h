@@ -31,7 +31,7 @@ namespace node_linux
 
       virtual ::e_status initialize(::layered * pobjectContext) override;
 
-      virtual ::file::path get_desktop_file_path(::apex::application * papp) const override;
+      virtual ::file::path get_desktop_file_path(::application * papp) const override;
 
 
    };

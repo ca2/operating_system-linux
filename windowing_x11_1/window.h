@@ -150,7 +150,7 @@ namespace windowing_x11
       virtual bool is_destroying();
       
 
-      virtual bool bamf_set_icon(::apex::application * papplication);
+      virtual bool bamf_set_icon(::application * papplication);
 
       virtual bool set_icon(::image * pimage);
 
