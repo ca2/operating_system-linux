@@ -291,9 +291,9 @@ namespace multimedia
 
          }
 
-         m_iBufferCount = MAX(m_iBufferCount, uPeriodMin);
+         m_iBufferCount = maximum(m_iBufferCount, uPeriodMin);
 
-         m_iBufferCount = MIN(m_iBufferCount, uPeriodMax);
+         m_iBufferCount = minimum(m_iBufferCount, uPeriodMax);
 
          err = snd_pcm_hw_params_set_periods(m_ppcm, m_phwparams, m_iBufferCount, 0);
 
@@ -342,9 +342,9 @@ namespace multimedia
 
          }
 
-         m_frameCount = MAX(m_frameCount, uPeriodSizeMin);
+         m_frameCount = maximum(m_frameCount, uPeriodSizeMin);
 
-         m_frameCount = MIN(m_frameCount, uPeriodSizeMax / m_iBufferCount);
+         m_frameCount = minimum(m_frameCount, uPeriodSizeMax / m_iBufferCount);
 
          err = snd_pcm_hw_params_set_period_size(m_ppcm, m_phwparams, m_frameCount, 0);
 

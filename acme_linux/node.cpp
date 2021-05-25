@@ -826,9 +826,7 @@ namespace acme
       bool node::process_modules(string_array& stra, u32 processID)
       {
 
-         __throw(error_interface_only);
-
-         return false;
+         return ::acme::posix::node::process_modules(stra, processID);
 
       }
 
@@ -836,9 +834,7 @@ namespace acme
       bool node::load_modules_diff(string_array& straOld, string_array& straNew, const char* pszExceptDir)
       {
 
-         __throw(error_interface_only);
-
-         return false;
+         return ::acme::posix::node::load_modules_diff(straOld, straNew, pszExceptDir);
 
       }
 
@@ -846,9 +842,7 @@ namespace acme
       id_array node::get_pids()
       {
 
-         __throw(error_interface_only);
-
-         return id_array();
+         return ::acme::posix::node::get_pids();
 
       }
 
@@ -856,27 +850,29 @@ namespace acme
       id_array node::module_path_get_pid(const char* pszModulePath, bool bModuleNameIsPropertyFormatted)
       {
 
-         id_array iaPid;
+         return ::acme::posix::node::module_path_get_pid(pszModulePath, bModuleNameIsPropertyFormatted);
 
-         id_array pids = get_pids();
-
-         string strPath;
-
-         for(auto & iCurrentPid : pids)
-         {
-
-            strPath = module_path_from_pid(iCurrentPid.i32());
-
-            if(strPath.compare_ci(pszModulePath) == 0 )
-            {
-
-               iaPid.add(iCurrentPid);
-
-            }
-
-         }
-
-         return iaPid;
+//         id_array iaPid;
+//
+//         id_array pids = get_pids();
+//
+//         string strPath;
+//
+//         for(auto & iCurrentPid : pids)
+//         {
+//
+//            strPath = module_path_from_pid(iCurrentPid.i32());
+//
+//            if(strPath.compare_ci(pszModulePath) == 0 )
+//            {
+//
+//               iaPid.add(iCurrentPid);
+//
+//            }
+//
+//         }
+//
+//         return iaPid;
 
 
       }
@@ -885,9 +881,7 @@ namespace acme
       string node::module_path_from_pid(u32 pid)
       {
 
-         __throw(error_interface_only);
-
-         return "";
+         return ::acme::posix::node::module_path_from_pid(pid);
 
       }
 
@@ -895,9 +889,7 @@ namespace acme
       string node::command_line_from_pid(u32 pid)
       {
 
-         __throw(error_interface_only);
-
-         return "";
+         return ::acme::posix::node::command_line_from_pid(pid);
 
       }
 
@@ -905,9 +897,7 @@ namespace acme
       bool node::is_shared_library_busy(u32 processid, const string_array& stra)
       {
 
-         __throw(error_interface_only);
-
-         return false;
+         return ::acme::posix::node::is_shared_library_busy(processid, stra);
 
       }
 
@@ -915,9 +905,7 @@ namespace acme
       bool node::is_shared_library_busy(const string_array& stra)
       {
 
-         __throw(error_interface_only);
-
-         return false;
+         return ::acme::posix::node::is_shared_library_busy(stra);
 
       }
 
@@ -925,9 +913,7 @@ namespace acme
       bool node::process_contains_module(string& strImage, ::u32 processID, const char* pszLibrary)
       {
 
-         __throw(error_interface_only);
-
-         return false;
+         return ::acme::posix::node::process_contains_module(strImage, processID, pszLibrary);
 
       }
 
@@ -935,7 +921,7 @@ namespace acme
       void node::shared_library_process(dword_array& dwa, string_array& straProcesses, const char* pszLibrary)
       {
 
-         __throw(error_interface_only);
+         ::acme::posix::node::shared_library_process(dwa, straProcesses, pszLibrary);
 
       }
 
@@ -943,9 +929,7 @@ namespace acme
       bool node::is_process_running(::u32 pid)
       {
 
-         __throw(error_interface_only);
-
-         return false;
+         return ::acme::posix::node::is_process_running(pid);
 
       }
 
@@ -953,7 +937,7 @@ namespace acme
       string node::get_environment_variable(const char* pszEnvironmentVariable)
       {
 
-         return "";
+         return ::acme::posix::node::get_environment_variable(pszEnvironmentVariable);
 
       }
 
@@ -961,7 +945,7 @@ namespace acme
       string node::expand_env(string str)
       {
 
-         return "";
+         return ::acme::posix::node::expand_env(str);
 
       }
 
@@ -969,9 +953,7 @@ namespace acme
       array <::serial::port_info> node::list_serial_ports()
       {
 
-         __throw(error_interface_only);
-
-         return ::array <::serial::port_info>();
+         return ::acme::posix::node::list_serial_ports();
 
       }
 

@@ -1265,17 +1265,6 @@ namespace linux
             // So the routine starts by setting to the default cursor,
             // what forces, at the end of message processing, setting the bergedge cursor to the default cursor, if no other
             // handler has set it to another one.
-            __pointer(::message::mouse) pmouse(pmessage);
-
-            auto psession = get_session();
-
-            auto puser = psession->user();
-
-            auto pwindowing = puser->windowing();
-
-            auto pcursor = pwindowing->get_cursor(e_cursor_arrow);
-
-            pmouse->m_pcursor = pcursor;
 
             m_puserinteraction->m_pimpl2->_on_mouse_move_step(pmouse->m_point);
 
@@ -1343,6 +1332,33 @@ namespace linux
 
 
             ::output_debug_string("left_button_up");
+
+         }
+
+         string strUserInteractionType(puserinteractionMouse->type_c_str());
+
+         if(pmouse->m_id == e_message_mouse_move)
+         {
+
+            static int s_iMotionNotify = 0;
+
+            s_iMotionNotify++;
+
+            if (strUserInteractionType.contains_ci("button"))
+            {
+
+               output_debug_string("mouse_move::userinteraction=button");
+
+            }
+            else
+            {
+
+
+               puserinteractionMouse = m_puserinteraction->child_from_point(pmouse->m_point);
+
+
+
+            }
 
          }
 
