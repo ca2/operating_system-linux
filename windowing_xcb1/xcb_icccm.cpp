@@ -4,6 +4,8 @@
 #include "framework.h"
 
 
+// apt install libxcb-icccm4-dev
+
 #include <xcb/xcb_icccm.h>
 
 
