@@ -300,7 +300,7 @@ namespace aura
 //      }
 
 
-      ::e_status node::open_folder(::file::path & pathFolder)
+      ::e_status node::open_folder(const ::file::path & pathFolder)
       {
 
 //         wstring wstrFolder(pathFolder);
