@@ -1392,40 +1392,25 @@ namespace linux
       else if(bKeyMessage)
       {
 
-         __pointer(::user::interaction) puiFocus =  get_keyboard_focus();
+         __pointer(::user::interaction) puiFocus =  m_puserinteractionFocus1;
 
-         if(puiFocus != nullptr
-               && puiFocus->is_window()
-               && puiFocus->get_top_level() != nullptr
-               && puiFocus != m_puserinteraction)
+         if(puiFocus)
          {
 
-            puiFocus->send(pkey);
-
-            if(pmessage->m_bRet)
-            {
-
-               return;
-
-            }
+            puiFocus->route_message(pkey);
 
          }
-         else if(!pkey->m_bRet)
+         else
          {
 
-            if(m_puserinteraction != nullptr)
-            {
+             m_puserinteraction->route_message(pkey);
 
-               m_puserinteraction->_000OnKey(pkey);
+         }
 
-               if(pmessage->m_bRet)
-               {
+         if(pmessage->m_bRet)
+         {
 
-                  return;
-
-               }
-
-            }
+            return;
 
          }
 
