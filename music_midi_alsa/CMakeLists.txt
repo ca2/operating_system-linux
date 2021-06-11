@@ -4,8 +4,9 @@ project(music_midi_alsa CXX)
 
 
 list(APPEND audio_alsa_source
-   _.h
    _.cpp
+   _.h
+   _music_midi_alsa.h
    midi.cpp
    midi.h
    out.cpp
@@ -34,7 +35,7 @@ list(APPEND library_references
    )
 
 
-add_library(music_midi_alsa SHARED ${audio_alsa_source})
+add_library(music_midi_alsa SHARED ${audio_alsa_source} )
 
 target_precompile_headers(music_midi_alsa PRIVATE framework.h)
 

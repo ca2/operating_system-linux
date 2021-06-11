@@ -2,7 +2,6 @@
 
 
 #include "app-veriwell/multimedia/multimedia/_.h"
-#include "seqlib.h"
 
 
 
@@ -37,12 +36,3 @@ namespace music
 } // namespace music
 
 
-#include "translation.h"
-
-#include "message_out.h"
-
-#include "out.h"
-
-#include "midi.h"
-
-#include "factory_exchange.h"

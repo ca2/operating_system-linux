@@ -5,12 +5,14 @@
 
 #include "acme/_start.h"
 
+
 #include "_.h"
-//#include "seqpriv.h"
 
 
-//#include "aura/user/user/_user.h"
+#include "_music_midi_alsa.h"
 
 
 #include "aura/_defer.h"
+
+
 

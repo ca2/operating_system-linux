@@ -28,7 +28,7 @@ list(APPEND library_references
    )
 
 
-add_library(audio_alsa SHARED ${audio_alsa_source})
+add_library(audio_alsa SHARED ${audio_alsa_source} _audio_alsa.h)
 
 target_precompile_headers(audio_alsa PRIVATE framework.h)
 
