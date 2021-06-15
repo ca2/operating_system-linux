@@ -5,7 +5,7 @@
 #include "acme/os/_user.h"
 ////#include "third/sn/sn.h"
 
-::user::interaction * g_puserinteractionMouseCapture123 = nullptr;
+//::user::interaction * g_puserinteractionMouseCapture123 = nullptr;
 //#define MESSAGE_WINDOW_PARENT (::oswindow((void *) (iptr) 1))
 
 
@@ -1277,40 +1277,40 @@ namespace linux
          if(m_puserinteractionCapture)
          {
 
-            if(g_puserinteractionMouseCapture123 == nullptr)
-            {
-
-               g_puserinteractionMouseCapture123 = m_puserinteractionCapture;
-
-            }
-            else if(g_puserinteractionMouseCapture123 != m_puserinteractionCapture)
-            {
-
-               output_debug_string("different capture (1)");
-
-            }
+//            if(g_puserinteractionMouseCapture123 == nullptr)
+//            {
+//
+//               g_puserinteractionMouseCapture123 = m_puserinteractionCapture;
+//
+//            }
+//            else if(g_puserinteractionMouseCapture123 != m_puserinteractionCapture)
+//            {
+//
+//               output_debug_string("different capture (1)");
+//
+//            }
 
             puserinteractionMouse = m_puserinteractionCapture;
 
          }
 
-         if(g_puserinteractionMouseCapture123 != nullptr)
-         {
-
-            if(g_puserinteractionMouseCapture123 != puserinteractionMouse)
-            {
-
-               output_debug_string("different capture (2)");
-
-            }
-
-         }
-         else
-         {
-
-
-
-         }
+//         if(g_puserinteractionMouseCapture123 != nullptr)
+//         {
+//
+//            if(g_puserinteractionMouseCapture123 != puserinteractionMouse)
+//            {
+//
+//               output_debug_string("different capture (2)");
+//
+//            }
+//
+//         }
+//         else
+//         {
+//
+//
+//
+//         }
 
 
          if(!puserinteractionMouse)

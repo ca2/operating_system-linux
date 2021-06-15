@@ -664,12 +664,12 @@ namespace linux
    }
 
 
-   ::file::path dir_context::appdata()
-   {
-
-      return ::dir_context::appdata();
-
-   }
+//   ::file::path dir_context::appdata()
+//   {
+//
+//      return ::dir_context::appdata();
+//
+//   }
 
 
    ::file::path dir_context::commonappdata()

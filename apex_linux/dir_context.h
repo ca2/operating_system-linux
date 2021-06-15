@@ -70,7 +70,7 @@ namespace linux
 
       virtual ::file::path trash_that_is_not_trash(const ::file::path & psz) override;
 
-      virtual ::file::path appdata() override;
+      //virtual ::file::path appdata(const string & strAppId = "") override;
       virtual ::file::path commonappdata() override;
       virtual ::file::path element_commonappdata(const string & strElement) override;
 

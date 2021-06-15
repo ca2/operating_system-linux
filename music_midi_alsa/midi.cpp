@@ -262,6 +262,8 @@ namespace music
             }
             m_straOut.add(strName);*/
          //}
+
+
       __pointer(::music::midi::message_out) midi::get_message_out(const string& strDevice)
       {
 
@@ -274,7 +276,6 @@ namespace music
             return m_pmidiRealTime->get_message_out(strDevice);
 
          }
-
 
          return new message_out(this, strDevice);
 
