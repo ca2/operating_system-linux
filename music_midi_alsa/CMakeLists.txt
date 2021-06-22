@@ -2,8 +2,7 @@ cmake_minimum_required(VERSION 3.17)
 project(music_midi_alsa CXX)
 
 
-
-list(APPEND audio_alsa_source
+list(APPEND library_source
    _.cpp
    _.h
    _music_midi_alsa.h
@@ -35,7 +34,7 @@ list(APPEND library_references
    )
 
 
-add_library(music_midi_alsa SHARED ${audio_alsa_source} )
+add_library(music_midi_alsa SHARED ${library_source} )
 
 target_precompile_headers(music_midi_alsa PRIVATE framework.h)
 

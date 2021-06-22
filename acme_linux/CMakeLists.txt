@@ -2,7 +2,7 @@ cmake_minimum_required(VERSION 3.17)
 project(acme_linux CXX)
 
 
-list(APPEND acme_linux_source
+list(APPEND library_source
         _.cpp
         _.h
    _acme_linux.h
@@ -27,7 +27,7 @@ list(APPEND acme_linux_source
 
 
 
-add_library(acme_linux SHARED ${acme_linux_source})
+add_library(acme_linux SHARED ${library_source})
 
 set_source_files_properties(console_ncurses.cpp PROPERTIES SKIP_PRECOMPILE_HEADERS ON)
 

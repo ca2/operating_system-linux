@@ -768,7 +768,9 @@ namespace acme
       ::e_status node::calculate_linux_distribution()
       {
 
-         auto lines = file_as_lines("/etc/os-release");
+         auto pcontext = m_pcontext->m_papexcontext;
+
+         auto lines = pcontext->file().lines("/etc/os-release");
 
          ::string strId;
 

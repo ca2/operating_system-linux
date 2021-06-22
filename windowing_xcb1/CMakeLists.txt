@@ -2,15 +2,8 @@ cmake_minimum_required(VERSION 3.17)
 project(windowing_xcb CXX)
 
 
-add_compile_options("$<$<CONFIG:DEBUG>:-DDEBUG>")
 
-
-
-set(LIBRARY_OUTPUT_PATH ${CMAKE_CURRENT_SOURCE_DIR}/../../../time-${PLATFORM_NAME}/cmake)
-set(EXECUTABLE_OUTPUT_PATH ${CMAKE_CURRENT_SOURCE_DIR}/../../../time-${PLATFORM_NAME}/cmake)
-
-
-list(APPEND audio_alsa_source
+list(APPEND library_source
    _.h
    _.cpp
    #application.cpp
@@ -52,7 +45,10 @@ list(APPEND audio_alsa_source
    windowing.h
    xcb_windowing.cpp
    text_composition_client.cpp 
-   text_composition_client.h        
+   text_composition_client.h
+        windowing_xcb.cpp
+        windowing_xcb.h
+        xcb_icccm.cpp
    xi.cpp
    )
 
@@ -65,14 +61,8 @@ list(APPEND library_references
    )
 
 
-if (MSVC)
-   set(LIBCXX_TARGETING_MSVC ON)
-else ()
-   set(LIBCXX_TARGETING_MSVC OFF)
-endif ()
 
-
-add_library(windowing_xcb SHARED ${audio_alsa_source} windowing_xkb.cpp xcb_icccm.cpp)
+add_library(windowing_xcb SHARED ${library_source})
 
 target_precompile_headers(windowing_xcb PRIVATE framework.h)
 
@@ -98,33 +88,18 @@ elseif (LINUX)
 endif ()
 
 
-#add_dependencies(windowing_xcb experience_core)
-
 
 target_link_directories(windowing_xcb PRIVATE ${LIBRARY_OUTPUT_PATH})
 target_link_directories(windowing_xcb PRIVATE ${CMAKE_CURRENT_SOURCE_DIR}/../../../archive/storage-${PLATFORM_NAME}/library/x64/basis)
 target_link_directories(windowing_xcb PRIVATE ${CMAKE_CURRENT_SOURCE_DIR}/../../../archive/storage-${PLATFORM_NAME}/third/library/x64/basis)
 
 
-target_include_directories(windowing_xcb PRIVATE .)
-target_include_directories(windowing_xcb PRIVATE $ENV{HOME}/__config)
 target_include_directories(windowing_xcb PRIVATE ${CMAKE_CURRENT_SOURCE_DIR}/../..)
 target_include_directories(windowing_xcb PRIVATE ${CMAKE_CURRENT_SOURCE_DIR}/..)
-target_include_directories(windowing_xcb PRIVATE ${CMAKE_CURRENT_SOURCE_DIR}/../../../source)
-target_include_directories(windowing_xcb PRIVATE ${CMAKE_CURRENT_SOURCE_DIR}/../../../source/app)
-target_include_directories(windowing_xcb PRIVATE ${CMAKE_CURRENT_SOURCE_DIR}/../../../source/app/_include)
-target_include_directories(windowing_xcb PRIVATE ${CMAKE_CURRENT_SOURCE_DIR}/../../../source/include)
-target_include_directories(windowing_xcb PRIVATE ${CMAKE_CURRENT_SOURCE_DIR}/../../../archive/platform-${PLATFORM_NAME})
-target_include_directories(windowing_xcb PRIVATE ${CMAKE_CURRENT_SOURCE_DIR}/../../../archive/platform-${PLATFORM_NAME}/_include)
-target_include_directories(windowing_xcb PRIVATE ${CMAKE_CURRENT_SOURCE_DIR}/../../../archive/third-${PLATFORM_NAME}/include)
-target_include_directories(windowing_xcb PRIVATE ${CMAKE_CURRENT_SOURCE_DIR}/../../../archive/third-${PLATFORM_NAME}/third/include)
-target_include_directories(windowing_xcb PRIVATE ${CMAKE_CURRENT_SOURCE_DIR}/../../../archive/third-${PLATFORM_NAME}/third/include/include)
 target_include_directories(windowing_xcb PRIVATE ${CMAKE_CURRENT_SOURCE_DIR})
 
 
 target_compile_definitions(windowing_xcb PRIVATE _MUSIC_MIDI_ALSA_LIBRARY)
-target_compile_definitions(windowing_xcb PRIVATE UNICODE)
-target_compile_definitions(windowing_xcb PRIVATE _UNICODE)
 
 
 

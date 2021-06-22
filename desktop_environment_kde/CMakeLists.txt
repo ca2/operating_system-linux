@@ -2,9 +2,10 @@ cmake_minimum_required(VERSION 3.17)
 project(desktop_environment_kde CXX)
 
 
-list(APPEND desktop_environment_kde_source
+list(APPEND library_source
    _.cpp
    _.h
+        _desktop_environment_kde.h
    #appindicator.cpp
    #appindicator.h
    #application.cpp
@@ -48,7 +49,7 @@ list(APPEND library_references
 
 #set_source_files_properties(q_node_impl.cpp PROPERTIES SKIP_PRECOMPILE_HEADERS ON)
 
-add_library(desktop_environment_kde SHARED ${desktop_environment_kde_source} _desktop_environment_kde.h)
+add_library(desktop_environment_kde SHARED ${library_source} )
 
 target_precompile_headers(desktop_environment_kde PRIVATE framework.h)
 

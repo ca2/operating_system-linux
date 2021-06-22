@@ -2,15 +2,8 @@ cmake_minimum_required(VERSION 3.17)
 project(node_linux CXX)
 
 
-add_compile_options("$<$<CONFIG:DEBUG>:-DDEBUG>")
 
-
-
-set(LIBRARY_OUTPUT_PATH ${CMAKE_CURRENT_SOURCE_DIR}/../../../time-${PLATFORM_NAME}/cmake)
-set(EXECUTABLE_OUTPUT_PATH ${CMAKE_CURRENT_SOURCE_DIR}/../../../time-${PLATFORM_NAME}/cmake)
-
-
-list(APPEND audio_alsa_source
+list(APPEND library_source
    _.h
    _.cpp
    appindicator.cpp
@@ -42,7 +35,7 @@ else ()
 endif ()
 
 
-add_library(node_linux SHARED ${audio_alsa_source} appindicator.cpp appindicator.h)
+add_library(node_linux SHARED ${library_source} )
 
 target_precompile_headers(node_linux PRIVATE framework.h)
 
@@ -65,33 +58,14 @@ elseif (LINUX)
 endif ()
 
 
-#add_dependencies(node_linux experience_core)
 
 
-target_link_directories(node_linux PRIVATE ${LIBRARY_OUTPUT_PATH})
-target_link_directories(node_linux PRIVATE ${CMAKE_CURRENT_SOURCE_DIR}/../../../archive/storage-${PLATFORM_NAME}/library/x64/basis)
-target_link_directories(node_linux PRIVATE ${CMAKE_CURRENT_SOURCE_DIR}/../../../archive/storage-${PLATFORM_NAME}/third/library/x64/basis)
-
-
-target_include_directories(node_linux PRIVATE .)
-target_include_directories(node_linux PRIVATE $ENV{HOME}/__config)
 target_include_directories(node_linux PRIVATE ${CMAKE_CURRENT_SOURCE_DIR}/../..)
 target_include_directories(node_linux PRIVATE ${CMAKE_CURRENT_SOURCE_DIR}/..)
-target_include_directories(node_linux PRIVATE ${CMAKE_CURRENT_SOURCE_DIR}/../../../source)
-target_include_directories(node_linux PRIVATE ${CMAKE_CURRENT_SOURCE_DIR}/../../../source/app)
-target_include_directories(node_linux PRIVATE ${CMAKE_CURRENT_SOURCE_DIR}/../../../source/app/_include)
-target_include_directories(node_linux PRIVATE ${CMAKE_CURRENT_SOURCE_DIR}/../../../source/include)
-target_include_directories(node_linux PRIVATE ${CMAKE_CURRENT_SOURCE_DIR}/../../../archive/platform-${PLATFORM_NAME})
-target_include_directories(node_linux PRIVATE ${CMAKE_CURRENT_SOURCE_DIR}/../../../archive/platform-${PLATFORM_NAME}/_include)
-target_include_directories(node_linux PRIVATE ${CMAKE_CURRENT_SOURCE_DIR}/../../../archive/third-${PLATFORM_NAME}/include)
-target_include_directories(node_linux PRIVATE ${CMAKE_CURRENT_SOURCE_DIR}/../../../archive/third-${PLATFORM_NAME}/third/include)
-target_include_directories(node_linux PRIVATE ${CMAKE_CURRENT_SOURCE_DIR}/../../../archive/third-${PLATFORM_NAME}/third/include/include)
 target_include_directories(node_linux PRIVATE ${CMAKE_CURRENT_SOURCE_DIR})
 
 
-target_compile_definitions(node_linux PRIVATE _MUSIC_MIDI_ALSA_LIBRARY)
-target_compile_definitions(node_linux PRIVATE UNICODE)
-target_compile_definitions(node_linux PRIVATE _UNICODE)
+target_compile_definitions(node_linux PRIVATE _NODE_LINUX_LIBRARY)
 
 
 

@@ -2,7 +2,7 @@ cmake_minimum_required(VERSION 3.17)
 project(apex_linux CXX)
 
 
-list(APPEND apex_linux_source
+list(APPEND library_source
     _.cpp
     _.h
     crypto.cpp
@@ -36,7 +36,7 @@ list(APPEND apex_linux_source
 
 list(APPEND library_references acme acme_posix acme_linux apex apex_posix)
 
-add_library(apex_linux SHARED ${apex_linux_source})
+add_library(apex_linux SHARED ${library_source})
 
 target_precompile_headers(apex_linux PRIVATE framework.h)
 

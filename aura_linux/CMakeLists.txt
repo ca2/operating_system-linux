@@ -2,7 +2,7 @@ cmake_minimum_required(VERSION 3.17)
 project(aura_linux CXX)
 
 
-list(APPEND aura_linux_source
+list(APPEND library_source
     _.cpp
     _.h
     _aura_linux.h
@@ -17,7 +17,7 @@ list(APPEND aura_linux_source
     )
 
 
-add_library(aura_linux SHARED ${aura_linux_source})
+add_library(aura_linux SHARED ${library_source})
 
 
 list(APPEND library_references

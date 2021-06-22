@@ -2,7 +2,8 @@
 #include "apex/platform/app_core.h"
 //#include "_linux.h"
 //#include "apex/os/linux/gnome_gnome.h"
-#include <unistd.h>
+
+
 
 i32 daemonize_process(const char * _cmd_line, i32 * pprocessId);
 
@@ -86,67 +87,17 @@ namespace linux
 
    }
 
+
    bool os_context::reboot()
    {
-      /*      HANDLE hToken;
-            TOKEN_PRIVILEGES tkp;
-            if (!OpenProcessToken(GetCurrentProcess(),
-               TOKEN_ADJUST_PRIVILEGES | TOKEN_QUERY, &hToken))
-               return false;
-            if(!LookupPrivilegeValue(nullptr, SE_SHUTDOWN_NAME, &tkp.Privileges[0].Luid))
-            {
-               TRACELASTERROR();
-               return false;
-            }
-            tkp.PrivilegeCount = 1;
-            tkp.Privileges[0].Attributes = SE_PRIVILEGE_ENABLED;
-            if(!AdjustTokenPrivileges(hToken, false, &tkp, 0, (PTOKEN_PRIVILEGES) nullptr, 0))
-            {
-               TRACELASTERROR();
-               return false;
-            }
-            if (get_last_error() == ERROR_NOT_ALL_ASSIGNED)
-            {
-               return false;
-            }
-            if(!LookupPrivilegeValue(nullptr, SE_REMOTE_SHUTDOWN_NAME, &tkp.Privileges[0].Luid))
-            {
-               TRACELASTERROR();
-               return false;
-            }
-            tkp.PrivilegeCount = 1;
-            tkp.Privileges[0].Attributes = SE_PRIVILEGE_ENABLED;
-            if(!AdjustTokenPrivileges(hToken, false, &tkp, 0, (PTOKEN_PRIVILEGES) nullptr, 0))
-            {
-               TRACELASTERROR();
-               return false;
-            }
-            if (get_last_error() == ERROR_NOT_ALL_ASSIGNED)
-            {
-               return false;
-            }
 
+      //::sync();
+      //::reboot(RB_AUTOBOOT);
 
-            if(!WTSShutdownSystem(WTS_CURRENT_SERVER_HANDLE, WTS_WSD_REBOOT))
-            {
-               TRACELASTERROR();
-               return false;
-            }
-      //      if (!ExitWindowsEx(EWX_REBOOT | EWX_FORCE,
-      //      SHTDN_REASON_MAJOR_SOFTWARE | SHTDN_REASON_MINOR_INSTALLATION))
-      //      {
-      //      ::u32 dwLastError = ::get_last_error();
-      //      return false;
-      //      }
-            //reset the previlages
-      //      tkp.Privileges[0].Attributes = 0;
-      //      AdjustTokenPrivileges(hToken, false, &tkp, 0, (PTOKEN_PRIVILEGES) nullptr, 0);
-      //      return true;
-            __throw(error_not_implemented);
-            return false;
+      m_psystem->m_pnode->reboot();
 
-         */
       return false;
+
    }
 
 

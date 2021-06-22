@@ -2,7 +2,7 @@ cmake_minimum_required(VERSION 3.17)
 project(node_linux CXX)
 
 
-list(APPEND node_linux_source
+list(APPEND library_source
     _.cpp
     _.h
     factory_exchange.cpp
@@ -11,7 +11,7 @@ list(APPEND node_linux_source
 
 
 
-add_library(node_linux SHARED ${node_linux_source})
+add_library(node_linux SHARED ${library_source})
 
 list(APPEND library_references
    acme

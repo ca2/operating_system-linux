@@ -5,6 +5,7 @@ project(desktop_environment_gnome CXX)
 list(APPEND library_source
    _.cpp
    _.h
+        _desktop_environment_gnome.h
         #appindicator.cpp
         #appindicator.h
         #application.cpp
@@ -50,7 +51,7 @@ list(APPEND library_references
 
 
 
-add_library(desktop_environment_gnome SHARED ${library_source} _desktop_environment_gnome.h)
+add_library(desktop_environment_gnome SHARED ${library_source})
 
 target_precompile_headers(desktop_environment_gnome PRIVATE framework.h)
 

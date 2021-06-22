@@ -5,6 +5,7 @@ project(desktop_environment_xfce CXX)
 list(APPEND library_source
    _.cpp
    _.h
+        _desktop_environment_xfce.h
         #appindicator.cpp
         #appindicator.h
         #application.cpp
@@ -50,7 +51,7 @@ list(APPEND library_references
 
 
 
-add_library(desktop_environment_xfce SHARED ${library_source} _desktop_environment_xfce.h)
+add_library(desktop_environment_xfce SHARED ${library_source})
 
 target_precompile_headers(desktop_environment_xfce PRIVATE framework.h)
 
