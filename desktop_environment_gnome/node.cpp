@@ -549,7 +549,9 @@ namespace desktop_environment_gnome
 
          auto psystem = m_psystem->m_papexsystem;
 
-         psystem->process_subject(id_os_dark_mode);
+         auto psubject = psystem->subject(id_os_dark_mode);
+
+         psystem->handle_subject(psubject);
 
          //x11_kick_idle();
 
