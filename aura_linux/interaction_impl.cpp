@@ -1746,7 +1746,7 @@ namespace linux
 //                  {
 //                     ::rectangle_i32 rectangle;
 //                     ::get_window_rect(hWndChild, &rectangle);
-//                     _001ScreenToClient(&rectangle);
+//                     screen_to_client(&rectangle);
 //                     ::set_window_position(hWndChild, nullptr,
 //                        rectangle.left+xAmount, rectangle.top+yAmount, 0, 0,
 //                        SWP_NOSIZE|SWP_NOACTIVATE|SWP_NOZORDER);
@@ -2266,7 +2266,7 @@ namespace linux
 ////      SetViewportOrgEx(hdc, 0, 0, nullptr);
 //      ::rectangle_i32 rectPaint;
 //      rectPaint = rectUpdate;
-//      m_puserinteraction->_001ScreenToClient(rectPaint);
+//      m_puserinteraction->screen_to_client(rectPaint);
 //      user::oswindow_array wndaApp;
 //
 //

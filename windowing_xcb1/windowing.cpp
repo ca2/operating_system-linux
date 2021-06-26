@@ -986,7 +986,7 @@ namespace windowing_xcb
 
                      ::size_i32 size(pconfigure->width, pconfigure->height);
 
-                     auto pointWindow = pinteraction->layout().window().screen_origin();
+                     auto pointWindow = pinteraction->screen_origin();
 
                      auto sizeWindow = pinteraction->layout().window().size();
 
@@ -1030,9 +1030,9 @@ namespace windowing_xcb
 
                         pinteraction->layout().window().origin() = point;
 
-                        pinteraction->layout().sketch().screen_origin() = point;
+                        pinteraction->screen_origin() = point;
 
-                        pinteraction->layout().window().screen_origin() = point;
+                        pinteraction->screen_origin() = point;
 
                         pinteraction->set_reposition(true);
 

@@ -1949,7 +1949,7 @@ Retrieved from: http://en.literateprograms.org/Hello_World_(C,_Cairo)?oldid=1038
 
                      ::size_i32 size(e.xconfigure.width, e.xconfigure.height);
 
-                     auto pointWindow = pinteraction->layout().window().screen_origin();
+                     auto pointWindow = pinteraction->screen_origin();
 
                      auto sizeWindow = pinteraction->layout().window().size();
 
@@ -1993,9 +1993,9 @@ Retrieved from: http://en.literateprograms.org/Hello_World_(C,_Cairo)?oldid=1038
 
                         pinteraction->layout().window().origin() = point;
 
-                        pinteraction->layout().sketch().screen_origin() = point;
+                        pinteraction->screen_origin() = point;
 
-                        pinteraction->layout().window().screen_origin() = point;
+                        pinteraction->screen_origin() = point;
 
                         pinteraction->set_reposition(true);
 
