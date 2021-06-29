@@ -8,20 +8,23 @@ namespace linux
 {
 
 
-
    stdio_file::stdio_file()
    {
+
       m_pStream = nullptr;
+
    }
+
 
    stdio_file::~stdio_file()
    {
-//   ASSERT_VALID(this);
 
-//   if (m_pStream != nullptr && m_bCloseOnDelete)
-      //close();
       if (m_pStream != nullptr)
+      {
          close();
+
+      }
+
    }
 
 

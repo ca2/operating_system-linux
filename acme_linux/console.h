@@ -11,13 +11,20 @@ namespace linux
    public:
 
 
+      void *                  m_pscreen;
+      void *                  m_pwindow;
+      ::string_stream         m_cout;
+      __pointer(stdio_file)   m_pfileOut;
+      __pointer(stdio_file)   m_pfileIn;
+      int                     m_iW;
+      int                     m_iH;
+      int                     m_iColor;
 
-      int m_iW;
-      int m_iH;
-      int m_iColor;
 
       console();
       virtual ~console();
+
+      ::string_stream & cout() override;
 
       void redirect_io();
       void SetWindowSize(int height,int width);

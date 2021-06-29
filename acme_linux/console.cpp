@@ -3,11 +3,11 @@
 #include "console.h"
 
 
-void __console_init();
-void __console_term();
-void __console_set_cursor_position(int line, int column);
-void __console_set_text_color(int color);
-void __console_write(const char * psz);
+void __console_init(void ** ppscreen, void ** ppwindow, FILE * pfileOut, FILE * pfileIn, int cols, int lines);
+void __console_term(void * pscreen);
+void __console_set_cursor_position(void * pscreen, int line, int column);
+void __console_set_text_color(void * pscreen, int color);
+void __console_write(void * pscreen, const char * psz);
 
 
 namespace linux
@@ -17,9 +17,8 @@ namespace linux
    console::console()
    {
 
-      cout.m_p = __new(std_out_buffer());
-
-      __console_init();
+      m_pscreen = nullptr;
+      m_pwindow = nullptr;
 
       m_iColor = -1;
 
@@ -29,7 +28,15 @@ namespace linux
    console::~console()
    {
 
-      __console_term();
+      __console_term(m_pscreen);
+
+   }
+
+
+   string_stream & console::cout()
+   {
+
+      return m_cout;
 
    }
 
@@ -110,8 +117,27 @@ namespace linux
 
    void console::SetWindowSize(int height,int width)
    {
+
       m_iH = height;
       m_iW = width;
+
+      if(!m_pscreen)
+      {
+
+         m_pfileIn.create_new();
+         m_pfileOut.create_new();
+
+         auto pszFileIn = tmpnam(nullptr);
+         auto pszFileOut = tmpnam(nullptr);
+
+         auto estatusIn = m_pfileIn->open(pszFileIn, ::file::e_open_read | ::file::e_open_write | ::file::e_open_create | ::file::e_open_truncate);
+         auto estatusOut = m_pfileOut->open(pszFileOut, ::file::e_open_write| ::file::e_open_write | ::file::e_open_create | ::file::e_open_truncate);
+
+         m_cout.m_p = m_pfileOut;
+
+         __console_init(&m_pscreen, &m_pwindow, m_pfileOut->m_pfile, m_pfileIn->m_pfile, m_iW, m_iH);
+
+      }
       /*      SMALL_RECT window;
             window.Top = 0;
             window.Left = 0;
@@ -135,7 +161,7 @@ namespace linux
    void console::SetCursorPosition(int y,int x)
    {
 
-      __console_set_cursor_position(y, x);
+      __console_set_cursor_position(m_pscreen, y, x);
 
    }
 
@@ -146,13 +172,13 @@ namespace linux
       if(m_iColor != -1)
       {
 
-         __console_set_text_color(color);
+         __console_set_text_color(m_pscreen, color);
 
       }
 
       m_iColor = color;
 
-      __console_set_text_color(color);
+      __console_set_text_color(m_pscreen, color);
 
    }
 
@@ -174,7 +200,7 @@ namespace linux
    void console::write(const char * psz)
    {
 
-      __console_write(psz);
+      __console_write(m_pscreen, psz);
 
    }
 

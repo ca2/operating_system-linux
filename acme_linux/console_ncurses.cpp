@@ -5,67 +5,212 @@
 // dnf install ncurses-devel
 #include <ncurses.h>
 #include "acme/os/_const_console.h"
+#include <stdlib.h>
+#include <fcntl.h>
+#include <string.h>
+#include <unistd.h>
+#include <iostream>
+#include <sstream>
 
 
-void __console_init()
+int __console_init(void ** ppscreen, void ** ppwindow, FILE * pfileOut, FILE * pfileIn, int cols, int lines)
 {
 
-   initscr();
-   raw();
-   noecho();
-   keypad(stdscr, true);
-   start_color();
+   pthread_mutex_t m;
 
-   init_color(COLOR_WHITE, 1000, 1000, 1000);
-   init_color(COLOR_RED, 1000, 0, 0);
-   init_color(COLOR_GREEN, 0, 0, 1000);
-   init_color(COLOR_BLUE, 0, 0, 500);
-   init_color(COLOR_CYAN, 0, 1000, 1000);
-   init_color(COLOR_MAGENTA, 1000, 0, 1000);
-   init_color(COLOR_YELLOW, 1000, 1000, 0);
-   init_color(COLOR_BLACK, 0, 0, 0);
+   if (pthread_mutex_init(&m, NULL) != 0)
+   {
 
-   init_pair(e_dos_color_foreground_white, COLOR_WHITE, COLOR_BLACK);
-   init_pair(e_dos_color_foreground_red, COLOR_RED, COLOR_BLACK);
-   init_pair(e_dos_color_foreground_blue, COLOR_GREEN, COLOR_BLACK);
-   init_pair(e_dos_color_foreground_dark_blue, COLOR_BLUE, COLOR_BLACK);
-   init_pair(e_dos_color_foreground_cyan, COLOR_CYAN, COLOR_BLACK);
-   init_pair(e_dos_color_foreground_magenta, COLOR_MAGENTA, COLOR_BLACK);
-   init_pair(e_dos_color_foreground_yellow, COLOR_YELLOW, COLOR_BLACK);
-   init_pair(e_dos_color_foreground_black, COLOR_BLACK, COLOR_BLACK);
+      printf("\n mutex init has failed\n");
 
+      return 1;
+
+   }
+
+   pthread_mutex_lock(&m);
+
+   if(fork() == 0)
+   {
+
+      int pt = posix_openpt(O_RDWR);
+
+      if (pt == -1)
+      {
+
+         printf("Could not open pseudo terminal.\n");
+
+         return -1;
+
+      }
+
+      char * ptname = ptsname(pt);
+
+      if (!ptname)
+      {
+
+         std::cerr << "Could not get pseudo terminal device name.\n";
+
+         close(pt);
+
+         return EXIT_FAILURE;
+
+      }
+
+      if (unlockpt(pt) == -1)
+      {
+
+         std::cerr << "Could not get pseudo terminal device name.\n";
+
+         close(pt);
+
+         return EXIT_FAILURE;
+
+      }
+
+      std::ostringstream oss;
+
+      std::string str = getenv("SHELL");
+
+      oss << str << " -S" << (strrchr(ptname, '/') + 1) << "/" << pt << " &";
+
+      system(oss.str().c_str());
+
+      int xterm_fd = open(ptname, O_RDWR);
+
+      char c;
+
+      do read(xterm_fd, &c, 1); while (c != '\n');
+
+      if (dup2(pt, 1) < 0)
+      {
+
+         std::cerr << "Could not redirect standard output.\n";
+
+         close(pt);
+
+         return EXIT_FAILURE;
+
+      }
+
+      if (dup2(pt, 2) < 0)
+      {
+
+         std::cerr << "Could not redirect standard error output.\n";
+
+         close(pt);
+
+         return EXIT_FAILURE;
+
+      }
+
+      std::cout << "This should appear on the xterm." << std::endl;
+
+      std::cerr << "So should this.\n";
+
+      std::cin.ignore(1);
+
+      //close(pt);
+
+      auto pszTermName = getenv("TERM");
+
+      if (pszTermName == nullptr)
+      {
+
+         pszTermName = "vt100";
+
+      }
+
+      auto pscreen = newterm(pszTermName, pfileOut, pfileIn);
+
+      set_term((SCREEN *) pscreen);
+
+      raw();
+
+      noecho();
+
+      keypad(stdscr, true);
+
+      start_color();
+
+      init_color(COLOR_WHITE, 1000, 1000, 1000);
+      init_color(COLOR_RED, 1000, 0, 0);
+      init_color(COLOR_GREEN, 0, 0, 1000);
+      init_color(COLOR_BLUE, 0, 0, 500);
+      init_color(COLOR_CYAN, 0, 1000, 1000);
+      init_color(COLOR_MAGENTA, 1000, 0, 1000);
+      init_color(COLOR_YELLOW, 1000, 1000, 0);
+      init_color(COLOR_BLACK, 0, 0, 0);
+
+      init_pair(e_dos_color_foreground_white, COLOR_WHITE, COLOR_BLACK);
+      init_pair(e_dos_color_foreground_red, COLOR_RED, COLOR_BLACK);
+      init_pair(e_dos_color_foreground_blue, COLOR_GREEN, COLOR_BLACK);
+      init_pair(e_dos_color_foreground_dark_blue, COLOR_BLUE, COLOR_BLACK);
+      init_pair(e_dos_color_foreground_cyan, COLOR_CYAN, COLOR_BLACK);
+      init_pair(e_dos_color_foreground_magenta, COLOR_MAGENTA, COLOR_BLACK);
+      init_pair(e_dos_color_foreground_yellow, COLOR_YELLOW, COLOR_BLACK);
+      init_pair(e_dos_color_foreground_black, COLOR_BLACK, COLOR_BLACK);
+
+      auto pwindow = newwin(lines, cols, 0, 0);
+
+      *ppscreen = pscreen;
+      *ppwindow = pwindow;
+
+      pthread_mutex_unlock(&m);
+
+      while(true)
+      {
+
+         sleep(1);
+
+      }
+
+   }
+   else
+   {
+
+      pthread_mutex_lock(&m);
+      pthread_mutex_unlock(&m);
+
+      printf("finished child");
+
+   }
 
 }
 
 
-void __console_term()
+void __console_term(void * pscreen)
 {
 
-   endwin();
+   delscreen((SCREEN *) pscreen);
 
 }
 
 
 
-void __console_set_cursor_position(int line, int column)
+void __console_set_cursor_position(void * pscreen, int line, int column)
 {
+
+   set_term((SCREEN *) pscreen);
 
    move(line, column);
 
 }
 
 
-void __console_set_text_color(int color)
+void __console_set_text_color(void * pscreen, int color)
 {
+
+   set_term((SCREEN *) pscreen);
 
    attroff(COLOR_PAIR(color));
 
 }
 
 
-void __console_write(const char * psz)
+void __console_write(void * pscreen, const char * psz)
 {
 
+   set_term((SCREEN *) pscreen);
    printw(psz);
    refresh();
 

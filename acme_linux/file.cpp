@@ -202,6 +202,8 @@ namespace linux
 
       m_iFile = iFile;
 
+      m_eopen = eopen;
+
       return ::success;
 
    }
