@@ -111,7 +111,7 @@ int __console_init(void ** ppscreen, void ** ppwindow, FILE * pfileOut, FILE * p
 
       //close(pt);
 
-      auto pszTermName = getenv("TERM");
+      const char * pszTermName = getenv("TERM");
 
       if (pszTermName == nullptr)
       {
