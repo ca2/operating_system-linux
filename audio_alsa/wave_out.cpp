@@ -130,8 +130,6 @@ namespace multimedia
          else
          {
 
-            //m_frameCount = uiSamplesPerSec / 30;
-
             m_frameCount = 1024;
 
             m_iBufferCount = 4;
@@ -244,6 +242,8 @@ namespace multimedia
             return error_failed;
 
          }
+
+         m_psynththread->m_iWaitBuffer = 1;
 
          m_estate = e_state_opened;
 
