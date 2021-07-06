@@ -175,6 +175,8 @@ int __console_init(void ** ppscreen, void ** ppwindow, FILE * pfileOut, FILE * p
 
    }
 
+   return 0;
+
 }
 
 

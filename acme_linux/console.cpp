@@ -127,11 +127,11 @@ namespace linux
          m_pfileIn.create_new();
          m_pfileOut.create_new();
 
-         auto pszFileIn = tmpnam(nullptr);
-         auto pszFileOut = tmpnam(nullptr);
+         auto pFILEIn = tmpfile();
+         auto pFILEOut = tmpfile();
 
-         auto estatusIn = m_pfileIn->open(pszFileIn, ::file::e_open_read | ::file::e_open_write | ::file::e_open_create | ::file::e_open_truncate);
-         auto estatusOut = m_pfileOut->open(pszFileOut, ::file::e_open_write| ::file::e_open_write | ::file::e_open_create | ::file::e_open_truncate);
+         m_pfileIn->m_pfile = pFILEIn;
+         m_pfileOut->m_pfile = pFILEOut;
 
          m_cout.m_p = m_pfileOut;
 

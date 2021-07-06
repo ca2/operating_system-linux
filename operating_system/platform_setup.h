@@ -12,5 +12,5 @@
 
 #include <pc.txt>
 #include <raspbian.txt>
-#include <__distro.h>
+//#include <__distro.h>
 
