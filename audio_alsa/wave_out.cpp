@@ -132,6 +132,8 @@ namespace multimedia
 
             m_frameCount = 1024;
 
+            //m_frameCount = uiSamplesPerSec / 20;
+
             m_iBufferCount = 4;
 
             printf("::wave::* %" PRIu64 "\n", m_frameCount);
@@ -521,7 +523,7 @@ namespace multimedia
 
          snd_pcm_sframes_t iFrameFreeCount = 0;
 
-         if(false)
+         //if(false)
          {
 
             while(::task_get_run())
@@ -571,7 +573,7 @@ namespace multimedia
 
                }
 
-               usleep((iFramesToWrite - iFrameFreeCount) * 1'500'000 / m_pwaveformat->m_waveformat.nSamplesPerSec);
+               usleep((iFramesToWrite - iFrameFreeCount) * 500'000 / m_pwaveformat->m_waveformat.nSamplesPerSec);
 
             }
 
