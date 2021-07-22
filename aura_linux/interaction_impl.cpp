@@ -635,7 +635,7 @@ namespace linux
    }
 
 
-   void interaction_impl::PostNcDestroy()
+   void interaction_impl::post_non_client_destroy()
    {
 
       //clear_os_data();
@@ -647,7 +647,7 @@ namespace linux
 
       }
 
-      ::user::interaction_impl::PostNcDestroy();
+      ::user::interaction_impl::post_non_client_destroy();
 
    }
 
@@ -664,7 +664,7 @@ namespace linux
       else
       {
 
-         PostNcDestroy();
+         post_non_client_destroy();
 
       }
 

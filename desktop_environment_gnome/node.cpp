@@ -649,6 +649,8 @@ namespace desktop_environment_gnome
    void node::os_post_quit()
    {
 
+      ::node_gnome::node::os_post_quit();
+
    }
 
 
