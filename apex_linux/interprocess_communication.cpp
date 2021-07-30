@@ -258,30 +258,41 @@ namespace linux
    }
 
 
-      bool interprocess_communication_rx::destroy()
+   ::e_status interprocess_communication_rx::destroy()
+   {
+
+      i32 iRetry = 23;
+
+      while(m_bRunning && iRetry > 0)
       {
 
-         i32 iRetry = 23;
-         while(m_bRunning && iRetry > 0)
-         {
-            m_bRun = false;
-            sleep(1_ms);
-            iRetry--;
-         }
+         m_bRun = false;
 
-         if(m_iQueue < 0)
-            return true;
+         sleep(1_ms);
 
-         if(msgctl(m_iQueue,IPC_RMID,0) == -1)
-         {
-            return false;
-         }
+         iRetry--;
 
-         m_iQueue = -1;
+      }
+
+      if(m_iQueue < 0)
+      {
 
          return true;
 
       }
+
+      if(msgctl(m_iQueue,IPC_RMID,0) == -1)
+      {
+
+         return false;
+
+      }
+
+      m_iQueue = -1;
+
+      return ::success;
+
+   }
 
 
       bool interprocess_communication_rx::start_receiving()

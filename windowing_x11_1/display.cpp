@@ -78,7 +78,7 @@ namespace windowing_x11
    }
 
 
-   i64 display::add_ref(OBJ_REF_DBG_PARAMS)
+   i64 display::increment_reference_count(OBJECT_REFERENCE_COUNT_DEBUG_PARAMETERS)
    {
 
 #ifdef WINDOWS
@@ -98,7 +98,7 @@ namespace windowing_x11
    }
 
 
-   i64 display::dec_ref(OBJ_REF_DBG_PARAMS)
+   i64 display::decrement_reference_count(OBJECT_REFERENCE_COUNT_DEBUG_PARAMETERS)
    {
 
 #ifdef WINDOWS
@@ -118,10 +118,10 @@ namespace windowing_x11
    }
 
 
-   i64 display::release(OBJ_REF_DBG_PARAMS)
+   i64 display::release(OBJECT_REFERENCE_COUNT_DEBUG_PARAMETERS)
    {
 
-      i64 i = dec_ref(OBJ_REF_DBG_ARGS);
+      i64 i = decrement_reference_count(OBJECT_REFERENCE_COUNT_DEBUG_ARGS);
 
       if (i == 0)
       {

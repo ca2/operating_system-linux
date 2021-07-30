@@ -775,7 +775,7 @@ log_handler (const gchar   *log_domain,
 // CLASS_DECL_APEX void main_branch(::matter * prunnable, e_priority epriority)
 // {
 
-//    prunnable->add_ref(OBJ_REF_DBG_P_NOTE(nullptr, "main_branch"));
+//    prunnable->increment_reference_count(OBJECT_REFERENCE_COUNT_DEBUG_P_NOTE(nullptr, "main_branch"));
 
 //    gdk_branch(prunnable, epriority);
 

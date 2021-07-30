@@ -103,11 +103,11 @@ namespace linux
 
 
       interprocess_communication_rx();
-      virtual ~interprocess_communication_rx();
+      ~interprocess_communication_rx() override;
 
 
       bool create(const char * pszChannel);
-      bool destroy();
+      ::e_status destroy() override;
 
 
       virtual void * on_interprocess_receive(::interprocess_communication::rx * prx, const char * pszMessage);
@@ -121,8 +121,6 @@ namespace linux
       virtual bool start_receiving();
 
       virtual void * receive();
-
-      //LRESULT message_queue_proc(UINT message, WPARAM wparam, LPARAM lparam);
 
 
       bool is_rx_ok();

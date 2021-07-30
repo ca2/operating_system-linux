@@ -748,7 +748,7 @@ void gdk_branch(const ::routine & routine);
 // void gdk_branch(matter * prunnable, e_priority epriority)
 // {
 
-//    prunnable->add_ref(OBJ_REF_DBG_P_NOTE(nullptr, "gdk_branch"));
+//    prunnable->increment_reference_count(OBJECT_REFERENCE_COUNT_DEBUG_P_NOTE(nullptr, "gdk_branch"));
 
 //    auto idle_source = g_idle_source_new();
 
@@ -764,7 +764,7 @@ void gdk_branch(const ::routine & routine);
 // CLASS_DECL_APEX void main_branch(::matter * prunnable, e_priority epriority)
 // {
 
-//    prunnable->add_ref(OBJ_REF_DBG_P_NOTE(nullptr, "main_branch"));
+//    prunnable->increment_reference_count(OBJECT_REFERENCE_COUNT_DEBUG_P_NOTE(nullptr, "main_branch"));
 
 //    gdk_branch(prunnable, epriority);
 
