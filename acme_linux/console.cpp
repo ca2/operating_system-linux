@@ -197,10 +197,10 @@ namespace linux
    }
 
 
-   void console::write(const char * psz)
+   void console::write(const ::string & str)
    {
 
-      __console_write(m_pscreen, psz);
+      __console_write(m_pscreen, str);
 
    }
 

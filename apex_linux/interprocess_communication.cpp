@@ -39,7 +39,7 @@ namespace linux
    }
 
 
-   bool interprocess_communication_tx::open(const char * pszChannel,launcher * plauncher)
+   bool interprocess_communication_tx::open(const ::string & pszChannel,launcher * plauncher)
    {
 
       if(m_iQueue >= 0)
@@ -98,7 +98,7 @@ namespace linux
    }
 
 
-   bool interprocess_communication_tx::send(const char * pszMessage, duration durationTimeout)
+   bool interprocess_communication_tx::send(const ::string & pszMessage, duration durationTimeout)
    {
 
       memory m;
@@ -184,7 +184,7 @@ namespace linux
                }
                */
 
-      //const char * pszMessage = (const char *)pdata;
+      //const ::string & pszMessage = (const ::string &)pdata;
 
       ::memcpy_dup(pdata->data,p,iLen);
 
@@ -224,7 +224,7 @@ namespace linux
    }
 
 
-   bool interprocess_communication_rx::create(const char * pszChannel)
+   bool interprocess_communication_rx::create(const ::string & pszChannel)
    {
 
       if(!file_exists(pszChannel))
@@ -314,7 +314,7 @@ namespace linux
       }
 
 
-//      void interprocess_communication_rx::receiver::on_ipc_receive(interprocess_communication_rx * prx,const char * pszMessage)
+//      void interprocess_communication_rx::receiver::on_ipc_receive(interprocess_communication_rx * prx,const ::string & pszMessage)
 //      {
 //
 //      }
@@ -332,7 +332,7 @@ namespace linux
 //      }
 
 
-      void * interprocess_communication_rx::on_interprocess_receive(::interprocess_communication::rx * prx,const char * pszMessage)
+      void * interprocess_communication_rx::on_interprocess_receive(::interprocess_communication::rx * prx,const ::string & pszMessage)
       {
 
          if(m_preceiver != nullptr)
@@ -488,7 +488,7 @@ namespace linux
 //
 //      }
 //
-//      bool interprocess_communication::open_ab(const char * pszChannel,launcher * plauncher)
+//      bool interprocess_communication::open_ab(const ::string & pszChannel,launcher * plauncher)
 //      {
 //
 //         m_strChannel = pszChannel;
@@ -514,7 +514,7 @@ namespace linux
 //      }
 
 
-//      bool interprocess_communication::open_ba(const char * pszChannel,launcher * plauncher)
+//      bool interprocess_communication::open_ba(const ::string & pszChannel,launcher * plauncher)
 //      {
 //
 //         m_strChannel = pszChannel;

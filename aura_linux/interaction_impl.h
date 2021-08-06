@@ -187,7 +187,7 @@ namespace linux
 
 
       // oswindow Text Functions
-      void set_window_text(const char * pszString) override;
+      void set_window_text(const ::string & strString) override;
 
       //strsize GetWindowText(char * pszStringBuf, strsize nMaxCount);
 

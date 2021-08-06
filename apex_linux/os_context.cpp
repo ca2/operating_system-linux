@@ -5,7 +5,7 @@
 
 
 
-i32 daemonize_process(const char * _cmd_line, i32 * pprocessId);
+i32 daemonize_process(const ::string & _cmd_line, i32 * pprocessId);
 
 #undef USERNAME_LENGTH // mysql one
 
@@ -101,7 +101,7 @@ namespace linux
    }
 
 
-   void os_context::terminate_processes_by_title(const char * lpszName)
+   void os_context::terminate_processes_by_title(const ::string & lpszName)
    {
       __throw(error_not_implemented);
       return;
@@ -132,7 +132,8 @@ namespace linux
       //  }
    }
 
-   bool os_context::get_pid_by_path(const char * lpszName, ::u32 & dwPid)
+
+   bool os_context::get_pid_by_path(const ::string & lpszName, ::u32 & dwPid)
    {
       u32_array dwa;
       get_all_processes(dwa);
@@ -148,7 +149,7 @@ namespace linux
    }
 
 
-   bool os_context::get_pid_by_title(const char * lpszName, ::u32 & dwPid)
+   bool os_context::get_pid_by_title(const ::string & lpszName, ::u32 & dwPid)
    {
 
       u32_array dwa;
@@ -263,7 +264,7 @@ namespace linux
       */
    }
 
-   bool os_context::local_machine_set_run(const char * pszKey, const char * pszCommand)
+   bool os_context::local_machine_set_run(const ::string & pszKey, const ::string & pszCommand)
    {
 
 //      __throw(error_not_implemented);
@@ -281,7 +282,7 @@ namespace linux
    }
 
 
-   bool os_context::local_machine_set_run_once(const char * pszKey, const char * pszCommand)
+   bool os_context::local_machine_set_run_once(const ::string & pszKey, const ::string & pszCommand)
    {
 
 
@@ -297,7 +298,7 @@ namespace linux
 
    }
 
-   bool os_context::current_user_set_run(const char * pszKey, const char * pszCommand)
+   bool os_context::current_user_set_run(const ::string & pszKey, const ::string & pszCommand)
    {
 
       __throw(error_not_implemented);
@@ -314,7 +315,7 @@ namespace linux
 
    }
 
-   bool os_context::current_user_set_run_once(const char * pszKey, const char * pszCommand)
+   bool os_context::current_user_set_run_once(const ::string & pszKey, const ::string & pszCommand)
    {
 
       __throw(error_not_implemented);
@@ -371,7 +372,7 @@ namespace linux
       */
    }
 
-   bool os_context::file_extension_get_open_with_list_keys(string_array & straKey, const char * pszExtension)
+   bool os_context::file_extension_get_open_with_list_keys(string_array & straKey, const ::string & pszExtension)
    {
       __throw(error_not_implemented);
       return false;
@@ -396,7 +397,7 @@ namespace linux
    }
 
 
-   bool os_context::file_extension_get_open_with_list_commands(string_array & straCommand, const char * pszExtension)
+   bool os_context::file_extension_get_open_with_list_commands(string_array & straCommand, const ::string & pszExtension)
    {
 
       string_array straKey;
@@ -409,7 +410,7 @@ namespace linux
 
    }
 
-   bool os_context::file_association_set_default_icon(const char * pszExtension, const char * pszExtensionNamingClass, const char * pszIconPath)
+   bool os_context::file_association_set_default_icon(const ::string & pszExtension, const ::string & pszExtensionNamingClass, const ::string & pszIconPath)
    {
 
       __throw(error_not_implemented);
@@ -427,7 +428,7 @@ namespace linux
    }
 
 
-   bool os_context::file_association_set_shell_open_command(const char * pszExtension, const char * pszExtensionNamingClass,  const char * pszCommand, const char * pszParam)
+   bool os_context::file_association_set_shell_open_command(const ::string & pszExtension, const ::string & pszExtensionNamingClass,  const ::string & pszCommand, const ::string & pszParam)
    {
 
       return false;
@@ -463,7 +464,7 @@ namespace linux
       */
    }
 
-   bool os_context::file_association_get_shell_open_command(const char * pszExtension, string & strExtensionNamingClass, string & strCommand, string & strParam)
+   bool os_context::file_association_get_shell_open_command(const ::string & pszExtension, string & strExtensionNamingClass, string & strCommand, string & strParam)
    {
       __throw(error_not_implemented);
       return false;
@@ -484,7 +485,7 @@ namespace linux
             if(keyLink.QueryValue(nullptr, strFormat))
             {
 
-               const char * psz = strFormat;
+               const ::string & psz = strFormat;
 
                try
                {
@@ -506,7 +507,7 @@ namespace linux
       */
    }
 
-   bool os_context::open_in_ie(const char * pcsz)
+   bool os_context::open_in_ie(const ::string & pcsz)
 
    {
 
@@ -883,7 +884,7 @@ namespace linux
 
          //::system("cd /; setsid \"" + strTarget + "\" </dev/null &>/dev/null");
 
-         //i32 daemonize_process(const char * _cmd_line, i32 * pprocessId)
+         //i32 daemonize_process(const ::string & _cmd_line, i32 * pprocessId)
 
          // 2018-01-29 call_async("/bin/bash", "-c \"" + strTarget + "\"", strFolder, SW_SHOWDEFAULT, false);
 
@@ -1014,7 +1015,7 @@ namespace linux
    }
 
 
-   bool os_context::linux_can_exec(const char *file)
+   bool os_context::linux_can_exec(const ::string &file)
    {
 
       struct stat st;

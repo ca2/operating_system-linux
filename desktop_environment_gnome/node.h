@@ -57,9 +57,9 @@ namespace desktop_environment_gnome
 
       virtual void enable_wallpaper_change_notification() override;
 
-      virtual string get_file_icon_path(const char * pszPath, int iSize) override;
+      string get_file_icon_path(const ::string & strPath, int iSize) override;
 
-      virtual string get_file_content_type(const char * pszPath) override;
+      string get_file_content_type(const ::string & strPath) override;
 
       virtual bool set_wallpaper(index iScreen, string strLocalImagePath) override;
 
@@ -71,27 +71,13 @@ namespace desktop_environment_gnome
 
       virtual ::e_status node_branch(const ::routine & routine);
 
-      //virtual void node_post_quit() override;
-
       void on_subject(::subject::subject * psubject, ::subject::context * pcontext) override;
 
-      //virtual void _on_change_os_user_theme(string strTheme);
+      void os_post_quit() override;
 
-      //virtual void _os_process_user_theme_color(string strTheme);
+      bool should_launch_on_node(::subject::subject * psubject) override;
 
-      //virtual ::node_linux::appindicator * appindicator_allocate() override;
-
-      //virtual void appindicator_destroy(::linux::appindicator * pappindicator) override;
-
-      //virtual void enum_display_monitors(::aura::session * psession) override;
-
-      //virtual bool _os_calc_system_dark_mode() override;
-
-      virtual void os_post_quit() override;
-
-      virtual bool should_launch_on_node(::subject::subject * psubject);
-
-      virtual bool launch_on_node(::subject::subject * psubject);
+      bool launch_on_node(::subject::subject * psubject) override;
 
 
    };

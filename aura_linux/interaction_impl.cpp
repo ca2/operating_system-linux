@@ -566,7 +566,7 @@ namespace linux
    void interaction_impl::on_start_layout_experience(enum_layout_experience elayout)
    {
 
-      child_post_quit("delayed_placement");
+      //child_post_quit("delayed_placement");
 
       ::user::interaction_impl::on_start_layout_experience(elayout);
 
@@ -2603,12 +2603,11 @@ namespace linux
 //   }
 //
 
-   void interaction_impl::set_window_text(const char * pszString)
 
+   void interaction_impl::set_window_text(const ::string & strText)
    {
 
-      m_strWindowText = pszString;
-
+      m_strWindowText = strText;
 
       //windowing_output_debug_string("\nlinux::interaction_impl::set_window_text");
 
