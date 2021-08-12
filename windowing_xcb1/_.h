@@ -4,8 +4,8 @@
 #include "aura/_.h"
 #include "aura/user/_user.h"
 #include "aura/os/linux/appindicator.h"
-#include "acme/os/ansios/_pthread.h"
-#include "acme/os/linux/_user.h"
+#include "acme/node/operating_system/ansi/_pthread.h"
+#include "acme/node/operating_system/linux/_user.h"
 #include "archive/platform-posix/aura_posix/x_window_system.h"
 
 

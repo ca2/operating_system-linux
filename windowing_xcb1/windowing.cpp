@@ -4,7 +4,7 @@
 #include "framework.h"
 #include "windowing_xcb.h"
 #include <X11/cursorfont.h>
-#include "acme/os/_user.h"
+#include "acme/node/operating_system/_user.h"
 
 
 namespace windowing_xcb
