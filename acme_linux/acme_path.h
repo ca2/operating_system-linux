@@ -13,10 +13,10 @@ namespace linux
 
 
       acme_path();
-      virtual ~acme_path();
+      ~acme_path() override;
 
 
-      virtual ::file::path app_module() override;
+      //virtual ::file::path app_module() override;
 
 
    };
