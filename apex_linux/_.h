@@ -3,7 +3,7 @@
 
 #include "apex/_.h"
 #include "acme_linux/_.h"
-#include "platform-posix/apex_posix/_.h"
+#include "apex_posix/_.h"
 
 
 #if defined(_APEX_LINUX_LIBRARY)

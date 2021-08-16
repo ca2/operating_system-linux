@@ -22,7 +22,7 @@ namespace linux
 
 
       console();
-      virtual ~console();
+      ~console() override;
 
       ::string_stream & cout() override;
 

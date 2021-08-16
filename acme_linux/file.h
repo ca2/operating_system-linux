@@ -47,6 +47,7 @@ namespace linux
       };
 
       int                  m_iFile;
+      int                  m_iPutCharacter;
 
 
       file();
@@ -83,7 +84,7 @@ namespace linux
 
 //      virtual __pointer(::file::file) Duplicate() const;
 
-      virtual filesize seek(filesize lOff, ::file::e_seek nFrom) override;
+      virtual ::index translate(::count c, ::enum_seek eseek) override;
       virtual void set_size(filesize dwNewLen) override;
       virtual filesize get_size() const override;
 
@@ -102,6 +103,9 @@ namespace linux
       virtual bool IsOpened();
 
       virtual u64 GetBufferPtr(::u32 nCommand, u64 nCount = 0, void ** ppBufStart = nullptr, void ** ppBufMax = nullptr);
+
+
+      int put_character_back(int iCharacter) override;
 
 
    };

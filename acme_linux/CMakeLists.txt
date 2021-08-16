@@ -8,6 +8,8 @@ list(APPEND library_source
    _acme_linux.h
    acme_dir.cpp
         acme_dir.h
+   acme_file.cpp
+   acme_file.h
         acme_path.cpp
         acme_path.h
    console.cpp
@@ -31,7 +33,9 @@ add_library(acme_linux SHARED ${library_source})
 
 set_source_files_properties(console_ncurses.cpp PROPERTIES SKIP_PRECOMPILE_HEADERS ON)
 
-list(APPEND library_references acme acme_posix node_linux)
+list(APPEND library_references
+   acme
+   acme_posix)
 
 
 target_precompile_headers(acme_linux PRIVATE framework.h)

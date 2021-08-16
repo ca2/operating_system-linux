@@ -72,6 +72,8 @@ elseif (LINUX)
    target_link_options(desktop_environment_gnome PRIVATE -Wl,-z,defs)
 endif ()
 
+add_dependencies(desktop_environment_gnome node_linux)
+
 
 target_include_directories(desktop_environment_gnome PRIVATE ${CMAKE_CURRENT_SOURCE_DIR}/../..)
 target_include_directories(desktop_environment_gnome PRIVATE ${CMAKE_CURRENT_SOURCE_DIR}/..)

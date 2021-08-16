@@ -5,7 +5,7 @@
 
 
 #include "acme/operating_system.h"
-#include "platform-posix/acme_posix/_acme_posix.h"
+#include "acme_posix/_acme_posix.h"
 
 
 #include "acme/node/operating_system/_const_console.h"
@@ -17,6 +17,7 @@
 
 
 #include "acme_dir.h"
+#include "acme_file.h"
 #include "acme_path.h"
 
 

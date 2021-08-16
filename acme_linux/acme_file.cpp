@@ -6,22 +6,22 @@ namespace linux
 {
 
    
-   acme_path::acme_path()
+   acme_file::acme_file()
    {
 
-      m_pplatformpath = this;
+      m_pplatformfile = this;
 
    }
 
 
-   acme_path::~acme_path()
+   acme_file::~acme_file()
    {
 
 
    }
 
 
-   ::file::path acme_path::app_module()
+   ::file::path acme_file::executable()
    {
 
       ::file::path path;

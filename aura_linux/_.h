@@ -3,7 +3,7 @@
 
 #include "aura/_.h"
 #include "apex_linux/_.h"
-#include "platform-posix/aura_posix/_.h"
+#include "aura_posix/_.h"
 
 
 #if defined(_AURA_LINUX_LIBRARY)

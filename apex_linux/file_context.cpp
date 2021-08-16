@@ -47,7 +47,7 @@ namespace linux
    }
 
 
-   file_result file_context::get_file(const ::payload & varFile, const ::file::e_open & eopen)
+   file_transport file_context::get_file(const ::payload & varFile, const ::file::e_open & eopen)
    {
 
       return ::file_context::get_file(varFile, eopen);
@@ -89,12 +89,12 @@ namespace linux
    }
 
 
-   bool file_context::is_link(string strPath)
-   {
-
-      return file_path_is_link(strPath);
-
-   }
+//   bool file_context::is_link(string strPath)
+//   {
+//
+//      return m_psystem->m_pacmepath->is_link(strPath);
+//
+//   }
 
 
    ::file::path file_context::dropbox_info_json()
@@ -117,7 +117,7 @@ namespace linux
    ::extended::status file_context::del(const ::file::path & path)
    {
 
-      auto bOk = ::file_delete(path);
+      auto bOk = m_psystem->m_pacmefile->delete_file(path);
 
       if(!bOk)
       {

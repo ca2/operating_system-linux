@@ -2,8 +2,7 @@
 
 
 #include "acme/_.h"
-#include "platform-posix/acme_posix/_.h"
-#include "platform-linux/node_linux/_.h"
+#include "acme_posix/_.h"
 
 
 #if defined(_ACME_LINUX_LIBRARY)

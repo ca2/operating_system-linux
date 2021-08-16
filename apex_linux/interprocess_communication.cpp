@@ -52,7 +52,7 @@ namespace linux
       if(!file_exists(pszChannel))
       {
 
-         file_put_contents(pszChannel, pszChannel);
+         m_psystem->m_pacmefile->put_contents(pszChannel, pszChannel);
 
       }
 
@@ -230,7 +230,7 @@ namespace linux
       if(!file_exists(pszChannel))
       {
 
-         file_put_contents(pszChannel, pszChannel);
+         m_psystem->m_pacmefile->put_contents(pszChannel, pszChannel);
 
       }
 
@@ -332,53 +332,53 @@ namespace linux
 //      }
 
 
-      void * interprocess_communication_rx::on_interprocess_receive(::interprocess_communication::rx * prx,const ::string & pszMessage)
+      void interprocess_communication_rx::on_interprocess_receive(::string && strMessage)
       {
 
          if(m_preceiver != nullptr)
          {
 
-            m_preceiver->on_interprocess_receive(prx,pszMessage);
+            m_preceiver->on_interprocess_receive(this, ::move(strMessage));
 
          }
 
          // ODOW - on date of writing : return ignored by this windows implementation
 
-         return nullptr;
+         //return nullptr;
 
       }
 
 
-      void * interprocess_communication_rx::on_interprocess_receive(::interprocess_communication::rx * prx,i32 message,void * pdata,memsize len)
+      void interprocess_communication_rx::on_interprocess_receive(i32 message, ::memory && memory)
       {
 
          if(m_preceiver != nullptr)
          {
 
-            m_preceiver->on_interprocess_receive(prx,message,pdata,len);
+            m_preceiver->on_interprocess_receive(this, ::move(memory));
 
          }
 
          // ODOW - on date of writing : return ignored by this windows implementation
 
-         return nullptr;
+         //return nullptr;
 
       }
 
 
-      void * interprocess_communication_rx::on_interprocess_post(::interprocess_communication::rx * prx, i64 a, i64 b)
+      void interprocess_communication_rx::on_interprocess_post(i64 a, i64 b)
       {
 
          if(m_preceiver != nullptr)
          {
 
-            m_preceiver->on_interprocess_post(prx,a,b);
+            m_preceiver->on_interprocess_post(this,a,b);
 
          }
 
          // ODOW - on date of writing : return ignored by this windows implementation
 
-         return nullptr;
+         //return nullptr;
 
       }
 
@@ -445,25 +445,28 @@ namespace linux
 
             long lRequest = pdata->request;
 
-            fork([this, mem, lRequest]()
+            //fork([this, mem, lRequest]()
             {
 
-               memory m2(mem);
+               //
 
                if(lRequest == 1024)
                {
 
-                  on_interprocess_receive(this, __str(m2));
+                  dispatch_message(::move(__str(mem)));
 
                }
                else
                {
 
-                  on_interprocess_receive(this, lRequest, m2.get_data(), m2.get_size());
+                  ::memory memoryCopy(mem);
+                  //on_interprocess_receive(lRequest, ::move(m2));
+                  dispatch_message(lRequest, ::move(memoryCopy));
 
                }
 
-            });
+               //});
+            }
 
          }
 

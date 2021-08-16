@@ -33,6 +33,7 @@ namespace linux
    file::file()
    {
 
+      m_iPutCharacter = -1;
       m_iFile = INVALID_FILE;
 
    }
@@ -99,21 +100,17 @@ namespace linux
 
       }
 
-
       auto eopen = openParam;
 
-
       ASSERT(__is_valid_string(pszFileName));
-
 
       // file objects are always binary and CreateFile does not need flag
       eopen -= ::file::e_open_binary;
 
-
       if ((eopen & ::file::e_open_defer_create_directory) && (eopen & ::file::e_open_write))
       {
 
-         ::dir::mk(pszFileName.folder());
+         m_psystem->m_pacmedir->create(pszFileName.folder());
 
       }
 
@@ -210,18 +207,44 @@ namespace linux
 
 
    memsize file::read(void * pdata, memsize nCount)
-
    {
 
       ASSERT(m_iFile != INVALID_FILE);
 
       if (nCount == 0)
+      {
+
          return 0;   // avoid Win32 "null-read"
+
+      }
 
       ASSERT(pdata != nullptr);
 
       ASSERT(__is_valid_address(pdata, nCount));
 
+      if(m_iPutCharacter >= 0)
+      {
+
+         auto p = (byte *) pdata;
+
+         *p = (byte) m_iPutCharacter;
+
+         m_iPutCharacter = -1;
+
+         nCount--;
+
+         if(nCount <= 0)
+         {
+
+            return 1;
+
+         }
+
+         p++;
+
+         pdata = p;
+
+      }
 
       memsize pos = 0;
       memsize sizeRead = 0;
@@ -253,8 +276,8 @@ namespace linux
       return sizeRead;
    }
 
-   void file::write(const void * pdata, memsize nCount)
 
+   void file::write(const void * pdata, memsize nCount)
    {
 
       ASSERT(m_iFile != INVALID_FILE);
@@ -283,21 +306,26 @@ namespace linux
       //vfxThrowFileexception(::file::exception::diskFull, -1, m_path);
    }
 
-   filesize file::seek(filesize lOff, ::file::e_seek nFrom)
+
+   ::index file::translate(::count offset, ::enum_seek eseek)
    {
 
       if(m_iFile == INVALID_FILE)
+      {
+
          throw_errno(errno, m_path);
+
+      }
 
 
       ASSERT(m_iFile != INVALID_FILE);
-      ASSERT(nFrom == ::file::seek_begin || nFrom == ::file::seek_end || nFrom == ::file::seek_current);
-      ASSERT(::file::seek_begin == SEEK_SET && ::file::seek_end == SEEK_END && ::file::seek_current == SEEK_CUR);
+      ASSERT(eseek == ::e_seek_set || eseek == ::e_seek_from_end || eseek == ::e_seek_current);
+      ASSERT(::e_seek_set == SEEK_SET && ::e_seek_from_end == SEEK_END && ::e_seek_current == SEEK_CUR);
 
-      ::i32 lLoOffset = lOff & 0xffffffff;
+      ::i32 lLoOffset = offset & 0xffffffff;
       //::i32 lHiOffset = (lOff >> 32) & 0xffffffff;
 
-      filesize posNew = ::lseek64(m_iFile, lLoOffset, (::u32)nFrom);
+      filesize posNew = ::lseek64(m_iFile, lLoOffset, (::u32)eseek);
 //      posNew |= ((filesize) lHiOffset) << 32;
       if(posNew  == (filesize)-1)
          throw_errno(errno, m_path);
@@ -395,7 +423,7 @@ namespace linux
 
       ASSERT(m_iFile != INVALID_FILE);
 
-      seek((::i32)dwNewLen, (::file::e_seek)::file::seek_begin);
+      set_position(dwNewLen);
 
       if (::ftruncate64(m_iFile, dwNewLen) == -1)
       {
@@ -414,9 +442,9 @@ namespace linux
 
       // seek is a non const operation
       file* pFile = (file*)this;
-      dwCur = pFile->seek(0L, ::file::seek_current);
+      dwCur = pFile->get_position();
       dwLen = pFile->seek_to_end();
-      VERIFY(dwCur == (u64)pFile->seek((filesize) dwCur, ::file::seek_begin));
+      VERIFY(dwCur == (u64)pFile->set_position(dwCur));
 
       return (filesize) dwLen;
 
@@ -766,6 +794,17 @@ namespace linux
 
 
    }
+
+
+   int file::put_character_back(int iCharacter)
+   {
+
+      m_iPutCharacter = (int)(byte)iCharacter;
+
+      return 0;
+
+   }
+
 
 
 

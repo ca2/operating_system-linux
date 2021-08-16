@@ -21,13 +21,20 @@ namespace acme
       public:
 
 
-         ::file::path         m_strTimeFolder;
-         ::file::path         m_strNetSeedFolder;
+         ::user::enum_desktop             m_edesktop;
 
-         ::file::path         m_strCommonAppData;
-         ::file::path         m_strAppData;
-         ::file::path         m_strPrograms;
-         ::file::path         m_strCommonPrograms;
+
+         static ::user::enum_desktop      s_edesktop;
+
+
+
+         ::file::path                     m_strTimeFolder;
+         ::file::path                     m_strNetSeedFolder;
+
+         ::file::path                     m_strCommonAppData;
+         ::file::path                     m_strAppData;
+         ::file::path                     m_strPrograms;
+         ::file::path                     m_strCommonPrograms;
 
 
 
@@ -77,6 +84,9 @@ namespace acme
          ::user::enum_desktop calculate_edesktop() override;
 
 
+         static ::user::enum_desktop _get_edesktop();
+         static ::user::enum_desktop _calculate_edesktop();
+
 
          virtual bool process_modules(string_array& stra, u32 processID);
 
@@ -102,7 +112,7 @@ namespace acme
 
          virtual string get_environment_variable(const char* pszEnvironmentVariable);
 
-         virtual string expand_env(string str);
+         virtual string expand_environment_variables(const string & str);
 
 
          virtual array <::serial::port_info> list_serial_ports();

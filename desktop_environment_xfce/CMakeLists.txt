@@ -73,6 +73,9 @@ elseif (LINUX)
 endif ()
 
 
+add_dependencies(desktop_environment_xfce node_linux)
+
+
 target_include_directories(desktop_environment_xfce PRIVATE ${CMAKE_CURRENT_SOURCE_DIR}/../..)
 target_include_directories(desktop_environment_xfce PRIVATE ${CMAKE_CURRENT_SOURCE_DIR}/..)
 target_include_directories(desktop_environment_xfce PRIVATE ${CMAKE_CURRENT_SOURCE_DIR})

@@ -77,6 +77,9 @@ elseif (LINUX)
 endif ()
 
 
+add_dependencies(desktop_environment_kde node_linux)
+
+
 target_include_directories(desktop_environment_kde PRIVATE ${CMAKE_CURRENT_SOURCE_DIR}/../..)
 target_include_directories(desktop_environment_kde PRIVATE ${CMAKE_CURRENT_SOURCE_DIR}/..)
 target_include_directories(desktop_environment_kde PRIVATE ${CMAKE_CURRENT_SOURCE_DIR})

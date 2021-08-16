@@ -1,5 +1,7 @@
 #include "framework.h"
 #include "apex/operating_system.h"
+#include "apex/parallelization/service.h"
+#include "apex/parallelization/service_handler.h"
 #include "service_handler.h"
 
 

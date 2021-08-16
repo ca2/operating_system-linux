@@ -7,16 +7,13 @@ namespace linux
 
 
    class CLASS_DECL_ACME_LINUX acme_path :
-      virtual public ::acme_path
+      virtual public ::posix::acme_path
    {
    public:
 
 
       acme_path();
       ~acme_path() override;
-
-
-      //virtual ::file::path app_module() override;
 
 
    };

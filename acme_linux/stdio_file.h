@@ -39,7 +39,7 @@ namespace linux
 
       virtual void write(const void * pdata, memsize nCount) override;
 
-      virtual filesize seek(filesize lOff, ::file::e_seek nFrom) override;
+      virtual ::index translate(::count c, ::enum_seek eseek) override;
       virtual void Abort() override;
       virtual void Flush() override;
       virtual void close() override;

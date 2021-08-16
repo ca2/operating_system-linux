@@ -6,17 +6,17 @@ namespace linux
 {
 
 
-   class CLASS_DECL_ACME_LINUX acme_path :
-      virtual public ::acme_path
+   class CLASS_DECL_ACME_LINUX acme_file :
+      virtual public ::posix::acme_file
    {
    public:
 
 
-      acme_path();
-      ~acme_path() override;
+      acme_file();
+      ~acme_file() override;
 
 
-      //virtual ::file::path app_module() override;
+      ::file::path executable() override;
 
 
    };

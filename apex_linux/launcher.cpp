@@ -19,7 +19,7 @@ namespace linux
 
       string strPath(get_executable_path());
 
-      string strDir(dir::name(strPath));
+      string strDir(file_path_name(strPath));
 
 
       /*string strPath

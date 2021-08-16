@@ -34,7 +34,12 @@ list(APPEND library_source
     )
 
 
-list(APPEND library_references acme acme_posix acme_linux apex apex_posix)
+list(APPEND library_references
+   acme
+   apex
+   acme_posix
+   acme_linux
+   apex_posix)
 
 add_library(apex_linux SHARED ${library_source})
 

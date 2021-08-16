@@ -2,8 +2,7 @@
 
 
 #include "aura/_.h"
-#include "apex_linux/_.h"
-#include "platform-posix/aura_posix/_.h"
+#include "aura_linux/_.h"
 
 
 #if defined(_NODE_LINUX_LIBRARY)
@@ -17,8 +16,6 @@
 #include "_const.h"
 
 
-CLASS_DECL_NODE_LINUX ::user::enum_desktop get_edesktop();
-CLASS_DECL_NODE_LINUX ::user::enum_desktop calculate_edesktop();
 
 
 

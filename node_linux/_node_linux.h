@@ -5,8 +5,7 @@
 
 
 #include "aura/operating_system.h"
-#include "apex_linux/_apex_linux.h"
-#include "platform-posix/aura_posix/_aura_posix.h"
+#include "aura_linux/_aura_linux.h"
 
 
 //#include "node.h"

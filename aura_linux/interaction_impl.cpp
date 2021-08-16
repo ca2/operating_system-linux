@@ -1,7 +1,7 @@
 #include "framework.h"
 //#include "_linux.h"
 #include "apex/platform/app_core.h"
-#include "aura/os/linux/_linux.h"
+#include "aura/node/operating_system/linux/_linux.h"
 #include "acme/node/operating_system/_user.h"
 ////#include "third/sn/sn.h"
 

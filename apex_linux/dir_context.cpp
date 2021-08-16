@@ -21,7 +21,7 @@ inline bool linux_dir_myspace(char ch)
 }
 
 
-::file::path xdg_get_dir(string str)
+::file::path xdg_get_dir(::matter * pmatter, string str)
 {
 
    ::file::path pathHome;
@@ -32,24 +32,20 @@ inline bool linux_dir_myspace(char ch)
 
    path = pathHome / ".config/user-dirs.dirs";
 
-   string strDirs = file_as_string(path);
-
-   string_array stra;
-
-   stra.add_lines(strDirs);
+   auto straLines = pmatter->m_psystem->m_pacmefile->lines(path);
 
    string strPrefix = str + "=";
 
-   stra.filter_begins_ci(strPrefix);
+   straLines.filter_begins_ci(strPrefix);
 
-   if(stra.get_size() != 1)
+   if(straLines.get_size() != 1)
    {
 
       return "";
 
    }
 
-   path = stra[0];
+   path = straLines[0];
 
    ::str::begins_eat_ci(path, strPrefix);
 
@@ -300,7 +296,7 @@ namespace linux
 
          ::file::patha stra;
 
-         ::dir::ls(stra, listing.m_pathFinal);
+         m_psystem->m_pacmedir->ls(stra, listing.m_pathFinal);
 
          for(i32 i = 0; i < stra.get_count(); i++)
          {
@@ -344,7 +340,7 @@ namespace linux
             else
             {
 
-               path.m_iSize = file_length_dup(strPath);
+               path.m_iSize = m_psystem->m_pacmefile->get_size(strPath);
 
             }
 
@@ -360,14 +356,14 @@ namespace linux
    bool dir_context::is(const ::file::path & path)
    {
 
-      if(::dir::is(path))
+      if(m_psystem->m_pacmedir->is(path))
       {
 
          return true;
 
       }
 
-      bool bIsDir = ::dir::_is(path);
+      bool bIsDir = m_psystem->m_pacmedir->_is(path);
 
       return bIsDir;
 
@@ -525,7 +521,7 @@ namespace linux
       for(; i < stra.get_size(); i++)
       {
 
-         if(!::dir::mkdir(stra[i]))
+         if(!m_psystem->m_pacmedir->create_directory(stra[i]))
          {
 
             ::e_status estatus = ::get_last_status();
@@ -567,7 +563,7 @@ namespace linux
 
                }
 
-               if(::dir::mkdir(stra[i]))
+               if(m_psystem->m_pacmedir->create_directory(stra[i]))
                {
 
                }
@@ -755,7 +751,7 @@ namespace linux
    ::file::path dir_context::music()
    {
 
-      ::file::path path = xdg_get_dir("XDG_MUSIC_DIR");
+      ::file::path path = xdg_get_dir(this, "XDG_MUSIC_DIR");
 
       if(path.has_char())
       {
@@ -776,7 +772,7 @@ namespace linux
    ::file::path dir_context::video()
    {
 
-      ::file::path path = xdg_get_dir("XDG_VIDEOS_DIR");
+      ::file::path path = xdg_get_dir(this, "XDG_VIDEOS_DIR");
 
       if(path.has_char())
       {
@@ -797,7 +793,7 @@ namespace linux
    ::file::path dir_context::image()
    {
 
-      ::file::path path = xdg_get_dir("XDG_PICTURES_DIR");
+      ::file::path path = xdg_get_dir(this, "XDG_PICTURES_DIR");
 
       if(path.has_char())
       {
@@ -818,7 +814,7 @@ namespace linux
    ::file::path dir_context::document()
    {
 
-      ::file::path path = xdg_get_dir("XDG_DOCUMENTS_DIR");
+      ::file::path path = xdg_get_dir(this, "XDG_DOCUMENTS_DIR");
 
       if(path.has_char())
       {
@@ -839,7 +835,7 @@ namespace linux
    ::file::path dir_context::download()
    {
 
-      ::file::path path = xdg_get_dir("XDG_DOWNLOAD_DIR");
+      ::file::path path = xdg_get_dir(this, "XDG_DOWNLOAD_DIR");
 
       if(path.has_char())
       {

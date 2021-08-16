@@ -117,11 +117,6 @@ namespace linux
    }
 
 
-
-
-
-
-
    string acme_dir::system_short_name()
    {
 
@@ -133,7 +128,7 @@ namespace linux
 
       ::file::path pathSystemShortName = localconfig() / "system_short_name.txt";
 
-      return file_as_string(pathSystemShortName).trimmed();
+      return m_pacmefile->as_string(pathSystemShortName).trimmed();
 
    #endif
 
@@ -150,6 +145,7 @@ namespace linux
       return path;
 
    }
+
 
    #ifdef _UWP
 
@@ -168,7 +164,7 @@ namespace linux
    ::file::path acme_dir::app_relative()
    {
 
-      ::file::path path = m_psystem->m_pacmepath->app_module();
+      ::file::path path = m_psystem->m_pacmefile->executable();
 
       path = relative(path);
 
@@ -178,7 +174,6 @@ namespace linux
 
 
    #endif
-
 
 
    ::file::path acme_dir::inplace_install(string strAppId, string strPlatform, string strConfiguration)
@@ -230,7 +225,7 @@ namespace linux
 
    #else
 
-      return m_psystem->m_pacmepath->app_module().folder(4);
+      return m_psystem->m_pacmefile->executable() - 4;
 
    #endif
 
@@ -261,7 +256,7 @@ namespace linux
 
    #else
 
-      return m_psystem->m_pacmepath->app_module().folder(4);
+      return m_psystem->m_pacmefile->executable() - 4;
 
    #endif
 
@@ -297,7 +292,7 @@ namespace linux
 
    #else
 
-      return m_psystem->m_pacmepath->app_module().folder(4);
+      return m_psystem->m_pacmefile->executable() - 4;
 
    #endif
 
@@ -307,13 +302,9 @@ namespace linux
    ::file::path acme_dir::beforeca2()
    {
 
-      return dir::name(install());
+      return file_path_name(install());
 
    }
-
-
-
-
 
 
    #ifdef LINUX_DESKTOP
@@ -602,7 +593,7 @@ namespace linux
          strCandidate = stra[i] / pszTopic;
 
          //if (m_pcontext->m_papexcontext->file().exists(strCandidate))
-         if (file_exists(strCandidate))
+         if (m_pacmefile->exists(strCandidate))
          {
 
             return strCandidate;

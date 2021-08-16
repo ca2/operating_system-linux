@@ -4,7 +4,7 @@
 #include "acme/filesystem/filesystem/acme_path.h"
 //#include "acme_linux/acme.h"
 #include "node.h"
-#include "aura/os/linux/_c.h"
+#include "aura/node/operating_system/linux/_.h"
 
 
 bool __node_node_pre_init();

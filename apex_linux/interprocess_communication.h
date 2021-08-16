@@ -102,9 +102,9 @@ namespace linux
       ::e_status destroy() override;
 
 
-      void * on_interprocess_receive(::interprocess_communication::rx * prx, const ::string & pszMessage);
-      void * on_interprocess_receive(::interprocess_communication::rx * prx, int message, void * pdata, memsize len);
-      void * on_interprocess_post(::interprocess_communication::rx * prx, i64 a, i64 b);
+      void on_interprocess_receive(::string && strMessage) override;
+      void on_interprocess_receive(int message, ::memory && memory) override;
+      void on_interprocess_post(i64 a, i64 b) override;
 
 
       virtual bool on_idle();

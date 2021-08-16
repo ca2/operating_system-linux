@@ -11,6 +11,7 @@
 #include "file_context.h"
 //#include "process.h"
 #include "os_context.h"
+#include "apex/parallelization/service_handler.h"
 #include "service_handler.h"
 #include "crypto.h"
 #include "ip_enum.h"
@@ -35,9 +36,9 @@ void apex_linux_factory_exchange(::factory_map * pfactorymap)
 {
 
 
-   acme_linux_factory_exchange(pfactorymap);
-
    apex_posix_factory_exchange(pfactorymap);
+
+   acme_linux_factory_exchange(pfactorymap);
 
    pfactorymap->create_factory < ::linux::dir_system, ::dir_system >();
    pfactorymap->create_factory < ::linux::file_system, ::file_system >();

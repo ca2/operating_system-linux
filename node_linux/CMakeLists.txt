@@ -15,6 +15,12 @@ add_library(node_linux SHARED ${library_source})
 
 list(APPEND library_references
    acme
+   acme_posix
+   acme_linux
+   apex_posix
+   apex_linux
+   aura_posix
+   aura_linux
    )
 
 

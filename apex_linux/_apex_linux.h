@@ -6,7 +6,7 @@
 
 #include "apex/operating_system.h"
 #include "acme_linux/_acme_linux.h"
-#include "platform-posix/apex_posix/_apex_posix.h"
+#include "apex_posix/_apex_posix.h"
 
 
 #include "dir_system.h"

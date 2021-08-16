@@ -64,15 +64,15 @@ namespace linux
 
       }
 
-      ::file::path pathAppModule = m_psystem->m_pacmepath->app_module();
+      ::file::path pathAppModule = m_psystem->m_pacmefile->executable();
 
       m_pathModule = pathAppModule;
 
       auto psystem = m_psystem;
 
-      auto pacmepath = psystem->m_pacmepath;
+      auto pacmefile = psystem->m_pacmefile;
 
-      ::file::path pathCa2AppModule = pacmepath->app_module();
+      ::file::path pathCa2AppModule = pacmefile->executable();
 
       m_pathCa2Module = pathCa2AppModule;
 

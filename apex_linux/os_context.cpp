@@ -983,7 +983,7 @@ namespace linux
 
       ::file::patha stra;
 
-      ::dir::ls_dir(stra, "/proc/");
+      m_psystem->m_pacmedir->ls_dir(stra, "/proc/");
 
       auto psystem = m_psystem;
 
