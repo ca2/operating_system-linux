@@ -644,12 +644,12 @@ namespace desktop_environment_gnome
 //   }
 
 
-   void node::os_post_quit()
-   {
-
-      ::node_gnome::node::os_post_quit();
-
-   }
+//   void node::os_post_quit()
+//   {
+//
+//      ::node_gnome::node::os_post_quit();
+//
+//   }
 
 
 //   void * node::node_wrap_window(void * pvoidDisplay, i64 window)

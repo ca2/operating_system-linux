@@ -26,22 +26,22 @@ namespace desktop_environment_gnome
 
 
       node();
-      virtual ~node();
+      ~node() override;
 
 
-      virtual int node_init_check(int * pi, char *** ppz) override;
+      int node_init_check(int * pi, char *** ppz) override;
 
-      virtual void defer_notify_startup_complete() override;
+      void defer_notify_startup_complete() override;
 
-      virtual ::e_status start_node() override;
+      ::e_status start_node() override;
 
-      virtual ::e_status initialize(::object * pobject) override;
+      ::e_status initialize(::object * pobject) override;
 
       virtual void os_calc_dark_mode();
 
       virtual bool _os_calc_dark_mode();
 
-      virtual string os_get_user_theme() override;
+      string os_get_user_theme() override;
 
       string _os_get_user_theme() override;
 
@@ -52,8 +52,6 @@ namespace desktop_environment_gnome
       virtual void _os_process_user_theme_color(string strTheme);
 
       virtual bool os_set_user_theme(const string & strUserTheme) override;
-
-      //virtual void os_process_user_theme(string strTheme) override;
 
       virtual void enable_wallpaper_change_notification() override;
 
@@ -73,7 +71,7 @@ namespace desktop_environment_gnome
 
       void on_subject(::subject::subject * psubject, ::subject::context * pcontext) override;
 
-      void os_post_quit() override;
+      //void os_post_quit() override;
 
       bool should_launch_on_node(::subject::subject * psubject) override;
 
