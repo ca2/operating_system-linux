@@ -643,7 +643,7 @@ namespace linux
       if (m_pwindow)
       {
 
-         m_pwindow->post_nc_destroy();
+         m_pwindow->post_non_client_destroy();
 
       }
 
