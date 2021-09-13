@@ -224,7 +224,7 @@ typedef wd32char        widechar;
 
 #ifdef _DEBUG
 
-#define RELEASENOTHROW
+//#define RELEASENOTHROW
 
 #else
 

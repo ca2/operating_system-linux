@@ -7,7 +7,7 @@
 void CLASS_DECL_APEX_LINUX __cdecl _ca2_purecall()
 {
 
-   __throw(::exception::exception());
+   throw ::exception::exception(error_pure_call);
 
 }
 

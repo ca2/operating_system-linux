@@ -825,7 +825,7 @@ namespace linux
    */
    void interaction_impl::pre_translate_message(::message::message * pmessage)
    {
-      UNREFERENCED_PARAMETER(pmessage);
+      __UNREFERENCED_PARAMETER(pmessage);
       // no default processing
    }
 
@@ -2156,7 +2156,7 @@ namespace linux
    void interaction_impl::on_message_create(::message::message * pmessage)
    {
 
-      UNREFERENCED_PARAMETER(pmessage);
+      __UNREFERENCED_PARAMETER(pmessage);
 
 //      Default();
 
@@ -2648,7 +2648,7 @@ namespace linux
    void interaction_impl::SetFont(::write_text::font* pfont, bool bRedraw)
    {
 
-      UNREFERENCED_PARAMETER(bRedraw);
+      __UNREFERENCED_PARAMETER(bRedraw);
 
       //ASSERT(::is_window((oswindow) get_handle())); m_pfont = new ::write_text::font(*pfont);
 
