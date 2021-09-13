@@ -29,7 +29,7 @@ namespace multimedia
          TRACE("wave_in::initialize_instance %X\n", get_ithread());
          //SetMainWnd(NULL);
          //ASSERT(GetMainWnd() == NULL);
-         set_thread_priority(::priority_highest);
+         set_thread_priority(::e_priority_highest);
          //m_evInitialized.SetEvent();
          return true;
       }

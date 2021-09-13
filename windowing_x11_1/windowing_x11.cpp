@@ -1460,40 +1460,50 @@ Retrieved from: http://en.literateprograms.org/Hello_World_(C,_Cairo)?oldid=1038
             if(m_pobjectaExtendedEventListener && m_pobjectaExtendedEventListener->get_count() > 0)
             {
 
-               e_id eid;
+               e_message emessage;
 
                switch (cookie->evtype)
                {
 
                   case XI_RawKeyPress:
-                     eid = id_raw_keydown;
+                     emessage = e_message_keydown;
                      break;
                   case XI_RawKeyRelease:
-                     eid = id_raw_keyup;
+                     emessage = e_message_keyup;
                      break;
                   case XI_RawButtonPress:
-                     eid = id_raw_buttondown;
+                     emessage = e_message_left_button_down;
                      break;
                   case XI_RawButtonRelease:
-                     eid = id_raw_buttonup;
+                     emessage = e_message_left_button_up;
                      break;
 
                }
 
-               auto psystem = m_psystem->m_papexsystem;
+               int iKey = XK_A;
 
-               auto psubject = psystem->subject(eid);
+               if(is_return_key((XIRawEvent*)cookie->data))
+               {
 
-               psubject->payload("return") = is_return_key((XIRawEvent*)cookie->data);
+                  iKey = XK_Return;
 
-               psubject->payload("space") = is_space_key((XIRawEvent*)cookie->data);
+               }
+               else if(is_space_key((XIRawEvent*)cookie->data))
+               {
+
+                  iKey = XK_Space;
+
+               }
+
+
+               //psubject->payload("space") =
 
                ::subject::context context;
 
                for(auto & p : *m_pobjectaExtendedEventListener)
                {
 
-                  p->on_subject(psubject, &context);
+                  p->handle(emessage, iKey);
 
                }
 
