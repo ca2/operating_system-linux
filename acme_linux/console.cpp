@@ -124,10 +124,10 @@ namespace linux
       if(!m_pscreen)
       {
 
-         m_pfileIn.create_new();
-         m_pfileOut.create_new();
-
+         m_pfileIn.create(this);
+         m_pfileOut.create(this);
          auto pFILEIn = tmpfile();
+
          auto pFILEOut = tmpfile();
 
          m_pfileIn->m_pfile = pFILEIn;
