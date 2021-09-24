@@ -302,7 +302,9 @@ namespace music
 
          }
 
-         return __new(::music::midi::sequencer(psequence, get_message_out(strDevice)));
+         auto pmessageout = get_message_out(strDevice);
+
+         return __new(::music::midi::sequencer(psequence, pmessageout));
 
       }
 
