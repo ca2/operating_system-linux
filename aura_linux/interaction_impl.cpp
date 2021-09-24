@@ -938,12 +938,10 @@ namespace linux
 //   }
 
 
-
-
-   void interaction_impl::route_command_message(::message::command * pcommand)
+   void interaction_impl::route_command(::message::command * pcommand, bool bRouteKeyToDescendants)
    {
 
-      channel::route_command_message(pcommand);
+      channel::route_command(pcommand, bRouteKeyToDescendants);
 
    }
 
@@ -1150,7 +1148,7 @@ namespace linux
 //         pmessage->m_id == e_message_mouse_wheel)
       {
 
-         if(::is_set(m_puserinteraction) && !m_puserinteraction->m_bUserPrimitiveOk)
+         if(::is_set(m_puserinteraction) && !m_puserinteraction->m_bUserElementOk)
          {
 
             return;
@@ -1420,13 +1418,13 @@ namespace linux
 
       }
 
-      if(pmessage->m_id == e_message_event)
+      if(pmessage->m_id == e_message_subject)
       {
 
          if(m_puserinteraction != nullptr)
          {
 
-            m_puserinteraction->on_control_event((::user::control_event *) pmessage->m_lparam.m_lparam);
+            m_puserinteraction->handle((::subject *) pmessage->m_lparam.m_lparam, nullptr);
 
          }
 //         else

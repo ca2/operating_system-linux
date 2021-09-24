@@ -48,7 +48,7 @@ namespace desktop_environment_gnome
 {
 
 
-   ::logic::bit g_bitLastDarkMode;
+   ::boolean g_bitLastDarkMode;
 
    char *gsettings_get_malloc(const char *pszSchema, const char *pszKey);
 
@@ -231,9 +231,7 @@ namespace desktop_environment_gnome
 
       ::node_gnome::node * pnode = (::node_gnome::node *) data;
 
-      auto psubject = pnode->m_psystem->m_papexsystem->subject(id_wallpaper_change);
-
-      pnode->m_psystem->m_papexsystem->handle_subject(psubject);
+      pnode->m_psystem->m_papexsystem->signal(id_wallpaper_change);
 
    }
 
@@ -652,7 +650,7 @@ namespace desktop_environment_gnome
 
       _os_process_user_theme_color(strTheme);
 
-      os_calc_user_dark_mode();
+      fetch_user_color();
 
    }
 

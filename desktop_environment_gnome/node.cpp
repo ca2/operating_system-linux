@@ -515,7 +515,7 @@ namespace desktop_environment_gnome
 //   }
 
 
-   void node::on_subject(::subject::subject * psubject, ::subject::context * pcontext)
+   void node::handle(::subject * psubject, ::context * pcontext)
    {
 
       if(psubject->m_id == ::id_os_user_theme)
@@ -547,9 +547,9 @@ namespace desktop_environment_gnome
 
          auto psystem = m_psystem->m_papexsystem;
 
-         auto psubject = psystem->subject(id_os_dark_mode);
+         psystem->signal(id_user_color);
 
-         psystem->handle_subject(psubject);
+         //psystem->handle_subject(psubject);
 
          //x11_kick_idle();
 
@@ -665,7 +665,7 @@ namespace desktop_environment_gnome
 //
 //   }
 
-   bool node::should_launch_on_node(::subject::subject * psubject)
+   bool node::should_launch_on_node(::subject * psubject)
    {
 
       if(::is_null(psubject))
@@ -675,7 +675,7 @@ namespace desktop_environment_gnome
 
       }
 
-      if(psubject->m_id == id_os_dark_mode)
+      if(psubject->m_id == id_user_color)
       {
 
          return false;
@@ -687,7 +687,7 @@ namespace desktop_environment_gnome
    }
 
 
-   bool node::launch_on_node(::subject::subject * psubject)
+   bool node::launch_on_node(::subject * psubject)
    {
 
       auto bOk = ::node_gnome::node::launch_on_node(psubject);

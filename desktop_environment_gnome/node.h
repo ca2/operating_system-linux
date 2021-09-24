@@ -22,7 +22,7 @@ namespace desktop_environment_gnome
       //gpointer m_pGtkSettingsDefault;
       //string   m_strTheme;
 
-      ::logic::bit         m_bitDarkMode;
+      ::boolean         m_bitDarkMode;
 
 
       node();
@@ -69,13 +69,13 @@ namespace desktop_environment_gnome
 
       virtual ::e_status node_branch(const ::routine & routine);
 
-      void on_subject(::subject::subject * psubject, ::subject::context * pcontext) override;
+      void handle(::subject * psubject, ::context * pcontext) override;
 
       //void os_post_quit() override;
 
-      bool should_launch_on_node(::subject::subject * psubject) override;
+      bool should_launch_on_node(::subject * psubject) override;
 
-      bool launch_on_node(::subject::subject * psubject) override;
+      bool launch_on_node(::subject * psubject) override;
 
 
    };

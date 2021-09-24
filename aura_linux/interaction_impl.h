@@ -70,7 +70,7 @@ namespace linux
 
       //virtual oswindow get_handle() const override;
 
-      virtual void route_command_message(::message::command * pcommand) override;
+      virtual void route_command(::message::command * pcommand, bool bRouteKeyToDescendants = false) override;
 
       //virtual void on_control_event(::user::control_event * pevent) override;
 

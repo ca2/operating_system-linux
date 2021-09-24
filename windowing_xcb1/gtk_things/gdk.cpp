@@ -38,7 +38,7 @@ void __gtk_style_context_get_color(GtkStyleContext *context, GtkStateFlags state
 namespace node_gnome
 {
 
-   ::logic::bit g_bitLastDarkMode;
+   ::boolean g_bitLastDarkMode;
 
    char * gsettings_get_malloc(const char * pszSchema, const char * pszKey);
 
