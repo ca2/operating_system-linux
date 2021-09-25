@@ -1,8 +1,6 @@
-
 #include "framework.h"
-//#include "_linux.h"
-
 #include <fcntl.h>
+
 
 namespace linux
 {
@@ -21,6 +19,7 @@ namespace linux
 
       if (m_pStream != nullptr)
       {
+
          close();
 
       }
@@ -28,88 +27,72 @@ namespace linux
    }
 
 
-   ::extended::status stdio_file::open(const ::file::path & pszFileName, const ::file::e_open & eopen)
+   ::extended::status stdio_file::open(const ::file::path & path, const ::file::e_open & eopen)
    {
 
-      ASSERT(pszFileName.has_char());
-
-//      if ((eopen & ::file::e_open_defer_create_directory) && (eopen & ::file::e_open_write))
-//      {
-//
-//         pcontext->m_papexcontext->dir().mk(pszFileName.folder());
-//
-//
-//      }
+      ASSERT(path.has_char());
 
       m_pStream = nullptr;
-      //if (!::linux::file::open(pszFileName, (nOpenFlags & ~::file::e_open_text)))
 
-      // return false;
+      char szMode[4];
 
-//   ASSERT(m_hFile != hFileNull);
-      // ASSERT(m_bCloseOnDelete);
-
-      char szMode[4]; // C-runtime open string
       i32 nMode = 0;
 
-      // determine read/write mode depending on ::ca2::filesp mode
+      bool bPlus = false;
+
       if (eopen & ::file::e_open_create)
       {
-         if (eopen & ::file::e_open_no_truncate)
-            szMode[nMode++] = 'a';
-         else
-            szMode[nMode++] = 'w';
+
+         szMode[nMode++] = 'w';
+
+         bPlus = true;
+
       }
       else if (eopen & ::file::e_open_write)
-         szMode[nMode++] = 'a';
-      else
+      {
+
          szMode[nMode++] = 'r';
 
-      // add '+' if necessary (when read/write modes mismatched)
-      if ((szMode[0] == 'r' && (eopen & ::file::e_open_read_write)) ||
-            (szMode[0] != 'r' && !(eopen & ::file::e_open_write)))
+         bPlus = true;
+
+      }
+      else
       {
-         // current szMode mismatched, need to add '+' to fix
-         szMode[nMode++] = '+';
+
+         szMode[nMode++] = 'r';
+
       }
 
-      // will be inverted if not necessary
-      i32 nFlags = O_RDONLY;
-      if (eopen & (::file::e_open_write | ::file::e_open_read_write))
-         nFlags ^= O_RDONLY;
-
       if (eopen & ::file::e_open_binary)
-         szMode[nMode++] = 'b'; // , nFlags ^= _O_TEXT;
-      else
-         szMode[nMode++] = 't';
+      {
+
+         szMode[nMode++] = 'b';
+
+      }
+
+      if (bPlus)
+      {
+
+         szMode[nMode++] = '+';
+
+      }
+
       szMode[nMode++] = '\0';
 
-      // open a C-runtime low-level file handle
-      //i32 nHandle = _open_osfhandle(m_hFile, nFlags);
-
-      // open a C-runtime stream from that handle
-      //if (nHandle != -1)
-      m_pStream = fopen(pszFileName, szMode);
-
-
+      m_pStream = fopen(path, szMode);
 
       if (m_pStream == nullptr)
       {
-         ::file::throw_status(error_file, errno, m_path);
-         // an error somewhere along the way...
-         //if (pException != nullptr)
-         {
-//         pException->m_lOsError = errno;
-//         pException->m_cause = ::file::exception::OsErrorToException(errno);
-         }
 
-         ::linux::file::Abort(); // close m_hFile
-         //return ::fesp(get_application(), ::file::exception::none);
-         return ::error_io;
+         int iError = errno;
+
+         ::e_status estatus = ::errno_to_status(iError);
+
+         return estatus;
+
       }
 
-      m_path = pszFileName;
-
+      m_path = path;
 
       return ::success;
 
@@ -117,61 +100,83 @@ namespace linux
 
 
    memsize stdio_file::read(void * pdata, memsize nCount)
-
    {
+
       ASSERT_VALID(this);
       ASSERT(m_pStream != nullptr);
 
       if (nCount == 0)
+      {
+
          return 0;   // avoid Win32 "null-read"
 
-//   ASSERT(fx_is_valid_address(pdata, nCount));
+      }
 
+      // ASSERT(fx_is_valid_address(pdata, nCount));
 
       ::u32 nRead = 0;
 
-      if ((nRead = fread(pdata, sizeof(byte), nCount, m_pStream)) == 0 && !feof(m_pStream))
+      //if ((nRead = fread(pdata, sizeof(byte), nCount, m_pStream)) == 0 && !feof(m_pStream))
 
-         ::file::throw_status(error_file, errno, m_path);
-      if (ferror(m_pStream))
+      // ::file::throw_status(error_file, errno, m_path);
+
+      nRead = fread(pdata, sizeof(byte), nCount, m_pStream);
+
+      if(!feof(m_pStream) && ferror(m_pStream))
       {
+
+         int iErrNo = errno;
+
          clearerr(m_pStream);
-         ::file::throw_status(error_file, errno, m_path);
+
+         auto estatus = errno_to_status(iErrNo);
+
+         throw ::file_exception(estatus, iErrNo, m_path);
+
       }
+
       return nRead;
+
    }
+
 
    void stdio_file::write(const void * pdata, memsize nCount)
-
    {
+
       ASSERT_VALID(this);
       ASSERT(m_pStream != nullptr);
-//   ASSERT(fx_is_valid_address(pdata, nCount, false));
-
 
       if (fwrite(pdata, sizeof(byte), nCount, m_pStream) != nCount)
+      {
 
          ::file::throw_status(error_file, errno, m_path);
+
+      }
+
    }
 
-   void stdio_file::write_string(const char * psz)
 
+   void stdio_file::write_string(const char * psz)
    {
+
       ASSERT(psz != nullptr);
 
       ASSERT(m_pStream != nullptr);
 
       if (fputs(psz, m_pStream) == EOF)
+      {
 
          ::file::throw_status(error_disk_full, errno, m_path);
+
+      }
+
    }
 
+
    char * stdio_file::read_string(char * psz, ::u32 nMax)
-
    {
-      ASSERT(psz != nullptr);
 
-//   ASSERT(fx_is_valid_address(psz, nMax));
+      ASSERT(psz != nullptr);
 
       ASSERT(m_pStream != nullptr);
 
@@ -234,6 +239,7 @@ namespace linux
       psz = rString.get_string_buffer(0);
 
       nLen = rString.get_length();
+
       if (nLen != 0 && psz[nLen-1] == '\n')
 
          rString.get_string_buffer(nLen-1);
@@ -241,39 +247,6 @@ namespace linux
       return pszResult != nullptr;
 
    }
-
-   /*void stdio_file::write_string(const char * psz)
-
-   {
-      ASSERT(psz != nullptr);
-
-      ASSERT(m_pStream != nullptr);
-
-      if (fputws(psz, m_pStream) == _TEOF)
-
-         ::file::throw_status(error_diskFull, errno, m_path);
-   }*/
-
-   /*unichar * stdio_file::read_string(unichar * psz, ::u32 nMax)
-
-   {
-      ASSERT(psz != nullptr);
-
-      ASSERT(fx_is_valid_address(psz, nMax));
-
-      ASSERT(m_pStream != nullptr);
-
-      unichar * pszResult = fgetws(psz, nMax, m_pStream);
-
-      if (pszResult == nullptr && !feof(m_pStream))
-
-      {
-         clearerr(m_pStream);
-         ::file::throw_status(error_type_generic, errno, m_path);
-      }
-      return pszResult;
-
-   }*/
 
 
    ::index stdio_file::translate(::count offset, ::enum_seek eseek)
@@ -284,6 +257,7 @@ namespace linux
       ASSERT(m_pStream != nullptr);
 
       i32 nFrom;
+
       switch(eseek)
       {
       case ::e_seek_set:
@@ -300,25 +274,43 @@ namespace linux
       }
 
       if (fseek(m_pStream, offset, nFrom) != 0)
+      {
+
          ::file::throw_status(error_bad_seek, errno, m_path);
 
+      }
+
       long pos = ftell(m_pStream);
+
       return pos;
+
    }
+
 
    filesize stdio_file::get_position() const
    {
+
       ASSERT_VALID(this);
+
       ASSERT(m_pStream != nullptr);
 
       long pos = ftell(m_pStream);
+
       if (pos == -1)
+      {
+
          ::file::throw_status(error_invalid_file, errno, m_path);
+
+      }
+
       return pos;
+
    }
 
-   void stdio_file::Flush()
+
+   void stdio_file::flush()
    {
+
       ASSERT_VALID(this);
 
       if (m_pStream != nullptr && fflush(m_pStream) != 0)
@@ -330,68 +322,83 @@ namespace linux
 
    }
 
+
    void stdio_file::close()
    {
+
       ASSERT_VALID(this);
       ASSERT(m_pStream != nullptr);
 
       i32 nErr = 0;
 
       if (m_pStream != nullptr)
+      {
+
          nErr = fclose(m_pStream);
 
-//   m_hFile = (::u32) hFileNull;
-      //m_bCloseOnDelete = false;
+      }
+
       m_pStream = nullptr;
 
       if (nErr != 0)
+      {
+
+
          ::file::throw_status(error_disk_full, errno, m_path);
+
+      }
+
    }
 
-   void stdio_file::Abort()
+
+   void stdio_file::abort()
    {
+
       ASSERT_VALID(this);
 
-//   if (m_pStream != nullptr && m_bCloseOnDelete)
       if (m_pStream != nullptr)
+      {
+
          fclose(m_pStream);  // close but ignore errors
-//   m_hFile = (::u32) hFileNull;
+
+      }
+
       m_pStream = nullptr;
-      //m_bCloseOnDelete = false;
+
    }
 
 
-   __pointer(::file::file) stdio_file::Duplicate() const
-   {
-      ASSERT_VALID(this);
-      ASSERT(m_pStream != nullptr);
+//   __pointer(::file::file) stdio_file::Duplicate() const
+//   {
+//      ASSERT_VALID(this);
+//      ASSERT(m_pStream != nullptr);
+//
+//      __throw(error_not_supported);
+//      return nullptr;
+//   }
 
-      __throw(error_not_supported);
-      return nullptr;
-   }
 
-
-   void stdio_file::LockRange(filesize /* dwPos */, filesize /* dwCount */)
-   {
-      ASSERT_VALID(this);
-      ASSERT(m_pStream != nullptr);
-
-      __throw(error_not_supported);
-   }
-
-   void stdio_file::UnlockRange(filesize /* dwPos */, filesize /* dwCount */)
-   {
-      ASSERT_VALID(this);
-      ASSERT(m_pStream != nullptr);
-
-      __throw(error_not_supported);
-   }
+//   void stdio_file::LockRange(filesize /* dwPos */, filesize /* dwCount */)
+//   {
+//      ASSERT_VALID(this);
+//      ASSERT(m_pStream != nullptr);
+//
+//      __throw(error_not_supported);
+//   }
+//
+//   void stdio_file::UnlockRange(filesize /* dwPos */, filesize /* dwCount */)
+//   {
+//      ASSERT_VALID(this);
+//      ASSERT(m_pStream != nullptr);
+//
+//      __throw(error_not_supported);
+//   }
 
 
    void stdio_file::dump(dump_context & dumpcontext) const
    {
 
-      ::linux::file::dump(dumpcontext);
+      ::file::file::dump(dumpcontext);
 
       dumpcontext << "m_pStream = " << (void *)m_pStream;
 
@@ -400,8 +407,9 @@ namespace linux
    }
 
 
-   filesize stdio_file::get_length() const
+   filesize stdio_file::get_size() const
    {
+
       ASSERT_VALID(this);
 
       ::i32 nCurrent;

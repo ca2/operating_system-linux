@@ -20,6 +20,7 @@ void acme_linux_factory_exchange(::factory_map * pfactorymap)
 
    pfactorymap->create_factory < ::linux::console, ::console::console >();
    pfactorymap->create_factory < ::linux::file, ::file::file >();
+   //pfactorymap->create_factory < ::linux::stdio_file, ::file::file >();
    pfactorymap->create_factory < ::linux::stdio_file, ::file::text_file >();
 
 

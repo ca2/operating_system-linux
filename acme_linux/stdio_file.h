@@ -1,54 +1,47 @@
 #pragma once
 
 
-/////////////////////////////////////////////////////////////////////////////
-// STDIO file implementation
-
-
 namespace linux
 {
 
 
    class stdio_file :
-      virtual public ::linux::file,
       virtual public ::file::text_file
    {
    public:
 
 
-      FILE* m_pStream;    // stdio FILE
-      // m_hFile from acme class is _fileno(m_pStream)
-
+      FILE *            m_pStream;
 
 
       stdio_file();
-      virtual ~stdio_file();
-
-      virtual void write_string(const char * psz) override;
-
-      virtual char * read_string(char * psz, ::u32 nMax);
-
-      virtual bool read_string(string & rString) override;
+      ~stdio_file() override;
 
 
       void dump(dump_context & dumpcontext) const override;
-      virtual filesize get_position() const override;
-      virtual ::extended::status open(const ::file::path & pszFileName, const ::file::e_open & eopen) override;
 
-      virtual memsize read(void * pdata, memsize nCount) override;
+      void write_string(const char * psz) override;
 
-      virtual void write(const void * pdata, memsize nCount) override;
+      virtual char * read_string(char * psz, ::u32 nMax);
 
-      virtual ::index translate(::count c, ::enum_seek eseek) override;
-      virtual void Abort() override;
-      virtual void Flush() override;
-      virtual void close() override;
-      virtual filesize get_length() const;
+      bool read_string(string & rString) override;
 
-      // Unsupported APIs
-      virtual __pointer(::file::file) Duplicate() const;
-      virtual void LockRange(filesize dwPos, filesize dwCount) override;
-      virtual void UnlockRange(filesize dwPos, filesize dwCount) override;
+
+      filesize get_position() const override;
+      ::extended::status open(const ::file::path & pszFileName, const ::file::e_open & eopen) override;
+
+      memsize read(void * pdata, memsize nCount) override;
+
+      void write(const void * pdata, memsize nCount) override;
+
+      ::index translate(::count c, ::enum_seek eseek) override;
+
+      void abort() override;
+      void flush() override;
+      void close() override;
+
+
+      filesize get_size() const override;
 
 
    };

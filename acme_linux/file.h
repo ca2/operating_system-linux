@@ -51,11 +51,7 @@ namespace linux
 
 
       file();
-      //file(::matter * pobject);
-      //file(::matter * pobject, int hFile);
-      //file(::matter * pobject, const ::file::path & pszFileName, const enumeration < ::file::e_open > & eflag);
-
-      virtual ~file();
+      ~file() override;
 
 
       virtual void assert_valid() const override;
@@ -75,7 +71,6 @@ namespace linux
 
 
       //virtual bool PASCAL GetStatus(const char * pszFileName, ::file::file_status& rStatus);
-
 
       u64 ReadHuge(void * pBuffer, u64 dwCount);
 
@@ -97,8 +92,8 @@ namespace linux
       virtual void UnlockRange(filesize dwPos, filesize dwCount);
 
       virtual void Abort();
-      virtual void Flush();
-      virtual void close() override;
+      void flush() override;
+      void close() override;
 
       virtual bool IsOpened();
 

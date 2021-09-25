@@ -180,6 +180,8 @@ namespace linux
       dwPermission |= S_IRGRP | S_IWGRP | S_IXGRP;
       dwPermission |= S_IROTH | S_IROTH;
 
+      //auto path = m_psystem->m_pacmepath->final(m_path);
+
       // attempt file creation
       //HANDLE hFile = shell::CreateFile(::str::international::utf8_to_unicode(m_path), dwAccess, dwShareMode, &sa, dwCreateFlag, FILE_ATTRIBUTE_NORMAL, nullptr);
       int iFile = ::open(m_path, dwFlags, dwPermission); //::open(m_path, dwAccess, dwShareMode, &sa, dwCreateFlag, FILE_ATTRIBUTE_NORMAL, nullptr);
@@ -196,6 +198,8 @@ namespace linux
          return estatus;
 
       }
+
+      //::lseek64(m_iFile, 0, SEEK_SET);
 
       m_iFile = iFile;
 
@@ -283,22 +287,38 @@ namespace linux
       ASSERT(m_iFile != INVALID_FILE);
 
       if (nCount == 0)
+      {
+
          return;     // avoid Win32 "null-write" option
+
+      }
 
       ASSERT(pdata != nullptr);
 
       ASSERT(__is_valid_address(pdata, nCount, false));
 
-
       memsize pos = 0;
+
       while(nCount > 0)
       {
-         i32 iWrite = ::write(m_iFile, &((const u8 *)pdata)[pos], (size_t) minimum(0x7fffffff, nCount));
+
+         auto bytesToWrite = minimum(0x7fffffff, nCount);
+
+         auto pdataToWrite = ((const u8 *)pdata) + pos;
+
+         i32 iWrite = ::write(m_iFile, pdataToWrite, bytesToWrite);
 
          if(iWrite < 0)
+         {
+
             throw_errno(errno, m_path);
+
+         }
+
          nCount -= iWrite;
+
          pos += iWrite;
+
       }
 
       // Win32s will not return an error all the time (usually DISK_FULL)
@@ -349,8 +369,25 @@ namespace linux
       return pos;
    }
 
-   void file::Flush()
+
+   void file::flush()
    {
+
+      if (m_iFile == INVALID_FILE)
+      {
+
+         return;
+
+      }
+
+      auto iRet = ::fsync(m_iFile);
+
+      if(iRet < 0)
+      {
+
+         throw file_exception(error_io, errno, m_path);
+
+      }
 
       /*      ::open
             ::read

@@ -11,6 +11,11 @@ namespace linux
    public:
 
 
+      ::file::path                  m_pathImage;
+      ::file::path                  m_pathVideo;
+      ::file::path                  m_pathDownload;
+      ::file::path                  m_pathMusic;
+      ::file::path                  m_pathDocument;
       __reference(file_system)      m_pfilesystem;
       __reference(dir_system)       m_pdirsystem;
 
