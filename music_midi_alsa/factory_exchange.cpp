@@ -41,11 +41,11 @@ namespace music
 
 
 extern "C"
-void music_midi_alsa_factory_exchange()
+void music_midi_alsa_factory_exchange(factory_map * pfactorymap)
 {
 
    //::music::midi::alsa::factory_exchange factoryexchange();
-   create_factory < ::music::midi::alsa::midi, ::music::midi::midi > ();
+   pfactorymap->create_factory < ::music::midi::alsa::midi, ::music::midi::midi > ();
 
 }
 

@@ -13,6 +13,7 @@ namespace music
       {
 
 
+
          class CLASS_DECL_VERIWELL_MULTIMEDIA_MUSIC_MIDI_ALSA midi :
             virtual public ::music::midi::midi
          {
@@ -27,6 +28,8 @@ namespace music
             midi();
             virtual ~midi();
 
+
+            typedef void (midi:: * action_func_t)(snd_seq_t *seq, snd_seq_client_info_t *cinfo, snd_seq_port_info_t *pinfo, int count);
 
             //virtual ::e_status enumerate_midi_devices();
             virtual void enumerate_midi_out_devices() override;
@@ -61,9 +64,25 @@ namespace music
 
             virtual bool Initialize();
 
-            virtual bool list_midi_out_card_devices(int card);
+            //virtual bool list_midi_out_card_devices(int card);
 
-            virtual bool list_midi_out_devices(snd_ctl_t *ctl, int card, int device);
+            //virtual bool list_midi_out_devices(snd_ctl_t *ctl, int card, int device);
+
+            void list_each_subs(snd_seq_t *seq, snd_seq_query_subscribe_t *subs, int type, const char *msg);
+
+            void list_subscribers(snd_seq_t *seq, const snd_seq_addr_t *addr);
+
+            void error_handler(const char *file, int line, const char *function, int err, const char *fmt, ...);
+
+            int check_permission(snd_seq_port_info_t *pinfo, int perm);
+
+            void do_search_port(snd_seq_t *seq, int perm, action_func_t do_action);
+
+            void print_port(snd_seq_t *seq, snd_seq_client_info_t *cinfo,
+                                  snd_seq_port_info_t *pinfo, int count);
+
+            void print_port_and_subs(snd_seq_t *seq, snd_seq_client_info_t *cinfo,
+                                            snd_seq_port_info_t *pinfo, int count);
 
 
          };

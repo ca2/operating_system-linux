@@ -1310,6 +1310,13 @@ namespace linux
 //
 //         }
 
+         if(pmouse->m_id == e_message_left_button_down)
+         {
+
+
+            ::output_debug_string("left_button_down (A)");
+
+         }
 
          if(!puserinteractionMouse)
          {
