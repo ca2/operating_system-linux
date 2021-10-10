@@ -41,8 +41,11 @@
 #include <stdlib.h>
 #include <stdio.h>
 
+#include <time.h>
+
 
 #include <limits.h>
+
 #define sync unistd_sync
 #include <unistd.h>
 #undef sync
@@ -141,47 +144,6 @@ typedef struct gdi_object * HGDIOBJ;
 #define EXPORT
 #endif
 
-
-#ifdef _MIPS_
-// specific overrides for MIPS...
-#define _AFX_PACKING    8       // default MIPS alignment (required)
-#endif //_MIPS_
-
-
-#ifdef _ALPHA_
-// specific overrides for ALPHA...
-#define _AFX_PACKING    8       // default AXP alignment (required)
-#ifdef _AFX_NO_DEBUG_CRT
-extern "C" void _BPT();
-#pragma intrinsic(_BPT)
-#define __debug_break() _BPT()
-#else
-#define __debug_break() _CrtDbgBreak()
-#endif
-#endif  //_ALPHA_
-
-
-#ifdef _PPC_
-// specific overrides for PPC...
-#define _AFX_PACKING    8       // default PPC alignment (required)
-#endif //_PPC_
-
-
-#ifdef _IA64_
-// specific overrides for IA64...
-#define _AFX_PACKING    8
-#define _SHADOW_DOUBLES 8
-#endif //_IA64_
-
-
-#ifdef _AMD64_
-// specific overrides for AMD64...
-#define _AFX_PACKING    8
-#endif //_AMD64_
-
-
-
-
 #ifdef __cplusplus
 
 
@@ -228,21 +190,6 @@ void debug_break();
 
 #define FALSE 0
 
-
-
-//#define max(x,y) (((x) > (y)) ? (x) : (y))
-//#define min(x,y) (((x) < (y)) ? (x) : (y))
-
-
-//#define __max(a,b)  (((a) > (b)) ? (a) : (b))
-//#define __min(a,b)  (((a) < (b)) ? (a) : (b))
-
-
-
-//typedef unsigned char   u_char;
-//typedef unsigned short  u_short;
-//typedef ::u32    u_int;
-//typedef unsigned long   u_long;
 
 
 
