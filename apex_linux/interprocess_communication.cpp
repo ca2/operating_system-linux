@@ -355,7 +355,7 @@ namespace linux
          if(m_preceiver != nullptr)
          {
 
-            m_preceiver->on_interprocess_receive(this, ::move(memory));
+            m_preceiver->on_interprocess_receive(this, message, ::move(memory));
 
          }
 
@@ -453,7 +453,7 @@ namespace linux
                if(lRequest == 1024)
                {
 
-                  dispatch_message(::move(__str(mem)));
+                  dispatch_message(::move(__string(mem)));
 
                }
                else

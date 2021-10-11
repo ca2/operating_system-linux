@@ -963,7 +963,7 @@ namespace linux
             if(!iBool)
             {
 
-               _S_TRACE("Error launching file : \"%s\" , %s", strUri.c_str(), strError.c_str());
+               INFORMATION("Error launching file : \"" << strUri << "\" , " << strError);
 
             }
 

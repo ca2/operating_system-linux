@@ -284,8 +284,10 @@ typedef void * PVOID;
 #define WINBOOL int
 
 
+#define INFINITE_TIMEOUT UINT_MAX
 
 #define offsetof(type, member)  __builtin_offsetof (type, member)
+
 
 
 
