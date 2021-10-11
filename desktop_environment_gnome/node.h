@@ -19,12 +19,6 @@ namespace desktop_environment_gnome
    public:
 
 
-      //gpointer m_pGtkSettingsDefault;
-      //string   m_strTheme;
-
-      ::boolean         m_bitDarkMode;
-
-
       node();
       ~node() override;
 
@@ -36,32 +30,6 @@ namespace desktop_environment_gnome
       ::e_status start_node() override;
 
       ::e_status initialize(::object * pobject) override;
-
-      virtual void os_calc_dark_mode();
-
-      virtual bool _os_calc_dark_mode();
-
-      string os_get_user_theme() override;
-
-      string _os_get_user_theme() override;
-
-      //virtual string _os_get_user_theme();
-
-      virtual void os_process_user_theme(string strTheme);
-
-      virtual void _os_process_user_theme_color(string strTheme);
-
-      virtual bool os_set_user_theme(const string & strUserTheme) override;
-
-      virtual void enable_wallpaper_change_notification() override;
-
-      string get_file_icon_path(const ::string & strPath, int iSize) override;
-
-      string get_file_content_type(const ::string & strPath) override;
-
-      virtual bool set_wallpaper(index iScreen, string strLocalImagePath) override;
-
-      virtual string get_wallpaper(index iScreen) override;
 
       virtual bool windowing_message_loop_step();
 

@@ -124,7 +124,7 @@ namespace music
 
             string_array stra;
 
-            stra.explode(",", m_strDevice);
+            stra.explode(",", m_strDeviceId);
 
             if(stra.get_count() < 3)
             {

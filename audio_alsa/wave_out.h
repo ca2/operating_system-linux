@@ -30,7 +30,7 @@ namespace multimedia
 
          void install_message_routing(::channel * pchannel) override;
 
-         virtual imedia_time out_get_time();
+         virtual ::duration out_get_time();
          //imedia_position out_get_position();
 
          //virtual ::e_status wave_out_open(::thread * pthreadCallback, ::count iBufferCount, ::count iBufferSampleCount) override;
@@ -50,11 +50,11 @@ namespace multimedia
          virtual ::e_status init_thread() override;
          virtual void term_thread() override;
 
-         virtual ::e_status out_start(const imedia_time & time);
+         virtual ::e_status out_start(const ::duration & time);
 
          virtual int defer_underrun_recovery(int err);
 
-         imedia_time out_get_time_for_synch();
+         ::duration out_get_time_for_synch();
 
 
       };

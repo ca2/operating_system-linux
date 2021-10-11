@@ -5,7 +5,7 @@
 #include "node.h"
 #include "gnome_shared.h"
 #include "appindicator.h"
-#include "gdk.h"
+//#include "gdk.h"
 #include "windowing_x11/windowing_x11.h"
 
 
@@ -187,7 +187,7 @@ namespace desktop_environment_gnome
    ::e_status node::initialize(::object *pobject)
    {
 
-      ::node_gnome::g_defer_init();
+      //::node_gnome::g_defer_init();
 
       auto estatus = ::aura::linux::node::initialize(pobject);
 
@@ -266,90 +266,90 @@ namespace desktop_environment_gnome
    }
 
 
-   string node::os_get_user_theme()
-   {
-
-      return m_strTheme;
-
-   }
-
-
-   bool node::os_set_user_theme(const ::string &strUserTheme)
-   {
-
-      // https://ubuntuforums.org/showthread.php?t=2140488
-      // gsettings set org.gnome.desktop.interface gtk-theme your_theme
-
-      // indirect wall-changer sourceforge.net contribution
-
-      auto psystem = m_psystem->m_papexsystem;
-
-      auto pnode = psystem->node();
-
-      auto edesktop = pnode->get_edesktop();
-
-      switch (edesktop)
-      {
-
-      case ::user::e_desktop_gnome:
-      case ::user::e_desktop_ubuntu_gnome:
-      case ::user::e_desktop_unity_gnome:
-      {
-
-      bool bOk1 = ::node_gnome::gsettings_set("org.gnome.desktop.interface", "gtk-theme", strUserTheme);
-
-      bool bOk2 = true;
-
-      //if(::file::system_short_name().contains_ci("manjaro"))
-      {
-
-         bOk2 = ::node_gnome::gsettings_set("org.gnome.desktop.wm.preferences", "theme", strUserTheme);
-
-      }
-
-      sleep(300_ms);
-
-      ::node_gnome::gsettings_sync();
-
-      sleep(300_ms);
-
-      return
-      bOk1 &&bOk2;
-
-      }
-
-      case ::user::e_desktop_mate:
-
-      //return ::user::gsettings_set("org.mate.background", "picture-filename", strLocalImagePath);
-
-      case ::user::e_desktop_lxde:
-
-      //call_async("pcmanfm", "-w " + strLocalImagePath, nullptr, e_display_none, false);
-
-      break;
-
-      case ::user::e_desktop_xfce:
-      {
-      //        Q_FOREACH(QString entry, Global::getOutputOfCommand("xfconf-query", QStringList() << "-c" << "xfce4-desktop" << "-point" << "/backdrop" << "-l").split("\n")){
-      //          if(entry.contains("image-path") || entry.contains("last-image")){
-      //            QProcess::startDetached("xfconf-query", QStringList() << "-c" << "xfce4-desktop" << "-point" << entry << "-s" << image);
-      //      }
-      //}
-
-      }
-
-      //break;
-
-      default:
-
-      output_debug_string("Failed to change wallpaper. If your Desktop Environment is not listed at \"Preferences->Integration-> Current Desktop Environment\", then it is not supported.");
-      return false;
-
-      }
-
-      return true;
-
-   }
+//   string node::os_get_user_theme()
+//   {
+//
+//      return m_strTheme;
+//
+//   }
+//
+//
+//   bool node::os_set_user_theme(const ::string &strUserTheme)
+//   {
+//
+//      // https://ubuntuforums.org/showthread.php?t=2140488
+//      // gsettings set org.gnome.desktop.interface gtk-theme your_theme
+//
+//      // indirect wall-changer sourceforge.net contribution
+//
+//      auto psystem = m_psystem->m_papexsystem;
+//
+//      auto pnode = psystem->node();
+//
+//      auto edesktop = pnode->get_edesktop();
+//
+//      switch (edesktop)
+//      {
+//
+//      case ::user::e_desktop_gnome:
+//      case ::user::e_desktop_ubuntu_gnome:
+//      case ::user::e_desktop_unity_gnome:
+//      {
+//
+//      bool bOk1 = ::node_gnome::gsettings_set("org.gnome.desktop.interface", "gtk-theme", strUserTheme);
+//
+//      bool bOk2 = true;
+//
+//      //if(::file::system_short_name().contains_ci("manjaro"))
+//      {
+//
+//         bOk2 = ::node_gnome::gsettings_set("org.gnome.desktop.wm.preferences", "theme", strUserTheme);
+//
+//      }
+//
+//      sleep(300_ms);
+//
+//      ::node_gnome::gsettings_sync();
+//
+//      sleep(300_ms);
+//
+//      return
+//      bOk1 &&bOk2;
+//
+//      }
+//
+//      case ::user::e_desktop_mate:
+//
+//      //return ::user::gsettings_set("org.mate.background", "picture-filename", strLocalImagePath);
+//
+//      case ::user::e_desktop_lxde:
+//
+//      //call_async("pcmanfm", "-w " + strLocalImagePath, nullptr, e_display_none, false);
+//
+//      break;
+//
+//      case ::user::e_desktop_xfce:
+//      {
+//      //        Q_FOREACH(QString entry, Global::getOutputOfCommand("xfconf-query", QStringList() << "-c" << "xfce4-desktop" << "-point" << "/backdrop" << "-l").split("\n")){
+//      //          if(entry.contains("image-path") || entry.contains("last-image")){
+//      //            QProcess::startDetached("xfconf-query", QStringList() << "-c" << "xfce4-desktop" << "-point" << entry << "-s" << image);
+//      //      }
+//      //}
+//
+//      }
+//
+//      //break;
+//
+//      default:
+//
+//      output_debug_string("Failed to change wallpaper. If your Desktop Environment is not listed at \"Preferences->Integration-> Current Desktop Environment\", then it is not supported.");
+//      return false;
+//
+//      }
+//
+//      return true;
+//
+//   }
 
 
 //   void node::os_process_user_theme(string strTheme)
@@ -360,141 +360,90 @@ namespace desktop_environment_gnome
 //   }
 
 
-   bool node::set_wallpaper(index iScreen, string strLocalImagePath)
-   {
-
-      // wall-changer sourceforge.net contribution
-
-      auto psystem = m_psystem->m_papexsystem;
-
-      auto pnode =  psystem->node();
-
-      auto edesktop = pnode->get_edesktop();
-
-      switch (edesktop)
-      {
-
-         case ::user::e_desktop_gnome:
-         case ::user::e_desktop_ubuntu_gnome:
-         case ::user::e_desktop_unity_gnome:
-
-            return ::node_gnome::gsettings_set("org.gnome.desktop.background", "picture-uri", "file://" + strLocalImagePath);
-
-         case ::user::e_desktop_mate:
-
-            return ::node_gnome::gsettings_set("org.mate.background", "picture-filename", strLocalImagePath);
-
-         case ::user::e_desktop_lxde:
-
-            call_async("pcmanfm", "-w " + strLocalImagePath, nullptr, e_display_none, false);
-
-            break;
-
-         case ::user::e_desktop_xfce:
-         {
-            //        Q_FOREACH(QString entry, Global::getOutputOfCommand("xfconf-query", QStringList() << "-c" << "xfce4-desktop" << "-point" << "/backdrop" << "-l").split("\n")){
-            //          if(entry.contains("image-path") || entry.contains("last-image")){
-            //            QProcess::startDetached("xfconf-query", QStringList() << "-c" << "xfce4-desktop" << "-point" << entry << "-s" << image);
-            //      }
-            //}
-
-         }
-
-            //break;
-
-         default:
-
-            output_debug_string("Failed to change wallpaper. If your Desktop Environment is not listed at \"Preferences->Integration-> Current Desktop Environment\", then it is not supported.");
-            return false;
-
-      }
-
-      return true;
-
-   }
-
-
-   void node::enable_wallpaper_change_notification()
-   {
-
-      auto psystem = m_psystem->m_papexsystem;
-
-      auto pnode = psystem->node();
-
-      auto edesktop = pnode->get_edesktop();
-
-      switch (edesktop)
-      {
-
-         case ::user::e_desktop_gnome:
-         case ::user::e_desktop_ubuntu_gnome:
-         case ::user::e_desktop_unity_gnome:
-
-            ::node_gnome::g_enable_wallpaper_change_notification("org.gnome.desktop.background", "picture-uri");
-
-            break;
-
-         case ::user::e_desktop_mate:
-
-            ::node_gnome::g_enable_wallpaper_change_notification("org.mate.background", "picture-filename");
-
-            break;
-
-         case ::user::e_desktop_lxde:
-
-            //call_async("pcmanfm", "-w " + strLocalImagePath, nullptr, e_display_none, false);
-
-            break;
-
-         case ::user::e_desktop_xfce:
-         {
-            //        Q_FOREACH(QString entry, Global::getOutputOfCommand("xfconf-query", QStringList() << "-c" << "xfce4-desktop" << "-point" << "/backdrop" << "-l").split("\n")){
-            //          if(entry.contains("image-path") || entry.contains("last-image")){
-            //            QProcess::startDetached("xfconf-query", QStringList() << "-c" << "xfce4-desktop" << "-point" << entry << "-s" << image);
-            //      }
-            //}
-
-         }
-
-         break;
-         default:
-
-            output_debug_string("Failed to get wallpaper setting. If your Desktop Environment is not listed at \"Preferences->Integration-> Current Desktop Environment\", then it is not supported.");
-            //return "";
-
-      }
-
-   }
-
-
-   string node::get_file_icon_path(const ::string & strPath, int iSize)
-   {
-
-      string str = ::node_gnome::node::get_file_icon_path(strPath, iSize);
-
-      return str;
-
-      //return ::linux_g_direct_get_file_icon_path(pszPath, iSize);
-
-   }
-
-
-   string node::get_file_content_type(const ::string & strPath)
-   {
-
-      string str = ::node_gnome::node::get_file_content_type(strPath);
-
-      return str;
-
-   }
-
-
-   string node::get_wallpaper(index iScreen)
-   {
-
-      return "";
-
-   }
+//   bool node::set_wallpaper(index iScreen, string strLocalImagePath)
+//   {
+//
+//      // wall-changer sourceforge.net contribution
+//
+//      auto psystem = m_psystem->m_papexsystem;
+//
+//      auto pnode =  psystem->node();
+//
+//      auto edesktop = pnode->get_edesktop();
+//
+//      switch (edesktop)
+//      {
+//
+//         case ::user::e_desktop_gnome:
+//         case ::user::e_desktop_ubuntu_gnome:
+//         case ::user::e_desktop_unity_gnome:
+//
+//            return ::node_gnome::gsettings_set("org.gnome.desktop.background", "picture-uri", "file://" + strLocalImagePath);
+//
+//         case ::user::e_desktop_mate:
+//
+//            return ::node_gnome::gsettings_set("org.mate.background", "picture-filename", strLocalImagePath);
+//
+//         case ::user::e_desktop_lxde:
+//
+//            call_async("pcmanfm", "-w " + strLocalImagePath, nullptr, e_display_none, false);
+//
+//            break;
+//
+//         case ::user::e_desktop_xfce:
+//         {
+//            //        Q_FOREACH(QString entry, Global::getOutputOfCommand("xfconf-query", QStringList() << "-c" << "xfce4-desktop" << "-point" << "/backdrop" << "-l").split("\n")){
+//            //          if(entry.contains("image-path") || entry.contains("last-image")){
+//            //            QProcess::startDetached("xfconf-query", QStringList() << "-c" << "xfce4-desktop" << "-point" << entry << "-s" << image);
+//            //      }
+//            //}
+//
+//         }
+//
+//            //break;
+//
+//         default:
+//
+//            output_debug_string("Failed to change wallpaper. If your Desktop Environment is not listed at \"Preferences->Integration-> Current Desktop Environment\", then it is not supported.");
+//            return false;
+//
+//      }
+//
+//      return true;
+//
+//   }
+//
+//
+//
+//
+//   string node::get_file_icon_path(const ::string & strPath, int iSize)
+//   {
+//
+//      string str = ::node_gnome::node::get_file_icon_path(strPath, iSize);
+//
+//      return str;
+//
+//      //return ::linux_g_direct_get_file_icon_path(pszPath, iSize);
+//
+//   }
+//
+//
+//   string node::get_file_content_type(const ::string & strPath)
+//   {
+//
+//      string str = ::node_gnome::node::get_file_content_type(strPath);
+//
+//      return str;
+//
+//   }
+//
+//
+//   string node::get_wallpaper(index iScreen)
+//   {
+//
+//      return "";
+//
+//   }
 
 
    void node::handle(::subject * psubject, ::context * pcontext)
@@ -510,33 +459,33 @@ namespace desktop_environment_gnome
    }
 
 
-   void node::os_calc_dark_mode()
-   {
-
-      bool bDarkMode = _os_calc_dark_mode();
-
-      if(m_bitDarkMode != bDarkMode)
-      {
-
-         //::user::set_app_dark_mode(bDarkMode);
-
-         //::user::set_system_dark_mode(bDarkMode);
-
-         m_bitDarkMode = bDarkMode;
-
-         //System.deliver(id_os_dark_mode);
-
-         auto psystem = m_psystem->m_papexsystem;
-
-         psystem->signal(id_user_color);
-
-         //psystem->handle_subject(psubject);
-
-         //x11_kick_idle();
-
-      }
-
-   }
+//   void node::os_calc_dark_mode()
+//   {
+//
+//      bool bDarkMode = _os_calc_dark_mode();
+//
+//      if(m_bitDarkMode != bDarkMode)
+//      {
+//
+//         //::user::set_app_dark_mode(bDarkMode);
+//
+//         //::user::set_system_dark_mode(bDarkMode);
+//
+//         m_bitDarkMode = bDarkMode;
+//
+//         //System.deliver(id_os_dark_mode);
+//
+//         auto psystem = m_psystem->m_papexsystem;
+//
+//         psystem->signal(id_user_color);
+//
+//         //psystem->handle_subject(psubject);
+//
+//         //x11_kick_idle();
+//
+//      }
+//
+//   }
 
 
 //   ::nlinux::appindicator * node::appindicator_allocate()

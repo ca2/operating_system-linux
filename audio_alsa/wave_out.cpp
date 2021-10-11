@@ -397,12 +397,12 @@ namespace multimedia
       }
 
 
-      imedia_time wave_out::out_get_time()
+      ::duration wave_out::out_get_time()
       {
 
          synchronous_lock sl(mutex());
 
-         imedia_time time = 0;
+         ::duration time;
 
          if(m_ppcm != NULL)
          {
@@ -418,7 +418,7 @@ namespace multimedia
 
                gettimeofday(&tnow, nullptr);
 
-               time = (tnow.tv_sec - t.tv_sec)*1'000.0 + (tnow.tv_usec - t.tv_usec) / (1'000.0);
+               time = INTEGRAL_MILLISECOND((tnow.tv_sec - t.tv_sec)*1'000.0 + (tnow.tv_usec - t.tv_usec) / (1'000.0));
 
             }
 
@@ -710,13 +710,13 @@ namespace multimedia
       }
 
 
-      imedia_time wave_out::out_get_time_for_synch()
+      ::duration wave_out::out_get_time_for_synch()
       {
 
          if (m_pprebuffer.is_null())
          {
 
-            return 0;
+            return e_zero;
 
          }
 
@@ -725,16 +725,20 @@ namespace multimedia
          dwPosition *= 1000;
 
          if (m_pwaveformat->m_waveformat.nSamplesPerSec <= 0)
-            return 0;
+         {
+
+            return e_zero;
+
+         }
 
          dwPosition /= m_pwaveformat->m_waveformat.nSamplesPerSec;
 
-         return dwPosition / 1000.0;
+         return INTEGRAL_MILLISECOND(dwPosition / 1000.0);
 
       }
 
 
-      ::e_status wave_out::out_start(const imedia_time & time)
+      ::e_status wave_out::out_start(const ::duration & time)
       {
 
          synchronous_lock sl(mutex());
@@ -746,7 +750,7 @@ namespace multimedia
 
          }
 
-         if(m_estate != e_state_opened && m_estate != state_stopped)
+         if(m_estate != e_state_opened && m_estate != e_state_stopped)
          {
 
             return error_failed;
