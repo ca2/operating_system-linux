@@ -61,7 +61,7 @@ namespace desktop_environment_kde
 
       //using ::aura::node::node_fork;
 
-      //virtual void node_branch(const ::routine & routine) override;
+      //virtual void node_post(const ::routine & routine) override;
 
       //virtual void node_post_quit() override;
 

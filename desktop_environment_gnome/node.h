@@ -63,15 +63,9 @@ namespace desktop_environment_gnome
 
       virtual string get_wallpaper(index iScreen) override;
 
-      using ::aura::node::node_fork;
-
       virtual bool windowing_message_loop_step();
 
-      virtual ::e_status node_branch(const ::routine & routine);
-
       void handle(::subject * psubject, ::context * pcontext) override;
-
-      //void os_post_quit() override;
 
       bool should_launch_on_node(::subject * psubject) override;
 

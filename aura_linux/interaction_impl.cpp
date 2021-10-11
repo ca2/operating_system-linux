@@ -238,7 +238,7 @@ namespace linux
 
          auto pwindowing = puser->windowing();
 
-         pwindowing->windowing_sync(15_s, __routine([&]()
+         pwindowing->windowing_send(__routine(15_s, [&]()
          {
 
             auto psession = get_session();
@@ -363,7 +363,7 @@ namespace linux
    void interaction_impl::_thread_delayed_placement()
    {
 
-      while(m_millisLastPlacementEvent.elapsed() < 40 || m_puserinteraction->layout().is_changing())
+      while(m_durationLastPlacementEvent.elapsed() < 40_ms || m_puserinteraction->layout().is_changing())
       {
 
          if(!task_sleep(10_ms))
@@ -389,7 +389,7 @@ namespace linux
       if (bMove)
       {
 
-         INFO("linux::interaction_impl Window Manager Move (%d, %d)", m_pointLastMove.x, m_pointLastMove.y);
+         INFORMATION("linux::interaction_impl Window Manager Move ("<<m_pointLastMove.x<<"%d"", "<<m_pointLastMove.y<<")");
 
          m_puserinteraction->move_to(m_pointLastMove);
 
@@ -404,7 +404,7 @@ namespace linux
       if (bSize)
       {
 
-         INFO("linux::interaction_impl Window Manager Size (%d, %d)", m_sizeLastSize.cx, m_sizeLastSize.cy);
+         INFORMATION("linux::interaction_impl Window Manager Size (%d, %d)", m_sizeLastSize.cx, m_sizeLastSize.cy);
 
          m_puserinteraction->set_size(m_sizeLastSize);
 
@@ -519,7 +519,7 @@ namespace linux
       if(pshowwindow->m_bShow)
       {
 
-         INFO("linux::interaction_impl::_001OnShowWindow VISIBLE edisplay=%s", __cstr(m_puserinteraction->layout().design().display().m_eenum));
+         INFORMATION("linux::interaction_impl::_001OnShowWindow VISIBLE edisplay=" << __string(m_puserinteraction->layout().design().display().m_eenum));
 
          //m_puserinteraction->ModifyStyle(0, WS_VISIBLE);
 
@@ -960,10 +960,10 @@ namespace linux
 //   }
 //
 
-   millis     tickDebugmessage_handlerTime;
-   int      iDebugmessage_handlerTime;
-   millis     tickLastMouseMove;
-   millis     tickLastPaint;
+   ::duration     durationDebugmessage_handlerTime;
+   int            iDebugmessage_handlerTime;
+   ::duration     durationLastMouseMove;
+   ::duration     durationLastPaint;
 
 
    void interaction_impl::message_handler(::message::message * pmessage)
@@ -2355,7 +2355,7 @@ namespace linux
       if(pwindowing)
       {
 
-         pwindowing->windowing_branch(__routine([this]()
+         pwindowing->windowing_post(__routine([this]()
                           {
 
                              m_pwindow->exit_iconify();
@@ -2386,7 +2386,7 @@ namespace linux
       if(pwindowing)
       {
 
-         pwindowing->windowing_branch(__routine([this]()
+         pwindowing->windowing_post(__routine([this]()
          {
 
             m_pwindow->exit_full_screen();
@@ -2417,7 +2417,7 @@ namespace linux
       if(pwindowing)
       {
 
-         pwindowing->windowing_branch(__routine([this]()
+         pwindowing->windowing_post(__routine([this]()
          {
 
             m_pwindow->exit_zoomed();

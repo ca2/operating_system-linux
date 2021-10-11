@@ -215,7 +215,7 @@ namespace desktop_environment_kde
 //         ////
 //         ////#endif
 //
-//         node_branch(__routine([this]()
+//         node_post(__routine([this]()
 //                   {
 //
 ////                      //x11_add_idle_source();

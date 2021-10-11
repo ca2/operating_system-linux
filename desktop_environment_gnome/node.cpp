@@ -497,24 +497,6 @@ namespace desktop_environment_gnome
    }
 
 
-   ::e_status node::node_branch(const ::routine & routine)
-   {
-
-      gdk_branch(routine);
-
-      return ::success;
-
-   }
-
-
-//   void node::node_post_quit()
-//   {
-//
-//      os_post_quit();
-//
-//   }
-
-
    void node::handle(::subject * psubject, ::context * pcontext)
    {
 
@@ -524,7 +506,6 @@ namespace desktop_environment_gnome
          _os_process_user_theme_color(m_strTheme);
 
       }
-
 
    }
 

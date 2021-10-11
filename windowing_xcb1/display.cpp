@@ -1127,7 +1127,7 @@ namespace windowing_xcb
 
       auto pnode = Node;
 
-      pnode->node_sync(10_s, [this, pointHitTest, pwindowExclude, iMargin, &bIsOrigin]()
+      pnode->node_send(10_s, [this, pointHitTest, pwindowExclude, iMargin, &bIsOrigin]()
       {
 
          ::windowing_xcb::window *pwindowxcbExclude = nullptr;

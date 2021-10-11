@@ -20,35 +20,34 @@ namespace linux
    public:
 
 
-      string                        m_strWindowText;
-      ::user::primitive *    m_pbasewnd;
-      bool                          m_bExposing;
-      //__pointer(x11data)                   m_px11data;
-      i32                           m_iDepth;
-      i32                           m_iScreen;
-      bool                          m_bEnabled;
+      string                           m_strWindowText;
+      ::user::primitive *              m_pbasewnd;
+      bool                             m_bExposing;
+      //__pointer(x11data)             m_px11data;
+      i32                              m_iDepth;
+      i32                              m_iScreen;
+      bool                             m_bEnabled;
 
-      //__pointer(::thread)                  m_pthreadDraw;
-      ::rectangle_i64                      m_rectLastPos;
-      millis m_millisLastPos;
+      //__pointer(::thread)            m_pthreadDraw;
+      ::rectangle_i64                  m_rectLastPos;
+      ::duration                       m_durationLastPos;
 
-      ::point_i32                       m_pointLastMove;
-      bool                          m_bMoveEvent;
-      ::size_i32                        m_sizeLastSize;
-      bool                          m_bSizeEvent;
-      ::millis                        m_millisLastPlacementEvent;
+      ::point_i32                      m_pointLastMove;
+      bool                             m_bMoveEvent;
+      ::size_i32                       m_sizeLastSize;
+      bool                             m_bSizeEvent;
+      ::duration                       m_durationLastPlacementEvent;
 
 
       interaction_impl();
-      interaction_impl(::object * pobject);
-      virtual ~interaction_impl();
+      ~interaction_impl() override;
 
 
       void linux_interaction_impl_common_construct();
 
 
-      virtual void assert_valid() const override;
-      virtual void dump(dump_context & dumpcontext) const override;
+      void assert_valid() const override;
+      void dump(dump_context & dumpcontext) const override;
 
 
       static const MESSAGE * GetCurrentMessage();
