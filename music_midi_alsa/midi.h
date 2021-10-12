@@ -68,7 +68,7 @@ namespace music
 
             //virtual bool list_midi_out_devices(snd_ctl_t *ctl, int card, int device);
 
-            void list_each_subs(snd_seq_t *seq, snd_seq_query_subscribe_t *subs, int type, const char *msg);
+            void list_each_subs(snd_seq_t *seq, snd_seq_query_subscribe_t *subs, snd_seq_query_subs_type_t type, const char *msg);
 
             void list_subscribers(snd_seq_t *seq, const snd_seq_addr_t *addr);
 

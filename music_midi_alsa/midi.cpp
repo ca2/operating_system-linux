@@ -484,7 +484,7 @@ namespace music
          /*
           * list subscribers of specified type
           */
-         void midi::list_each_subs(snd_seq_t *seq, snd_seq_query_subscribe_t *subs, int type, const char *msg)
+         void midi::list_each_subs(snd_seq_t *seq, snd_seq_query_subscribe_t *subs, snd_seq_query_subs_type_t type, const char *msg)
          {
             int count = 0;
             snd_seq_query_subscribe_set_type(subs, type);
