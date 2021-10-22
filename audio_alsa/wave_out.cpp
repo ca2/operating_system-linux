@@ -397,7 +397,7 @@ namespace multimedia
       }
 
 
-      ::duration wave_out::out_get_time()
+      ::duration wave_out::out_get_position()
       {
 
          synchronous_lock sl(mutex());
@@ -407,20 +407,50 @@ namespace multimedia
          if(m_ppcm != NULL)
          {
 
-            if(snd_pcm_status(m_ppcm, m_pstatus) == 0)
-            {
+            snd_pcm_sframes_t frames;
 
-               snd_timestamp_t t;
+            snd_pcm_delay(m_ppcm, &frames);
 
-               snd_pcm_status_get_trigger_tstamp (m_pstatus, &t);
+            auto iBytes = m_pprebuffer->m_iBytes;
 
-               timeval tnow;
+            auto iFrameSize = wave_base_get_frame_size();
 
-               gettimeofday(&tnow, nullptr);
+            auto iFrame = iBytes / iFrameSize;
 
-               time = INTEGRAL_MILLISECOND((tnow.tv_sec - t.tv_sec)*1'000.0 + (tnow.tv_usec - t.tv_usec) / (1'000.0));
+            double dSecond = (double) (iFrame - frames) / (double) m_pwaveformat->m_waveformat.nSamplesPerSec;
 
-            }
+            time.m_iSecond = floor(dSecond);
+
+            time.m_iNanosecond = fmod(dSecond, 1.0) * 1'000'000'000.0;
+
+            //}
+
+//            if(snd_pcm_status(m_ppcm, m_pstatus) == 0)
+//            {
+//
+//               snd_htimestamp_t t;
+//
+//               snd_pcm_status_get_trigger_htstamp (m_pstatus, &t);
+//
+////               timespec tnow;
+////
+////               clock_gettime(CLOCK_REALTIME, &tnow);
+////
+////               duration duratioNow;
+////
+////               durationNow.tv_sec = tnow.tv_sec;
+////
+////               durationNow.tv_nsec = tnow.tv_nsec;
+//
+//               duration durationStart;
+//
+//               durationStart.m_iSecond = t.tv_sec;
+//
+//               durationStart.m_iNanosecond = t.tv_nsec;
+//
+//               time = durationStart.elapsed();
+//
+//            }
 
          }
 

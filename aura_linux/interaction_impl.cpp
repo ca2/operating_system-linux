@@ -1340,7 +1340,7 @@ namespace linux
 
          }
 
-         string strUserInteractionType(::is_null(puserinteractionMouse) ? "(null)" : puserinteractionMouse->type_c_str());
+         string strUserInteractionType(::is_null(puserinteractionMouse) ? "(null)" : puserinteractionMouse->type_name());
 
          if(pmouse->m_id == e_message_mouse_move)
          {

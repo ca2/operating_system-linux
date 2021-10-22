@@ -30,25 +30,25 @@ namespace multimedia
 
          void install_message_routing(::channel * pchannel) override;
 
-         virtual ::duration out_get_time();
+         ::duration out_get_position() override;
          //imedia_position out_get_position();
 
          //virtual ::e_status wave_out_open(::thread * pthreadCallback, ::count iBufferCount, ::count iBufferSampleCount) override;
-         virtual ::e_status out_open_ex(::thread * pthreadCallback, ::u32 uiSamplesPerSec, ::u32 uiChannelCount, ::u32 uiBitsPerSample, ::wave::e_purpose epurpose) override;
-         virtual ::e_status out_stop() override;
-         virtual ::e_status out_close() override;
-         virtual ::e_status out_pause() override;
-         virtual ::e_status out_restart() override;
+         ::e_status out_open_ex(::thread * pthreadCallback, ::u32 uiSamplesPerSec, ::u32 uiChannelCount, ::u32 uiBitsPerSample, ::wave::e_purpose epurpose) override;
+         ::e_status out_stop() override;
+         ::e_status out_close() override;
+         ::e_status out_pause() override;
+         ::e_status out_restart() override;
          snd_pcm_t * out_get_safe_PCM();
 
          //virtual void alsa_write_thread();
 
-         virtual void out_on_playback_end() override;
-         virtual void out_filled(index iBuffer) override;
+         void out_on_playback_end() override;
+         void out_filled(index iBuffer) override;
          virtual bool alsa_should_play();
 
-         virtual ::e_status init_thread() override;
-         virtual void term_thread() override;
+         ::e_status init_thread() override;
+         void term_thread() override;
 
          virtual ::e_status out_start(const ::duration & time);
 

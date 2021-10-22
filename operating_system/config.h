@@ -61,7 +61,7 @@
 
 #ifdef __cplusplus
 
-#define LOG_THIS_TAG (get_demangle(typeid(*this).name()))
+#define LOG_THIS_TAG (get_demangle(type_name()))
 #define LOG_MEMBER_PREFIX __FUNCTION__
 
 #define ALOG_FUNCTION __FUNCTION__
