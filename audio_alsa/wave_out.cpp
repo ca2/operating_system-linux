@@ -536,38 +536,45 @@ namespace multimedia
       void wave_out::out_filled(index iBuffer)
       {
 
-         synchronous_lock sl(mutex());
-
-         if(m_ppcm == NULL)
-         {
-
-            return;
-
-         }
-
          snd_pcm_sframes_t iFramesToWrite = m_frameCount;
 
-         int iBytesToWrite = snd_pcm_frames_to_bytes(m_ppcm, iFramesToWrite);
+         int iBytesToWrite = -1;
 
-         ::e_status mmr = success;
+         ::e_status estatus = success;
 
          snd_pcm_sframes_t iFrameFreeCount = 0;
 
-         //if(false)
          {
 
-            while(::task_get_run())
+            synchronous_lock sl(mutex());
+
+            if (m_ppcm == NULL)
             {
+
+               return;
+
+            }
+
+            iBytesToWrite = snd_pcm_frames_to_bytes(m_ppcm, iFramesToWrite);
+
+         }
+
+         while(::task_get_run())
+         {
+
+            {
+
+               synchronous_lock sl(mutex());
 
                iFrameFreeCount = snd_pcm_avail_update(m_ppcm);
 
-               if(iFrameFreeCount == -EAGAIN)
+               if (iFrameFreeCount == -EAGAIN)
                {
 
                   continue;
 
                }
-               else if(iFrameFreeCount < 0)
+               else if (iFrameFreeCount < 0)
                {
 
                   const char * pszError = snd_strerror(iFrameFreeCount);
@@ -576,7 +583,7 @@ namespace multimedia
 
                   iFrameFreeCount = defer_underrun_recovery(iFrameFreeCount);
 
-                  if(iFrameFreeCount >= 0)
+                  if (iFrameFreeCount >= 0)
                   {
 
                      TRACE("ALSA wave_out snd_pcm_avail underrun recovery success (snd_pcm_avail)");
@@ -596,16 +603,16 @@ namespace multimedia
                   return;
 
                }
-               else if(iFrameFreeCount >= iFramesToWrite)
+               else if (iFrameFreeCount >= iFramesToWrite)
                {
 
                   break;
 
                }
 
-               usleep((iFramesToWrite - iFrameFreeCount) * 500'000 / m_pwaveformat->m_waveformat.nSamplesPerSec);
-
             }
+
+            usleep((iFramesToWrite - iFrameFreeCount) * 500'000 / m_pwaveformat->m_waveformat.nSamplesPerSec);
 
          }
 
@@ -613,8 +620,12 @@ namespace multimedia
 
          memory m;
 
+         ::wave::buffer::item * pbuffer = nullptr;
+
          if(iBuffer >= 0)
          {
+
+            pbuffer = m_pwavebuffer->m_buffera[iBuffer];
 
             pdata = (byte *) out_get_buffer_data(iBuffer);
 
@@ -630,6 +641,10 @@ namespace multimedia
 
          }
 
+         synchronous_lock sl(mutex());
+
+         synchronous_lock synchronouslockBuffer(pbuffer ? pbuffer->mutex() : nullptr);
+
          int iZero = 0;
 
          int iFramesJustWritten = 0;
@@ -638,8 +653,6 @@ namespace multimedia
          {
 
             iFramesJustWritten = snd_pcm_writei(m_ppcm, pdata, iFramesToWrite);
-
-            iFramesToWrite -= iFramesJustWritten;
 
             if(!m_bStarted)
             {
@@ -700,29 +713,26 @@ namespace multimedia
 
             }
 
+            iFramesToWrite -= iFramesJustWritten;
+
             int iBytesJustWritten = snd_pcm_frames_to_bytes(m_ppcm, iFramesJustWritten);
 
-            if(iBuffer >= 0)
-            {
-
-               m_pprebuffer->m_iBytes += iFramesJustWritten;
-
-            }
+            m_pprebuffer->m_iBytes += iBytesJustWritten;
 
             pdata += iBytesJustWritten;
 
             iBytesToWrite -= iBytesJustWritten;
 
-            if(iBytesToWrite > 0)
-            {
-
-               sl.unlock();
-
-               snd_pcm_wait(m_ppcm, 100);
-
-               sl.lock();
-
-            }
+   //            if(iBytesToWrite > 0)
+   //            {
+   //
+   //               sl.unlock();
+   //
+   //               snd_pcm_wait(m_ppcm, 100);
+   //
+   //               sl.lock();
+   //
+   //            }
 
          }
 
