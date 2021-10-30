@@ -97,18 +97,18 @@ namespace linux
 //   }
 
 
-   ::file::path file_context::dropbox_info_json()
+   ::file::path file_context::dropbox_info_network_payload()
    {
 
-      ::file::path pathJson;
+      ::file::path pathNetworkPayload;
 
       auto psystem = m_psystem;
 
       auto pacmedir = psystem->m_pacmedir;
 
-      pathJson = pacmedir->home() / ".dropbox/info.json";
+      pathNetworkPayload = pacmedir->home() / ".dropbox/info.network_payload";
 
-      return pathJson;
+      return pathNetworkPayload;
 
    }
 
