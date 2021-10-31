@@ -766,7 +766,7 @@ namespace music
 //      {
 //         UNREFERENCED_PARAMETER(tkMax);
 //         UNREFERENCED_PARAMETER(cbPrerollNominalMax);
-//         //   TRACE("file::StreamEvent tkDelta %d\n", tkDelta);
+//         //   FORMATTED_TRACE("file::StreamEvent tkDelta %d\n", tkDelta);
 //
 //         ::u32                   dwTempo;
 //         LPDWORD                 lpdw;
@@ -792,7 +792,7 @@ namespace music
 //            if(pEvent->GetTrack() == 9 ||
 //               pEvent->GetTrack() == 15)
 //            {
-//               //         TRACE("ReadEvents Track %d Program %d", pEvent->GetTrack(), m_keyframe.rbProgram[pEvent->GetTrack()]);
+//               //         FORMATTED_TRACE("ReadEvents Track %d Program %d", pEvent->GetTrack(), m_keyframe.rbProgram[pEvent->GetTrack()]);
 //            }
 //            if((pEvent->GetType() == ::music::midi::NoteOn ||
 //               pEvent->GetType() == ::music::midi::NoteOff)
@@ -1150,9 +1150,9 @@ namespace music
 //            #ifdef _DEBUG
 //            //         if(pEventsV1->m_iType == 1)
 //            //         {
-//            //            TRACE("ReadEvents pEventsV1->m_iCurrentToken = %d\n", pEventsV1->m_iCurrentToken);
-//            //            TRACE("ReadEvents pEventsV1->m_iType = %d\n", pEventsV1->m_iType);
-//            //            TRACE("ReadEvents m_ptracks->m_tkPosition = %d\n", m_ptracks->m_tkPosition);
+//            //            FORMATTED_TRACE("ReadEvents pEventsV1->m_iCurrentToken = %d\n", pEventsV1->m_iCurrentToken);
+//            //            FORMATTED_TRACE("ReadEvents pEventsV1->m_iType = %d\n", pEventsV1->m_iType);
+//            //            FORMATTED_TRACE("ReadEvents m_ptracks->m_tkPosition = %d\n", m_ptracks->m_tkPosition);
 //            //         }
 //            #endif
 //            tkDelta = tkMin - m_ptracks->m_tkPosition;
@@ -2758,14 +2758,14 @@ namespace music
 //               }
 //               /*         if(pevent->get_type() == NoteOn)
 //               {
-//               TRACE("WorkStreamRender: NoteOn     position %d Delta %d Track %d\n",
+//               FORMATTED_TRACE("WorkStreamRender: NoteOn     position %d Delta %d Track %d\n",
 //               m_ptracks->GetPosition(),
 //               tkDelta,
 //               pevent->GetTrack());
 //               }
 //               else
 //               {
-//               TRACE("WorkStreamRender: Type Other position %d Delta %d\n",
+//               FORMATTED_TRACE("WorkStreamRender: Type Other position %d Delta %d\n",
 //               m_ptracks->GetPosition(),
 //               tkDelta);
 //               }*/

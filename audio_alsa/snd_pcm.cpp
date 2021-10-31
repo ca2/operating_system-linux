@@ -60,7 +60,7 @@ namespace multimedia
             // fetches the first card
             if ((err = snd_card_next(&cardNum)) < 0)
             {
-               TRACE("Can't get the next card number: %s\n", snd_strerror(err));
+               FORMATTED_TRACE("Can't get the next card number: %s\n", snd_strerror(err));
                break;
             }
 
@@ -76,10 +76,10 @@ namespace multimedia
 
                string strFormat;
 
-               strFormat.Format("hw:%i", cardNum);
+               strFormat.format("hw:%i", cardNum);
                if ((err = snd_ctl_open(&cardHandle, strFormat, 0)) < 0)
                {
-                  TRACE("Can't open card %i: %s\n", cardNum, snd_strerror(err));
+                  FORMATTED_TRACE("Can't open card %i: %s\n", cardNum, snd_strerror(err));
                   continue;
                }
 
@@ -93,7 +93,7 @@ namespace multimedia
                   // Get the number of the next wave device on this card
                   if ((err = snd_ctl_pcm_next_device(cardHandle, &devNum)) < 0)
                   {
-                     TRACE("Can't get next wave device number: %s\n", snd_strerror(err));
+                     FORMATTED_TRACE("Can't get next wave device number: %s\n", snd_strerror(err));
                      break;
                   }
 
@@ -117,12 +117,12 @@ namespace multimedia
 
                   subDevCount = snd_pcm_info_get_subdevices_count(pcmInfo);
 
-                  TRACE("\nFound %i wave output subdevices on card %i, %i : %s \n", subDevCount, cardNum, devNum, snd_strerror(err));
+                  FORMATTED_TRACE("\nFound %i wave output subdevices on card %i, %i : %s \n", subDevCount, cardNum, devNum, snd_strerror(err));
 
                   if (subDevCount <= 0)
                   {
 
-                     strFormat.Format("hw:%d,%d", cardNum, devNum);
+                     strFormat.format("hw:%d,%d", cardNum, devNum);
 
                      // NOTE: If there's only one subdevice, then the subdevice number is immaterial,
                      // and can be omitted when you specify the hardware name
@@ -141,12 +141,12 @@ namespace multimedia
                         if ((err = snd_ctl_pcm_info(cardHandle, pcmInfo)) < 0)
                         {
 
-                           TRACE("No wave output subdevice hw:%i,%i : %s\n", cardNum, devNum, snd_strerror(err));
+                           FORMATTED_TRACE("No wave output subdevice hw:%i,%i : %s\n", cardNum, devNum, snd_strerror(err));
 
                            continue;
                         }
 
-                        strFormat.Format("hw:%d,%d,%d", cardNum, devNum, subDevNum);
+                        strFormat.format("hw:%d,%d,%d", cardNum, devNum, subDevNum);
 
                         straName.add(snd_pcm_info_get_name(pcmInfo));
 
@@ -177,7 +177,7 @@ namespace multimedia
          for (int i = 0; i < straDevice.get_count(); i++)
          {
 
-            TRACE("%s", straName[i] + " : " + straDevice[i]);
+            FORMATTED_TRACE("%s", straName[i] + " : " + straDevice[i]);
          }
 
          //string strHw = "hw:0,0";
@@ -186,7 +186,7 @@ namespace multimedia
          if ((err = ::snd_pcm_open(&m_ppcm, strHw, stream_type, SND_PCM_NONBLOCK | SND_PCM_ASYNC)) < 0)
          {
 
-            TRACE("cannot open audio device %s (%s)\n", strHw, snd_strerror(err));
+            FORMATTED_TRACE("cannot open audio device %s (%s)\n", strHw, snd_strerror(err));
 
             return error_failed;
          }
@@ -196,7 +196,7 @@ namespace multimedia
          if ((err = snd_pcm_hw_params_any(m_ppcm, m_phwparams)) < 0)
          {
 
-            TRACE("cannot initialize hardware parameter structure (%s)\n", snd_strerror(err));
+            FORMATTED_TRACE("cannot initialize hardware parameter structure (%s)\n", snd_strerror(err));
 
             return error_failed;
          }
@@ -204,7 +204,7 @@ namespace multimedia
          if ((err = snd_pcm_hw_params_set_access(m_ppcm, m_phwparams, SND_PCM_ACCESS_RW_INTERLEAVED)) < 0)
          {
 
-            TRACE("cannot set access type (%s)\n", snd_strerror(err));
+            FORMATTED_TRACE("cannot set access type (%s)\n", snd_strerror(err));
 
             return error_failed;
          }
@@ -229,7 +229,7 @@ namespace multimedia
 
             string strError = snd_strerror(err);
 
-            TRACE("cannot set sample format (%s)\n", strError.c_str());
+            FORMATTED_TRACE("cannot set sample format (%s)\n", strError.c_str());
 
             return error_failed;
 
@@ -242,7 +242,7 @@ namespace multimedia
          if ((err = snd_pcm_hw_params_set_rate_near(m_ppcm, m_phwparams, &uiFreq, &dir)) < 0)
          {
 
-            TRACE("cannot set sample rate (%s)\n", snd_strerror(err));
+            FORMATTED_TRACE("cannot set sample rate (%s)\n", snd_strerror(err));
 
             return error_failed;
          }
@@ -252,7 +252,7 @@ namespace multimedia
          if ((err = snd_pcm_hw_params_set_channels(m_ppcm, m_phwparams, pformat->m_waveformat.nChannels)) < 0)
          {
 
-            TRACE("cannot set channel count (%s)\n", snd_strerror(err));
+            FORMATTED_TRACE("cannot set channel count (%s)\n", snd_strerror(err));
 
             return error_failed;
          }
@@ -268,7 +268,7 @@ namespace multimedia
 
             const char *pszError = snd_strerror(err);
 
-            TRACE("snd_pcm_hw_params_get_periods_min failed: %s\n", pszError);
+            FORMATTED_TRACE("snd_pcm_hw_params_get_periods_min failed: %s\n", pszError);
 
             return error_failed;
 
@@ -285,7 +285,7 @@ namespace multimedia
 
             const char *pszError = snd_strerror(err);
 
-            TRACE("snd_pcm_hw_params_get_period_size failed: %s\n", pszError);
+            FORMATTED_TRACE("snd_pcm_hw_params_get_period_size failed: %s\n", pszError);
 
             return error_failed;
 
@@ -302,7 +302,7 @@ namespace multimedia
 
             const char *pszError = snd_strerror(err);
 
-            TRACE("snd_pcm_hw_params_get_periods failed: %s\n", pszError);
+            FORMATTED_TRACE("snd_pcm_hw_params_get_periods failed: %s\n", pszError);
 
             return error_failed;
 
@@ -319,7 +319,7 @@ namespace multimedia
 
             const char *pszError = snd_strerror(err);
 
-            TRACE("snd_pcm_hw_params_get_period_size_min failed: %s\n", pszError);
+            FORMATTED_TRACE("snd_pcm_hw_params_get_period_size_min failed: %s\n", pszError);
 
             return error_failed;
 
@@ -336,7 +336,7 @@ namespace multimedia
 
             const char *pszError = snd_strerror(err);
 
-            TRACE("snd_pcm_hw_params_get_period_size_max failed: %s\n", pszError);
+            FORMATTED_TRACE("snd_pcm_hw_params_get_period_size_max failed: %s\n", pszError);
 
             return error_failed;
 
@@ -353,7 +353,7 @@ namespace multimedia
 
             const char *pszError = snd_strerror(err);
 
-            TRACE("snd_pcm_hw_params_get_period_size failed: %s\n", pszError);
+            FORMATTED_TRACE("snd_pcm_hw_params_get_period_size failed: %s\n", pszError);
 
             return error_failed;
          }
@@ -367,7 +367,7 @@ namespace multimedia
          if(err < 0)
          {
 
-            TRACE("Unable to get buffer size for playback: %s\n", snd_strerror(err));
+            FORMATTED_TRACE("Unable to get buffer size for playback: %s\n", snd_strerror(err));
 
             return error_failed;
 
@@ -380,7 +380,7 @@ namespace multimedia
          if ((err = snd_pcm_hw_params(m_ppcm, m_phwparams)) < 0)
          {
 
-            TRACE("cannot set parameters (%s)\n", snd_strerror(err));
+            FORMATTED_TRACE("cannot set parameters (%s)\n", snd_strerror(err));
 
             return error_failed;
          }
@@ -498,7 +498,7 @@ namespace multimedia
          if ((err = ::snd_pcm_close(m_ppcm)) < 0)
          {
 
-            TRACE("failed to close successfully sound interface (%s)\n", snd_strerror(err));
+            FORMATTED_TRACE("failed to close successfully sound interface (%s)\n", snd_strerror(err));
 
             return error_failed;
          }

@@ -189,7 +189,7 @@ namespace multimedia
          if((err = snd_pcm_sw_params_current(m_ppcm, m_pswparams)) < 0)
          {
 
-            TRACE("unable to determine current m_pswparams for playback: %s\n", snd_strerror(err));
+            FORMATTED_TRACE("unable to determine current m_pswparams for playback: %s\n", snd_strerror(err));
 
             return error_failed;
 
@@ -201,7 +201,7 @@ namespace multimedia
          if((err = snd_pcm_sw_params_set_start_threshold(m_ppcm, m_pswparams, framesThreshold)) < 0)
          {
 
-            TRACE("unable to set start threshold mode for playback: %s\n", snd_strerror(err));
+            FORMATTED_TRACE("unable to set start threshold mode for playback: %s\n", snd_strerror(err));
 
             return error_failed;
 
@@ -211,7 +211,7 @@ namespace multimedia
          if((err = snd_pcm_sw_params_set_avail_min(m_ppcm, m_pswparams, m_frameCount)) < 0)
          {
 
-            TRACE("unable to set avail min for playback: %s\n", snd_strerror(err));
+            FORMATTED_TRACE("unable to set avail min for playback: %s\n", snd_strerror(err));
 
             return error_failed;
 
@@ -220,7 +220,7 @@ namespace multimedia
          if((err = snd_pcm_sw_params_set_tstamp_mode(m_ppcm, m_pswparams, SND_PCM_TSTAMP_ENABLE)) < 0)
          {
 
-            TRACE("unable to set time stamp mode: %s\n", snd_strerror(err));
+            FORMATTED_TRACE("unable to set time stamp mode: %s\n", snd_strerror(err));
 
             return error_failed;
 
@@ -229,7 +229,7 @@ namespace multimedia
          if((err = snd_pcm_sw_params_set_tstamp_type(m_ppcm, m_pswparams,SND_PCM_TSTAMP_TYPE_GETTIMEOFDAY)) <0)
          {
 
-            TRACE("unable to set time stamp type: %s\n", snd_strerror(err));
+            FORMATTED_TRACE("unable to set time stamp type: %s\n", snd_strerror(err));
 
             return error_failed;
 
@@ -239,7 +239,7 @@ namespace multimedia
          if((err = snd_pcm_sw_params(m_ppcm, m_pswparams)) < 0)
          {
 
-            TRACE("unable to set sw params for playback: %s\n", snd_strerror(err));
+            FORMATTED_TRACE("unable to set sw params for playback: %s\n", snd_strerror(err));
 
             return error_failed;
 
@@ -579,7 +579,7 @@ namespace multimedia
 
                   const char * pszError = snd_strerror(iFrameFreeCount);
 
-                  TRACE("ALSA wave_out snd_pcm_avail error: %s (%d)\n", pszError, iFrameFreeCount);
+                  FORMATTED_TRACE("ALSA wave_out snd_pcm_avail error: %s (%d)\n", pszError, iFrameFreeCount);
 
                   iFrameFreeCount = defer_underrun_recovery(iFrameFreeCount);
 
@@ -592,13 +592,13 @@ namespace multimedia
 
                   }
 
-                  TRACE("ALSA wave_out snd_pcm_avail minimum byte count %d\n", iFramesToWrite);
+                  FORMATTED_TRACE("ALSA wave_out snd_pcm_avail minimum byte count %d\n", iFramesToWrite);
 
                   m_estate = e_state_opened;
 
                   m_estatusWave = error_failed;
 
-                  TRACE("ALSA wave_out snd_pcm_avail error: %s\n", snd_strerror(iFrameFreeCount));
+                  FORMATTED_TRACE("ALSA wave_out snd_pcm_avail error: %s\n", snd_strerror(iFrameFreeCount));
 
                   return;
 
@@ -690,7 +690,7 @@ namespace multimedia
 
                TRACE("snd_pcm_writei Underrun\n");
 
-               TRACE("ALSA wave_out snd_pcm_writei error: %s (%d)\n", snd_strerror(iFramesJustWritten), iFramesJustWritten);
+               FORMATTED_TRACE("ALSA wave_out snd_pcm_writei error: %s (%d)\n", snd_strerror(iFramesJustWritten), iFramesJustWritten);
 
                iFramesJustWritten = defer_underrun_recovery(iFramesJustWritten);
 
@@ -701,7 +701,7 @@ namespace multimedia
 
                   m_estatusWave = error_failed;
 
-                  TRACE("ALSA wave_out snd_pcm_writei couldn't recover from error: %s\n", snd_strerror(iFramesJustWritten));
+                  FORMATTED_TRACE("ALSA wave_out snd_pcm_writei couldn't recover from error: %s\n", snd_strerror(iFramesJustWritten));
 
                   return;
 
@@ -802,7 +802,7 @@ namespace multimedia
          if ((err = snd_pcm_prepare (m_ppcm)) < 0)
          {
 
-            TRACE ("out_start: Cannot prepare audio interface for use (%s)\n",snd_strerror (err));
+            FORMATTED_TRACE ("out_start: Cannot prepare audio interface for use (%s)\n",snd_strerror (err));
 
             return error_failed;
 
@@ -845,14 +845,14 @@ namespace multimedia
 //         if (err == -EPIPE)
 //         {
 //
-//            TRACE("underrun_recovery, going to snd_pcm_prepare: %s\n", snd_strerror(err));
+//            FORMATTED_TRACE("underrun_recovery, going to snd_pcm_prepare: %s\n", snd_strerror(err));
 //
 //
 //
 //            if (err < 0)
 //            {
 //
-//               TRACE("Can't recover from underrun, snd_pcm_prepare failed: %s\n", snd_strerror(err));
+//               FORMATTED_TRACE("Can't recover from underrun, snd_pcm_prepare failed: %s\n", snd_strerror(err));
 //
 //            }
 //
@@ -860,12 +860,12 @@ namespace multimedia
 //         else if (err == -ESTRPIPE)
 //         {
 //
-//            TRACE("underrun_recovery, snd_pcm_prepare returned -ESTRPIPE: %s\n", snd_strerror(err));
+//            FORMATTED_TRACE("underrun_recovery, snd_pcm_prepare returned -ESTRPIPE: %s\n", snd_strerror(err));
 //
 //            while ((err = snd_pcm_resume(m_ppcm)) == -EAGAIN)
 //            {
 //
-//               TRACE("underrun_recovery, snd_pcm_resume returned -EAGAIN: %s\n", snd_strerror(err));
+//               FORMATTED_TRACE("underrun_recovery, snd_pcm_resume returned -EAGAIN: %s\n", snd_strerror(err));
 //
 //               sleep(1); /* wait until the suspend flag is released */
 //
@@ -879,7 +879,7 @@ namespace multimedia
 //               if (err < 0)
 //               {
 //
-//                  TRACE("Can't recovery from suspend, snd_pcm_prepare failed: %s\n", snd_strerror(err));
+//                  FORMATTED_TRACE("Can't recovery from suspend, snd_pcm_prepare failed: %s\n", snd_strerror(err));
 //
 //               }
 //

@@ -389,7 +389,7 @@ namespace linux
       if (bMove)
       {
 
-         INFORMATION("linux::interaction_impl Window Manager Move ("<<m_pointLastMove.x<<"%d"", "<<m_pointLastMove.y<<")");
+         INFORMATION("linux::interaction_impl Window Manager Move ("<<m_pointLastMove.x<<", "<<m_pointLastMove.y<<")");
 
          m_puserinteraction->move_to(m_pointLastMove);
 
@@ -404,7 +404,7 @@ namespace linux
       if (bSize)
       {
 
-         INFORMATION("linux::interaction_impl Window Manager Size (%d, %d)", m_sizeLastSize.cx, m_sizeLastSize.cy);
+         FORMATTED_INFORMATION("linux::interaction_impl Window Manager Size (%d, %d)", m_sizeLastSize.cx, m_sizeLastSize.cy);
 
          m_puserinteraction->set_size(m_sizeLastSize);
 

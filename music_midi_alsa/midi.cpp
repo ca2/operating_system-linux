@@ -201,11 +201,11 @@ namespace music
                   string strName;
                   if (caps.szPname != NULL)
                   {
-                     strName.Format("%s (%d)", caps.szPname, i);
+                     strName.format("%s (%d)", caps.szPname, i);
                   }
                   else
                   {
-                     strName.Format("(no name midi In device) (%d)", i);
+                     strName.format("(no name midi In device) (%d)", i);
                   }
                   m_straIn.add(strName);*/
          //}
@@ -254,11 +254,11 @@ namespace music
                   string strName;
                   if (caps.szPname != NULL)
                   {
-                     strName.Format("%S (%d)", caps.szPname, i);
+                     strName.format("%S (%d)", caps.szPname, i);
                   }
                   else
                   {
-                     strName.Format("(no name midi Out device) (%d)", i);
+                     strName.format("(no name midi Out device) (%d)", i);
                   }
                   m_straOut.add(strName);*/
          //}
@@ -430,7 +430,7 @@ namespace music
             //               if ((err = snd_card_next(&card)) < 0)
             //               {
             //
-            //                  TRACE("cannot determine card number: %s", snd_strerror(err));
+            //                  FORMATTED_TRACE("cannot determine card number: %s", snd_strerror(err));
             //
             //                  break;
             //
@@ -559,7 +559,7 @@ namespace music
 //            if ((err = snd_ctl_open(&ctl, name, 0)) < 0)
 //            {
 //
-//               TRACE("cannot open control for card %d: %s", card, snd_strerror(err));
+//               FORMATTED_TRACE("cannot open control for card %d: %s", card, snd_strerror(err));
 //
 //               return false;
 //            }
@@ -594,7 +594,7 @@ namespace music
 //               if ((err = snd_ctl_rawmidi_next_device(ctl, &device)) < 0)
 //               {
 //
-//                  TRACE("cannot determine device number: %s", snd_strerror(err));
+//                  FORMATTED_TRACE("cannot determine device number: %s", snd_strerror(err));
 //
 //                  break;
 //
@@ -642,11 +642,11 @@ namespace music
 
             string strDevicePrefix;
 
-            strDevicePrefix.Format("alsa:%s,%d,%d", strDev.c_str(), iClient, iPort);
+            strDevicePrefix.format("alsa:%s,%d,%d", strDev.c_str(), iClient, iPort);
 
             string strName;
 
-            strName.Format("%s (%d:%d)", strDev.c_str(), iClient, iPort);
+            strName.format("%s (%d:%d)", strDev.c_str(), iClient, iPort);
 
             add_midi_out_device(strName, strDevicePrefix);
 
@@ -694,7 +694,7 @@ namespace music
 //
 //               const char * pszError = snd_strerror(err);
 //
-//               TRACE("cannot not get snd_ctl_rawmidi_info: %s", pszError);
+//               FORMATTED_TRACE("cannot not get snd_ctl_rawmidi_info: %s", pszError);
 //
 //               subs = 0;
 //
@@ -719,7 +719,7 @@ namespace music
 //               if (err < 0)
 //               {
 //
-//                  TRACE("cannot get rawmidi information %d:%d:%d: %s\n", card, device, sub, snd_strerror(err));
+//                  FORMATTED_TRACE("cannot get rawmidi information %d:%d:%d: %s\n", card, device, sub, snd_strerror(err));
 //
 //                  return false;
 //
@@ -734,7 +734,7 @@ namespace music
 //
 //                  string strDev;
 //
-//                  strDev.Format("hw:%d,%d", card, device);
+//                  strDev.format("hw:%d,%d", card, device);
 //
 //                  printf("hw:%d,%d    %s", card, device, name);
 //
@@ -748,7 +748,7 @@ namespace music
 //
 //                  string strDev;
 //
-//                  strDev.Format("hw:%d,%d,%d", card, device, sub);
+//                  strDev.format("hw:%d,%d,%d", card, device, sub);
 //
 //                  printf("hw:%d,%d,%d  %s\n",  card, device, sub, sub_name);
 //

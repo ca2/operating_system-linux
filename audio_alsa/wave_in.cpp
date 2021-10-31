@@ -378,7 +378,7 @@ Opened:
                   }
                   else
                   {
-                     TRACE("read from audio interface failed (%s)\n", snd_strerror (err));
+                     FORMATTED_TRACE("read from audio interface failed (%s)\n", snd_strerror (err));
                   }
 
                }

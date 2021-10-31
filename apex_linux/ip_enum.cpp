@@ -18,7 +18,7 @@ namespace linux
 //      i32 err = WSAStartup(wVersionRequested, &wsaData);
 //      if (err != 0)
 //      {
-//         TRACE("Failed in call to WSAStartup, return value was %d\n", err);
+//         FORMATTED_TRACE("Failed in call to WSAStartup, return value was %d\n", err);
 //         __throw(error_not_supported);
 //      }
 
@@ -48,7 +48,7 @@ namespace linux
    char szHostname[256];
    if (gethostname(szHostname, sizeof(szHostname)))
    {
-   TRACE("Failed in call to gethostname, WSAGetLastError returns %d\n", WSAGetLastError());
+   FORMATTED_TRACE("Failed in call to gethostname, WSAGetLastError returns %d\n", WSAGetLastError());
    return false;
    }
 
@@ -56,7 +56,7 @@ namespace linux
    HOSTENT* pHostEnt = gethostbyname(szHostname);
    if (pHostEnt == nullptr)
    {
-   TRACE("Failed in call to gethostbyname, WSAGetLastError returns %d\n", WSAGetLastError());
+   FORMATTED_TRACE("Failed in call to gethostbyname, WSAGetLastError returns %d\n", WSAGetLastError());
    return false;
    }
 
@@ -94,7 +94,7 @@ namespace linux
       char szHostname[256];
       if (gethostname(szHostname, sizeof(szHostname)))
       {
-         //TRACE("Failed in call to gethostname, WSAGetLastError returns %d\n", WSAGetLastError());
+         //FORMATTED_TRACE("Failed in call to gethostname, WSAGetLastError returns %d\n", WSAGetLastError());
          return false;
       }
       {
