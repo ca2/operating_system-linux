@@ -23,7 +23,7 @@
 			<Depends filename="../../../source/app/aura/aura.cbp" />
 			<Depends filename="../../../source/app/experience_core/experience_core.cbp" />
 		</Project>
-		<Project filename="../../../source/app-core/desk/desk.cbp">
+		<Project filename="../../../source/app-core/app_core_desk/app_core_desk.cbp">
 			<Depends filename="../../../source/app/experience_core/experience_core.cbp" />
 		</Project>
 		<Project filename="../../../source/app-core/todo/todo.cbp">

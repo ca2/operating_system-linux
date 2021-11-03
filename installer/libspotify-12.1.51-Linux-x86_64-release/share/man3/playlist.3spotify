@@ -366,7 +366,7 @@ Pending changes are local changes that have not yet been acknowledged by the ser
 .PP
 \fBReturns:\fP
 .RS 4
-A flag representing if there are pending changes or not 
+A flag representing if there are pending changes or not
 .RE
 .PP
 
