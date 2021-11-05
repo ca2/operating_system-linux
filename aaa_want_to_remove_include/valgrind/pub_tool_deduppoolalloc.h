@@ -1,4 +1,4 @@
-
+﻿
 /*--------------------------------------------------------------------*/
 /*--- A pool (memory) allocator that avoids duplicated copies.     ---*/
 /*---                                    pub_tool_deduppoolalloc.h ---*/

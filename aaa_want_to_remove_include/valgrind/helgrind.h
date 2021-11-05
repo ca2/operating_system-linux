@@ -1,4 +1,4 @@
-/*
+﻿/*
    ----------------------------------------------------------------
 
    Notice that the above BSD-style license applies to this one file

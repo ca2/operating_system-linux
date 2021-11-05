@@ -1,4 +1,4 @@
-#include "framework.h"
+﻿#include "framework.h"
 #include "interprocess_communication.h"
 
 

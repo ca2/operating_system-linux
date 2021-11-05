@@ -1,4 +1,4 @@
-/*
+﻿/*
  * Copyright (C) 1999 Patrik Stridvall
  *
  * This library is free software; you can redistribute it and/or

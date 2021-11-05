@@ -1,4 +1,4 @@
-#include "framework.h"
+﻿#include "framework.h"
 
 extern "C"
 void audio_alsa_factory_exchange(::factory_map * pfactorymap)

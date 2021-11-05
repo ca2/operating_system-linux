@@ -1,4 +1,4 @@
-
+﻿
 /*--------------------------------------------------------------------*/
 /*--- An AVL tree based finite map for word keys and word values.  ---*/
 /*--- Inspired by Haskell's "FiniteMap" library.                   ---*/

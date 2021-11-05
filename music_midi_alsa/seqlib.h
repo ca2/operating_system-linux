@@ -1,4 +1,4 @@
-/*
+﻿/*
  * File: seqlib.h
  *
  * Copyright (C) 1999-2003 Steve Ratcliffe

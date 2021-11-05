@@ -1,4 +1,4 @@
-#pragma once
+﻿#pragma once
 
 
 #if defined(__LP64__) || defined(_LP64)    // X64
