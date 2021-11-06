@@ -1,4 +1,4 @@
-﻿/* -*- mode: C; c-basic-offset: 3; -*- */
+/* -*- mode: C; c-basic-offset: 3; -*- */
 
 /*---------------------------------------------------------------*/
 /*--- Provides guest state definition.       pub_tool_guest.h ---*/

@@ -1,4 +1,4 @@
-﻿
+
 /*--------------------------------------------------------------------*/
 /*--- Header imported directly by every tool asm file.             ---*/
 /*---                                        pub_tool_basics_asm.h ---*/

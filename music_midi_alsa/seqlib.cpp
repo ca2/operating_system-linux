@@ -1,4 +1,4 @@
-﻿///*
+///*
 // * File: seqlib.m - Interface to the alsa sequencer library.
 // *
 // * Copyright (C) 1999-2003 Steve Ratcliffe

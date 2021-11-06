@@ -1,4 +1,4 @@
-﻿#define OFFSET_x86_EAX 8
+#define OFFSET_x86_EAX 8
 #define OFFSET_x86_EBX 20
 #define OFFSET_x86_ECX 12
 #define OFFSET_x86_EDX 16

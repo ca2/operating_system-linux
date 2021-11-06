@@ -1,4 +1,4 @@
-﻿/**
+/**
  * Copyright (c) 2006-2010 Spotify Ltd
  * This file is part of the libspotify examples suite.
  * See RandomifyAppDelegate.h for license.

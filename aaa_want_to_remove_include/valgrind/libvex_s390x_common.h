@@ -1,4 +1,4 @@
-﻿/* -*- mode: C; c-basic-offset: 3; -*- */
+/* -*- mode: C; c-basic-offset: 3; -*- */
 
 /*--------------------------------------------------------------------*/
 /*--- Common defs for s390x                  libvex_s390x_common.h ---*/

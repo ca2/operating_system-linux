@@ -1,4 +1,4 @@
-﻿///*
+///*
 // * File: seqmidi.m - convert to the sequencer events
 // *
 // * Copyright (C) 1999 Steve Ratcliffe

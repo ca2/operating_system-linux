@@ -1,4 +1,4 @@
-﻿
+
 /*--------------------------------------------------------------------*/
 /*--- An sparse array (of words) implementation.                   ---*/
 /*---                                          pub_tool_sparsewa.h ---*/

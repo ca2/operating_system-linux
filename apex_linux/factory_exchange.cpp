@@ -1,4 +1,4 @@
-﻿#include "framework.h"
+#include "framework.h"
 #include "apex/operating_system.h"
 //#include "apex/node/linux/_linux.h"
 //#include "file_os_watcher.h"

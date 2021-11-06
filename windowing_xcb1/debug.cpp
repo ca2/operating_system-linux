@@ -1,4 +1,4 @@
-﻿#include "framework.h"
+#include "framework.h"
 #include "windowing_xcb.h"
 ////#include "third/sn/sn.h"
 

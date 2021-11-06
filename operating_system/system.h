@@ -1,4 +1,4 @@
-﻿#pragma once
+#pragma once
 
 
 #define index linux_bsd_index
