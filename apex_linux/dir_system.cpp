@@ -40,6 +40,8 @@ namespace linux
 
       m_pathHome = getenv("HOME");
 
+      m_pathCa2Config = m_pathHome / ".config/ca2";
+
       return estatus;
 
     }
