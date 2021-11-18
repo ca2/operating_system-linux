@@ -53,7 +53,7 @@ void apex_linux_factory_exchange(::factory_map * pfactorymap)
    //pfactorymap->create_factory < ::linux::process, ::process::process >();
 
    //create_factory < ::linux::console, ::console::console >();
-   pfactorymap->create_factory < ::linux::crypto, ::crypto::crypto >();
+   //pfactorymap->create_factory < ::linux::crypto, ::crypto::crypto >();
    pfactorymap->create_factory < ::linux::ip_enum, ::net::ip_enum >();
 
 
