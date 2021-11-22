@@ -5,14 +5,13 @@ project(apex_linux CXX)
 list(APPEND library_source
     _.cpp
     _.h
+   _factory.cpp
     crypto.cpp
     crypto.h
     dir_context.cpp
     dir_context.h
     dir_system.cpp
     dir_system.h
-    factory_exchange.cpp
-    factory_exchange.h
     file_context.cpp
     file_context.h
     file_system.cpp

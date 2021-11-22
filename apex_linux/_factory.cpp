@@ -24,11 +24,11 @@
 
 
 extern "C"
-void acme_linux_factory_exchange(::factory_map * pfactorymap);
+void apex_posix_factory_exchange(::factory_map * pfactorymap);
 
 
 extern "C"
-void apex_posix_factory_exchange(::factory_map * pfactorymap);
+void acme_linux_factory_exchange(::factory_map * pfactorymap);
 
 
 extern "C"
