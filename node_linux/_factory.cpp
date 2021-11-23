@@ -12,30 +12,30 @@ __FACTORY_EXPORT void node_linux_factory(::factory_map * pfactorymap)
    if (edesktop & ::user::e_desktop_kde)
    {
 
-      estatus = pfactorymap->m_psystem->do_factory("desktop_environment", "kde");
+      estatus = pfactorymap->m_psystem->factory("desktop_environment", "kde");
 
    }
    else if (edesktop & ::user::e_desktop_gnome)
    {
 
-      estatus = pfactorymap->m_psystem->do_factory("desktop_environment", "gnome");
+      estatus = pfactorymap->m_psystem->factory("desktop_environment", "gnome");
 
    }
    else if (edesktop & ::user::e_desktop_xfce)
    {
 
-      estatus = pfactorymap->m_psystem->do_factory("desktop_environment", "xfce");
+      estatus = pfactorymap->m_psystem->factory("desktop_environment", "xfce");
 
    }
    else
    {
 
-      estatus = pfactorymap->m_psystem->do_factory("desktop_environment", "gnome");
+      estatus = pfactorymap->m_psystem->factory("desktop_environment", "gnome");
 
       if (!estatus)
       {
 
-         estatus = pfactorymap->m_psystem->do_factory("desktop_environment", "kde");
+         estatus = pfactorymap->m_psystem->factory("desktop_environment", "kde");
 
       }
 
@@ -43,7 +43,7 @@ __FACTORY_EXPORT void node_linux_factory(::factory_map * pfactorymap)
 //
 //#else
 //
-//      estatus = do_factory("aura", "windows");
+//      estatus = factory("aura", "windows");
 //
 //#endif
 
