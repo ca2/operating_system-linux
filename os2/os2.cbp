@@ -56,7 +56,7 @@
 			<Option weight="0" />
 		</Unit>
 		<Unit filename="lnx2_application.cpp" />
-		<Unit filename="lnx2_factory_exchange.cpp" />
+		<Unit filename="lnx2_factory.cpp" />
 		<Unit filename="lnx2_printer.cpp" />
 		<Unit filename="lnx2_printer.h" />
 		<Unit filename="os2.cpp" />

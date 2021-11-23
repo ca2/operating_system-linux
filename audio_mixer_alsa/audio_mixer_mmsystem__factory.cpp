@@ -42,7 +42,7 @@ namespace multimedia
 } // namespace multimedia
 
 
-void ca2_factory_exchange()
+void ca2_factory()
 {
    ::multimedia::audio_mixer_mmsystem::factory_exchange factoryexchange();
 }

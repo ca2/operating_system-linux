@@ -1,8 +1,7 @@
 #include "framework.h"
 
 
-extern "C"
-void node_gnome_factory_exchange()
+__FACTORY_EXPORT void node_gnome_factory()
 {
 
    create_factory < ::node_linux::node, ::acme::node > ();

@@ -4,8 +4,7 @@
 
 
 
-extern "C"
-void windowing_x11_factory_exchange(::factory_map * pfactorymap)
+__FACTORY_EXPORT void windowing_x11_factory(::factory_map * pfactorymap)
 {
 
    pfactorymap->create_factory < ::windowing_x11::buffer, ::graphics::graphics > ();

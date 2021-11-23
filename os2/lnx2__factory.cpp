@@ -21,7 +21,7 @@ namespace win2
 
 
 extern "C"
-void ca2_factory_exchange()
+void ca2_factory()
 {
 
    win2::factory_exchange factoryexchange();

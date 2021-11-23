@@ -23,22 +23,19 @@
 #include "node.h"
 
 
-extern "C"
-void apex_posix_factory_exchange(::factory_map * pfactorymap);
+__FACTORY_EXPORT void apex_posix_factory(::factory_map * pfactorymap);
 
 
-extern "C"
-void acme_linux_factory_exchange(::factory_map * pfactorymap);
+__FACTORY_EXPORT void acme_linux_factory(::factory_map * pfactorymap);
 
 
-extern "C"
-void apex_linux_factory_exchange(::factory_map * pfactorymap)
+__FACTORY_EXPORT void apex_linux_factory(::factory_map * pfactorymap)
 {
 
 
-   apex_posix_factory_exchange(pfactorymap);
+   apex_posix_factory(pfactorymap);
 
-   acme_linux_factory_exchange(pfactorymap);
+   acme_linux_factory(pfactorymap);
 
    pfactorymap->create_factory < ::linux::dir_system, ::dir_system >();
    pfactorymap->create_factory < ::linux::file_system, ::file_system >();

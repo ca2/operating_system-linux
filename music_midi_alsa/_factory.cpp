@@ -40,8 +40,7 @@ namespace music
 } // namespace music
 
 
-extern "C"
-void music_midi_alsa_factory_exchange(factory_map * pfactorymap)
+__FACTORY_EXPORT void music_midi_alsa_factory(factory_map * pfactorymap)
 {
 
    //::music::midi::alsa::factory_exchange factoryexchange();
