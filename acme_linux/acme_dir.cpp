@@ -164,7 +164,7 @@ namespace linux
    ::file::path acme_dir::app_relative()
    {
 
-      ::file::path path = m_psystem->m_pacmefile->executable();
+      ::file::path path = m_psystem->m_pacmefile->module();
 
       path = relative(path);
 
