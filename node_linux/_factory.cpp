@@ -2,40 +2,80 @@
 #include <sys/utsname.h>
 
 
-__FACTORY_EXPORT void node_linux_factory(::factory_map * pfactorymap)
+__FACTORY_EXPORT void node_linux_factory(::factory::factory * pfactory)
 {
 
    auto edesktop = ::acme::linux::node::_get_edesktop();
 
-   ::e_status estatus = ::success_none;
-
    if (edesktop & ::user::e_desktop_kde)
    {
 
-      estatus = pfactorymap->m_psystem->factory("desktop_environment", "kde");
+      auto & pfactoryKde = pfactory->m_psystem->factory("desktop_environment", "kde");
+
+      if(!pfactoryKde)
+      {
+
+         throw resource_exception();
+
+      }
+
+      pfactoryKde->merge_to_global_factory();
 
    }
    else if (edesktop & ::user::e_desktop_gnome)
    {
 
-      estatus = pfactorymap->m_psystem->factory("desktop_environment", "gnome");
+      auto & pfactoryGnome = pfactory->m_psystem->factory("desktop_environment", "gnome");
+
+      if(!pfactoryGnome)
+      {
+
+         throw resource_exception();
+
+      }
+
+      pfactoryGnome->merge_to_global_factory();
 
    }
    else if (edesktop & ::user::e_desktop_xfce)
    {
 
-      estatus = pfactorymap->m_psystem->factory("desktop_environment", "xfce");
+      auto & pfactoryXfce = pfactory->m_psystem->factory("desktop_environment", "xfce");
+
+      if(!pfactoryXfce)
+      {
+
+         throw resource_exception();
+
+      }
+
+      pfactoryXfce->merge_to_global_factory();
 
    }
    else
    {
 
-      estatus = pfactorymap->m_psystem->factory("desktop_environment", "gnome");
+      auto & pfactoryGnome = pfactory->m_psystem->factory("desktop_environment", "gnome");
 
-      if (!estatus)
+      if (!pfactoryGnome)
       {
 
-         estatus = pfactorymap->m_psystem->factory("desktop_environment", "kde");
+         auto & pfactoryKde = pfactory->m_psystem->factory("desktop_environment", "kde");
+
+         if(!pfactoryKde)
+         {
+
+            throw resource_exception();
+
+         }
+
+         pfactoryKde->merge_to_global_factory();
+
+      }
+      else
+      {
+
+         pfactoryGnome->merge_to_global_factory();
 
       }
 
@@ -48,11 +88,11 @@ __FACTORY_EXPORT void node_linux_factory(::factory_map * pfactorymap)
 //#endif
 
 
-//      apex_linux_factory( pfactorymap);
+//      apex_linux_factory( pfactory);
 //
-//   aura_posix_factory( pfactorymap);
+//   aura_posix_factory( pfactory);
 //
-//   pfactorymap->create_factory < ::aura::linux::node, ::acme::node >();
+//   pfactory->add_factory_item < ::aura::linux::node, ::acme::node >();
 
 }
 

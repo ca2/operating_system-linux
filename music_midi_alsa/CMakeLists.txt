@@ -6,16 +6,13 @@ list(APPEND library_source
    _.cpp
    _.h
    _music_midi_alsa.h
+   _factory.cpp
    midi.cpp
    midi.h
    out.cpp
    out.h
-   factory_exchange.cpp
-   factory_exchange.h
    translation.cpp
    translation.h
-   factory_exchange.cpp
-   factory_exchange.h
    framework.cpp
    framework.h
    message_out.cpp

@@ -4,15 +4,15 @@
 
 
 
-__FACTORY_EXPORT void windowing_x11_factory(::factory_map * pfactorymap)
+__FACTORY_EXPORT void windowing_x11_factory(::factory::factory * pfactory)
 {
 
-   pfactorymap->create_factory < ::windowing_x11::buffer, ::graphics::graphics > ();
+   pfactory->add_factory_item < ::windowing_x11::buffer, ::graphics::graphics > ();
 
-   pfactorymap->create_factory < ::windowing_x11::display, ::windowing::display > ();
-   pfactorymap->create_factory < ::windowing_x11::window, ::windowing::window > ();
-   pfactorymap->create_factory < ::windowing_x11::windowing, ::windowing::windowing > ();
-   pfactorymap->create_factory < ::windowing_x11::text_composition_client, ::user::text_composition_client > ();
+   pfactory->add_factory_item < ::windowing_x11::display, ::windowing::display > ();
+   pfactory->add_factory_item < ::windowing_x11::window, ::windowing::window > ();
+   pfactory->add_factory_item < ::windowing_x11::windowing, ::windowing::windowing > ();
+   pfactory->add_factory_item < ::windowing_x11::text_composition_client, ::user::text_composition_client > ();
 
 }
 

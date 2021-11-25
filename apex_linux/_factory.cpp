@@ -23,53 +23,53 @@
 #include "node.h"
 
 
-__FACTORY_EXPORT void apex_posix_factory(::factory_map * pfactorymap);
+__FACTORY_EXPORT void apex_posix_factory(::factory::factory * pfactory);
 
 
-__FACTORY_EXPORT void acme_linux_factory(::factory_map * pfactorymap);
+__FACTORY_EXPORT void acme_linux_factory(::factory::factory * pfactory);
 
 
-__FACTORY_EXPORT void apex_linux_factory(::factory_map * pfactorymap)
+__FACTORY_EXPORT void apex_linux_factory(::factory::factory * pfactory)
 {
 
 
-   apex_posix_factory(pfactorymap);
+   apex_posix_factory(pfactory);
 
-   acme_linux_factory(pfactorymap);
+   acme_linux_factory(pfactory);
 
-   pfactorymap->create_factory < ::linux::dir_system, ::dir_system >();
-   pfactorymap->create_factory < ::linux::file_system, ::file_system >();
+   pfactory->add_factory_item < ::linux::dir_system, ::dir_system >();
+   pfactory->add_factory_item < ::linux::file_system, ::file_system >();
 
-   pfactorymap->create_factory < ::linux::dir_context, ::dir_context >();
-   pfactorymap->create_factory < ::linux::file_context, ::file_context >();
+   pfactory->add_factory_item < ::linux::dir_context, ::dir_context >();
+   pfactory->add_factory_item < ::linux::file_context, ::file_context >();
 
    //create_factory < ::linux::stdio_file, ::file::text_file >();
    //create_factory < ::linux::file, ::file::file >();
-   pfactorymap->create_factory < ::linux::os_context, ::os_context >();
-   //pfactorymap->create_factory < ::linux::pipe, ::process::pipe >();
-   //pfactorymap->create_factory < ::linux::process, ::process::process >();
+   pfactory->add_factory_item < ::linux::os_context, ::os_context >();
+   //pfactory->add_factory_item < ::linux::pipe, ::process::pipe >();
+   //pfactory->add_factory_item < ::linux::process, ::process::process >();
 
    //create_factory < ::linux::console, ::console::console >();
-   //pfactorymap->create_factory < ::linux::crypto, ::crypto::crypto >();
-   pfactorymap->create_factory < ::linux::ip_enum, ::net::ip_enum >();
+   //pfactory->add_factory_item < ::linux::crypto, ::crypto::crypto >();
+   pfactory->add_factory_item < ::linux::ip_enum, ::net::ip_enum >();
 
 
-   pfactorymap->create_factory < ::linux::interprocess_communication_base, ::interprocess_communication::base >();
-   pfactorymap->create_factory < ::linux::interprocess_communication_rx, ::interprocess_communication::rx >();
-   pfactorymap->create_factory < ::linux::interprocess_communication_tx, ::interprocess_communication::tx >();
+   pfactory->add_factory_item < ::linux::interprocess_communication_base, ::interprocess_communication::base >();
+   pfactory->add_factory_item < ::linux::interprocess_communication_rx, ::interprocess_communication::rx >();
+   pfactory->add_factory_item < ::linux::interprocess_communication_tx, ::interprocess_communication::tx >();
    //create_factory < ::linux::interprocess_communication, ::interprocess_communication::interprocess_communication >();
 
 
    //create_factory < ::linux::buffer, ::graphics::graphics >();
    //create_factory < ::linux::interaction_impl, ::user::interaction_impl >();
 
-   //pfactorymap->create_factory < ::file::os_watcher, ::file::watcher >();
-   //pfactorymap->create_factory < ::file::os_watch, ::file::watch >();
+   //pfactory->add_factory_item < ::file::os_watcher, ::file::watcher >();
+   //pfactory->add_factory_item < ::file::os_watch, ::file::watch >();
 
-   pfactorymap->create_factory < ::linux::file_context, ::file_context >();
-   pfactorymap->create_factory < ::linux::service_handler, ::service_handler >();
+   pfactory->add_factory_item < ::linux::file_context, ::file_context >();
+   pfactory->add_factory_item < ::linux::service_handler, ::service_handler >();
 
-   pfactorymap->create_factory < ::apex::linux::node, ::acme::node >();
+   pfactory->add_factory_item < ::apex::linux::node, ::acme::node >();
 
    //create_factory < ::linux::copydesk, ::user::cop
    // 

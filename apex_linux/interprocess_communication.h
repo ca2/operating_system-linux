@@ -71,15 +71,16 @@ namespace linux
       ~interprocess_communication_tx() override;
 
 
-      bool open(const ::string & pszChannel, launcher * plauncher = nullptr);
-      bool close();
+      ::e_status open(const ::string & strChannel, launcher * plauncher = nullptr);
+      ::e_status close() override;
 
 
-      bool send(const ::string & pszMessage, duration durationTimeout);
-      bool send(int message, void * pdata, int len, duration durationTimeout);
+      ::e_status send(const ::string & pszMessage, const ::duration & durationTimeout);
+      ::e_status send(int message, void * pdata, int len, const ::duration & durationTimeout);
 
 
       bool is_tx_ok();
+
 
    };
 
@@ -98,7 +99,7 @@ namespace linux
       ~interprocess_communication_rx() override;
 
 
-      bool create(const ::string & pszChannel);
+      ::e_status create(const ::string & strChannel);
       ::e_status destroy() override;
 
 

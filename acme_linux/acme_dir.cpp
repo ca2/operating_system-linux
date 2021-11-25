@@ -225,7 +225,7 @@ namespace linux
 
    #else
 
-      return m_psystem->m_pacmefile->executable() - 4;
+      return m_psystem->m_pacmefile->module() - 4;
 
    #endif
 
@@ -256,7 +256,7 @@ namespace linux
 
    #else
 
-      return m_psystem->m_pacmefile->executable() - 4;
+      return m_psystem->m_pacmefile->module() - 4;
 
    #endif
 
@@ -292,7 +292,7 @@ namespace linux
 
    #else
 
-      return m_psystem->m_pacmefile->executable() - 4;
+      return m_psystem->m_pacmefile->module() - 4;
 
    #endif
 

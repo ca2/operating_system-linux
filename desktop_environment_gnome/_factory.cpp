@@ -1,20 +1,20 @@
 #include "framework.h"
 
 
-__FACTORY_EXPORT void aura_linux_factory(::factory_map * pfactorymap);
+__FACTORY_EXPORT void aura_linux_factory(::factory::factory * pfactory);
 
 
-__FACTORY_EXPORT void node_gnome_factory(::factory_map * pfactorymap);
+__FACTORY_EXPORT void node_gnome_factory(::factory::factory * pfactory);
 
 
-__FACTORY_EXPORT void desktop_environment_gnome_factory(::factory_map * pfactorymap)
+__FACTORY_EXPORT void desktop_environment_gnome_factory(::factory::factory * pfactory)
 {
 
-   aura_linux_factory(pfactorymap);
+   aura_linux_factory(pfactory);
 
-   node_gnome_factory(pfactorymap);
+   node_gnome_factory(pfactory);
 
-   pfactorymap->create_factory < ::desktop_environment_gnome::node, ::acme::node > ();
+   pfactory->add_factory_item < ::desktop_environment_gnome::node, ::acme::node > ();
 
 
 }

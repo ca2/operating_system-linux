@@ -3,18 +3,16 @@ project(aura_linux CXX)
 
 
 list(APPEND library_source
-    _.cpp
-    _.h
-    _aura_linux.h
-    _const.h
-    #appindicator.cpp
-    #appindicator.h
-    factory_exchange.cpp
-    interaction_impl.cpp
-    interaction_impl.h
-    node.cpp
-    node.h
-    )
+   _.cpp
+   _.h
+   _aura_linux.h
+   _const.h
+   _factory.cpp
+   interaction_impl.cpp
+   interaction_impl.h
+   node.cpp
+   node.h
+   )
 
 
 add_library(aura_linux SHARED ${library_source})

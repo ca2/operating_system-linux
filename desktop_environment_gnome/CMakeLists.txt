@@ -5,31 +5,12 @@ project(desktop_environment_gnome CXX)
 list(APPEND library_source
    _.cpp
    _.h
-        _desktop_environment_gnome.h
-        #appindicator.cpp
-        #appindicator.h
-        #application.cpp
-        #application.h
-        #clipboard_data.h
-        #copydesk.cpp
-        #copydesk.h
-        #display.cpp
-        #display.h
-        #enum_display_monitors.cpp
-   factory_exchange.cpp
+   _desktop_environment_gnome.h
+   _factory.cpp
    framework.cpp
    framework.h
-        #gdk.cpp
-        #gdk.h
-        #gnome_direct.cpp
-        #gtk_clipboard.cpp
-        #monitor.cpp
-        #monitor.h
    node.cpp
    node.h
-        #notify_icon.cpp
-        #windowing.cpp
-        #windowing.h
    )
 
 

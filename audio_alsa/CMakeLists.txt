@@ -3,22 +3,21 @@ project(audio_alsa CXX)
 
 
 list(APPEND library_source
-        _.h
-        _audio_alsa.h
-        audio_mmsystem_wave_in.h
-        factory_exchange.cpp
-        factory_exchange.h
-        framework.cpp
-        framework.h
-        snd_pcm.cpp
-        snd_pcm.h
-        translation.cpp
-        translation.h
-        wave_in.cpp
-        wave_in.h
-        wave_out.cpp
-        wave_out.h
-        )
+   _.h
+   _audio_alsa.h
+   _factory.cpp
+   audio_mmsystem_wave_in.h
+   framework.cpp
+   framework.h
+   snd_pcm.cpp
+   snd_pcm.h
+   translation.cpp
+   translation.h
+   wave_in.cpp
+   wave_in.h
+   wave_out.cpp
+   wave_out.h
+   )
 
 
 list(APPEND library_references

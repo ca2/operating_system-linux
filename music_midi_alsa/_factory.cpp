@@ -40,11 +40,11 @@ namespace music
 } // namespace music
 
 
-__FACTORY_EXPORT void music_midi_alsa_factory(factory_map * pfactorymap)
+__FACTORY_EXPORT void music_midi_alsa_factory(factory::factory * pfactory)
 {
 
    //::music::midi::alsa::factory_exchange factoryexchange();
-   pfactorymap->create_factory < ::music::midi::alsa::midi, ::music::midi::midi > ();
+   pfactory->add_factory_item < ::music::midi::alsa::midi, ::music::midi::midi > ();
 
 }
 

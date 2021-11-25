@@ -39,7 +39,7 @@ namespace linux
    }
 
 
-   bool interprocess_communication_tx::open(const ::string & pszChannel,launcher * plauncher)
+   ::e_status interprocess_communication_tx::open(const ::string & strChannel,launcher * plauncher)
    {
 
       if(m_iQueue >= 0)
@@ -49,14 +49,14 @@ namespace linux
 
       }
 
-      if(!file_exists(pszChannel))
+      if(!file_exists(strChannel))
       {
 
-         m_psystem->m_pacmefile->put_contents(pszChannel, pszChannel);
+         m_psystem->m_pacmefile->put_contents(strChannel, strChannel);
 
       }
 
-      m_key = ftok(pszChannel,'c');
+      m_key = ftok(strChannel,'c');
 
       if(m_key == 0)
       {
@@ -72,14 +72,14 @@ namespace linux
 
       }
 
-      m_strBaseChannel = pszChannel;
+      m_strBaseChannel = strChannel;
 
       return true;
 
    }
 
 
-   bool interprocess_communication_tx::close()
+   ::e_status interprocess_communication_tx::close()
    {
 
       if(m_iQueue < 0)
@@ -98,7 +98,7 @@ namespace linux
    }
 
 
-   bool interprocess_communication_tx::send(const ::string & pszMessage, duration durationTimeout)
+   ::e_status interprocess_communication_tx::send(const ::string & pszMessage, const duration &durationTimeout)
    {
 
       memory m;
@@ -143,7 +143,7 @@ namespace linux
    }
 
 
-   bool interprocess_communication_tx::send(i32 message,void * p,i32 iLen,duration durationTimeout)
+   ::e_status interprocess_communication_tx::send(i32 message,void * p,i32 iLen,const duration & durationTimeout)
    {
 
       if(message == 1024)
@@ -224,17 +224,17 @@ namespace linux
    }
 
 
-   bool interprocess_communication_rx::create(const ::string & pszChannel)
+   ::e_status interprocess_communication_rx::create(const ::string & strChannel)
    {
 
-      if(!file_exists(pszChannel))
+      if(!file_exists(strChannel))
       {
 
-         m_psystem->m_pacmefile->put_contents(pszChannel, pszChannel);
+         m_psystem->m_pacmefile->put_contents(strChannel, strChannel);
 
       }
 
-      m_key = ftok(pszChannel,'c');
+      m_key = ftok(strChannel,'c');
 
       if(m_key == 0)
       {
