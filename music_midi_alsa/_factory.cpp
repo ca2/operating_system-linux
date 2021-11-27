@@ -1,44 +1,44 @@
 #include "framework.h"
 
-
-namespace music
-{
-
-
-   namespace midi
-   {
-
-
-      namespace alsa
-      {
-
-
-         factory_exchange::factory_exchange()
-         {
-
-            //create_factory < sequence, ::music::midi::sequence > ();
-            //create_factory < file, ::music::midi::file > ();
-            //create_factory < sequence_thread, ::music::midi::sequence_thread > ();
-            //create_factory < player, ::music::midi::player > ();
-            // create_factory < ::music::midi_alsa::player::player_interface , ::music::midi::player::player_interface > ();
-            create_factory < midi, ::music::midi::midi > ();
-
-         }
-
-
-         factory_exchange::~factory_exchange()
-         {
-         }
-
-
-      } // namespace alsa
-
-
-   } // namespace midi
-
-
-} // namespace music
-
+//
+//namespace music
+//{
+//
+//
+//   namespace midi
+//   {
+//
+//
+//      namespace alsa
+//      {
+//
+//
+//         factory_exchange::factory_exchange()
+//         {
+//
+//            //create_factory < sequence, ::music::midi::sequence > ();
+//            //create_factory < file, ::music::midi::file > ();
+//            //create_factory < sequence_thread, ::music::midi::sequence_thread > ();
+//            //create_factory < player, ::music::midi::player > ();
+//            // create_factory < ::music::midi_alsa::player::player_interface , ::music::midi::player::player_interface > ();
+//            create_factory < midi, ::music::midi::midi > ();
+//
+//         }
+//
+//
+//         factory_exchange::~factory_exchange()
+//         {
+//         }
+//
+//
+//      } // namespace alsa
+//
+//
+//   } // namespace midi
+//
+//
+//} // namespace music
+//
 
 __FACTORY_EXPORT void music_midi_alsa_factory(factory::factory * pfactory)
 {
