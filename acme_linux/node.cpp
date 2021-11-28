@@ -1014,13 +1014,13 @@ namespace acme
 
          }
 
-         if(m_psystem->m_pacmedir->is("/etc/xdg/lubuntu"))
+         if(is_directory("/etc/xdg/lubuntu"))
          {
 
             return ::user::e_desktop_lxde;
 
          }
-         else if(m_psystem->m_pacmefile->exists("/usr/bin/xfconf-query"))
+         else if(file_exists("/usr/bin/xfconf-query"))
          {
 
             return ::user::e_desktop_xfce;
@@ -1048,11 +1048,6 @@ namespace acme
          return ::user::e_desktop_gnome;
 
       }
-
-
-
-
-
 
 
    } // namespace linux
