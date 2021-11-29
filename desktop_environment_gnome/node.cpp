@@ -456,6 +456,8 @@ namespace desktop_environment_gnome
 
       }
 
+      ::node_gnome::node::handle(psubject, pcontext);
+
    }
 
 
