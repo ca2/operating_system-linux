@@ -5,7 +5,8 @@ project(desktop_environment_kde CXX)
 list(APPEND library_source
    _.cpp
    _.h
-        _desktop_environment_kde.h
+   _desktop_environment_kde.h
+   _factory.cpp
    #appindicator.cpp
    #appindicator.h
    #application.cpp
@@ -14,8 +15,6 @@ list(APPEND library_source
    #copydesk.cpp
    #copydesk.h
    #enum_display_monitors.cpp
-   factory_exchange.cpp
-   factory_exchange.h
    #framework.cpp
    #framework.h
    #gdk.cpp
