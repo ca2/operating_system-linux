@@ -45,6 +45,7 @@ if (MSVC)
    target_link_options(desktop_environment_gnome PRIVATE "/SUBSYSTEM:WINDOWS")
    target_link_libraries(desktop_environment_gnome PRIVATE ${library_references})
 elseif (LINUX)
+
    pkg_check_modules(PKGCONFIG glib-2.0 gtk+-3.0 gdk-3.0 appindicator3-0.1)
    target_compile_options(desktop_environment_gnome PRIVATE -fpermissive)
    target_compile_options(desktop_environment_gnome PRIVATE ${PKGCONFIG_CFLAGS})
