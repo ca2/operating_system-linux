@@ -9,7 +9,7 @@
 #include <glib.h>
 
 //
-//::e_status os_defer_init_gtk();
+//::e_status aaa_os_defer_init_gtk();
 //
 //
 //bool x11_message_loop_step();
@@ -99,7 +99,7 @@
 //   pthread_mutex_t g_mutexG;
 //
 //
-//   bool gsettings_set(const char *pszSchema, const char *pszKey, const char *pszValue)
+//   bool aaa_gsettings_set(const char *pszSchema, const char *pszKey, const char *pszValue)
 //   {
 //
 //      if (pszSchema == nullptr)
@@ -123,7 +123,7 @@
 //
 //      }
 //
-//      if (!os_defer_init_gtk())
+//      if (!aaa_os_defer_init_gtk())
 //      {
 //
 //         return false;
@@ -153,10 +153,10 @@
 //   }
 //
 //
-//   bool gsettings_sync()
+//   bool aaa_gsettings_sync()
 //   {
 //
-//      if (!os_defer_init_gtk())
+//      if (!aaa_os_defer_init_gtk())
 //      {
 //
 //         return false;
@@ -170,7 +170,7 @@
 //   }
 //
 //
-//   char *gsettings_get_malloc(const char *pszSchema, const char *pszKey)
+//   char *aaa_gsettings_get_malloc(const char *pszSchema, const char *pszKey)
 //   {
 //
 //      if (pszSchema == nullptr)
@@ -187,7 +187,7 @@
 //
 //      }
 //
-//      if (!os_defer_init_gtk())
+//      if (!aaa_os_defer_init_gtk())
 //      {
 //
 //         return nullptr;
@@ -225,7 +225,7 @@
 //   }
 //
 //
-//   void wallpaper_change_notification(GSettings *settings, const gchar *key, gpointer data)
+//   void aaa_wallpaper_change_notification(GSettings *settings, const gchar *key, gpointer data)
 //   {
 //
 //
@@ -239,7 +239,7 @@
 //   GAction *g_pactionWallpaper = nullptr;
 //
 //
-//   bool g_enable_wallpaper_change_notification(const char *pszSchema, const char *pszKey)
+//   bool aaa_g_enable_wallpaper_change_notification(const char *pszSchema, const char *pszKey)
 //   {
 //
 //      if (!g_bGInitialized)
@@ -278,7 +278,7 @@
 //   }
 //
 //
-//   void g_defer_init()
+//   void aaa_g_defer_init()
 //   {
 //
 //      if (g_bGInitialized)
@@ -295,7 +295,7 @@
 //   }
 //
 //
-//   void g_defer_term()
+//   void aaa_g_defer_term()
 //   {
 //
 //      if (!g_bGInitialized)
@@ -325,7 +325,7 @@
 //
 //
 //
-//   //void os_calc_user_theme()
+//   //void aaa_os_calc_user_theme()
 //   //{
 //
 ////      string strTheme = _os_calc_user_theme();
@@ -346,7 +346,7 @@
 //
 //   bool g_bInitializedUserTheme = false;
 //
-//   string node::_os_get_user_theme()
+//   string node::aaa__os_get_user_theme()
 //   {
 //
 //      if (!g_bInitializedUserTheme)
@@ -421,7 +421,7 @@
 //   }
 //
 //
-//   string get_wallpaper(class ::system * psystem, ::index iIndex)
+//   string aaa_get_wallpaper(class ::system * psystem, ::index iIndex)
 //   {
 //
 //      // wall-changer sourceforge.net contribution
@@ -486,7 +486,7 @@
 //   }
 //
 //
-//   ::os_theme_colors *new_os_theme_colors(string strTheme)
+//   ::os_theme_colors *aaa_new_os_theme_colors(string strTheme)
 //   {
 //
 //      auto pthemecolors = new ::os_theme_colors;
@@ -645,7 +645,7 @@
 //   }
 //
 //
-//   void node::os_process_user_theme(string strTheme)
+//   void node::aaa_os_process_user_theme(string strTheme)
 //   {
 //
 //      _os_process_user_theme_color(strTheme);
@@ -655,7 +655,7 @@
 //   }
 //
 //
-//   void node::_os_process_user_theme_color(string strTheme)
+//   void node::aaa__os_process_user_theme_color(string strTheme)
 //   {
 //
 //      auto pthemecolors = new_os_theme_colors(strTheme);
@@ -686,7 +686,7 @@
 //   }
 //
 //
-//   bool node::_os_calc_dark_mode()
+//   bool node::aaa__os_calc_dark_mode()
 //   {
 //
 //      auto pthemecolors = ::user::os_get_theme_colors();
@@ -709,7 +709,7 @@
 //   }
 //
 //
-//} // namespace desktop_environment_gnome
+//} // namespace aaa_desktop_environment_gnome
 //
 //
 //

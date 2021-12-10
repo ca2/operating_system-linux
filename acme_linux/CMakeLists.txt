@@ -27,10 +27,11 @@ list(APPEND library_source
    )
 
 
-
 add_library(acme_linux SHARED ${library_source})
 
+
 set_source_files_properties(console_ncurses.cpp PROPERTIES SKIP_PRECOMPILE_HEADERS ON)
+
 
 list(APPEND library_references
    acme
@@ -44,16 +45,22 @@ set_target_properties(acme_linux PROPERTIES LINKER_LANGUAGE CXX)
 
 
 if (MSVC)
+
+
     target_compile_options(acme_linux PRIVATE "/MD$<$<CONFIG:Debug>:d>")
     target_link_options(acme_linux PRIVATE "/DEFAULTLIB:msvcrt$<$<CONFIG:Debug>:d>")
     target_link_options(acme_linux PRIVATE "/IMPLIB:${LIBRARY_OUTPUT_PATH}/acme_linux.lib")
     target_link_options(acme_linux PRIVATE "/DEF:${CMAKE_CURRENT_SOURCE_DIR}/acme_linux.def")
     target_link_libraries(acme_linux PRIVATE acme apex aqua aura Gdiplus)
+
+
 elseif(LINUX)
-    #target_link_options(acme_linux PRIVATE -Wl,-rpath=$ORIGIN)
-    target_link_libraries(acme_linux PRIVATE dl ncurses ${PKGCONFIG_LIBRARIES} ${library_references})
+
+
+    target_link_libraries(acme_linux PRIVATE dl ncurses ${library_references})
     target_link_options(acme_linux PRIVATE -Wl,-z,defs)
-    message("PKGCONFIG_LIBRARIES is " ${PKGCONFIG_LIBRARIES})
+
+
 endif()
 
 

@@ -55,6 +55,7 @@ elseif (LINUX)
 endif ()
 
 add_dependencies(desktop_environment_gnome node_linux)
+add_dependencies(desktop_environment_gnome node_gtk)
 
 
 target_include_directories(desktop_environment_gnome PRIVATE ${CMAKE_CURRENT_SOURCE_DIR}/../..)

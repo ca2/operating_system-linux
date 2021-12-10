@@ -3,9 +3,7 @@
 //
 #include "framework.h"
 #include "node.h"
-#include "gnome_shared.h"
 #include "appindicator.h"
-//#include "gdk.h"
 #include "windowing_x11/windowing_x11.h"
 
 
@@ -296,14 +294,14 @@ namespace desktop_environment_gnome
 //      case ::user::e_desktop_unity_gnome:
 //      {
 //
-//      bool bOk1 = ::node_gnome::gsettings_set("org.gnome.desktop.interface", "gtk-theme", strUserTheme);
+//      bool bOk1 = ::node_gnome::aaa_gsettings_set("org.gnome.desktop.interface", "gtk-theme", strUserTheme);
 //
 //      bool bOk2 = true;
 //
 //      //if(::file::system_short_name().contains_ci("manjaro"))
 //      {
 //
-//         bOk2 = ::node_gnome::gsettings_set("org.gnome.desktop.wm.preferences", "theme", strUserTheme);
+//         bOk2 = ::node_gnome::aaa_gsettings_set("org.gnome.desktop.wm.preferences", "theme", strUserTheme);
 //
 //      }
 //
@@ -320,7 +318,7 @@ namespace desktop_environment_gnome
 //
 //      case ::user::e_desktop_mate:
 //
-//      //return ::user::gsettings_set("org.mate.background", "picture-filename", strLocalImagePath);
+//      //return ::user::aaa_gsettings_set("org.mate.background", "picture-filename", strLocalImagePath);
 //
 //      case ::user::e_desktop_lxde:
 //
@@ -378,11 +376,11 @@ namespace desktop_environment_gnome
 //         case ::user::e_desktop_ubuntu_gnome:
 //         case ::user::e_desktop_unity_gnome:
 //
-//            return ::node_gnome::gsettings_set("org.gnome.desktop.background", "picture-uri", "file://" + strLocalImagePath);
+//            return ::node_gnome::aaa_gsettings_set("org.gnome.desktop.background", "picture-uri", "file://" + strLocalImagePath);
 //
 //         case ::user::e_desktop_mate:
 //
-//            return ::node_gnome::gsettings_set("org.mate.background", "picture-filename", strLocalImagePath);
+//            return ::node_gnome::aaa_gsettings_set("org.mate.background", "picture-filename", strLocalImagePath);
 //
 //         case ::user::e_desktop_lxde:
 //
@@ -449,7 +447,7 @@ namespace desktop_environment_gnome
    void node::handle(::subject * psubject, ::context * pcontext)
    {
 
-      if(psubject->m_id == ::id_os_user_theme)
+      if(psubject->m_id == ::id_operating_system_user_theme_change)
       {
 
          _os_process_user_theme_color(m_strTheme);
@@ -607,7 +605,7 @@ namespace desktop_environment_gnome
 
       }
 
-      if(psubject->m_id == id_user_color)
+      if(psubject->m_id == id_operating_system_user_color_change)
       {
 
          return false;
