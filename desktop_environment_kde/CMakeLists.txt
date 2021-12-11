@@ -5,7 +5,8 @@ project(desktop_environment_kde CXX)
 list(APPEND library_source
    _.cpp
    _.h
-        _desktop_environment_kde.h
+   _desktop_environment_kde.h
+   _factory.cpp
    #appindicator.cpp
    #appindicator.h
    #application.cpp
@@ -14,8 +15,6 @@ list(APPEND library_source
    #copydesk.cpp
    #copydesk.h
    #enum_display_monitors.cpp
-   factory_exchange.cpp
-   factory_exchange.h
    #framework.cpp
    #framework.h
    #gdk.cpp
@@ -65,12 +64,12 @@ elseif (LINUX)
    pkg_check_modules(PKGCONFIG Qt5X11Extras Qt5Core Qt5UiTools)
    target_compile_options(desktop_environment_kde PRIVATE -fpermissive)
    target_compile_options(desktop_environment_kde PRIVATE ${PKGCONFIG_CFLAGS})
-   if(LINUX_KDE)
+   if(KDE_DESKTOP)
       target_include_directories(desktop_environment_kde PRIVATE KF5::Notifications)
    endif()
    #target_link_options(desktop_environment_kde PRIVATE -Wl,-rpath=$ORIGIN)
    target_link_libraries(desktop_environment_kde PRIVATE ${library_references} ${PKGCONFIG_LIBRARIES})
-   if(LINUX_KDE)
+   if(KDE_DESKTOP)
       target_link_libraries(desktop_environment_kde PRIVATE KF5::Notifications)
    endif()
    target_link_options(desktop_environment_kde PRIVATE -Wl,-z,defs)

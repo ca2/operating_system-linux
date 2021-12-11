@@ -5,31 +5,12 @@ project(desktop_environment_gnome CXX)
 list(APPEND library_source
    _.cpp
    _.h
-        _desktop_environment_gnome.h
-        #appindicator.cpp
-        #appindicator.h
-        #application.cpp
-        #application.h
-        #clipboard_data.h
-        #copydesk.cpp
-        #copydesk.h
-        #display.cpp
-        #display.h
-        #enum_display_monitors.cpp
-   factory_exchange.cpp
+   _desktop_environment_gnome.h
+   _factory.cpp
    framework.cpp
    framework.h
-        #gdk.cpp
-        #gdk.h
-        #gnome_direct.cpp
-        #gtk_clipboard.cpp
-        #monitor.cpp
-        #monitor.h
    node.cpp
    node.h
-        #notify_icon.cpp
-        #windowing.cpp
-        #windowing.h
    )
 
 
@@ -64,6 +45,7 @@ if (MSVC)
    target_link_options(desktop_environment_gnome PRIVATE "/SUBSYSTEM:WINDOWS")
    target_link_libraries(desktop_environment_gnome PRIVATE ${library_references})
 elseif (LINUX)
+
    pkg_check_modules(PKGCONFIG glib-2.0 gtk+-3.0 gdk-3.0 appindicator3-0.1)
    target_compile_options(desktop_environment_gnome PRIVATE -fpermissive)
    target_compile_options(desktop_environment_gnome PRIVATE ${PKGCONFIG_CFLAGS})
@@ -73,6 +55,7 @@ elseif (LINUX)
 endif ()
 
 add_dependencies(desktop_environment_gnome node_linux)
+add_dependencies(desktop_environment_gnome node_gtk)
 
 
 target_include_directories(desktop_environment_gnome PRIVATE ${CMAKE_CURRENT_SOURCE_DIR}/../..)

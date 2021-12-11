@@ -50,7 +50,7 @@ namespace aura
 
          //virtual ::e_status get_system_time(system_time_t * psystemtime) override;
 
-         virtual ::e_status open_folder(const ::file::path & pathFolder) override;
+         virtual ::e_status browse_for_folder(::file::path & pathFolder) override;
 
          //virtual ::e_status register_dll(const ::file::path & pathDll) override;
 

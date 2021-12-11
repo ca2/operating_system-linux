@@ -333,14 +333,14 @@ namespace desktop_environment_kde
 //         case ::user::e_desktop_unity_gnome:
 //         {
 //
-//            bool bOk1 = ::node_kde::gsettings_set("org.gnome.desktop.interface", "gtk-theme", strUserTheme);
+//            bool bOk1 = ::node_kde::aaa_gsettings_set("org.gnome.desktop.interface", "gtk-theme", strUserTheme);
 //
 //            bool bOk2 = true;
 //
 //            //if(::file::system_short_name().contains_ci("manjaro"))
 //            {
 //
-//               bOk2 = ::node_kde::gsettings_set("org.gnome.desktop.wm.preferences", "theme", strUserTheme);
+//               bOk2 = ::node_kde::aaa_gsettings_set("org.gnome.desktop.wm.preferences", "theme", strUserTheme);
 //
 //            }
 //
@@ -357,7 +357,7 @@ namespace desktop_environment_kde
 //
 //         case ::user::e_desktop_mate:
 //
-//            //return ::user::gsettings_set("org.mate.background", "picture-filename", strLocalImagePath);
+//            //return ::user::aaa_gsettings_set("org.mate.background", "picture-filename", strLocalImagePath);
 //
 //         case ::user::e_desktop_lxde:
 //
@@ -414,12 +414,12 @@ namespace desktop_environment_kde
 //         case ::user::e_desktop_ubuntu_gnome:
 //         case ::user::e_desktop_unity_gnome:
 //
-//            return ::node_kde::gsettings_set("org.gnome.desktop.background", "picture-uri",
+//            return ::node_kde::aaa_gsettings_set("org.gnome.desktop.background", "picture-uri",
 //                                               "file://" + strLocalImagePath);
 //
 //         case ::user::e_desktop_mate:
 //
-//            return ::node_kde::gsettings_set("org.mate.background", "picture-filename", strLocalImagePath);
+//            return ::node_kde::aaa_gsettings_set("org.mate.background", "picture-filename", strLocalImagePath);
 //
 //         case ::user::e_desktop_lxde:
 //

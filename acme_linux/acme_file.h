@@ -16,7 +16,7 @@ namespace linux
       ~acme_file() override;
 
 
-      ::file::path executable() override;
+      ::file::path module() override;
 
 
    };

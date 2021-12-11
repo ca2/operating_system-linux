@@ -64,7 +64,7 @@ namespace linux
 
       }
 
-      ::file::path pathAppModule = m_psystem->m_pacmefile->executable();
+      ::file::path pathAppModule = m_psystem->m_pacmefile->module();
 
       m_pathModule = pathAppModule;
 
@@ -72,7 +72,7 @@ namespace linux
 
       auto pacmefile = psystem->m_pacmefile;
 
-      ::file::path pathCa2AppModule = pacmefile->executable();
+      ::file::path pathCa2AppModule = pacmefile->module();
 
       m_pathCa2Module = pathCa2AppModule;
 
