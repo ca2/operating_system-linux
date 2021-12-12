@@ -36,8 +36,6 @@ namespace linux
 
       }
 
-      m_pathCa2Module = m_psystem->m_pacmedir->module();
-
       m_pathHome = getenv("HOME");
 
       m_pathCa2Config = m_pathHome / ".config/ca2";

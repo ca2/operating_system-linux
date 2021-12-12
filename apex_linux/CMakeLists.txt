@@ -18,8 +18,8 @@ list(APPEND library_source
     file_system.h
     framework.cpp
     framework.h
-    interprocess_communication.cpp
-    interprocess_communication.h
+    #interprocess_communication.cpp
+    #interprocess_communication.h
     ip_enum.cpp
     ip_enum.h
     launcher.cpp
