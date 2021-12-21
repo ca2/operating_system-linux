@@ -1,8 +1,8 @@
-default_node=node_linux
-default_windowing=windowing_xcb
-default_desktop_environment=desktop_environment_kde
-default_imaging=imaging_freeimage
-default_draw2d=draw2d_cairo
-default_write_text=write_text_pango
-default_audio=audio_alsa
-default_music_midi=music_midi_alsa
+default_node=platform-linux/node_linux
+default_windowing=platform-posix/windowing_xcb
+default_desktop_environment=platform-linux/desktop_environment_kde
+default_imaging=app/imaging_freeimage
+default_draw2d=app/draw2d_cairo
+default_write_text=platform-posix/write_text_pango
+default_audio=platform-posix/audio_alsa
+default_music_midi=platform-linux/music_midi_alsa
