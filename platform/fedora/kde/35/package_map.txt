@@ -6,3 +6,6 @@ default_draw2d=app/draw2d_cairo
 default_write_text=platform-posix/write_text_pango
 default_audio=platform-posix/audio_alsa
 default_music_midi=platform-linux/music_midi_alsa
+third/libcrypto=none
+third/libssl=none
+third/zlib=none
