@@ -1,0 +1,8 @@
+default_node=node_linux
+default_windowing=windowing_xcb
+default_desktop_environment=desktop_environment_kde
+default_imaging=imaging_freeimage
+default_draw2d=draw2d_cairo
+default_write_text=write_text_pango
+default_audio=audio_alsa
+default_music_midi=music_midi_alsa
