@@ -18,8 +18,8 @@ list(APPEND library_source
     file_system.h
     framework.cpp
     framework.h
-    interprocess_communication.cpp
-    interprocess_communication.h
+    #interprocess_communication.cpp
+    #interprocess_communication.h
     ip_enum.cpp
     ip_enum.h
     launcher.cpp
@@ -70,9 +70,12 @@ elseif(LINUX)
 endif()
 
 
-target_include_directories(apex_linux PRIVATE ${CMAKE_CURRENT_SOURCE_DIR}/../..)
-target_include_directories(apex_linux PRIVATE ${CMAKE_CURRENT_SOURCE_DIR}/..)
-target_include_directories(apex_linux PRIVATE ${CMAKE_CURRENT_SOURCE_DIR})
+list(APPEND library_include_directories ${CMAKE_CURRENT_SOURCE_DIR}/../..)
+list(APPEND library_include_directories ${CMAKE_CURRENT_SOURCE_DIR}/..)
+list(APPEND library_include_directories ${CMAKE_CURRENT_SOURCE_DIR})
+
+
+target_include_directories(${PROJECT_NAME} PRIVATE ${library_include_directories})
 
 
 target_compile_definitions(apex_linux PRIVATE _APEX_LINUX_LIBRARY)

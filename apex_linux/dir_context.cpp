@@ -109,11 +109,11 @@ namespace linux
 
       }
 
-      auto pathCa2 = ca2module();
-
-      pathCa2.go_up(3);
-
-      m_pdirsystem->m_pathCa2 = pathCa2;
+//      auto pathCa2 = module();
+//
+//      pathCa2.go_up(3);
+//
+//      m_pdirsystem->m_pathCa2 = pathCa2;
 
 //      auto pdocument = create_xml_document();
 //

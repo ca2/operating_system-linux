@@ -79,9 +79,12 @@ endif ()
 add_dependencies(desktop_environment_kde node_linux)
 
 
-target_include_directories(desktop_environment_kde PRIVATE ${CMAKE_CURRENT_SOURCE_DIR}/../..)
-target_include_directories(desktop_environment_kde PRIVATE ${CMAKE_CURRENT_SOURCE_DIR}/..)
-target_include_directories(desktop_environment_kde PRIVATE ${CMAKE_CURRENT_SOURCE_DIR})
+list(APPEND library_include_directories ${CMAKE_CURRENT_SOURCE_DIR}/../..)
+list(APPEND library_include_directories ${CMAKE_CURRENT_SOURCE_DIR}/..)
+list(APPEND library_include_directories ${CMAKE_CURRENT_SOURCE_DIR})
+
+
+target_include_directories(${PROJECT_NAME} PRIVATE ${library_include_directories})
 
 
 target_compile_definitions(desktop_environment_kde PRIVATE _MUSIC_MIDI_ALSA_LIBRARY)

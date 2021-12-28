@@ -289,6 +289,7 @@ namespace desktop_environment_kde
    ::e_status node::initialize(::object *pobject)
    {
 
+
       auto estatus = ::node_kde::node::initialize(pobject);
 
       if(!estatus)

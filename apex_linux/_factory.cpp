@@ -15,7 +15,7 @@
 #include "service_handler.h"
 #include "crypto.h"
 #include "ip_enum.h"
-#include "interprocess_communication.h"
+//#include "interprocess_communication.h"
 //#include "apex/node/linux/buffer.h"
 //#include "apex/os/console.h"
 //#include "console.h"
@@ -54,6 +54,9 @@ __FACTORY_EXPORT void apex_linux_factory(::factory::factory * pfactory)
    pfactory->add_factory_item < ::linux::ip_enum, ::net::ip_enum >();
 
 
+//   pfactory->add_factory_item < ::linux::interprocess_communication_base, ::interprocess_communication::base >();
+//   pfactory->add_factory_item < ::linux::interprocess_communication_rx, ::interprocess_communication::rx >();
+//   pfactory->add_factory_item < ::linux::interprocess_communication_tx, ::interprocess_communication::tx >();
    //create_factory < ::linux::interprocess_communication, ::interprocess_communication::interprocess_communication >();
 
 

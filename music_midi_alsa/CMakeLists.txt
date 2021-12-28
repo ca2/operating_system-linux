@@ -55,9 +55,12 @@ endif ()
 
 
 
-target_include_directories(music_midi_alsa PRIVATE ${CMAKE_CURRENT_SOURCE_DIR}/../..)
-target_include_directories(music_midi_alsa PRIVATE ${CMAKE_CURRENT_SOURCE_DIR}/..)
-target_include_directories(music_midi_alsa PRIVATE ${CMAKE_CURRENT_SOURCE_DIR})
+list(APPEND library_include_directories ${CMAKE_CURRENT_SOURCE_DIR}/../..)
+list(APPEND library_include_directories ${CMAKE_CURRENT_SOURCE_DIR}/..)
+list(APPEND library_include_directories ${CMAKE_CURRENT_SOURCE_DIR})
+
+
+target_include_directories(${PROJECT_NAME} PRIVATE ${library_include_directories})
 
 
 target_compile_definitions(music_midi_alsa PRIVATE _MUSIC_MIDI_ALSA_LIBRARY)

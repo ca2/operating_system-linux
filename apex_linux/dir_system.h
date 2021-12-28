@@ -14,7 +14,7 @@ namespace linux
       ::file::path            m_pathTimeFolder;
       ::file::path            m_pathNetSeedFolder;
 
-      ::file::path            m_pathCa2;
+      //::file::path            m_pathCa2;
       ::file::path            m_pathCommonAppData;
       ::file::path            m_pathCommonPrograms;
       ::file::path            m_pathProfile;
@@ -22,10 +22,11 @@ namespace linux
 
 
       dir_system();
-      virtual ~dir_system();
+      ~dir_system() override;
 
 
       virtual ::e_status initialize(::object * pobject) override;
+
 
    };
 
