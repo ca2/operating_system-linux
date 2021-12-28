@@ -54,9 +54,6 @@ __FACTORY_EXPORT void apex_linux_factory(::factory::factory * pfactory)
    pfactory->add_factory_item < ::linux::ip_enum, ::net::ip_enum >();
 
 
-   pfactory->add_factory_item < ::linux::interprocess_communication_base, ::interprocess_communication::base >();
-   pfactory->add_factory_item < ::linux::interprocess_communication_rx, ::interprocess_communication::rx >();
-   pfactory->add_factory_item < ::linux::interprocess_communication_tx, ::interprocess_communication::tx >();
    //create_factory < ::linux::interprocess_communication, ::interprocess_communication::interprocess_communication >();
 
 
