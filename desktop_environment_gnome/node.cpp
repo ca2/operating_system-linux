@@ -3,7 +3,7 @@
 //
 #include "framework.h"
 #include "node.h"
-#include "appindicator.h"
+//#include "appindicator.h"
 #include "windowing_x11/windowing_x11.h"
 
 
