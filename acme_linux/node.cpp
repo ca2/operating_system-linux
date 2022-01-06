@@ -353,6 +353,13 @@ namespace acme
 
          }
 
+         if(strDesktop.compare_ci("gnome") == 0)
+         {
+
+            return ::user::e_desktop_gnome;
+
+         }
+
          utsname name;
 
          memset(&name, 0, sizeof(utsname));
@@ -399,6 +406,12 @@ namespace acme
          {
 
             return ::user::e_desktop_ubuntu_gnome;
+
+         }
+         else if(strcasecmp(pszDesktop, "gnome") == 0)
+         {
+
+            return ::user::e_desktop_gnome;
 
          }
 
