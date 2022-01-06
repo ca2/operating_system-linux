@@ -16,3 +16,7 @@ third/libcrypto=none
 third/libssl=none
 third/zlib=none
 third/sqlite=none
+third/pcre=none
+third/libmpg123=none
+third/mpg123=none
+app-core/text_to_speech_sapi=none
