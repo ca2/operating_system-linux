@@ -27,10 +27,15 @@ namespace linux
    }
 
 
-   ::extended::status stdio_file::open(const ::file::path & path, const ::file::e_open & eopen)
+   void stdio_file::open(const ::file::path & path, const ::file::e_open & eopen)
    {
 
-      ASSERT(path.has_char());
+      if(path.is_empty())
+      {
+
+         throw_status(error_invalid_empty_argument);
+
+      }
 
       m_pStream = nullptr;
 
@@ -88,13 +93,11 @@ namespace linux
 
          ::e_status estatus = ::errno_to_status(iError);
 
-         return estatus;
+         throw_status(estatus);
 
       }
 
       m_path = path;
-
-      return ::success;
 
    }
 

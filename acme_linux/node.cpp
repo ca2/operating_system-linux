@@ -27,21 +27,12 @@ namespace acme
       = default;
 
 
-      ::e_status node::initialize_matter(::matter * pmatter)
-      {
-
-         auto estatus = ::matter::initialize_matter(pmatter);
-
-         if (!estatus)
-         {
-
-            return estatus;
-
-         }
-
-         return estatus;
-
-      }
+//      void initialize_matter(::matter * pmatter)
+//      {
+//
+//         ::matter::initialize_matter(pmatter);
+//
+//      }
 
       // Twitter Automator and Denis Lakic and UpWork contribution
 // enzymes: Liveedu.tv, Twitch.tv and Mixer.com streamers and viewers
@@ -124,7 +115,7 @@ namespace acme
       }
 
 
-      ::e_status node::calculate_linux_distribution()
+      void node::calculate_linux_distribution()
       {
 
          auto lines = m_psystem->m_pacmefile->lines("/etc/os-release");
@@ -159,8 +150,6 @@ namespace acme
             m_elinuxdistribution = e_linux_distribution_unknown;
 
          }
-
-         return ::success;
 
       }
 

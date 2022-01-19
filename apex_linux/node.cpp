@@ -50,17 +50,19 @@ namespace apex
       }
 
 
-      ::e_status node::initialize(::object * pobject)
+      void node::initialize(::object * pobject)
       {
 
-         auto estatus = ::acme::linux::node::initialize(pobject);
+         //auto estatus =
 
-         if (!estatus)
-         {
+         ::acme::linux::node::initialize(pobject);
 
-            return estatus;
-
-         }
+//         if (!estatus)
+//         {
+//
+//            return estatus;
+//
+//         }
 
 //         if (!__node_node_pre_init())
 //         {
@@ -77,12 +79,12 @@ namespace apex
 //
 //         }
 
-         return estatus;
+         //return estatus;
 
       }
 
 
-      ::e_status node::_001InitializeShellOpen()
+      void node::_001InitializeShellOpen()
       {
 
          //ASSERT(m_atomApp == nullptr && m_atomSystemTopic == nullptr); // do once
@@ -91,7 +93,7 @@ namespace apex
 
          //m_atomSystemTopic    = ::GlobalAddAtomW(L"system");
 
-         return ::success;
+         //return ::success;
 
       }
 

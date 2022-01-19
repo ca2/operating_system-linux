@@ -7,13 +7,15 @@ namespace linux
 {
 
 
-   ::e_status launcher::start()
+   void launcher::start()
    {
 
       if (!ensure_executable())
       {
 
-         return false;
+         //return false;
+
+         throw_status(error_failed);
 
       }
 
@@ -37,8 +39,7 @@ namespace linux
       //execlp(strPath, strPath, (char *) 0);
 
 
-
-      return true;
+      //return true;
 
    }
 

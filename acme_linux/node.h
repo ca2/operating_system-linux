@@ -42,7 +42,7 @@ namespace acme
          ~node() override;
 
 
-         ::e_status initialize_matter(::matter * pmatter) override;
+         //void initialize_matter(::matter * pmatter) override;
 
 
          ::file::path _module_path() override;
@@ -75,7 +75,7 @@ namespace acme
          string audio_get_default_library_name() override;
 
 
-         ::e_status calculate_linux_distribution() override;
+         void calculate_linux_distribution() override;
 
 
          ::user::enum_desktop get_edesktop() override;

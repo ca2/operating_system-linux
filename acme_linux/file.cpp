@@ -90,7 +90,7 @@ namespace linux
 //   }
 //
 
-   ::extended::status file::open(const ::file::path & pszFileName, const ::file::e_open & openParam)
+   void file::open(const ::file::path & pszFileName, const ::file::e_open & openParam)
    {
 
       if (m_iFile != INVALID_FILE)
@@ -191,11 +191,11 @@ namespace linux
 
          int iError = errno;
 
-         ::e_status estatus = ::errno_to_status(iError);
+         auto estatus = failed_errno_to_status(iError);
 
          //return //::fesp(get_application(), file_exception::os_error_to_exception(dwLastError), dwLastError, m_path);
 
-         return estatus;
+         throw_status(estatus);
 
       }
 
@@ -204,8 +204,6 @@ namespace linux
       m_iFile = iFile;
 
       m_eopen = eopen;
-
-      return ::success;
 
    }
 

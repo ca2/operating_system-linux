@@ -29,25 +29,27 @@ namespace linux
    }
 
 
-   ::e_status file_context::initialize(::object * pobject)
+   void file_context::initialize(::object * pobject)
    {
 
-      auto estatus = ::object::initialize(pobject);
+      //auto estatus =
 
-      if(!estatus)
-      {
+         ::object::initialize(pobject);
 
-         return estatus;
-
-      }
-
-      return estatus;
+//      if(!estatus)
+//      {
+//
+//         return estatus;
+//
+//      }
+//
+//      return estatus;
 
 
    }
 
 
-   file_transport file_context::get_file(const ::payload & varFile, const ::file::e_open & eopen)
+   file_pointer file_context::get_file(const ::payload & varFile, const ::file::e_open & eopen)
    {
 
       return ::file_context::get_file(varFile, eopen);
@@ -55,36 +57,40 @@ namespace linux
    }
 
 
-   ::e_status file_context::init_system()
+   void file_context::init_system()
    {
 
-   auto estatus = ::file_context::init_system();
+   //auto estatus =
 
-   if(!estatus)
-   {
+      ::file_context::init_system();
 
-   return estatus;
+//   if(!estatus)
+//   {
+//
+//   return estatus;
+//
+//   }
+//
+//      return estatus;
 
    }
 
-      return estatus;
 
-   }
-
-
-   ::e_status file_context::init_context()
+   void file_context::init_context()
    {
 
-   auto estatus = ::file_context::init_context();
+      //auto estatus =
 
-   if(!estatus)
-   {
+         ::file_context::init_context();
 
-   return estatus;
-
-   }
-
-      return estatus;
+//   if(!estatus)
+//   {
+//
+//   return estatus;
+//
+//   }
+//
+//      return estatus;
 
    }
 
@@ -114,26 +120,15 @@ namespace linux
 
 
 
-   ::extended::status file_context::del(const ::file::path & path)
+   void file_context::erase(const ::file::path & path)
    {
 
-      auto bOk = m_psystem->m_pacmefile->delete_file(path);
-
-      if(!bOk)
-      {
-
-         return error_failed;
-
-      }
-
-      return ::success;
+      m_psystem->m_pacmefile->delete_file(path);
 
    }
 
 
 } // namespace linux
-
-
 
 
 

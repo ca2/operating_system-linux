@@ -21,16 +21,16 @@ namespace linux
 
 
       dir_context();
-      virtual ~dir_context();
+      ~dir_context() override;
 
 
-      virtual ::e_status initialize(::object * pobject) override;
+      void initialize(::object * pobject) override;
 
-      virtual ::e_status init_system() override;
-      virtual ::e_status init_context() override;
+      void init_system() override;
+      void init_context() override;
 
       using ::dir_context::ls;
-      virtual ::file::listing & ls(::file::listing & ls) override;
+      bool ls(::file::listing & ls) override;
 
 
       virtual bool  is(const ::file::path & path) override;
@@ -43,9 +43,9 @@ namespace linux
 
 
       virtual ::file::listing & root_ones(::file::listing & listing) override;
-      virtual bool mk(const ::file::path & pcsz) override;
+      virtual void create(const ::file::path & pcsz) override;
 
-      virtual bool rm(const ::file::path & psz, bool bRecursive = true) override;
+      virtual void erase(const ::file::path & psz, bool bRecursive = true) override;
 
 
       //virtual ::file::path name(const ::file::path & pcsz);

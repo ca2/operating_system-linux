@@ -60,7 +60,7 @@ namespace linux
    }
 
 
-   bool os_context::shutdown(bool bIfPowerOff)
+   void os_context::shutdown(bool bIfPowerOff)
    {
       /*      bool retval = true;
             HANDLE hToken;
@@ -83,12 +83,12 @@ namespace linux
             return retval;*/
 
       __throw(error_not_implemented);
-      return false;
+      //return false;
 
    }
 
 
-   bool os_context::reboot()
+   void os_context::reboot()
    {
 
       //::sync();
@@ -96,14 +96,16 @@ namespace linux
 
       m_psystem->m_pnode->reboot();
 
-      return false;
+      //return false;
 
    }
 
 
    void os_context::terminate_processes_by_title(const ::string & lpszName)
    {
+
       __throw(error_not_implemented);
+
       return;
 
       /*      ::u32 dwPid;
@@ -133,23 +135,33 @@ namespace linux
    }
 
 
-   bool os_context::get_pid_by_path(const ::string & lpszName, ::u32 & dwPid)
+   bool os_context::path_pid(::u32 & dwPid, const ::string & lpszName)
    {
+
       u32_array dwa;
+
       get_all_processes(dwa);
+
       for(i32 i = 0; i < dwa.get_count(); i++)
       {
+
          if(get_process_path(dwa[i]).compare_ci(lpszName) == 0)
          {
+
             dwPid = dwa[i];
+
             return true;
+
          }
+
       }
+
       return false;
+
    }
 
 
-   bool os_context::get_pid_by_title(const ::string & lpszName, ::u32 & dwPid)
+   bool os_context::title_pid(::u32 & dwPid, const ::string & lpszName)
    {
 
       u32_array dwa;
@@ -177,15 +189,19 @@ namespace linux
 
    ::file::path os_context::get_process_path(::u32 dwPid)
    {
+
       __throw(error_not_implemented);
+
       return "";
 
    }
+
 
    void os_context::get_all_processes(u32_array & dwa )
    {
 
       __throw(error_not_implemented);
+
       return;
 
       /*
@@ -328,15 +344,15 @@ namespace linux
             keyKar.SetValue(pszKey, pszCommand);
 
       */
-      return false;
+      //return false;
 
    }
 
 
-   bool os_context::defer_register_ca2_plugin_for_mozilla()
+   void os_context::defer_register_ca2_plugin_for_mozilla()
    {
       //  __throw(error_not_implemented);
-      return false;
+      //return false;
 
       /*
             registry::Key keyPlugins;
@@ -372,10 +388,14 @@ namespace linux
       */
    }
 
-   bool os_context::file_extension_get_open_with_list_keys(string_array & straKey, const ::string & pszExtension)
+
+   void os_context::file_extension_get_open_with_list_keys(string_array & straKey, const ::string & pszExtension)
    {
+
+
       __throw(error_not_implemented);
-      return false;
+
+      //return false;
 
       /*
             string strExt;
@@ -397,24 +417,27 @@ namespace linux
    }
 
 
-   bool os_context::file_extension_get_open_with_list_commands(string_array & straCommand, const ::string & pszExtension)
+   void os_context::file_extension_get_open_with_list_commands(string_array & straCommand, const ::string & pszExtension)
    {
 
       string_array straKey;
 
-      if(!file_extension_get_open_with_list_keys(straKey, pszExtension))
-         return false;
+      file_extension_get_open_with_list_keys(straKey, pszExtension);
 
-
-      return true;
+//      if(!file_extension_get_open_with_list_keys(straKey, pszExtension))
+//         return false;
+//
+//
+//      return true;
 
    }
 
-   bool os_context::file_association_set_default_icon(const ::string & pszExtension, const ::string & pszExtensionNamingClass, const ::string & pszIconPath)
+
+   void os_context::file_association_set_default_icon(const ::string & pszExtension, const ::string & pszExtensionNamingClass, const ::string & pszIconPath)
    {
 
       __throw(error_not_implemented);
-      return false;
+      //return false;
 
       /*
             string strExtensionNamingClass(pszExtensionNamingClass);
@@ -428,14 +451,16 @@ namespace linux
    }
 
 
-   bool os_context::file_association_set_shell_open_command(const ::string & pszExtension, const ::string & pszExtensionNamingClass,  const ::string & pszCommand, const ::string & pszParam)
+   void os_context::file_association_set_shell_open_command(const ::string & pszExtension, const ::string & pszExtensionNamingClass,  const ::string & pszCommand, const ::string & pszParam)
    {
-
-      return false;
 
       __throw(error_not_implemented);
 
-      return false;
+//      return false;
+//
+//      __throw(error_not_implemented);
+//
+//      return false;
 
       /*
             string strExt;
@@ -464,10 +489,13 @@ namespace linux
       */
    }
 
-   bool os_context::file_association_get_shell_open_command(const ::string & pszExtension, string & strExtensionNamingClass, string & strCommand, string & strParam)
+
+   void os_context::file_association_get_shell_open_command(const ::string & pszExtension, string & strExtensionNamingClass, string & strCommand, string & strParam)
    {
+
       __throw(error_not_implemented);
-      return false;
+
+      //return false;
 
       /*
             string strExt;
@@ -507,11 +535,12 @@ namespace linux
       */
    }
 
-   bool os_context::open_in_ie(const ::string & pcsz)
 
+   bool os_context::open_in_ie(const ::string & pcsz)
    {
 
       __throw(error_not_implemented);
+
       return false;
 
       /*    registry reg;
@@ -558,6 +587,7 @@ namespace linux
       */
 
    }
+
 
    bool os_context::create_service(::object * pobject)
    {
@@ -780,7 +810,7 @@ namespace linux
    }
 
 
-   bool os_context::initialize_wallpaper_fileset(::file::set * pfileset, bool bAddSearch)
+   void os_context::initialize_wallpaper_fileset(::file::set * pfileset, bool bAddSearch)
    {
 
       if (bAddSearch)
@@ -794,7 +824,7 @@ namespace linux
 
       }
 
-      return true;
+      //return true;
 
    }
 
@@ -813,7 +843,7 @@ namespace linux
    //
    //#else
 
-   bool os_context::get_default_browser(string & strId, ::file::path & path, string & strParam)
+   void os_context::get_default_browser(string & strId, ::file::path & path, string & strParam)
    {
 
       string str = m_psystem->m_papexsystem->process().get_output("/bin/sh -c \"xdg-settings get default-web-browser\"");
@@ -865,12 +895,12 @@ namespace linux
 
       }
 
-      return true;
+      //return true;
 
    }
 
 
-   bool os_context::file_open(::file::path strTarget, string strParams, string strFolder)
+   void os_context::file_open(::file::path strTarget, string strParams, string strFolder)
    {
 
       strTarget = get_context()->m_papexcontext->defer_process_path(strTarget);
@@ -918,7 +948,9 @@ namespace linux
 //
 //         }
 
-         return true;
+         //return true;
+
+         return;
 
       }
       else
@@ -971,7 +1003,9 @@ namespace linux
 
       }
 
-      return true;
+      //return true;
+
+      //re
 
    }
 

@@ -24,11 +24,10 @@ namespace apex
 
 
          node();
+         ~node() override;
 
-         virtual ~node();
 
-
-         virtual ::e_status initialize(::object * pobject) override;
+         void initialize(::object * pobject) override;
 
 
          string get_user_name() override;
@@ -38,7 +37,7 @@ namespace apex
          virtual int node_init_check(int*, char***);
 
 
-         virtual ::e_status _001InitializeShellOpen() override;
+         void _001InitializeShellOpen() override;
 
          //virtual ::e_status shell_create_link(::file::path pathObj, ::file::path pathLnk, string strDesc, ::file::path pathIco, int iIcon) override;
 

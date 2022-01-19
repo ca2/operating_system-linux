@@ -19,14 +19,14 @@ namespace linux
       ~file_context() override;
 
 
-      virtual ::e_status initialize(::object * pobject) override;
+      void initialize(::object * pobject) override;
 
 
-      virtual ::e_status init_system() override;
-      virtual ::e_status init_context() override;
+      void init_system() override;
+      void init_context() override;
 
 
-      virtual ::file_transport get_file(const ::payload & varFile, const ::file::e_open & eopen) override;
+      file_pointer get_file(const ::payload & varFile, const ::file::e_open & eopen) override;
 
 
       //virtual bool is_link(string strPath) override;
@@ -36,7 +36,8 @@ namespace linux
 
       virtual ::file::path dropbox_info_network_payload() override;
 
-      virtual ::extended::status del(const ::file::path & path) override;
+      void erase(const ::file::path & path) override;
+
 
    };
 

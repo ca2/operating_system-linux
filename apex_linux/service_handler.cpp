@@ -341,26 +341,28 @@ namespace linux
 //   }
 
 
-   ::e_status service_handler::defer_service()
+   void service_handler::defer_service()
    {
 
-      return ::service_handler::defer_service();
+      //return
+
+      ::service_handler::defer_service();
 
    }
 
 
-   ::e_status service_handler::start_service()
+   void service_handler::start_service()
    {
 
-      return ::error_failed;
+      //return ::error_failed;
 
    }
 
 
-   ::e_status service_handler::stop_service()
+   void service_handler::stop_service()
    {
 
-      return ::error_failed;
+      //return ::error_failed;
 
    }
 

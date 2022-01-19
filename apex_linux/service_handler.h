@@ -51,13 +51,15 @@ namespace linux
 
       //virtual void _main_server(::u32 argumentCount, PWSTR * arguments);
 
-      virtual ::e_status defer_service();
+      virtual void defer_service();
 
       //virtual ::e_status enable_service();
       //virtual ::e_status disable_service();
 
-      virtual ::e_status start_service();
-      virtual ::e_status stop_service();
+      virtual void start_service();
+      virtual void stop_service();
+
+
    };
 
 

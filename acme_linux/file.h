@@ -67,7 +67,7 @@ namespace linux
       virtual void SetFilePath(const char * pszNewName);
 
 
-      virtual ::extended::status open(const ::file::path & pszFileName, const ::file::e_open & eopen) override;
+      virtual void open(const ::file::path & pszFileName, const ::file::e_open & eopen) override;
 
 
       //virtual bool PASCAL GetStatus(const char * pszFileName, ::file::file_status& rStatus);

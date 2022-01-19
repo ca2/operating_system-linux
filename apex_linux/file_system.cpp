@@ -20,24 +20,26 @@ namespace linux
    }
 
 
-   ::e_status file_system::initialize(::object * pobject)
+   void file_system::initialize(::object * pobject)
    {
 
-      auto estatus = ::file_system::initialize(pobject);
+      //auto estatus =
 
-      if(!estatus)
-      {
+         ::file_system::initialize(pobject);
 
-         return estatus;
-
-      }
-
-      return estatus;
+//      if(!estatus)
+//      {
+//
+//         return estatus;
+//
+//      }
+//
+//      return estatus;
 
    }
 
 
-   ::e_status file_system::init_system()
+   void file_system::init_system()
    {
 
 //      if(!update_module_path())
@@ -47,7 +49,7 @@ namespace linux
 //
 //      }
 
-      return ::success;
+//      return ::success;
 
    }
 

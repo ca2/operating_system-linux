@@ -25,7 +25,7 @@ namespace linux
       ~dir_system() override;
 
 
-      virtual ::e_status initialize(::object * pobject) override;
+      void initialize(::object * pobject) override;
 
 
    };

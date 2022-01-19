@@ -76,17 +76,19 @@ namespace linux
    }
 
 
-   ::e_status dir_context::initialize(::object * pobject)
+   void dir_context::initialize(::object * pobject)
    {
 
-      auto estatus = ::object::initialize(pobject);
+      //auto estatus =
 
-      if (!estatus)
-      {
+         ::object::initialize(pobject);
 
-         return estatus;
-
-      }
+//      if (!estatus)
+//      {
+//
+//         return estatus;
+//
+//      }
 
       auto psystem = m_psystem;
 
@@ -94,21 +96,23 @@ namespace linux
 
       __refer(m_pdirsystem, psystem->m_papexsystem->m_pdirsystem.get());
 
-      return ::success;
+      //return ::success;
 
    }
 
 
-   ::e_status dir_context::init_system()
+   void dir_context::init_system()
    {
 
-      if(!::dir_context::init_system())
-      {
+      ::dir_context::init_system();
 
-         return false;
-
-      }
-
+//      if(!::dir_context::init_system())
+//      {
+//
+//         return false;
+//
+//      }
+//
 //      auto pathCa2 = module();
 //
 //      pathCa2.go_up(3);
@@ -150,16 +154,16 @@ namespace linux
 
       }
 
-      mk(m_pdirsystem->m_pathTimeFolder);
+      create(m_pdirsystem->m_pathTimeFolder);
 
       if(!is(m_pdirsystem->m_pathTimeFolder))
       {
 
-         return false;
+         throw_status(error_failed);
 
       }
 
-      mk(m_pdirsystem->m_pathTimeFolder / "time");
+      create(m_pdirsystem->m_pathTimeFolder / "time");
 
       ::file::path pathHome = getenv("HOME");
 
@@ -182,24 +186,26 @@ namespace linux
 
       }
 
-      return true;
+      //return true;
 
    }
 
 
-   ::e_status dir_context::init_context()
+   void dir_context::init_context()
    {
 
-      auto estatus = ::dir_context::init_context();
+      //auto estatus =
 
-      if(!estatus)
-      {
+         ::dir_context::init_context();
 
-         return estatus;
-
-      }
-
-      return estatus;
+//      if(!estatus)
+//      {
+//
+//         return estatus;
+//
+//      }
+//
+//      return estatus;
 
    }
 
@@ -216,13 +222,13 @@ namespace linux
    }
 
 
-   ::file::listing & dir_context::ls(::file::listing & listing)
+   bool dir_context::ls(::file::listing & listing)
    {
 
-      if(::dir_context::ls(listing).succeeded())
+      if(::dir_context::ls(listing))
       {
 
-         return listing;
+         return true;
 
       }
 
@@ -348,7 +354,9 @@ namespace linux
 
       }
 
-      return listing;
+      //return listing;
+
+      return true;
 
    }
 
@@ -481,120 +489,15 @@ namespace linux
    }
 
 
-   bool dir_context::mk(const ::file::path & pcsz)
+   void dir_context::create(const ::file::path & path)
    {
 
-      if(is(pcsz))
-      {
-
-         return true;
-
-      }
-
-      ::file::patha stra;
-
-      pcsz.ascendants_path(stra);
-
-      index i = stra.get_upper_bound();
-
-      for(; i >= 0; i--)
-      {
-
-         if(is(stra[i]))
-         {
-
-            i++;
-
-            break;
-
-         }
-
-      }
-
-      if(i < 0)
-      {
-
-         return false;
-
-      }
-
-      for(; i < stra.get_size(); i++)
-      {
-
-         if(!m_psystem->m_pacmedir->create_directory(stra[i]))
-         {
-
-            ::e_status estatus = ::get_last_status();
-
-            if(estatus == ::error_already_exists)
-            {
-
-               string str;
-
-               str = stra[i];
-
-               str.trim_right("\\/");
-
-               auto pcontext = m_pcontext;
-
-               try
-               {
-
-                  pcontext->m_papexcontext->file().del(str);
-
-               }
-               catch(...)
-               {
-
-               }
-
-               str = stra[i];
-
-               str.trim_right("\\/");
-
-               try
-               {
-
-                  pcontext->m_papexcontext->file().del(str);
-
-               }
-               catch(...)
-               {
-
-               }
-
-               if(m_psystem->m_pacmedir->create_directory(stra[i]))
-               {
-
-               }
-               else
-               {
-
-                  estatus = ::get_last_status();
-
-               }
-
-            }
-
-            char * pszError;
-
-            if(!is(stra[i]))
-            {
-
-               return false;
-
-            }
-
-         }
-
-      }
-
-      return true;
+      m_psystem->m_pacmedir->create(path);
 
    }
 
 
-   bool dir_context::rm(const ::file::path & path, bool bRecursive)
+   void dir_context::erase(const ::file::path & path, bool bRecursive)
    {
 
       if(bRecursive)
@@ -610,7 +513,7 @@ namespace linux
             if(is(pathItem))
             {
 
-               rm(pathItem, true);
+               erase(pathItem, true);
 
             }
             else
@@ -624,7 +527,16 @@ namespace linux
 
       }
 
-      return ::rmdir(path) != false;
+      if(::rmdir(path) < 0)
+      {
+
+         int iErrNo = errno;
+
+         auto estatus = failed_errno_to_status(iErrNo);
+
+         throw_status(estatus);
+
+      }
 
    }
 

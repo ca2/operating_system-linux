@@ -12,7 +12,7 @@ namespace linux
    public:
 
 
-      virtual ::e_status start() override;
+      void start() override;
 
 
    };
