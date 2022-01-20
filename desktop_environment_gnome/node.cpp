@@ -66,12 +66,14 @@ namespace desktop_environment_gnome
    }
 
 
-   ::e_status node::start_node()
+   void node::start_node()
    {
 
-      auto estatus = node_gnome::node::start_node();
+      //auto estatus =
+      //
+      node_gnome::node::start_node();
 
-      return estatus;
+      //return estatus;
 
 //      auto psystem = m_psystem->m_papexsystem;
 //
@@ -182,30 +184,34 @@ namespace desktop_environment_gnome
    }
 
 
-   ::e_status node::initialize(::object *pobject)
+   void node::initialize(::object *pobject)
    {
 
       //::node_gnome::g_defer_init();
 
-      auto estatus = ::aura::linux::node::initialize(pobject);
+      //auto estatus =
+      //
+      ::aura::linux::node::initialize(pobject);
 
-      if(!estatus)
-      {
+//      if(!estatus)
+//      {
+//
+//         return estatus;
+//
+//      }
 
-         return estatus;
+      //estatus =
+      //
+      ::node_gnome::node::initialize(pobject);
 
-      }
-
-      estatus = ::node_gnome::node::initialize(pobject);
-
-      if(!estatus)
-      {
-
-         return estatus;
-
-      }
-
-      return estatus;
+//      if(!estatus)
+//      {
+//
+//         return estatus;
+//
+//      }
+//
+//      return estatus;
 
    }
 

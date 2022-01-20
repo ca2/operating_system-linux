@@ -27,37 +27,43 @@ namespace aura
       }
 
 
-      e_status node::initialize(::object* pobject)
+      void node::initialize(::object* pobject)
       {
 
-         auto estatus = ::apex::linux::node::initialize(pobject);
+         //auto estatus =
 
-         if(!estatus)
-         {
+            ::apex::linux::node::initialize(pobject);
 
-            return estatus;
+//         if(!estatus)
+//         {
+//
+//            return estatus;
+//
+//         }
 
-         }
+         //estatus =
+         //
+         ::aura::posix::node::initialize(pobject);
 
-         estatus = ::aura::posix::node::initialize(pobject);
+//         if(!estatus)
+//         {
+//
+//            return estatus;
+//
+//         }
 
-         if(!estatus)
-         {
+         //estatus =
+         //
+         ::aura::node::initialize(pobject);
 
-            return estatus;
-
-         }
-
-         estatus = ::aura::node::initialize(pobject);
-
-         if(!estatus)
-         {
-
-            return estatus;
-
-         }
-
-         return estatus;
+//         if(!estatus)
+//         {
+//
+//            return estatus;
+//
+//         }
+//
+//         return estatus;
 
       }
 
@@ -78,7 +84,7 @@ namespace aura
       }
 
 
-      ::e_status node::browse_for_folder(::file::path & pathFolder)
+      void node::browse_for_folder(::file::path & pathFolder)
       {
 
 //         wstring wstrFolder(pathFolder);
@@ -131,7 +137,7 @@ namespace aura
 //
 //         }
 
-         return ::success;
+         //return ::success;
 
       }
 

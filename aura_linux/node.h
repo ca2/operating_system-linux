@@ -24,11 +24,10 @@ namespace aura
 
 
          node();
+         ~node() override;
 
-         virtual ~node();
 
-
-         virtual e_status initialize(::object* pobject) override;
+         void initialize(::object* pobject) override;
 
 
          string get_user_name();
@@ -50,7 +49,7 @@ namespace aura
 
          //virtual ::e_status get_system_time(system_time_t * psystemtime) override;
 
-         virtual ::e_status browse_for_folder(::file::path & pathFolder) override;
+         void browse_for_folder(::file::path & pathFolder) override;
 
          //virtual ::e_status register_dll(const ::file::path & pathDll) override;
 

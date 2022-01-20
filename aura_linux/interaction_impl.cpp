@@ -108,14 +108,14 @@ namespace linux
 
       }
 
-      if(is_null(oswindow->m_pimpl))
+      if(is_null(oswindow->m_puserinteractionimpl))
       {
 
          return nullptr;
 
       }
 
-      return oswindow->m_pimpl;
+      return oswindow->m_puserinteractionimpl;
 
    }
 
@@ -123,10 +123,14 @@ namespace linux
    ::user::interaction_impl * interaction_impl::FromHandlePermanent(oswindow oswindow)
    {
 
-      if(oswindow->m_pimpl == nullptr)
+      if(oswindow->m_puserinteractionimpl == nullptr)
+      {
+
          return nullptr;
 
-      return oswindow->m_pimpl;
+      }
+
+      return oswindow->m_puserinteractionimpl;
 
    }
 
@@ -180,7 +184,7 @@ namespace linux
    }
 
 
-   ::e_status interaction_impl::native_create_host()
+   void interaction_impl::native_create_host()
    {
 
       __pointer(::user::system) pusersystem;
@@ -203,7 +207,9 @@ namespace linux
       if (!m_puserinteraction->pre_create_window(pusersystem))
       {
 
-         return false;
+         //return false;
+
+         throw_status(error_failed);
 
       }
 
@@ -275,7 +281,15 @@ namespace linux
 //
 //      }
 
-      return bOk;
+      if(!bOk)
+      {
+
+         throw_status(error_failed);
+
+      }
+
+
+
 
    }
 
@@ -738,47 +752,51 @@ namespace linux
    }
 
 
-   bool interaction_impl::start_destroying_window()
+   void interaction_impl::start_destroying_window()
    {
 
-      if(!m_pwindow)
-      {
+      ::user::interaction_impl::start_destroying_window();
 
-         return true;
-
-      }
-
-//      if(m_oswindow->m_bMessageOnlyWindow)
+//      if(!m_pwindow)
 //      {
 //
-//         ::user::interaction * pinteraction = m_puserinteraction;
+//         //return true;
 //
-//         send_message(e_message_destroy, 0, 0);
-//
-//         send_message(e_message_ncdestroy, 0, 0);
-//
-//         auto pwindowing = ::aura::get_system()->windowing();
-//
-//         pwindowing->erase_window(this);
-//
-//         return true;
+//         return;
 //
 //      }
-
-      bool bResult = false;
-
-      oswindow window = get_oswindow();
-
-      if (window != nullptr)
-      {
-
-         bResult = m_pwindow->destroy_window();
-
-         //Detach();
-
-      }
-
-      return bResult;
+//
+////      if(m_oswindow->m_bMessageOnlyWindow)
+////      {
+////
+////         ::user::interaction * pinteraction = m_puserinteraction;
+////
+////         send_message(e_message_destroy, 0, 0);
+////
+////         send_message(e_message_ncdestroy, 0, 0);
+////
+////         auto pwindowing = ::aura::get_system()->windowing();
+////
+////         pwindowing->erase_window(this);
+////
+////         return true;
+////
+////      }
+//
+//      bool bResult = false;
+//
+//      oswindow window = get_oswindow();
+//
+//      if (window != nullptr)
+//      {
+//
+//         m_pwindow->destroy_window();
+//
+//         //Detach();
+//
+//      }
+//
+//      //return bResult;
 
    }
 
@@ -1264,7 +1282,7 @@ namespace linux
             // what forces, at the end of message processing, setting the bergedge cursor to the default cursor, if no other
             // handler has set it to another one.
 
-            m_puserinteraction->m_pimpl2->_on_mouse_move_step(pmouse->m_point);
+            m_puserinteraction->m_pinteractionimpl->_on_mouse_move_step(pmouse->m_point);
 
          }
 
@@ -4278,13 +4296,15 @@ namespace linux
 //   }
 
 
-   bool interaction_impl::prodevian_update_screen()
+   void interaction_impl::prodevian_update_screen()
    {
 
       if(!m_puserinteraction)
       {
 
-         return false;
+         //return false;
+
+         throw_status(error_null_pointer);
 
       }
 
@@ -4308,7 +4328,7 @@ namespace linux
 
       }
 
-      return true;
+      //return true;
 
    }
 

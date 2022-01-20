@@ -27,9 +27,9 @@ namespace desktop_environment_gnome
 
       void defer_notify_startup_complete() override;
 
-      ::e_status start_node() override;
+      void start_node() override;
 
-      ::e_status initialize(::object * pobject) override;
+      void initialize(::object * pobject) override;
 
       virtual bool windowing_message_loop_step();
 

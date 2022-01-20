@@ -112,7 +112,7 @@ namespace music
          }
 
 
-         ::e_status message_out::note_on(int channel, unsigned char note, unsigned char volume)
+         void message_out::note_on(int channel, unsigned char note, unsigned char volume)
          {
 
             byte message[3];
@@ -123,13 +123,13 @@ namespace music
 
             message[2] = volume;
 
-            return add_short_message(message, 3);
+            add_short_message(message, 3);
 
          }
 
 
 
-         ::e_status message_out::note_off(int channel, unsigned char note, unsigned char velocity)
+         void message_out::note_off(int channel, unsigned char note, unsigned char velocity)
          {
 
             byte message[3];
@@ -140,12 +140,12 @@ namespace music
 
             message[2] = velocity;
 
-            return add_short_message(message, 3);
+            add_short_message(message, 3);
 
          }
 
 
-         ::e_status message_out::program_change(int channel, unsigned char instrument)
+         void message_out::program_change(int channel, unsigned char instrument)
          {
 
             byte message[2];
@@ -154,12 +154,12 @@ namespace music
 
             message[1] = instrument;
 
-            return add_short_message(message, 2);
+            add_short_message(message, 2);
 
          }
 
 
-         ::e_status message_out::step()
+         bool message_out::step()
          {
 
             if(m_iWrite > 0)
@@ -185,10 +185,10 @@ namespace music
          }
 
 
-         ::e_status message_out::start()
+         void message_out::start()
          {
 
-            return ::success;
+            //return ::success;
 
          }
 
@@ -209,7 +209,7 @@ namespace music
          }
 
 
-         ::e_status message_out::add_short_message(byte * pmessage, int iSize)
+         void message_out::add_short_message(byte * pmessage, int iSize)
          {
 
             m_file.write(pmessage, iSize);
@@ -218,7 +218,7 @@ namespace music
 
             //step();
 
-            return ::success;
+            //return ::success;
 
          }
 
@@ -262,7 +262,7 @@ namespace music
          bool message_out::is_ok()
          {
 
-            return m_prawmidi != NULL;
+            return m_prawmidi != nullptr;
 
          }
 

@@ -110,17 +110,19 @@ namespace music
          }
 
 
-         ::e_status out::initialize_message_out(::music::midi::midi * pmidi, const ::string & strDevice)
+         void out::initialize_message_out(::music::midi::midi * pmidi, const ::string & strDevice)
          {
 
-            auto estatus = ::music::midi::message_out::initialize_message_out(pmidi, strDevice);
+            //auto estatus =
+            //
+            ::music::midi::message_out::initialize_message_out(pmidi, strDevice);
 
-            if(!estatus)
-            {
-
-               return estatus;
-
-            }
+//            if(!estatus)
+//            {
+//
+//               return estatus;
+//
+//            }
 
             string_array stra;
 
@@ -129,7 +131,7 @@ namespace music
             if(stra.get_count() < 3)
             {
 
-               return error_failed;
+               throw_status(error_wrong_state);
 
             }
 
@@ -137,18 +139,20 @@ namespace music
 
             m_addrDest.port = atoi(stra[2]);
 
-            return estatus;
+            //return estatus;
 
          }
 
 
-         ::e_status out::open()
+         void out::open()
          {
 
             if ( m_pseq != NULL )
             {
 
-               return ::success_none;
+               //return ::success_none;
+
+               return;
 
             }
 
@@ -161,7 +165,7 @@ namespace music
 
                m_pseq = NULL;
 
-               return ::error_failed;
+               throw_status(error_failed);
 
             }
 
@@ -199,7 +203,7 @@ namespace music
 
                m_pseq = nullptr;
 
-               return ::error_failed;
+               throw_status(error_failed);
 
             }
 
@@ -251,12 +255,12 @@ namespace music
 //
 //            }
 
-            return ::success;
+            //return ::success;
 
          }
 
 
-         ::e_status out::close()
+         void out::close()
          {
 
 //            if (snd_seq_get_port_subscription(m_pseq, m_subscribe) < 0)
@@ -293,12 +297,12 @@ namespace music
 
             m_pseq = nullptr;
 
-            return ::success;
+            //return ::success;
 
          }
 
 
-         ::e_status out::start()
+         void out::start()
          {
 
             snd_seq_queue_tempo_t *tempo;
@@ -360,7 +364,7 @@ namespace music
                               default:
                                  //output_debug_string("Invalid SMPTE frames " + ::str::from((::i32)uSMPTE));
                                  output_debug_string("Invalid SMPTE frames ");
-                                 return error_failed;
+                     throw_status(error_failed);
 
                }
 
@@ -371,7 +375,7 @@ namespace music
             if(err < 0)
             {
 
-               return error_failed;
+               throw_status(error_failed);
 
             }
 
@@ -380,17 +384,16 @@ namespace music
             if(err < 0)
             {
 
-               return error_failed;
+               throw_status(error_failed);
 
             }
 
-
-            return ::success;
+            //return ::success;
 
          }
 
 
-         ::e_status out::stop()
+         void out::stop()
          {
 
 
@@ -424,7 +427,7 @@ namespace music
                //             if (end_delay > 0)
 //                    sleep(end_delay);
 
-            return ::success;
+            //return ::success;
 
          }
 
@@ -436,17 +439,17 @@ namespace music
          }
 
 
-         ::e_status out::send_short_message(::music::midi::e_message emessage, int iChannel, int iData1, int iData2)
+         void out::send_short_message(::music::midi::e_message emessage, int iChannel, int iData1, int iData2)
          {
 
             //return midiOutShortMsg(m_hmidiout, MIDIMSG(((int) etype) >> 4, iChannel, iData1, iData2));
 
-            return ::success;
+            //return ::success;
 
          }
 
 
-         ::e_status out::note_on(int iChannel, unsigned char uchNote, unsigned char uchVelocity)
+         void out::note_on(int iChannel, unsigned char uchNote, unsigned char uchVelocity)
          {
 
             snd_seq_event_t  event = {};
@@ -479,12 +482,12 @@ namespace music
 
             //snd_seq_event_output_direct(m_pseq, &event);
 
-            return ::success;
+            //return ::success;
 
          }
 
 
-         ::e_status out::note_off(int iChannel, unsigned char uchNote, unsigned char uchVelocity)
+         void out::note_off(int iChannel, unsigned char uchNote, unsigned char uchVelocity)
          {
 
             snd_seq_event_t  event ={};
@@ -517,12 +520,12 @@ namespace music
 
             snd_seq_event_output(m_pseq, &event);
 
-            return ::success;
+            //return ::success;
 
          }
 
 
-         ::e_status out::program_change(int iChannel, unsigned char uchProgram)
+         void out::program_change(int iChannel, unsigned char uchProgram)
          {
 
             snd_seq_event_t  event ={};
@@ -555,7 +558,7 @@ namespace music
 
             snd_seq_event_output(m_pseq, &event);
 
-            return ::success;
+            //return ::success;
 
          }
 
@@ -700,7 +703,7 @@ namespace music
          }
 
 
-         ::e_status out::step()
+         bool out::step()
          {
 
 //            if(::is_null(m_pseq))
@@ -712,7 +715,9 @@ namespace music
 //
 //            snd_seq_drain_output(m_pseq);
 
-            return ::success;
+            //return ::success;
+
+            return true;
 
          }
 

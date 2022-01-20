@@ -35,32 +35,32 @@ namespace music
             ~out() override;
 
 
-            ::e_status initialize_message_out(::music::midi::midi * pmidi, const ::string & strDevice) override;
+            void initialize_message_out(::music::midi::midi * pmidi, const ::string & strDevice) override;
 
 
-            ::e_status open() override;
-            ::e_status close() override;
+            void open() override;
+            void close() override;
 
 
-            ::e_status start() override;
-            ::e_status stop() override;
+            void start() override;
+            void stop() override;
 
 
             bool use_tick() const override;
 
 
-            ::e_status note_on(int iChannel, unsigned char uchNote, unsigned char uchVelocity) override;
-            ::e_status note_off(int iChannel, unsigned char uchNote, unsigned char uchVelocity) override;
-            ::e_status program_change(int iChannel, unsigned char uchProgram) override;
+            void note_on(int iChannel, unsigned char uchNote, unsigned char uchVelocity) override;
+            void note_off(int iChannel, unsigned char uchNote, unsigned char uchVelocity) override;
+            void program_change(int iChannel, unsigned char uchProgram) override;
             void control_change(int iChannel, unsigned char uchController, unsigned char uchValue) override;
             void pitch_bend(int iChannel, unsigned short ushBend) override;
             void sysex(const ::block & block) override;
 void tempo(int iTempo) override;
 
-            ::e_status send_short_message(::music::midi::e_message etype, int iChannel, int iData1, int iData2) override;
+            void send_short_message(::music::midi::e_message etype, int iChannel, int iData1, int iData2) override;
 
 
-            ::e_status step() override;
+            bool step() override;
 
 
          };

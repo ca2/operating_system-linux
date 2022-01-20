@@ -29,26 +29,26 @@ namespace music
 
 
             message_out(midi * pmidi, string strDevice);
-            virtual ~message_out();
+            ~message_out() override;
 
-            virtual ::e_status start() override;
+            void start() override;
 
-            virtual ::e_status note_on(int iChannel, unsigned char uchNote, unsigned char uchVelocity) override;
-            virtual ::e_status note_off(int iChannel, unsigned char uchNote, unsigned char uchVelocity) override;
-            virtual ::e_status program_change(int iChannel, unsigned char uchProgram) override;
-            virtual void control_change(int iChannel, unsigned char uchController, unsigned char uchValue) override;
-            virtual void pitch_bend(int iChannel, unsigned short ushBend) override;
-            virtual void sysex(const ::block & block) override;
+            void note_on(int iChannel, unsigned char uchNote, unsigned char uchVelocity) override;
+            void note_off(int iChannel, unsigned char uchNote, unsigned char uchVelocity) override;
+            void program_change(int iChannel, unsigned char uchProgram) override;
+            void control_change(int iChannel, unsigned char uchController, unsigned char uchValue) override;
+            void pitch_bend(int iChannel, unsigned short ushBend) override;
+            void sysex(const ::block & block) override;
 
-            virtual ::e_status step() override;
+            bool step() override;
 
-            virtual void general_midi_reset() override;
+            void general_midi_reset() override;
 
-            virtual void reset_all_controllers() override;
+            void reset_all_controllers() override;
 
-            virtual ::e_status add_short_message(byte * pmessage, int iSize);
+            virtual void add_short_message(byte * pmessage, int iSize);
 
-            virtual bool is_ok() override;
+            bool is_ok() override;
 
          };
 

@@ -193,9 +193,28 @@ namespace linux
 
          auto estatus = failed_errno_to_status(iError);
 
+         m_estatus = estatus;
+
+         set_nok();
+
+         if(openParam & ::file::e_open_no_exception_on_open)
+         {
+
+            m_estatus = estatus;
+
+            return;
+
+         }
+         else
+         {
+
+            throw_status(estatus);
+
+         }
+
+
          //return //::fesp(get_application(), file_exception::os_error_to_exception(dwLastError), dwLastError, m_path);
 
-         throw_status(estatus);
 
       }
 
@@ -204,6 +223,10 @@ namespace linux
       m_iFile = iFile;
 
       m_eopen = eopen;
+
+      m_estatus = success;
+
+      set_ok();
 
    }
 

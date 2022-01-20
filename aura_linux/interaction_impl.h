@@ -127,7 +127,7 @@ namespace linux
 //      id id = ::id()) override;
 
 
-         virtual ::e_status native_create_host() override;
+         void native_create_host() override;
 
 
 //      virtual bool native_create_window_ex(
@@ -136,7 +136,7 @@ namespace linux
 //      ::user::interaction * pParentWnd = nullptr,
 //      id id = ::id());
 
-      virtual bool start_destroying_window() override;
+      void start_destroying_window() override;
 
       // special pre-creation and ::user::interaction_impl rectangle_i32 adjustment hooks
       virtual bool pre_create_window(::user::system * pusersystem) override;
@@ -333,7 +333,7 @@ namespace linux
       virtual bool EnableWindow(bool bEnable = true);
 
 
-      virtual bool prodevian_update_screen() override;
+      void prodevian_update_screen() override;
 
 
       DECLARE_MESSAGE_HANDLER(on_message_create);

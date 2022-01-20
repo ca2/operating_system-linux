@@ -112,7 +112,7 @@ namespace linux
 
       auto pacmedir = psystem->m_pacmedir;
 
-      pathNetworkPayload = pacmedir->home() / ".dropbox/info.network_payload";
+      pathNetworkPayload = pacmedir->home() / ".dropbox/info.json";
 
       return pathNetworkPayload;
 
