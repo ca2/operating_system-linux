@@ -170,19 +170,21 @@ namespace desktop_environment_kde
 //   }
 
 
-   ::e_status node::system_main()
+   void node::system_main()
    {
 
-      auto estatus = ::node_kde::node::system_main();
+      //auto estatus =
+      //
+      ::node_kde::node::system_main();
 
-      if(!estatus)
-      {
-
-         return estatus;
-
-      }
-
-      return estatus;
+//      if(!estatus)
+//      {
+//
+//         return estatus;
+//
+//      }
+//
+//      return estatus;
 
 //      auto psystem = m_psystem->m_papexsystem;
 //
@@ -286,20 +288,21 @@ namespace desktop_environment_kde
    }
 
 
-   ::e_status node::initialize(::object *pobject)
+   void node::initialize(::object *pobject)
    {
 
+      //auto estatus =
+      //
+      ::node_kde::node::initialize(pobject);
 
-      auto estatus = ::node_kde::node::initialize(pobject);
-
-      if(!estatus)
-      {
-
-         return estatus;
-
-      }
-
-      return estatus;
+//      if(!estatus)
+//      {
+//
+//         return estatus;
+//
+//      }
+//
+//      return estatus;
 
    }
 

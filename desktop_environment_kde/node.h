@@ -35,9 +35,9 @@ namespace desktop_environment_kde
 
       virtual int node_init_check(int * pi, char *** ppz) override;
 
-      virtual ::e_status system_main() override;
+      void system_main() override;
 
-      virtual ::e_status initialize(::object * pobject) override;
+      void initialize(::object * pobject) override;
 
       //virtual void os_calc_user_dark_mode() override;
 
