@@ -49,7 +49,7 @@ inline bool linux_dir_myspace(char ch)
 
    ::str::begins_eat_ci(path, strPrefix);
 
-   path.replace("$HOME", pathHome);
+   path.find_replace("$HOME", pathHome);
 
    path.trim("\"");
 
