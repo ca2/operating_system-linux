@@ -46,7 +46,7 @@
 
 
 #define OPERATING_SYSTEM_NAME   	"linux"
-#define PLATFORM_NAMESPACE	linux
+#define OPERATING_SYSTEM_NAMESPACE	linux
 
 
 
