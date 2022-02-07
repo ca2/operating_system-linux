@@ -1,8 +1,8 @@
 #include "framework.h"
 //#include "_linux.h"
 #include "apex/platform/app_core.h"
-#include "aura/node/operating_system/linux/_linux.h"
-#include "acme/node/operating_system/_user.h"
+#include "aura/operating_system/linux/_linux.h"
+#include "acme/operating_system/_user.h"
 ////#include "third/sn/sn.h"
 
 //::user::interaction * g_puserinteractionMouseCapture123 = nullptr;
@@ -685,7 +685,7 @@ namespace linux
    }
 
 
-   void interaction_impl::assert_valid() const
+   void interaction_impl::assert_ok() const
    {
 
       if (get_os_data() == nullptr)
