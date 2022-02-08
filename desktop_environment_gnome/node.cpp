@@ -450,17 +450,17 @@ namespace desktop_environment_gnome
 //   }
 
 
-   void node::handle(::subject * psubject, ::context * pcontext)
+   void node::handle(::topic * ptopic, ::context * pcontext)
    {
 
-      if(psubject->m_id == ::id_operating_system_user_theme_change)
+      if(ptopic->m_atom == ::id_operating_system_user_theme_change)
       {
 
          _os_process_user_theme_color(m_strTheme);
 
       }
 
-      ::node_gnome::node::handle(psubject, pcontext);
+      ::node_gnome::node::handle(ptopic, pcontext);
 
    }
 
@@ -601,17 +601,18 @@ namespace desktop_environment_gnome
 //
 //   }
 
-   bool node::should_launch_on_node(::subject * psubject)
+
+   bool node::should_launch_on_node(::topic * ptopic)
    {
 
-      if(::is_null(psubject))
+      if(::is_null(ptopic))
       {
 
          return false;
 
       }
 
-      if(psubject->m_id == id_operating_system_user_color_change)
+      if(ptopic->m_atom == id_operating_system_user_color_change)
       {
 
          return false;
@@ -623,10 +624,10 @@ namespace desktop_environment_gnome
    }
 
 
-   bool node::launch_on_node(::subject * psubject)
+   bool node::launch_on_node(::topic * ptopic)
    {
 
-      auto bOk = ::node_gnome::node::launch_on_node(psubject);
+      auto bOk = ::node_gnome::node::launch_on_node(ptopic);
 
       return bOk;
 

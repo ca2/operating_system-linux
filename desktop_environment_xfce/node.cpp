@@ -517,10 +517,10 @@ namespace desktop_environment_xfce
 //   }
 
 
-//   void node::on_subject(::promise::subject * psubject, ::subject::context * pcontext)
+//   void node::on_subject(::promise::topic * ptopic, ::subject::context * pcontext)
 //   {
 //
-//      if(psubject->m_id == ::id_os_user_theme)
+//      if(ptopic->m_atom == ::id_os_user_theme)
 //      {
 //
 //         _on_change_os_user_theme();
@@ -636,7 +636,7 @@ namespace desktop_environment_xfce
 //
 //   }
 
-   bool node::should_launch_on_node(::subject::subject * psubject)
+   bool node::should_launch_on_node(::subject::topic * ptopic)
    {
 
       if(::is_null(psubject))
@@ -646,7 +646,7 @@ namespace desktop_environment_xfce
 
       }
 
-      if(psubject->m_id == id_os_dark_mode)
+      if(ptopic->m_atom == id_os_dark_mode)
       {
 
          return false;
@@ -658,7 +658,7 @@ namespace desktop_environment_xfce
    }
 
 
-   bool node::launch_on_node(::subject::subject * psubject)
+   bool node::launch_on_node(::subject::topic * ptopic)
    {
 
       auto bOk = ::node_xfce::node::launch_on_node(psubject);

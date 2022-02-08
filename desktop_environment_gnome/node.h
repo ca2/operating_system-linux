@@ -33,11 +33,11 @@ namespace desktop_environment_gnome
 
       virtual bool windowing_message_loop_step();
 
-      void handle(::subject * psubject, ::context * pcontext) override;
+      void handle(::topic * ptopic, ::context * pcontext) override;
 
-      bool should_launch_on_node(::subject * psubject) override;
+      bool should_launch_on_node(::topic * ptopic) override;
 
-      bool launch_on_node(::subject * psubject) override;
+      bool launch_on_node(::topic * ptopic) override;
 
 
    };

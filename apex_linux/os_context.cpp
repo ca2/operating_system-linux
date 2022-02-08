@@ -82,7 +82,7 @@ namespace linux
             AdjustTokenPrivileges(hToken, false, &tkp, 0, (PTOKEN_PRIVILEGES) nullptr, 0);
             return retval;*/
 
-      __throw(error_not_implemented);
+      throw not_implemented();
       //return false;
 
    }
@@ -104,7 +104,7 @@ namespace linux
    void os_context::terminate_processes_by_title(const ::string & lpszName)
    {
 
-      __throw(error_not_implemented);
+      throw ::not_implemented();
 
       return;
 
@@ -190,7 +190,7 @@ namespace linux
    ::file::path os_context::get_process_path(::u32 dwPid)
    {
 
-      __throw(error_not_implemented);
+      throw ::not_implemented();
 
       return "";
 
@@ -200,7 +200,7 @@ namespace linux
    void os_context::get_all_processes(u32_array & dwa )
    {
 
-      __throw(error_not_implemented);
+      throw ::not_implemented();
 
       return;
 
@@ -223,7 +223,7 @@ namespace linux
 
 //   string os_context::get_module_path(HMODULE hmodule)
 //   {
-//      __throw(error_not_implemented);
+//      throw ::not_implemented();
 //      return "";
 //      /*
 //      string strPath;
@@ -242,7 +242,7 @@ namespace linux
 
    ::payload os_context::connection_settings_get_auto_detect()
    {
-      //__throw(error_not_implemented);
+      //throw ::not_implemented();
       return false;
 
       /*
@@ -265,7 +265,7 @@ namespace linux
    ::payload os_context::connection_settings_get_auto_config_url()
    {
 
-      //__throw(error_not_implemented);
+      //throw ::not_implemented();
       return "";
       /*
             registry::Key key;
@@ -283,7 +283,7 @@ namespace linux
    bool os_context::local_machine_set_run(const ::string & pszKey, const ::string & pszCommand)
    {
 
-//      __throw(error_not_implemented);
+//      throw ::not_implemented();
       return false;
 
       /*
@@ -302,7 +302,7 @@ namespace linux
    {
 
 
-      __throw(error_not_implemented);
+      throw ::not_implemented();
       return false;
       /*    registry::Key keyKar(HKEY_LOcaL_MACHINE, "SOFTWARE\\Micros_contextoft\\Windows\\CurrentVersion\\RunOnce", true);
 
@@ -317,7 +317,7 @@ namespace linux
    bool os_context::current_user_set_run(const ::string & pszKey, const ::string & pszCommand)
    {
 
-      __throw(error_not_implemented);
+      throw ::not_implemented();
       return false;
 
       /*
@@ -334,7 +334,7 @@ namespace linux
    bool os_context::current_user_set_run_once(const ::string & pszKey, const ::string & pszCommand)
    {
 
-      __throw(error_not_implemented);
+      throw ::not_implemented();
       return false;
 
       /*
@@ -351,7 +351,7 @@ namespace linux
 
    void os_context::defer_register_ca2_plugin_for_mozilla()
    {
-      //  __throw(error_not_implemented);
+      //  throw ::not_implemented();
       //return false;
 
       /*
@@ -393,7 +393,7 @@ namespace linux
    {
 
 
-      __throw(error_not_implemented);
+      throw ::not_implemented();
 
       //return false;
 
@@ -436,7 +436,7 @@ namespace linux
    void os_context::file_association_set_default_icon(const ::string & pszExtension, const ::string & pszExtensionNamingClass, const ::string & pszIconPath)
    {
 
-      __throw(error_not_implemented);
+      throw ::not_implemented();
       //return false;
 
       /*
@@ -454,11 +454,11 @@ namespace linux
    void os_context::file_association_set_shell_open_command(const ::string & pszExtension, const ::string & pszExtensionNamingClass,  const ::string & pszCommand, const ::string & pszParam)
    {
 
-      __throw(error_not_implemented);
+      throw ::not_implemented();
 
 //      return false;
 //
-//      __throw(error_not_implemented);
+//      throw ::not_implemented();
 //
 //      return false;
 
@@ -493,7 +493,7 @@ namespace linux
    void os_context::file_association_get_shell_open_command(const ::string & pszExtension, string & strExtensionNamingClass, string & strCommand, string & strParam)
    {
 
-      __throw(error_not_implemented);
+      throw ::not_implemented();
 
       //return false;
 
@@ -539,7 +539,7 @@ namespace linux
    bool os_context::open_in_ie(const ::string & pcsz)
    {
 
-      __throw(error_not_implemented);
+      throw ::not_implemented();
 
       return false;
 
@@ -592,7 +592,7 @@ namespace linux
    bool os_context::create_service(::object * pobject)
    {
 
-      //__throw(error_not_implemented);
+      //throw ::not_implemented();
       return true;
 
       /*
@@ -644,7 +644,7 @@ namespace linux
 
    bool os_context::erase_service(::object * pobject)
    {
-//      __throw(error_not_implemented);
+//      throw ::not_implemented();
       return false;
 
       /*
@@ -685,7 +685,7 @@ namespace linux
 
    bool os_context::start_service(::object * pobject)
    {
-      //__throw(error_not_implemented);
+      //throw ::not_implemented();
       return false;
 
       /*
@@ -726,7 +726,7 @@ namespace linux
 
    bool os_context::stop_service(::object * pobject)
    {
-      __throw(error_not_implemented);
+      throw ::not_implemented();
       return false;
 
       /*
@@ -775,7 +775,7 @@ namespace linux
    void os_context::raise_exception( ::u32 dwExceptionCode, ::u32 dwExceptionFlags)
    {
 
-      __throw(error_not_implemented);
+      throw ::not_implemented();
       return;
       /*
             RaiseException( dwExceptionCode, dwExceptionFlags, 0, nullptr );
@@ -785,7 +785,7 @@ namespace linux
    bool os_context::is_remote_session()
    {
 
-//      __throw(error_not_implemented);
+//      throw ::not_implemented();
       return false;
       /*
             return GetSystemMetrics(SM_REMOTESESSION) != false;
@@ -793,7 +793,7 @@ namespace linux
    }
 
 
-   void os_context::post_to_all_threads(const ::id & id, wparam wparam, lparam lparam)
+   void os_context::post_to_all_threads(const ::atom & atom, wparam wparam, lparam lparam)
 
    {
 

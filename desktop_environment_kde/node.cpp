@@ -661,7 +661,7 @@ namespace desktop_environment_kde
 //
 //      }
 //
-//      if (psubject->m_id == id_os_dark_mode)
+//      if (ptopic->m_atom == id_os_dark_mode)
 //      {
 //
 //         return false;
