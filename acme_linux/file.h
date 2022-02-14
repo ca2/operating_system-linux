@@ -25,7 +25,7 @@ namespace linux
    public:
 
 
-      __creatable_from_library(file, ::file::file, "acme_linux_node");
+      __creatable_from_library(file, ::file::file, "acme_linux");
 
 
 //      enum Attribute
