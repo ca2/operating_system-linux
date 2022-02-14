@@ -208,7 +208,7 @@ namespace linux
          else
          {
 
-            throw_status(estatus);
+            throw ::exception(estatus);
 
          }
 
@@ -286,7 +286,7 @@ namespace linux
             {
 
             }
-            ::file::throw_errno( errno);
+            throw ::file::exception(error_io, errno);
          }
          else if(iRead == 0)
          {
@@ -332,7 +332,7 @@ namespace linux
          if(iWrite < 0)
          {
 
-            throw_errno(errno, m_path);
+            throw ::file::exception(errno_to_status(errno), -1, errno, m_path);
 
          }
 
@@ -354,7 +354,7 @@ namespace linux
       if(m_iFile == INVALID_FILE)
       {
 
-         throw_errno(errno, m_path);
+         throw ::file::exception(errno_to_status(errno), -1, errno, m_path);
 
       }
 
@@ -369,7 +369,7 @@ namespace linux
       filesize posNew = ::lseek64(m_iFile, lLoOffset, (::u32)eseek);
 //      posNew |= ((filesize) lHiOffset) << 32;
       if(posNew  == (filesize)-1)
-         throw_errno(errno, m_path);
+         throw ::file::exception(errno_to_status(errno), -1, errno, m_path);
 
       return posNew;
    }
@@ -385,7 +385,7 @@ namespace linux
       filesize pos = ::lseek64(m_iFile, lLoOffset, SEEK_CUR);
       //    pos |= ((filesize)lHiOffset) << 32;
       if(pos  == (filesize)-1)
-         throw_errno(errno, m_path);
+         throw ::file::exception(errno_to_status(errno), -1, errno, m_path);
 
       return pos;
    }
@@ -422,7 +422,7 @@ namespace linux
 //         return;
 //
 //      if (!::FlushFileBuffers((HANDLE)m_iFile))
-//         throw_errno(errno, m_path);
+//         throw ::file::exception(errno_to_status(errno), -1, errno, m_path);
    }
 
    void file::close()
@@ -438,7 +438,7 @@ namespace linux
       m_path.Empty();
 
       if (bError)
-         throw_errno(errno, m_path);
+         throw ::file::exception(errno_to_status(errno), -1, errno, m_path);
 
    }
 
@@ -486,7 +486,7 @@ namespace linux
       if (::ftruncate64(m_iFile, dwNewLen) == -1)
       {
 
-         throw_errno(errno, m_path);
+         throw ::file::exception(errno_to_status(errno), -1, errno, m_path);
 
       }
 

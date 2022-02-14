@@ -209,7 +209,7 @@ namespace linux
 
          //return false;
 
-         throw_status(error_failed);
+         throw ::exception(error_failed);
 
       }
 
@@ -284,7 +284,7 @@ namespace linux
       if(!bOk)
       {
 
-         throw_status(error_failed);
+         throw ::exception(error_failed);
 
       }
 
@@ -4304,7 +4304,7 @@ namespace linux
 
          //return false;
 
-         throw_status(error_null_pointer);
+         throw ::exception(error_null_pointer);
 
       }
 

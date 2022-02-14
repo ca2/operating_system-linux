@@ -21,6 +21,8 @@ namespace acme
       public:
 
 
+         __creatable_from_library(node, ::acme::node, "acme_linux_node");
+
          ::user::enum_desktop             m_edesktop;
 
 

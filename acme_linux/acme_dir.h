@@ -12,6 +12,9 @@ namespace linux
    public:
 
 
+      __creatable_from_library(acme_dir, ::acme_dir, "acme_linux_node");
+
+
       acme_dir();
       ~acme_dir() override;
 

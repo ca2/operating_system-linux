@@ -25,26 +25,29 @@ namespace linux
    public:
 
 
-      enum Attribute
-      {
-         normal =    0x00,
-         readOnly =  0x01,
-         hidden =    0x02,
-         system =    0x04,
-         volume =    0x08,
-         directory = 0x10,
-         archive =   0x20
-      };
+      __creatable_from_library(file, ::file::file, "acme_linux_node");
 
-      enum BufferCommand
-      {
 
-         bufferRead,
-         bufferWrite,
-         bufferCommit,
-         bufferCheck
-
-      };
+//      enum Attribute
+//      {
+//         normal =    0x00,
+//         readOnly =  0x01,
+//         hidden =    0x02,
+//         system =    0x04,
+//         volume =    0x08,
+//         directory = 0x10,
+//         archive =   0x20
+//      };
+//
+//      enum BufferCommand
+//      {
+//
+//         bufferRead,
+//         bufferWrite,
+//         bufferCommit,
+//         bufferCheck
+//
+//      };
 
       int                  m_iFile;
       int                  m_iPutCharacter;

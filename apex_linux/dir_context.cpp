@@ -159,7 +159,7 @@ namespace linux
       if(!is(m_pdirsystem->m_pathTimeFolder))
       {
 
-         throw_status(error_failed);
+         throw ::exception(error_failed);
 
       }
 
@@ -534,7 +534,7 @@ namespace linux
 
          auto estatus = failed_errno_to_status(iErrNo);
 
-         throw_status(estatus);
+         throw ::exception(estatus);
 
       }
 
