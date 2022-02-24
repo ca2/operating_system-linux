@@ -95,5 +95,16 @@
 
 
 
+#define FONT_SANS "sans-serif"
+#define FONT_SERIF "serif"
+#define FONT_SANS_EX "sans-serif"
+#define FONT_SERIF_EX "serif"
+#define FONT_SANS_FX "sans-serif"
+#define FONT_SERIF_FX "serif"
+#define FONT_SANS_UI "sans-serif"
+#define FONT_SERIF_UI "serif"
+
+
+#define FONT_MONO "monospace"
 
 

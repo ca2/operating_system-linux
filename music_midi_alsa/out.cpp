@@ -156,7 +156,7 @@ namespace music
 
             }
 
-            string clientName = m_psystem->m_papplicationMain->m_strAppId;
+            string clientName = m_psystem->m_pappMain->m_strAppId;
 
             int result = snd_seq_open(&m_pseq, "default", SND_SEQ_OPEN_DUPLEX, 0);
 

@@ -23,7 +23,7 @@
 //   //
 //   //      //m_pthreadimpl->m_pthread = this;
 //   //
-//   //      psystem                    =  papp->get_application()->psystem;
+//   //      psystem                    =  papp->get_app()->psystem;
 //   //
 //   //      m_atomApp = m_atomSystemTopic    = nullptr;
 //   //

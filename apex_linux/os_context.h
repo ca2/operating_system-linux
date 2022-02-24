@@ -6,13 +6,13 @@ namespace linux
 
 
    class CLASS_DECL_APEX os_context :
-      public ::os_context
+      public ::posix::os_context
    {
    public:
 
 
       os_context();
-      virtual ~os_context();
+      ~os_context() override;
 
 
       virtual string get_command_line() override;
@@ -22,6 +22,9 @@ namespace linux
       virtual void shutdown(bool bPowerOff) override;
 
       virtual void terminate_processes_by_title(const ::string & lpszName) override;
+
+
+      bool has_alias_in_path(const char * psz, bool bNoUI, bool bNoMount) override;
 
 
       virtual bool linux_can_exec(const ::string &file);
@@ -76,7 +79,7 @@ namespace linux
 
       void file_open(::file::path strSrc, string strParams, string strFolder) override;
 
-      void list_process(::file::patha & patha, u32_array & iaPid) override;
+      void list_process(::file::path_array & patha, u32_array & iaPid) override;
 
 
    };

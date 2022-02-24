@@ -12,7 +12,7 @@ namespace linux
    public:
 
 
-      __creatable_from_library(acme_dir, ::acme_dir, "acme_linux");
+      //__creatable_from_library(acme_dir, ::acme_dir, "acme_linux");
 
 
       acme_dir();

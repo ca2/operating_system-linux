@@ -1,5 +1,5 @@
 #include "framework.h"
-#include "apex/platform/app_core.h"
+//#include "apex/platform/app_core.h"
 //#include "_linux.h"
 //#include "apex/os/linux/gnome_gnome.h"
 
@@ -369,7 +369,7 @@ namespace linux
                   keyPlugin.SetValue("Path", ::apex::get_system()->m_strCa2Module("npca2.dll"));
                   keyPlugin.SetValue("ProductName", "ca2 plugin for NPAPI");
                   keyPlugin.SetValue("Vendor", "ca2 Desenvolvimento de Software Ltda.");
-                  keyPlugin.SetValue("Version", get_application()->file_as_string(pcontext->m_papexcontext->dir().ca2("appdata/x86/ca2_build.txt")));
+                  keyPlugin.SetValue("Version", get_app()->file_as_string(pcontext->m_papexcontext->dir().ca2("appdata/x86/ca2_build.txt")));
 
                   registry::Key keyApplicationca2;
 
@@ -962,44 +962,48 @@ namespace linux
 
          //::system("nohup xdg-open \"" + strTarget + "\" > /dev/null 2>&1&");
 
+
+
          auto psystem = m_psystem;
 
          auto pnode = psystem->node();
 
-         pnode->node_fork([this, strTarget]()
-         {
+         pnode->shell_execute_async(strTarget, "");
 
-            string strUri = strTarget;
-
-            if(!strUri.contains("://"))
-            {
-
-               strUri = "file://" + strUri;
-
-            }
-
-            string strError;
-
-            int iBufferSize = 4096;
-
-            char * pszError = strError.get_string_buffer(iBufferSize);
-
-            auto psystem = m_psystem;
-
-            auto pnode = psystem->node();
-
-            int iBool = pnode->os_launch_uri(strUri, pszError, iBufferSize);
-
-            strError.release_string_buffer();
-
-            if(!iBool)
-            {
-
-               INFORMATION("Error launching file : \"" << strUri << "\" , " << strError);
-
-            }
-
-         });
+//         pnode->node_fork([this, strTarget]()
+//         {
+//
+//            string strUri = strTarget;
+//
+//            if(!strUri.contains("://"))
+//            {
+//
+//               strUri = "file://" + strUri;
+//
+//            }
+//
+//            string strError;
+//
+//            int iBufferSize = 4096;
+//
+//            char * pszError = strError.get_string_buffer(iBufferSize);
+//
+//            auto psystem = m_psystem;
+//
+//            auto pnode = psystem->node();
+//
+//            int iBool = pnode->os_launch_uri(strUri, pszError, iBufferSize);
+//
+//            strError.release_string_buffer();
+//
+//            if(!iBool)
+//            {
+//
+//               INFORMATION("Error launching file : \"" << strUri << "\" , " << strError);
+//
+//            }
+//
+//         });
 
       }
 
@@ -1010,12 +1014,12 @@ namespace linux
    }
 
 
-   void os_context::list_process(::file::patha & patha, u32_array & uaPid)
+   void os_context::list_process(::file::path_array & patha, u32_array & uaPid)
    {
 
       ::output_debug_string("linux::os_context::list_process");
 
-      ::file::patha stra;
+      ::file::path_array stra;
 
       m_psystem->m_pacmedir->ls_dir(stra, "/proc/");
 
@@ -1045,6 +1049,32 @@ namespace linux
          }
 
       }
+
+   }
+
+
+   bool os_context::has_alias_in_path(const char * psz, bool bNoUI, bool bNoMount)
+   {
+
+      ::file::path path(psz);
+
+      ::file::path_array patha;
+
+      path.ascendants_path(patha);
+
+      for(auto & path : patha)
+      {
+
+         if(is_alias(path))
+         {
+
+            return true;
+
+         }
+
+      }
+
+      return false;
 
    }
 

@@ -21,7 +21,7 @@ namespace acme
       public:
 
 
-         __creatable_from_library(node, ::acme::node, "acme_linux");
+         //__creatable_from_library(node, ::acme::node, "acme_linux");
 
          ::user::enum_desktop             m_edesktop;
 
@@ -118,6 +118,8 @@ namespace acme
 
 
          virtual array <::serial::port_info> list_serial_ports();
+
+         void shell_execute_async(const char *psz, const char * pszParams) override;
 
 
       };

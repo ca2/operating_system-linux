@@ -409,6 +409,63 @@ namespace acme
       }
 
 
+      void node::shell_execute_async(const char * psz, const char * pszParams)
+      {
+
+         string str(psz);
+
+         fork([this, str]()
+              {
+
+                 ::system("xdg-open \"" + str + "\" & ");
+
+              });
+
+//         string strTarget(psz);
+//
+//         auto psystem = m_psystem;
+//
+//         auto pnode = psystem->node();
+//
+//         pnode->node_fork([this, strTarget]()
+//                          {
+//
+//                             string strUri = strTarget;
+//
+//                             if(!strUri.contains("://"))
+//                             {
+//
+//                                strUri = "file://" + strUri;
+//
+//                             }
+//
+//                             string strError;
+//
+//                             int iBufferSize = 4096;
+//
+//                             char * pszError = strError.get_string_buffer(iBufferSize);
+//
+//                             auto psystem = m_psystem;
+//
+//                             auto pnode = psystem->node();
+//
+//                             int iBool = pnode->os_launch_uri(strUri, pszError, iBufferSize);
+//
+//                             strError.release_string_buffer();
+//
+//                             if(!iBool)
+//                             {
+//
+//                                INFORMATION("Error launching file : \"" << strUri << "\" , " << strError);
+//
+//                             }
+//
+//                          });
+
+
+      }
+
+
    } // namespace linux
 
 

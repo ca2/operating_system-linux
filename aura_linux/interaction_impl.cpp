@@ -1,6 +1,6 @@
 #include "framework.h"
 //#include "_linux.h"
-#include "apex/platform/app_core.h"
+//#include "apex/platform/app_core.h"
 #include "aura/operating_system/linux/_linux.h"
 #include "acme/operating_system/_user.h"
 ////#include "third/sn/sn.h"
@@ -610,7 +610,7 @@ namespace linux
 //
 //      {
 //
-//         single_lock synchronouslock(get_application() == nullptr ? nullptr : get_application()->mutex(), true);
+//         single_lock synchronouslock(get_app() == nullptr ? nullptr : get_app()->mutex(), true);
 //
 //         auto ptask = ::get_task();
 //
@@ -1645,7 +1645,7 @@ namespace linux
 //      if (pszcaption == nullptr)
 //      {
 //
-//         strCaption = get_application()->m_strAppName;
+//         strCaption = get_app()->m_strAppName;
 //
 //      }
 //      else
@@ -3136,7 +3136,7 @@ namespace linux
 ////        UNREFERENCED_PARAMETER(pfnTimer);
 //
 ////
-////        m_puserinteraction->get_application()->set_timer(m_puserinteraction, uEvent, nElapse);
+////        m_puserinteraction->get_app()->set_timer(m_puserinteraction, uEvent, nElapse);
 ////
 ////        return uEvent;
 //
@@ -3153,7 +3153,7 @@ namespace linux
 //
 //      return ::user::interaction_impl::KillTimer(uEvent);
 //
-////       m_puserinteraction->get_application()->unset_timer(m_puserinteraction, uEvent);
+////       m_puserinteraction->get_app()->unset_timer(m_puserinteraction, uEvent);
 //
 //      //     return true;
 //

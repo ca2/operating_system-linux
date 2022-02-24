@@ -272,7 +272,7 @@ namespace linux
 
                }
 
-               get_application()->dir().ls(listing, strDir);
+               get_app()->m_papplication->dir().ls(listing, strDir);
 
             }
 
@@ -285,7 +285,7 @@ namespace linux
 
             listing.m_bRecursive = false;
 
-            get_application()->dir().ls_file(listing, listing.m_pathFinal);
+            get_app()->m_papplication->dir().ls_file(listing, listing.m_pathFinal);
 
          }
 
@@ -300,7 +300,7 @@ namespace linux
       else
       {
 
-         ::file::patha stra;
+         ::file::path_array stra;
 
          m_psystem->m_pacmedir->ls(stra, listing.m_pathFinal);
 

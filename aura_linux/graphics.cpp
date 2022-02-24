@@ -3471,7 +3471,7 @@ namespace draw2d_gdiplus
    //         ::draw2d::brush* pBrushOld = nullptr;
    //         if (pBrush == nullptr)
    //         {
-   //            pBrush = graphics::GetHalftoneBrush(get_application());
+   //            pBrush = graphics::GetHalftoneBrush(get_app());
    //         }
 
    //         ENSURE(pBrush);
@@ -5241,7 +5241,7 @@ namespace draw2d_gdiplus
 //            {
 //               // got the stock object back, so must be selecting a font
 //               throw ::not_implemented();
-////                  set(::draw2d_gdiplus::font::from_handle(pgraphics->get_application(), (HFONT)hObject));
+////                  set(::draw2d_gdiplus::font::from_handle(pgraphics->get_app(), (HFONT)hObject));
 //               break;  // don't play the default record
 //            }
 //            else
@@ -5255,7 +5255,7 @@ namespace draw2d_gdiplus
 //         else if (nObjType == OBJ_FONT)
 //         {
 //            // play back as graphics::set(::write_text::font*)
-////               set(::draw2d_gdiplus::font::from_handle(pgraphics->get_application(), (HFONT)hObject));
+////               set(::draw2d_gdiplus::font::from_handle(pgraphics->get_app(), (HFONT)hObject));
 //            throw ::not_implemented();
 //            break;  // don't play the default record
 //         }
