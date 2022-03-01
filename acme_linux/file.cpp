@@ -212,9 +212,7 @@ namespace linux
 
          }
 
-
          //return //::fesp(get_app(), file_exception::os_error_to_exception(dwLastError), dwLastError, m_path);
-
 
       }
 
@@ -805,9 +803,9 @@ namespace linux
 
          rStatus.m_attribute = 0;
 
-         rStatus.m_ctime = ::datetime::time(st.st_mtime);
-         rStatus.m_atime = ::datetime::time(st.st_atime);
-         rStatus.m_mtime = ::datetime::time(st.st_ctime);
+         rStatus.m_ctime = ::earth::time(st.st_mtime);
+         rStatus.m_atime = ::earth::time(st.st_atime);
+         rStatus.m_mtime = ::earth::time(st.st_ctime);
 
          if (rStatus.m_ctime.get_time() == 0)
             rStatus.m_ctime = rStatus.m_mtime;

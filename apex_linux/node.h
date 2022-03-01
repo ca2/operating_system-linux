@@ -97,7 +97,7 @@ namespace apex
          //virtual  HICON       extract_icon(HINSTANCE hInst, const char* pszExeFileName, ::u32 nIconIndex);
          //virtual  bool        delete_file(const char* pFileName);
          // virtual  i32     get_menu_string(HMENU hMenu, ::u32 uDItem, string& str, ::u32 flags);
-         //virtual  void        time_to_filetime(::matter* pobject, const ::datetime::time& time, LPFILETIME pFileTime);
+         //virtual  void        time_to_file_time(::matter* pobject, const ::earth::time& time, LPFILETIME pFileTime);
 
 
          //virtual string get_version();

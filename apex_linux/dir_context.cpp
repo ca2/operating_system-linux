@@ -552,8 +552,8 @@ namespace linux
          str = strDir.Left(2);
          str += "\\trash_that_is_not_trash\\";
          string strFormat;
-         ::datetime::time time;
-         time = ::datetime::time::now();
+         ::earth::time time;
+         time = ::earth::time::now();
          strFormat.format("%04d-%02d-%02d %02d-%02d-%02d\\", time.year(), time.month(), time.day(), time.hour(), time.minute(), time.second());
          str += strFormat;
          if(strDir[2] == '\\')
