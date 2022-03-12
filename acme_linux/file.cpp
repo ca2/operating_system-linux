@@ -805,7 +805,7 @@ namespace linux
          if(fstat(m_iFile, &st) == -1)
             return false;
 
-         rStatus.m_size = st.st_size;
+         rStatus.m_filesize = st.st_size;
 
          rStatus.m_attribute = 0;
 

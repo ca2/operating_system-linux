@@ -371,7 +371,14 @@ namespace linux
 
       }
 
-      bool bIsDir = m_psystem->m_pacmedir->_is(path);
+      bool bIsDir = false;
+
+      if(!m_psystem->m_pacmedir->_is(bIsDir, path))
+      {
+
+         return false;
+
+      }
 
       return bIsDir;
 
