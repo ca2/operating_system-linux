@@ -29,8 +29,8 @@ namespace linux
       void init_system() override;
       void init_context() override;
 
-      using ::dir_context::ls;
-      bool ls(::file::listing & ls) override;
+      //using ::dir_context::ls;
+      bool enumerate(::file::listing & listing) override;
 
 
       virtual bool  is(const ::file::path & path) override;

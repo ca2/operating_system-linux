@@ -213,7 +213,13 @@ namespace linux
    ::file::listing & dir_context::root_ones(::file::listing & listing)
    {
 
-      listing.add("/");
+      ::file::path path;
+
+      path = "/";
+
+      path.m_iDir = 1;
+
+      listing.defer_add(path);
 
       listing.m_straTitle.add("Filesystem");
 
@@ -222,139 +228,139 @@ namespace linux
    }
 
 
-   bool dir_context::ls(::file::listing & listing)
+   bool dir_context::enumerate(::file::listing & listing)
    {
 
-      if(::dir_context::ls(listing))
+      if(::dir_context::enumerate(listing))
       {
 
          return true;
 
       }
 
-      if(listing.m_bRecursive)
-      {
+//      if(listing.m_bRecursive)
+//      {
+//
+//         index iStart = listing.get_count();
+//
+//         {
+//
+//            __scoped_restore(listing.m_pathUser);
+//
+//            __scoped_restore(listing.m_pathFinal);
+//
+//            __scoped_restore(listing.m_eextract);
+//
+//            ::file::listing straDir;
+//
+//            ls_dir(straDir, listing.m_pathFinal);
+//
+//            for(i32 i = 0; i < straDir.get_count(); i++)
+//            {
+//
+//               string strDir = straDir[i];
+//
+//               if(strDir == listing.m_pathFinal)
+//               {
+//
+//                  continue;
+//
+//               }
+//
+//               if(listing.m_bDir)
+//               {
+//
+//                  ::file::path & path = listing.add_get(::file::path(strDir));
+//
+//                  path.m_iSize = 0;
+//
+//                  path.m_iDir = 1;
+//
+//               }
+//
+//               get_app()->m_papplication->dir().ls(listing, strDir);
+//
+//            }
+//
+//         }
+//
+//         if(listing.m_bFile)
+//         {
+//
+//            __scoped_restore(listing.m_bRecursive);
+//
+//            listing.m_bRecursive = false;
+//
+//            get_app()->m_papplication->dir().ls_file(listing, listing.m_pathFinal);
+//
+//         }
+//
+//         for(index i = iStart; i < listing.get_size(); i++)
+//         {
+//
+//            listing[i].m_iRelative = listing.m_pathFinal.get_length() + 1;
+//
+//         }
+//
+//      }
+//      else
+//      {
 
-         index iStart = listing.get_count();
+         //::file::path_array stra;
 
-         {
+         m_psystem->m_pacmedirectory->enumerate(listing);
 
-            __scoped_restore(listing.m_pathUser);
-
-            __scoped_restore(listing.m_pathFinal);
-
-            __scoped_restore(listing.m_eextract);
-
-            ::file::listing straDir;
-
-            ls_dir(straDir, listing.m_pathFinal);
-
-            for(i32 i = 0; i < straDir.get_count(); i++)
-            {
-
-               string strDir = straDir[i];
-
-               if(strDir == listing.m_pathFinal)
-               {
-
-                  continue;
-
-               }
-
-               if(listing.m_bDir)
-               {
-
-                  ::file::path & path = listing.add_get(::file::path(strDir));
-
-                  path.m_iSize = 0;
-
-                  path.m_iDir = 1;
-
-               }
-
-               get_app()->m_papplication->dir().ls(listing, strDir);
-
-            }
-
-         }
-
-         if(listing.m_bFile)
-         {
-
-            __scoped_restore(listing.m_bRecursive);
-
-            listing.m_bRecursive = false;
-
-            get_app()->m_papplication->dir().ls_file(listing, listing.m_pathFinal);
-
-         }
-
-         for(index i = iStart; i < listing.get_size(); i++)
-         {
-
-            listing[i].m_iRelative = listing.m_pathFinal.get_length() + 1;
-
-         }
-
-      }
-      else
-      {
-
-         ::file::path_array stra;
-
-         m_psystem->m_pacmedir->ls(stra, listing.m_pathFinal);
-
-         for(i32 i = 0; i < stra.get_count(); i++)
-         {
-
-            auto & strPath = stra[i];
-
-            if(!::str::begins(strPath, listing.m_pathFinal))
-               continue;
-
-            bool bIsDir;
-
-            if(strPath.m_iDir >= 0)
-            {
-
-               bIsDir = strPath.m_iDir != 0;
-
-            }
-            else
-            {
-
-               bIsDir = ::dir_context::is(strPath);
-
-            }
-
-            if((bIsDir && !listing.m_bDir) || (!bIsDir && !listing.m_bFile))
-               continue;
-
-            if(!bIsDir && !matches_wildcard_criteria(listing.m_straPattern, strPath.name()))
-               continue;
-
-            ::file::path & path = listing.add_get(strPath);
-
-            path.m_iDir = bIsDir ? 1 : 0;
-
-            if(bIsDir)
-            {
-
-               path.m_iSize = 0;
-
-            }
-            else
-            {
-
-               path.m_iSize = m_psystem->m_pacmefile->get_size(strPath);
-
-            }
-
-         }
-
-      }
-
-      //return listing;
+//         for(i32 i = 0; i < stra.get_count(); i++)
+//         {
+//
+//            auto & strPath = stra[i];
+//
+//            if(!::str::begins(strPath, listing.m_pathFinal))
+//               continue;
+//
+//            bool bIsDir;
+//
+//            if(strPath.m_iDir >= 0)
+//            {
+//
+//               bIsDir = strPath.m_iDir != 0;
+//
+//            }
+//            else
+//            {
+//
+//               bIsDir = ::dir_context::is(strPath);
+//
+//            }
+//
+//            if((bIsDir && !listing.m_bDir) || (!bIsDir && !listing.m_bFile))
+//               continue;
+//
+//            if(!bIsDir && !matches_wildcard_criteria(listing.m_straPattern, strPath.name()))
+//               continue;
+//
+//            ::file::path & path = listing.add_get(strPath);
+//
+//            path.m_iDir = bIsDir ? 1 : 0;
+//
+//            if(bIsDir)
+//            {
+//
+//               path.m_iSize = 0;
+//
+//            }
+//            else
+//            {
+//
+//               path.m_iSize = m_psystem->m_pacmefile->get_size(strPath);
+//
+//            }
+//
+//         }
+//
+//      }
+//
+//      //return listing;
 
       return true;
 
@@ -364,7 +370,7 @@ namespace linux
    bool dir_context::is(const ::file::path & path)
    {
 
-      if(m_psystem->m_pacmedir->is(path))
+      if(m_psystem->m_pacmedirectory->is(path))
       {
 
          return true;
@@ -373,7 +379,7 @@ namespace linux
 
       bool bIsDir = false;
 
-      if(!m_psystem->m_pacmedir->_is(bIsDir, path))
+      if(!m_psystem->m_pacmedirectory->_is(bIsDir, path))
       {
 
          return false;
@@ -499,7 +505,7 @@ namespace linux
    void dir_context::create(const ::file::path & path)
    {
 
-      m_psystem->m_pacmedir->create(path);
+      m_psystem->m_pacmedirectory->create(path);
 
    }
 
@@ -512,7 +518,9 @@ namespace linux
 
          ::file::listing listing;
 
-         ls(listing, path);
+         listing.set_listing(path, e_depth_recursively);
+
+         enumerate(listing);
 
          for(auto & pathItem : listing)
          {
@@ -660,7 +668,7 @@ namespace linux
 
       ::file::listing listing;
 
-      ls_dir(listing, path);
+      enumerate(listing);
 
       return listing.get_size() > 0;
 

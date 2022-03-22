@@ -110,7 +110,7 @@ namespace linux
       if ((eopen & ::file::e_open_defer_create_directory) && (eopen & ::file::e_open_write))
       {
 
-         m_psystem->m_pacmedir->create(pszFileName.folder());
+         m_psystem->m_pacmedirectory->create(pszFileName.folder());
 
       }
 

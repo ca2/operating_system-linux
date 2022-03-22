@@ -4,7 +4,7 @@
 #include <sys/types.h>
 #include <sys/stat.h>
 #include "acme/operating_system/ansi/file_raw.h"
-#include "acme/filesystem/filesystem/acme_dir.h"
+#include "acme/filesystem/filesystem/acme_directory.h"
 
 
 struct PROCESS_INFO_t
@@ -110,7 +110,7 @@ namespace linux
 
       auto psystem = m_psystem;
 
-      auto pacmedir = psystem->m_pacmedir;
+      auto pacmedir = psystem->m_pacmedirectory;
 
       pathNetworkPayload = pacmedir->home() / ".dropbox/info.json";
 

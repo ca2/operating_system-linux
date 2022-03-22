@@ -6,7 +6,7 @@ namespace linux
 {
 
    
-   acme_dir::acme_dir()
+   acme_directory::acme_directory()
    {
 
       m_pplatformdir = this;
@@ -14,14 +14,14 @@ namespace linux
    }
 
 
-   acme_dir::~acme_dir()
+   acme_directory::~acme_directory()
    {
 
 
    }
 
 
-   string acme_dir::dir_root()
+   string acme_directory::dir_root()
    {
 
       return home() / ".config/ca2";
@@ -29,7 +29,7 @@ namespace linux
    }
 
 
-   ::file::path acme_dir::get_memory_map_base_folder_path() 
+   ::file::path acme_directory::get_memory_map_base_folder_path()
    {
 
       return home() / ".config/ca2/memory_map";
@@ -37,7 +37,7 @@ namespace linux
    }
 
 
-//   ::file::path acme_dir::home()
+//   ::file::path acme_directory::home()
 //   {
 //
 //      return getenv("HOME");
@@ -45,7 +45,7 @@ namespace linux
 //   }
 
 
-   ::file::path acme_dir::program_data()
+   ::file::path acme_directory::program_data()
    {
 
       return home() / "application";
@@ -53,7 +53,7 @@ namespace linux
    }
 
 
-   ::file::path acme_dir::roaming()
+   ::file::path acme_directory::roaming()
    {
 
       return home() / ".config";
@@ -61,7 +61,7 @@ namespace linux
    }
 
 
-   ::file::path acme_dir::appdata()
+   ::file::path acme_directory::appdata()
    {
 
       return ca2roaming() / "appdata" / app_relative();
@@ -69,7 +69,7 @@ namespace linux
    }
 
 
-   ::file::path acme_dir::public_system()
+   ::file::path acme_directory::public_system()
    {
 
       return public_root() / "system";
@@ -77,7 +77,7 @@ namespace linux
    }
 
 
-   ::file::path acme_dir::system()
+   ::file::path acme_directory::system()
    {
 
       return ca2roaming() / "system";
@@ -85,7 +85,7 @@ namespace linux
    }
 
 
-   ::file::path acme_dir::config()
+   ::file::path acme_directory::config()
    {
 
       return ca2roaming() / "config";
@@ -93,7 +93,7 @@ namespace linux
    }
 
 
-   ::file::path acme_dir::local()
+   ::file::path acme_directory::local()
    {
 
       return ca2roaming() / "local";
@@ -101,7 +101,7 @@ namespace linux
    }
 
 
-   ::file::path acme_dir::sensitive()
+   ::file::path acme_directory::sensitive()
    {
 
    #ifdef LINUX
@@ -117,7 +117,7 @@ namespace linux
    }
 
 
-   string acme_dir::system_short_name()
+   string acme_directory::system_short_name()
    {
 
    #ifdef _UWP
@@ -135,7 +135,7 @@ namespace linux
    }
 
 
-   ::file::path acme_dir::relative(::file::path path)
+   ::file::path acme_directory::relative(::file::path path)
    {
 
       path.find_replace(":", "");
@@ -150,7 +150,7 @@ namespace linux
    #ifdef _UWP
 
 
-   ::file::path acme_dir::app_relative()
+   ::file::path acme_directory::app_relative()
    {
 
       return "";
@@ -161,7 +161,7 @@ namespace linux
    #else
 
 
-   ::file::path acme_dir::app_relative()
+   ::file::path acme_directory::app_relative()
    {
 
       ::file::path path = m_psystem->m_pacmefile->module();
@@ -176,7 +176,7 @@ namespace linux
    #endif
 
 
-   ::file::path acme_dir::inplace_install(string strAppId, string strPlatform, string strConfiguration)
+   ::file::path acme_directory::inplace_install(string strAppId, string strPlatform, string strConfiguration)
    {
 
    #ifdef LINUX_DESKTOP
@@ -233,7 +233,7 @@ namespace linux
    }
 
 
-   ::file::path acme_dir::inplace_matter_install(string strAppId, string strPlatform, string strConfiguration)
+   ::file::path acme_directory::inplace_matter_install(string strAppId, string strPlatform, string strConfiguration)
    {
 
    #ifdef LINUX_DESKTOP
@@ -264,7 +264,7 @@ namespace linux
    }
 
 
-   ::file::path acme_dir::install()
+   ::file::path acme_directory::install()
    {
 
       if (m_pathInstallFolder == nullptr || m_pathInstallFolder.is_empty())
@@ -279,7 +279,7 @@ namespace linux
    }
 
 
-   ::file::path acme_dir::default_install()
+   ::file::path acme_directory::default_install()
    {
 
    #ifdef ANDROID
@@ -299,7 +299,7 @@ namespace linux
    }
 
 
-   ::file::path acme_dir::beforeca2()
+   ::file::path acme_directory::beforeca2()
    {
 
       return file_path_name(install());
@@ -313,7 +313,7 @@ namespace linux
    #include <Shlobj.h>
 
 
-   ::file::path acme_dir::program_files_x86()
+   ::file::path acme_directory::program_files_x86()
    {
 
       wstring wstrModuleFolder(get_buffer, sizeof(unichar) * 8);
@@ -338,7 +338,7 @@ namespace linux
    }
 
 
-   ::file::path acme_dir::program_files()
+   ::file::path acme_directory::program_files()
    {
 
       wstring wstrModuleFolder(get_buffer, sizeof(unichar) * 8);
@@ -368,7 +368,7 @@ namespace linux
    #else
 
 
-   ::file::path acme_dir::program_files_x86()
+   ::file::path acme_directory::program_files_x86()
    {
 
       ::file::path path("/opt/ca2");
@@ -378,7 +378,7 @@ namespace linux
    }
 
 
-   ::file::path acme_dir::program_files()
+   ::file::path acme_directory::program_files()
    {
 
       ::file::path path("/opt/ca2");
@@ -391,7 +391,7 @@ namespace linux
    #endif
 
 
-   ::file::path acme_dir::stage(string strAppId, string strPlatform, string strConfiguration)
+   ::file::path acme_directory::stage(string strAppId, string strPlatform, string strConfiguration)
    {
 
       return inplace_install(strAppId, strPlatform, strConfiguration) / "time" / time_binary_platform(strPlatform) / strConfiguration;
@@ -402,7 +402,7 @@ namespace linux
 //   #ifdef LINUX
 
 
-   ::file::path acme_dir::home()
+   ::file::path acme_directory::home()
    {
 
       return getenv("HOME");
@@ -416,12 +416,12 @@ namespace linux
    #if defined(_UWP) || defined(__APPLE__) || defined(LINUX) || defined(ANDROID)
 
 
-//   ::file::path acme_dir::bookmark()
+//   ::file::path acme_directory::bookmark()
 //   {
 //
 //      auto psystem = m_psystem;
 //
-//      auto pacmedir = psystem->m_pacmedir;
+//      auto pacmedir = psystem->m_pacmedirectory;
 //
 //      return pacmedir->localconfig() / "bookmark";
 //
@@ -434,7 +434,7 @@ namespace linux
    #ifdef _UWP
 
 
-   ::file::path acme_dir::home()
+   ::file::path acme_directory::home()
    {
 
       return "";
@@ -447,7 +447,7 @@ namespace linux
 
 
 
-   void acme_dir::set_path_install_folder(const ::string & pszPath)
+   void acme_directory::set_path_install_folder(const ::string & pszPath)
    {
 
       m_pathInstallFolder = pszPath;
@@ -455,7 +455,7 @@ namespace linux
    }
 
 
-   ::file::path acme_dir::bookmark()
+   ::file::path acme_directory::bookmark()
    {
 
       return localconfig() / "bookmark";
@@ -466,7 +466,7 @@ namespace linux
 
 
 
-   ::file::path acme_dir::sys_temp()
+   ::file::path acme_directory::sys_temp()
    {
 
       return appdata() / "time";
@@ -474,7 +474,7 @@ namespace linux
    }
 
 
-   //::string acme_dir::dir_root()
+   //::string acme_directory::dir_root()
    //{
 
    //   return "";
@@ -482,7 +482,7 @@ namespace linux
    //}
 
 
-   //::file::path acme_dir::home()
+   //::file::path acme_directory::home()
    //{
 
    //   return "";
@@ -490,7 +490,7 @@ namespace linux
    //}
 
 
-   //::file::path acme_dir::program_data()
+   //::file::path acme_directory::program_data()
    //{
 
    //   return "";
@@ -498,7 +498,7 @@ namespace linux
    //}
 
 
-   ::file::path acme_dir::ca2appdata()
+   ::file::path acme_directory::ca2appdata()
    {
 
       return ca2roaming() / "appdata";
@@ -507,14 +507,14 @@ namespace linux
 
 
 
-   ::file::path acme_dir::public_root()
+   ::file::path acme_directory::public_root()
    {
 
       return program_data() / "ca2";
 
    }
 
-   ::file::path acme_dir::ca2roaming()
+   ::file::path acme_directory::ca2roaming()
    {
 
       return roaming() / "ca2";
@@ -522,7 +522,7 @@ namespace linux
    }
 
 
-   ::file::path acme_dir::localconfig()
+   ::file::path acme_directory::localconfig()
    {
 
       return ca2roaming() / "localconfig";
@@ -530,15 +530,15 @@ namespace linux
    }
 
 
-   ::file::path acme_dir::module()
+   ::file::path acme_directory::module()
    {
 
-      return ::acme_dir::module();
+      return ::acme_directory::module();
 
    }
 
    //
-   //::file::path acme_dir::base_module()
+   //::file::path acme_directory::base_module()
    //{
    //
    //   return "";
@@ -546,23 +546,14 @@ namespace linux
    //}
    //
 
-   //::file::path acme_dir::ca2_module()
+   //::file::path acme_directory::ca2_module()
    //{
    //
    //   return "";
    //
    //}
    //
-   ::file::path acme_dir::archive()
-   {
-
-      return "";
-
-   }
-
-
-
-   ::file::path acme_dir::tool()
+   ::file::path acme_directory::archive()
    {
 
       return "";
@@ -570,7 +561,16 @@ namespace linux
    }
 
 
-   //::file::path acme_dir::roaming()
+
+   ::file::path acme_directory::tool()
+   {
+
+      return "";
+
+   }
+
+
+   //::file::path acme_directory::roaming()
    //{
 
    //   return "";
@@ -578,7 +578,7 @@ namespace linux
    //}
 
 
-   ::file::path acme_dir::pathfind(const string& pszEnv, const string& pszTopic, const string& pszMode)
+   ::file::path acme_directory::pathfind(const string& pszEnv, const string& pszTopic, const string& pszMode)
    {
 
       ::file::path_array stra;
@@ -607,7 +607,7 @@ namespace linux
    }
 
 
-   //::file::path acme_dir::get_memory_map_base_folder_path()
+   //::file::path acme_directory::get_memory_map_base_folder_path()
    //{
 
    //   return "";
@@ -615,7 +615,7 @@ namespace linux
    //}
 
 
-   ::file::path acme_dir::user_appdata_local()
+   ::file::path acme_directory::user_appdata_local()
    {
 
       //return _shell_get_special_folder_path(CSIDL_LOCAL_APPDATA);
