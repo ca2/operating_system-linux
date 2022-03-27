@@ -33,7 +33,7 @@ namespace linux
    file::file()
    {
 
-      m_iPutCharacter = -1;
+      //m_iPutCharacter = -1;
       m_iFile = INVALID_FILE;
 
    }
@@ -245,29 +245,29 @@ namespace linux
 
       ASSERT(__is_valid_address(pdata, nCount));
 
-      if(m_iPutCharacter >= 0)
-      {
-
-         auto p = (byte *) pdata;
-
-         *p = (byte) m_iPutCharacter;
-
-         m_iPutCharacter = -1;
-
-         nCount--;
-
-         if(nCount <= 0)
-         {
-
-            return 1;
-
-         }
-
-         p++;
-
-         pdata = p;
-
-      }
+//      if(m_iPutCharacter >= 0)
+//      {
+//
+//         auto p = (byte *) pdata;
+//
+//         *p = (byte) m_iPutCharacter;
+//
+//         m_iPutCharacter = -1;
+//
+//         nCount--;
+//
+//         if(nCount <= 0)
+//         {
+//
+//            return 1;
+//
+//         }
+//
+//         p++;
+//
+//         pdata = p;
+//
+//      }
 
       memsize pos = 0;
       memsize sizeRead = 0;
@@ -858,16 +858,14 @@ namespace linux
    }
 
 
-   int file::put_character_back(int iCharacter)
-   {
-
-      m_iPutCharacter = (int)(byte)iCharacter;
-
-      return 0;
-
-   }
-
-
+//   int file::put_byte_back(int iCharacter)
+//   {
+//
+//      m_iPutCharacter = (int)(byte)iCharacter;
+//
+//      return 0;
+//
+//   }
 
 
 } // namespace linux
@@ -912,16 +910,19 @@ CLASS_DECL_ACME void vfxGetModuleShortFileName(void * hInst, string& strShortNam
 }
 
 
-CLASS_DECL_ACME bool vfxResolveShortcut(string & strTarget, const char * pszSource, __pointer(::user::primitive) puiMessageParentOptional)
+CLASS_DECL_ACME bool posix_resolve_shortcut(string & strTarget, const char * pszSource, __pointer(::user::primitive) puiMessageParentOptional)
 {
 
-
-
    char realname[_POSIX_PATH_MAX * 4];
+
    i32 rc = 0;
 
    if(realpath(pszSource, realname) == 0)
+   {
+
       return false;
+
+   }
 
    strTarget = realname;
 

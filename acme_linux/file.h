@@ -5,9 +5,9 @@ class FileException;
 struct FileStatus;
 
 
-void CLASS_DECL_ACME vfxGetRoot(const widechar * pszPath, string& wstrRoot);
+//void CLASS_DECL_ACME vfxGetRoot(const widechar * pszPath, string& wstrRoot);
 
-void CLASS_DECL_ACME vfxGetRoot(wstring & wstrRoot, const wstring & wstrPath);
+//void CLASS_DECL_ACME vfxGetRoot(wstring & wstrRoot, const wstring & wstrPath);
 
 
 /////////////////////////////////////////////////////////////////////////////
@@ -50,7 +50,7 @@ namespace linux
 //      };
 
       int                  m_iFile;
-      int                  m_iPutCharacter;
+      //int                  m_iPutCharacter;
 
 
       file();
@@ -102,8 +102,7 @@ namespace linux
 
       virtual u64 GetBufferPtr(::u32 nCommand, u64 nCount = 0, void ** ppBufStart = nullptr, void ** ppBufMax = nullptr);
 
-
-      int put_character_back(int iCharacter) override;
+      //void put_byte_back(::byte byte) override;
 
 
    };
