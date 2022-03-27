@@ -17,7 +17,7 @@
 #define c_cdecl
 
 
-#define BROAD_PRECOMPILED_HEADER 0
+#define BROAD_PRECOMPILED_HEADER 1
 
 #ifndef __linux__
 #define __linux__

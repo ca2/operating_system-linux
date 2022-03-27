@@ -1019,9 +1019,9 @@ namespace linux
 
       ::output_debug_string("linux::os_context::list_process");
 
-      ::file::path_array stra;
+      string_array stra;
 
-      m_psystem->m_pacmedir->ls_dir(stra, "/proc/");
+      m_psystem->m_pacmedirectory->list(stra, "/proc/", ::file::e_flag_folder);
 
       auto psystem = m_psystem;
 
@@ -1030,7 +1030,7 @@ namespace linux
       for(auto & strPid : stra)
       {
 
-         int iPid = atoi(strPid.title());
+         int iPid = atoi(strPid);
 
          if(iPid > 0)
          {

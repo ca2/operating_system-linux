@@ -15,3 +15,4 @@ default_aura_platform2=platform-posix/aura_posix
 third/libcrypto=none
 third/libssl=none
 third/zlib=none
+third/swresample=none

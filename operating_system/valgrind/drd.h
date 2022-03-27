@@ -10,7 +10,7 @@
   ----------------------------------------------------------------
 
   This file is part of DRD, a Valgrind tool for verification of
-  multithreaded programs.
+  multitasked programs.
 
   Copyright (C) 2006-2017 Bart Van Assche <bvanassche@acm.org>.
   All rights reserved.

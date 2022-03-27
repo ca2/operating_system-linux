@@ -7,8 +7,8 @@ list(APPEND library_source
    _.h
    _acme_linux.h
    _factory.cpp
-   acme_dir.cpp
-   acme_dir.h
+   acme_directory.cpp
+   acme_directory.h
    acme_file.cpp
    acme_file.h
    acme_path.cpp

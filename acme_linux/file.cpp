@@ -110,7 +110,7 @@ namespace linux
       if ((eopen & ::file::e_open_defer_create_directory) && (eopen & ::file::e_open_write))
       {
 
-         m_psystem->m_pacmedir->create(pszFileName.folder());
+         m_psystem->m_pacmedirectory->create(pszFileName.folder());
 
       }
 
@@ -364,7 +364,13 @@ namespace linux
       ::i32 lLoOffset = offset & 0xffffffff;
       //::i32 lHiOffset = (lOff >> 32) & 0xffffffff;
 
-      filesize posNew = ::lseek64(m_iFile, lLoOffset, (::u32)eseek);
+      //0	SEEK_SET
+      //1	SEEK_CUR
+      //2	SEEK_END
+
+      int iSeek = (int) eseek;
+
+      filesize posNew = ::lseek64(m_iFile, lLoOffset, iSeek);
 //      posNew |= ((filesize) lHiOffset) << 32;
       if(posNew  == (filesize)-1)
          throw ::file::exception(errno_to_status(errno), -1, errno, m_path);
@@ -799,7 +805,7 @@ namespace linux
          if(fstat(m_iFile, &st) == -1)
             return false;
 
-         rStatus.m_size = st.st_size;
+         rStatus.m_filesize = st.st_size;
 
          rStatus.m_attribute = 0;
 
