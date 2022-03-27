@@ -5,11 +5,11 @@ namespace multimedia
 {
 
 
-   namespace audio_mixer_mmsystem
+   namespace audio_mixer_alsa
    {
 
 
-      line_info::line_info(sp(base_application) papp)
+      line_info::line_info()
       {
 
       }
@@ -21,7 +21,7 @@ namespace multimedia
       }
 
 
-   } // namespace audio_mixer_mmsystem
+   } // namespace audio_mixer_alsa
 
 
 } // namespace multimedia

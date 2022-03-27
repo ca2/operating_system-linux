@@ -5,7 +5,7 @@ namespace multimedia
 {
 
 
-   namespace audio_mixer_mmsystem
+   namespace audio_mixer_alsa
    {
 
 
@@ -21,21 +21,21 @@ namespace multimedia
          ::multimedia::audio_mixer::audio_mixer                    * m_pmixer;
 
 
-         window(sp(base_application) papp);
-         virtual ~window();
+         window();
+         ~window() override;
 
 
-         void install_message_handling(::message::dispatch * pinterface);
+         void install_message_routing(::channel * pchannel) override;
 
 
-         DECL_GEN_SIGNAL(_001OnMixerControlChange)
-            DECL_GEN_SIGNAL(_001OnMixerLineChange)
+         DECLARE_MESSAGE_HANDLER(_001OnMixerControlChange);
+         DECLARE_MESSAGE_HANDLER(_001OnMixerLineChange);
 
 
       };
 
 
-   } // namespace audio_mixer_mmsystem
+   } // namespace audio_mixer_alsa
 
 
 } // namespace multimedia

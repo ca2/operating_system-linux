@@ -5,33 +5,33 @@ namespace multimedia
 {
 
 
-   namespace audio_mixer_mmsystem
+   namespace audio_mixer_alsa
    {
 
 
-      class CLASS_DECL_AUDIO_MIXER_MMSYSTEM source :
+      class CLASS_DECL_AUDIO_MIXER_ALSA source :
          virtual public ::multimedia::audio_mixer::source
       {
       public:
 
 
-         MIXERLINE                     m_mixerline;
-         MIXERLINECONTROLS             m_mixerlinecontrols;
+         //MIXERLINE                     m_mixerline;
+         //MIXERLINECONTROLS             m_mixerlinecontrols;
 
 
-         source(sp(base_application) papp);
+         source();
          source(source & source);
-         virtual ~source();
+         ~source() override;
 
 
-         ::multimedia::result mixerGetLineInfo(::u32 dwSource, ::u32 dwDestination, ::u32 fdwInfo);
-         ::multimedia::result mixerGetLineInfo(::u32 dwSource, ::multimedia::audio_mixer::destination * pdestination);
+         void mixerGetLineInfo(::u32 dwSource, ::u32 dwDestination, ::u32 fdwInfo);
+         void mixerGetLineInfo(::u32 dwSource, ::multimedia::audio_mixer::destination * pdestination);
 
-         ::u32 GetLineID();
+         ::atom GetLineID();
          const char * GetSZName();
          void update_all_controls();
-         MIXERLINECONTROLS & get_mixer_line_controls();
-         MIXERLINE & get_mixer_line();
+         //MIXERLINECONTROLS & get_mixer_line_controls();
+         //MIXERLINE & get_mixer_line();
          ::multimedia::audio_mixer::control_array & get_control_array();
 
          ::multimedia::audio_mixer::device * get_device();
@@ -42,7 +42,7 @@ namespace multimedia
          void OnMixerLineChange();
          //void OnArrayReallocation(void *pNewPointer);
          //::multimedia::result GetControl(::u32 dwControlType, ::u32 dwControlFlags, ::multimedia::audio_mixer::control ** ppControl);
-         ::multimedia::result GetLineControls();
+         void GetLineControls();
 
          inline bool HasV001Controls();
 
@@ -52,7 +52,7 @@ namespace multimedia
       };
 
 
-   } // namespace audio_mixer_mmsystem
+   } // namespace audio_mixer_alsa
 
 
 } // namespace multimedia

@@ -1,26 +1,21 @@
 #pragma once
 
 
-
-#include "app-core/appseed/multimedia/multimedia/multimedia.h"
-#include <mmsystem.h>
+#include "app-core/multimedia/multimedia/_.h"
 
 
-#if defined(_AUDIO_MIXER_MMSYSTEM_LIBRARY)
-   #define CLASS_DECL_AUDIO_MIXER_MMSYSTEM  CLASS_DECL_EXPORT
+#if defined(_AUDIO_MIXER_ALSA_LIBRARY)
+   #define CLASS_DECL_AUDIO_MIXER_ALSA  CLASS_DECL_EXPORT
 #else
-   #define CLASS_DECL_AUDIO_MIXER_MMSYSTEM  CLASS_DECL_IMPORT
+   #define CLASS_DECL_AUDIO_MIXER_ALSA  CLASS_DECL_IMPORT
 #endif
-
-
-
 
 
 namespace multimedia
 {
 
 
-   namespace audio_mixer_mmsystem
+   namespace audio_mixer_alsa
    {
 
 
@@ -33,32 +28,12 @@ namespace multimedia
       class departament;
 
 
-   } // namespace audio_mixer_mmsystem
+   } // namespace audio_mixer_alsa
 
 
 } // namespace multimedia
 
 
-#include "audio_mixer_mmsystem_window.h"
-#include "audio_mixer_mmsystem_mixer.h"
-#include "audio_mixer_mmsystem_control.h"
-#include "audio_mixer_mmsystem_source.h"
-#include "audio_mixer_mmsystem_destination.h"
-#include "audio_mixer_mmsystem_device.h"
-#include "audio_mixer_mmsystem_line_info.h"
-
-
-#include "audio_mixer_mmsystem_callback.h"
-
-
-#include "audio_mixer_mmsystem_thread.h"          
-
-
-#include "audio_mixer_mmsystem_section.h"
-
-
-
-#include "audio_mixer_mmsystem_factory.h"
 
 
 

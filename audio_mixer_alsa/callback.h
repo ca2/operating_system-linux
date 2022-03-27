@@ -5,11 +5,11 @@ namespace multimedia
 {
 
 
-   namespace audio_mixer_mmsystem
+   namespace audio_mixer_alsa
    {
 
 
-      class CLASS_DECL_AUDIO_MIXER_MMSYSTEM callback
+      class CLASS_DECL_AUDIO_MIXER_ALSA callback
       {
       public:
 
@@ -26,7 +26,7 @@ namespace multimedia
       };
 
 
-   } // namespace audio_mixer_mmsystem
+   } // namespace audio_mixer_alsa
 
 
 } // namespace multimedia

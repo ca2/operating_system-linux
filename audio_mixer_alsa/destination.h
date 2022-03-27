@@ -5,26 +5,26 @@ namespace multimedia
 {
 
 
-   namespace audio_mixer_mmsystem
+   namespace audio_mixer_alsa
    {
 
 
-      class CLASS_DECL_AUDIO_MIXER_MMSYSTEM destination :
-         virtual public ::multimedia::audio_mixer_mmsystem::source,
+      class CLASS_DECL_AUDIO_MIXER_ALSA destination :
+         virtual public ::multimedia::audio_mixer_alsa::source,
          virtual public ::multimedia::audio_mixer::destination
       {
       public:
 
 
-         destination(sp(base_application) papp);
+         destination();
          destination(const destination & destination);
-         virtual ~destination();
+         ~destination() override;
 
 
          ::u32 get_component_type();
          void update_all_controls();
-         ::multimedia::result initialize_all_controls();
-         ::multimedia::result initialize_source_info();
+         void initialize_all_controls();
+         void initialize_source_info();
 
          ::multimedia::audio_mixer::source_array & get_source_info();
          void operator delete(void *);
@@ -40,7 +40,7 @@ namespace multimedia
       };
 
 
-   } // namespace audio_mixer_mmsystem
+   } // namespace audio_mixer_alsa
 
 
 

@@ -5,13 +5,12 @@ namespace multimedia
 {
 
 
-   namespace audio_mixer_mmsystem
+   namespace audio_mixer_alsa
    {
 
 
-      class CLASS_DECL_AUDIO_MIXER_MMSYSTEM departament :
-         virtual public base_departament,
-         virtual public ::user::interaction
+      class CLASS_DECL_AUDIO_MIXER_ALSA departament :
+         virtual public ::multimedia::audio_mixer::department
       {
       public:
 
@@ -26,8 +25,8 @@ namespace multimedia
          };
 
 
-         departament(sp(base_application) papp);
-         virtual ~departament();
+         departament();
+         ~departament() override;
 
 
          virtual bool initialize1();

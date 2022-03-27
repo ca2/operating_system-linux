@@ -5,13 +5,11 @@ namespace multimedia
 {
 
 
-   namespace audio_mixer_mmsystem
+   namespace audio_mixer_alsa
    {
 
 
-      departament::departament(sp(base_application) papp) :
-         element(papp),
-         base_departament(papp)
+      departament::departament()
       {
 
       }
@@ -99,7 +97,7 @@ namespace multimedia
       }
 
 
-   } // namespace audio_mixer_mmsystem
+   } // namespace audio_mixer_alsa
 
 
 } // namespace multimedia
