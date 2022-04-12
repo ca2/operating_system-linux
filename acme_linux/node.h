@@ -26,7 +26,7 @@ namespace acme
          ::user::enum_desktop             m_edesktop;
 
 
-         static ::user::enum_desktop      s_edesktop;
+         //static ::user::enum_desktop      s_edesktop;
 
 
 
@@ -119,7 +119,10 @@ namespace acme
 
          virtual array <::serial::port_info> list_serial_ports();
 
-         void shell_execute_async(const char *psz, const char * pszParams) override;
+
+         void file_open(const ::file::path & path, const ::string & strParams = "", const ::file::path & pathFolder = "") override;
+
+         //void shell_execute_async(const char *psz, const char * pszParams) override;
 
 
       };

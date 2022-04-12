@@ -900,12 +900,12 @@ namespace linux
    }
 
 
-   void os_context::file_open(::file::path strTarget, string strParams, string strFolder)
+   void os_context::file_open(const ::file::path & pathTarget, const ::string & strParams, const ::file::path & pathFolder)
    {
 
-      strTarget = get_context()->m_papexcontext->defer_process_path(strTarget);
+      auto path = get_context()->m_papexcontext->defer_process_path(pathTarget);
 
-      if(linux_can_exec(strTarget))
+      if(linux_can_exec(path))
       {
 
          //int iPid;
@@ -922,7 +922,7 @@ namespace linux
 
          auto pnode = psystem->node();
 
-         pnode->call_async(strTarget, strParams, strFolder, e_display_default, false);
+         pnode->call_async(path, strParams, pathFolder, e_display_default, false);
 
 
 //         char * pszCommandLine = strdup(strTarget + " " + strParams);
@@ -962,13 +962,11 @@ namespace linux
 
          //::system("nohup xdg-open \"" + strTarget + "\" > /dev/null 2>&1&");
 
-
-
          auto psystem = m_psystem;
 
-         auto pnode = psystem->node();
+         auto pnode = psystem->node()->m_papexnode->m_pApexPlatform;
 
-         pnode->shell_execute_async(strTarget, "");
+         pnode->::acme::linux::node::file_open(path, strParams, pathFolder);
 
 //         pnode->node_fork([this, strTarget]()
 //         {

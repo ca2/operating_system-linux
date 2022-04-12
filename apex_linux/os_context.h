@@ -77,7 +77,7 @@ namespace linux
 
       void get_default_browser(string & strId, ::file::path & path, string & strParam) override;
 
-      void file_open(::file::path strSrc, string strParams, string strFolder) override;
+      void file_open(const ::file::path & pathTarget, const ::string & strParams = "", const ::file::path & pathFolder = "") override;
 
       void list_process(::file::path_array & patha, u32_array & iaPid) override;
 
