@@ -5,9 +5,9 @@ class FileException;
 struct FileStatus;
 
 
-void CLASS_DECL_ACME vfxGetRoot(const widechar * pszPath, string& wstrRoot);
+//void CLASS_DECL_ACME vfxGetRoot(const widechar * pszPath, string& wstrRoot);
 
-void CLASS_DECL_ACME vfxGetRoot(wstring & wstrRoot, const wstring & wstrPath);
+//void CLASS_DECL_ACME vfxGetRoot(wstring & wstrRoot, const wstring & wstrPath);
 
 
 /////////////////////////////////////////////////////////////////////////////
@@ -25,36 +25,39 @@ namespace linux
    public:
 
 
-      enum Attribute
-      {
-         normal =    0x00,
-         readOnly =  0x01,
-         hidden =    0x02,
-         system =    0x04,
-         volume =    0x08,
-         directory = 0x10,
-         archive =   0x20
-      };
+      //__creatable_from_library(file, ::file::file, "acme_linux");
 
-      enum BufferCommand
-      {
 
-         bufferRead,
-         bufferWrite,
-         bufferCommit,
-         bufferCheck
-
-      };
+//      enum Attribute
+//      {
+//         normal =    0x00,
+//         readOnly =  0x01,
+//         hidden =    0x02,
+//         system =    0x04,
+//         volume =    0x08,
+//         directory = 0x10,
+//         archive =   0x20
+//      };
+//
+//      enum BufferCommand
+//      {
+//
+//         bufferRead,
+//         bufferWrite,
+//         bufferCommit,
+//         bufferCheck
+//
+//      };
 
       int                  m_iFile;
-      int                  m_iPutCharacter;
+      //int                  m_iPutCharacter;
 
 
       file();
       ~file() override;
 
 
-      virtual void assert_valid() const override;
+      virtual void assert_ok() const override;
       virtual void dump(dump_context & dumpcontext) const override;
 
       virtual filesize get_position() const override;
@@ -99,8 +102,7 @@ namespace linux
 
       virtual u64 GetBufferPtr(::u32 nCommand, u64 nCount = 0, void ** ppBufStart = nullptr, void ** ppBufMax = nullptr);
 
-
-      int put_character_back(int iCharacter) override;
+      //void put_byte_back(::byte byte) override;
 
 
    };

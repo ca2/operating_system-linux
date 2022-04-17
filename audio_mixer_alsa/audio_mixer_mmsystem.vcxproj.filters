@@ -4,40 +4,40 @@
     <ClInclude Include="framework.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="audio_mixer_mmsystem.h">
+    <ClInclude Include="audio_mixer_alsa.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="audio_mixer_mmsystem_callback.h">
+    <ClInclude Include="audio_mixer_alsa_callback.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="audio_mixer_mmsystem_control.h">
+    <ClInclude Include="audio_mixer_alsa_control.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="audio_mixer_mmsystem_destination.h">
+    <ClInclude Include="audio_mixer_alsa_destination.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="audio_mixer_mmsystem_device.h">
+    <ClInclude Include="audio_mixer_alsa_device.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="audio_mixer_mmsystem_line_info.h">
+    <ClInclude Include="audio_mixer_alsa_line_info.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="audio_mixer_mmsystem_mixer.h">
+    <ClInclude Include="audio_mixer_alsa_mixer.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="audio_mixer_mmsystem_section.h">
+    <ClInclude Include="audio_mixer_alsa_section.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="audio_mixer_mmsystem_source.h">
+    <ClInclude Include="audio_mixer_alsa_source.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="audio_mixer_mmsystem_thread.h">
+    <ClInclude Include="audio_mixer_alsa_thread.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="audio_mixer_mmsystem_window.h">
+    <ClInclude Include="audio_mixer_alsa_window.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="audio_mixer_mmsystem_factory.h">
+    <ClInclude Include="audio_mixer_alsa_factory.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
@@ -53,42 +53,42 @@
     <ClCompile Include="framework.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="audio_mixer_mmsystem_callback.cpp">
+    <ClCompile Include="audio_mixer_alsa_callback.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="audio_mixer_mmsystem_control.cpp">
+    <ClCompile Include="audio_mixer_alsa_control.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="audio_mixer_mmsystem_destination.cpp">
+    <ClCompile Include="audio_mixer_alsa_destination.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="audio_mixer_mmsystem_device.cpp">
+    <ClCompile Include="audio_mixer_alsa_device.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="audio_mixer_mmsystem_line_info.cpp">
+    <ClCompile Include="audio_mixer_alsa_line_info.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="audio_mixer_mmsystem_mixer.cpp">
+    <ClCompile Include="audio_mixer_alsa_mixer.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="audio_mixer_mmsystem_section.cpp">
+    <ClCompile Include="audio_mixer_alsa_section.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="audio_mixer_mmsystem_source.cpp">
+    <ClCompile Include="audio_mixer_alsa_source.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="audio_mixer_mmsystem_thread.cpp">
+    <ClCompile Include="audio_mixer_alsa_thread.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="audio_mixer_mmsystem_window.cpp">
+    <ClCompile Include="audio_mixer_alsa_window.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="audio_mixer_mmsystem_factory.cpp">
+    <ClCompile Include="audio_mixer_alsa_factory.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <None Include="audio_mixer_mmsystem.def">
+    <None Include="audio_mixer_alsa.def">
       <Filter>Source Files</Filter>
     </None>
   </ItemGroup>

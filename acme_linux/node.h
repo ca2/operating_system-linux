@@ -21,10 +21,12 @@ namespace acme
       public:
 
 
+         //__creatable_from_library(node, ::acme::node, "acme_linux");
+
          ::user::enum_desktop             m_edesktop;
 
 
-         static ::user::enum_desktop      s_edesktop;
+         //static ::user::enum_desktop      s_edesktop;
 
 
 
@@ -66,7 +68,7 @@ namespace acme
 
          //virtual ::file::path memcnts_base_path();
 
-         //virtual ::e_status datetime_to_filetime(filetime_t * pFileTime, const ::datetime::time& time) override;
+         //virtual ::e_status datetime_to_file_time(file_time_t * pFileTime, const ::earth::time& time) override;
 
 
          //virtual ::e_status last_error_to_status(::u32 dwLastError);
@@ -116,6 +118,11 @@ namespace acme
 
 
          virtual array <::serial::port_info> list_serial_ports();
+
+
+         void shell_open(const ::file::path & path, const ::string & strParams = "", const ::file::path & pathFolder = "") override;
+
+         //void shell_execute_async(const char *psz, const char * pszParams) override;
 
 
       };

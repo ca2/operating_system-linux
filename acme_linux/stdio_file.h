@@ -11,6 +11,9 @@ namespace linux
    public:
 
 
+      //__creatable_from_library(stdio_file, ::file::text_file, "acme_linux");
+
+
       FILE *            m_pStream;
 
 

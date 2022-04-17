@@ -4,7 +4,7 @@
 // apt install ncurses-dev
 // dnf install ncurses-devel
 #include <ncurses.h>
-#include "acme/node/operating_system/_const_console.h"
+#include "acme/operating_system/_const_console.h"
 #include <stdlib.h>
 #include <fcntl.h>
 #include <string.h>

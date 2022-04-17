@@ -3,8 +3,8 @@
 #include "file_context.h"
 #include <sys/types.h>
 #include <sys/stat.h>
-#include "acme/node/operating_system/ansi/file_raw.h"
-#include "acme/filesystem/filesystem/acme_dir.h"
+#include "acme/operating_system/ansi/file_raw.h"
+#include "acme/filesystem/filesystem/acme_directory.h"
 
 
 struct PROCESS_INFO_t
@@ -110,7 +110,7 @@ namespace linux
 
       auto psystem = m_psystem;
 
-      auto pacmedir = psystem->m_pacmedir;
+      auto pacmedir = psystem->m_pacmedirectory;
 
       pathNetworkPayload = pacmedir->home() / ".dropbox/info.json";
 
@@ -119,17 +119,15 @@ namespace linux
    }
 
 
-
    void file_context::erase(const ::file::path & path)
    {
 
-      m_psystem->m_pacmefile->delete_file(path);
+      m_psystem->m_pacmefile->erase(path);
 
    }
 
 
 } // namespace linux
-
 
 
 

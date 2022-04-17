@@ -6,7 +6,7 @@
 
 #include "aura_linux/_aura_linux.h"
 #include "node_gnome/_node_gnome.h"
-#include "aura/user/_user.h"
+#include "aura/user/user/_user.h"
 
 
 #include <gtk/gtk.h>

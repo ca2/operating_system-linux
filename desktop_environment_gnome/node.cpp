@@ -8,7 +8,7 @@
 
 
 void gdk_branch(const ::routine & routine);
-
+CLASS_DECL_ACME void set_main_user_itask(itask_t itask);
 
 namespace desktop_environment_gnome
 {
@@ -216,16 +216,17 @@ namespace desktop_environment_gnome
    }
 
 
-//   void node::os_calc_user_dark_mode()
-//   {
-//
-//      ::linux::aura::node::os_calc_user_dark_mode();
-//
-//   }
-
-
    bool node::windowing_message_loop_step()
    {
+
+      set_main_user_itask(get_current_itask());
+
+      //if(get_main_user_itask() != get_current_itask())
+      //{
+
+
+
+      //}
 
       auto psession = get_session();
 
@@ -450,168 +451,32 @@ namespace desktop_environment_gnome
 //   }
 
 
-   void node::handle(::subject * psubject, ::context * pcontext)
+   void node::handle(::topic * ptopic, ::context * pcontext)
    {
 
-      if(psubject->m_id == ::id_operating_system_user_theme_change)
+      if(ptopic->m_atom == ::id_operating_system_user_theme_change)
       {
 
          _os_process_user_theme_color(m_strTheme);
 
       }
 
-      ::node_gnome::node::handle(psubject, pcontext);
+      ::node_gnome::node::handle(ptopic, pcontext);
 
    }
 
 
-//   void node::os_calc_dark_mode()
-//   {
-//
-//      bool bDarkMode = _os_calc_dark_mode();
-//
-//      if(m_bitDarkMode != bDarkMode)
-//      {
-//
-//         //::user::set_app_dark_mode(bDarkMode);
-//
-//         //::user::set_system_dark_mode(bDarkMode);
-//
-//         m_bitDarkMode = bDarkMode;
-//
-//         //System.deliver(id_os_dark_mode);
-//
-//         auto psystem = m_psystem->m_papexsystem;
-//
-//         psystem->signal(id_user_color);
-//
-//         //psystem->handle_subject(psubject);
-//
-//         //x11_kick_idle();
-//
-//      }
-//
-//   }
-
-
-//   ::nlinux::appindicator * node::appindicator_allocate()
-//   {
-//
-//      return new ::node_gnome::appindicator();
-//
-//   }
-//
-//
-//   void node::appindicator_destroy(::linux::appindicator * pappindicator)
-//   {
-//
-//      //::linux::appindicator_destroy(pappindicator);
-//
-//      delete pappindicator;
-//
-//   }
-
-
-//   void node::enum_display_monitors(::aura::session * psession)
-//   {
-//
-//      node_fork(__routine([psession]
-//                           {
-//
-//                              synchronous_lock sl(user_mutex());
-//
-//                              //xdisplay d(x11_get_display());
-//
-//                              GdkDisplay *pdisplay = gdk_display_get_default();
-//
-//                              if (pdisplay == nullptr)
-//                              {
-//
-//                                 return;
-//
-//                              }
-//
-//                              synchronous_lock slSession(psession->mutex());
-//
-//                              ::count iMonitorCount = gdk_display_get_n_monitors(pdisplay);
-//
-//                              psession->m_rectaWorkspace.set_size(iMonitorCount);
-//
-//                              psession->m_rectaMonitor.set_size(iMonitorCount);
-//
-//                              for (index iMonitor = 0; iMonitor < iMonitorCount; iMonitor++)
-//                              {
-//
-//                                 GdkMonitor *pmonitor = gdk_display_get_monitor(pdisplay, iMonitor);
-//
-//                                 auto &rectWorkspace = psession->m_rectaWorkspace[iMonitor];
-//
-//                                 auto &rectMonitor = psession->m_rectaMonitor[iMonitor];
-//
-//                                 if (pmonitor == nullptr)
-//                                 {
-//
-//                                    rectWorkspace.Null();
-//
-//                                    rectMonitor.Null();
-//
-//                                    continue;
-//
-//                                 }
-//
-//                                 GdkRectangle rect;
-//
-//                                 __zero(rect);
-//
-//                                 gdk_monitor_get_workarea(pmonitor, &rect);
-//
-//                                 __copy(rectWorkspace, rect);
-//
-//                                 __zero(rect);
-//
-//                                 gdk_monitor_get_geometry(pmonitor, &rect);
-//
-//                                 __copy(rectMonitor, rect);
-//
-//                              }
-//
-//                           }));
-//
-//   }
-
-
-//   void node::os_post_quit()
-//   {
-//
-//      ::node_gnome::node::os_post_quit();
-//
-//   }
-
-
-//   void * node::node_wrap_window(void * pvoidDisplay, i64 window)
-//   {
-//
-//      Display * pdisplay = (Display *) pvoidDisplay;
-//
-//      GdkDisplay * pd = gdk_x11_lookup_xdisplay (pdisplay);
-//
-//      auto pwindow = gdk_x11_window_foreign_new_for_display(GDK_DISPLAY(pd), (Window) window);
-//
-//      return pwindow;
-//
-//   }
-
-   bool node::should_launch_on_node(::subject * psubject)
+   bool node::should_launch_on_node(::topic * ptopic)
    {
 
-      if(::is_null(psubject))
+      if(::is_null(ptopic))
       {
 
          return false;
 
       }
 
-      if(psubject->m_id == id_operating_system_user_color_change)
+      if(ptopic->m_atom == id_operating_system_user_color_change)
       {
 
          return false;
@@ -623,10 +488,10 @@ namespace desktop_environment_gnome
    }
 
 
-   bool node::launch_on_node(::subject * psubject)
+   bool node::launch_on_node(::topic * ptopic)
    {
 
-      auto bOk = ::node_gnome::node::launch_on_node(psubject);
+      auto bOk = ::node_gnome::node::launch_on_node(ptopic);
 
       return bOk;
 

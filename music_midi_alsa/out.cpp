@@ -131,7 +131,7 @@ namespace music
             if(stra.get_count() < 3)
             {
 
-               throw_status(error_wrong_state);
+               throw ::exception(error_wrong_state);
 
             }
 
@@ -156,7 +156,7 @@ namespace music
 
             }
 
-            string clientName = m_psystem->m_papplicationMain->m_strAppId;
+            string clientName = m_psystem->m_pappMain->m_strAppId;
 
             int result = snd_seq_open(&m_pseq, "default", SND_SEQ_OPEN_DUPLEX, 0);
 
@@ -165,7 +165,7 @@ namespace music
 
                m_pseq = NULL;
 
-               throw_status(error_failed);
+               throw ::exception(error_failed);
 
             }
 
@@ -203,7 +203,7 @@ namespace music
 
                m_pseq = nullptr;
 
-               throw_status(error_failed);
+               throw ::exception(error_failed);
 
             }
 
@@ -364,7 +364,7 @@ namespace music
                               default:
                                  //output_debug_string("Invalid SMPTE frames " + ::str::from((::i32)uSMPTE));
                                  output_debug_string("Invalid SMPTE frames ");
-                     throw_status(error_failed);
+                     throw ::exception(error_failed);
 
                }
 
@@ -375,7 +375,7 @@ namespace music
             if(err < 0)
             {
 
-               throw_status(error_failed);
+               throw ::exception(error_failed);
 
             }
 
@@ -384,7 +384,7 @@ namespace music
             if(err < 0)
             {
 
-               throw_status(error_failed);
+               throw ::exception(error_failed);
 
             }
 

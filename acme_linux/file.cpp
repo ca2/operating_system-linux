@@ -33,7 +33,7 @@ namespace linux
    file::file()
    {
 
-      m_iPutCharacter = -1;
+      //m_iPutCharacter = -1;
       m_iFile = INVALID_FILE;
 
    }
@@ -82,7 +82,7 @@ namespace linux
 //      if(iNew == INVALID_FILE)
 //         return nullptr;
 //
-//      auto pFile  = __new(file(get_application(), iNew));
+//      auto pFile  = __new(file(get_app(), iNew));
 //      pFile->m_iFile = (::u32)iNew;
 //      ASSERT(pFile->m_iFile != INVALID_FILE);
 //      return pFile;
@@ -110,7 +110,7 @@ namespace linux
       if ((eopen & ::file::e_open_defer_create_directory) && (eopen & ::file::e_open_write))
       {
 
-         m_psystem->m_pacmedir->create(pszFileName.folder());
+         m_psystem->m_pacmedirectory->create(pszFileName.folder());
 
       }
 
@@ -208,13 +208,11 @@ namespace linux
          else
          {
 
-            throw_status(estatus);
+            throw ::exception(estatus);
 
          }
 
-
-         //return //::fesp(get_application(), file_exception::os_error_to_exception(dwLastError), dwLastError, m_path);
-
+         //return //::fesp(get_app(), file_exception::os_error_to_exception(dwLastError), dwLastError, m_path);
 
       }
 
@@ -247,29 +245,29 @@ namespace linux
 
       ASSERT(__is_valid_address(pdata, nCount));
 
-      if(m_iPutCharacter >= 0)
-      {
-
-         auto p = (byte *) pdata;
-
-         *p = (byte) m_iPutCharacter;
-
-         m_iPutCharacter = -1;
-
-         nCount--;
-
-         if(nCount <= 0)
-         {
-
-            return 1;
-
-         }
-
-         p++;
-
-         pdata = p;
-
-      }
+//      if(m_iPutCharacter >= 0)
+//      {
+//
+//         auto p = (byte *) pdata;
+//
+//         *p = (byte) m_iPutCharacter;
+//
+//         m_iPutCharacter = -1;
+//
+//         nCount--;
+//
+//         if(nCount <= 0)
+//         {
+//
+//            return 1;
+//
+//         }
+//
+//         p++;
+//
+//         pdata = p;
+//
+//      }
 
       memsize pos = 0;
       memsize sizeRead = 0;
@@ -286,7 +284,7 @@ namespace linux
             {
 
             }
-            ::file::throw_errno( errno);
+            throw ::file::exception(error_io, errno);
          }
          else if(iRead == 0)
          {
@@ -332,7 +330,7 @@ namespace linux
          if(iWrite < 0)
          {
 
-            throw_errno(errno, m_path);
+            throw ::file::exception(errno_to_status(errno), -1, errno, m_path);
 
          }
 
@@ -354,7 +352,7 @@ namespace linux
       if(m_iFile == INVALID_FILE)
       {
 
-         throw_errno(errno, m_path);
+         throw ::file::exception(errno_to_status(errno), -1, errno, m_path);
 
       }
 
@@ -366,10 +364,16 @@ namespace linux
       ::i32 lLoOffset = offset & 0xffffffff;
       //::i32 lHiOffset = (lOff >> 32) & 0xffffffff;
 
-      filesize posNew = ::lseek64(m_iFile, lLoOffset, (::u32)eseek);
+      //0	SEEK_SET
+      //1	SEEK_CUR
+      //2	SEEK_END
+
+      int iSeek = (int) eseek;
+
+      filesize posNew = ::lseek64(m_iFile, lLoOffset, iSeek);
 //      posNew |= ((filesize) lHiOffset) << 32;
       if(posNew  == (filesize)-1)
-         throw_errno(errno, m_path);
+         throw ::file::exception(errno_to_status(errno), -1, errno, m_path);
 
       return posNew;
    }
@@ -385,7 +389,7 @@ namespace linux
       filesize pos = ::lseek64(m_iFile, lLoOffset, SEEK_CUR);
       //    pos |= ((filesize)lHiOffset) << 32;
       if(pos  == (filesize)-1)
-         throw_errno(errno, m_path);
+         throw ::file::exception(errno_to_status(errno), -1, errno, m_path);
 
       return pos;
    }
@@ -422,7 +426,7 @@ namespace linux
 //         return;
 //
 //      if (!::FlushFileBuffers((HANDLE)m_iFile))
-//         throw_errno(errno, m_path);
+//         throw ::file::exception(errno_to_status(errno), -1, errno, m_path);
    }
 
    void file::close()
@@ -438,7 +442,7 @@ namespace linux
       m_path.Empty();
 
       if (bError)
-         throw_errno(errno, m_path);
+         throw ::file::exception(errno_to_status(errno), -1, errno, m_path);
 
    }
 
@@ -486,7 +490,7 @@ namespace linux
       if (::ftruncate64(m_iFile, dwNewLen) == -1)
       {
 
-         throw_errno(errno, m_path);
+         throw ::file::exception(errno_to_status(errno), -1, errno, m_path);
 
       }
 
@@ -522,10 +526,10 @@ namespace linux
    }
 
 
-   void file::assert_valid() const
+   void file::assert_ok() const
    {
 
-      ::file::file::assert_valid();
+      ::file::file::assert_ok();
 
    }
 
@@ -801,13 +805,13 @@ namespace linux
          if(fstat(m_iFile, &st) == -1)
             return false;
 
-         rStatus.m_size = st.st_size;
+         rStatus.m_filesize = st.st_size;
 
          rStatus.m_attribute = 0;
 
-         rStatus.m_ctime = ::datetime::time(st.st_mtime);
-         rStatus.m_atime = ::datetime::time(st.st_atime);
-         rStatus.m_mtime = ::datetime::time(st.st_ctime);
+         rStatus.m_ctime = ::earth::time(st.st_mtime);
+         rStatus.m_atime = ::earth::time(st.st_atime);
+         rStatus.m_mtime = ::earth::time(st.st_ctime);
 
          if (rStatus.m_ctime.get_time() == 0)
             rStatus.m_ctime = rStatus.m_mtime;
@@ -854,16 +858,14 @@ namespace linux
    }
 
 
-   int file::put_character_back(int iCharacter)
-   {
-
-      m_iPutCharacter = (int)(byte)iCharacter;
-
-      return 0;
-
-   }
-
-
+//   int file::put_byte_back(int iCharacter)
+//   {
+//
+//      m_iPutCharacter = (int)(byte)iCharacter;
+//
+//      return 0;
+//
+//   }
 
 
 } // namespace linux
@@ -908,16 +910,19 @@ CLASS_DECL_ACME void vfxGetModuleShortFileName(void * hInst, string& strShortNam
 }
 
 
-CLASS_DECL_ACME bool vfxResolveShortcut(string & strTarget, const char * pszSource, __pointer(::user::primitive) puiMessageParentOptional)
+CLASS_DECL_ACME bool posix_resolve_shortcut(string & strTarget, const char * pszSource, __pointer(::user::primitive) puiMessageParentOptional)
 {
 
-
-
    char realname[_POSIX_PATH_MAX * 4];
+
    i32 rc = 0;
 
    if(realpath(pszSource, realname) == 0)
+   {
+
       return false;
+
+   }
 
    strTarget = realname;
 

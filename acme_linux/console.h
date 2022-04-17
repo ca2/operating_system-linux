@@ -11,6 +11,9 @@ namespace linux
    public:
 
 
+      //__creatable_from_library(console, ::console::console, "acme_linux");
+
+
       void *                  m_pscreen;
       void *                  m_pwindow;
       ::string_stream         m_cout;

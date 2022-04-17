@@ -12,6 +12,9 @@ namespace linux
    public:
 
 
+      //__creatable_from_library(acme_path, ::acme_path, "acme_linux");
+
+
       acme_path();
       ~acme_path() override;
 

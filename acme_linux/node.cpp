@@ -2,6 +2,10 @@
 #include <sys/utsname.h>
 
 
+::user::enum_desktop _calculate_edesktop();
+::user::enum_desktop _get_edesktop();
+
+
 namespace acme
 {
 
@@ -9,8 +13,6 @@ namespace acme
    namespace linux
    {
 
-
-      ::user::enum_desktop node::s_edesktop = ::user::e_desktop_none;
 
 
       node::node()
@@ -173,14 +175,7 @@ namespace acme
       ::user::enum_desktop node::_get_edesktop()
       {
 
-         if (s_edesktop == ::user::e_desktop_none)
-         {
-
-            s_edesktop = _calculate_edesktop();
-
-         }
-
-         return s_edesktop;
+         return ::_get_edesktop();
 
       }
 
@@ -331,82 +326,81 @@ namespace acme
       ::user::enum_desktop node::_calculate_edesktop()
       {
 
-         const char * pszDesktop = getenv("XDG_CURRENT_DESKTOP");
-
-         string strDesktop(pszDesktop);
-
-         if(strDesktop.compare_ci("kde") == 0)
-         {
-
-            return ::user::e_desktop_kde;
-
-         }
-
-         if(strDesktop.compare_ci("gnome") == 0)
-         {
-
-            return ::user::e_desktop_gnome;
-
-         }
-
-         utsname name;
-
-         memset(&name, 0, sizeof(utsname));
-
-         uname(&name);
-
-         if(pszDesktop != nullptr)
-         {
-
-            if(strcasecmp(pszDesktop, "Unity") == 0)
-            {
-
-               return ::user::e_desktop_unity_gnome;
-
-            }
-
-         }
-
-         if(is_directory("/etc/xdg/lubuntu"))
-         {
-
-            return ::user::e_desktop_lxde;
-
-         }
-         else if(file_exists("/usr/bin/xfconf-query"))
-         {
-
-            return ::user::e_desktop_xfce;
-
-         }
-         else if(file_exists("/usr/bin/mate-about"))
-         {
-
-            return ::user::e_desktop_mate;
-
-         }
-         else if(file_exists("/usr/bin/unity"))
-         {
-
-            return ::user::e_desktop_unity_gnome;
-
-         }
-         else if(strcasecmp(pszDesktop, "ubuntu:gnome") == 0)
-         {
-
-            return ::user::e_desktop_ubuntu_gnome;
-
-         }
-         else if(strcasecmp(pszDesktop, "gnome") == 0)
-         {
-
-            return ::user::e_desktop_gnome;
-
-         }
-
-         return ::user::e_desktop_gnome;
+         return ::_calculate_edesktop();
 
       }
+
+
+      void node::shell_open(const ::file::path & path, const ::string & strParams, const ::file::path & pathFolder)
+      {
+
+         string str(path);
+
+         fork([this, str]()
+              {
+
+                 ::system("xdg-open \"" + str + "\" & ");
+
+              });
+
+      }
+
+
+//      void node::shell_execute_async(const char * psz, const char * pszParams)
+//      {
+//
+//         string str(psz);
+//
+//         fork([this, str]()
+//              {
+//
+//                 ::system("xdg-open \"" + str + "\" & ");
+//
+//              });
+//
+////         string strTarget(psz);
+////
+////         auto psystem = m_psystem;
+////
+////         auto pnode = psystem->node();
+////
+////         pnode->node_fork([this, strTarget]()
+////                          {
+////
+////                             string strUri = strTarget;
+////
+////                             if(!strUri.contains("://"))
+////                             {
+////
+////                                strUri = "file://" + strUri;
+////
+////                             }
+////
+////                             string strError;
+////
+////                             int iBufferSize = 4096;
+////
+////                             char * pszError = strError.get_string_buffer(iBufferSize);
+////
+////                             auto psystem = m_psystem;
+////
+////                             auto pnode = psystem->node();
+////
+////                             int iBool = pnode->os_launch_uri(strUri, pszError, iBufferSize);
+////
+////                             strError.release_string_buffer();
+////
+////                             if(!iBool)
+////                             {
+////
+////                                INFORMATION("Error launching file : \"" << strUri << "\" , " << strError);
+////
+////                             }
+////
+////                          });
+//
+//
+//      }
 
 
    } // namespace linux

@@ -1,10 +1,10 @@
 #include "framework.h"
 //#include "node/platform/node.h"
-#include "acme/filesystem/filesystem/acme_dir.h"
+#include "acme/filesystem/filesystem/acme_directory.h"
 #include "acme/filesystem/filesystem/acme_path.h"
 //#include "acme_linux/acme.h"
 #include "node.h"
-#include "aura/node/operating_system/linux/_.h"
+#include "aura/operating_system/linux/_.h"
 
 
 bool __node_node_pre_init();
@@ -96,6 +96,14 @@ namespace apex
          //return ::success;
 
       }
+
+
+//      void node::file_open(const ::file::path & path, const ::string& strParams, const ::file::path & pathFolder)
+//      {
+//
+//         ::apex::node::file_open(path, strParams, pathFolder);
+//
+//      }
 
 
       ::e_status node::process_init()

@@ -17,7 +17,7 @@
 #define c_cdecl
 
 
-#define BROAD_PRECOMPILED_HEADER 0
+#define BROAD_PRECOMPILED_HEADER 1
 
 #ifndef __linux__
 #define __linux__
@@ -46,7 +46,7 @@
 
 
 #define OPERATING_SYSTEM_NAME   	"linux"
-#define PLATFORM_NAMESPACE	linux
+#define OPERATING_SYSTEM_NAMESPACE	linux
 
 
 
@@ -95,5 +95,16 @@
 
 
 
+#define FONT_SANS "sans-serif"
+#define FONT_SERIF "serif"
+#define FONT_SANS_EX "sans-serif"
+#define FONT_SERIF_EX "serif"
+#define FONT_SANS_FX "sans-serif"
+#define FONT_SERIF_FX "serif"
+#define FONT_SANS_UI "sans-serif"
+#define FONT_SERIF_UI "serif"
+
+
+#define FONT_MONO "monospace"
 
 
