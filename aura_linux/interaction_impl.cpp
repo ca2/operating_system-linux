@@ -1358,32 +1358,32 @@ namespace linux
 
          }
 
-         string strUserInteractionType(::is_null(puserinteractionMouse) ? "(null)" : __type_name(puserinteractionMouse));
-
-         if(pmouse->m_atom == e_message_mouse_move)
-         {
-
-            static int s_iMotionNotify = 0;
-
-            s_iMotionNotify++;
-
-            if (strUserInteractionType.contains_ci("button"))
-            {
-
-               output_debug_string("mouse_move::userinteraction=button");
-
-            }
-            else
-            {
-
-
-               puserinteractionMouse = m_puserinteraction->child_from_point(pmouse->m_point);
-
-
-
-            }
-
-         }
+//         string strUserInteractionType(::is_null(puserinteractionMouse) ? "(null)" : __type_name(puserinteractionMouse));
+//
+//         if(pmouse->m_atom == e_message_mouse_move)
+//         {
+//
+//            static int s_iMotionNotify = 0;
+//
+//            s_iMotionNotify++;
+//
+//            if (strUserInteractionType.contains_ci("button"))
+//            {
+//
+//               output_debug_string("mouse_move::userinteraction=button");
+//
+//            }
+//            else
+//            {
+//
+//
+//               puserinteractionMouse = m_puserinteraction->child_from_point(pmouse->m_point);
+//
+//
+//
+//            }
+//
+//         }
 
          if(puserinteractionMouse)
          {
