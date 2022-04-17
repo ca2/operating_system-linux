@@ -1,1 +1,1 @@
-platform-posix/node_kde
+operating-system-posix/node_kde

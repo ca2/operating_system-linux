@@ -1,1 +1,1 @@
-platform-posix/node_gnome 
+operating-system-posix/node_gnome
