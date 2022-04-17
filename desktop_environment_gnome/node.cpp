@@ -8,7 +8,7 @@
 
 
 void gdk_branch(const ::routine & routine);
-
+CLASS_DECL_ACME void set_main_user_itask(itask_t itask);
 
 namespace desktop_environment_gnome
 {
@@ -218,6 +218,15 @@ namespace desktop_environment_gnome
 
    bool node::windowing_message_loop_step()
    {
+
+      set_main_user_itask(get_current_itask());
+
+      //if(get_main_user_itask() != get_current_itask())
+      //{
+
+
+
+      //}
 
       auto psession = get_session();
 
