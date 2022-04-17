@@ -331,7 +331,7 @@ namespace acme
       }
 
 
-      void node::file_open(const ::file::path & path, const ::string & strParams, const ::file::path & pathFolder)
+      void node::shell_open(const ::file::path & path, const ::string & strParams, const ::file::path & pathFolder)
       {
 
          string str(path);

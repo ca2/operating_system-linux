@@ -98,12 +98,12 @@ namespace apex
       }
 
 
-      void node::file_open(const ::file::path & path, const ::string& strParams, const ::file::path & pathFolder)
-      {
-
-         ::apex::node::file_open(path, strParams, pathFolder);
-
-      }
+//      void node::file_open(const ::file::path & path, const ::string& strParams, const ::file::path & pathFolder)
+//      {
+//
+//         ::apex::node::file_open(path, strParams, pathFolder);
+//
+//      }
 
 
       ::e_status node::process_init()

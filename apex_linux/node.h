@@ -39,7 +39,7 @@ namespace apex
 
          void _001InitializeShellOpen() override;
 
-         void file_open(const ::file::path & path, const ::string& strParams, const ::file::path & pathFolder) override;
+         //void shell_open(const ::file::path & path, const ::string& strParams, const ::file::path & pathFolder) override;
 
 
       };

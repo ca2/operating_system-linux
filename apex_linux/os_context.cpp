@@ -966,7 +966,7 @@ namespace linux
 
          auto pnode = psystem->node()->m_papexnode->m_pApexPlatform;
 
-         pnode->::acme::linux::node::file_open(path, strParams, pathFolder);
+         pnode->shell_open(path, strParams, pathFolder);
 
 //         pnode->node_fork([this, strTarget]()
 //         {
