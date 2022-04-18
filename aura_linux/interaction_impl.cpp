@@ -1162,8 +1162,8 @@ namespace linux
             pmessage->m_atom == e_message_right_button_down ||
             pmessage->m_atom == e_message_right_button_up ||
             pmessage->m_atom == e_message_mouse_move ||
-            pmessage->m_atom == e_message_mouse_move)
-//         pmessage->m_atom == e_message_mouse_wheel)
+            pmessage->m_atom == e_message_mouse_move ||
+         pmessage->m_atom == e_message_mouse_wheel)
       {
 
          if(::is_set(m_puserinteraction) && !m_puserinteraction->m_bUserElementOk)
@@ -1177,14 +1177,17 @@ namespace linux
 
          auto psession = get_session();
 
-         if(psession != nullptr)
+         if(pmouse)
          {
 
-            psession->on_ui_mouse_message(pmouse);
+            if (psession != nullptr)
+            {
 
-            psession->m_pointCursor = pmouse->m_point;
+               psession->on_ui_mouse_message(pmouse);
 
-         }
+               psession->m_pointCursor = pmouse->m_point;
+
+            }
 
 //         if(m_puserinteraction != nullptr && m_puserinteraction->get_session()  != nullptr && m_puserinteraction->get_session() != get_session())
 //         {
@@ -1197,10 +1200,10 @@ namespace linux
 //
 //         }
 
-         if(m_bTranslateMouseMessageCursor && !pmouse->m_bTranslated)
-         {
-            pmouse->m_bTranslated = true;
-            ::rectangle_i32 rectWindow;
+            if (m_bTranslateMouseMessageCursor && !pmouse->m_bTranslated)
+            {
+               pmouse->m_bTranslated = true;
+               ::rectangle_i32 rectWindow;
 //            if(m_bScreenRelativeMouseMessagePosition)
 //            {
 //
@@ -1214,52 +1217,54 @@ namespace linux
 //
 //            }
 //            else
-            {
-               m_puserinteraction->get_window_rect(rectWindow);
-            }
-
-            auto puser = psession->user();
-
-            auto pwindowing = puser->windowing();
-
-            auto pdisplay = pwindowing->display();
-
-            if(pdisplay->get_monitor_count() > 0)
-            {
-
-               ::rectangle_i32 rcMonitor;
-
-               pdisplay->get_monitor_rectangle(0, &rcMonitor);
-
-               if(rectWindow.left >= rcMonitor.left)
                {
-
-                  pmouse->m_point.x += (::i32) rectWindow.left;
-
+                  m_puserinteraction->get_window_rect(rectWindow);
                }
 
-               if(rectWindow.top >= rcMonitor.top)
+               auto puser = psession->user();
+
+               auto pwindowing = puser->windowing();
+
+               auto pdisplay = pwindowing->display();
+
+               if (pdisplay->get_monitor_count() > 0)
                {
 
-                  pmouse->m_point.y += (::i32) rectWindow.top;
+                  ::rectangle_i32 rcMonitor;
+
+                  pdisplay->get_monitor_rectangle(0, &rcMonitor);
+
+                  if (rectWindow.left >= rcMonitor.left)
+                  {
+
+                     pmouse->m_point.x += (::i32) rectWindow.left;
+
+                  }
+
+                  if (rectWindow.top >= rcMonitor.top)
+                  {
+
+                     pmouse->m_point.y += (::i32) rectWindow.top;
+
+                  }
 
                }
-
-            }
-            else
-            {
-
-               if(rectWindow.left >= 0)
+               else
                {
 
-                  pmouse->m_point.x += (::i32) rectWindow.left;
+                  if (rectWindow.left >= 0)
+                  {
 
-               }
+                     pmouse->m_point.x += (::i32) rectWindow.left;
 
-               if(rectWindow.top >= 0)
-               {
+                  }
 
-                  pmouse->m_point.y += (::i32) rectWindow.top;
+                  if (rectWindow.top >= 0)
+                  {
+
+                     pmouse->m_point.y += (::i32) rectWindow.top;
+
+                  }
 
                }
 
