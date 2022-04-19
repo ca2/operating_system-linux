@@ -18,7 +18,7 @@ namespace node_xfce
       virtual ~windowing();
 
 
-      virtual ::e_status user_start(const ::routine & routine);
+      virtual ::e_status user_start(const ::procedure & procedure);
 
 
       virtual bool message_loop_step() override;

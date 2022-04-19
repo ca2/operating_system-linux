@@ -9,7 +9,7 @@
 #include "windowing_x11/windowing_x11.h"
 
 
-void gdk_branch(const ::routine & routine);
+void gdk_branch(const ::procedure & procedure);
 
 
 namespace desktop_environment_xfce
@@ -499,7 +499,7 @@ namespace desktop_environment_xfce
    }
 
 
-   ::e_status node::node_post(const ::routine & routine)
+   ::e_status node::node_post(const ::procedure & procedure)
    {
 
       gdk_branch(routine);

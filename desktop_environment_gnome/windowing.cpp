@@ -24,7 +24,7 @@ namespace node_gnome
    }
 
 
-   ::e_status windowing::user_start(const ::routine & routine)
+   ::e_status windowing::user_start(const ::procedure & procedure)
    {
 
       gdk_fork([routine]()

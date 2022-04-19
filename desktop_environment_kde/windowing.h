@@ -20,7 +20,7 @@ namespace node_kde
       virtual ~windowing();
 
 
-      virtual ::e_status user_fork(const ::promise::routine & routine) override;
+      virtual ::e_status user_fork(const ::promise::procedure & routine) override;
 
 
       virtual bool message_loop_step() override;

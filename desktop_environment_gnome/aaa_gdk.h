@@ -23,7 +23,7 @@ namespace aaa_node_gnome
 } // namespace aaa_node_gnome
 
 
-//void gdk_branch(const ::routine & routine);
+//void gdk_branch(const ::procedure & procedure);
 
 
 

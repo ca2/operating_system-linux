@@ -530,7 +530,7 @@ namespace desktop_environment_kde
 //   }
 
 
-//   void node::node_fork(const ::routine &routine)
+//   void node::node_fork(const ::procedure &routine)
 //   {
 //
 //      kde_branch(routine);

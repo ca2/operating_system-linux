@@ -59,7 +59,7 @@ namespace desktop_environment_xfce
 
       virtual bool windowing_message_loop_step();
 
-      virtual ::e_status node_post(const ::routine & routine);
+      virtual ::e_status node_post(const ::procedure & procedure);
 
       //virtual void node_post_quit() override;
 

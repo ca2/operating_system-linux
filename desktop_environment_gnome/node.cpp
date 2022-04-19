@@ -7,7 +7,7 @@
 #include "windowing_x11/windowing_x11.h"
 
 
-void gdk_branch(const ::routine & routine);
+void gdk_branch(const ::procedure & procedure);
 CLASS_DECL_ACME void set_main_user_itask(itask_t itask);
 
 namespace desktop_environment_gnome

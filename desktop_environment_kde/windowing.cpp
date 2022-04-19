@@ -24,7 +24,7 @@ namespace node_kde
    }
 
 
-   ::e_status windowing::user_fork(const ::promise::routine & routine)
+   ::e_status windowing::user_fork(const ::promise::procedure & routine)
    {
 
       gdk_fork([routine]()
