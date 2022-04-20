@@ -232,7 +232,12 @@ namespace linux
    memsize file::read(void * pdata, memsize nCount)
    {
 
-      ASSERT(m_iFile != INVALID_FILE);
+      if(m_iFile < 0)
+      {
+
+         throw io_exception(error_wrong_state);
+
+      }
 
       if (nCount == 0)
       {

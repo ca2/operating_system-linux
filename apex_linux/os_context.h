@@ -82,6 +82,14 @@ namespace linux
       void list_process(::file::path_array & patha, u32_array & iaPid) override;
 
 
+      virtual ::file::path _get_auto_start_desktop_file_path(const ::string & strAppId);
+
+      void register_user_auto_start(const string & strAppId, const string & strCommand, const string & strArguments,
+                                    bool bRegister) override;
+
+      bool is_user_auto_start(const string & strAppId) override;
+
+
    };
 
 

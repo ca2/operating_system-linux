@@ -24,6 +24,7 @@ namespace apex
 
 
          node();
+
          ~node() override;
 
 
@@ -34,7 +35,7 @@ namespace apex
 
          virtual ::e_status process_init();
 
-         virtual int node_init_check(int*, char***);
+         virtual int node_init_check(int *, char ***);
 
 
          void _001InitializeShellOpen() override;
