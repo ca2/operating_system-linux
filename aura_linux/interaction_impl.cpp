@@ -244,7 +244,7 @@ namespace linux
 
          auto pwindowing = puser->windowing();
 
-         pwindowing->windowing_send(__routine(15_s, [&]()
+         pwindowing->windowing_send([&]()
          {
 
             auto psession = get_session();
@@ -268,7 +268,7 @@ namespace linux
 
             }
 
-         }));
+         });
 
       }
 
@@ -360,12 +360,12 @@ namespace linux
          if(m_bMoveEvent || m_bSizeEvent)
          {
 
-            defer_branch("delayed_placement", __routine([this]()
+            defer_branch("delayed_placement", [this]()
             {
 
                _thread_delayed_placement();
 
-            }));
+            });
 
          }
 
@@ -2378,12 +2378,12 @@ namespace linux
       if(pwindowing)
       {
 
-         pwindowing->windowing_post(__routine([this]()
+         pwindowing->windowing_post([this]()
                           {
 
                              m_pwindow->exit_iconify();
 
-                          }));
+                          });
 
       }
 
@@ -2409,12 +2409,12 @@ namespace linux
       if(pwindowing)
       {
 
-         pwindowing->windowing_post(__routine([this]()
+         pwindowing->windowing_post([this]()
          {
 
             m_pwindow->exit_full_screen();
 
-         }));
+         });
 
       }
 
@@ -2440,12 +2440,12 @@ namespace linux
       if(pwindowing)
       {
 
-         pwindowing->windowing_post(__routine([this]()
+         pwindowing->windowing_post([this]()
          {
 
             m_pwindow->exit_zoomed();
 
-         }));
+         });
 
       }
 
