@@ -722,6 +722,27 @@ namespace music
          }
 
 
+         ::duration out::get_time_position()
+         {
+
+
+            snd_seq_queue_status_t * pstatus = nullptr;
+
+            int iError  = snd_seq_queue_status_malloc	(	&pstatus);
+
+            iError = snd_seq_get_queue_status (m_pseq, m_iQueue, pstatus);
+
+            snd_seq_tick_time_t tick =	snd_seq_queue_status_get_tick_time (pstatus);
+
+            auto time = m_psequencer->m_psequence->m_pfile->tick_to_time(tick);
+
+            snd_seq_queue_status_free	(pstatus);
+
+            return time;
+
+         }
+
+
       } // namespace alsa
 
 

@@ -63,6 +63,9 @@ void tempo(int iTempo) override;
             bool step() override;
 
 
+            ::duration get_time_position() override;
+
+
          };
 
 
