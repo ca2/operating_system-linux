@@ -1,0 +1,297 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
+<CodeBlocks_workspace_file>
+	<Workspace title="aura solutions 64">
+		<Project filename="../../../source/app-core/commander/commander.cbp">
+			<Depends filename="../../../source/app.axis/app.axis.cbp" />
+			<Depends filename="../../../source/app/axis/axis.cbp" />
+		</Project>
+		<Project filename="../../../source/app-core/app_core_desk/app_core_desk.cbp">
+			<Depends filename="../app/app.cbp" />
+			<Depends filename="../../../source/app/draw2d_cairo/draw2d_cairo.cbp" />
+			<Depends filename="../../../source/app/image_jpeg/axis_image_jpeg.cbp" />
+			<Depends filename="../../../source/app/image_png/axis_image_png.cbp" />
+			<Depends filename="../../../source/app-core/wndfrm_core/wndfrm_core.cbp" />
+		</Project>
+		<Project filename="../../../source/app-core/todo/todo.cbp">
+			<Depends filename="../../../source/app/ace/ace.cbp" />
+			<Depends filename="../app/app.cbp" />
+			<Depends filename="../../../source/app/aura/aura.cbp" />
+			<Depends filename="../../../source/app/axis/axis.cbp" />
+			<Depends filename="../../../source/app/base/base.cbp" />
+			<Depends filename="../../../source/app/aura/aura.cbp" />
+			<Depends filename="../../../source/app/draw2d_cairo/draw2d_cairo.cbp" />
+			<Depends filename="../../../source/app-core/gcom/gcom.cbp" />
+			<Depends filename="../../../source/app-core/wndfrm_core/wndfrm_core.cbp" />
+		</Project>
+		<Project filename="../../../source/app-core/auraclick/auraclick.cbp">
+			<Depends filename="../app/app.cbp" />
+			<Depends filename="../../../source/app-veriwell/audio_decode_libmpg123/audio_decode_libmpg123.cbp" />
+			<Depends filename="../../../source/app-core/audio_decode_wave/audio_decode_wave.cbp" />
+			<Depends filename="../../audio_alsa/audio_alsa.cbp" />
+			<Depends filename="../../../source/app/draw2d_cairo/draw2d_cairo.cbp" />
+			<Depends filename="../../../source/app-core/multimedia/multimedia.cbp" />
+			<Depends filename="../../../source/app-core/wndfrm_core/wndfrm_core.cbp" />
+		</Project>
+		<Project filename="../../../source/app-core/auratype/auratype.cbp">
+			<Depends filename="../app/app.cbp" />
+			<Depends filename="../../../source/app-core/audio_decode_wave/audio_decode_wave.cbp" />
+			<Depends filename="../../audio_alsa/audio_alsa.cbp" />
+			<Depends filename="../../../source/app-core/multimedia/multimedia.cbp" />
+			<Depends filename="../../../source/app-core/wndfrm_core/wndfrm_core.cbp" />
+		</Project>
+		<Project filename="../../../source/app-core/clockverse/clockverse.cbp">
+			<Depends filename="../../../source/app-cidadedecuritiba/alphaclock/alphaclock.cbp" />
+			<Depends filename="../../../source/app-core/flag/flag.cbp" />
+			<Depends filename="../../../source/app-core/hellomultiverse/hellomultiverse.cbp" />
+			<Depends filename="../../../source/app-core/multimedia/multimedia.cbp" />
+		</Project>
+		<Project filename="../../../source/app-core/timer/timer.cbp">
+			<Depends filename="../../../source/app-core/multimedia/multimedia.cbp" />
+			<Depends filename="../../../source/app-core/userdatetime/userdatetime.cbp" />
+		</Project>
+		<Project filename="../../../source/app-core/resident/resident.cbp">
+			<Depends filename="../app/app.cbp" />
+			<Depends filename="../../../source/app-core/resident_client/resident_client.cbp" />
+			<Depends filename="../../../source/app-veriwell/audio_decode_libmpg123/audio_decode_libmpg123.cbp" />
+			<Depends filename="../../../source/app-core/audio_decode_spotify/audio_decode_spotify.cbp" />
+			<Depends filename="../../../source/app-core/audio_decode_wave/audio_decode_wave.cbp" />
+			<Depends filename="../../audio_alsa/audio_alsa.cbp" />
+			<Depends filename="../../../source/app-core/beampro/beampro.cbp" />
+			<Depends filename="../../../source/app-core/irc/irc.cbp" />
+			<Depends filename="../../../source/app-core/multimedia_playlist_spotify/multimedia_playlist_spotify.cbp" />
+			<Depends filename="../../../source/app-core/resident_beampro/resident_beampro.cbp" />
+			<Depends filename="../../../source/app-core/resident_liveedutv/resident_liveedutv.cbp" />
+			<Depends filename="../../../source/app-core/resident_twitchtv/resident_twitchtv.cbp" />
+			<Depends filename="../../../source/app-core/xmpp/xmpp.cbp" />
+		</Project>
+		<Project filename="../../../source/app-core/weather/weather.cbp">
+			<Depends filename="../app/app.cbp" />
+			<Depends filename="../../../source/app/aura/aura.cbp" />
+			<Depends filename="../../../source/app/axis/axis.cbp" />
+			<Depends filename="../../../source/app/base/base.cbp" />
+			<Depends filename="../../../source/app/aura/aura.cbp" />
+			<Depends filename="../../../source/app/draw2d_cairo/draw2d_cairo.cbp" />
+			<Depends filename="../../../source/app-core/gcom/gcom.cbp" />
+			<Depends filename="../../../source/app-core/wndfrm_core/wndfrm_core.cbp" />
+		</Project>
+		<Project filename="../../../source/app-veriwell/waven/waven.cbp">
+			<Depends filename="../app/app.cbp" />
+			<Depends filename="../../../source/app-veriwell/asciimedia/asciimedia.cbp" />
+			<Depends filename="../../../source/app-veriwell/audio_decode_libmpg123/audio_decode_libmpg123.cbp" />
+			<Depends filename="../../../source/app-core/audio_decode_spotify/audio_decode_spotify.cbp" />
+			<Depends filename="../../audio_alsa/audio_alsa.cbp" />
+			<Depends filename="../../../source/app/draw2d_cairo/draw2d_cairo.cbp" />
+			<Depends filename="../../../source/app/image_jpeg/axis_image_jpeg.cbp" />
+			<Depends filename="../../../source/app/image_png/axis_image_png.cbp" />
+			<Depends filename="../../../source/app-core/multimedia/multimedia.cbp" />
+			<Depends filename="../../music_midi_alsa/music_midi_alsa.cbp" />
+			<Depends filename="../../../source/app-veriwell/multimedia/veriwell_multimedia.cbp" />
+			<Depends filename="../../../source/app-core/wndfrm_core/wndfrm_core.cbp" />
+		</Project>
+		<Project filename="../../../source/app/ace/ace.cbp" />
+		<Project filename="../../../source/app-core/announcecom/announcecom.cbp" />
+		<Project filename="../app/app.cbp">
+			<Depends filename="../../../source/app/ace/ace.cbp" />
+			<Depends filename="../../../source/app/base/base.cbp" />
+			<Depends filename="../../../source/app/aura/aura.cbp" />
+		</Project>
+		<Project filename="../../../source/app.axis/app.axis.cbp">
+			<Depends filename="../../../source/app/axis/axis.cbp" />
+		</Project>
+		<Project filename="../../../source/app-cidadedecuritiba/alphaclock/alphaclock.cbp">
+			<Depends filename="../../../source/app/ace/ace.cbp" />
+			<Depends filename="../app/app.cbp" />
+			<Depends filename="../../../source/app-core/flag/flag.cbp" />
+			<Depends filename="../../../source/app-core/hellomultiverse/hellomultiverse.cbp" />
+			<Depends filename="../../../source/app-core/projection/projection.cbp" />
+			<Depends filename="../../../source/app/sphere/sphere.cbp" />
+		</Project>
+		<Project filename="../../../source/app-core/alarm/alarm.cbp">
+			<Depends filename="../../../source/app/ace/ace.cbp" />
+			<Depends filename="../app/app.cbp" />
+			<Depends filename="../../../source/app-core/userdatetime/userdatetime.cbp" />
+		</Project>
+		<Project filename="../../../source/app-core/auraverse/auraverse.cbp">
+			<Depends filename="../app/app.cbp" />
+			<Depends filename="../../../source/app-veriwell/audio_decode_libmpg123/audio_decode_libmpg123.cbp" />
+			<Depends filename="../../../source/app-core/audio_decode_wave/audio_decode_wave.cbp" />
+			<Depends filename="../../audio_alsa/audio_alsa.cbp" />
+			<Depends filename="../../../source/app/draw2d_cairo/draw2d_cairo.cbp" />
+			<Depends filename="../../../source/app-core/multimedia/multimedia.cbp" />
+			<Depends filename="../../../source/app/sphere/sphere.cbp" />
+			<Depends filename="../../../source/app-core/wndfrm_core/wndfrm_core.cbp" />
+		</Project>
+		<Project filename="../../../source/app-core/flag/flag.cbp">
+			<Depends filename="../app/app.cbp" />
+			<Depends filename="../../../source/app-core/hellomultiverse/hellomultiverse.cbp" />
+			<Depends filename="../../../source/app/aura/aura.cbp" />
+			<Depends filename="../../../source/app/axis/axis.cbp" />
+			<Depends filename="../../../source/app/base/base.cbp" />
+			<Depends filename="../../../source/app/aura/aura.cbp" />
+			<Depends filename="../../../source/app-core/wndfrm_core/wndfrm_core.cbp" />
+		</Project>
+		<Project filename="../../../source/app-core/hellomultiverse/hellomultiverse.cbp">
+			<Depends filename="../app/app.cbp" />
+			<Depends filename="../../../source/app/axis/axis.cbp" />
+			<Depends filename="../../../source/app/base/base.cbp" />
+			<Depends filename="../../../source/app/aura/aura.cbp" />
+			<Depends filename="../../../source/app/draw2d_cairo/draw2d_cairo.cbp" />
+			<Depends filename="../../../source/app-core/gcom/gcom.cbp" />
+			<Depends filename="../../../source/app-core/wndfrm_core/wndfrm_core.cbp" />
+		</Project>
+		<Project filename="../../../source/app-core/projection/projection.cbp">
+			<Depends filename="../app/app.cbp" />
+			<Depends filename="../../../source/app/aura/aura.cbp" />
+			<Depends filename="../../../source/app/axis/axis.cbp" />
+			<Depends filename="../../../source/app/base/base.cbp" />
+			<Depends filename="../../../source/app/aura/aura.cbp" />
+			<Depends filename="../../../source/app/draw2d_cairo/draw2d_cairo.cbp" />
+			<Depends filename="../../../source/app-core/wndfrm_core/wndfrm_core.cbp" />
+		</Project>
+		<Project filename="../../../source/app-core/rdpclient/rdpclient.cbp">
+			<Depends filename="../app/app.cbp" />
+			<Depends filename="../../../source/app/aura/aura.cbp" />
+			<Depends filename="../../../source/app/axis/axis.cbp" />
+			<Depends filename="../../../source/app/base/base.cbp" />
+			<Depends filename="../../../source/app/aura/aura.cbp" />
+			<Depends filename="../../../source/app/draw2d_cairo/draw2d_cairo.cbp" />
+			<Depends filename="../../../source/app-core/wndfrm_core/wndfrm_core.cbp" />
+		</Project>
+		<Project filename="../../../source/app-core/resident_client/resident_client.cbp">
+			<Depends filename="../../../source/app/programming/programming.cbp" />
+			<Depends filename="../../../source/app-core/resident_beampro/resident_beampro.cbp" />
+			<Depends filename="../../../source/app-core/resident_liveedutv/resident_liveedutv.cbp" />
+			<Depends filename="../../../source/app-core/resident_twitchtv/resident_twitchtv.cbp" />
+			<Depends filename="../../../source/app-core/vericard/vericard.cbp" />
+		</Project>
+		<Project filename="../../../source/app-veriwell/asciimedia/asciimedia.cbp">
+			<Depends filename="../../../source/app-core/gcom/gcom.cbp" />
+			<Depends filename="../../../source/app-core/multimedia/multimedia.cbp" />
+			<Depends filename="../../../source/app-veriwell/multimedia/veriwell_multimedia.cbp" />
+		</Project>
+		<Project filename="../../../source/app-veriwell/mplite/mplite.cbp">
+			<Depends filename="../app/app.cbp" />
+			<Depends filename="../../../source/app-veriwell/audio_decode_libmpg123/audio_decode_libmpg123.cbp" />
+			<Depends filename="../../audio_alsa/audio_alsa.cbp" />
+			<Depends filename="../../../source/app/draw2d_cairo/draw2d_cairo.cbp" />
+			<Depends filename="../../../source/app-core/multimedia/multimedia.cbp" />
+			<Depends filename="../../music_midi_alsa/music_midi_alsa.cbp" />
+			<Depends filename="../../../source/app-veriwell/multimedia/veriwell_multimedia.cbp" />
+		</Project>
+		<Project filename="../../../source/app-veriwell/audio_decode_libmpg123/audio_decode_libmpg123.cbp">
+			<Depends filename="../../../source/app/aura/aura.cbp" />
+			<Depends filename="../../../source/app/axis/axis.cbp" />
+			<Depends filename="../../../source/app/base/base.cbp" />
+			<Depends filename="../../../source/app-core/id3lib/id3lib.cbp" />
+			<Depends filename="../../../source/app/aura/aura.cbp" />
+			<Depends filename="../../../source/app-core/multimedia/multimedia.cbp" />
+		</Project>
+		<Project filename="../../../source/app-core/audio_decode_spotify/audio_decode_spotify.cbp">
+			<Depends filename="../../../source/app-core/multimedia/multimedia.cbp" />
+			<Depends filename="../../../source/app-core/multimedia_playlist_spotify/multimedia_playlist_spotify.cbp" />
+		</Project>
+		<Project filename="../../../source/app-core/audio_decode_wave/audio_decode_wave.cbp">
+			<Depends filename="../../../source/app-core/multimedia/multimedia.cbp" />
+		</Project>
+		<Project filename="../../audio_alsa/audio_alsa.cbp">
+			<Depends filename="../../../source/app/base/base.cbp" />
+			<Depends filename="../../../source/app/aura/aura.cbp" />
+			<Depends filename="../../../source/app-core/multimedia/multimedia.cbp" />
+		</Project>
+		<Project filename="../../../source/app/aura/aura.cbp">
+			<Depends filename="../../../source/app/ace/ace.cbp" />
+		</Project>
+		<Project filename="../../../source/app/axis/axis.cbp">
+			<Depends filename="../../../source/app/aura/aura.cbp" />
+		</Project>
+		<Project filename="../../../source/app/freeimage/axisfreeimage.cbp" />
+		<Project filename="../../../source/app/base/base.cbp">
+			<Depends filename="../../../source/app/ace/ace.cbp" />
+			<Depends filename="../../../source/app/axis/axis.cbp" />
+			<Depends filename="../../../source/app/freeimage/axisfreeimage.cbp" />
+		</Project>
+		<Project filename="../../../source/app/basecore/basecore.cbp" />
+		<Project filename="../../../source/app-core/id3lib/id3lib.cbp">
+			<Depends filename="../../../source/app/aura/aura.cbp" />
+		</Project>
+		<Project filename="../../../source/app-core/beampro/beampro.cbp">
+			<Depends filename="../../../source/app/programming/programming.cbp" />
+			<Depends filename="../../../source/app-core/vericard/vericard.cbp" />
+		</Project>
+		<Project filename="../../../source/app/aura/aura.cbp">
+			<Depends filename="../../../source/app/axis/axis.cbp" />
+			<Depends filename="../../../source/app/base/base.cbp" />
+			<Depends filename="../../../source/app/basecore/basecore.cbp" />
+		</Project>
+		<Project filename="../../../source/app/draw2d_cairo/draw2d_cairo.cbp">
+			<Depends filename="../../../source/app/base/base.cbp" />
+		</Project>
+		<Project filename="../../../source/app-core/gcom/gcom.cbp">
+			<Depends filename="../../../source/app/aura/aura.cbp" />
+			<Depends filename="../../../source/app/axis/axis.cbp" />
+			<Depends filename="../../../source/app/base/base.cbp" />
+			<Depends filename="../../../source/app/aura/aura.cbp" />
+		</Project>
+		<Project filename="../../../source/app/image_jpeg/axis_image_jpeg.cbp" />
+		<Project filename="../../../source/app/image_png/axis_image_png.cbp" />
+		<Project filename="../../../source/app-core/irc/irc.cbp">
+			<Depends filename="../../../source/app/aura/aura.cbp" />
+			<Depends filename="../../../source/app/programming/programming.cbp" />
+			<Depends filename="../../../source/app-core/vericard/vericard.cbp" />
+		</Project>
+		<Project filename="../../../source/app-core/multimedia/multimedia.cbp">
+			<Depends filename="../../../source/app/aura/aura.cbp" />
+			<Depends filename="../../../source/app/base/base.cbp" />
+			<Depends filename="../../../source/app-core/id3lib/id3lib.cbp" />
+			<Depends filename="../../../source/app/aura/aura.cbp" />
+		</Project>
+		<Project filename="../../../source/app-core/multimedia_playlist_spotify/multimedia_playlist_spotify.cbp">
+			<Depends filename="../../../source/app-core/multimedia/multimedia.cbp" />
+		</Project>
+		<Project filename="../../music_midi_alsa/music_midi_alsa.cbp">
+			<Depends filename="../../../source/app-veriwell/multimedia/veriwell_multimedia.cbp" />
+		</Project>
+		<Project filename="../../../source/app/programming/programming.cbp">
+			<Depends filename="../../../source/app/base/base.cbp" />
+			<Depends filename="../../../source/app/aura/aura.cbp" />
+		</Project>
+		<Project filename="../../../source/app-core/resident_beampro/resident_beampro.cbp">
+			<Depends filename="../../../source/app-core/beampro/beampro.cbp" />
+		</Project>
+		<Project filename="../../../source/app-core/resident_liveedutv/resident_liveedutv.cbp">
+			<Depends filename="../../../source/app-core/xmpp/xmpp.cbp" />
+		</Project>
+		<Project filename="../../../source/app-core/resident_twitchtv/resident_twitchtv.cbp">
+			<Depends filename="../../../source/app-core/irc/irc.cbp" />
+		</Project>
+		<Project filename="../../../source/app/sphere/sphere.cbp">
+			<Depends filename="../../../source/app/aura/aura.cbp" />
+			<Depends filename="../../../source/app/axis/axis.cbp" />
+			<Depends filename="../../../source/app/base/base.cbp" />
+			<Depends filename="../../../source/app/aura/aura.cbp" />
+		</Project>
+		<Project filename="../../../source/app-core/tesseract/tesseract.cbp" />
+		<Project filename="../../../source/app-core/userdatetime/userdatetime.cbp" />
+		<Project filename="../../../source/app-core/vericard/vericard.cbp">
+			<Depends filename="../../../source/app-core/announcecom/announcecom.cbp" />
+			<Depends filename="../../../source/app/aura/aura.cbp" />
+			<Depends filename="../../../source/app/draw2d_cairo/draw2d_cairo.cbp" />
+			<Depends filename="../../../source/app-core/multimedia/multimedia.cbp" />
+			<Depends filename="../../../source/app/programming/programming.cbp" />
+		</Project>
+		<Project filename="../../../source/app-veriwell/multimedia/veriwell_multimedia.cbp">
+			<Depends filename="../../../source/app/aura/aura.cbp" />
+			<Depends filename="../../../source/app/axis/axis.cbp" />
+			<Depends filename="../../../source/app/base/base.cbp" />
+			<Depends filename="../../../source/app/aura/aura.cbp" />
+			<Depends filename="../../../source/app-core/multimedia/multimedia.cbp" />
+		</Project>
+		<Project filename="../../../source/app-core/wndfrm_core/wndfrm_core.cbp">
+			<Depends filename="../../../source/app/aura/aura.cbp" />
+		</Project>
+		<Project filename="../../../source/app-core/xmpp/xmpp.cbp">
+			<Depends filename="../../../source/app/aura/aura.cbp" />
+			<Depends filename="../../../source/app-core/vericard/vericard.cbp" />
+		</Project>
+	</Workspace>
+</CodeBlocks_workspace_file>

@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
+<CodeBlocks_workspace_file>
+	<Workspace title="simple">
+		<Project filename="../../../source/app-simple/application/clang_simple_application.cbp">
+			<Depends filename="../../../source/app/clang_app.cbp" />
+			<Depends filename="../../../source/app/aura/clang_aura.cbp" />
+			<Depends filename="../../../source/app/draw2d_cairo/clang_cairo.cbp" />
+			<Depends filename="../../../source/app/experience_core/clang_experience_core.cbp" />
+			<Depends filename="../../../source/app/freeimage_imaging/clang_freeimage_imaging.cbp" />
+		</Project>
+		<Project filename="../../../source/app-simple/box/clang_simple_box.cbp" />
+		<Project filename="../../../source/app-simple/drawing/clang_simple_drawing.cbp">
+			<Depends filename="../../../source/app/clang_app.cbp" />
+			<Depends filename="../../../source/app/aura/clang_aura.cbp" />
+			<Depends filename="../../../source/app/draw2d_cairo/clang_cairo.cbp" />
+			<Depends filename="../../../source/app/experience_core/clang_experience_core.cbp" />
+			<Depends filename="../../../source/app/freeimage_imaging/clang_freeimage_imaging.cbp" />
+		</Project>
+		<Project filename="../../../source/app-simple/form/clang_simple_form.cbp">
+			<Depends filename="../../../source/app/experience_tranquillum/clang_experience_tranquillum.cbp" />
+			<Depends filename="../../../source/app/aura/clang_aura.cbp" />
+		</Project>
+		<Project filename="../../../source/app-simple/notify_drawing/clang_notify_drawing.cbp">
+			<Depends filename="../../../source/app-simple/drawing/clang_simple_drawing.cbp" />
+			<Depends filename="../../../source/app/aura/clang_aura.cbp" />
+			<Depends filename="../../../source/app/experience_core/clang_experience_core.cbp" />
+		</Project>
+		<Project filename="../../../source/app-simple/os_drag_and_drop/clang_simple_os_drag_and_drop.cbp" />
+		<Project filename="../../../source/app/clang_app.cbp">
+			<Depends filename="../../../source/app/aura/clang_aura.cbp" />
+		</Project>
+		<Project filename="../../../source/app/aura/clang_aura.cbp" />
+		<Project filename="../../../source/app/draw2d_cairo/clang_cairo.cbp">
+			<Depends filename="../../../source/app/aura/clang_aura.cbp" />
+		</Project>
+		<Project filename="../../../source/app/experience_core/clang_experience_core.cbp">
+			<Depends filename="../../../source/app/aura/clang_aura.cbp" />
+		</Project>
+		<Project filename="../../../source/app/experience_tranquillum/clang_experience_tranquillum.cbp">
+			<Depends filename="../../../source/app/aura/clang_aura.cbp" />
+		</Project>
+		<Project filename="../../../source/app/freeimage_imaging/clang_freeimage_imaging.cbp">
+			<Depends filename="../../../source/app/aura/clang_aura.cbp" />
+		</Project>
+	</Workspace>
+</CodeBlocks_workspace_file>

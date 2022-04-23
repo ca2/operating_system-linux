@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
+<CodeBlocks_workspace_file>
+	<Workspace title="basic">
+		<Project filename="../../../source/app/acme/acme.cbp" />
+		<Project filename="../../../source/app/apex/apex.cbp">
+			<Depends filename="../../../source/app/acme/acme.cbp" />
+		</Project>
+		<Project filename="../../../source/app-core/hellomultiverse/hellomultiverse.cbp">
+			<Depends filename="../../../source/app/acme/acme.cbp" />
+			<Depends filename="../../../source/app/apex/apex.cbp" />
+			<Depends filename="../app/app.cbp" />
+			<Depends filename="../../../source/app/aura/aura.cbp" />
+			<Depends filename="../../../source/app/axis/axis.cbp" />
+			<Depends filename="../../../source/app/base/base.cbp" />
+			<Depends filename="../../../source/app/core/core.cbp" />
+			<Depends filename="../../../source/app/draw2d_cairo/cairo.cbp" />
+			<Depends filename="../../../source/app/experience_core/experience_core.cbp" />
+			<Depends filename="../../../source/app-core/gcom/gcom.cbp" />
+			<Depends filename="../../../source/app/imaging_freeimage/imaging_freeimage.cbp" />
+		</Project>
+		<Project filename="../../../source/app-core/flag/flag.cbp">
+			<Depends filename="../app/app.cbp" />
+			<Depends filename="../../../source/app-core/hellomultiverse/hellomultiverse.cbp" />
+			<Depends filename="../../../source/app/aura/aura.cbp" />
+		</Project>
+		<Project filename="../../../source/app-cidadedecuritiba/alphaclock/alphaclock.cbp">
+			<Depends filename="../../../source/app-core/hellomultiverse/hellomultiverse.cbp" />
+			<Depends filename="../../../source/app-core/flag/flag.cbp" />
+			<Depends filename="../app/app.cbp" />
+		</Project>
+		<Project filename="../../../source/app-core/clockverse/clockverse.cbp">
+			<Depends filename="../../../source/app/aura/aura.cbp" />
+			<Depends filename="../../../source/app/draw2d_cairo/cairo.cbp" />
+			<Depends filename="../../../source/app/experience_core/experience_core.cbp" />
+		</Project>
+		<Project filename="../../../source/app-core/projection/projection.cbp">
+			<Depends filename="../app/app.cbp" />
+			<Depends filename="../../../source/app/aura/aura.cbp" />
+		</Project>
+		<Project filename="../../../source/app-core/app_core_desk/app_core_desk.cbp">
+			<Depends filename="../../../source/app/acme/acme.cbp" />
+			<Depends filename="../../../source/app/apex/apex.cbp" />
+			<Depends filename="../../../source/app/aqua/aqua.cbp" />
+			<Depends filename="../../../source/app/aura/aura.cbp" />
+			<Depends filename="../../../source/app/axis/axis.cbp" />
+			<Depends filename="../../../source/app/base/base.cbp" />
+			<Depends filename="../../../source/app/bred/bred.cbp" />
+			<Depends filename="../../../source/app/core/core.cbp" />
+			<Depends filename="../../../source/third/sn/sn.cbp" />
+		</Project>
+		<Project filename="../../../source/app-core/weather/weather.cbp">
+			<Depends filename="../../../source/app/acme/acme.cbp" />
+			<Depends filename="../../../source/app/apex/apex.cbp" />
+			<Depends filename="../../../source/app/aqua/aqua.cbp" />
+			<Depends filename="../../../source/app/aura/aura.cbp" />
+			<Depends filename="../../../source/app/axis/axis.cbp" />
+			<Depends filename="../../../source/app/base/base.cbp" />
+			<Depends filename="../../../source/app/bred/bred.cbp" />
+			<Depends filename="../../../source/app/core/core.cbp" />
+			<Depends filename="../../../source/app/draw2d_cairo/cairo.cbp" />
+			<Depends filename="../../../source/app/experience_core/experience_core.cbp" />
+			<Depends filename="../../../source/app/imaging_freeimage/imaging_freeimage.cbp" />
+		</Project>
+		<Project filename="../app/app.cbp">
+			<Depends filename="../../../source/app/aura/aura.cbp" />
+		</Project>
+		<Project filename="../../../source/app/aqua/aqua.cbp" />
+		<Project filename="../../../source/app/aura/aura.cbp">
+			<Depends filename="../../../source/app/acme/acme.cbp" />
+			<Depends filename="../../../source/app/apex/apex.cbp" />
+			<Depends filename="../../../source/app/aqua/aqua.cbp" />
+			<Depends filename="../../../source/third/sn/sn.cbp" />
+		</Project>
+		<Project filename="../../../source/app/axis/axis.cbp" />
+		<Project filename="../../../source/app/base/base.cbp" />
+		<Project filename="../../../source/app/bred/bred.cbp" />
+		<Project filename="../../../source/app/core/core.cbp">
+			<Depends filename="../../../source/app/acme/acme.cbp" />
+			<Depends filename="../../../source/app/apex/apex.cbp" />
+			<Depends filename="../../../source/app/aqua/aqua.cbp" />
+			<Depends filename="../../../source/app/aura/aura.cbp" />
+			<Depends filename="../../../source/app/axis/axis.cbp" />
+			<Depends filename="../../../source/app/base/base.cbp" />
+			<Depends filename="../../../source/app/bred/bred.cbp" />
+			<Depends filename="../../../source/third/sn/sn.cbp" />
+		</Project>
+		<Project filename="../../../source/app/draw2d_cairo/cairo.cbp" />
+		<Project filename="../../../source/app/experience_core/experience_core.cbp">
+			<Depends filename="../../../source/app/acme/acme.cbp" />
+			<Depends filename="../../../source/app/apex/apex.cbp" />
+			<Depends filename="../../../source/app/aqua/aqua.cbp" />
+			<Depends filename="../../../source/app/aura/aura.cbp" />
+			<Depends filename="../../../source/app/axis/axis.cbp" />
+			<Depends filename="../../../source/app/base/base.cbp" />
+		</Project>
+		<Project filename="../../../source/app-core/gcom/gcom.cbp">
+			<Depends filename="../../../source/app/acme/acme.cbp" />
+			<Depends filename="../../../source/app/apex/apex.cbp" />
+			<Depends filename="../../../source/app/aura/aura.cbp" />
+		</Project>
+		<Project filename="../../../source/app/imaging_freeimage/imaging_freeimage.cbp" />
+		<Project filename="../../../source/third/sn/sn.cbp" />
+	</Workspace>
+</CodeBlocks_workspace_file>

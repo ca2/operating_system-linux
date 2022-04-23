@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
+<CodeBlocks_workspace_file>
+	<Workspace title="aura solutions 64">
+		<Project filename="../../../source/app/acme/acme.cbp" />
+		<Project filename="../../../source/app/apex/apex.cbp">
+			<Depends filename="../../../source/app/acme/acme.cbp" />
+		</Project>
+		<Project filename="../app/app.cbp">
+			<Depends filename="../../../source/app/ace/ace.cbp" />
+			<Depends filename="../../../source/app/aura/aura.cbp" />
+			<Depends filename="../../../source/app/base/base.cbp" />
+			<Depends filename="../../../source/app/aura/aura.cbp" />
+		</Project>
+		<Project filename="../../../source/third/aqua/aqua.cbp" />
+		<Project filename="../../../source/app/aura/aura.cbp">
+			<Depends filename="../../../source/app/ace/ace.cbp" />
+			<Depends filename="../../../source/third/sn/aurasn.cbp" />
+			<Depends filename="../../../source/third/aqua/aqua.cbp" />
+		</Project>
+		<Project filename="../../../source/third/sn/aurasn.cbp" />
+		<Project filename="../../../source/app/axis/axis.cbp">
+			<Depends filename="../../../source/app/aura/aura.cbp" />
+		</Project>
+		<Project filename="../../../source/app/base/base.cbp">
+			<Depends filename="../../../source/app/ace/ace.cbp" />
+			<Depends filename="../../../source/app/axis/axis.cbp" />
+		</Project>
+		<Project filename="../../../source/app/aura/aura.cbp">
+			<Depends filename="../../../source/app/axis/axis.cbp" />
+			<Depends filename="../../../source/app/base/base.cbp" />
+		</Project>
+		<Project filename="../../../source/design/textformat/textformat.cbp">
+			<Depends filename="../../../source/app/aura/aura.cbp" />
+			<Depends filename="../../../source/app/draw2d_cairo/draw2d_cairo.cbp" />
+		</Project>
+		<Project filename="../../../source/app/draw2d_cairo/draw2d_cairo.cbp">
+			<Depends filename="../../../source/app/base/base.cbp" />
+		</Project>
+		<Project filename="../../../source/app/experience_anthill/experience_anthill.cbp" />
+		<Project filename="../../../source/app/experience_core/experience_core.cbp" />
+		<Project filename="../../../source/app/experience_tranquillum/experience_tranquillum.cbp" />
+	</Workspace>
+</CodeBlocks_workspace_file>

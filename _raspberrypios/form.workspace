@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
+<CodeBlocks_workspace_file>
+	<Workspace title="simple">
+		<Project filename="../../../source/app/acme/acme.cbp" />
+		<Project filename="../../../source/app/apex/apex.cbp" />
+		<Project filename="../../../source/app-simple/form/simple_form.cbp">
+			<Depends filename="../../../source/app/acme/acme.cbp" />
+			<Depends filename="../../../source/app/apex/apex.cbp" />
+			<Depends filename="../../../source/app/aqua/aqua.cbp" />
+			<Depends filename="../../../source/app/aura/aura.cbp" />
+			<Depends filename="../../../source/app/draw2d_cairo/cairo.cbp" />
+			<Depends filename="../../../source/app/experience_tranquillum/experience_tranquillum.cbp" />
+		</Project>
+		<Project filename="../../../source/app-simple/os_drag_and_drop/simple_os_drag_and_drop.cbp" />
+		<Project filename="../app/app.cbp">
+			<Depends filename="../../../source/app/aura/aura.cbp" />
+		</Project>
+		<Project filename="../../../source/app/aqua/aqua.cbp" />
+		<Project filename="../../../source/app/aura/aura.cbp">
+			<Depends filename="../../../source/third/sn/sn.cbp" />
+		</Project>
+		<Project filename="../../../source/app/axis/axis.cbp" />
+		<Project filename="../../../source/app/base/base.cbp" />
+		<Project filename="../../../source/app/bred/bred.cbp" />
+		<Project filename="../../../source/app/draw2d_cairo/cairo.cbp">
+			<Depends filename="../../../source/app/aura/aura.cbp" />
+		</Project>
+		<Project filename="../../../source/app/experience_core/experience_core.cbp">
+			<Depends filename="../../../source/app/aura/aura.cbp" />
+		</Project>
+		<Project filename="../../../source/app/experience_tranquillum/experience_tranquillum.cbp">
+			<Depends filename="../../../source/app/aura/aura.cbp" />
+		</Project>
+		<Project filename="../../../source/third/sn/sn.cbp" />
+	</Workspace>
+</CodeBlocks_workspace_file>

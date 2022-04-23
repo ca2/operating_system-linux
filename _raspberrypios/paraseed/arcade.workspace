@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
+<CodeBlocks_workspace_file>
+	<Workspace title="arcade">
+		<Project filename="../../../source/game/game_of_life/game_of_life.cbp">
+			<Depends filename="../../audio_alsa/audio_alsa.cbp" />
+			<Depends filename="../../../source/app/draw2d_cairo/draw2d_cairo.cbp" />
+			<Depends filename="../../../source/game/estamira/estamira.cbp" />
+			<Depends filename="../../../source/app/experience_core/experience_core.cbp" />
+		</Project>
+		<Project filename="../../../source/game/tictactoe/tictactoe.cbp">
+			<Depends filename="../../../source/app/draw2d_cairo/draw2d_cairo.cbp" />
+			<Depends filename="../../../source/game/estamira/estamira.cbp" />
+		</Project>
+		<Project filename="../../../source/game/tetris/tetris.cbp">
+			<Depends filename="../../../source/app/draw2d_cairo/draw2d_cairo.cbp" />
+			<Depends filename="../../../source/game/estamira/estamira.cbp" />
+		</Project>
+		<Project filename="../../../source/game/arkanoid/arkanoid.cbp">
+			<Depends filename="../../../source/app-core/audio_decode_wave/audio_decode_wave.cbp" />
+			<Depends filename="../../audio_alsa/audio_alsa.cbp" />
+			<Depends filename="../../../source/app/draw2d_cairo/draw2d_cairo.cbp" />
+			<Depends filename="../../../source/game/estamira/estamira.cbp" />
+			<Depends filename="../../../source/app/experience_core/experience_core.cbp" />
+		</Project>
+		<Project filename="../../../source/game/sokoban/sokoban.cbp">
+			<Depends filename="../../../source/app/draw2d_cairo/draw2d_cairo.cbp" />
+			<Depends filename="../../../source/game/estamira/estamira.cbp" />
+		</Project>
+		<Project filename="../../../source/game/pacman/pacman.cbp">
+			<Depends filename="../../../source/app-core/audio_decode_wave/audio_decode_wave.cbp" />
+			<Depends filename="../../audio_alsa/audio_alsa.cbp" />
+			<Depends filename="../../../source/app/draw2d_cairo/draw2d_cairo.cbp" />
+			<Depends filename="../../../source/game/estamira/estamira.cbp" />
+		</Project>
+		<Project filename="../../../source/app/ace/ace.cbp" />
+		<Project filename="../../../source/third/aqua/aqua.cbp" />
+		<Project filename="../../../source/app-veriwell/audio_decode_libmpg123/audio_decode_libmpg123.cbp">
+			<Depends filename="../../../source/app/aura/aura.cbp" />
+			<Depends filename="../../../source/app/axis/axis.cbp" />
+			<Depends filename="../../../source/app/base/base.cbp" />
+			<Depends filename="../../../source/app-core/id3lib/id3lib.cbp" />
+			<Depends filename="../../../source/app/aura/aura.cbp" />
+			<Depends filename="../../../source/app-core/multimedia/multimedia.cbp" />
+			<Depends filename="../../../source/app-veriwell/multimedia/veriwell_multimedia.cbp" />
+		</Project>
+		<Project filename="../../../source/app-core/audio_decode_wave/audio_decode_wave.cbp">
+			<Depends filename="../../../source/app-core/multimedia/multimedia.cbp" />
+		</Project>
+		<Project filename="../../audio_alsa/audio_alsa.cbp">
+			<Depends filename="../../../source/app/base/base.cbp" />
+			<Depends filename="../../../source/app/aura/aura.cbp" />
+			<Depends filename="../../../source/app-core/multimedia/multimedia.cbp" />
+		</Project>
+		<Project filename="../../../source/app/aura/aura.cbp">
+			<Depends filename="../../../source/app/ace/ace.cbp" />
+			<Depends filename="../../../source/third/aqua/aqua.cbp" />
+			<Depends filename="../../../source/third/sn/aurasn.cbp" />
+		</Project>
+		<Project filename="../../../source/third/sn/aurasn.cbp" />
+		<Project filename="../../../source/app/axis/axis.cbp">
+			<Depends filename="../../../source/app/aura/aura.cbp" />
+		</Project>
+		<Project filename="../../../source/app/base/base.cbp">
+			<Depends filename="../../../source/app/axis/axis.cbp" />
+		</Project>
+		<Project filename="../../../source/third/libmpg123/basempg123.cbp" />
+		<Project filename="../../../source/app-core/id3lib/id3lib.cbp">
+			<Depends filename="../../../source/app/aura/aura.cbp" />
+		</Project>
+		<Project filename="../../../source/app/aura/aura.cbp">
+			<Depends filename="../../../source/app/axis/axis.cbp" />
+			<Depends filename="../../../source/app/base/base.cbp" />
+		</Project>
+		<Project filename="../../../source/app/draw2d_cairo/draw2d_cairo.cbp">
+			<Depends filename="../../../source/app/base/base.cbp" />
+		</Project>
+		<Project filename="../../../source/game/estamira/estamira.cbp">
+			<Depends filename="../../../source/app/aura/aura.cbp" />
+			<Depends filename="../../../source/app-core/multimedia/multimedia.cbp" />
+		</Project>
+		<Project filename="../../../source/app/experience_core/experience_core.cbp" />
+		<Project filename="../../../source/app-core/gcom/gcom.cbp" />
+		<Project filename="../../../source/app-core/multimedia/multimedia.cbp">
+			<Depends filename="../../../source/app/aura/aura.cbp" />
+			<Depends filename="../../../source/app/base/base.cbp" />
+			<Depends filename="../../../source/app-core/id3lib/id3lib.cbp" />
+			<Depends filename="../../../source/app/aura/aura.cbp" />
+			<Depends filename="../../../source/app-core/gcom/gcom.cbp" />
+		</Project>
+		<Project filename="../../music_midi_alsa/music_midi_alsa.cbp">
+			<Depends filename="../../../source/app-veriwell/multimedia/veriwell_multimedia.cbp" />
+		</Project>
+		<Project filename="../../../source/app-veriwell/multimedia/veriwell_multimedia.cbp">
+			<Depends filename="../../../source/app/aura/aura.cbp" />
+			<Depends filename="../../../source/app/axis/axis.cbp" />
+			<Depends filename="../../../source/app/base/base.cbp" />
+			<Depends filename="../../../source/app/aura/aura.cbp" />
+			<Depends filename="../../../source/app-core/multimedia/multimedia.cbp" />
+		</Project>
+	</Workspace>
+</CodeBlocks_workspace_file>

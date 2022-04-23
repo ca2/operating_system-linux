@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
+<CodeBlocks_workspace_file>
+	<Workspace title="basic">
+		<Project filename="../../../source/app-core/hellomultiverse/hellomultiverse.cbp">
+			<Depends filename="../app/app.cbp" />
+			<Depends filename="../../../source/app/aura/aura.cbp" />
+			<Depends filename="../../../source/app/experience_core/experience_core.cbp" />
+			<Depends filename="../../../source/app-core/gcom/gcom.cbp" />
+			<Depends filename="../../../source/app/freeimage_imaging/freeimage_imaging.cbp" />
+		</Project>
+		<Project filename="../../../source/app-core/flag/flag.cbp">
+			<Depends filename="../app/app.cbp" />
+			<Depends filename="../../../source/app-core/hellomultiverse/hellomultiverse.cbp" />
+			<Depends filename="../../../source/app/aura/aura.cbp" />
+			<Depends filename="../../../source/app/aura/aura.cbp" />
+		</Project>
+		<Project filename="../../../source/app-cidadedecuritiba/alphaclock/alphaclock.cbp">
+			<Depends filename="../../../source/app-core/hellomultiverse/hellomultiverse.cbp" />
+			<Depends filename="../../../source/app-core/flag/flag.cbp" />
+			<Depends filename="../app/app.cbp" />
+		</Project>
+		<Project filename="../../../source/app-core/projection/projection.cbp">
+			<Depends filename="../app/app.cbp" />
+			<Depends filename="../../../source/app/aura/aura.cbp" />
+			<Depends filename="../../../source/app/aura/aura.cbp" />
+		</Project>
+		<Project filename="../../../source/app-core/clockverse/clockverse.cbp">
+			<Depends filename="../../../source/app/draw2d_cairo/cairo.cbp" />
+			<Depends filename="../../../source/app/experience_core/experience_core.cbp" />
+		</Project>
+		<Project filename="../../../source/app-core/weather/weather.cbp" />
+		<Project filename="../app/app.cbp">
+			<Depends filename="../../../source/app/aura/aura.cbp" />
+		</Project>
+		<Project filename="../../../source/app/aura/aura.cbp" />
+		<Project filename="../../../source/app/aura/aura.cbp">
+			<Depends filename="../../../source/app/aura/aura.cbp" />
+		</Project>
+		<Project filename="../../../source/app/draw2d_cairo/cairo.cbp" />
+		<Project filename="../../../source/app/experience_core/experience_core.cbp" />
+		<Project filename="../../../source/app/freeimage_imaging/freeimage_imaging.cbp" />
+		<Project filename="../../../source/app-core/gcom/gcom.cbp" />
+	</Workspace>
+</CodeBlocks_workspace_file>

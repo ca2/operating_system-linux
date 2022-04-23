@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
+<CodeBlocks_workspace_file>
+	<Workspace title="simple">
+		<Project filename="../../../source/app/acme/acme.cbp" />
+		<Project filename="../../../source/app/apex/apex.cbp" />
+		<Project filename="../../../source/app/app/app_app.cbp">
+			<Depends filename="../../../source/app/acme/acme.cbp" />
+			<Depends filename="../../../source/app/apex/apex.cbp" />
+			<Depends filename="../../../source/app/aqua/aqua.cbp" />
+			<Depends filename="../../../source/app/aura/aura.cbp" />
+			<Depends filename="../../../source/app/draw2d_cairo/cairo.cbp" />
+			<Depends filename="../../../source/third/sn/sn.cbp" />
+		</Project>
+		<Project filename="../../../source/app/shader/app_shader.cbp">
+			<Depends filename="../../../source/app/acme/acme.cbp" />
+			<Depends filename="../../../source/app/apex/apex.cbp" />
+			<Depends filename="../../../source/app/aura/aura.cbp" />
+			<Depends filename="../../../source/app/draw2d_cairo/cairo.cbp" />
+			<Depends filename="../../../source/app/gpu_opengl/gpu_opengl.cbp" />
+			<Depends filename="../../../source/third/sn/sn.cbp" />
+		</Project>
+		<Project filename="../../../source/app/aqua/aqua.cbp">
+			<Depends filename="../../../source/app/acme/acme.cbp" />
+			<Depends filename="../../../source/app/apex/apex.cbp" />
+		</Project>
+		<Project filename="../../../source/app/aura/aura.cbp">
+			<Depends filename="../../../source/app/acme/acme.cbp" />
+			<Depends filename="../../../source/app/apex/apex.cbp" />
+			<Depends filename="../../../source/app/aqua/aqua.cbp" />
+			<Depends filename="../../../source/third/sn/sn.cbp" />
+		</Project>
+		<Project filename="../../../source/app/draw2d_cairo/cairo.cbp">
+			<Depends filename="../../../source/app/aura/aura.cbp" />
+		</Project>
+		<Project filename="../../../source/app/gpu_opengl/gpu_opengl.cbp" />
+		<Project filename="../../../source/third/sn/sn.cbp" />
+	</Workspace>
+</CodeBlocks_workspace_file>
