@@ -252,7 +252,7 @@ namespace linux
    }
 
 
-   ::index stdio_file::translate(::count offset, ::enum_seek eseek)
+   ::filesize stdio_file::translate(::filesize offset, ::enum_seek eseek)
    {
 
       ASSERT_VALID(this);

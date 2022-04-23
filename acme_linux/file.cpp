@@ -351,7 +351,7 @@ namespace linux
    }
 
 
-   ::index file::translate(::count offset, ::enum_seek eseek)
+   ::filesize file::translate(::filesize offset, ::enum_seek eseek)
    {
 
       if(m_iFile == INVALID_FILE)
