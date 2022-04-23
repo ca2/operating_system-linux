@@ -41,7 +41,7 @@ namespace linux
       bool read_string(string & rString) override;
 
 
-      ::index translate(::count c, ::enum_seek eseek) override;
+      ::filesize translate(::filesize c, ::enum_seek eseek) override;
 
       void abort() override;
       void flush() override;
