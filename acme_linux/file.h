@@ -82,7 +82,7 @@ namespace linux
 
 //      virtual __pointer(::file::file) Duplicate() const;
 
-      virtual ::index translate(::count c, ::enum_seek eseek) override;
+      virtual ::filesize translate(::filesize c, ::enum_seek eseek) override;
       virtual void set_size(filesize dwNewLen) override;
       virtual filesize get_size() const override;
 
