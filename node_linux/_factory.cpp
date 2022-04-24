@@ -22,7 +22,7 @@ __FACTORY_EXPORT void node_linux_factory(::factory::factory * pfactory)
       pfactoryKde->merge_to_global_factory();
 
    }
-   else if (edesktop & ::user::e_desktop_gnome)
+   else if ((edesktop & ::user::e_desktop_gnome) || (edesktop & ::user::e_desktop_lxde))
    {
 
       auto & pfactoryGnome = pfactory->m_psystem->factory("desktop_environment", "gnome");
