@@ -577,6 +577,7 @@ operating-system/operating-system-linux/apex_linux/CMakeFiles/apex_linux.dir/_.c
 operating-system/operating-system-linux/apex_linux/CMakeFiles/apex_linux.dir/_.cpp.o: source/app/acme/primitive/string/__c_wd32_impl.h
 operating-system/operating-system-linux/apex_linux/CMakeFiles/apex_linux.dir/_.cpp.o: source/app/acme/primitive/string/__c_wide.h
 operating-system/operating-system-linux/apex_linux/CMakeFiles/apex_linux.dir/_.cpp.o: source/app/acme/primitive/string/__c_wide_impl.h
+operating-system/operating-system-linux/apex_linux/CMakeFiles/apex_linux.dir/_.cpp.o: source/app/acme/primitive/string/__string.h
 operating-system/operating-system-linux/apex_linux/CMakeFiles/apex_linux.dir/_.cpp.o: source/app/acme/primitive/string/_base.h
 operating-system/operating-system-linux/apex_linux/CMakeFiles/apex_linux.dir/_.cpp.o: source/app/acme/primitive/string/_base_impl.h
 operating-system/operating-system-linux/apex_linux/CMakeFiles/apex_linux.dir/_.cpp.o: source/app/acme/primitive/string/_c.h
@@ -597,7 +598,6 @@ operating-system/operating-system-linux/apex_linux/CMakeFiles/apex_linux.dir/_.c
 operating-system/operating-system-linux/apex_linux/CMakeFiles/apex_linux.dir/_.cpp.o: source/app/acme/primitive/string/_compare.h
 operating-system/operating-system-linux/apex_linux/CMakeFiles/apex_linux.dir/_.cpp.o: source/app/acme/primitive/string/_compare_impl.h
 operating-system/operating-system-linux/apex_linux/CMakeFiles/apex_linux.dir/_.cpp.o: source/app/acme/primitive/string/_conv.h
-operating-system/operating-system-linux/apex_linux/CMakeFiles/apex_linux.dir/_.cpp.o: source/app/acme/primitive/string/_conv_ansi.h
 operating-system/operating-system-linux/apex_linux/CMakeFiles/apex_linux.dir/_.cpp.o: source/app/acme/primitive/string/_conv_ansi_impl.h
 operating-system/operating-system-linux/apex_linux/CMakeFiles/apex_linux.dir/_.cpp.o: source/app/acme/primitive/string/_defer.h
 operating-system/operating-system-linux/apex_linux/CMakeFiles/apex_linux.dir/_.cpp.o: source/app/acme/primitive/string/_impl.h
@@ -630,6 +630,7 @@ operating-system/operating-system-linux/apex_linux/CMakeFiles/apex_linux.dir/_.c
 operating-system/operating-system-linux/apex_linux/CMakeFiles/apex_linux.dir/_.cpp.o: source/app/acme/primitive/string/stringtow.h
 operating-system/operating-system-linux/apex_linux/CMakeFiles/apex_linux.dir/_.cpp.o: source/app/acme/primitive/string/sz.h
 operating-system/operating-system-linux/apex_linux/CMakeFiles/apex_linux.dir/_.cpp.o: source/app/acme/primitive/string/to_integer.h
+operating-system/operating-system-linux/apex_linux/CMakeFiles/apex_linux.dir/_.cpp.o: source/app/acme/primitive/string/to_string.h
 operating-system/operating-system-linux/apex_linux/CMakeFiles/apex_linux.dir/_.cpp.o: source/app/acme/primitive/string/tokenizer.h
 operating-system/operating-system-linux/apex_linux/CMakeFiles/apex_linux.dir/_.cpp.o: source/app/acme/primitive/string/x.h
 operating-system/operating-system-linux/apex_linux/CMakeFiles/apex_linux.dir/_.cpp.o: source/app/acme/primitive/string/x/x_charcategory.h
@@ -1425,6 +1426,7 @@ operating-system/operating-system-linux/apex_linux/CMakeFiles/apex_linux.dir/_fa
 operating-system/operating-system-linux/apex_linux/CMakeFiles/apex_linux.dir/_factory.cpp.o: source/app/acme/primitive/string/__c_wd32_impl.h
 operating-system/operating-system-linux/apex_linux/CMakeFiles/apex_linux.dir/_factory.cpp.o: source/app/acme/primitive/string/__c_wide.h
 operating-system/operating-system-linux/apex_linux/CMakeFiles/apex_linux.dir/_factory.cpp.o: source/app/acme/primitive/string/__c_wide_impl.h
+operating-system/operating-system-linux/apex_linux/CMakeFiles/apex_linux.dir/_factory.cpp.o: source/app/acme/primitive/string/__string.h
 operating-system/operating-system-linux/apex_linux/CMakeFiles/apex_linux.dir/_factory.cpp.o: source/app/acme/primitive/string/_base.h
 operating-system/operating-system-linux/apex_linux/CMakeFiles/apex_linux.dir/_factory.cpp.o: source/app/acme/primitive/string/_base_impl.h
 operating-system/operating-system-linux/apex_linux/CMakeFiles/apex_linux.dir/_factory.cpp.o: source/app/acme/primitive/string/_c.h
@@ -1445,7 +1447,6 @@ operating-system/operating-system-linux/apex_linux/CMakeFiles/apex_linux.dir/_fa
 operating-system/operating-system-linux/apex_linux/CMakeFiles/apex_linux.dir/_factory.cpp.o: source/app/acme/primitive/string/_compare.h
 operating-system/operating-system-linux/apex_linux/CMakeFiles/apex_linux.dir/_factory.cpp.o: source/app/acme/primitive/string/_compare_impl.h
 operating-system/operating-system-linux/apex_linux/CMakeFiles/apex_linux.dir/_factory.cpp.o: source/app/acme/primitive/string/_conv.h
-operating-system/operating-system-linux/apex_linux/CMakeFiles/apex_linux.dir/_factory.cpp.o: source/app/acme/primitive/string/_conv_ansi.h
 operating-system/operating-system-linux/apex_linux/CMakeFiles/apex_linux.dir/_factory.cpp.o: source/app/acme/primitive/string/_conv_ansi_impl.h
 operating-system/operating-system-linux/apex_linux/CMakeFiles/apex_linux.dir/_factory.cpp.o: source/app/acme/primitive/string/_defer.h
 operating-system/operating-system-linux/apex_linux/CMakeFiles/apex_linux.dir/_factory.cpp.o: source/app/acme/primitive/string/_impl.h
@@ -1478,6 +1479,7 @@ operating-system/operating-system-linux/apex_linux/CMakeFiles/apex_linux.dir/_fa
 operating-system/operating-system-linux/apex_linux/CMakeFiles/apex_linux.dir/_factory.cpp.o: source/app/acme/primitive/string/stringtow.h
 operating-system/operating-system-linux/apex_linux/CMakeFiles/apex_linux.dir/_factory.cpp.o: source/app/acme/primitive/string/sz.h
 operating-system/operating-system-linux/apex_linux/CMakeFiles/apex_linux.dir/_factory.cpp.o: source/app/acme/primitive/string/to_integer.h
+operating-system/operating-system-linux/apex_linux/CMakeFiles/apex_linux.dir/_factory.cpp.o: source/app/acme/primitive/string/to_string.h
 operating-system/operating-system-linux/apex_linux/CMakeFiles/apex_linux.dir/_factory.cpp.o: source/app/acme/primitive/string/tokenizer.h
 operating-system/operating-system-linux/apex_linux/CMakeFiles/apex_linux.dir/_factory.cpp.o: source/app/acme/primitive/string/x.h
 operating-system/operating-system-linux/apex_linux/CMakeFiles/apex_linux.dir/_factory.cpp.o: source/app/acme/primitive/string/x/x_charcategory.h
@@ -2268,6 +2270,7 @@ operating-system/operating-system-linux/apex_linux/CMakeFiles/apex_linux.dir/cma
 operating-system/operating-system-linux/apex_linux/CMakeFiles/apex_linux.dir/cmake_pch.hxx.gch: source/app/acme/primitive/string/__c_wd32_impl.h
 operating-system/operating-system-linux/apex_linux/CMakeFiles/apex_linux.dir/cmake_pch.hxx.gch: source/app/acme/primitive/string/__c_wide.h
 operating-system/operating-system-linux/apex_linux/CMakeFiles/apex_linux.dir/cmake_pch.hxx.gch: source/app/acme/primitive/string/__c_wide_impl.h
+operating-system/operating-system-linux/apex_linux/CMakeFiles/apex_linux.dir/cmake_pch.hxx.gch: source/app/acme/primitive/string/__string.h
 operating-system/operating-system-linux/apex_linux/CMakeFiles/apex_linux.dir/cmake_pch.hxx.gch: source/app/acme/primitive/string/_base.h
 operating-system/operating-system-linux/apex_linux/CMakeFiles/apex_linux.dir/cmake_pch.hxx.gch: source/app/acme/primitive/string/_base_impl.h
 operating-system/operating-system-linux/apex_linux/CMakeFiles/apex_linux.dir/cmake_pch.hxx.gch: source/app/acme/primitive/string/_c.h
@@ -2288,7 +2291,6 @@ operating-system/operating-system-linux/apex_linux/CMakeFiles/apex_linux.dir/cma
 operating-system/operating-system-linux/apex_linux/CMakeFiles/apex_linux.dir/cmake_pch.hxx.gch: source/app/acme/primitive/string/_compare.h
 operating-system/operating-system-linux/apex_linux/CMakeFiles/apex_linux.dir/cmake_pch.hxx.gch: source/app/acme/primitive/string/_compare_impl.h
 operating-system/operating-system-linux/apex_linux/CMakeFiles/apex_linux.dir/cmake_pch.hxx.gch: source/app/acme/primitive/string/_conv.h
-operating-system/operating-system-linux/apex_linux/CMakeFiles/apex_linux.dir/cmake_pch.hxx.gch: source/app/acme/primitive/string/_conv_ansi.h
 operating-system/operating-system-linux/apex_linux/CMakeFiles/apex_linux.dir/cmake_pch.hxx.gch: source/app/acme/primitive/string/_conv_ansi_impl.h
 operating-system/operating-system-linux/apex_linux/CMakeFiles/apex_linux.dir/cmake_pch.hxx.gch: source/app/acme/primitive/string/_defer.h
 operating-system/operating-system-linux/apex_linux/CMakeFiles/apex_linux.dir/cmake_pch.hxx.gch: source/app/acme/primitive/string/_impl.h
@@ -2321,6 +2323,7 @@ operating-system/operating-system-linux/apex_linux/CMakeFiles/apex_linux.dir/cma
 operating-system/operating-system-linux/apex_linux/CMakeFiles/apex_linux.dir/cmake_pch.hxx.gch: source/app/acme/primitive/string/stringtow.h
 operating-system/operating-system-linux/apex_linux/CMakeFiles/apex_linux.dir/cmake_pch.hxx.gch: source/app/acme/primitive/string/sz.h
 operating-system/operating-system-linux/apex_linux/CMakeFiles/apex_linux.dir/cmake_pch.hxx.gch: source/app/acme/primitive/string/to_integer.h
+operating-system/operating-system-linux/apex_linux/CMakeFiles/apex_linux.dir/cmake_pch.hxx.gch: source/app/acme/primitive/string/to_string.h
 operating-system/operating-system-linux/apex_linux/CMakeFiles/apex_linux.dir/cmake_pch.hxx.gch: source/app/acme/primitive/string/tokenizer.h
 operating-system/operating-system-linux/apex_linux/CMakeFiles/apex_linux.dir/cmake_pch.hxx.gch: source/app/acme/primitive/string/x.h
 operating-system/operating-system-linux/apex_linux/CMakeFiles/apex_linux.dir/cmake_pch.hxx.gch: source/app/acme/primitive/string/x/x_charcategory.h
@@ -3110,6 +3113,7 @@ operating-system/operating-system-linux/apex_linux/CMakeFiles/apex_linux.dir/cry
 operating-system/operating-system-linux/apex_linux/CMakeFiles/apex_linux.dir/crypto.cpp.o: source/app/acme/primitive/string/__c_wd32_impl.h
 operating-system/operating-system-linux/apex_linux/CMakeFiles/apex_linux.dir/crypto.cpp.o: source/app/acme/primitive/string/__c_wide.h
 operating-system/operating-system-linux/apex_linux/CMakeFiles/apex_linux.dir/crypto.cpp.o: source/app/acme/primitive/string/__c_wide_impl.h
+operating-system/operating-system-linux/apex_linux/CMakeFiles/apex_linux.dir/crypto.cpp.o: source/app/acme/primitive/string/__string.h
 operating-system/operating-system-linux/apex_linux/CMakeFiles/apex_linux.dir/crypto.cpp.o: source/app/acme/primitive/string/_base.h
 operating-system/operating-system-linux/apex_linux/CMakeFiles/apex_linux.dir/crypto.cpp.o: source/app/acme/primitive/string/_base_impl.h
 operating-system/operating-system-linux/apex_linux/CMakeFiles/apex_linux.dir/crypto.cpp.o: source/app/acme/primitive/string/_c.h
@@ -3130,7 +3134,6 @@ operating-system/operating-system-linux/apex_linux/CMakeFiles/apex_linux.dir/cry
 operating-system/operating-system-linux/apex_linux/CMakeFiles/apex_linux.dir/crypto.cpp.o: source/app/acme/primitive/string/_compare.h
 operating-system/operating-system-linux/apex_linux/CMakeFiles/apex_linux.dir/crypto.cpp.o: source/app/acme/primitive/string/_compare_impl.h
 operating-system/operating-system-linux/apex_linux/CMakeFiles/apex_linux.dir/crypto.cpp.o: source/app/acme/primitive/string/_conv.h
-operating-system/operating-system-linux/apex_linux/CMakeFiles/apex_linux.dir/crypto.cpp.o: source/app/acme/primitive/string/_conv_ansi.h
 operating-system/operating-system-linux/apex_linux/CMakeFiles/apex_linux.dir/crypto.cpp.o: source/app/acme/primitive/string/_conv_ansi_impl.h
 operating-system/operating-system-linux/apex_linux/CMakeFiles/apex_linux.dir/crypto.cpp.o: source/app/acme/primitive/string/_defer.h
 operating-system/operating-system-linux/apex_linux/CMakeFiles/apex_linux.dir/crypto.cpp.o: source/app/acme/primitive/string/_impl.h
@@ -3163,6 +3166,7 @@ operating-system/operating-system-linux/apex_linux/CMakeFiles/apex_linux.dir/cry
 operating-system/operating-system-linux/apex_linux/CMakeFiles/apex_linux.dir/crypto.cpp.o: source/app/acme/primitive/string/stringtow.h
 operating-system/operating-system-linux/apex_linux/CMakeFiles/apex_linux.dir/crypto.cpp.o: source/app/acme/primitive/string/sz.h
 operating-system/operating-system-linux/apex_linux/CMakeFiles/apex_linux.dir/crypto.cpp.o: source/app/acme/primitive/string/to_integer.h
+operating-system/operating-system-linux/apex_linux/CMakeFiles/apex_linux.dir/crypto.cpp.o: source/app/acme/primitive/string/to_string.h
 operating-system/operating-system-linux/apex_linux/CMakeFiles/apex_linux.dir/crypto.cpp.o: source/app/acme/primitive/string/tokenizer.h
 operating-system/operating-system-linux/apex_linux/CMakeFiles/apex_linux.dir/crypto.cpp.o: source/app/acme/primitive/string/x.h
 operating-system/operating-system-linux/apex_linux/CMakeFiles/apex_linux.dir/crypto.cpp.o: source/app/acme/primitive/string/x/x_charcategory.h
@@ -3951,6 +3955,7 @@ operating-system/operating-system-linux/apex_linux/CMakeFiles/apex_linux.dir/dir
 operating-system/operating-system-linux/apex_linux/CMakeFiles/apex_linux.dir/dir_context.cpp.o: source/app/acme/primitive/string/__c_wd32_impl.h
 operating-system/operating-system-linux/apex_linux/CMakeFiles/apex_linux.dir/dir_context.cpp.o: source/app/acme/primitive/string/__c_wide.h
 operating-system/operating-system-linux/apex_linux/CMakeFiles/apex_linux.dir/dir_context.cpp.o: source/app/acme/primitive/string/__c_wide_impl.h
+operating-system/operating-system-linux/apex_linux/CMakeFiles/apex_linux.dir/dir_context.cpp.o: source/app/acme/primitive/string/__string.h
 operating-system/operating-system-linux/apex_linux/CMakeFiles/apex_linux.dir/dir_context.cpp.o: source/app/acme/primitive/string/_base.h
 operating-system/operating-system-linux/apex_linux/CMakeFiles/apex_linux.dir/dir_context.cpp.o: source/app/acme/primitive/string/_base_impl.h
 operating-system/operating-system-linux/apex_linux/CMakeFiles/apex_linux.dir/dir_context.cpp.o: source/app/acme/primitive/string/_c.h
@@ -3971,7 +3976,6 @@ operating-system/operating-system-linux/apex_linux/CMakeFiles/apex_linux.dir/dir
 operating-system/operating-system-linux/apex_linux/CMakeFiles/apex_linux.dir/dir_context.cpp.o: source/app/acme/primitive/string/_compare.h
 operating-system/operating-system-linux/apex_linux/CMakeFiles/apex_linux.dir/dir_context.cpp.o: source/app/acme/primitive/string/_compare_impl.h
 operating-system/operating-system-linux/apex_linux/CMakeFiles/apex_linux.dir/dir_context.cpp.o: source/app/acme/primitive/string/_conv.h
-operating-system/operating-system-linux/apex_linux/CMakeFiles/apex_linux.dir/dir_context.cpp.o: source/app/acme/primitive/string/_conv_ansi.h
 operating-system/operating-system-linux/apex_linux/CMakeFiles/apex_linux.dir/dir_context.cpp.o: source/app/acme/primitive/string/_conv_ansi_impl.h
 operating-system/operating-system-linux/apex_linux/CMakeFiles/apex_linux.dir/dir_context.cpp.o: source/app/acme/primitive/string/_defer.h
 operating-system/operating-system-linux/apex_linux/CMakeFiles/apex_linux.dir/dir_context.cpp.o: source/app/acme/primitive/string/_impl.h
@@ -4004,6 +4008,7 @@ operating-system/operating-system-linux/apex_linux/CMakeFiles/apex_linux.dir/dir
 operating-system/operating-system-linux/apex_linux/CMakeFiles/apex_linux.dir/dir_context.cpp.o: source/app/acme/primitive/string/stringtow.h
 operating-system/operating-system-linux/apex_linux/CMakeFiles/apex_linux.dir/dir_context.cpp.o: source/app/acme/primitive/string/sz.h
 operating-system/operating-system-linux/apex_linux/CMakeFiles/apex_linux.dir/dir_context.cpp.o: source/app/acme/primitive/string/to_integer.h
+operating-system/operating-system-linux/apex_linux/CMakeFiles/apex_linux.dir/dir_context.cpp.o: source/app/acme/primitive/string/to_string.h
 operating-system/operating-system-linux/apex_linux/CMakeFiles/apex_linux.dir/dir_context.cpp.o: source/app/acme/primitive/string/tokenizer.h
 operating-system/operating-system-linux/apex_linux/CMakeFiles/apex_linux.dir/dir_context.cpp.o: source/app/acme/primitive/string/x.h
 operating-system/operating-system-linux/apex_linux/CMakeFiles/apex_linux.dir/dir_context.cpp.o: source/app/acme/primitive/string/x/x_charcategory.h
@@ -4792,6 +4797,7 @@ operating-system/operating-system-linux/apex_linux/CMakeFiles/apex_linux.dir/dir
 operating-system/operating-system-linux/apex_linux/CMakeFiles/apex_linux.dir/dir_system.cpp.o: source/app/acme/primitive/string/__c_wd32_impl.h
 operating-system/operating-system-linux/apex_linux/CMakeFiles/apex_linux.dir/dir_system.cpp.o: source/app/acme/primitive/string/__c_wide.h
 operating-system/operating-system-linux/apex_linux/CMakeFiles/apex_linux.dir/dir_system.cpp.o: source/app/acme/primitive/string/__c_wide_impl.h
+operating-system/operating-system-linux/apex_linux/CMakeFiles/apex_linux.dir/dir_system.cpp.o: source/app/acme/primitive/string/__string.h
 operating-system/operating-system-linux/apex_linux/CMakeFiles/apex_linux.dir/dir_system.cpp.o: source/app/acme/primitive/string/_base.h
 operating-system/operating-system-linux/apex_linux/CMakeFiles/apex_linux.dir/dir_system.cpp.o: source/app/acme/primitive/string/_base_impl.h
 operating-system/operating-system-linux/apex_linux/CMakeFiles/apex_linux.dir/dir_system.cpp.o: source/app/acme/primitive/string/_c.h
@@ -4812,7 +4818,6 @@ operating-system/operating-system-linux/apex_linux/CMakeFiles/apex_linux.dir/dir
 operating-system/operating-system-linux/apex_linux/CMakeFiles/apex_linux.dir/dir_system.cpp.o: source/app/acme/primitive/string/_compare.h
 operating-system/operating-system-linux/apex_linux/CMakeFiles/apex_linux.dir/dir_system.cpp.o: source/app/acme/primitive/string/_compare_impl.h
 operating-system/operating-system-linux/apex_linux/CMakeFiles/apex_linux.dir/dir_system.cpp.o: source/app/acme/primitive/string/_conv.h
-operating-system/operating-system-linux/apex_linux/CMakeFiles/apex_linux.dir/dir_system.cpp.o: source/app/acme/primitive/string/_conv_ansi.h
 operating-system/operating-system-linux/apex_linux/CMakeFiles/apex_linux.dir/dir_system.cpp.o: source/app/acme/primitive/string/_conv_ansi_impl.h
 operating-system/operating-system-linux/apex_linux/CMakeFiles/apex_linux.dir/dir_system.cpp.o: source/app/acme/primitive/string/_defer.h
 operating-system/operating-system-linux/apex_linux/CMakeFiles/apex_linux.dir/dir_system.cpp.o: source/app/acme/primitive/string/_impl.h
@@ -4845,6 +4850,7 @@ operating-system/operating-system-linux/apex_linux/CMakeFiles/apex_linux.dir/dir
 operating-system/operating-system-linux/apex_linux/CMakeFiles/apex_linux.dir/dir_system.cpp.o: source/app/acme/primitive/string/stringtow.h
 operating-system/operating-system-linux/apex_linux/CMakeFiles/apex_linux.dir/dir_system.cpp.o: source/app/acme/primitive/string/sz.h
 operating-system/operating-system-linux/apex_linux/CMakeFiles/apex_linux.dir/dir_system.cpp.o: source/app/acme/primitive/string/to_integer.h
+operating-system/operating-system-linux/apex_linux/CMakeFiles/apex_linux.dir/dir_system.cpp.o: source/app/acme/primitive/string/to_string.h
 operating-system/operating-system-linux/apex_linux/CMakeFiles/apex_linux.dir/dir_system.cpp.o: source/app/acme/primitive/string/tokenizer.h
 operating-system/operating-system-linux/apex_linux/CMakeFiles/apex_linux.dir/dir_system.cpp.o: source/app/acme/primitive/string/x.h
 operating-system/operating-system-linux/apex_linux/CMakeFiles/apex_linux.dir/dir_system.cpp.o: source/app/acme/primitive/string/x/x_charcategory.h
@@ -5634,6 +5640,7 @@ operating-system/operating-system-linux/apex_linux/CMakeFiles/apex_linux.dir/fil
 operating-system/operating-system-linux/apex_linux/CMakeFiles/apex_linux.dir/file_context.cpp.o: source/app/acme/primitive/string/__c_wd32_impl.h
 operating-system/operating-system-linux/apex_linux/CMakeFiles/apex_linux.dir/file_context.cpp.o: source/app/acme/primitive/string/__c_wide.h
 operating-system/operating-system-linux/apex_linux/CMakeFiles/apex_linux.dir/file_context.cpp.o: source/app/acme/primitive/string/__c_wide_impl.h
+operating-system/operating-system-linux/apex_linux/CMakeFiles/apex_linux.dir/file_context.cpp.o: source/app/acme/primitive/string/__string.h
 operating-system/operating-system-linux/apex_linux/CMakeFiles/apex_linux.dir/file_context.cpp.o: source/app/acme/primitive/string/_base.h
 operating-system/operating-system-linux/apex_linux/CMakeFiles/apex_linux.dir/file_context.cpp.o: source/app/acme/primitive/string/_base_impl.h
 operating-system/operating-system-linux/apex_linux/CMakeFiles/apex_linux.dir/file_context.cpp.o: source/app/acme/primitive/string/_c.h
@@ -5654,7 +5661,6 @@ operating-system/operating-system-linux/apex_linux/CMakeFiles/apex_linux.dir/fil
 operating-system/operating-system-linux/apex_linux/CMakeFiles/apex_linux.dir/file_context.cpp.o: source/app/acme/primitive/string/_compare.h
 operating-system/operating-system-linux/apex_linux/CMakeFiles/apex_linux.dir/file_context.cpp.o: source/app/acme/primitive/string/_compare_impl.h
 operating-system/operating-system-linux/apex_linux/CMakeFiles/apex_linux.dir/file_context.cpp.o: source/app/acme/primitive/string/_conv.h
-operating-system/operating-system-linux/apex_linux/CMakeFiles/apex_linux.dir/file_context.cpp.o: source/app/acme/primitive/string/_conv_ansi.h
 operating-system/operating-system-linux/apex_linux/CMakeFiles/apex_linux.dir/file_context.cpp.o: source/app/acme/primitive/string/_conv_ansi_impl.h
 operating-system/operating-system-linux/apex_linux/CMakeFiles/apex_linux.dir/file_context.cpp.o: source/app/acme/primitive/string/_defer.h
 operating-system/operating-system-linux/apex_linux/CMakeFiles/apex_linux.dir/file_context.cpp.o: source/app/acme/primitive/string/_impl.h
@@ -5687,6 +5693,7 @@ operating-system/operating-system-linux/apex_linux/CMakeFiles/apex_linux.dir/fil
 operating-system/operating-system-linux/apex_linux/CMakeFiles/apex_linux.dir/file_context.cpp.o: source/app/acme/primitive/string/stringtow.h
 operating-system/operating-system-linux/apex_linux/CMakeFiles/apex_linux.dir/file_context.cpp.o: source/app/acme/primitive/string/sz.h
 operating-system/operating-system-linux/apex_linux/CMakeFiles/apex_linux.dir/file_context.cpp.o: source/app/acme/primitive/string/to_integer.h
+operating-system/operating-system-linux/apex_linux/CMakeFiles/apex_linux.dir/file_context.cpp.o: source/app/acme/primitive/string/to_string.h
 operating-system/operating-system-linux/apex_linux/CMakeFiles/apex_linux.dir/file_context.cpp.o: source/app/acme/primitive/string/tokenizer.h
 operating-system/operating-system-linux/apex_linux/CMakeFiles/apex_linux.dir/file_context.cpp.o: source/app/acme/primitive/string/x.h
 operating-system/operating-system-linux/apex_linux/CMakeFiles/apex_linux.dir/file_context.cpp.o: source/app/acme/primitive/string/x/x_charcategory.h
@@ -6475,6 +6482,7 @@ operating-system/operating-system-linux/apex_linux/CMakeFiles/apex_linux.dir/fil
 operating-system/operating-system-linux/apex_linux/CMakeFiles/apex_linux.dir/file_system.cpp.o: source/app/acme/primitive/string/__c_wd32_impl.h
 operating-system/operating-system-linux/apex_linux/CMakeFiles/apex_linux.dir/file_system.cpp.o: source/app/acme/primitive/string/__c_wide.h
 operating-system/operating-system-linux/apex_linux/CMakeFiles/apex_linux.dir/file_system.cpp.o: source/app/acme/primitive/string/__c_wide_impl.h
+operating-system/operating-system-linux/apex_linux/CMakeFiles/apex_linux.dir/file_system.cpp.o: source/app/acme/primitive/string/__string.h
 operating-system/operating-system-linux/apex_linux/CMakeFiles/apex_linux.dir/file_system.cpp.o: source/app/acme/primitive/string/_base.h
 operating-system/operating-system-linux/apex_linux/CMakeFiles/apex_linux.dir/file_system.cpp.o: source/app/acme/primitive/string/_base_impl.h
 operating-system/operating-system-linux/apex_linux/CMakeFiles/apex_linux.dir/file_system.cpp.o: source/app/acme/primitive/string/_c.h
@@ -6495,7 +6503,6 @@ operating-system/operating-system-linux/apex_linux/CMakeFiles/apex_linux.dir/fil
 operating-system/operating-system-linux/apex_linux/CMakeFiles/apex_linux.dir/file_system.cpp.o: source/app/acme/primitive/string/_compare.h
 operating-system/operating-system-linux/apex_linux/CMakeFiles/apex_linux.dir/file_system.cpp.o: source/app/acme/primitive/string/_compare_impl.h
 operating-system/operating-system-linux/apex_linux/CMakeFiles/apex_linux.dir/file_system.cpp.o: source/app/acme/primitive/string/_conv.h
-operating-system/operating-system-linux/apex_linux/CMakeFiles/apex_linux.dir/file_system.cpp.o: source/app/acme/primitive/string/_conv_ansi.h
 operating-system/operating-system-linux/apex_linux/CMakeFiles/apex_linux.dir/file_system.cpp.o: source/app/acme/primitive/string/_conv_ansi_impl.h
 operating-system/operating-system-linux/apex_linux/CMakeFiles/apex_linux.dir/file_system.cpp.o: source/app/acme/primitive/string/_defer.h
 operating-system/operating-system-linux/apex_linux/CMakeFiles/apex_linux.dir/file_system.cpp.o: source/app/acme/primitive/string/_impl.h
@@ -6528,6 +6535,7 @@ operating-system/operating-system-linux/apex_linux/CMakeFiles/apex_linux.dir/fil
 operating-system/operating-system-linux/apex_linux/CMakeFiles/apex_linux.dir/file_system.cpp.o: source/app/acme/primitive/string/stringtow.h
 operating-system/operating-system-linux/apex_linux/CMakeFiles/apex_linux.dir/file_system.cpp.o: source/app/acme/primitive/string/sz.h
 operating-system/operating-system-linux/apex_linux/CMakeFiles/apex_linux.dir/file_system.cpp.o: source/app/acme/primitive/string/to_integer.h
+operating-system/operating-system-linux/apex_linux/CMakeFiles/apex_linux.dir/file_system.cpp.o: source/app/acme/primitive/string/to_string.h
 operating-system/operating-system-linux/apex_linux/CMakeFiles/apex_linux.dir/file_system.cpp.o: source/app/acme/primitive/string/tokenizer.h
 operating-system/operating-system-linux/apex_linux/CMakeFiles/apex_linux.dir/file_system.cpp.o: source/app/acme/primitive/string/x.h
 operating-system/operating-system-linux/apex_linux/CMakeFiles/apex_linux.dir/file_system.cpp.o: source/app/acme/primitive/string/x/x_charcategory.h
@@ -7316,6 +7324,7 @@ operating-system/operating-system-linux/apex_linux/CMakeFiles/apex_linux.dir/fra
 operating-system/operating-system-linux/apex_linux/CMakeFiles/apex_linux.dir/framework.cpp.o: source/app/acme/primitive/string/__c_wd32_impl.h
 operating-system/operating-system-linux/apex_linux/CMakeFiles/apex_linux.dir/framework.cpp.o: source/app/acme/primitive/string/__c_wide.h
 operating-system/operating-system-linux/apex_linux/CMakeFiles/apex_linux.dir/framework.cpp.o: source/app/acme/primitive/string/__c_wide_impl.h
+operating-system/operating-system-linux/apex_linux/CMakeFiles/apex_linux.dir/framework.cpp.o: source/app/acme/primitive/string/__string.h
 operating-system/operating-system-linux/apex_linux/CMakeFiles/apex_linux.dir/framework.cpp.o: source/app/acme/primitive/string/_base.h
 operating-system/operating-system-linux/apex_linux/CMakeFiles/apex_linux.dir/framework.cpp.o: source/app/acme/primitive/string/_base_impl.h
 operating-system/operating-system-linux/apex_linux/CMakeFiles/apex_linux.dir/framework.cpp.o: source/app/acme/primitive/string/_c.h
@@ -7336,7 +7345,6 @@ operating-system/operating-system-linux/apex_linux/CMakeFiles/apex_linux.dir/fra
 operating-system/operating-system-linux/apex_linux/CMakeFiles/apex_linux.dir/framework.cpp.o: source/app/acme/primitive/string/_compare.h
 operating-system/operating-system-linux/apex_linux/CMakeFiles/apex_linux.dir/framework.cpp.o: source/app/acme/primitive/string/_compare_impl.h
 operating-system/operating-system-linux/apex_linux/CMakeFiles/apex_linux.dir/framework.cpp.o: source/app/acme/primitive/string/_conv.h
-operating-system/operating-system-linux/apex_linux/CMakeFiles/apex_linux.dir/framework.cpp.o: source/app/acme/primitive/string/_conv_ansi.h
 operating-system/operating-system-linux/apex_linux/CMakeFiles/apex_linux.dir/framework.cpp.o: source/app/acme/primitive/string/_conv_ansi_impl.h
 operating-system/operating-system-linux/apex_linux/CMakeFiles/apex_linux.dir/framework.cpp.o: source/app/acme/primitive/string/_defer.h
 operating-system/operating-system-linux/apex_linux/CMakeFiles/apex_linux.dir/framework.cpp.o: source/app/acme/primitive/string/_impl.h
@@ -7369,6 +7377,7 @@ operating-system/operating-system-linux/apex_linux/CMakeFiles/apex_linux.dir/fra
 operating-system/operating-system-linux/apex_linux/CMakeFiles/apex_linux.dir/framework.cpp.o: source/app/acme/primitive/string/stringtow.h
 operating-system/operating-system-linux/apex_linux/CMakeFiles/apex_linux.dir/framework.cpp.o: source/app/acme/primitive/string/sz.h
 operating-system/operating-system-linux/apex_linux/CMakeFiles/apex_linux.dir/framework.cpp.o: source/app/acme/primitive/string/to_integer.h
+operating-system/operating-system-linux/apex_linux/CMakeFiles/apex_linux.dir/framework.cpp.o: source/app/acme/primitive/string/to_string.h
 operating-system/operating-system-linux/apex_linux/CMakeFiles/apex_linux.dir/framework.cpp.o: source/app/acme/primitive/string/tokenizer.h
 operating-system/operating-system-linux/apex_linux/CMakeFiles/apex_linux.dir/framework.cpp.o: source/app/acme/primitive/string/x.h
 operating-system/operating-system-linux/apex_linux/CMakeFiles/apex_linux.dir/framework.cpp.o: source/app/acme/primitive/string/x/x_charcategory.h
@@ -8159,6 +8168,7 @@ operating-system/operating-system-linux/apex_linux/CMakeFiles/apex_linux.dir/ip_
 operating-system/operating-system-linux/apex_linux/CMakeFiles/apex_linux.dir/ip_enum.cpp.o: source/app/acme/primitive/string/__c_wd32_impl.h
 operating-system/operating-system-linux/apex_linux/CMakeFiles/apex_linux.dir/ip_enum.cpp.o: source/app/acme/primitive/string/__c_wide.h
 operating-system/operating-system-linux/apex_linux/CMakeFiles/apex_linux.dir/ip_enum.cpp.o: source/app/acme/primitive/string/__c_wide_impl.h
+operating-system/operating-system-linux/apex_linux/CMakeFiles/apex_linux.dir/ip_enum.cpp.o: source/app/acme/primitive/string/__string.h
 operating-system/operating-system-linux/apex_linux/CMakeFiles/apex_linux.dir/ip_enum.cpp.o: source/app/acme/primitive/string/_base.h
 operating-system/operating-system-linux/apex_linux/CMakeFiles/apex_linux.dir/ip_enum.cpp.o: source/app/acme/primitive/string/_base_impl.h
 operating-system/operating-system-linux/apex_linux/CMakeFiles/apex_linux.dir/ip_enum.cpp.o: source/app/acme/primitive/string/_c.h
@@ -8179,7 +8189,6 @@ operating-system/operating-system-linux/apex_linux/CMakeFiles/apex_linux.dir/ip_
 operating-system/operating-system-linux/apex_linux/CMakeFiles/apex_linux.dir/ip_enum.cpp.o: source/app/acme/primitive/string/_compare.h
 operating-system/operating-system-linux/apex_linux/CMakeFiles/apex_linux.dir/ip_enum.cpp.o: source/app/acme/primitive/string/_compare_impl.h
 operating-system/operating-system-linux/apex_linux/CMakeFiles/apex_linux.dir/ip_enum.cpp.o: source/app/acme/primitive/string/_conv.h
-operating-system/operating-system-linux/apex_linux/CMakeFiles/apex_linux.dir/ip_enum.cpp.o: source/app/acme/primitive/string/_conv_ansi.h
 operating-system/operating-system-linux/apex_linux/CMakeFiles/apex_linux.dir/ip_enum.cpp.o: source/app/acme/primitive/string/_conv_ansi_impl.h
 operating-system/operating-system-linux/apex_linux/CMakeFiles/apex_linux.dir/ip_enum.cpp.o: source/app/acme/primitive/string/_defer.h
 operating-system/operating-system-linux/apex_linux/CMakeFiles/apex_linux.dir/ip_enum.cpp.o: source/app/acme/primitive/string/_impl.h
@@ -8212,6 +8221,7 @@ operating-system/operating-system-linux/apex_linux/CMakeFiles/apex_linux.dir/ip_
 operating-system/operating-system-linux/apex_linux/CMakeFiles/apex_linux.dir/ip_enum.cpp.o: source/app/acme/primitive/string/stringtow.h
 operating-system/operating-system-linux/apex_linux/CMakeFiles/apex_linux.dir/ip_enum.cpp.o: source/app/acme/primitive/string/sz.h
 operating-system/operating-system-linux/apex_linux/CMakeFiles/apex_linux.dir/ip_enum.cpp.o: source/app/acme/primitive/string/to_integer.h
+operating-system/operating-system-linux/apex_linux/CMakeFiles/apex_linux.dir/ip_enum.cpp.o: source/app/acme/primitive/string/to_string.h
 operating-system/operating-system-linux/apex_linux/CMakeFiles/apex_linux.dir/ip_enum.cpp.o: source/app/acme/primitive/string/tokenizer.h
 operating-system/operating-system-linux/apex_linux/CMakeFiles/apex_linux.dir/ip_enum.cpp.o: source/app/acme/primitive/string/x.h
 operating-system/operating-system-linux/apex_linux/CMakeFiles/apex_linux.dir/ip_enum.cpp.o: source/app/acme/primitive/string/x/x_charcategory.h
@@ -9043,6 +9053,7 @@ operating-system/operating-system-linux/apex_linux/CMakeFiles/apex_linux.dir/lau
 operating-system/operating-system-linux/apex_linux/CMakeFiles/apex_linux.dir/launcher.cpp.o: source/app/acme/primitive/string/__c_wd32_impl.h
 operating-system/operating-system-linux/apex_linux/CMakeFiles/apex_linux.dir/launcher.cpp.o: source/app/acme/primitive/string/__c_wide.h
 operating-system/operating-system-linux/apex_linux/CMakeFiles/apex_linux.dir/launcher.cpp.o: source/app/acme/primitive/string/__c_wide_impl.h
+operating-system/operating-system-linux/apex_linux/CMakeFiles/apex_linux.dir/launcher.cpp.o: source/app/acme/primitive/string/__string.h
 operating-system/operating-system-linux/apex_linux/CMakeFiles/apex_linux.dir/launcher.cpp.o: source/app/acme/primitive/string/_base.h
 operating-system/operating-system-linux/apex_linux/CMakeFiles/apex_linux.dir/launcher.cpp.o: source/app/acme/primitive/string/_base_impl.h
 operating-system/operating-system-linux/apex_linux/CMakeFiles/apex_linux.dir/launcher.cpp.o: source/app/acme/primitive/string/_c.h
@@ -9063,7 +9074,6 @@ operating-system/operating-system-linux/apex_linux/CMakeFiles/apex_linux.dir/lau
 operating-system/operating-system-linux/apex_linux/CMakeFiles/apex_linux.dir/launcher.cpp.o: source/app/acme/primitive/string/_compare.h
 operating-system/operating-system-linux/apex_linux/CMakeFiles/apex_linux.dir/launcher.cpp.o: source/app/acme/primitive/string/_compare_impl.h
 operating-system/operating-system-linux/apex_linux/CMakeFiles/apex_linux.dir/launcher.cpp.o: source/app/acme/primitive/string/_conv.h
-operating-system/operating-system-linux/apex_linux/CMakeFiles/apex_linux.dir/launcher.cpp.o: source/app/acme/primitive/string/_conv_ansi.h
 operating-system/operating-system-linux/apex_linux/CMakeFiles/apex_linux.dir/launcher.cpp.o: source/app/acme/primitive/string/_conv_ansi_impl.h
 operating-system/operating-system-linux/apex_linux/CMakeFiles/apex_linux.dir/launcher.cpp.o: source/app/acme/primitive/string/_defer.h
 operating-system/operating-system-linux/apex_linux/CMakeFiles/apex_linux.dir/launcher.cpp.o: source/app/acme/primitive/string/_impl.h
@@ -9096,6 +9106,7 @@ operating-system/operating-system-linux/apex_linux/CMakeFiles/apex_linux.dir/lau
 operating-system/operating-system-linux/apex_linux/CMakeFiles/apex_linux.dir/launcher.cpp.o: source/app/acme/primitive/string/stringtow.h
 operating-system/operating-system-linux/apex_linux/CMakeFiles/apex_linux.dir/launcher.cpp.o: source/app/acme/primitive/string/sz.h
 operating-system/operating-system-linux/apex_linux/CMakeFiles/apex_linux.dir/launcher.cpp.o: source/app/acme/primitive/string/to_integer.h
+operating-system/operating-system-linux/apex_linux/CMakeFiles/apex_linux.dir/launcher.cpp.o: source/app/acme/primitive/string/to_string.h
 operating-system/operating-system-linux/apex_linux/CMakeFiles/apex_linux.dir/launcher.cpp.o: source/app/acme/primitive/string/tokenizer.h
 operating-system/operating-system-linux/apex_linux/CMakeFiles/apex_linux.dir/launcher.cpp.o: source/app/acme/primitive/string/x.h
 operating-system/operating-system-linux/apex_linux/CMakeFiles/apex_linux.dir/launcher.cpp.o: source/app/acme/primitive/string/x/x_charcategory.h
@@ -9885,6 +9896,7 @@ operating-system/operating-system-linux/apex_linux/CMakeFiles/apex_linux.dir/nod
 operating-system/operating-system-linux/apex_linux/CMakeFiles/apex_linux.dir/node.cpp.o: source/app/acme/primitive/string/__c_wd32_impl.h
 operating-system/operating-system-linux/apex_linux/CMakeFiles/apex_linux.dir/node.cpp.o: source/app/acme/primitive/string/__c_wide.h
 operating-system/operating-system-linux/apex_linux/CMakeFiles/apex_linux.dir/node.cpp.o: source/app/acme/primitive/string/__c_wide_impl.h
+operating-system/operating-system-linux/apex_linux/CMakeFiles/apex_linux.dir/node.cpp.o: source/app/acme/primitive/string/__string.h
 operating-system/operating-system-linux/apex_linux/CMakeFiles/apex_linux.dir/node.cpp.o: source/app/acme/primitive/string/_base.h
 operating-system/operating-system-linux/apex_linux/CMakeFiles/apex_linux.dir/node.cpp.o: source/app/acme/primitive/string/_base_impl.h
 operating-system/operating-system-linux/apex_linux/CMakeFiles/apex_linux.dir/node.cpp.o: source/app/acme/primitive/string/_c.h
@@ -9905,7 +9917,6 @@ operating-system/operating-system-linux/apex_linux/CMakeFiles/apex_linux.dir/nod
 operating-system/operating-system-linux/apex_linux/CMakeFiles/apex_linux.dir/node.cpp.o: source/app/acme/primitive/string/_compare.h
 operating-system/operating-system-linux/apex_linux/CMakeFiles/apex_linux.dir/node.cpp.o: source/app/acme/primitive/string/_compare_impl.h
 operating-system/operating-system-linux/apex_linux/CMakeFiles/apex_linux.dir/node.cpp.o: source/app/acme/primitive/string/_conv.h
-operating-system/operating-system-linux/apex_linux/CMakeFiles/apex_linux.dir/node.cpp.o: source/app/acme/primitive/string/_conv_ansi.h
 operating-system/operating-system-linux/apex_linux/CMakeFiles/apex_linux.dir/node.cpp.o: source/app/acme/primitive/string/_conv_ansi_impl.h
 operating-system/operating-system-linux/apex_linux/CMakeFiles/apex_linux.dir/node.cpp.o: source/app/acme/primitive/string/_defer.h
 operating-system/operating-system-linux/apex_linux/CMakeFiles/apex_linux.dir/node.cpp.o: source/app/acme/primitive/string/_impl.h
@@ -9938,6 +9949,7 @@ operating-system/operating-system-linux/apex_linux/CMakeFiles/apex_linux.dir/nod
 operating-system/operating-system-linux/apex_linux/CMakeFiles/apex_linux.dir/node.cpp.o: source/app/acme/primitive/string/stringtow.h
 operating-system/operating-system-linux/apex_linux/CMakeFiles/apex_linux.dir/node.cpp.o: source/app/acme/primitive/string/sz.h
 operating-system/operating-system-linux/apex_linux/CMakeFiles/apex_linux.dir/node.cpp.o: source/app/acme/primitive/string/to_integer.h
+operating-system/operating-system-linux/apex_linux/CMakeFiles/apex_linux.dir/node.cpp.o: source/app/acme/primitive/string/to_string.h
 operating-system/operating-system-linux/apex_linux/CMakeFiles/apex_linux.dir/node.cpp.o: source/app/acme/primitive/string/tokenizer.h
 operating-system/operating-system-linux/apex_linux/CMakeFiles/apex_linux.dir/node.cpp.o: source/app/acme/primitive/string/x.h
 operating-system/operating-system-linux/apex_linux/CMakeFiles/apex_linux.dir/node.cpp.o: source/app/acme/primitive/string/x/x_charcategory.h
@@ -10727,6 +10739,7 @@ operating-system/operating-system-linux/apex_linux/CMakeFiles/apex_linux.dir/os_
 operating-system/operating-system-linux/apex_linux/CMakeFiles/apex_linux.dir/os_context.cpp.o: source/app/acme/primitive/string/__c_wd32_impl.h
 operating-system/operating-system-linux/apex_linux/CMakeFiles/apex_linux.dir/os_context.cpp.o: source/app/acme/primitive/string/__c_wide.h
 operating-system/operating-system-linux/apex_linux/CMakeFiles/apex_linux.dir/os_context.cpp.o: source/app/acme/primitive/string/__c_wide_impl.h
+operating-system/operating-system-linux/apex_linux/CMakeFiles/apex_linux.dir/os_context.cpp.o: source/app/acme/primitive/string/__string.h
 operating-system/operating-system-linux/apex_linux/CMakeFiles/apex_linux.dir/os_context.cpp.o: source/app/acme/primitive/string/_base.h
 operating-system/operating-system-linux/apex_linux/CMakeFiles/apex_linux.dir/os_context.cpp.o: source/app/acme/primitive/string/_base_impl.h
 operating-system/operating-system-linux/apex_linux/CMakeFiles/apex_linux.dir/os_context.cpp.o: source/app/acme/primitive/string/_c.h
@@ -10747,7 +10760,6 @@ operating-system/operating-system-linux/apex_linux/CMakeFiles/apex_linux.dir/os_
 operating-system/operating-system-linux/apex_linux/CMakeFiles/apex_linux.dir/os_context.cpp.o: source/app/acme/primitive/string/_compare.h
 operating-system/operating-system-linux/apex_linux/CMakeFiles/apex_linux.dir/os_context.cpp.o: source/app/acme/primitive/string/_compare_impl.h
 operating-system/operating-system-linux/apex_linux/CMakeFiles/apex_linux.dir/os_context.cpp.o: source/app/acme/primitive/string/_conv.h
-operating-system/operating-system-linux/apex_linux/CMakeFiles/apex_linux.dir/os_context.cpp.o: source/app/acme/primitive/string/_conv_ansi.h
 operating-system/operating-system-linux/apex_linux/CMakeFiles/apex_linux.dir/os_context.cpp.o: source/app/acme/primitive/string/_conv_ansi_impl.h
 operating-system/operating-system-linux/apex_linux/CMakeFiles/apex_linux.dir/os_context.cpp.o: source/app/acme/primitive/string/_defer.h
 operating-system/operating-system-linux/apex_linux/CMakeFiles/apex_linux.dir/os_context.cpp.o: source/app/acme/primitive/string/_impl.h
@@ -10780,6 +10792,7 @@ operating-system/operating-system-linux/apex_linux/CMakeFiles/apex_linux.dir/os_
 operating-system/operating-system-linux/apex_linux/CMakeFiles/apex_linux.dir/os_context.cpp.o: source/app/acme/primitive/string/stringtow.h
 operating-system/operating-system-linux/apex_linux/CMakeFiles/apex_linux.dir/os_context.cpp.o: source/app/acme/primitive/string/sz.h
 operating-system/operating-system-linux/apex_linux/CMakeFiles/apex_linux.dir/os_context.cpp.o: source/app/acme/primitive/string/to_integer.h
+operating-system/operating-system-linux/apex_linux/CMakeFiles/apex_linux.dir/os_context.cpp.o: source/app/acme/primitive/string/to_string.h
 operating-system/operating-system-linux/apex_linux/CMakeFiles/apex_linux.dir/os_context.cpp.o: source/app/acme/primitive/string/tokenizer.h
 operating-system/operating-system-linux/apex_linux/CMakeFiles/apex_linux.dir/os_context.cpp.o: source/app/acme/primitive/string/x.h
 operating-system/operating-system-linux/apex_linux/CMakeFiles/apex_linux.dir/os_context.cpp.o: source/app/acme/primitive/string/x/x_charcategory.h
@@ -11571,6 +11584,7 @@ operating-system/operating-system-linux/apex_linux/CMakeFiles/apex_linux.dir/ser
 operating-system/operating-system-linux/apex_linux/CMakeFiles/apex_linux.dir/service_handler.cpp.o: source/app/acme/primitive/string/__c_wd32_impl.h
 operating-system/operating-system-linux/apex_linux/CMakeFiles/apex_linux.dir/service_handler.cpp.o: source/app/acme/primitive/string/__c_wide.h
 operating-system/operating-system-linux/apex_linux/CMakeFiles/apex_linux.dir/service_handler.cpp.o: source/app/acme/primitive/string/__c_wide_impl.h
+operating-system/operating-system-linux/apex_linux/CMakeFiles/apex_linux.dir/service_handler.cpp.o: source/app/acme/primitive/string/__string.h
 operating-system/operating-system-linux/apex_linux/CMakeFiles/apex_linux.dir/service_handler.cpp.o: source/app/acme/primitive/string/_base.h
 operating-system/operating-system-linux/apex_linux/CMakeFiles/apex_linux.dir/service_handler.cpp.o: source/app/acme/primitive/string/_base_impl.h
 operating-system/operating-system-linux/apex_linux/CMakeFiles/apex_linux.dir/service_handler.cpp.o: source/app/acme/primitive/string/_c.h
@@ -11591,7 +11605,6 @@ operating-system/operating-system-linux/apex_linux/CMakeFiles/apex_linux.dir/ser
 operating-system/operating-system-linux/apex_linux/CMakeFiles/apex_linux.dir/service_handler.cpp.o: source/app/acme/primitive/string/_compare.h
 operating-system/operating-system-linux/apex_linux/CMakeFiles/apex_linux.dir/service_handler.cpp.o: source/app/acme/primitive/string/_compare_impl.h
 operating-system/operating-system-linux/apex_linux/CMakeFiles/apex_linux.dir/service_handler.cpp.o: source/app/acme/primitive/string/_conv.h
-operating-system/operating-system-linux/apex_linux/CMakeFiles/apex_linux.dir/service_handler.cpp.o: source/app/acme/primitive/string/_conv_ansi.h
 operating-system/operating-system-linux/apex_linux/CMakeFiles/apex_linux.dir/service_handler.cpp.o: source/app/acme/primitive/string/_conv_ansi_impl.h
 operating-system/operating-system-linux/apex_linux/CMakeFiles/apex_linux.dir/service_handler.cpp.o: source/app/acme/primitive/string/_defer.h
 operating-system/operating-system-linux/apex_linux/CMakeFiles/apex_linux.dir/service_handler.cpp.o: source/app/acme/primitive/string/_impl.h
@@ -11624,6 +11637,7 @@ operating-system/operating-system-linux/apex_linux/CMakeFiles/apex_linux.dir/ser
 operating-system/operating-system-linux/apex_linux/CMakeFiles/apex_linux.dir/service_handler.cpp.o: source/app/acme/primitive/string/stringtow.h
 operating-system/operating-system-linux/apex_linux/CMakeFiles/apex_linux.dir/service_handler.cpp.o: source/app/acme/primitive/string/sz.h
 operating-system/operating-system-linux/apex_linux/CMakeFiles/apex_linux.dir/service_handler.cpp.o: source/app/acme/primitive/string/to_integer.h
+operating-system/operating-system-linux/apex_linux/CMakeFiles/apex_linux.dir/service_handler.cpp.o: source/app/acme/primitive/string/to_string.h
 operating-system/operating-system-linux/apex_linux/CMakeFiles/apex_linux.dir/service_handler.cpp.o: source/app/acme/primitive/string/tokenizer.h
 operating-system/operating-system-linux/apex_linux/CMakeFiles/apex_linux.dir/service_handler.cpp.o: source/app/acme/primitive/string/x.h
 operating-system/operating-system-linux/apex_linux/CMakeFiles/apex_linux.dir/service_handler.cpp.o: source/app/acme/primitive/string/x/x_charcategory.h

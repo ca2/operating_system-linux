@@ -569,6 +569,7 @@ operating-system/operating-system-linux/acme_linux/CMakeFiles/acme_linux.dir/_.c
 operating-system/operating-system-linux/acme_linux/CMakeFiles/acme_linux.dir/_.cpp.o: source/app/acme/primitive/string/__c_wd32_impl.h
 operating-system/operating-system-linux/acme_linux/CMakeFiles/acme_linux.dir/_.cpp.o: source/app/acme/primitive/string/__c_wide.h
 operating-system/operating-system-linux/acme_linux/CMakeFiles/acme_linux.dir/_.cpp.o: source/app/acme/primitive/string/__c_wide_impl.h
+operating-system/operating-system-linux/acme_linux/CMakeFiles/acme_linux.dir/_.cpp.o: source/app/acme/primitive/string/__string.h
 operating-system/operating-system-linux/acme_linux/CMakeFiles/acme_linux.dir/_.cpp.o: source/app/acme/primitive/string/_base.h
 operating-system/operating-system-linux/acme_linux/CMakeFiles/acme_linux.dir/_.cpp.o: source/app/acme/primitive/string/_base_impl.h
 operating-system/operating-system-linux/acme_linux/CMakeFiles/acme_linux.dir/_.cpp.o: source/app/acme/primitive/string/_c.h
@@ -589,7 +590,6 @@ operating-system/operating-system-linux/acme_linux/CMakeFiles/acme_linux.dir/_.c
 operating-system/operating-system-linux/acme_linux/CMakeFiles/acme_linux.dir/_.cpp.o: source/app/acme/primitive/string/_compare.h
 operating-system/operating-system-linux/acme_linux/CMakeFiles/acme_linux.dir/_.cpp.o: source/app/acme/primitive/string/_compare_impl.h
 operating-system/operating-system-linux/acme_linux/CMakeFiles/acme_linux.dir/_.cpp.o: source/app/acme/primitive/string/_conv.h
-operating-system/operating-system-linux/acme_linux/CMakeFiles/acme_linux.dir/_.cpp.o: source/app/acme/primitive/string/_conv_ansi.h
 operating-system/operating-system-linux/acme_linux/CMakeFiles/acme_linux.dir/_.cpp.o: source/app/acme/primitive/string/_conv_ansi_impl.h
 operating-system/operating-system-linux/acme_linux/CMakeFiles/acme_linux.dir/_.cpp.o: source/app/acme/primitive/string/_defer.h
 operating-system/operating-system-linux/acme_linux/CMakeFiles/acme_linux.dir/_.cpp.o: source/app/acme/primitive/string/_impl.h
@@ -622,6 +622,7 @@ operating-system/operating-system-linux/acme_linux/CMakeFiles/acme_linux.dir/_.c
 operating-system/operating-system-linux/acme_linux/CMakeFiles/acme_linux.dir/_.cpp.o: source/app/acme/primitive/string/stringtow.h
 operating-system/operating-system-linux/acme_linux/CMakeFiles/acme_linux.dir/_.cpp.o: source/app/acme/primitive/string/sz.h
 operating-system/operating-system-linux/acme_linux/CMakeFiles/acme_linux.dir/_.cpp.o: source/app/acme/primitive/string/to_integer.h
+operating-system/operating-system-linux/acme_linux/CMakeFiles/acme_linux.dir/_.cpp.o: source/app/acme/primitive/string/to_string.h
 operating-system/operating-system-linux/acme_linux/CMakeFiles/acme_linux.dir/_.cpp.o: source/app/acme/primitive/string/tokenizer.h
 operating-system/operating-system-linux/acme_linux/CMakeFiles/acme_linux.dir/_.cpp.o: source/app/acme/primitive/string/x.h
 operating-system/operating-system-linux/acme_linux/CMakeFiles/acme_linux.dir/_.cpp.o: source/app/acme/primitive/string/x/x_charcategory.h
@@ -1216,6 +1217,7 @@ operating-system/operating-system-linux/acme_linux/CMakeFiles/acme_linux.dir/_fa
 operating-system/operating-system-linux/acme_linux/CMakeFiles/acme_linux.dir/_factory.cpp.o: source/app/acme/primitive/string/__c_wd32_impl.h
 operating-system/operating-system-linux/acme_linux/CMakeFiles/acme_linux.dir/_factory.cpp.o: source/app/acme/primitive/string/__c_wide.h
 operating-system/operating-system-linux/acme_linux/CMakeFiles/acme_linux.dir/_factory.cpp.o: source/app/acme/primitive/string/__c_wide_impl.h
+operating-system/operating-system-linux/acme_linux/CMakeFiles/acme_linux.dir/_factory.cpp.o: source/app/acme/primitive/string/__string.h
 operating-system/operating-system-linux/acme_linux/CMakeFiles/acme_linux.dir/_factory.cpp.o: source/app/acme/primitive/string/_base.h
 operating-system/operating-system-linux/acme_linux/CMakeFiles/acme_linux.dir/_factory.cpp.o: source/app/acme/primitive/string/_base_impl.h
 operating-system/operating-system-linux/acme_linux/CMakeFiles/acme_linux.dir/_factory.cpp.o: source/app/acme/primitive/string/_c.h
@@ -1236,7 +1238,6 @@ operating-system/operating-system-linux/acme_linux/CMakeFiles/acme_linux.dir/_fa
 operating-system/operating-system-linux/acme_linux/CMakeFiles/acme_linux.dir/_factory.cpp.o: source/app/acme/primitive/string/_compare.h
 operating-system/operating-system-linux/acme_linux/CMakeFiles/acme_linux.dir/_factory.cpp.o: source/app/acme/primitive/string/_compare_impl.h
 operating-system/operating-system-linux/acme_linux/CMakeFiles/acme_linux.dir/_factory.cpp.o: source/app/acme/primitive/string/_conv.h
-operating-system/operating-system-linux/acme_linux/CMakeFiles/acme_linux.dir/_factory.cpp.o: source/app/acme/primitive/string/_conv_ansi.h
 operating-system/operating-system-linux/acme_linux/CMakeFiles/acme_linux.dir/_factory.cpp.o: source/app/acme/primitive/string/_conv_ansi_impl.h
 operating-system/operating-system-linux/acme_linux/CMakeFiles/acme_linux.dir/_factory.cpp.o: source/app/acme/primitive/string/_defer.h
 operating-system/operating-system-linux/acme_linux/CMakeFiles/acme_linux.dir/_factory.cpp.o: source/app/acme/primitive/string/_impl.h
@@ -1269,6 +1270,7 @@ operating-system/operating-system-linux/acme_linux/CMakeFiles/acme_linux.dir/_fa
 operating-system/operating-system-linux/acme_linux/CMakeFiles/acme_linux.dir/_factory.cpp.o: source/app/acme/primitive/string/stringtow.h
 operating-system/operating-system-linux/acme_linux/CMakeFiles/acme_linux.dir/_factory.cpp.o: source/app/acme/primitive/string/sz.h
 operating-system/operating-system-linux/acme_linux/CMakeFiles/acme_linux.dir/_factory.cpp.o: source/app/acme/primitive/string/to_integer.h
+operating-system/operating-system-linux/acme_linux/CMakeFiles/acme_linux.dir/_factory.cpp.o: source/app/acme/primitive/string/to_string.h
 operating-system/operating-system-linux/acme_linux/CMakeFiles/acme_linux.dir/_factory.cpp.o: source/app/acme/primitive/string/tokenizer.h
 operating-system/operating-system-linux/acme_linux/CMakeFiles/acme_linux.dir/_factory.cpp.o: source/app/acme/primitive/string/x.h
 operating-system/operating-system-linux/acme_linux/CMakeFiles/acme_linux.dir/_factory.cpp.o: source/app/acme/primitive/string/x/x_charcategory.h
@@ -1863,6 +1865,7 @@ operating-system/operating-system-linux/acme_linux/CMakeFiles/acme_linux.dir/acm
 operating-system/operating-system-linux/acme_linux/CMakeFiles/acme_linux.dir/acme_directory.cpp.o: source/app/acme/primitive/string/__c_wd32_impl.h
 operating-system/operating-system-linux/acme_linux/CMakeFiles/acme_linux.dir/acme_directory.cpp.o: source/app/acme/primitive/string/__c_wide.h
 operating-system/operating-system-linux/acme_linux/CMakeFiles/acme_linux.dir/acme_directory.cpp.o: source/app/acme/primitive/string/__c_wide_impl.h
+operating-system/operating-system-linux/acme_linux/CMakeFiles/acme_linux.dir/acme_directory.cpp.o: source/app/acme/primitive/string/__string.h
 operating-system/operating-system-linux/acme_linux/CMakeFiles/acme_linux.dir/acme_directory.cpp.o: source/app/acme/primitive/string/_base.h
 operating-system/operating-system-linux/acme_linux/CMakeFiles/acme_linux.dir/acme_directory.cpp.o: source/app/acme/primitive/string/_base_impl.h
 operating-system/operating-system-linux/acme_linux/CMakeFiles/acme_linux.dir/acme_directory.cpp.o: source/app/acme/primitive/string/_c.h
@@ -1883,7 +1886,6 @@ operating-system/operating-system-linux/acme_linux/CMakeFiles/acme_linux.dir/acm
 operating-system/operating-system-linux/acme_linux/CMakeFiles/acme_linux.dir/acme_directory.cpp.o: source/app/acme/primitive/string/_compare.h
 operating-system/operating-system-linux/acme_linux/CMakeFiles/acme_linux.dir/acme_directory.cpp.o: source/app/acme/primitive/string/_compare_impl.h
 operating-system/operating-system-linux/acme_linux/CMakeFiles/acme_linux.dir/acme_directory.cpp.o: source/app/acme/primitive/string/_conv.h
-operating-system/operating-system-linux/acme_linux/CMakeFiles/acme_linux.dir/acme_directory.cpp.o: source/app/acme/primitive/string/_conv_ansi.h
 operating-system/operating-system-linux/acme_linux/CMakeFiles/acme_linux.dir/acme_directory.cpp.o: source/app/acme/primitive/string/_conv_ansi_impl.h
 operating-system/operating-system-linux/acme_linux/CMakeFiles/acme_linux.dir/acme_directory.cpp.o: source/app/acme/primitive/string/_defer.h
 operating-system/operating-system-linux/acme_linux/CMakeFiles/acme_linux.dir/acme_directory.cpp.o: source/app/acme/primitive/string/_impl.h
@@ -1916,6 +1918,7 @@ operating-system/operating-system-linux/acme_linux/CMakeFiles/acme_linux.dir/acm
 operating-system/operating-system-linux/acme_linux/CMakeFiles/acme_linux.dir/acme_directory.cpp.o: source/app/acme/primitive/string/stringtow.h
 operating-system/operating-system-linux/acme_linux/CMakeFiles/acme_linux.dir/acme_directory.cpp.o: source/app/acme/primitive/string/sz.h
 operating-system/operating-system-linux/acme_linux/CMakeFiles/acme_linux.dir/acme_directory.cpp.o: source/app/acme/primitive/string/to_integer.h
+operating-system/operating-system-linux/acme_linux/CMakeFiles/acme_linux.dir/acme_directory.cpp.o: source/app/acme/primitive/string/to_string.h
 operating-system/operating-system-linux/acme_linux/CMakeFiles/acme_linux.dir/acme_directory.cpp.o: source/app/acme/primitive/string/tokenizer.h
 operating-system/operating-system-linux/acme_linux/CMakeFiles/acme_linux.dir/acme_directory.cpp.o: source/app/acme/primitive/string/x.h
 operating-system/operating-system-linux/acme_linux/CMakeFiles/acme_linux.dir/acme_directory.cpp.o: source/app/acme/primitive/string/x/x_charcategory.h
@@ -2510,6 +2513,7 @@ operating-system/operating-system-linux/acme_linux/CMakeFiles/acme_linux.dir/acm
 operating-system/operating-system-linux/acme_linux/CMakeFiles/acme_linux.dir/acme_file.cpp.o: source/app/acme/primitive/string/__c_wd32_impl.h
 operating-system/operating-system-linux/acme_linux/CMakeFiles/acme_linux.dir/acme_file.cpp.o: source/app/acme/primitive/string/__c_wide.h
 operating-system/operating-system-linux/acme_linux/CMakeFiles/acme_linux.dir/acme_file.cpp.o: source/app/acme/primitive/string/__c_wide_impl.h
+operating-system/operating-system-linux/acme_linux/CMakeFiles/acme_linux.dir/acme_file.cpp.o: source/app/acme/primitive/string/__string.h
 operating-system/operating-system-linux/acme_linux/CMakeFiles/acme_linux.dir/acme_file.cpp.o: source/app/acme/primitive/string/_base.h
 operating-system/operating-system-linux/acme_linux/CMakeFiles/acme_linux.dir/acme_file.cpp.o: source/app/acme/primitive/string/_base_impl.h
 operating-system/operating-system-linux/acme_linux/CMakeFiles/acme_linux.dir/acme_file.cpp.o: source/app/acme/primitive/string/_c.h
@@ -2530,7 +2534,6 @@ operating-system/operating-system-linux/acme_linux/CMakeFiles/acme_linux.dir/acm
 operating-system/operating-system-linux/acme_linux/CMakeFiles/acme_linux.dir/acme_file.cpp.o: source/app/acme/primitive/string/_compare.h
 operating-system/operating-system-linux/acme_linux/CMakeFiles/acme_linux.dir/acme_file.cpp.o: source/app/acme/primitive/string/_compare_impl.h
 operating-system/operating-system-linux/acme_linux/CMakeFiles/acme_linux.dir/acme_file.cpp.o: source/app/acme/primitive/string/_conv.h
-operating-system/operating-system-linux/acme_linux/CMakeFiles/acme_linux.dir/acme_file.cpp.o: source/app/acme/primitive/string/_conv_ansi.h
 operating-system/operating-system-linux/acme_linux/CMakeFiles/acme_linux.dir/acme_file.cpp.o: source/app/acme/primitive/string/_conv_ansi_impl.h
 operating-system/operating-system-linux/acme_linux/CMakeFiles/acme_linux.dir/acme_file.cpp.o: source/app/acme/primitive/string/_defer.h
 operating-system/operating-system-linux/acme_linux/CMakeFiles/acme_linux.dir/acme_file.cpp.o: source/app/acme/primitive/string/_impl.h
@@ -2563,6 +2566,7 @@ operating-system/operating-system-linux/acme_linux/CMakeFiles/acme_linux.dir/acm
 operating-system/operating-system-linux/acme_linux/CMakeFiles/acme_linux.dir/acme_file.cpp.o: source/app/acme/primitive/string/stringtow.h
 operating-system/operating-system-linux/acme_linux/CMakeFiles/acme_linux.dir/acme_file.cpp.o: source/app/acme/primitive/string/sz.h
 operating-system/operating-system-linux/acme_linux/CMakeFiles/acme_linux.dir/acme_file.cpp.o: source/app/acme/primitive/string/to_integer.h
+operating-system/operating-system-linux/acme_linux/CMakeFiles/acme_linux.dir/acme_file.cpp.o: source/app/acme/primitive/string/to_string.h
 operating-system/operating-system-linux/acme_linux/CMakeFiles/acme_linux.dir/acme_file.cpp.o: source/app/acme/primitive/string/tokenizer.h
 operating-system/operating-system-linux/acme_linux/CMakeFiles/acme_linux.dir/acme_file.cpp.o: source/app/acme/primitive/string/x.h
 operating-system/operating-system-linux/acme_linux/CMakeFiles/acme_linux.dir/acme_file.cpp.o: source/app/acme/primitive/string/x/x_charcategory.h
@@ -3157,6 +3161,7 @@ operating-system/operating-system-linux/acme_linux/CMakeFiles/acme_linux.dir/acm
 operating-system/operating-system-linux/acme_linux/CMakeFiles/acme_linux.dir/acme_path.cpp.o: source/app/acme/primitive/string/__c_wd32_impl.h
 operating-system/operating-system-linux/acme_linux/CMakeFiles/acme_linux.dir/acme_path.cpp.o: source/app/acme/primitive/string/__c_wide.h
 operating-system/operating-system-linux/acme_linux/CMakeFiles/acme_linux.dir/acme_path.cpp.o: source/app/acme/primitive/string/__c_wide_impl.h
+operating-system/operating-system-linux/acme_linux/CMakeFiles/acme_linux.dir/acme_path.cpp.o: source/app/acme/primitive/string/__string.h
 operating-system/operating-system-linux/acme_linux/CMakeFiles/acme_linux.dir/acme_path.cpp.o: source/app/acme/primitive/string/_base.h
 operating-system/operating-system-linux/acme_linux/CMakeFiles/acme_linux.dir/acme_path.cpp.o: source/app/acme/primitive/string/_base_impl.h
 operating-system/operating-system-linux/acme_linux/CMakeFiles/acme_linux.dir/acme_path.cpp.o: source/app/acme/primitive/string/_c.h
@@ -3177,7 +3182,6 @@ operating-system/operating-system-linux/acme_linux/CMakeFiles/acme_linux.dir/acm
 operating-system/operating-system-linux/acme_linux/CMakeFiles/acme_linux.dir/acme_path.cpp.o: source/app/acme/primitive/string/_compare.h
 operating-system/operating-system-linux/acme_linux/CMakeFiles/acme_linux.dir/acme_path.cpp.o: source/app/acme/primitive/string/_compare_impl.h
 operating-system/operating-system-linux/acme_linux/CMakeFiles/acme_linux.dir/acme_path.cpp.o: source/app/acme/primitive/string/_conv.h
-operating-system/operating-system-linux/acme_linux/CMakeFiles/acme_linux.dir/acme_path.cpp.o: source/app/acme/primitive/string/_conv_ansi.h
 operating-system/operating-system-linux/acme_linux/CMakeFiles/acme_linux.dir/acme_path.cpp.o: source/app/acme/primitive/string/_conv_ansi_impl.h
 operating-system/operating-system-linux/acme_linux/CMakeFiles/acme_linux.dir/acme_path.cpp.o: source/app/acme/primitive/string/_defer.h
 operating-system/operating-system-linux/acme_linux/CMakeFiles/acme_linux.dir/acme_path.cpp.o: source/app/acme/primitive/string/_impl.h
@@ -3210,6 +3214,7 @@ operating-system/operating-system-linux/acme_linux/CMakeFiles/acme_linux.dir/acm
 operating-system/operating-system-linux/acme_linux/CMakeFiles/acme_linux.dir/acme_path.cpp.o: source/app/acme/primitive/string/stringtow.h
 operating-system/operating-system-linux/acme_linux/CMakeFiles/acme_linux.dir/acme_path.cpp.o: source/app/acme/primitive/string/sz.h
 operating-system/operating-system-linux/acme_linux/CMakeFiles/acme_linux.dir/acme_path.cpp.o: source/app/acme/primitive/string/to_integer.h
+operating-system/operating-system-linux/acme_linux/CMakeFiles/acme_linux.dir/acme_path.cpp.o: source/app/acme/primitive/string/to_string.h
 operating-system/operating-system-linux/acme_linux/CMakeFiles/acme_linux.dir/acme_path.cpp.o: source/app/acme/primitive/string/tokenizer.h
 operating-system/operating-system-linux/acme_linux/CMakeFiles/acme_linux.dir/acme_path.cpp.o: source/app/acme/primitive/string/x.h
 operating-system/operating-system-linux/acme_linux/CMakeFiles/acme_linux.dir/acme_path.cpp.o: source/app/acme/primitive/string/x/x_charcategory.h
@@ -3804,6 +3809,7 @@ operating-system/operating-system-linux/acme_linux/CMakeFiles/acme_linux.dir/cma
 operating-system/operating-system-linux/acme_linux/CMakeFiles/acme_linux.dir/cmake_pch.hxx.gch: source/app/acme/primitive/string/__c_wd32_impl.h
 operating-system/operating-system-linux/acme_linux/CMakeFiles/acme_linux.dir/cmake_pch.hxx.gch: source/app/acme/primitive/string/__c_wide.h
 operating-system/operating-system-linux/acme_linux/CMakeFiles/acme_linux.dir/cmake_pch.hxx.gch: source/app/acme/primitive/string/__c_wide_impl.h
+operating-system/operating-system-linux/acme_linux/CMakeFiles/acme_linux.dir/cmake_pch.hxx.gch: source/app/acme/primitive/string/__string.h
 operating-system/operating-system-linux/acme_linux/CMakeFiles/acme_linux.dir/cmake_pch.hxx.gch: source/app/acme/primitive/string/_base.h
 operating-system/operating-system-linux/acme_linux/CMakeFiles/acme_linux.dir/cmake_pch.hxx.gch: source/app/acme/primitive/string/_base_impl.h
 operating-system/operating-system-linux/acme_linux/CMakeFiles/acme_linux.dir/cmake_pch.hxx.gch: source/app/acme/primitive/string/_c.h
@@ -3824,7 +3830,6 @@ operating-system/operating-system-linux/acme_linux/CMakeFiles/acme_linux.dir/cma
 operating-system/operating-system-linux/acme_linux/CMakeFiles/acme_linux.dir/cmake_pch.hxx.gch: source/app/acme/primitive/string/_compare.h
 operating-system/operating-system-linux/acme_linux/CMakeFiles/acme_linux.dir/cmake_pch.hxx.gch: source/app/acme/primitive/string/_compare_impl.h
 operating-system/operating-system-linux/acme_linux/CMakeFiles/acme_linux.dir/cmake_pch.hxx.gch: source/app/acme/primitive/string/_conv.h
-operating-system/operating-system-linux/acme_linux/CMakeFiles/acme_linux.dir/cmake_pch.hxx.gch: source/app/acme/primitive/string/_conv_ansi.h
 operating-system/operating-system-linux/acme_linux/CMakeFiles/acme_linux.dir/cmake_pch.hxx.gch: source/app/acme/primitive/string/_conv_ansi_impl.h
 operating-system/operating-system-linux/acme_linux/CMakeFiles/acme_linux.dir/cmake_pch.hxx.gch: source/app/acme/primitive/string/_defer.h
 operating-system/operating-system-linux/acme_linux/CMakeFiles/acme_linux.dir/cmake_pch.hxx.gch: source/app/acme/primitive/string/_impl.h
@@ -3857,6 +3862,7 @@ operating-system/operating-system-linux/acme_linux/CMakeFiles/acme_linux.dir/cma
 operating-system/operating-system-linux/acme_linux/CMakeFiles/acme_linux.dir/cmake_pch.hxx.gch: source/app/acme/primitive/string/stringtow.h
 operating-system/operating-system-linux/acme_linux/CMakeFiles/acme_linux.dir/cmake_pch.hxx.gch: source/app/acme/primitive/string/sz.h
 operating-system/operating-system-linux/acme_linux/CMakeFiles/acme_linux.dir/cmake_pch.hxx.gch: source/app/acme/primitive/string/to_integer.h
+operating-system/operating-system-linux/acme_linux/CMakeFiles/acme_linux.dir/cmake_pch.hxx.gch: source/app/acme/primitive/string/to_string.h
 operating-system/operating-system-linux/acme_linux/CMakeFiles/acme_linux.dir/cmake_pch.hxx.gch: source/app/acme/primitive/string/tokenizer.h
 operating-system/operating-system-linux/acme_linux/CMakeFiles/acme_linux.dir/cmake_pch.hxx.gch: source/app/acme/primitive/string/x.h
 operating-system/operating-system-linux/acme_linux/CMakeFiles/acme_linux.dir/cmake_pch.hxx.gch: source/app/acme/primitive/string/x/x_charcategory.h
@@ -4451,6 +4457,7 @@ operating-system/operating-system-linux/acme_linux/CMakeFiles/acme_linux.dir/con
 operating-system/operating-system-linux/acme_linux/CMakeFiles/acme_linux.dir/console.cpp.o: source/app/acme/primitive/string/__c_wd32_impl.h
 operating-system/operating-system-linux/acme_linux/CMakeFiles/acme_linux.dir/console.cpp.o: source/app/acme/primitive/string/__c_wide.h
 operating-system/operating-system-linux/acme_linux/CMakeFiles/acme_linux.dir/console.cpp.o: source/app/acme/primitive/string/__c_wide_impl.h
+operating-system/operating-system-linux/acme_linux/CMakeFiles/acme_linux.dir/console.cpp.o: source/app/acme/primitive/string/__string.h
 operating-system/operating-system-linux/acme_linux/CMakeFiles/acme_linux.dir/console.cpp.o: source/app/acme/primitive/string/_base.h
 operating-system/operating-system-linux/acme_linux/CMakeFiles/acme_linux.dir/console.cpp.o: source/app/acme/primitive/string/_base_impl.h
 operating-system/operating-system-linux/acme_linux/CMakeFiles/acme_linux.dir/console.cpp.o: source/app/acme/primitive/string/_c.h
@@ -4471,7 +4478,6 @@ operating-system/operating-system-linux/acme_linux/CMakeFiles/acme_linux.dir/con
 operating-system/operating-system-linux/acme_linux/CMakeFiles/acme_linux.dir/console.cpp.o: source/app/acme/primitive/string/_compare.h
 operating-system/operating-system-linux/acme_linux/CMakeFiles/acme_linux.dir/console.cpp.o: source/app/acme/primitive/string/_compare_impl.h
 operating-system/operating-system-linux/acme_linux/CMakeFiles/acme_linux.dir/console.cpp.o: source/app/acme/primitive/string/_conv.h
-operating-system/operating-system-linux/acme_linux/CMakeFiles/acme_linux.dir/console.cpp.o: source/app/acme/primitive/string/_conv_ansi.h
 operating-system/operating-system-linux/acme_linux/CMakeFiles/acme_linux.dir/console.cpp.o: source/app/acme/primitive/string/_conv_ansi_impl.h
 operating-system/operating-system-linux/acme_linux/CMakeFiles/acme_linux.dir/console.cpp.o: source/app/acme/primitive/string/_defer.h
 operating-system/operating-system-linux/acme_linux/CMakeFiles/acme_linux.dir/console.cpp.o: source/app/acme/primitive/string/_impl.h
@@ -4504,6 +4510,7 @@ operating-system/operating-system-linux/acme_linux/CMakeFiles/acme_linux.dir/con
 operating-system/operating-system-linux/acme_linux/CMakeFiles/acme_linux.dir/console.cpp.o: source/app/acme/primitive/string/stringtow.h
 operating-system/operating-system-linux/acme_linux/CMakeFiles/acme_linux.dir/console.cpp.o: source/app/acme/primitive/string/sz.h
 operating-system/operating-system-linux/acme_linux/CMakeFiles/acme_linux.dir/console.cpp.o: source/app/acme/primitive/string/to_integer.h
+operating-system/operating-system-linux/acme_linux/CMakeFiles/acme_linux.dir/console.cpp.o: source/app/acme/primitive/string/to_string.h
 operating-system/operating-system-linux/acme_linux/CMakeFiles/acme_linux.dir/console.cpp.o: source/app/acme/primitive/string/tokenizer.h
 operating-system/operating-system-linux/acme_linux/CMakeFiles/acme_linux.dir/console.cpp.o: source/app/acme/primitive/string/x.h
 operating-system/operating-system-linux/acme_linux/CMakeFiles/acme_linux.dir/console.cpp.o: source/app/acme/primitive/string/x/x_charcategory.h
@@ -5101,6 +5108,7 @@ operating-system/operating-system-linux/acme_linux/CMakeFiles/acme_linux.dir/fil
 operating-system/operating-system-linux/acme_linux/CMakeFiles/acme_linux.dir/file.cpp.o: source/app/acme/primitive/string/__c_wd32_impl.h
 operating-system/operating-system-linux/acme_linux/CMakeFiles/acme_linux.dir/file.cpp.o: source/app/acme/primitive/string/__c_wide.h
 operating-system/operating-system-linux/acme_linux/CMakeFiles/acme_linux.dir/file.cpp.o: source/app/acme/primitive/string/__c_wide_impl.h
+operating-system/operating-system-linux/acme_linux/CMakeFiles/acme_linux.dir/file.cpp.o: source/app/acme/primitive/string/__string.h
 operating-system/operating-system-linux/acme_linux/CMakeFiles/acme_linux.dir/file.cpp.o: source/app/acme/primitive/string/_base.h
 operating-system/operating-system-linux/acme_linux/CMakeFiles/acme_linux.dir/file.cpp.o: source/app/acme/primitive/string/_base_impl.h
 operating-system/operating-system-linux/acme_linux/CMakeFiles/acme_linux.dir/file.cpp.o: source/app/acme/primitive/string/_c.h
@@ -5121,7 +5129,6 @@ operating-system/operating-system-linux/acme_linux/CMakeFiles/acme_linux.dir/fil
 operating-system/operating-system-linux/acme_linux/CMakeFiles/acme_linux.dir/file.cpp.o: source/app/acme/primitive/string/_compare.h
 operating-system/operating-system-linux/acme_linux/CMakeFiles/acme_linux.dir/file.cpp.o: source/app/acme/primitive/string/_compare_impl.h
 operating-system/operating-system-linux/acme_linux/CMakeFiles/acme_linux.dir/file.cpp.o: source/app/acme/primitive/string/_conv.h
-operating-system/operating-system-linux/acme_linux/CMakeFiles/acme_linux.dir/file.cpp.o: source/app/acme/primitive/string/_conv_ansi.h
 operating-system/operating-system-linux/acme_linux/CMakeFiles/acme_linux.dir/file.cpp.o: source/app/acme/primitive/string/_conv_ansi_impl.h
 operating-system/operating-system-linux/acme_linux/CMakeFiles/acme_linux.dir/file.cpp.o: source/app/acme/primitive/string/_defer.h
 operating-system/operating-system-linux/acme_linux/CMakeFiles/acme_linux.dir/file.cpp.o: source/app/acme/primitive/string/_impl.h
@@ -5154,6 +5161,7 @@ operating-system/operating-system-linux/acme_linux/CMakeFiles/acme_linux.dir/fil
 operating-system/operating-system-linux/acme_linux/CMakeFiles/acme_linux.dir/file.cpp.o: source/app/acme/primitive/string/stringtow.h
 operating-system/operating-system-linux/acme_linux/CMakeFiles/acme_linux.dir/file.cpp.o: source/app/acme/primitive/string/sz.h
 operating-system/operating-system-linux/acme_linux/CMakeFiles/acme_linux.dir/file.cpp.o: source/app/acme/primitive/string/to_integer.h
+operating-system/operating-system-linux/acme_linux/CMakeFiles/acme_linux.dir/file.cpp.o: source/app/acme/primitive/string/to_string.h
 operating-system/operating-system-linux/acme_linux/CMakeFiles/acme_linux.dir/file.cpp.o: source/app/acme/primitive/string/tokenizer.h
 operating-system/operating-system-linux/acme_linux/CMakeFiles/acme_linux.dir/file.cpp.o: source/app/acme/primitive/string/x.h
 operating-system/operating-system-linux/acme_linux/CMakeFiles/acme_linux.dir/file.cpp.o: source/app/acme/primitive/string/x/x_charcategory.h
@@ -5748,6 +5756,7 @@ operating-system/operating-system-linux/acme_linux/CMakeFiles/acme_linux.dir/fra
 operating-system/operating-system-linux/acme_linux/CMakeFiles/acme_linux.dir/framework.cpp.o: source/app/acme/primitive/string/__c_wd32_impl.h
 operating-system/operating-system-linux/acme_linux/CMakeFiles/acme_linux.dir/framework.cpp.o: source/app/acme/primitive/string/__c_wide.h
 operating-system/operating-system-linux/acme_linux/CMakeFiles/acme_linux.dir/framework.cpp.o: source/app/acme/primitive/string/__c_wide_impl.h
+operating-system/operating-system-linux/acme_linux/CMakeFiles/acme_linux.dir/framework.cpp.o: source/app/acme/primitive/string/__string.h
 operating-system/operating-system-linux/acme_linux/CMakeFiles/acme_linux.dir/framework.cpp.o: source/app/acme/primitive/string/_base.h
 operating-system/operating-system-linux/acme_linux/CMakeFiles/acme_linux.dir/framework.cpp.o: source/app/acme/primitive/string/_base_impl.h
 operating-system/operating-system-linux/acme_linux/CMakeFiles/acme_linux.dir/framework.cpp.o: source/app/acme/primitive/string/_c.h
@@ -5768,7 +5777,6 @@ operating-system/operating-system-linux/acme_linux/CMakeFiles/acme_linux.dir/fra
 operating-system/operating-system-linux/acme_linux/CMakeFiles/acme_linux.dir/framework.cpp.o: source/app/acme/primitive/string/_compare.h
 operating-system/operating-system-linux/acme_linux/CMakeFiles/acme_linux.dir/framework.cpp.o: source/app/acme/primitive/string/_compare_impl.h
 operating-system/operating-system-linux/acme_linux/CMakeFiles/acme_linux.dir/framework.cpp.o: source/app/acme/primitive/string/_conv.h
-operating-system/operating-system-linux/acme_linux/CMakeFiles/acme_linux.dir/framework.cpp.o: source/app/acme/primitive/string/_conv_ansi.h
 operating-system/operating-system-linux/acme_linux/CMakeFiles/acme_linux.dir/framework.cpp.o: source/app/acme/primitive/string/_conv_ansi_impl.h
 operating-system/operating-system-linux/acme_linux/CMakeFiles/acme_linux.dir/framework.cpp.o: source/app/acme/primitive/string/_defer.h
 operating-system/operating-system-linux/acme_linux/CMakeFiles/acme_linux.dir/framework.cpp.o: source/app/acme/primitive/string/_impl.h
@@ -5801,6 +5809,7 @@ operating-system/operating-system-linux/acme_linux/CMakeFiles/acme_linux.dir/fra
 operating-system/operating-system-linux/acme_linux/CMakeFiles/acme_linux.dir/framework.cpp.o: source/app/acme/primitive/string/stringtow.h
 operating-system/operating-system-linux/acme_linux/CMakeFiles/acme_linux.dir/framework.cpp.o: source/app/acme/primitive/string/sz.h
 operating-system/operating-system-linux/acme_linux/CMakeFiles/acme_linux.dir/framework.cpp.o: source/app/acme/primitive/string/to_integer.h
+operating-system/operating-system-linux/acme_linux/CMakeFiles/acme_linux.dir/framework.cpp.o: source/app/acme/primitive/string/to_string.h
 operating-system/operating-system-linux/acme_linux/CMakeFiles/acme_linux.dir/framework.cpp.o: source/app/acme/primitive/string/tokenizer.h
 operating-system/operating-system-linux/acme_linux/CMakeFiles/acme_linux.dir/framework.cpp.o: source/app/acme/primitive/string/x.h
 operating-system/operating-system-linux/acme_linux/CMakeFiles/acme_linux.dir/framework.cpp.o: source/app/acme/primitive/string/x/x_charcategory.h
@@ -6395,6 +6404,7 @@ operating-system/operating-system-linux/acme_linux/CMakeFiles/acme_linux.dir/nod
 operating-system/operating-system-linux/acme_linux/CMakeFiles/acme_linux.dir/node.cpp.o: source/app/acme/primitive/string/__c_wd32_impl.h
 operating-system/operating-system-linux/acme_linux/CMakeFiles/acme_linux.dir/node.cpp.o: source/app/acme/primitive/string/__c_wide.h
 operating-system/operating-system-linux/acme_linux/CMakeFiles/acme_linux.dir/node.cpp.o: source/app/acme/primitive/string/__c_wide_impl.h
+operating-system/operating-system-linux/acme_linux/CMakeFiles/acme_linux.dir/node.cpp.o: source/app/acme/primitive/string/__string.h
 operating-system/operating-system-linux/acme_linux/CMakeFiles/acme_linux.dir/node.cpp.o: source/app/acme/primitive/string/_base.h
 operating-system/operating-system-linux/acme_linux/CMakeFiles/acme_linux.dir/node.cpp.o: source/app/acme/primitive/string/_base_impl.h
 operating-system/operating-system-linux/acme_linux/CMakeFiles/acme_linux.dir/node.cpp.o: source/app/acme/primitive/string/_c.h
@@ -6415,7 +6425,6 @@ operating-system/operating-system-linux/acme_linux/CMakeFiles/acme_linux.dir/nod
 operating-system/operating-system-linux/acme_linux/CMakeFiles/acme_linux.dir/node.cpp.o: source/app/acme/primitive/string/_compare.h
 operating-system/operating-system-linux/acme_linux/CMakeFiles/acme_linux.dir/node.cpp.o: source/app/acme/primitive/string/_compare_impl.h
 operating-system/operating-system-linux/acme_linux/CMakeFiles/acme_linux.dir/node.cpp.o: source/app/acme/primitive/string/_conv.h
-operating-system/operating-system-linux/acme_linux/CMakeFiles/acme_linux.dir/node.cpp.o: source/app/acme/primitive/string/_conv_ansi.h
 operating-system/operating-system-linux/acme_linux/CMakeFiles/acme_linux.dir/node.cpp.o: source/app/acme/primitive/string/_conv_ansi_impl.h
 operating-system/operating-system-linux/acme_linux/CMakeFiles/acme_linux.dir/node.cpp.o: source/app/acme/primitive/string/_defer.h
 operating-system/operating-system-linux/acme_linux/CMakeFiles/acme_linux.dir/node.cpp.o: source/app/acme/primitive/string/_impl.h
@@ -6448,6 +6457,7 @@ operating-system/operating-system-linux/acme_linux/CMakeFiles/acme_linux.dir/nod
 operating-system/operating-system-linux/acme_linux/CMakeFiles/acme_linux.dir/node.cpp.o: source/app/acme/primitive/string/stringtow.h
 operating-system/operating-system-linux/acme_linux/CMakeFiles/acme_linux.dir/node.cpp.o: source/app/acme/primitive/string/sz.h
 operating-system/operating-system-linux/acme_linux/CMakeFiles/acme_linux.dir/node.cpp.o: source/app/acme/primitive/string/to_integer.h
+operating-system/operating-system-linux/acme_linux/CMakeFiles/acme_linux.dir/node.cpp.o: source/app/acme/primitive/string/to_string.h
 operating-system/operating-system-linux/acme_linux/CMakeFiles/acme_linux.dir/node.cpp.o: source/app/acme/primitive/string/tokenizer.h
 operating-system/operating-system-linux/acme_linux/CMakeFiles/acme_linux.dir/node.cpp.o: source/app/acme/primitive/string/x.h
 operating-system/operating-system-linux/acme_linux/CMakeFiles/acme_linux.dir/node.cpp.o: source/app/acme/primitive/string/x/x_charcategory.h
@@ -7042,6 +7052,7 @@ operating-system/operating-system-linux/acme_linux/CMakeFiles/acme_linux.dir/std
 operating-system/operating-system-linux/acme_linux/CMakeFiles/acme_linux.dir/stdio_file.cpp.o: source/app/acme/primitive/string/__c_wd32_impl.h
 operating-system/operating-system-linux/acme_linux/CMakeFiles/acme_linux.dir/stdio_file.cpp.o: source/app/acme/primitive/string/__c_wide.h
 operating-system/operating-system-linux/acme_linux/CMakeFiles/acme_linux.dir/stdio_file.cpp.o: source/app/acme/primitive/string/__c_wide_impl.h
+operating-system/operating-system-linux/acme_linux/CMakeFiles/acme_linux.dir/stdio_file.cpp.o: source/app/acme/primitive/string/__string.h
 operating-system/operating-system-linux/acme_linux/CMakeFiles/acme_linux.dir/stdio_file.cpp.o: source/app/acme/primitive/string/_base.h
 operating-system/operating-system-linux/acme_linux/CMakeFiles/acme_linux.dir/stdio_file.cpp.o: source/app/acme/primitive/string/_base_impl.h
 operating-system/operating-system-linux/acme_linux/CMakeFiles/acme_linux.dir/stdio_file.cpp.o: source/app/acme/primitive/string/_c.h
@@ -7062,7 +7073,6 @@ operating-system/operating-system-linux/acme_linux/CMakeFiles/acme_linux.dir/std
 operating-system/operating-system-linux/acme_linux/CMakeFiles/acme_linux.dir/stdio_file.cpp.o: source/app/acme/primitive/string/_compare.h
 operating-system/operating-system-linux/acme_linux/CMakeFiles/acme_linux.dir/stdio_file.cpp.o: source/app/acme/primitive/string/_compare_impl.h
 operating-system/operating-system-linux/acme_linux/CMakeFiles/acme_linux.dir/stdio_file.cpp.o: source/app/acme/primitive/string/_conv.h
-operating-system/operating-system-linux/acme_linux/CMakeFiles/acme_linux.dir/stdio_file.cpp.o: source/app/acme/primitive/string/_conv_ansi.h
 operating-system/operating-system-linux/acme_linux/CMakeFiles/acme_linux.dir/stdio_file.cpp.o: source/app/acme/primitive/string/_conv_ansi_impl.h
 operating-system/operating-system-linux/acme_linux/CMakeFiles/acme_linux.dir/stdio_file.cpp.o: source/app/acme/primitive/string/_defer.h
 operating-system/operating-system-linux/acme_linux/CMakeFiles/acme_linux.dir/stdio_file.cpp.o: source/app/acme/primitive/string/_impl.h
@@ -7095,6 +7105,7 @@ operating-system/operating-system-linux/acme_linux/CMakeFiles/acme_linux.dir/std
 operating-system/operating-system-linux/acme_linux/CMakeFiles/acme_linux.dir/stdio_file.cpp.o: source/app/acme/primitive/string/stringtow.h
 operating-system/operating-system-linux/acme_linux/CMakeFiles/acme_linux.dir/stdio_file.cpp.o: source/app/acme/primitive/string/sz.h
 operating-system/operating-system-linux/acme_linux/CMakeFiles/acme_linux.dir/stdio_file.cpp.o: source/app/acme/primitive/string/to_integer.h
+operating-system/operating-system-linux/acme_linux/CMakeFiles/acme_linux.dir/stdio_file.cpp.o: source/app/acme/primitive/string/to_string.h
 operating-system/operating-system-linux/acme_linux/CMakeFiles/acme_linux.dir/stdio_file.cpp.o: source/app/acme/primitive/string/tokenizer.h
 operating-system/operating-system-linux/acme_linux/CMakeFiles/acme_linux.dir/stdio_file.cpp.o: source/app/acme/primitive/string/x.h
 operating-system/operating-system-linux/acme_linux/CMakeFiles/acme_linux.dir/stdio_file.cpp.o: source/app/acme/primitive/string/x/x_charcategory.h
