@@ -6,41 +6,65 @@
 
 #IncludeRegexTransform: 
 
-/home/pi/solution/basis/operating-system/operating-system-linux/node_linux/CMakeFiles/node_linux.dir/cmake_pch.hxx
-/home/pi/solution/basis/operating-system/operating-system-linux/node_linux/framework.h
+/home/pi/solution/basis/operating-system/operating-system-linux/desktop_environment_gnome/CMakeFiles/desktop_environment_gnome.dir/cmake_pch.hxx
+/home/pi/solution/basis/operating-system/operating-system-linux/desktop_environment_gnome/framework.h
 -
 
-/home/pi/solution/basis/operating-system/operating-system-linux/node_linux/_.h
-aura/_.h
-/home/pi/solution/basis/operating-system/operating-system-linux/node_linux/aura/_.h
-aura_linux/_.h
-/home/pi/solution/basis/operating-system/operating-system-linux/node_linux/aura_linux/_.h
-_const.h
-/home/pi/solution/basis/operating-system/operating-system-linux/node_linux/_const.h
+/home/pi/solution/basis/operating-system/operating-system-linux/desktop_environment_gnome/CMakeFiles/desktop_environment_gnome.dir/cmake_pch.hxx.cxx
 
-/home/pi/solution/basis/operating-system/operating-system-linux/node_linux/_const.h
-
-/home/pi/solution/basis/operating-system/operating-system-linux/node_linux/_factory.cpp
+/home/pi/solution/basis/operating-system/operating-system-linux/desktop_environment_gnome/_.cpp
 framework.h
-/home/pi/solution/basis/operating-system/operating-system-linux/node_linux/framework.h
-sys/utsname.h
+/home/pi/solution/basis/operating-system/operating-system-linux/desktop_environment_gnome/framework.h
+gtk/gtk.h
 -
 
-/home/pi/solution/basis/operating-system/operating-system-linux/node_linux/_node_linux.h
-aura/operating_system.h
-/home/pi/solution/basis/operating-system/operating-system-linux/node_linux/aura/operating_system.h
-aura_linux/_aura_linux.h
-/home/pi/solution/basis/operating-system/operating-system-linux/node_linux/aura_linux/_aura_linux.h
+/home/pi/solution/basis/operating-system/operating-system-linux/desktop_environment_gnome/_.h
+aura_linux/_.h
+/home/pi/solution/basis/operating-system/operating-system-linux/desktop_environment_gnome/aura_linux/_.h
+node_gnome/_.h
+/home/pi/solution/basis/operating-system/operating-system-linux/desktop_environment_gnome/node_gnome/_.h
 
-/home/pi/solution/basis/operating-system/operating-system-linux/node_linux/framework.h
+/home/pi/solution/basis/operating-system/operating-system-linux/desktop_environment_gnome/_desktop_environment_gnome.h
+aura_linux/_aura_linux.h
+/home/pi/solution/basis/operating-system/operating-system-linux/desktop_environment_gnome/aura_linux/_aura_linux.h
+node_gnome/_node_gnome.h
+/home/pi/solution/basis/operating-system/operating-system-linux/desktop_environment_gnome/node_gnome/_node_gnome.h
+aura/user/user/_user.h
+/home/pi/solution/basis/operating-system/operating-system-linux/desktop_environment_gnome/aura/user/user/_user.h
+gtk/gtk.h
+-
+gdk/gdkx.h
+-
+node.h
+/home/pi/solution/basis/operating-system/operating-system-linux/desktop_environment_gnome/node.h
+
+/home/pi/solution/basis/operating-system/operating-system-linux/desktop_environment_gnome/_factory.cpp
+framework.h
+/home/pi/solution/basis/operating-system/operating-system-linux/desktop_environment_gnome/framework.h
+
+/home/pi/solution/basis/operating-system/operating-system-linux/desktop_environment_gnome/framework.cpp
+framework.h
+/home/pi/solution/basis/operating-system/operating-system-linux/desktop_environment_gnome/framework.h
+
+/home/pi/solution/basis/operating-system/operating-system-linux/desktop_environment_gnome/framework.h
 acme/_start.h
-/home/pi/solution/basis/operating-system/operating-system-linux/node_linux/acme/_start.h
+/home/pi/solution/basis/operating-system/operating-system-linux/desktop_environment_gnome/acme/_start.h
 _.h
-/home/pi/solution/basis/operating-system/operating-system-linux/node_linux/_.h
-_node_linux.h
-/home/pi/solution/basis/operating-system/operating-system-linux/node_linux/_node_linux.h
+/home/pi/solution/basis/operating-system/operating-system-linux/desktop_environment_gnome/_.h
+_desktop_environment_gnome.h
+/home/pi/solution/basis/operating-system/operating-system-linux/desktop_environment_gnome/_desktop_environment_gnome.h
 aura/_defer.h
-/home/pi/solution/basis/operating-system/operating-system-linux/node_linux/aura/_defer.h
+/home/pi/solution/basis/operating-system/operating-system-linux/desktop_environment_gnome/aura/_defer.h
+
+/home/pi/solution/basis/operating-system/operating-system-linux/desktop_environment_gnome/node.cpp
+framework.h
+/home/pi/solution/basis/operating-system/operating-system-linux/desktop_environment_gnome/framework.h
+node.h
+/home/pi/solution/basis/operating-system/operating-system-linux/desktop_environment_gnome/node.h
+windowing_x11/windowing_x11.h
+/home/pi/solution/basis/operating-system/operating-system-linux/desktop_environment_gnome/windowing_x11/windowing_x11.h
+
+/home/pi/solution/basis/operating-system/operating-system-linux/desktop_environment_gnome/node.h
 
 operating-system/operating-system-linux/_include/__/__bit.h
 
@@ -85,6 +109,8 @@ operating-system/operating-system-linux/acme_linux/acme_file.h
 operating-system/operating-system-linux/acme_linux/acme_path.h
 
 operating-system/operating-system-linux/acme_linux/console.h
+
+operating-system/operating-system-linux/acme_linux/file.h
 
 operating-system/operating-system-linux/acme_linux/stdio_file.h
 
@@ -148,9 +174,9 @@ operating-system/operating-system-linux/aura_linux/interaction_impl.h
 node.h
 operating-system/operating-system-linux/aura_linux/node.h
 
-operating-system/operating-system-linux/aura_linux/interaction_impl.h
+operating-system/operating-system-linux/aura_linux/_const.h
 
-operating-system/operating-system-linux/aura_linux/node.h
+operating-system/operating-system-linux/aura_linux/interaction_impl.h
 
 operating-system/operating-system-linux/operating_system/config.h
 initializer_list
@@ -309,6 +335,144 @@ X11/XKBlib.h
 -
 X11/Xlib.h
 -
+
+operating-system/operating-system-posix/node_gnome/_.h
+node_gtk/_.h
+operating-system/operating-system-posix/node_gnome/node_gtk/_.h
+
+operating-system/operating-system-posix/node_gnome/_node_gnome.h
+node_gtk/_node_gtk.h
+operating-system/operating-system-posix/node_gnome/node_gtk/_node_gtk.h
+acme/operating_system/ansi/_pthread.h
+operating-system/operating-system-posix/node_gnome/acme/operating_system/ansi/_pthread.h
+aura/user/user/_user.h
+operating-system/operating-system-posix/node_gnome/aura/user/user/_user.h
+aura_posix/appindicator.h
+operating-system/operating-system-posix/node_gnome/aura_posix/appindicator.h
+monitor.h
+operating-system/operating-system-posix/node_gnome/monitor.h
+display.h
+operating-system/operating-system-posix/node_gnome/display.h
+node.h
+operating-system/operating-system-posix/node_gnome/node.h
+windowing.h
+operating-system/operating-system-posix/node_gnome/windowing.h
+copydesk.h
+operating-system/operating-system-posix/node_gnome/copydesk.h
+appindicator.h
+operating-system/operating-system-posix/node_gnome/appindicator.h
+notify_icon.h
+operating-system/operating-system-posix/node_gnome/notify_icon.h
+
+operating-system/operating-system-posix/node_gnome/appindicator.h
+
+operating-system/operating-system-posix/node_gnome/copydesk.h
+
+operating-system/operating-system-posix/node_gnome/display.h
+
+operating-system/operating-system-posix/node_gnome/monitor.h
+
+operating-system/operating-system-posix/node_gnome/notify_icon.h
+apex/user/notify_icon_bridge.h
+operating-system/operating-system-posix/node_gnome/apex/user/notify_icon_bridge.h
+
+operating-system/operating-system-posix/node_gnome/windowing.h
+
+operating-system/operating-system-posix/node_gtk/_.h
+windowing_x11/_.h
+operating-system/operating-system-posix/node_gtk/windowing_x11/_.h
+
+operating-system/operating-system-posix/node_gtk/_node_gtk.h
+windowing_x11/_windowing_x11.h
+operating-system/operating-system-posix/node_gtk/windowing_x11/_windowing_x11.h
+acme/operating_system/ansi/_pthread.h
+operating-system/operating-system-posix/node_gtk/acme/operating_system/ansi/_pthread.h
+aura/user/user/_user.h
+operating-system/operating-system-posix/node_gtk/aura/user/user/_user.h
+aura_posix/appindicator.h
+operating-system/operating-system-posix/node_gtk/aura_posix/appindicator.h
+gtk/gtk.h
+-
+gdk/gdkx.h
+-
+gdk_gdk.h
+operating-system/operating-system-posix/node_gtk/gdk_gdk.h
+gtk_gtk.h
+operating-system/operating-system-posix/node_gtk/gtk_gtk.h
+monitor.h
+operating-system/operating-system-posix/node_gtk/monitor.h
+display.h
+operating-system/operating-system-posix/node_gtk/display.h
+node.h
+operating-system/operating-system-posix/node_gtk/node.h
+windowing.h
+operating-system/operating-system-posix/node_gtk/windowing.h
+
+operating-system/operating-system-posix/node_gtk/gdk_gdk.h
+
+operating-system/operating-system-posix/node_gtk/gtk_gtk.h
+
+operating-system/operating-system-posix/windowing_x11/_.h
+aura_posix/_.h
+operating-system/operating-system-posix/windowing_x11/aura_posix/_.h
+
+operating-system/operating-system-posix/windowing_x11/_windowing_x11.h
+aura_posix/_aura_posix.h
+operating-system/operating-system-posix/windowing_x11/aura_posix/_aura_posix.h
+aura/user/user/_user.h
+operating-system/operating-system-posix/windowing_x11/aura/user/user/_user.h
+acme/operating_system/x11/_.h
+operating-system/operating-system-posix/windowing_x11/acme/operating_system/x11/_.h
+aura/operating_system/freebsd/appindicator.h
+operating-system/operating-system-posix/windowing_x11/aura/operating_system/freebsd/appindicator.h
+acme/operating_system/ansi/_pthread.h
+operating-system/operating-system-posix/windowing_x11/acme/operating_system/ansi/_pthread.h
+acme/operating_system/freebsd/_user.h
+operating-system/operating-system-posix/windowing_x11/acme/operating_system/freebsd/_user.h
+X11/Xlib.h
+-
+X11/Xutil.h
+-
+X11/extensions/Xrender.h
+-
+X11/Xatom.h
+-
+keyboard.h
+operating-system/operating-system-posix/windowing_x11/keyboard.h
+window.h
+operating-system/operating-system-posix/windowing_x11/window.h
+display.h
+operating-system/operating-system-posix/windowing_x11/display.h
+buffer.h
+operating-system/operating-system-posix/windowing_x11/buffer.h
+cursor.h
+operating-system/operating-system-posix/windowing_x11/cursor.h
+icon.h
+operating-system/operating-system-posix/windowing_x11/icon.h
+window.h
+operating-system/operating-system-posix/windowing_x11/window.h
+windowing.h
+operating-system/operating-system-posix/windowing_x11/windowing.h
+display.h
+operating-system/operating-system-posix/windowing_x11/display.h
+operating-system-posix/aura_posix/x11/display_lock.h
+operating-system/operating-system-posix/windowing_x11/operating-system-posix/aura_posix/x11/display_lock.h
+node.h
+operating-system/operating-system-posix/windowing_x11/node.h
+
+operating-system/operating-system-posix/windowing_x11/buffer.h
+aura/graphics/graphics/_.h
+operating-system/operating-system-posix/windowing_x11/aura/graphics/graphics/_.h
+aura/graphics/graphics/_graphics.h
+operating-system/operating-system-posix/windowing_x11/aura/graphics/graphics/_graphics.h
+
+operating-system/operating-system-posix/windowing_x11/cursor.h
+
+operating-system/operating-system-posix/windowing_x11/icon.h
+
+operating-system/operating-system-posix/windowing_x11/windowing_x11.h
+acme/operating_system/freebsd/_user.h
+operating-system/operating-system-posix/windowing_x11/acme/operating_system/freebsd/_user.h
 
 source/app/_include/__/__inttypes.h
 inttypes.h
@@ -1690,9 +1854,23 @@ source/app/acme/operating_system/ansi/file_c.h
 binreloc.h
 source/app/acme/operating_system/ansi/binreloc.h
 
+source/app/acme/operating_system/ansi/_pthread.h
+pthread.h
+-
+semun.h
+source/app/acme/operating_system/ansi/semun.h
+
 source/app/acme/operating_system/ansi/binreloc.h
 
 source/app/acme/operating_system/ansi/callstack.h
+
+source/app/acme/operating_system/ansi/semun.h
+sys/types.h
+-
+sys/sem.h
+-
+sys/ipc.h
+-
 
 source/app/acme/operating_system/apple/_apple.h
 CoreGraphics/CoreGraphics.h
@@ -1715,6 +1893,20 @@ internal.h
 source/app/acme/operating_system/freebsd/internal.h
 factory_exchange.h
 source/app/acme/operating_system/freebsd/factory_exchange.h
+
+source/app/acme/operating_system/freebsd/_user.h
+cross_win_gdi.h
+source/app/acme/operating_system/freebsd/cross_win_gdi.h
+stdio.h
+-
+string.h
+-
+
+source/app/acme/operating_system/freebsd/cross_win_gdi.h
+cross_win_gdi_internal.h
+source/app/acme/operating_system/freebsd/cross_win_gdi_internal.h
+
+source/app/acme/operating_system/freebsd/cross_win_gdi_internal.h
 
 source/app/acme/operating_system/ios/_c.h
 
@@ -1761,8 +1953,6 @@ RoundViewController.h
 source/app/acme/operating_system/ios/RoundViewController.h
 round_window.h
 source/app/acme/operating_system/ios/round_window.h
-
-source/app/acme/operating_system/ios/ip_enum.h
 
 source/app/acme/operating_system/linux/_linux.h
 sys/ptrace.h
@@ -1889,6 +2079,12 @@ source/app/acme/operating_system/windows_common/api.h
 source/app/acme/operating_system/windows_common/api.h
 
 source/app/acme/operating_system/windows_common/arg_sec_attrs.h
+
+source/app/acme/operating_system/x11/_.h
+_atom.h
+source/app/acme/operating_system/x11/_atom.h
+
+source/app/acme/operating_system/x11/_atom.h
 
 source/app/acme/parallelization/_.h
 acme/platform/predicate_holder.h
@@ -2298,8 +2494,6 @@ source/app/acme/primitive/collection/_tiny_array_impl.h
 
 source/app/acme/primitive/collection/address_array.h
 
-source/app/acme/primitive/collection/array.h
-
 source/app/acme/primitive/collection/array_base.h
 
 source/app/acme/primitive/collection/attrib_map.h
@@ -2349,8 +2543,6 @@ source/app/acme/primitive/collection/iterator.h
 source/app/acme/primitive/collection/list.h
 
 source/app/acme/primitive/collection/logic_array.h
-
-source/app/acme/primitive/collection/map.h
 
 source/app/acme/primitive/collection/map_association.h
 
@@ -3858,6 +4050,8 @@ source/app/apex/networking/http/signal.h
 
 source/app/apex/networking/http/transaction.h
 
+source/app/apex/networking/ip_enum.h
+
 source/app/apex/networking/port_forward.h
 
 source/app/apex/operating_system.h
@@ -4093,6 +4287,8 @@ factory_exchange.h
 source/app/apex/operating_system/freebsd/factory_exchange.h
 
 source/app/apex/operating_system/freebsd/_user.h
+
+source/app/apex/operating_system/graphics.h
 
 source/app/apex/operating_system/linux/_.h
 
@@ -4452,6 +4648,12 @@ source/app/aura/graphics/draw2d/bitmap.h
 object.h
 source/app/aura/graphics/draw2d/object.h
 
+source/app/aura/graphics/draw2d/color_filter.h
+color_matrix.h
+source/app/aura/graphics/draw2d/color_matrix.h
+
+source/app/aura/graphics/draw2d/color_matrix.h
+
 source/app/aura/graphics/draw2d/graphics.h
 aura/platform/draw_context2.h
 source/app/aura/graphics/draw2d/aura/platform/draw_context2.h
@@ -4488,19 +4690,113 @@ source/app/aura/graphics/draw3d/ortho.h
 
 source/app/aura/graphics/draw3d/ortho.h
 
+source/app/aura/graphics/graphics/_.h
+
+source/app/aura/graphics/graphics/_graphics.h
+graphics.h
+source/app/aura/graphics/graphics/graphics.h
+aura/graphics/image/_image.h
+source/app/aura/graphics/graphics/aura/graphics/image/_image.h
+buffer.h
 source/app/aura/graphics/graphics/buffer.h
+double_buffer.h
+source/app/aura/graphics/graphics/double_buffer.h
+bitmap_source_buffer.h
+source/app/aura/graphics/graphics/bitmap_source_buffer.h
+
+source/app/aura/graphics/graphics/bitmap_source_buffer.h
+
+source/app/aura/graphics/graphics/buffer.h
+graphics.h
+source/app/aura/graphics/graphics/graphics.h
+
+source/app/aura/graphics/graphics/double_buffer.h
 graphics.h
 source/app/aura/graphics/graphics/graphics.h
 
 source/app/aura/graphics/image/_.h
 
+source/app/aura/graphics/image/_image.h
+_image.h
+source/app/aura/graphics/image/_image.h
+source.h
+source/app/aura/graphics/image/source.h
+drawer.h
+source/app/aura/graphics/image/drawer.h
+drawing.h
+source/app/aura/graphics/image/drawing.h
+header.h
+source/app/aura/graphics/image/header.h
+image.h
+source/app/aura/graphics/image/image.h
+dynamic.h
+source/app/aura/graphics/image/dynamic.h
+meta.h
+source/app/aura/graphics/image/meta.h
+drawer.h
+source/app/aura/graphics/image/drawer.h
+image.h
+source/app/aura/graphics/image/image.h
+frame.h
+source/app/aura/graphics/image/frame.h
+array.h
+source/app/aura/graphics/image/array.h
+frame_array.h
+source/app/aura/graphics/image/frame_array.h
+extension.h
+source/app/aura/graphics/image/extension.h
+map.h
+source/app/aura/graphics/image/map.h
+map_ex1.h
+source/app/aura/graphics/image/map_ex1.h
+cursor.h
+source/app/aura/graphics/image/cursor.h
+icon.h
+source/app/aura/graphics/image/icon.h
+cursor_set.h
+source/app/aura/graphics/image/cursor_set.h
+fastblur.h
+source/app/aura/graphics/image/fastblur.h
+imaging.h
+source/app/aura/graphics/image/imaging.h
+load_image.h
+source/app/aura/graphics/image/load_image.h
+context_image.h
+source/app/aura/graphics/image/context_image.h
+
 source/app/aura/graphics/image/_image_impl.h
 
+source/app/aura/graphics/image/array.h
+
+source/app/aura/graphics/image/context_image.h
+image.h
+source/app/aura/graphics/image/image.h
+
+source/app/aura/graphics/image/cursor_set.h
+
 source/app/aura/graphics/image/drawer.h
+
+source/app/aura/graphics/image/drawing.h
+aura/graphics/draw2d/color_filter.h
+source/app/aura/graphics/image/aura/graphics/draw2d/color_filter.h
+source.h
+source/app/aura/graphics/image/source.h
+image.h
+source/app/aura/graphics/image/image.h
 
 source/app/aura/graphics/image/dynamic.h
 
 source/app/aura/graphics/image/extension.h
+
+source/app/aura/graphics/image/fastblur.h
+smmintrin.h
+-
+
+source/app/aura/graphics/image/frame_array.h
+image.h
+source/app/aura/graphics/image/image.h
+frame.h
+source/app/aura/graphics/image/frame.h
 
 source/app/aura/graphics/image/header.h
 
@@ -4513,6 +4809,18 @@ source.h
 source/app/aura/graphics/image/source.h
 _image_impl.h
 source/app/aura/graphics/image/_image_impl.h
+
+source/app/aura/graphics/image/imaging.h
+array.h
+source/app/aura/graphics/image/array.h
+
+source/app/aura/graphics/image/load_image.h
+
+source/app/aura/graphics/image/map.h
+header.h
+source/app/aura/graphics/image/header.h
+
+source/app/aura/graphics/image/map_ex1.h
 
 source/app/aura/graphics/image/meta.h
 pixmap.h
@@ -4900,8 +5208,6 @@ source/app/aura/operating_system/ansi/_c.h
 file_c.h
 source/app/aura/operating_system/ansi/file_c.h
 
-source/app/aura/operating_system/ansi/file.h
-
 source/app/aura/operating_system/ansi/file_c.h
 
 source/app/aura/operating_system/apple/_apple.h
@@ -4947,6 +5253,8 @@ window_cairo.h
 source/app/aura/operating_system/freebsd/window_cairo.h
 windowing.h
 source/app/aura/operating_system/freebsd/windowing.h
+
+source/app/aura/operating_system/freebsd/appindicator.h
 
 source/app/aura/operating_system/ios/_.h
 
@@ -5007,8 +5315,6 @@ source/app/aura/operating_system/linux/osdisplay.h
 source/app/aura/operating_system/linux/oswindow.h
 
 source/app/aura/operating_system/linux/window_cairo.h
-
-source/app/aura/operating_system/linux/windowing.h
 
 source/app/aura/operating_system/linux/x11.h
 acme/platform/profiler.h
@@ -5094,8 +5400,6 @@ source/app/aura/operating_system/windows_common/_unicode_c.h
 
 source/app/aura/operating_system/windows_common/_windows_common.h
 graphics.h
-source/app/aura/operating_system/windows_common/graphics.h
-
 source/app/aura/operating_system/windows_common/graphics.h
 
 source/app/aura/platform/_impl.h
@@ -5274,8 +5578,6 @@ source/app/aura/user/user/control_descriptor.h
 
 source/app/aura/user/user/control_event_listener.h
 
-source/app/aura/user/user/copydesk.h
-
 source/app/aura/user/user/form.h
 
 source/app/aura/user/user/form_callback.h
@@ -5311,8 +5613,6 @@ source/app/aura/user/user/message_box.h
 source/app/aura/user/user/message_window.h
 
 source/app/aura/user/user/message_window_listener.h
-
-source/app/aura/user/user/notify_icon.h
 
 source/app/aura/user/user/notify_icon_listener.h
 
@@ -5392,23 +5692,13 @@ source/app/aura/windowing/cursor_manager.h
 windowing.h
 source/app/aura/windowing/windowing.h
 
-source/app/aura/windowing/buffer.h
-
-source/app/aura/windowing/cursor.h
-
 source/app/aura/windowing/cursor_manager.h
 
-source/app/aura/windowing/display.h
-
 source/app/aura/windowing/graphics_lock.h
-
-source/app/aura/windowing/icon.h
 
 source/app/aura/windowing/menu.h
 
 source/app/aura/windowing/menu_item.h
-
-source/app/aura/windowing/monitor.h
 
 source/include/setup/debug.h
 
