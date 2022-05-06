@@ -8,7 +8,7 @@
 #define _MAX_PATH MAX_PATH
 
 
-#define PARALLELIZATION_PTHREAD
+
 
 
 // platform text char
