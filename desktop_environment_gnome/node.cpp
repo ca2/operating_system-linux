@@ -191,7 +191,7 @@ namespace desktop_environment_gnome
 
       //auto estatus =
       //
-      ::aura::linux::node::initialize(pobject);
+      ::aura_linux::node::initialize(pobject);
 
 //      if(!estatus)
 //      {

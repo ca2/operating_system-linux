@@ -8,41 +8,34 @@
 #pragma once
 
 
-namespace aura
+namespace aura_linux
 {
 
 
-   namespace linux
+   class CLASS_DECL_AURA_LINUX node :
+      virtual public ::apex_linux::node,
+      virtual public ::aura_posix::node
    {
+   public:
 
 
-      class CLASS_DECL_AURA_LINUX node :
-         virtual public ::apex::linux::node,
-         virtual public ::aura::posix::node
-      {
-      public:
+      node();
+      ~node() override;
 
 
-         node();
-         ~node() override;
+      void initialize(::object* pobject) override;
 
 
-         void initialize(::object* pobject) override;
+      string get_user_name();
 
 
-         string get_user_name();
+      void browse_for_folder(::file::path & pathFolder) override;
 
 
-         void browse_for_folder(::file::path & pathFolder) override;
+   };
 
 
-      };
-
-
-   } // namespace linux
-
-
-} // namespace aura
+} // namespace aura_linux
 
 
 

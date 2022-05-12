@@ -13,7 +13,7 @@ namespace desktop_environment_gnome
 
 
    class CLASS_DECL_DESKTOP_ENVIRONMENT_GNOME node :
-      virtual public ::aura::linux::node,
+      virtual public ::aura_linux::node,
       virtual public ::node_gnome::node
    {
    public:

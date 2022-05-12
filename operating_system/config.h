@@ -3,6 +3,10 @@
 
 #define _THREAD_SAFE
 
+
+#define PARALLELIZATION_PTHREAD
+
+
 #define ENABLE_BINRELOC
 
 #ifndef LINUX

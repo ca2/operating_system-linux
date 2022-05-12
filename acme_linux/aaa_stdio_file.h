@@ -1,7 +1,7 @@
 #pragma once
 
 
-namespace linux
+namespace acme_linux
 {
 
 
@@ -54,7 +54,7 @@ namespace linux
    };
 
 
-} // namespace linux
+} // namespace acme_linux
 
 
 

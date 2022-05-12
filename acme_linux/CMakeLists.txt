@@ -22,8 +22,8 @@ list(APPEND library_source
    framework.h
    node.cpp
    node.h
-   stdio_file.cpp
-   stdio_file.h
+   #stdio_file.cpp
+   #stdio_file.h
    )
 
 

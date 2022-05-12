@@ -2,12 +2,12 @@
 #pragma once
 
 
-namespace linux
+namespace acme_linux
 {
 
 
    class CLASS_DECL_ACME_LINUX acme_path :
-      virtual public ::posix::acme_path
+      virtual public ::acme_posix::acme_path
    {
    public:
 
@@ -22,7 +22,7 @@ namespace linux
    };
 
 
-} // namespace linux
+} // namespace acme_linux
 
 
 

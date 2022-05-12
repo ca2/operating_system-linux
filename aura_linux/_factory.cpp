@@ -17,8 +17,8 @@ __FACTORY_EXPORT void aura_linux_factory(::factory::factory * pfactory)
    aura_posix_factory( pfactory);
 
 
-   pfactory->add_factory_item < ::aura::linux::node, ::acme::node >();
-   pfactory->add_factory_item < ::linux::interaction_impl, ::user::interaction_impl >();
+   pfactory->add_factory_item < ::aura_linux::node, ::acme::node >();
+   pfactory->add_factory_item < ::aura_linux::interaction_impl, ::user::interaction_impl >();
 
 
 }

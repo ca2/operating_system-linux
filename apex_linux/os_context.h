@@ -1,12 +1,12 @@
 #pragma once
 
 
-namespace linux
+namespace apex_linux
 {
 
 
    class CLASS_DECL_APEX os_context :
-      public ::posix::os_context
+      public ::apex_posix::os_context
    {
    public:
 
@@ -93,7 +93,7 @@ namespace linux
    };
 
 
-} // namespace linux
+} // namespace apex_linux
 
 
 

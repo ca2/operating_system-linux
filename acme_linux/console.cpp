@@ -10,7 +10,7 @@ void __console_set_text_color(void * pscreen, int color);
 void __console_write(void * pscreen, const char * psz);
 
 
-namespace linux
+namespace acme_linux
 {
 
 
@@ -205,7 +205,7 @@ namespace linux
    }
 
 
-} // namespace windows
+} // namespace acme_linux
 
 
 

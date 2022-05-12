@@ -12,7 +12,7 @@ Copyright (ca) 1998 by PJ Naughter.
 */
 
 
-namespace linux
+namespace apex_linux
 {
 
 
@@ -35,7 +35,7 @@ namespace linux
    };
 
 
-} // namespace linux
+} // namespace apex_linux
 
 
 

@@ -2,7 +2,7 @@
 #include "framework.h"
 
 
-namespace linux
+namespace acme_linux
 {
 
    
@@ -67,7 +67,7 @@ namespace linux
    }
 
 
-} // namespace linux
+} // namespace acme_linux
 
 
 

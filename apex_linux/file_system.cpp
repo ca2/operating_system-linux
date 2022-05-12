@@ -4,7 +4,7 @@
 #include "acme/filesystem/filesystem/acme_directory.h"
 
 
-namespace linux
+namespace apex_linux
 {
 
 
@@ -83,7 +83,7 @@ namespace linux
 //   }
 
 
-} // namespace linux
+} // namespace apex_linux
 
 
 

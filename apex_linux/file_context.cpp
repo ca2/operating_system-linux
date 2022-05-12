@@ -14,7 +14,7 @@ struct PROCESS_INFO_t
 };
 
 
-namespace linux
+namespace apex_linux
 {
 
 
@@ -127,7 +127,7 @@ namespace linux
    }
 
 
-} // namespace linux
+} // namespace apex_linux
 
 
 

@@ -1,7 +1,7 @@
 #pragma once
 
 
-namespace linux
+namespace apex_linux
 {
 
 
@@ -25,7 +25,7 @@ namespace linux
    };
 
 
-} // namespace linux
+} // namespace apex_linux
 
 
 

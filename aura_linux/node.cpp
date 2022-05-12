@@ -2,37 +2,33 @@
 #include "node.h"
 
 
-namespace aura
+namespace aura_linux
 {
 
 
-   namespace linux
+   node::node()
+   {
+
+      //m_pnodenode = this;
+
+      m_pAuraPlatform = this;
+
+   }
+
+
+   node::~node()
    {
 
 
-      node::node()
-      {
-
-         //m_pnodenode = this;
-
-         m_pAuraPlatform = this;
-
-      }
+   }
 
 
-      node::~node()
-      {
+   void node::initialize(::object* pobject)
+   {
 
+      //auto estatus =
 
-      }
-
-
-      void node::initialize(::object* pobject)
-      {
-
-         //auto estatus =
-
-            ::apex::linux::node::initialize(pobject);
+         ::apex_linux::node::initialize(pobject);
 
 //         if(!estatus)
 //         {
@@ -41,9 +37,9 @@ namespace aura
 //
 //         }
 
-         //estatus =
-         //
-         ::aura::posix::node::initialize(pobject);
+      //estatus =
+      //
+      ::aura_posix::node::initialize(pobject);
 
 //         if(!estatus)
 //         {
@@ -52,9 +48,9 @@ namespace aura
 //
 //         }
 
-         //estatus =
-         //
-         ::aura::node::initialize(pobject);
+      //estatus =
+      //
+      ::aura::node::initialize(pobject);
 
 //         if(!estatus)
 //         {
@@ -65,11 +61,11 @@ namespace aura
 //
 //         return estatus;
 
-      }
+   }
 
 
-      string node::get_user_name()
-      {
+   string node::get_user_name()
+   {
 
 //         WCHAR wsz[1024];
 //
@@ -79,13 +75,13 @@ namespace aura
 //
 //         return string(wsz);
 
-         return "";
+      return "";
 
-      }
+   }
 
 
-      void node::browse_for_folder(::file::path & pathFolder)
-      {
+   void node::browse_for_folder(::file::path & pathFolder)
+   {
 
 //         wstring wstrFolder(pathFolder);
 //
@@ -137,15 +133,12 @@ namespace aura
 //
 //         }
 
-         //return ::success;
+      //return ::success;
 
-      }
-
-
-   } // namespace linux
+   }
 
 
-} // namespace aura
+} // namespace aura_linux
 
 
 

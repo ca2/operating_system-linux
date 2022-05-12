@@ -11,31 +11,27 @@ bool __node_node_pre_init();
 bool __node_node_pos_init();
 
 
-namespace apex
+namespace apex_linux
 {
-   
-   
-   namespace linux
+
+
+   node::node()
+   {
+
+      m_pApexPlatform = this;
+
+   }
+
+
+   node::~node()
    {
 
 
-      node::node()
-      {
-
-         m_pApexPlatform = this;
-
-      }
+   }
 
 
-      node::~node()
-      {
-
-
-      }
-
-
-      string node::get_user_name()
-      {
+   string node::get_user_name()
+   {
 
 //      WCHAR wsz[1024];
 //
@@ -45,17 +41,17 @@ namespace apex
 //
 //      return string(wsz);
 
-         return "";
+      return "";
 
-      }
+   }
 
 
-      void node::initialize(::object * pobject)
-      {
+   void node::initialize(::object * pobject)
+   {
 
-         //auto estatus =
+      //auto estatus =
 
-         ::acme::linux::node::initialize(pobject);
+      ::acme_linux::node::initialize(pobject);
 
 //         if (!estatus)
 //         {
@@ -79,23 +75,23 @@ namespace apex
 //
 //         }
 
-         //return estatus;
+      //return estatus;
 
-      }
+   }
 
 
-      void node::_001InitializeShellOpen()
-      {
+   void node::_001InitializeShellOpen()
+   {
 
-         //ASSERT(m_atomApp == nullptr && m_atomSystemTopic == nullptr); // do once
+      //ASSERT(m_atomApp == nullptr && m_atomSystemTopic == nullptr); // do once
 
-         //m_atomApp            = ::GlobalAddAtomW(::str::international::utf8_to_unicode(m_strAppName));
+      //m_atomApp            = ::GlobalAddAtomW(::str::international::utf8_to_unicode(m_strAppName));
 
-         //m_atomSystemTopic    = ::GlobalAddAtomW(L"system");
+      //m_atomSystemTopic    = ::GlobalAddAtomW(L"system");
 
-         //return ::success;
+      //return ::success;
 
-      }
+   }
 
 
 //      void node::file_open(const ::file::path & path, const ::string& strParams, const ::file::path & pathFolder)
@@ -106,27 +102,24 @@ namespace apex
 //      }
 
 
-      ::e_status node::process_init()
-      {
+   ::e_status node::process_init()
+   {
 
-         //defer_initialize_winsock();
-         return success;
+      //defer_initialize_winsock();
+      return success;
 
-      }
-
-
-      int node::node_init_check(int*, char***)
-      {
-
-         return ::success;
-
-      }
+   }
 
 
-   } // namespace linux
+   int node::node_init_check(int*, char***)
+   {
+
+      return ::success;
+
+   }
 
 
-} // namespace apex
+} // namespace apex_linux
 
 
 

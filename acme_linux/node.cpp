@@ -6,27 +6,22 @@
 ::user::enum_desktop _get_edesktop();
 
 
-namespace acme
+namespace acme_linux
 {
 
 
-   namespace linux
+   node::node()
    {
 
+      m_edesktop = ::user::e_desktop_none;
+
+      m_pAcmePlatform = this;
+
+   }
 
 
-      node::node()
-      {
-
-         m_edesktop = ::user::e_desktop_none;
-
-         m_pAcmePlatform = this;
-
-      }
-
-
-      node::~node()
-      = default;
+   node::~node()
+   = default;
 
 
 //      void initialize_matter(::matter * pmatter)
@@ -36,12 +31,12 @@ namespace acme
 //
 //      }
 
-      // Twitter Automator and Denis Lakic and UpWork contribution
+   // Twitter Automator and Denis Lakic and UpWork contribution
 // enzymes: Liveedu.tv, Twitch.tv and Mixer.com streamers and viewers
 // Mummi and bilbo!!
 // create call to :
-      void node::install_crash_dump_reporting(const string & strModuleNameWithTheExeExtension)
-      {
+   void node::install_crash_dump_reporting(const string & strModuleNameWithTheExeExtension)
+   {
 
 //      ::linux::registry::key k;
 //
@@ -61,123 +56,123 @@ namespace acme
 //
 //      output_debug_string("test01");
 
-      }
+   }
 
 
-      string node::audio_get_default_library_name()
+   string node::audio_get_default_library_name()
+   {
+
+      return "audio_alsa";
+
+   }
+
+
+   ::file::path node::_module_path()
+   {
+
+      ::file::path path;
+
+      char * pszModule = nullptr;
+
+      if((pszModule = br_find_exe(nullptr)) == nullptr)
       {
 
-         return "audio_alsa";
-
-      }
-
-
-      ::file::path node::_module_path()
-      {
-
-         ::file::path path;
-
-         char * pszModule = nullptr;
-
-         if((pszModule = br_find_exe(nullptr)) == nullptr)
+         if (!br_init_lib(nullptr))
          {
 
-            if (!br_init_lib(nullptr))
+            char path[PATH_MAX * 4];
+
+            char dest[PATH_MAX * 4];
+
+            pid_t pid = getpid();
+
+            sprintf(path, "/proc/%d/exe", pid);
+
+            auto iSize = readlink(path, dest, PATH_MAX);
+
+            if (iSize > 0)
             {
 
-               char path[PATH_MAX * 4];
+               dest[iSize] = '\0';
 
-               char dest[PATH_MAX * 4];
-
-               pid_t pid = getpid();
-
-               sprintf(path, "/proc/%d/exe", pid);
-
-               auto iSize = readlink(path, dest, PATH_MAX);
-
-               if (iSize > 0)
-               {
-
-                  dest[iSize] = '\0';
-
-                  pszModule = strdup(dest);
-
-               }
+               pszModule = strdup(dest);
 
             }
 
          }
 
-         path = pszModule;
-
-         ::free(pszModule);
-
-         return path;
-
       }
 
+      path = pszModule;
 
-      void node::calculate_linux_distribution()
+      ::free(pszModule);
+
+      return path;
+
+   }
+
+
+   void node::calculate_linux_distribution()
+   {
+
+      auto lines = m_psystem->m_pacmefile->lines("/etc/os-release");
+
+      ::string strId;
+
+      if(lines.find_first_begins_eat_ci(strId, "id="))
       {
 
-         auto lines = m_psystem->m_pacmefile->lines("/etc/os-release");
+         strId.make_lower();
 
-         ::string strId;
-
-         if(lines.find_first_begins_eat_ci(strId, "id="))
+         if (strId == "ubuntu")
          {
 
-            strId.make_lower();
-
-            if (strId == "ubuntu")
-            {
-
-               m_elinuxdistribution = e_linux_distribution_ubuntu;
-
-            }
-            else if (strId == "manjaro")
-            {
-
-               m_elinuxdistribution = e_linux_distribution_manjaro;
-
-            }
+            m_elinuxdistribution = e_linux_distribution_ubuntu;
 
          }
-
-         if(m_elinuxdistribution <= 0)
+         else if (strId == "manjaro")
          {
 
-            output_debug_string("WARNING: Unknown linux distribution with id \"" + strId + "\".");
-
-            m_elinuxdistribution = e_linux_distribution_unknown;
+            m_elinuxdistribution = e_linux_distribution_manjaro;
 
          }
 
       }
 
-
-      ::user::enum_desktop node::get_edesktop()
+      if(m_elinuxdistribution <= 0)
       {
 
-         return ::acme::node::get_edesktop();
+         output_debug_string("WARNING: Unknown linux distribution with id \"" + strId + "\".");
+
+         m_elinuxdistribution = e_linux_distribution_unknown;
 
       }
 
-
-      ::user::enum_desktop node::calculate_edesktop()
-      {
-
-         return _get_edesktop();
-
-      }
+   }
 
 
-      ::user::enum_desktop node::_get_edesktop()
-      {
+   ::user::enum_desktop node::get_edesktop()
+   {
 
-         return ::_get_edesktop();
+      return ::acme::node::get_edesktop();
 
-      }
+   }
+
+
+   ::user::enum_desktop node::calculate_edesktop()
+   {
+
+      return _get_edesktop();
+
+   }
+
+
+   ::user::enum_desktop node::_get_edesktop()
+   {
+
+      return ::_get_edesktop();
+
+   }
 
 
 //      ::user::enum_desktop node::_calculate_edesktop()
@@ -188,34 +183,34 @@ namespace acme
 //      }
 
 
-      bool node::process_modules(string_array& stra, u32 processID)
-      {
+   bool node::process_modules(string_array& stra, u32 processID)
+   {
 
-         return ::acme::posix::node::process_modules(stra, processID);
+      return ::acme_posix::node::process_modules(stra, processID);
 
-      }
-
-
-      bool node::load_modules_diff(string_array& straOld, string_array& straNew, const char* pszExceptDir)
-      {
-
-         return ::acme::posix::node::load_modules_diff(straOld, straNew, pszExceptDir);
-
-      }
+   }
 
 
-      id_array node::get_pids()
-      {
+   bool node::load_modules_diff(string_array& straOld, string_array& straNew, const char* pszExceptDir)
+   {
 
-         return ::acme::posix::node::get_pids();
+      return ::acme_posix::node::load_modules_diff(straOld, straNew, pszExceptDir);
 
-      }
+   }
 
 
-      id_array node::module_path_get_pid(const char* pszModulePath, bool bModuleNameIsPropertyFormatted)
-      {
+   id_array node::get_pids()
+   {
 
-         return ::acme::posix::node::module_path_get_pid(pszModulePath, bModuleNameIsPropertyFormatted);
+      return ::acme_posix::node::get_pids();
+
+   }
+
+
+   id_array node::module_path_get_pid(const char* pszModulePath, bool bModuleNameIsPropertyFormatted)
+   {
+
+      return ::acme_posix::node::module_path_get_pid(pszModulePath, bModuleNameIsPropertyFormatted);
 
 //         id_array iaPid;
 //
@@ -240,110 +235,110 @@ namespace acme
 //         return iaPid;
 
 
-      }
+   }
 
 
-      string node::module_path_from_pid(u32 pid)
-      {
+   string node::module_path_from_pid(u32 pid)
+   {
 
-         return ::acme::posix::node::module_path_from_pid(pid);
+      return ::acme_posix::node::module_path_from_pid(pid);
 
-      }
-
-
-      string node::command_line_from_pid(u32 pid)
-      {
-
-         return ::acme::posix::node::command_line_from_pid(pid);
-
-      }
+   }
 
 
-      bool node::is_shared_library_busy(u32 processid, const string_array& stra)
-      {
+   string node::command_line_from_pid(u32 pid)
+   {
 
-         return ::acme::posix::node::is_shared_library_busy(processid, stra);
+      return ::acme_posix::node::command_line_from_pid(pid);
 
-      }
-
-
-      bool node::is_shared_library_busy(const string_array& stra)
-      {
-
-         return ::acme::posix::node::is_shared_library_busy(stra);
-
-      }
+   }
 
 
-      bool node::process_contains_module(string& strImage, ::u32 processID, const char* pszLibrary)
-      {
+   bool node::is_shared_library_busy(u32 processid, const string_array& stra)
+   {
 
-         return ::acme::posix::node::process_contains_module(strImage, processID, pszLibrary);
+      return ::acme_posix::node::is_shared_library_busy(processid, stra);
 
-      }
-
-
-      void node::shared_library_process(dword_array& dwa, string_array& straProcesses, const char* pszLibrary)
-      {
-
-         ::acme::posix::node::shared_library_process(dwa, straProcesses, pszLibrary);
-
-      }
+   }
 
 
-      bool node::is_process_running(::u32 pid)
-      {
+   bool node::is_shared_library_busy(const string_array& stra)
+   {
 
-         return ::acme::posix::node::is_process_running(pid);
+      return ::acme_posix::node::is_shared_library_busy(stra);
 
-      }
-
-
-      string node::get_environment_variable(const char* pszEnvironmentVariable)
-      {
-
-         return ::acme::posix::node::get_environment_variable(pszEnvironmentVariable);
-
-      }
+   }
 
 
-      string node::expand_environment_variables(const string & str)
-      {
+   bool node::process_contains_module(string& strImage, ::u32 processID, const char* pszLibrary)
+   {
 
-         return ::acme::posix::node::expand_environment_variables(str);
+      return ::acme_posix::node::process_contains_module(strImage, processID, pszLibrary);
 
-      }
-
-
-      array <::serial::port_info> node::list_serial_ports()
-      {
-
-         return ::acme::posix::node::list_serial_ports();
-
-      }
+   }
 
 
-      ::user::enum_desktop node::_calculate_edesktop()
-      {
+   void node::shared_library_process(dword_array& dwa, string_array& straProcesses, const char* pszLibrary)
+   {
 
-         return ::_calculate_edesktop();
+      ::acme_posix::node::shared_library_process(dwa, straProcesses, pszLibrary);
 
-      }
+   }
 
 
-      void node::shell_open(const ::file::path & path, const ::string & strParams, const ::file::path & pathFolder)
-      {
+   bool node::is_process_running(::u32 pid)
+   {
 
-         string str(path);
+      return ::acme_posix::node::is_process_running(pid);
 
-         fork([this, str]()
-              {
+   }
 
-                 ::system("xdg-open \"" + str + "\" & ");
 
-              });
+   string node::get_environment_variable(const char* pszEnvironmentVariable)
+   {
 
-      }
+      return ::acme_posix::node::get_environment_variable(pszEnvironmentVariable);
+
+   }
+
+
+   string node::expand_environment_variables(const string & str)
+   {
+
+      return ::acme_posix::node::expand_environment_variables(str);
+
+   }
+
+
+   array <::serial::port_info> node::list_serial_ports()
+   {
+
+      return ::acme_posix::node::list_serial_ports();
+
+   }
+
+
+   ::user::enum_desktop node::_calculate_edesktop()
+   {
+
+      return ::_calculate_edesktop();
+
+   }
+
+
+   void node::shell_open(const ::file::path & path, const ::string & strParams, const ::file::path & pathFolder)
+   {
+
+      string str(path);
+
+      fork([this, str]()
+           {
+
+              ::system("xdg-open \"" + str + "\" & ");
+
+           });
+
+   }
 
 
 //      void node::shell_execute_async(const char * psz, const char * pszParams)
@@ -403,10 +398,8 @@ namespace acme
 //      }
 
 
-   } // namespace linux
 
-
-} // namespace acme
+} // namespace acme_linux
 
 
 

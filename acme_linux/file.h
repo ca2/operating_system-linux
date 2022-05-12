@@ -15,7 +15,8 @@ struct FileStatus;
 
 #define INVALID_FILE -1
 
-namespace linux
+
+namespace acme_linux
 {
 
 
@@ -123,12 +124,12 @@ namespace linux
 //   }  // namespace file_exception
 
 
-} // namepsace linux
+} // namepsace acme_linux
 
 
 
 
-bool CLASS_DECL_ACME vfxFullPath(wstring & wstrFullPath, const wstring & wstrPath);
+//bool CLASS_DECL_ACME vfxFullPath(wstring & wstrFullPath, const wstring & wstrPath);
 
 
 

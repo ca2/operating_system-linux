@@ -58,7 +58,7 @@ inline bool linux_dir_myspace(char ch)
 }
 
 
-namespace linux
+namespace apex_linux
 {
 
 
@@ -835,7 +835,7 @@ namespace linux
    }
 
 
-} // namespace linux
+} // namespace apex_linux
 
 
 

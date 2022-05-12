@@ -12,7 +12,7 @@
 #define TEST 0
 
 
-namespace linux
+namespace aura_linux
 {
 
 
@@ -4365,7 +4365,7 @@ namespace linux
 //   }
 
 
-} // namespace linux
+} // namespace aura_linux
 
 
 

@@ -5,7 +5,7 @@
 __FACTORY_EXPORT void node_linux_factory(::factory::factory * pfactory)
 {
 
-   auto edesktop = ::acme::linux::node::_get_edesktop();
+   auto edesktop = ::acme_linux::node::_get_edesktop();
 
    if (edesktop & ::user::e_desktop_kde)
    {

@@ -6,8 +6,8 @@ list(APPEND library_source
     _.cpp
     _.h
     _factory.cpp
-    crypto.cpp
-    crypto.h
+    #crypto.cpp
+    #crypto.h
     dir_context.cpp
     dir_context.h
     dir_system.cpp

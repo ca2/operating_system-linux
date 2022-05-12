@@ -1,12 +1,12 @@
 #pragma once
 
 
-namespace linux
+namespace apex_linux
 {
 
 
    class CLASS_DECL_APEX file_context :
-      virtual public ::posix::file_context
+      virtual public ::apex_posix::file_context
    {
    public:
 
@@ -42,7 +42,7 @@ namespace linux
    };
 
 
-} // namespace linux
+} // namespace apex_linux
 
 
 

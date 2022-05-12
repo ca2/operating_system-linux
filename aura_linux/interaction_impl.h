@@ -1,7 +1,7 @@
 #pragma once
 
 
-namespace linux
+namespace aura_linux
 {
 
 
@@ -372,7 +372,7 @@ namespace linux
    };
 
 
-} // namespace linux
+} // namespace aura_linux
 
 
 
