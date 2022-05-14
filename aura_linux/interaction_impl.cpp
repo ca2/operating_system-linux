@@ -184,117 +184,117 @@ namespace aura_linux
    }
 
 
-   void interaction_impl::native_create_host()
-   {
-
-
-      ::user::interaction_impl::native_create_host();
-
-//      __pointer(::user::system) pusersystem;
+//   void interaction_impl::native_create_host()
+//   {
 //
-//      if(m_puserinteraction->m_pusersystem)
-//      {
 //
-//         pusersystem = m_puserinteraction->m_pusersystem;
+//      ::user::interaction_impl::native_create_host();
 //
-//      }
-//      else
-//      {
-//
-//         pusersystem = __new(::user::system);
-//
-//      }
-//
-////      ENSURE_ARG(pusersystem->m_createstruct.lpszName == nullptr || __is_valid_string(pusersystem->m_createstruct.lpszName));
+////      __pointer(::user::system) pusersystem;
 ////
-//      if (!m_puserinteraction->pre_create_window(pusersystem))
-//      {
-//
-//         //return false;
-//
-//         throw ::exception(error_failed);
-//
-//      }
-//
-//      __refer(m_puserinteraction->m_pthreadUserInteraction, ::get_task());
-//
-//      //m_pthreadUserImpl = m_puserinteraction->m_pthreadUserInteraction;
-//
-//      install_message_routing(m_puserinteraction);
-//
-//      bool bOk = true;
-//
-////      if(pusersystem->m_createstruct.hwndParent == (oswindow) MESSAGE_WINDOW_PARENT)
+////      if(m_puserinteraction->m_pusersystem)
 ////      {
 ////
-////         auto pwindowing = m_pwindowwindowing();
-////
-////         m_oswindow = pwindowing->new_message_window(this);
-////
-////         m_puserinteraction->m_bMessageWindow = true;
-////
-////         //send_message(e_message_create, 0, (LPARAM) &cs);
+////         pusersystem = m_puserinteraction->m_pusersystem;
 ////
 ////      }
 ////      else
-//      {
-//
-//         m_puserinteraction->m_bMessageWindow = false;
-//
-//         auto psession = get_session();
-//
-//         auto puser = psession->user();
-//
-//         auto pwindowing = puser->windowing();
-//
-//         pwindowing->windowing_send([&]()
-//         {
-//
-//            auto psession = get_session();
-//
-//            auto puser = psession->user();
-//
-//            auto pwindowing = puser->windowing();
-//
-//            m_pwindow = pwindowing->new_window(this);
-//
-//            if(m_pwindow)
-//            {
-//
-//               output_debug_string("window created");
-//
-//            }
-//            else
-//            {
-//
-//               output_debug_string("window not created");
-//
-//            }
-//
-//         });
-//
-//      }
-//
-////      if(bOk)
 ////      {
 ////
-////         m_puserinteraction->send_message(e_message_create, 0, (lparam) &pusersystem->m_createstruct);
-////
-////         m_puserinteraction->m_ewindowflag |= e_window_flag_window_created;
+////         pusersystem = __new(::user::system);
 ////
 ////      }
+////
+//////      ENSURE_ARG(pusersystem->m_createstruct.lpszName == nullptr || __is_valid_string(pusersystem->m_createstruct.lpszName));
+//////
+////      if (!m_puserinteraction->pre_create_window(pusersystem))
+////      {
+////
+////         //return false;
+////
+////         throw ::exception(error_failed);
+////
+////      }
+////
+////      __refer(m_puserinteraction->m_pthreadUserInteraction, ::get_task());
+////
+////      //m_pthreadUserImpl = m_puserinteraction->m_pthreadUserInteraction;
+////
+////      install_message_routing(m_puserinteraction);
+////
+////      bool bOk = true;
+////
+//////      if(pusersystem->m_createstruct.hwndParent == (oswindow) MESSAGE_WINDOW_PARENT)
+//////      {
+//////
+//////         auto pwindowing = m_pwindowwindowing();
+//////
+//////         m_oswindow = pwindowing->new_message_window(this);
+//////
+//////         m_puserinteraction->m_bMessageWindow = true;
+//////
+//////         //send_message(e_message_create, 0, (LPARAM) &cs);
+//////
+//////      }
+//////      else
+////      {
+////
+////         m_puserinteraction->m_bMessageWindow = false;
+////
+////         auto psession = get_session();
+////
+////         auto puser = psession->user();
+////
+////         auto pwindowing = puser->windowing();
+////
+////         pwindowing->windowing_send([&]()
+////         {
+////
+////            auto psession = get_session();
+////
+////            auto puser = psession->user();
+////
+////            auto pwindowing = puser->windowing();
+////
+////            m_pwindow = pwindowing->new_window(this);
+////
+////            if(m_pwindow)
+////            {
+////
+////               output_debug_string("window created");
+////
+////            }
+////            else
+////            {
+////
+////               output_debug_string("window not created");
+////
+////            }
+////
+////         });
+////
+////      }
+////
+//////      if(bOk)
+//////      {
+//////
+//////         m_puserinteraction->send_message(e_message_create, 0, (lparam) &pusersystem->m_createstruct);
+//////
+//////         m_puserinteraction->m_ewindowflag |= e_window_flag_window_created;
+//////
+//////      }
+////
+////      if(!bOk)
+////      {
+////
+////         throw ::exception(error_failed);
+////
+////      }
+////
+////
+////
 //
-//      if(!bOk)
-//      {
-//
-//         throw ::exception(error_failed);
-//
-//      }
-//
-//
-//
-
-   }
+//   }
 
 
    bool interaction_impl::pre_create_window(::user::system * pusersystem)

@@ -127,7 +127,7 @@ namespace aura_linux
 //      id id = ::id()) override;
 
 
-         void native_create_host() override;
+         //void native_create_host() override;
 
 
 //      virtual bool native_create_window_ex(
