@@ -27,7 +27,7 @@ namespace linux
 
    //{
 
-   //   return ::LoadLibraryW(::str::international::utf8_to_unicode(psz));
+   //   return ::LoadLibraryW(::::str::ch().international::utf8_to_unicode(psz));
 
 
    //}
@@ -114,7 +114,7 @@ namespace linux
 
    //{
 
-   //   return ::ExtractIconW(hInst, ::str::international::utf8_to_unicode(pszExeFileName), nIconIndex);
+   //   return ::ExtractIconW(hInst, ::::str::ch().international::utf8_to_unicode(pszExeFileName), nIconIndex);
 
 
    //}
@@ -124,7 +124,7 @@ namespace linux
 
    //{
 
-   //   return ::DeleteFileW(::str::international::utf8_to_unicode(pFileName)) != false;
+   //   return ::DeleteFileW(::::str::ch().international::utf8_to_unicode(pFileName)) != false;
 
 
    //}

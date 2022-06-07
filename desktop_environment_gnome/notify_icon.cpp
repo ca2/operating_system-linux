@@ -144,7 +144,7 @@ namespace node_gnome
 
          string strId(strAppId);
 
-         string strMatterRoot = ::str::token(strId, "/");
+         string strMatterRoot = ::::str::ch().token(strId, "/");
 
          if(strMatterRoot.is_empty())
          {
@@ -206,13 +206,13 @@ namespace node_gnome
 //
 //      string str(str1);
 //
-//      if(::str::begins_eat_ci(str, "app_veriwell_"))
+//      if(::::str::ch().begins_eat_ci(str, "app_veriwell_"))
 //      {
 //
 //         strFolder+="app-veriwell";
 //
 //      }
-//      else if(::str::begins_eat_ci(str, "app_core_"))
+//      else if(::::str::ch().begins_eat_ci(str, "app_core_"))
 //      {
 //
 //         strFolder+="app-core";

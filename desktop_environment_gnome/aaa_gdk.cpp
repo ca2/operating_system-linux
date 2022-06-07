@@ -479,7 +479,7 @@
 //
 //      }
 //
-//      ::str::begins_eat_ci(strWallpaper, "file://");
+//      ::::str::ch().begins_eat_ci(strWallpaper, "file://");
 //
 //      return strWallpaper;
 //

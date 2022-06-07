@@ -140,7 +140,7 @@ namespace acme_linux
 
       path.find_replace(":", "");
 
-      ::str::ends_eat_ci(path, ".exe");
+      ::::str::ch().ends_eat_ci(path, ".exe");
 
       return path;
 

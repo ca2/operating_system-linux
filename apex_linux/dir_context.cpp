@@ -47,7 +47,7 @@ inline bool linux_dir_myspace(char ch)
 
    path = straLines[0];
 
-   ::str::begins_eat_ci(path, strPrefix);
+   ::::str::ch().begins_eat_ci(path, strPrefix);
 
    path.find_replace("$HOME", pathHome);
 
@@ -315,7 +315,7 @@ namespace apex_linux
 //
 //            auto & strPath = stra[i];
 //
-//            if(!::str::begins(strPath, listing.m_pathFinal))
+//            if(!::::str::ch().begins(strPath, listing.m_pathFinal))
 //               continue;
 //
 //            bool bIsDir;
@@ -433,9 +433,9 @@ namespace apex_linux
 
       wstring wstrPath;
 
-      wstrPath = ::str::international::utf8_to_unicode(str, iLast + 1);
+      wstrPath = ::::str::ch().international::utf8_to_unicode(str, iLast + 1);
 
-      bool bIsDir = ::dir_context::is(::str::international::unicode_to_utf8(wstrPath));
+      bool bIsDir = ::dir_context::is(::::str::ch().international::unicode_to_utf8(wstrPath));
 
       return bIsDir;
 
@@ -658,7 +658,7 @@ namespace apex_linux
    bool dir_context::is_inside(const ::file::path & pszDir, const ::file::path & pszPath)
    {
 
-      return ::str::begins_ci(pszDir, pszPath);
+      return ::::str::ch().begins_ci(pszDir, pszPath);
 
    }
 

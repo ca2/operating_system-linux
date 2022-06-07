@@ -518,9 +518,9 @@ namespace apex_linux
                try
                {
 
-                  strCommand = ::str::consume_quoted_value(psz);
-                  ::str::consume_spaces(psz);
-                  ::str::consume(psz, "\"%L\"");
+                  strCommand = ::::str::ch().consume_quoted_value(psz);
+                  ::::str::ch().consume_spaces(psz);
+                  ::::str::ch().consume(psz, "\"%L\"");
                   strParam = psz;
 
                }
@@ -1084,7 +1084,7 @@ namespace apex_linux
 
       string str(file);
 
-      if(::str::begins_eat_ci(str, "\""))
+      if(::::str::ch().begins_eat_ci(str, "\""))
       {
 
          strsize iFind = str.find("\"");
@@ -1099,7 +1099,7 @@ namespace apex_linux
          str = str.Left(iFind);
 
       }
-      else if(::str::begins_eat_ci(str, "\'"))
+      else if(::::str::ch().begins_eat_ci(str, "\'"))
       {
 
          strsize iFind = str.find("\'");

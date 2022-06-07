@@ -183,7 +183,7 @@ namespace acme_linux
       //auto path = m_psystem->m_pacmepath->final(m_path);
 
       // attempt file creation
-      //HANDLE hFile = shell::CreateFile(::str::international::utf8_to_unicode(m_path), dwAccess, dwShareMode, &sa, dwCreateFlag, FILE_ATTRIBUTE_NORMAL, nullptr);
+      //HANDLE hFile = shell::CreateFile(::::str::ch().international::utf8_to_unicode(m_path), dwAccess, dwShareMode, &sa, dwCreateFlag, FILE_ATTRIBUTE_NORMAL, nullptr);
       int iFile = ::open(m_path, dwFlags, dwPermission); //::open(m_path, dwAccess, dwShareMode, &sa, dwCreateFlag, FILE_ATTRIBUTE_NORMAL, nullptr);
 
       if(iFile == INVALID_FILE)
