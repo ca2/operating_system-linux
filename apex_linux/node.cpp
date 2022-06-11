@@ -85,7 +85,7 @@ namespace apex_linux
 
       //ASSERT(m_atomApp == nullptr && m_atomSystemTopic == nullptr); // do once
 
-      //m_atomApp            = ::GlobalAddAtomW(::::str::ch().international::utf8_to_unicode(m_strAppName));
+      //m_atomApp            = ::GlobalAddAtomW(utf8_to_unicode(m_strAppName));
 
       //m_atomSystemTopic    = ::GlobalAddAtomW(L"system");
 

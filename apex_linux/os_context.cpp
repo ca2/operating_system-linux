@@ -2,7 +2,7 @@
 //#include "apex/platform/app_core.h"
 //#include "_linux.h"
 //#include "apex/os/linux/gnome_gnome.h"
-#include "apex/operating_system/linux/desktop_file.h"
+#include "apex/operating_system/freedesktop/desktop_file.h"
 
 
 i32 daemonize_process(const ::string & _cmd_line, i32 * pprocessId);
@@ -1084,7 +1084,7 @@ namespace apex_linux
 
       string str(file);
 
-      if(::::str::ch().begins_eat_ci(str, "\""))
+      if(str.begins_eat_ci("\""))
       {
 
          strsize iFind = str.find("\"");
@@ -1099,7 +1099,7 @@ namespace apex_linux
          str = str.Left(iFind);
 
       }
-      else if(::::str::ch().begins_eat_ci(str, "\'"))
+      else if(str.begins_eat_ci("\'"))
       {
 
          strsize iFind = str.find("\'");
@@ -1205,7 +1205,7 @@ namespace apex_linux
       if(bRegister)
       {
 
-         auto pfile = __create_new<::linux::desktop_file>();
+         auto pfile = __create_new < ::freedesktop::desktop_file >();
 
          pfile->set_app_id(strAppId);
 

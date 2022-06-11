@@ -981,6 +981,21 @@ namespace aura_linux
 //   }
 //
 
+
+   void interaction_impl::show_software_keyboard(::user::element * pelement)
+   {
+
+
+   }
+
+
+   void interaction_impl::hide_software_keyboard(::user::element * pelement)
+   {
+
+
+   }
+
+
    ::duration     durationDebugmessage_handlerTime;
    int            iDebugmessage_handlerTime;
    ::duration     durationLastMouseMove;
@@ -989,6 +1004,8 @@ namespace aura_linux
 
    void interaction_impl::message_handler(::message::message * pmessage)
    {
+
+      return ::user::interaction_impl::message_handler(pmessage);
 
       bool bKeyMessage = false;
 
@@ -1298,7 +1315,7 @@ namespace aura_linux
 
          ::user::interaction * puserinteractionMouse = nullptr;
 
-         if(m_puserinteractionCapture)
+         if(m_puserinteractionMouseCapture)
          {
 
 //            if(g_puserinteractionMouseCapture123 == nullptr)
@@ -1314,7 +1331,7 @@ namespace aura_linux
 //
 //            }
 
-            puserinteractionMouse = m_puserinteractionCapture;
+            puserinteractionMouse = m_puserinteractionMouseCapture;
 
          }
 
@@ -1423,7 +1440,7 @@ namespace aura_linux
       else if(bKeyMessage)
       {
 
-         __pointer(::user::interaction) puiFocus =  m_puserinteractionFocus1;
+         __pointer(::user::interaction) puiFocus =  m_puserinteractionKeyboardFocus;
 
          if(puiFocus)
          {

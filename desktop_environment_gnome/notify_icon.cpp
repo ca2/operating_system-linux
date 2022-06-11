@@ -206,13 +206,13 @@ namespace node_gnome
 //
 //      string str(str1);
 //
-//      if(::::str::ch().begins_eat_ci(str, "app_veriwell_"))
+//      if(::str().begins_eat_ci(str, "app_veriwell_"))
 //      {
 //
 //         strFolder+="app-veriwell";
 //
 //      }
-//      else if(::::str::ch().begins_eat_ci(str, "app_core_"))
+//      else if(::str().begins_eat_ci(str, "app_core_"))
 //      {
 //
 //         strFolder+="app-core";

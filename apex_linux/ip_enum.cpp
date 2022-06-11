@@ -137,7 +137,7 @@ namespace apex_linux
 
                ipa.add(*ptr->ai_addr);
 
-               ::::str::ch().from(str, ipa.last().u.m_sa);
+               to_string(str, ipa.last().u.m_sa);
 
                // sockaddr_ipv4 = (struct sockaddr_in *) ptr->ai_addr;
                //printf("\tIPv4 address %s\n",

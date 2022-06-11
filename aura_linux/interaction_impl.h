@@ -346,6 +346,9 @@ namespace aura_linux
 
       virtual void pre_translate_message(::message::message * pmessage) override;
 
+      void show_software_keyboard(::user::element * pelement) override;
+
+      void hide_software_keyboard(::user::element * pelement) override;
 
       virtual void message_handler(::message::message * pusermessage) override;
 

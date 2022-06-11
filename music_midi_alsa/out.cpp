@@ -68,7 +68,7 @@ namespace music
 
             //string strDriver(strDevice);
 
-            //::::str::ch().begins_eat_ci(strDriver, "alsa:");
+            //::str().begins_eat_ci(strDriver, "alsa:");
 
             //m_strDriver = strDriver;
 

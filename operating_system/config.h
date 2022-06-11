@@ -50,6 +50,7 @@
 #define CLASS_DECL_IMPORT
 #define CLASS_DECL_THREAD __thread
 #define __FACTORY_EXPORT extern "C"
+#define __FACTORY_IMPORT extern "C"
 
 
 

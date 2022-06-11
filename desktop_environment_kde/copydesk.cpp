@@ -440,7 +440,7 @@ namespace node_kde{
 //
 //      string strItem = stra[i];
 //
-//      ::::str::ch().begins_eat_ci(strItem, "file://");
+//      ::str().begins_eat_ci(strItem, "file://");
 //
 //      pdata->m_patha.add(::file::path(strItem));
 //
