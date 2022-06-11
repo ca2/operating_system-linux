@@ -4,10 +4,11 @@
 #define THIRD_PRIVATE_C_H
 
 
-#include "app/appseed/ace/ace_c.h"
+#include "operating_system/_.h"
 
 
-
+#undef IN
+#undef OUT
 
 
 
