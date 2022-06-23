@@ -399,7 +399,7 @@ namespace aura_linux
 
       }
 
-      bool bMove = m_bMoveEvent && m_puserinteraction->layout().sketch().origin() != m_pointLastMove;
+      bool bMove = m_bMoveEvent && m_puserinteraction->const_layout().sketch().origin() != m_pointLastMove;
 
       m_bMoveEvent = false;
 
@@ -408,13 +408,13 @@ namespace aura_linux
 
          INFORMATION("linux::interaction_impl Window Manager Move ("<<m_pointLastMove.x<<", "<<m_pointLastMove.y<<")");
 
-         m_puserinteraction->move_to(m_pointLastMove);
+         m_puserinteraction->set_position(m_pointLastMove);
 
          m_puserinteraction->set_reposition();
 
       }
 
-      bool bSize = m_bSizeEvent && m_puserinteraction->layout().sketch().size() != m_sizeLastSize;
+      bool bSize = m_bSizeEvent && m_puserinteraction->const_layout().sketch().size() != m_sizeLastSize;
 
       m_bSizeEvent = false;
 
@@ -536,13 +536,13 @@ namespace aura_linux
       if(pshowwindow->m_bShow)
       {
 
-         INFORMATION("linux::interaction_impl::_001OnShowWindow VISIBLE edisplay=" << __string(m_puserinteraction->layout().design().display().m_eenum));
+         INFORMATION("linux::interaction_impl::_001OnShowWindow VISIBLE edisplay=" << __string(m_puserinteraction->const_layout().design().display().m_eenum));
 
          //m_puserinteraction->ModifyStyle(0, WS_VISIBLE);
 
          m_puserinteraction->m_bVisible = true;
 
-         if(m_puserinteraction->layout().design().display() == ::e_display_iconic && !m_pwindow->is_iconic())
+         if(m_puserinteraction->const_layout().design().display() == ::e_display_iconic && !m_pwindow->is_iconic())
          {
 
             m_puserinteraction->hide();
