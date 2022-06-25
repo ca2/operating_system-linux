@@ -429,33 +429,6 @@ node.cpp.s:
 	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f operating-system/operating-system-linux/acme_linux/CMakeFiles/acme_linux.dir/build.make operating-system/operating-system-linux/acme_linux/CMakeFiles/acme_linux.dir/node.cpp.s
 .PHONY : node.cpp.s
 
-stdio_file.o: stdio_file.cpp.o
-
-.PHONY : stdio_file.o
-
-# target to build an object file
-stdio_file.cpp.o:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f operating-system/operating-system-linux/acme_linux/CMakeFiles/acme_linux.dir/build.make operating-system/operating-system-linux/acme_linux/CMakeFiles/acme_linux.dir/stdio_file.cpp.o
-.PHONY : stdio_file.cpp.o
-
-stdio_file.i: stdio_file.cpp.i
-
-.PHONY : stdio_file.i
-
-# target to preprocess a source file
-stdio_file.cpp.i:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f operating-system/operating-system-linux/acme_linux/CMakeFiles/acme_linux.dir/build.make operating-system/operating-system-linux/acme_linux/CMakeFiles/acme_linux.dir/stdio_file.cpp.i
-.PHONY : stdio_file.cpp.i
-
-stdio_file.s: stdio_file.cpp.s
-
-.PHONY : stdio_file.s
-
-# target to generate assembly for a file
-stdio_file.cpp.s:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f operating-system/operating-system-linux/acme_linux/CMakeFiles/acme_linux.dir/build.make operating-system/operating-system-linux/acme_linux/CMakeFiles/acme_linux.dir/stdio_file.cpp.s
-.PHONY : stdio_file.cpp.s
-
 # Help Target
 help:
 	@echo "The following are some of the valid targets for this Makefile:"
@@ -498,9 +471,6 @@ help:
 	@echo "... node.o"
 	@echo "... node.i"
 	@echo "... node.s"
-	@echo "... stdio_file.o"
-	@echo "... stdio_file.i"
-	@echo "... stdio_file.s"
 .PHONY : help
 
 

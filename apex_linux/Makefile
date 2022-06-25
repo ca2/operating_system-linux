@@ -213,33 +213,6 @@ cmake_pch.hxx.s:
 	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f operating-system/operating-system-linux/apex_linux/CMakeFiles/apex_linux.dir/build.make operating-system/operating-system-linux/apex_linux/CMakeFiles/apex_linux.dir/cmake_pch.hxx.s
 .PHONY : cmake_pch.hxx.s
 
-crypto.o: crypto.cpp.o
-
-.PHONY : crypto.o
-
-# target to build an object file
-crypto.cpp.o:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f operating-system/operating-system-linux/apex_linux/CMakeFiles/apex_linux.dir/build.make operating-system/operating-system-linux/apex_linux/CMakeFiles/apex_linux.dir/crypto.cpp.o
-.PHONY : crypto.cpp.o
-
-crypto.i: crypto.cpp.i
-
-.PHONY : crypto.i
-
-# target to preprocess a source file
-crypto.cpp.i:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f operating-system/operating-system-linux/apex_linux/CMakeFiles/apex_linux.dir/build.make operating-system/operating-system-linux/apex_linux/CMakeFiles/apex_linux.dir/crypto.cpp.i
-.PHONY : crypto.cpp.i
-
-crypto.s: crypto.cpp.s
-
-.PHONY : crypto.s
-
-# target to generate assembly for a file
-crypto.cpp.s:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f operating-system/operating-system-linux/apex_linux/CMakeFiles/apex_linux.dir/build.make operating-system/operating-system-linux/apex_linux/CMakeFiles/apex_linux.dir/crypto.cpp.s
-.PHONY : crypto.cpp.s
-
 dir_context.o: dir_context.cpp.o
 
 .PHONY : dir_context.o
@@ -528,9 +501,6 @@ help:
 	@echo "... cmake_pch.hxx.gch"
 	@echo "... cmake_pch.hxx.i"
 	@echo "... cmake_pch.hxx.s"
-	@echo "... crypto.o"
-	@echo "... crypto.i"
-	@echo "... crypto.s"
 	@echo "... dir_context.o"
 	@echo "... dir_context.i"
 	@echo "... dir_context.s"
