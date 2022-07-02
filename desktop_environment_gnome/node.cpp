@@ -255,7 +255,7 @@ namespace desktop_environment_gnome
 
       }
 
-      auto pwindowing = puser->windowing();
+      auto pwindowing = puser->windowing1();
 
       if(::is_null(pwindowing))
       {

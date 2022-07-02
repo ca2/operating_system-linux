@@ -85,11 +85,11 @@ namespace aura_linux
       virtual ::user::interaction_impl * from_os_data(void * pdata) override;
       //virtual void * get_os_data() const override;
 
-      static user::interaction_impl * from_handle(oswindow hWnd);
-      static user::interaction_impl * FromHandlePermanent(oswindow hWnd);
+      static user::interaction_impl * from_handle(::oswindow hWnd);
+      static user::interaction_impl * FromHandlePermanent(::oswindow hWnd);
       //static void DeleteTempMap();
-      bool Attach(oswindow hWndNew);
-      oswindow Detach();
+      bool Attach(::oswindow hWndNew);
+      ::oswindow Detach();
 
       // subclassing/unsubclassing functions
       virtual void pre_subclass_window() override;

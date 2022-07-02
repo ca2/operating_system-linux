@@ -69,7 +69,7 @@ namespace aura_linux
    ::user::interaction_impl * interaction_impl::from_os_data(void * pdata)
    {
 
-      return from_handle((oswindow) pdata);
+      return from_handle((::oswindow) pdata);
 
    }
 
@@ -98,7 +98,7 @@ namespace aura_linux
 //   }
 
 
-   ::user::interaction_impl * interaction_impl::from_handle(oswindow oswindow)
+   ::user::interaction_impl * interaction_impl::from_handle(::oswindow oswindow)
    {
 
       if(is_null(oswindow))
@@ -120,7 +120,7 @@ namespace aura_linux
    }
 
 
-   ::user::interaction_impl * interaction_impl::FromHandlePermanent(oswindow oswindow)
+   ::user::interaction_impl * interaction_impl::FromHandlePermanent(::oswindow oswindow)
    {
 
       if(oswindow->m_puserinteractionimpl == nullptr)
@@ -135,7 +135,7 @@ namespace aura_linux
    }
 
 
-   bool interaction_impl::Attach(oswindow hWndNew)
+   bool interaction_impl::Attach(::oswindow hWndNew)
    {
 
       ASSERT(get_os_data() == nullptr);
@@ -168,7 +168,7 @@ namespace aura_linux
 
       //return hwnd;
 
-      auto oswindow = get_oswindow();
+      auto oswindow = this->oswindow();
 
       m_pwindow->set_oswindow(nullptr);
 
@@ -1243,7 +1243,7 @@ namespace aura_linux
 
                auto puser = psession->user();
 
-               auto pwindowing = puser->windowing();
+               auto pwindowing = puser->windowing1();
 
                auto pdisplay = pwindowing->display();
 
@@ -1294,9 +1294,9 @@ namespace aura_linux
 
          auto puser = psession->user();
 
-         auto pwindowing = puser->windowing();
+         auto pwindowing = puser->windowing1();
 
-         pwindowing->set(pmouse, get_oswindow(), m_pwindow, pmouse->m_atom, pmouse->m_wparam, pmouse->m_lparam);
+         pwindowing->set(pmouse, oswindow(), m_pwindow, pmouse->m_atom, pmouse->m_wparam, pmouse->m_lparam);
 
          if(pmessage->m_atom == e_message_mouse_move)
          {
@@ -2393,7 +2393,7 @@ namespace aura_linux
 
       auto puser = psession->user();
 
-      auto pwindowing = puser->windowing();
+      auto pwindowing = puser->windowing1();
 
       if(pwindowing)
       {
@@ -2424,7 +2424,7 @@ namespace aura_linux
 
       auto puser = psession->user();
 
-      auto pwindowing = puser->windowing();
+      auto pwindowing = puser->windowing1();
 
       if(pwindowing)
       {
@@ -2455,7 +2455,7 @@ namespace aura_linux
 
       auto puser = psession->user();
 
-      auto pwindowing = puser->windowing();
+      auto pwindowing = puser->windowing1();
 
       if(pwindowing)
       {
