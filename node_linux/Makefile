@@ -67,10 +67,10 @@ RM = /usr/bin/cmake -E rm -f
 EQUALS = =
 
 # The top-level source directory on which CMake was run.
-CMAKE_SOURCE_DIR = /home/pi/solution/basis
+CMAKE_SOURCE_DIR = /home/camilo/solution/basis
 
 # The top-level build directory on which CMake was run.
-CMAKE_BINARY_DIR = /home/pi/solution/basis
+CMAKE_BINARY_DIR = /home/camilo/solution/basis
 
 #=============================================================================
 # Targets provided globally by CMake.
@@ -99,14 +99,14 @@ edit_cache/fast: edit_cache
 
 # The main all target
 all: cmake_check_build_system
-	cd /home/pi/solution/basis && $(CMAKE_COMMAND) -E cmake_progress_start /home/pi/solution/basis/CMakeFiles /home/pi/solution/basis/operating-system/operating-system-linux/node_linux//CMakeFiles/progress.marks
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 operating-system/operating-system-linux/node_linux/all
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/pi/solution/basis/CMakeFiles 0
+	cd /home/camilo/solution/basis && $(CMAKE_COMMAND) -E cmake_progress_start /home/camilo/solution/basis/CMakeFiles /home/camilo/solution/basis/operating-system/operating-system-linux/node_linux//CMakeFiles/progress.marks
+	cd /home/camilo/solution/basis && $(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 operating-system/operating-system-linux/node_linux/all
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/camilo/solution/basis/CMakeFiles 0
 .PHONY : all
 
 # The main clean target
 clean:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 operating-system/operating-system-linux/node_linux/clean
+	cd /home/camilo/solution/basis && $(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 operating-system/operating-system-linux/node_linux/clean
 .PHONY : clean
 
 # The main clean target
@@ -116,22 +116,22 @@ clean/fast: clean
 
 # Prepare targets for installation.
 preinstall: all
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 operating-system/operating-system-linux/node_linux/preinstall
+	cd /home/camilo/solution/basis && $(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 operating-system/operating-system-linux/node_linux/preinstall
 .PHONY : preinstall
 
 # Prepare targets for installation.
 preinstall/fast:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 operating-system/operating-system-linux/node_linux/preinstall
+	cd /home/camilo/solution/basis && $(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 operating-system/operating-system-linux/node_linux/preinstall
 .PHONY : preinstall/fast
 
 # clear depends
 depend:
-	cd /home/pi/solution/basis && $(CMAKE_COMMAND) -S$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR) --check-build-system CMakeFiles/Makefile.cmake 1
+	cd /home/camilo/solution/basis && $(CMAKE_COMMAND) -S$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR) --check-build-system CMakeFiles/Makefile.cmake 1
 .PHONY : depend
 
 # Convenience name for target.
 operating-system/operating-system-linux/node_linux/CMakeFiles/node_linux.dir/rule:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 operating-system/operating-system-linux/node_linux/CMakeFiles/node_linux.dir/rule
+	cd /home/camilo/solution/basis && $(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 operating-system/operating-system-linux/node_linux/CMakeFiles/node_linux.dir/rule
 .PHONY : operating-system/operating-system-linux/node_linux/CMakeFiles/node_linux.dir/rule
 
 # Convenience name for target.
@@ -141,7 +141,7 @@ node_linux: operating-system/operating-system-linux/node_linux/CMakeFiles/node_l
 
 # fast build rule for target.
 node_linux/fast:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f operating-system/operating-system-linux/node_linux/CMakeFiles/node_linux.dir/build.make operating-system/operating-system-linux/node_linux/CMakeFiles/node_linux.dir/build
+	cd /home/camilo/solution/basis && $(MAKE) $(MAKESILENT) -f operating-system/operating-system-linux/node_linux/CMakeFiles/node_linux.dir/build.make operating-system/operating-system-linux/node_linux/CMakeFiles/node_linux.dir/build
 .PHONY : node_linux/fast
 
 _.o: _.cpp.o
@@ -150,7 +150,7 @@ _.o: _.cpp.o
 
 # target to build an object file
 _.cpp.o:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f operating-system/operating-system-linux/node_linux/CMakeFiles/node_linux.dir/build.make operating-system/operating-system-linux/node_linux/CMakeFiles/node_linux.dir/_.cpp.o
+	cd /home/camilo/solution/basis && $(MAKE) $(MAKESILENT) -f operating-system/operating-system-linux/node_linux/CMakeFiles/node_linux.dir/build.make operating-system/operating-system-linux/node_linux/CMakeFiles/node_linux.dir/_.cpp.o
 .PHONY : _.cpp.o
 
 _.i: _.cpp.i
@@ -159,7 +159,7 @@ _.i: _.cpp.i
 
 # target to preprocess a source file
 _.cpp.i:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f operating-system/operating-system-linux/node_linux/CMakeFiles/node_linux.dir/build.make operating-system/operating-system-linux/node_linux/CMakeFiles/node_linux.dir/_.cpp.i
+	cd /home/camilo/solution/basis && $(MAKE) $(MAKESILENT) -f operating-system/operating-system-linux/node_linux/CMakeFiles/node_linux.dir/build.make operating-system/operating-system-linux/node_linux/CMakeFiles/node_linux.dir/_.cpp.i
 .PHONY : _.cpp.i
 
 _.s: _.cpp.s
@@ -168,7 +168,7 @@ _.s: _.cpp.s
 
 # target to generate assembly for a file
 _.cpp.s:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f operating-system/operating-system-linux/node_linux/CMakeFiles/node_linux.dir/build.make operating-system/operating-system-linux/node_linux/CMakeFiles/node_linux.dir/_.cpp.s
+	cd /home/camilo/solution/basis && $(MAKE) $(MAKESILENT) -f operating-system/operating-system-linux/node_linux/CMakeFiles/node_linux.dir/build.make operating-system/operating-system-linux/node_linux/CMakeFiles/node_linux.dir/_.cpp.s
 .PHONY : _.cpp.s
 
 _factory.o: _factory.cpp.o
@@ -177,7 +177,7 @@ _factory.o: _factory.cpp.o
 
 # target to build an object file
 _factory.cpp.o:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f operating-system/operating-system-linux/node_linux/CMakeFiles/node_linux.dir/build.make operating-system/operating-system-linux/node_linux/CMakeFiles/node_linux.dir/_factory.cpp.o
+	cd /home/camilo/solution/basis && $(MAKE) $(MAKESILENT) -f operating-system/operating-system-linux/node_linux/CMakeFiles/node_linux.dir/build.make operating-system/operating-system-linux/node_linux/CMakeFiles/node_linux.dir/_factory.cpp.o
 .PHONY : _factory.cpp.o
 
 _factory.i: _factory.cpp.i
@@ -186,7 +186,7 @@ _factory.i: _factory.cpp.i
 
 # target to preprocess a source file
 _factory.cpp.i:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f operating-system/operating-system-linux/node_linux/CMakeFiles/node_linux.dir/build.make operating-system/operating-system-linux/node_linux/CMakeFiles/node_linux.dir/_factory.cpp.i
+	cd /home/camilo/solution/basis && $(MAKE) $(MAKESILENT) -f operating-system/operating-system-linux/node_linux/CMakeFiles/node_linux.dir/build.make operating-system/operating-system-linux/node_linux/CMakeFiles/node_linux.dir/_factory.cpp.i
 .PHONY : _factory.cpp.i
 
 _factory.s: _factory.cpp.s
@@ -195,22 +195,22 @@ _factory.s: _factory.cpp.s
 
 # target to generate assembly for a file
 _factory.cpp.s:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f operating-system/operating-system-linux/node_linux/CMakeFiles/node_linux.dir/build.make operating-system/operating-system-linux/node_linux/CMakeFiles/node_linux.dir/_factory.cpp.s
+	cd /home/camilo/solution/basis && $(MAKE) $(MAKESILENT) -f operating-system/operating-system-linux/node_linux/CMakeFiles/node_linux.dir/build.make operating-system/operating-system-linux/node_linux/CMakeFiles/node_linux.dir/_factory.cpp.s
 .PHONY : _factory.cpp.s
 
 # target to build an object file
 cmake_pch.hxx.gch:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f operating-system/operating-system-linux/node_linux/CMakeFiles/node_linux.dir/build.make operating-system/operating-system-linux/node_linux/CMakeFiles/node_linux.dir/cmake_pch.hxx.gch
+	cd /home/camilo/solution/basis && $(MAKE) $(MAKESILENT) -f operating-system/operating-system-linux/node_linux/CMakeFiles/node_linux.dir/build.make operating-system/operating-system-linux/node_linux/CMakeFiles/node_linux.dir/cmake_pch.hxx.gch
 .PHONY : cmake_pch.hxx.gch
 
 # target to preprocess a source file
 cmake_pch.hxx.i:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f operating-system/operating-system-linux/node_linux/CMakeFiles/node_linux.dir/build.make operating-system/operating-system-linux/node_linux/CMakeFiles/node_linux.dir/cmake_pch.hxx.i
+	cd /home/camilo/solution/basis && $(MAKE) $(MAKESILENT) -f operating-system/operating-system-linux/node_linux/CMakeFiles/node_linux.dir/build.make operating-system/operating-system-linux/node_linux/CMakeFiles/node_linux.dir/cmake_pch.hxx.i
 .PHONY : cmake_pch.hxx.i
 
 # target to generate assembly for a file
 cmake_pch.hxx.s:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f operating-system/operating-system-linux/node_linux/CMakeFiles/node_linux.dir/build.make operating-system/operating-system-linux/node_linux/CMakeFiles/node_linux.dir/cmake_pch.hxx.s
+	cd /home/camilo/solution/basis && $(MAKE) $(MAKESILENT) -f operating-system/operating-system-linux/node_linux/CMakeFiles/node_linux.dir/build.make operating-system/operating-system-linux/node_linux/CMakeFiles/node_linux.dir/cmake_pch.hxx.s
 .PHONY : cmake_pch.hxx.s
 
 # Help Target
@@ -242,6 +242,6 @@ help:
 # No rule that depends on this can have commands that come from listfiles
 # because they might be regenerated.
 cmake_check_build_system:
-	cd /home/pi/solution/basis && $(CMAKE_COMMAND) -S$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR) --check-build-system CMakeFiles/Makefile.cmake 0
+	cd /home/camilo/solution/basis && $(CMAKE_COMMAND) -S$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR) --check-build-system CMakeFiles/Makefile.cmake 0
 .PHONY : cmake_check_build_system
 

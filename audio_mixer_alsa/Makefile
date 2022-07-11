@@ -67,10 +67,10 @@ RM = /usr/bin/cmake -E rm -f
 EQUALS = =
 
 # The top-level source directory on which CMake was run.
-CMAKE_SOURCE_DIR = /home/pi/solution/basis
+CMAKE_SOURCE_DIR = /home/camilo/solution/basis
 
 # The top-level build directory on which CMake was run.
-CMAKE_BINARY_DIR = /home/pi/solution/basis
+CMAKE_BINARY_DIR = /home/camilo/solution/basis
 
 #=============================================================================
 # Targets provided globally by CMake.
@@ -99,14 +99,14 @@ edit_cache/fast: edit_cache
 
 # The main all target
 all: cmake_check_build_system
-	cd /home/pi/solution/basis && $(CMAKE_COMMAND) -E cmake_progress_start /home/pi/solution/basis/CMakeFiles /home/pi/solution/basis/operating-system/operating-system-linux/audio_mixer_alsa//CMakeFiles/progress.marks
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 operating-system/operating-system-linux/audio_mixer_alsa/all
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/pi/solution/basis/CMakeFiles 0
+	cd /home/camilo/solution/basis && $(CMAKE_COMMAND) -E cmake_progress_start /home/camilo/solution/basis/CMakeFiles /home/camilo/solution/basis/operating-system/operating-system-linux/audio_mixer_alsa//CMakeFiles/progress.marks
+	cd /home/camilo/solution/basis && $(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 operating-system/operating-system-linux/audio_mixer_alsa/all
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/camilo/solution/basis/CMakeFiles 0
 .PHONY : all
 
 # The main clean target
 clean:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 operating-system/operating-system-linux/audio_mixer_alsa/clean
+	cd /home/camilo/solution/basis && $(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 operating-system/operating-system-linux/audio_mixer_alsa/clean
 .PHONY : clean
 
 # The main clean target
@@ -116,22 +116,22 @@ clean/fast: clean
 
 # Prepare targets for installation.
 preinstall: all
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 operating-system/operating-system-linux/audio_mixer_alsa/preinstall
+	cd /home/camilo/solution/basis && $(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 operating-system/operating-system-linux/audio_mixer_alsa/preinstall
 .PHONY : preinstall
 
 # Prepare targets for installation.
 preinstall/fast:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 operating-system/operating-system-linux/audio_mixer_alsa/preinstall
+	cd /home/camilo/solution/basis && $(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 operating-system/operating-system-linux/audio_mixer_alsa/preinstall
 .PHONY : preinstall/fast
 
 # clear depends
 depend:
-	cd /home/pi/solution/basis && $(CMAKE_COMMAND) -S$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR) --check-build-system CMakeFiles/Makefile.cmake 1
+	cd /home/camilo/solution/basis && $(CMAKE_COMMAND) -S$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR) --check-build-system CMakeFiles/Makefile.cmake 1
 .PHONY : depend
 
 # Convenience name for target.
 operating-system/operating-system-linux/audio_mixer_alsa/CMakeFiles/audio_mixer_alsa.dir/rule:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 operating-system/operating-system-linux/audio_mixer_alsa/CMakeFiles/audio_mixer_alsa.dir/rule
+	cd /home/camilo/solution/basis && $(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 operating-system/operating-system-linux/audio_mixer_alsa/CMakeFiles/audio_mixer_alsa.dir/rule
 .PHONY : operating-system/operating-system-linux/audio_mixer_alsa/CMakeFiles/audio_mixer_alsa.dir/rule
 
 # Convenience name for target.
@@ -141,7 +141,7 @@ audio_mixer_alsa: operating-system/operating-system-linux/audio_mixer_alsa/CMake
 
 # fast build rule for target.
 audio_mixer_alsa/fast:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f operating-system/operating-system-linux/audio_mixer_alsa/CMakeFiles/audio_mixer_alsa.dir/build.make operating-system/operating-system-linux/audio_mixer_alsa/CMakeFiles/audio_mixer_alsa.dir/build
+	cd /home/camilo/solution/basis && $(MAKE) $(MAKESILENT) -f operating-system/operating-system-linux/audio_mixer_alsa/CMakeFiles/audio_mixer_alsa.dir/build.make operating-system/operating-system-linux/audio_mixer_alsa/CMakeFiles/audio_mixer_alsa.dir/build
 .PHONY : audio_mixer_alsa/fast
 
 _factory.o: _factory.cpp.o
@@ -150,7 +150,7 @@ _factory.o: _factory.cpp.o
 
 # target to build an object file
 _factory.cpp.o:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f operating-system/operating-system-linux/audio_mixer_alsa/CMakeFiles/audio_mixer_alsa.dir/build.make operating-system/operating-system-linux/audio_mixer_alsa/CMakeFiles/audio_mixer_alsa.dir/_factory.cpp.o
+	cd /home/camilo/solution/basis && $(MAKE) $(MAKESILENT) -f operating-system/operating-system-linux/audio_mixer_alsa/CMakeFiles/audio_mixer_alsa.dir/build.make operating-system/operating-system-linux/audio_mixer_alsa/CMakeFiles/audio_mixer_alsa.dir/_factory.cpp.o
 .PHONY : _factory.cpp.o
 
 _factory.i: _factory.cpp.i
@@ -159,7 +159,7 @@ _factory.i: _factory.cpp.i
 
 # target to preprocess a source file
 _factory.cpp.i:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f operating-system/operating-system-linux/audio_mixer_alsa/CMakeFiles/audio_mixer_alsa.dir/build.make operating-system/operating-system-linux/audio_mixer_alsa/CMakeFiles/audio_mixer_alsa.dir/_factory.cpp.i
+	cd /home/camilo/solution/basis && $(MAKE) $(MAKESILENT) -f operating-system/operating-system-linux/audio_mixer_alsa/CMakeFiles/audio_mixer_alsa.dir/build.make operating-system/operating-system-linux/audio_mixer_alsa/CMakeFiles/audio_mixer_alsa.dir/_factory.cpp.i
 .PHONY : _factory.cpp.i
 
 _factory.s: _factory.cpp.s
@@ -168,7 +168,7 @@ _factory.s: _factory.cpp.s
 
 # target to generate assembly for a file
 _factory.cpp.s:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f operating-system/operating-system-linux/audio_mixer_alsa/CMakeFiles/audio_mixer_alsa.dir/build.make operating-system/operating-system-linux/audio_mixer_alsa/CMakeFiles/audio_mixer_alsa.dir/_factory.cpp.s
+	cd /home/camilo/solution/basis && $(MAKE) $(MAKESILENT) -f operating-system/operating-system-linux/audio_mixer_alsa/CMakeFiles/audio_mixer_alsa.dir/build.make operating-system/operating-system-linux/audio_mixer_alsa/CMakeFiles/audio_mixer_alsa.dir/_factory.cpp.s
 .PHONY : _factory.cpp.s
 
 audio_mixer.o: audio_mixer.cpp.o
@@ -177,7 +177,7 @@ audio_mixer.o: audio_mixer.cpp.o
 
 # target to build an object file
 audio_mixer.cpp.o:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f operating-system/operating-system-linux/audio_mixer_alsa/CMakeFiles/audio_mixer_alsa.dir/build.make operating-system/operating-system-linux/audio_mixer_alsa/CMakeFiles/audio_mixer_alsa.dir/audio_mixer.cpp.o
+	cd /home/camilo/solution/basis && $(MAKE) $(MAKESILENT) -f operating-system/operating-system-linux/audio_mixer_alsa/CMakeFiles/audio_mixer_alsa.dir/build.make operating-system/operating-system-linux/audio_mixer_alsa/CMakeFiles/audio_mixer_alsa.dir/audio_mixer.cpp.o
 .PHONY : audio_mixer.cpp.o
 
 audio_mixer.i: audio_mixer.cpp.i
@@ -186,7 +186,7 @@ audio_mixer.i: audio_mixer.cpp.i
 
 # target to preprocess a source file
 audio_mixer.cpp.i:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f operating-system/operating-system-linux/audio_mixer_alsa/CMakeFiles/audio_mixer_alsa.dir/build.make operating-system/operating-system-linux/audio_mixer_alsa/CMakeFiles/audio_mixer_alsa.dir/audio_mixer.cpp.i
+	cd /home/camilo/solution/basis && $(MAKE) $(MAKESILENT) -f operating-system/operating-system-linux/audio_mixer_alsa/CMakeFiles/audio_mixer_alsa.dir/build.make operating-system/operating-system-linux/audio_mixer_alsa/CMakeFiles/audio_mixer_alsa.dir/audio_mixer.cpp.i
 .PHONY : audio_mixer.cpp.i
 
 audio_mixer.s: audio_mixer.cpp.s
@@ -195,7 +195,7 @@ audio_mixer.s: audio_mixer.cpp.s
 
 # target to generate assembly for a file
 audio_mixer.cpp.s:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f operating-system/operating-system-linux/audio_mixer_alsa/CMakeFiles/audio_mixer_alsa.dir/build.make operating-system/operating-system-linux/audio_mixer_alsa/CMakeFiles/audio_mixer_alsa.dir/audio_mixer.cpp.s
+	cd /home/camilo/solution/basis && $(MAKE) $(MAKESILENT) -f operating-system/operating-system-linux/audio_mixer_alsa/CMakeFiles/audio_mixer_alsa.dir/build.make operating-system/operating-system-linux/audio_mixer_alsa/CMakeFiles/audio_mixer_alsa.dir/audio_mixer.cpp.s
 .PHONY : audio_mixer.cpp.s
 
 callback.o: callback.cpp.o
@@ -204,7 +204,7 @@ callback.o: callback.cpp.o
 
 # target to build an object file
 callback.cpp.o:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f operating-system/operating-system-linux/audio_mixer_alsa/CMakeFiles/audio_mixer_alsa.dir/build.make operating-system/operating-system-linux/audio_mixer_alsa/CMakeFiles/audio_mixer_alsa.dir/callback.cpp.o
+	cd /home/camilo/solution/basis && $(MAKE) $(MAKESILENT) -f operating-system/operating-system-linux/audio_mixer_alsa/CMakeFiles/audio_mixer_alsa.dir/build.make operating-system/operating-system-linux/audio_mixer_alsa/CMakeFiles/audio_mixer_alsa.dir/callback.cpp.o
 .PHONY : callback.cpp.o
 
 callback.i: callback.cpp.i
@@ -213,7 +213,7 @@ callback.i: callback.cpp.i
 
 # target to preprocess a source file
 callback.cpp.i:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f operating-system/operating-system-linux/audio_mixer_alsa/CMakeFiles/audio_mixer_alsa.dir/build.make operating-system/operating-system-linux/audio_mixer_alsa/CMakeFiles/audio_mixer_alsa.dir/callback.cpp.i
+	cd /home/camilo/solution/basis && $(MAKE) $(MAKESILENT) -f operating-system/operating-system-linux/audio_mixer_alsa/CMakeFiles/audio_mixer_alsa.dir/build.make operating-system/operating-system-linux/audio_mixer_alsa/CMakeFiles/audio_mixer_alsa.dir/callback.cpp.i
 .PHONY : callback.cpp.i
 
 callback.s: callback.cpp.s
@@ -222,22 +222,22 @@ callback.s: callback.cpp.s
 
 # target to generate assembly for a file
 callback.cpp.s:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f operating-system/operating-system-linux/audio_mixer_alsa/CMakeFiles/audio_mixer_alsa.dir/build.make operating-system/operating-system-linux/audio_mixer_alsa/CMakeFiles/audio_mixer_alsa.dir/callback.cpp.s
+	cd /home/camilo/solution/basis && $(MAKE) $(MAKESILENT) -f operating-system/operating-system-linux/audio_mixer_alsa/CMakeFiles/audio_mixer_alsa.dir/build.make operating-system/operating-system-linux/audio_mixer_alsa/CMakeFiles/audio_mixer_alsa.dir/callback.cpp.s
 .PHONY : callback.cpp.s
 
 # target to build an object file
 cmake_pch.hxx.gch:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f operating-system/operating-system-linux/audio_mixer_alsa/CMakeFiles/audio_mixer_alsa.dir/build.make operating-system/operating-system-linux/audio_mixer_alsa/CMakeFiles/audio_mixer_alsa.dir/cmake_pch.hxx.gch
+	cd /home/camilo/solution/basis && $(MAKE) $(MAKESILENT) -f operating-system/operating-system-linux/audio_mixer_alsa/CMakeFiles/audio_mixer_alsa.dir/build.make operating-system/operating-system-linux/audio_mixer_alsa/CMakeFiles/audio_mixer_alsa.dir/cmake_pch.hxx.gch
 .PHONY : cmake_pch.hxx.gch
 
 # target to preprocess a source file
 cmake_pch.hxx.i:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f operating-system/operating-system-linux/audio_mixer_alsa/CMakeFiles/audio_mixer_alsa.dir/build.make operating-system/operating-system-linux/audio_mixer_alsa/CMakeFiles/audio_mixer_alsa.dir/cmake_pch.hxx.i
+	cd /home/camilo/solution/basis && $(MAKE) $(MAKESILENT) -f operating-system/operating-system-linux/audio_mixer_alsa/CMakeFiles/audio_mixer_alsa.dir/build.make operating-system/operating-system-linux/audio_mixer_alsa/CMakeFiles/audio_mixer_alsa.dir/cmake_pch.hxx.i
 .PHONY : cmake_pch.hxx.i
 
 # target to generate assembly for a file
 cmake_pch.hxx.s:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f operating-system/operating-system-linux/audio_mixer_alsa/CMakeFiles/audio_mixer_alsa.dir/build.make operating-system/operating-system-linux/audio_mixer_alsa/CMakeFiles/audio_mixer_alsa.dir/cmake_pch.hxx.s
+	cd /home/camilo/solution/basis && $(MAKE) $(MAKESILENT) -f operating-system/operating-system-linux/audio_mixer_alsa/CMakeFiles/audio_mixer_alsa.dir/build.make operating-system/operating-system-linux/audio_mixer_alsa/CMakeFiles/audio_mixer_alsa.dir/cmake_pch.hxx.s
 .PHONY : cmake_pch.hxx.s
 
 control.o: control.cpp.o
@@ -246,7 +246,7 @@ control.o: control.cpp.o
 
 # target to build an object file
 control.cpp.o:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f operating-system/operating-system-linux/audio_mixer_alsa/CMakeFiles/audio_mixer_alsa.dir/build.make operating-system/operating-system-linux/audio_mixer_alsa/CMakeFiles/audio_mixer_alsa.dir/control.cpp.o
+	cd /home/camilo/solution/basis && $(MAKE) $(MAKESILENT) -f operating-system/operating-system-linux/audio_mixer_alsa/CMakeFiles/audio_mixer_alsa.dir/build.make operating-system/operating-system-linux/audio_mixer_alsa/CMakeFiles/audio_mixer_alsa.dir/control.cpp.o
 .PHONY : control.cpp.o
 
 control.i: control.cpp.i
@@ -255,7 +255,7 @@ control.i: control.cpp.i
 
 # target to preprocess a source file
 control.cpp.i:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f operating-system/operating-system-linux/audio_mixer_alsa/CMakeFiles/audio_mixer_alsa.dir/build.make operating-system/operating-system-linux/audio_mixer_alsa/CMakeFiles/audio_mixer_alsa.dir/control.cpp.i
+	cd /home/camilo/solution/basis && $(MAKE) $(MAKESILENT) -f operating-system/operating-system-linux/audio_mixer_alsa/CMakeFiles/audio_mixer_alsa.dir/build.make operating-system/operating-system-linux/audio_mixer_alsa/CMakeFiles/audio_mixer_alsa.dir/control.cpp.i
 .PHONY : control.cpp.i
 
 control.s: control.cpp.s
@@ -264,7 +264,7 @@ control.s: control.cpp.s
 
 # target to generate assembly for a file
 control.cpp.s:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f operating-system/operating-system-linux/audio_mixer_alsa/CMakeFiles/audio_mixer_alsa.dir/build.make operating-system/operating-system-linux/audio_mixer_alsa/CMakeFiles/audio_mixer_alsa.dir/control.cpp.s
+	cd /home/camilo/solution/basis && $(MAKE) $(MAKESILENT) -f operating-system/operating-system-linux/audio_mixer_alsa/CMakeFiles/audio_mixer_alsa.dir/build.make operating-system/operating-system-linux/audio_mixer_alsa/CMakeFiles/audio_mixer_alsa.dir/control.cpp.s
 .PHONY : control.cpp.s
 
 destination.o: destination.cpp.o
@@ -273,7 +273,7 @@ destination.o: destination.cpp.o
 
 # target to build an object file
 destination.cpp.o:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f operating-system/operating-system-linux/audio_mixer_alsa/CMakeFiles/audio_mixer_alsa.dir/build.make operating-system/operating-system-linux/audio_mixer_alsa/CMakeFiles/audio_mixer_alsa.dir/destination.cpp.o
+	cd /home/camilo/solution/basis && $(MAKE) $(MAKESILENT) -f operating-system/operating-system-linux/audio_mixer_alsa/CMakeFiles/audio_mixer_alsa.dir/build.make operating-system/operating-system-linux/audio_mixer_alsa/CMakeFiles/audio_mixer_alsa.dir/destination.cpp.o
 .PHONY : destination.cpp.o
 
 destination.i: destination.cpp.i
@@ -282,7 +282,7 @@ destination.i: destination.cpp.i
 
 # target to preprocess a source file
 destination.cpp.i:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f operating-system/operating-system-linux/audio_mixer_alsa/CMakeFiles/audio_mixer_alsa.dir/build.make operating-system/operating-system-linux/audio_mixer_alsa/CMakeFiles/audio_mixer_alsa.dir/destination.cpp.i
+	cd /home/camilo/solution/basis && $(MAKE) $(MAKESILENT) -f operating-system/operating-system-linux/audio_mixer_alsa/CMakeFiles/audio_mixer_alsa.dir/build.make operating-system/operating-system-linux/audio_mixer_alsa/CMakeFiles/audio_mixer_alsa.dir/destination.cpp.i
 .PHONY : destination.cpp.i
 
 destination.s: destination.cpp.s
@@ -291,7 +291,7 @@ destination.s: destination.cpp.s
 
 # target to generate assembly for a file
 destination.cpp.s:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f operating-system/operating-system-linux/audio_mixer_alsa/CMakeFiles/audio_mixer_alsa.dir/build.make operating-system/operating-system-linux/audio_mixer_alsa/CMakeFiles/audio_mixer_alsa.dir/destination.cpp.s
+	cd /home/camilo/solution/basis && $(MAKE) $(MAKESILENT) -f operating-system/operating-system-linux/audio_mixer_alsa/CMakeFiles/audio_mixer_alsa.dir/build.make operating-system/operating-system-linux/audio_mixer_alsa/CMakeFiles/audio_mixer_alsa.dir/destination.cpp.s
 .PHONY : destination.cpp.s
 
 device.o: device.cpp.o
@@ -300,7 +300,7 @@ device.o: device.cpp.o
 
 # target to build an object file
 device.cpp.o:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f operating-system/operating-system-linux/audio_mixer_alsa/CMakeFiles/audio_mixer_alsa.dir/build.make operating-system/operating-system-linux/audio_mixer_alsa/CMakeFiles/audio_mixer_alsa.dir/device.cpp.o
+	cd /home/camilo/solution/basis && $(MAKE) $(MAKESILENT) -f operating-system/operating-system-linux/audio_mixer_alsa/CMakeFiles/audio_mixer_alsa.dir/build.make operating-system/operating-system-linux/audio_mixer_alsa/CMakeFiles/audio_mixer_alsa.dir/device.cpp.o
 .PHONY : device.cpp.o
 
 device.i: device.cpp.i
@@ -309,7 +309,7 @@ device.i: device.cpp.i
 
 # target to preprocess a source file
 device.cpp.i:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f operating-system/operating-system-linux/audio_mixer_alsa/CMakeFiles/audio_mixer_alsa.dir/build.make operating-system/operating-system-linux/audio_mixer_alsa/CMakeFiles/audio_mixer_alsa.dir/device.cpp.i
+	cd /home/camilo/solution/basis && $(MAKE) $(MAKESILENT) -f operating-system/operating-system-linux/audio_mixer_alsa/CMakeFiles/audio_mixer_alsa.dir/build.make operating-system/operating-system-linux/audio_mixer_alsa/CMakeFiles/audio_mixer_alsa.dir/device.cpp.i
 .PHONY : device.cpp.i
 
 device.s: device.cpp.s
@@ -318,7 +318,7 @@ device.s: device.cpp.s
 
 # target to generate assembly for a file
 device.cpp.s:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f operating-system/operating-system-linux/audio_mixer_alsa/CMakeFiles/audio_mixer_alsa.dir/build.make operating-system/operating-system-linux/audio_mixer_alsa/CMakeFiles/audio_mixer_alsa.dir/device.cpp.s
+	cd /home/camilo/solution/basis && $(MAKE) $(MAKESILENT) -f operating-system/operating-system-linux/audio_mixer_alsa/CMakeFiles/audio_mixer_alsa.dir/build.make operating-system/operating-system-linux/audio_mixer_alsa/CMakeFiles/audio_mixer_alsa.dir/device.cpp.s
 .PHONY : device.cpp.s
 
 framework.o: framework.cpp.o
@@ -327,7 +327,7 @@ framework.o: framework.cpp.o
 
 # target to build an object file
 framework.cpp.o:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f operating-system/operating-system-linux/audio_mixer_alsa/CMakeFiles/audio_mixer_alsa.dir/build.make operating-system/operating-system-linux/audio_mixer_alsa/CMakeFiles/audio_mixer_alsa.dir/framework.cpp.o
+	cd /home/camilo/solution/basis && $(MAKE) $(MAKESILENT) -f operating-system/operating-system-linux/audio_mixer_alsa/CMakeFiles/audio_mixer_alsa.dir/build.make operating-system/operating-system-linux/audio_mixer_alsa/CMakeFiles/audio_mixer_alsa.dir/framework.cpp.o
 .PHONY : framework.cpp.o
 
 framework.i: framework.cpp.i
@@ -336,7 +336,7 @@ framework.i: framework.cpp.i
 
 # target to preprocess a source file
 framework.cpp.i:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f operating-system/operating-system-linux/audio_mixer_alsa/CMakeFiles/audio_mixer_alsa.dir/build.make operating-system/operating-system-linux/audio_mixer_alsa/CMakeFiles/audio_mixer_alsa.dir/framework.cpp.i
+	cd /home/camilo/solution/basis && $(MAKE) $(MAKESILENT) -f operating-system/operating-system-linux/audio_mixer_alsa/CMakeFiles/audio_mixer_alsa.dir/build.make operating-system/operating-system-linux/audio_mixer_alsa/CMakeFiles/audio_mixer_alsa.dir/framework.cpp.i
 .PHONY : framework.cpp.i
 
 framework.s: framework.cpp.s
@@ -345,7 +345,7 @@ framework.s: framework.cpp.s
 
 # target to generate assembly for a file
 framework.cpp.s:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f operating-system/operating-system-linux/audio_mixer_alsa/CMakeFiles/audio_mixer_alsa.dir/build.make operating-system/operating-system-linux/audio_mixer_alsa/CMakeFiles/audio_mixer_alsa.dir/framework.cpp.s
+	cd /home/camilo/solution/basis && $(MAKE) $(MAKESILENT) -f operating-system/operating-system-linux/audio_mixer_alsa/CMakeFiles/audio_mixer_alsa.dir/build.make operating-system/operating-system-linux/audio_mixer_alsa/CMakeFiles/audio_mixer_alsa.dir/framework.cpp.s
 .PHONY : framework.cpp.s
 
 line_info.o: line_info.cpp.o
@@ -354,7 +354,7 @@ line_info.o: line_info.cpp.o
 
 # target to build an object file
 line_info.cpp.o:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f operating-system/operating-system-linux/audio_mixer_alsa/CMakeFiles/audio_mixer_alsa.dir/build.make operating-system/operating-system-linux/audio_mixer_alsa/CMakeFiles/audio_mixer_alsa.dir/line_info.cpp.o
+	cd /home/camilo/solution/basis && $(MAKE) $(MAKESILENT) -f operating-system/operating-system-linux/audio_mixer_alsa/CMakeFiles/audio_mixer_alsa.dir/build.make operating-system/operating-system-linux/audio_mixer_alsa/CMakeFiles/audio_mixer_alsa.dir/line_info.cpp.o
 .PHONY : line_info.cpp.o
 
 line_info.i: line_info.cpp.i
@@ -363,7 +363,7 @@ line_info.i: line_info.cpp.i
 
 # target to preprocess a source file
 line_info.cpp.i:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f operating-system/operating-system-linux/audio_mixer_alsa/CMakeFiles/audio_mixer_alsa.dir/build.make operating-system/operating-system-linux/audio_mixer_alsa/CMakeFiles/audio_mixer_alsa.dir/line_info.cpp.i
+	cd /home/camilo/solution/basis && $(MAKE) $(MAKESILENT) -f operating-system/operating-system-linux/audio_mixer_alsa/CMakeFiles/audio_mixer_alsa.dir/build.make operating-system/operating-system-linux/audio_mixer_alsa/CMakeFiles/audio_mixer_alsa.dir/line_info.cpp.i
 .PHONY : line_info.cpp.i
 
 line_info.s: line_info.cpp.s
@@ -372,7 +372,7 @@ line_info.s: line_info.cpp.s
 
 # target to generate assembly for a file
 line_info.cpp.s:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f operating-system/operating-system-linux/audio_mixer_alsa/CMakeFiles/audio_mixer_alsa.dir/build.make operating-system/operating-system-linux/audio_mixer_alsa/CMakeFiles/audio_mixer_alsa.dir/line_info.cpp.s
+	cd /home/camilo/solution/basis && $(MAKE) $(MAKESILENT) -f operating-system/operating-system-linux/audio_mixer_alsa/CMakeFiles/audio_mixer_alsa.dir/build.make operating-system/operating-system-linux/audio_mixer_alsa/CMakeFiles/audio_mixer_alsa.dir/line_info.cpp.s
 .PHONY : line_info.cpp.s
 
 source.o: source.cpp.o
@@ -381,7 +381,7 @@ source.o: source.cpp.o
 
 # target to build an object file
 source.cpp.o:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f operating-system/operating-system-linux/audio_mixer_alsa/CMakeFiles/audio_mixer_alsa.dir/build.make operating-system/operating-system-linux/audio_mixer_alsa/CMakeFiles/audio_mixer_alsa.dir/source.cpp.o
+	cd /home/camilo/solution/basis && $(MAKE) $(MAKESILENT) -f operating-system/operating-system-linux/audio_mixer_alsa/CMakeFiles/audio_mixer_alsa.dir/build.make operating-system/operating-system-linux/audio_mixer_alsa/CMakeFiles/audio_mixer_alsa.dir/source.cpp.o
 .PHONY : source.cpp.o
 
 source.i: source.cpp.i
@@ -390,7 +390,7 @@ source.i: source.cpp.i
 
 # target to preprocess a source file
 source.cpp.i:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f operating-system/operating-system-linux/audio_mixer_alsa/CMakeFiles/audio_mixer_alsa.dir/build.make operating-system/operating-system-linux/audio_mixer_alsa/CMakeFiles/audio_mixer_alsa.dir/source.cpp.i
+	cd /home/camilo/solution/basis && $(MAKE) $(MAKESILENT) -f operating-system/operating-system-linux/audio_mixer_alsa/CMakeFiles/audio_mixer_alsa.dir/build.make operating-system/operating-system-linux/audio_mixer_alsa/CMakeFiles/audio_mixer_alsa.dir/source.cpp.i
 .PHONY : source.cpp.i
 
 source.s: source.cpp.s
@@ -399,7 +399,7 @@ source.s: source.cpp.s
 
 # target to generate assembly for a file
 source.cpp.s:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f operating-system/operating-system-linux/audio_mixer_alsa/CMakeFiles/audio_mixer_alsa.dir/build.make operating-system/operating-system-linux/audio_mixer_alsa/CMakeFiles/audio_mixer_alsa.dir/source.cpp.s
+	cd /home/camilo/solution/basis && $(MAKE) $(MAKESILENT) -f operating-system/operating-system-linux/audio_mixer_alsa/CMakeFiles/audio_mixer_alsa.dir/build.make operating-system/operating-system-linux/audio_mixer_alsa/CMakeFiles/audio_mixer_alsa.dir/source.cpp.s
 .PHONY : source.cpp.s
 
 # Help Target
@@ -452,6 +452,6 @@ help:
 # No rule that depends on this can have commands that come from listfiles
 # because they might be regenerated.
 cmake_check_build_system:
-	cd /home/pi/solution/basis && $(CMAKE_COMMAND) -S$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR) --check-build-system CMakeFiles/Makefile.cmake 0
+	cd /home/camilo/solution/basis && $(CMAKE_COMMAND) -S$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR) --check-build-system CMakeFiles/Makefile.cmake 0
 .PHONY : cmake_check_build_system
 

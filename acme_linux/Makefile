@@ -67,10 +67,10 @@ RM = /usr/bin/cmake -E rm -f
 EQUALS = =
 
 # The top-level source directory on which CMake was run.
-CMAKE_SOURCE_DIR = /home/pi/solution/basis
+CMAKE_SOURCE_DIR = /home/camilo/solution/basis
 
 # The top-level build directory on which CMake was run.
-CMAKE_BINARY_DIR = /home/pi/solution/basis
+CMAKE_BINARY_DIR = /home/camilo/solution/basis
 
 #=============================================================================
 # Targets provided globally by CMake.
@@ -99,14 +99,14 @@ edit_cache/fast: edit_cache
 
 # The main all target
 all: cmake_check_build_system
-	cd /home/pi/solution/basis && $(CMAKE_COMMAND) -E cmake_progress_start /home/pi/solution/basis/CMakeFiles /home/pi/solution/basis/operating-system/operating-system-linux/acme_linux//CMakeFiles/progress.marks
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 operating-system/operating-system-linux/acme_linux/all
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/pi/solution/basis/CMakeFiles 0
+	cd /home/camilo/solution/basis && $(CMAKE_COMMAND) -E cmake_progress_start /home/camilo/solution/basis/CMakeFiles /home/camilo/solution/basis/operating-system/operating-system-linux/acme_linux//CMakeFiles/progress.marks
+	cd /home/camilo/solution/basis && $(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 operating-system/operating-system-linux/acme_linux/all
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/camilo/solution/basis/CMakeFiles 0
 .PHONY : all
 
 # The main clean target
 clean:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 operating-system/operating-system-linux/acme_linux/clean
+	cd /home/camilo/solution/basis && $(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 operating-system/operating-system-linux/acme_linux/clean
 .PHONY : clean
 
 # The main clean target
@@ -116,22 +116,22 @@ clean/fast: clean
 
 # Prepare targets for installation.
 preinstall: all
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 operating-system/operating-system-linux/acme_linux/preinstall
+	cd /home/camilo/solution/basis && $(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 operating-system/operating-system-linux/acme_linux/preinstall
 .PHONY : preinstall
 
 # Prepare targets for installation.
 preinstall/fast:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 operating-system/operating-system-linux/acme_linux/preinstall
+	cd /home/camilo/solution/basis && $(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 operating-system/operating-system-linux/acme_linux/preinstall
 .PHONY : preinstall/fast
 
 # clear depends
 depend:
-	cd /home/pi/solution/basis && $(CMAKE_COMMAND) -S$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR) --check-build-system CMakeFiles/Makefile.cmake 1
+	cd /home/camilo/solution/basis && $(CMAKE_COMMAND) -S$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR) --check-build-system CMakeFiles/Makefile.cmake 1
 .PHONY : depend
 
 # Convenience name for target.
 operating-system/operating-system-linux/acme_linux/CMakeFiles/acme_linux.dir/rule:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 operating-system/operating-system-linux/acme_linux/CMakeFiles/acme_linux.dir/rule
+	cd /home/camilo/solution/basis && $(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 operating-system/operating-system-linux/acme_linux/CMakeFiles/acme_linux.dir/rule
 .PHONY : operating-system/operating-system-linux/acme_linux/CMakeFiles/acme_linux.dir/rule
 
 # Convenience name for target.
@@ -141,7 +141,7 @@ acme_linux: operating-system/operating-system-linux/acme_linux/CMakeFiles/acme_l
 
 # fast build rule for target.
 acme_linux/fast:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f operating-system/operating-system-linux/acme_linux/CMakeFiles/acme_linux.dir/build.make operating-system/operating-system-linux/acme_linux/CMakeFiles/acme_linux.dir/build
+	cd /home/camilo/solution/basis && $(MAKE) $(MAKESILENT) -f operating-system/operating-system-linux/acme_linux/CMakeFiles/acme_linux.dir/build.make operating-system/operating-system-linux/acme_linux/CMakeFiles/acme_linux.dir/build
 .PHONY : acme_linux/fast
 
 _.o: _.cpp.o
@@ -150,7 +150,7 @@ _.o: _.cpp.o
 
 # target to build an object file
 _.cpp.o:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f operating-system/operating-system-linux/acme_linux/CMakeFiles/acme_linux.dir/build.make operating-system/operating-system-linux/acme_linux/CMakeFiles/acme_linux.dir/_.cpp.o
+	cd /home/camilo/solution/basis && $(MAKE) $(MAKESILENT) -f operating-system/operating-system-linux/acme_linux/CMakeFiles/acme_linux.dir/build.make operating-system/operating-system-linux/acme_linux/CMakeFiles/acme_linux.dir/_.cpp.o
 .PHONY : _.cpp.o
 
 _.i: _.cpp.i
@@ -159,7 +159,7 @@ _.i: _.cpp.i
 
 # target to preprocess a source file
 _.cpp.i:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f operating-system/operating-system-linux/acme_linux/CMakeFiles/acme_linux.dir/build.make operating-system/operating-system-linux/acme_linux/CMakeFiles/acme_linux.dir/_.cpp.i
+	cd /home/camilo/solution/basis && $(MAKE) $(MAKESILENT) -f operating-system/operating-system-linux/acme_linux/CMakeFiles/acme_linux.dir/build.make operating-system/operating-system-linux/acme_linux/CMakeFiles/acme_linux.dir/_.cpp.i
 .PHONY : _.cpp.i
 
 _.s: _.cpp.s
@@ -168,7 +168,7 @@ _.s: _.cpp.s
 
 # target to generate assembly for a file
 _.cpp.s:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f operating-system/operating-system-linux/acme_linux/CMakeFiles/acme_linux.dir/build.make operating-system/operating-system-linux/acme_linux/CMakeFiles/acme_linux.dir/_.cpp.s
+	cd /home/camilo/solution/basis && $(MAKE) $(MAKESILENT) -f operating-system/operating-system-linux/acme_linux/CMakeFiles/acme_linux.dir/build.make operating-system/operating-system-linux/acme_linux/CMakeFiles/acme_linux.dir/_.cpp.s
 .PHONY : _.cpp.s
 
 _factory.o: _factory.cpp.o
@@ -177,7 +177,7 @@ _factory.o: _factory.cpp.o
 
 # target to build an object file
 _factory.cpp.o:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f operating-system/operating-system-linux/acme_linux/CMakeFiles/acme_linux.dir/build.make operating-system/operating-system-linux/acme_linux/CMakeFiles/acme_linux.dir/_factory.cpp.o
+	cd /home/camilo/solution/basis && $(MAKE) $(MAKESILENT) -f operating-system/operating-system-linux/acme_linux/CMakeFiles/acme_linux.dir/build.make operating-system/operating-system-linux/acme_linux/CMakeFiles/acme_linux.dir/_factory.cpp.o
 .PHONY : _factory.cpp.o
 
 _factory.i: _factory.cpp.i
@@ -186,7 +186,7 @@ _factory.i: _factory.cpp.i
 
 # target to preprocess a source file
 _factory.cpp.i:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f operating-system/operating-system-linux/acme_linux/CMakeFiles/acme_linux.dir/build.make operating-system/operating-system-linux/acme_linux/CMakeFiles/acme_linux.dir/_factory.cpp.i
+	cd /home/camilo/solution/basis && $(MAKE) $(MAKESILENT) -f operating-system/operating-system-linux/acme_linux/CMakeFiles/acme_linux.dir/build.make operating-system/operating-system-linux/acme_linux/CMakeFiles/acme_linux.dir/_factory.cpp.i
 .PHONY : _factory.cpp.i
 
 _factory.s: _factory.cpp.s
@@ -195,7 +195,7 @@ _factory.s: _factory.cpp.s
 
 # target to generate assembly for a file
 _factory.cpp.s:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f operating-system/operating-system-linux/acme_linux/CMakeFiles/acme_linux.dir/build.make operating-system/operating-system-linux/acme_linux/CMakeFiles/acme_linux.dir/_factory.cpp.s
+	cd /home/camilo/solution/basis && $(MAKE) $(MAKESILENT) -f operating-system/operating-system-linux/acme_linux/CMakeFiles/acme_linux.dir/build.make operating-system/operating-system-linux/acme_linux/CMakeFiles/acme_linux.dir/_factory.cpp.s
 .PHONY : _factory.cpp.s
 
 acme_directory.o: acme_directory.cpp.o
@@ -204,7 +204,7 @@ acme_directory.o: acme_directory.cpp.o
 
 # target to build an object file
 acme_directory.cpp.o:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f operating-system/operating-system-linux/acme_linux/CMakeFiles/acme_linux.dir/build.make operating-system/operating-system-linux/acme_linux/CMakeFiles/acme_linux.dir/acme_directory.cpp.o
+	cd /home/camilo/solution/basis && $(MAKE) $(MAKESILENT) -f operating-system/operating-system-linux/acme_linux/CMakeFiles/acme_linux.dir/build.make operating-system/operating-system-linux/acme_linux/CMakeFiles/acme_linux.dir/acme_directory.cpp.o
 .PHONY : acme_directory.cpp.o
 
 acme_directory.i: acme_directory.cpp.i
@@ -213,7 +213,7 @@ acme_directory.i: acme_directory.cpp.i
 
 # target to preprocess a source file
 acme_directory.cpp.i:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f operating-system/operating-system-linux/acme_linux/CMakeFiles/acme_linux.dir/build.make operating-system/operating-system-linux/acme_linux/CMakeFiles/acme_linux.dir/acme_directory.cpp.i
+	cd /home/camilo/solution/basis && $(MAKE) $(MAKESILENT) -f operating-system/operating-system-linux/acme_linux/CMakeFiles/acme_linux.dir/build.make operating-system/operating-system-linux/acme_linux/CMakeFiles/acme_linux.dir/acme_directory.cpp.i
 .PHONY : acme_directory.cpp.i
 
 acme_directory.s: acme_directory.cpp.s
@@ -222,7 +222,7 @@ acme_directory.s: acme_directory.cpp.s
 
 # target to generate assembly for a file
 acme_directory.cpp.s:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f operating-system/operating-system-linux/acme_linux/CMakeFiles/acme_linux.dir/build.make operating-system/operating-system-linux/acme_linux/CMakeFiles/acme_linux.dir/acme_directory.cpp.s
+	cd /home/camilo/solution/basis && $(MAKE) $(MAKESILENT) -f operating-system/operating-system-linux/acme_linux/CMakeFiles/acme_linux.dir/build.make operating-system/operating-system-linux/acme_linux/CMakeFiles/acme_linux.dir/acme_directory.cpp.s
 .PHONY : acme_directory.cpp.s
 
 acme_file.o: acme_file.cpp.o
@@ -231,7 +231,7 @@ acme_file.o: acme_file.cpp.o
 
 # target to build an object file
 acme_file.cpp.o:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f operating-system/operating-system-linux/acme_linux/CMakeFiles/acme_linux.dir/build.make operating-system/operating-system-linux/acme_linux/CMakeFiles/acme_linux.dir/acme_file.cpp.o
+	cd /home/camilo/solution/basis && $(MAKE) $(MAKESILENT) -f operating-system/operating-system-linux/acme_linux/CMakeFiles/acme_linux.dir/build.make operating-system/operating-system-linux/acme_linux/CMakeFiles/acme_linux.dir/acme_file.cpp.o
 .PHONY : acme_file.cpp.o
 
 acme_file.i: acme_file.cpp.i
@@ -240,7 +240,7 @@ acme_file.i: acme_file.cpp.i
 
 # target to preprocess a source file
 acme_file.cpp.i:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f operating-system/operating-system-linux/acme_linux/CMakeFiles/acme_linux.dir/build.make operating-system/operating-system-linux/acme_linux/CMakeFiles/acme_linux.dir/acme_file.cpp.i
+	cd /home/camilo/solution/basis && $(MAKE) $(MAKESILENT) -f operating-system/operating-system-linux/acme_linux/CMakeFiles/acme_linux.dir/build.make operating-system/operating-system-linux/acme_linux/CMakeFiles/acme_linux.dir/acme_file.cpp.i
 .PHONY : acme_file.cpp.i
 
 acme_file.s: acme_file.cpp.s
@@ -249,7 +249,7 @@ acme_file.s: acme_file.cpp.s
 
 # target to generate assembly for a file
 acme_file.cpp.s:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f operating-system/operating-system-linux/acme_linux/CMakeFiles/acme_linux.dir/build.make operating-system/operating-system-linux/acme_linux/CMakeFiles/acme_linux.dir/acme_file.cpp.s
+	cd /home/camilo/solution/basis && $(MAKE) $(MAKESILENT) -f operating-system/operating-system-linux/acme_linux/CMakeFiles/acme_linux.dir/build.make operating-system/operating-system-linux/acme_linux/CMakeFiles/acme_linux.dir/acme_file.cpp.s
 .PHONY : acme_file.cpp.s
 
 acme_path.o: acme_path.cpp.o
@@ -258,7 +258,7 @@ acme_path.o: acme_path.cpp.o
 
 # target to build an object file
 acme_path.cpp.o:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f operating-system/operating-system-linux/acme_linux/CMakeFiles/acme_linux.dir/build.make operating-system/operating-system-linux/acme_linux/CMakeFiles/acme_linux.dir/acme_path.cpp.o
+	cd /home/camilo/solution/basis && $(MAKE) $(MAKESILENT) -f operating-system/operating-system-linux/acme_linux/CMakeFiles/acme_linux.dir/build.make operating-system/operating-system-linux/acme_linux/CMakeFiles/acme_linux.dir/acme_path.cpp.o
 .PHONY : acme_path.cpp.o
 
 acme_path.i: acme_path.cpp.i
@@ -267,7 +267,7 @@ acme_path.i: acme_path.cpp.i
 
 # target to preprocess a source file
 acme_path.cpp.i:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f operating-system/operating-system-linux/acme_linux/CMakeFiles/acme_linux.dir/build.make operating-system/operating-system-linux/acme_linux/CMakeFiles/acme_linux.dir/acme_path.cpp.i
+	cd /home/camilo/solution/basis && $(MAKE) $(MAKESILENT) -f operating-system/operating-system-linux/acme_linux/CMakeFiles/acme_linux.dir/build.make operating-system/operating-system-linux/acme_linux/CMakeFiles/acme_linux.dir/acme_path.cpp.i
 .PHONY : acme_path.cpp.i
 
 acme_path.s: acme_path.cpp.s
@@ -276,22 +276,22 @@ acme_path.s: acme_path.cpp.s
 
 # target to generate assembly for a file
 acme_path.cpp.s:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f operating-system/operating-system-linux/acme_linux/CMakeFiles/acme_linux.dir/build.make operating-system/operating-system-linux/acme_linux/CMakeFiles/acme_linux.dir/acme_path.cpp.s
+	cd /home/camilo/solution/basis && $(MAKE) $(MAKESILENT) -f operating-system/operating-system-linux/acme_linux/CMakeFiles/acme_linux.dir/build.make operating-system/operating-system-linux/acme_linux/CMakeFiles/acme_linux.dir/acme_path.cpp.s
 .PHONY : acme_path.cpp.s
 
 # target to build an object file
 cmake_pch.hxx.gch:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f operating-system/operating-system-linux/acme_linux/CMakeFiles/acme_linux.dir/build.make operating-system/operating-system-linux/acme_linux/CMakeFiles/acme_linux.dir/cmake_pch.hxx.gch
+	cd /home/camilo/solution/basis && $(MAKE) $(MAKESILENT) -f operating-system/operating-system-linux/acme_linux/CMakeFiles/acme_linux.dir/build.make operating-system/operating-system-linux/acme_linux/CMakeFiles/acme_linux.dir/cmake_pch.hxx.gch
 .PHONY : cmake_pch.hxx.gch
 
 # target to preprocess a source file
 cmake_pch.hxx.i:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f operating-system/operating-system-linux/acme_linux/CMakeFiles/acme_linux.dir/build.make operating-system/operating-system-linux/acme_linux/CMakeFiles/acme_linux.dir/cmake_pch.hxx.i
+	cd /home/camilo/solution/basis && $(MAKE) $(MAKESILENT) -f operating-system/operating-system-linux/acme_linux/CMakeFiles/acme_linux.dir/build.make operating-system/operating-system-linux/acme_linux/CMakeFiles/acme_linux.dir/cmake_pch.hxx.i
 .PHONY : cmake_pch.hxx.i
 
 # target to generate assembly for a file
 cmake_pch.hxx.s:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f operating-system/operating-system-linux/acme_linux/CMakeFiles/acme_linux.dir/build.make operating-system/operating-system-linux/acme_linux/CMakeFiles/acme_linux.dir/cmake_pch.hxx.s
+	cd /home/camilo/solution/basis && $(MAKE) $(MAKESILENT) -f operating-system/operating-system-linux/acme_linux/CMakeFiles/acme_linux.dir/build.make operating-system/operating-system-linux/acme_linux/CMakeFiles/acme_linux.dir/cmake_pch.hxx.s
 .PHONY : cmake_pch.hxx.s
 
 console.o: console.cpp.o
@@ -300,7 +300,7 @@ console.o: console.cpp.o
 
 # target to build an object file
 console.cpp.o:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f operating-system/operating-system-linux/acme_linux/CMakeFiles/acme_linux.dir/build.make operating-system/operating-system-linux/acme_linux/CMakeFiles/acme_linux.dir/console.cpp.o
+	cd /home/camilo/solution/basis && $(MAKE) $(MAKESILENT) -f operating-system/operating-system-linux/acme_linux/CMakeFiles/acme_linux.dir/build.make operating-system/operating-system-linux/acme_linux/CMakeFiles/acme_linux.dir/console.cpp.o
 .PHONY : console.cpp.o
 
 console.i: console.cpp.i
@@ -309,7 +309,7 @@ console.i: console.cpp.i
 
 # target to preprocess a source file
 console.cpp.i:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f operating-system/operating-system-linux/acme_linux/CMakeFiles/acme_linux.dir/build.make operating-system/operating-system-linux/acme_linux/CMakeFiles/acme_linux.dir/console.cpp.i
+	cd /home/camilo/solution/basis && $(MAKE) $(MAKESILENT) -f operating-system/operating-system-linux/acme_linux/CMakeFiles/acme_linux.dir/build.make operating-system/operating-system-linux/acme_linux/CMakeFiles/acme_linux.dir/console.cpp.i
 .PHONY : console.cpp.i
 
 console.s: console.cpp.s
@@ -318,7 +318,7 @@ console.s: console.cpp.s
 
 # target to generate assembly for a file
 console.cpp.s:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f operating-system/operating-system-linux/acme_linux/CMakeFiles/acme_linux.dir/build.make operating-system/operating-system-linux/acme_linux/CMakeFiles/acme_linux.dir/console.cpp.s
+	cd /home/camilo/solution/basis && $(MAKE) $(MAKESILENT) -f operating-system/operating-system-linux/acme_linux/CMakeFiles/acme_linux.dir/build.make operating-system/operating-system-linux/acme_linux/CMakeFiles/acme_linux.dir/console.cpp.s
 .PHONY : console.cpp.s
 
 console_ncurses.o: console_ncurses.cpp.o
@@ -327,7 +327,7 @@ console_ncurses.o: console_ncurses.cpp.o
 
 # target to build an object file
 console_ncurses.cpp.o:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f operating-system/operating-system-linux/acme_linux/CMakeFiles/acme_linux.dir/build.make operating-system/operating-system-linux/acme_linux/CMakeFiles/acme_linux.dir/console_ncurses.cpp.o
+	cd /home/camilo/solution/basis && $(MAKE) $(MAKESILENT) -f operating-system/operating-system-linux/acme_linux/CMakeFiles/acme_linux.dir/build.make operating-system/operating-system-linux/acme_linux/CMakeFiles/acme_linux.dir/console_ncurses.cpp.o
 .PHONY : console_ncurses.cpp.o
 
 console_ncurses.i: console_ncurses.cpp.i
@@ -336,7 +336,7 @@ console_ncurses.i: console_ncurses.cpp.i
 
 # target to preprocess a source file
 console_ncurses.cpp.i:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f operating-system/operating-system-linux/acme_linux/CMakeFiles/acme_linux.dir/build.make operating-system/operating-system-linux/acme_linux/CMakeFiles/acme_linux.dir/console_ncurses.cpp.i
+	cd /home/camilo/solution/basis && $(MAKE) $(MAKESILENT) -f operating-system/operating-system-linux/acme_linux/CMakeFiles/acme_linux.dir/build.make operating-system/operating-system-linux/acme_linux/CMakeFiles/acme_linux.dir/console_ncurses.cpp.i
 .PHONY : console_ncurses.cpp.i
 
 console_ncurses.s: console_ncurses.cpp.s
@@ -345,7 +345,7 @@ console_ncurses.s: console_ncurses.cpp.s
 
 # target to generate assembly for a file
 console_ncurses.cpp.s:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f operating-system/operating-system-linux/acme_linux/CMakeFiles/acme_linux.dir/build.make operating-system/operating-system-linux/acme_linux/CMakeFiles/acme_linux.dir/console_ncurses.cpp.s
+	cd /home/camilo/solution/basis && $(MAKE) $(MAKESILENT) -f operating-system/operating-system-linux/acme_linux/CMakeFiles/acme_linux.dir/build.make operating-system/operating-system-linux/acme_linux/CMakeFiles/acme_linux.dir/console_ncurses.cpp.s
 .PHONY : console_ncurses.cpp.s
 
 file.o: file.cpp.o
@@ -354,7 +354,7 @@ file.o: file.cpp.o
 
 # target to build an object file
 file.cpp.o:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f operating-system/operating-system-linux/acme_linux/CMakeFiles/acme_linux.dir/build.make operating-system/operating-system-linux/acme_linux/CMakeFiles/acme_linux.dir/file.cpp.o
+	cd /home/camilo/solution/basis && $(MAKE) $(MAKESILENT) -f operating-system/operating-system-linux/acme_linux/CMakeFiles/acme_linux.dir/build.make operating-system/operating-system-linux/acme_linux/CMakeFiles/acme_linux.dir/file.cpp.o
 .PHONY : file.cpp.o
 
 file.i: file.cpp.i
@@ -363,7 +363,7 @@ file.i: file.cpp.i
 
 # target to preprocess a source file
 file.cpp.i:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f operating-system/operating-system-linux/acme_linux/CMakeFiles/acme_linux.dir/build.make operating-system/operating-system-linux/acme_linux/CMakeFiles/acme_linux.dir/file.cpp.i
+	cd /home/camilo/solution/basis && $(MAKE) $(MAKESILENT) -f operating-system/operating-system-linux/acme_linux/CMakeFiles/acme_linux.dir/build.make operating-system/operating-system-linux/acme_linux/CMakeFiles/acme_linux.dir/file.cpp.i
 .PHONY : file.cpp.i
 
 file.s: file.cpp.s
@@ -372,7 +372,7 @@ file.s: file.cpp.s
 
 # target to generate assembly for a file
 file.cpp.s:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f operating-system/operating-system-linux/acme_linux/CMakeFiles/acme_linux.dir/build.make operating-system/operating-system-linux/acme_linux/CMakeFiles/acme_linux.dir/file.cpp.s
+	cd /home/camilo/solution/basis && $(MAKE) $(MAKESILENT) -f operating-system/operating-system-linux/acme_linux/CMakeFiles/acme_linux.dir/build.make operating-system/operating-system-linux/acme_linux/CMakeFiles/acme_linux.dir/file.cpp.s
 .PHONY : file.cpp.s
 
 framework.o: framework.cpp.o
@@ -381,7 +381,7 @@ framework.o: framework.cpp.o
 
 # target to build an object file
 framework.cpp.o:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f operating-system/operating-system-linux/acme_linux/CMakeFiles/acme_linux.dir/build.make operating-system/operating-system-linux/acme_linux/CMakeFiles/acme_linux.dir/framework.cpp.o
+	cd /home/camilo/solution/basis && $(MAKE) $(MAKESILENT) -f operating-system/operating-system-linux/acme_linux/CMakeFiles/acme_linux.dir/build.make operating-system/operating-system-linux/acme_linux/CMakeFiles/acme_linux.dir/framework.cpp.o
 .PHONY : framework.cpp.o
 
 framework.i: framework.cpp.i
@@ -390,7 +390,7 @@ framework.i: framework.cpp.i
 
 # target to preprocess a source file
 framework.cpp.i:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f operating-system/operating-system-linux/acme_linux/CMakeFiles/acme_linux.dir/build.make operating-system/operating-system-linux/acme_linux/CMakeFiles/acme_linux.dir/framework.cpp.i
+	cd /home/camilo/solution/basis && $(MAKE) $(MAKESILENT) -f operating-system/operating-system-linux/acme_linux/CMakeFiles/acme_linux.dir/build.make operating-system/operating-system-linux/acme_linux/CMakeFiles/acme_linux.dir/framework.cpp.i
 .PHONY : framework.cpp.i
 
 framework.s: framework.cpp.s
@@ -399,7 +399,7 @@ framework.s: framework.cpp.s
 
 # target to generate assembly for a file
 framework.cpp.s:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f operating-system/operating-system-linux/acme_linux/CMakeFiles/acme_linux.dir/build.make operating-system/operating-system-linux/acme_linux/CMakeFiles/acme_linux.dir/framework.cpp.s
+	cd /home/camilo/solution/basis && $(MAKE) $(MAKESILENT) -f operating-system/operating-system-linux/acme_linux/CMakeFiles/acme_linux.dir/build.make operating-system/operating-system-linux/acme_linux/CMakeFiles/acme_linux.dir/framework.cpp.s
 .PHONY : framework.cpp.s
 
 node.o: node.cpp.o
@@ -408,7 +408,7 @@ node.o: node.cpp.o
 
 # target to build an object file
 node.cpp.o:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f operating-system/operating-system-linux/acme_linux/CMakeFiles/acme_linux.dir/build.make operating-system/operating-system-linux/acme_linux/CMakeFiles/acme_linux.dir/node.cpp.o
+	cd /home/camilo/solution/basis && $(MAKE) $(MAKESILENT) -f operating-system/operating-system-linux/acme_linux/CMakeFiles/acme_linux.dir/build.make operating-system/operating-system-linux/acme_linux/CMakeFiles/acme_linux.dir/node.cpp.o
 .PHONY : node.cpp.o
 
 node.i: node.cpp.i
@@ -417,7 +417,7 @@ node.i: node.cpp.i
 
 # target to preprocess a source file
 node.cpp.i:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f operating-system/operating-system-linux/acme_linux/CMakeFiles/acme_linux.dir/build.make operating-system/operating-system-linux/acme_linux/CMakeFiles/acme_linux.dir/node.cpp.i
+	cd /home/camilo/solution/basis && $(MAKE) $(MAKESILENT) -f operating-system/operating-system-linux/acme_linux/CMakeFiles/acme_linux.dir/build.make operating-system/operating-system-linux/acme_linux/CMakeFiles/acme_linux.dir/node.cpp.i
 .PHONY : node.cpp.i
 
 node.s: node.cpp.s
@@ -426,7 +426,7 @@ node.s: node.cpp.s
 
 # target to generate assembly for a file
 node.cpp.s:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f operating-system/operating-system-linux/acme_linux/CMakeFiles/acme_linux.dir/build.make operating-system/operating-system-linux/acme_linux/CMakeFiles/acme_linux.dir/node.cpp.s
+	cd /home/camilo/solution/basis && $(MAKE) $(MAKESILENT) -f operating-system/operating-system-linux/acme_linux/CMakeFiles/acme_linux.dir/build.make operating-system/operating-system-linux/acme_linux/CMakeFiles/acme_linux.dir/node.cpp.s
 .PHONY : node.cpp.s
 
 # Help Target
@@ -482,6 +482,6 @@ help:
 # No rule that depends on this can have commands that come from listfiles
 # because they might be regenerated.
 cmake_check_build_system:
-	cd /home/pi/solution/basis && $(CMAKE_COMMAND) -S$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR) --check-build-system CMakeFiles/Makefile.cmake 0
+	cd /home/camilo/solution/basis && $(CMAKE_COMMAND) -S$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR) --check-build-system CMakeFiles/Makefile.cmake 0
 .PHONY : cmake_check_build_system
 
