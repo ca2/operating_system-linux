@@ -5,6 +5,7 @@
 #include "apex/operating_system/freedesktop/desktop_file.h"
 
 
+
 i32 daemonize_process(const ::string & _cmd_line, i32 * pprocessId);
 
 #undef USERNAME_LENGTH // mysql one
@@ -585,6 +586,18 @@ namespace apex_linux
 
             return true;
       */
+
+   }
+
+
+   void os_context::link_open(const string & strUrl, const string & strProfile)
+   {
+
+      auto psystem = m_psystem;
+
+      auto pnode = psystem->node();
+
+      pnode->open_url(strUrl);
 
    }
 

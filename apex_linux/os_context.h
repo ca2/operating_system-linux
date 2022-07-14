@@ -60,6 +60,9 @@ namespace apex_linux
       virtual bool open_in_ie(const ::string & pcsz);
 
 
+      void link_open(const ::string & strUrl, const ::string & strProfile);
+
+
       virtual bool create_service(::object * pobject);
       virtual bool erase_service(::object * pobject);
 

@@ -51,9 +51,6 @@
 					<Add directory="/home/camilo/solution/basis/operating-system/third-linux/include"/>
 					<Add directory="/home/camilo/solution/basis/operating-system/third-linux/third/include"/>
 					<Add directory="/home/camilo/solution/basis/operating-system/third-linux/third/include/include"/>
-					<Add directory="/home/camilo/solution/basis/operating-system/operating-system-linux/apex_linux/../.."/>
-					<Add directory="/home/camilo/solution/basis/operating-system/operating-system-linux/apex_linux/.."/>
-					<Add directory="/home/camilo/solution/basis/operating-system/operating-system-linux/apex_linux"/>
 				</Compiler>
 				<MakeCommands>
 					<Build command="/usr/bin/gmake -f &quot;/home/camilo/solution/basis/operating-system/operating-system-linux/apex_linux/Makefile&quot;  VERBOSE=1 apex_linux"/>
@@ -96,9 +93,6 @@
 					<Add directory="/home/camilo/solution/basis/operating-system/third-linux/include"/>
 					<Add directory="/home/camilo/solution/basis/operating-system/third-linux/third/include"/>
 					<Add directory="/home/camilo/solution/basis/operating-system/third-linux/third/include/include"/>
-					<Add directory="/home/camilo/solution/basis/operating-system/operating-system-linux/apex_linux/../.."/>
-					<Add directory="/home/camilo/solution/basis/operating-system/operating-system-linux/apex_linux/.."/>
-					<Add directory="/home/camilo/solution/basis/operating-system/operating-system-linux/apex_linux"/>
 				</Compiler>
 				<MakeCommands>
 					<Build command="/usr/bin/gmake -f &quot;/home/camilo/solution/basis/operating-system/operating-system-linux/apex_linux/Makefile&quot;  VERBOSE=1 apex_linux/fast"/>

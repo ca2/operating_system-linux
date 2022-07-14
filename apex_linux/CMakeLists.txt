@@ -62,17 +62,13 @@ if (MSVC)
 
 elseif(LINUX)
 
-
-    target_link_libraries(apex_linux PRIVATE ${library_references})
-    target_link_options(apex_linux PRIVATE -Wl,-z,defs)
+    target_link_libraries(${PROJECT_NAME} PRIVATE ${library_references})
+    target_link_options(${PROJECT_NAME} PRIVATE -Wl,-z,defs)
 
 
 endif()
 
 
-list(APPEND library_include_directories ${CMAKE_CURRENT_SOURCE_DIR}/../..)
-list(APPEND library_include_directories ${CMAKE_CURRENT_SOURCE_DIR}/..)
-list(APPEND library_include_directories ${CMAKE_CURRENT_SOURCE_DIR})
 
 
 target_include_directories(${PROJECT_NAME} PRIVATE ${library_include_directories})
