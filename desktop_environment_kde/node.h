@@ -17,7 +17,7 @@ namespace desktop_environment_kde
 
 
    class CLASS_DECL_ACME node :
-      virtual public ::aura::linux::node,
+      virtual public ::aura_linux::node,
       virtual public ::node_kde::node
    {
    public:
@@ -26,7 +26,7 @@ namespace desktop_environment_kde
       string   m_strTheme;
 
       node();
-      virtual ~node();
+      ~node() override;
 
 
       //::os_theme_colors * new_os_theme_colors();
