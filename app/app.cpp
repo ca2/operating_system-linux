@@ -122,7 +122,7 @@
 //
 //   }
 //
-////   pcommand->m_nCmdShow              = e_display_normal;
+////   pcommand->m_nCmdShow              = e_display_restored;
 //
 //   psystem->startup_command(pcommand);
 //
