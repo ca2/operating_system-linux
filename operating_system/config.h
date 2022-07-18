@@ -18,9 +18,9 @@
 #endif
 
 
-#ifdef RASPBIAN
-#pragma pack(4)
-#endif
+//#ifdef RASPBIAN
+//#pragma pack(4)
+//#endif
 
 
 #define c_cdecl

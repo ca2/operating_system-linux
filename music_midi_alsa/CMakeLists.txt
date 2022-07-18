@@ -5,7 +5,7 @@ project(music_midi_alsa CXX)
 list(APPEND library_source
    _.cpp
    _.h
-   _music_midi_alsa.h
+   _library.h
    _factory.cpp
    midi.cpp
    midi.h
@@ -50,17 +50,6 @@ elseif (LINUX)
    target_link_libraries(music_midi_alsa PRIVATE asound)
    target_link_options(music_midi_alsa PRIVATE -Wl,-z,defs)
 endif ()
-
-
-
-
-
-list(APPEND library_include_directories ${CMAKE_CURRENT_SOURCE_DIR}/../..)
-list(APPEND library_include_directories ${CMAKE_CURRENT_SOURCE_DIR}/..)
-list(APPEND library_include_directories ${CMAKE_CURRENT_SOURCE_DIR})
-
-
-target_include_directories(${PROJECT_NAME} PRIVATE ${library_include_directories})
 
 
 target_compile_definitions(music_midi_alsa PRIVATE _MUSIC_MIDI_ALSA_LIBRARY)
