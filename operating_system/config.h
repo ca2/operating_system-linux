@@ -26,7 +26,15 @@
 #define c_cdecl
 
 
+//#define BROAD_PRECOMPILED_HEADER 1
+#ifdef RASPBIAN
+#define BROAD_PRECOMPILED_HEADER 0
+#else
 #define BROAD_PRECOMPILED_HEADER 1
+#endif
+
+
+
 
 #ifndef __linux__
 #define __linux__
