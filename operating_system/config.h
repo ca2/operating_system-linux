@@ -1,6 +1,12 @@
 #pragma once
 
 
+#include "inc.h"
+
+
+#include "config_memdleak.h"
+
+
 #define _THREAD_SAFE
 
 
