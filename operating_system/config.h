@@ -40,6 +40,18 @@
 
 
 
+#define OPERATING_SYSTEM_NAMESPACE linux
+
+#define PLATFORM_COMMON_NAMESPACE posix
+
+#define PLATFORM_STRING "linux"
+
+#define PLATFORM_COMMON_STRING "posix"
+
+#define DEFAULT_DIR_SEPARATOR "/"
+
+
+
 
 #ifndef __linux__
 #define __linux__
