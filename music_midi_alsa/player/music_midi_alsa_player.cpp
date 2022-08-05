@@ -323,9 +323,9 @@ namespace music
             return ::success;
          }
 
-         //void player::SetView(CXfplayerView *pview)
+         //void player::SetImpact(CXfplayerImpact *pimpact)
          //{
-         //    m_pView = pview;
+         //    m_ppimpact = pimpact;
          //}
 
          ::e_status player::SetInterface(player * pinterface)

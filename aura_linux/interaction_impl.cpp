@@ -2311,7 +2311,7 @@ namespace aura_linux
 //      //return;
 //      ::rectangle_i32 rectUpdate;
 //      m_puserinteraction->get_window_rect(rectUpdate);
-////      SetViewportOrgEx(hdc, 0, 0, nullptr);
+////      SetContextOrgEx(hdc, 0, 0, nullptr);
 //      ::rectangle_i32 rectPaint;
 //      rectPaint = rectUpdate;
 //      m_puserinteraction->screen_to_client(rectPaint);
@@ -4198,7 +4198,7 @@ namespace aura_linux
    void interaction_impl::set_impactport_org(::draw2d::graphics_pointer & pgraphics)
    {
 
-      pgraphics->SetViewportOrg(::point_i32());
+      pgraphics->set_origin(::point_i32());
 
    }
 

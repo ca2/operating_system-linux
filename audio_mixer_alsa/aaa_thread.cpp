@@ -45,7 +45,7 @@ namespace multimedia
          //pmfmh->MessageFilterHook();
          //MessageFilterHook();
 
-         //ViewToolsAlbum();
+         //ShowToolsAlbum();
          return true;
       }
 
@@ -188,15 +188,15 @@ namespace multimedia
          case 543:
             {
 
-               //            if(m_poptionsview == NULL)
+               //            if(m_poptionsimpact == NULL)
                {
-                  //                m_poptionsview = new COptionsDialog();
-                  //              m_poptionsview->create(NULL);
+                  //                m_poptionsimpact = new COptionsDialog();
+                  //              m_poptionsimpact->create(NULL);
                }
 
-               //            if(m_poptionsview != NULL)
+               //            if(m_poptionsimpact != NULL)
                {
-                  //            m_poptionsview->ShowWindow(SW_SHOWNORMAL);
+                  //            m_poptionsimpact->ShowWindow(SW_SHOWNORMAL);
                }
 
             }
@@ -207,7 +207,7 @@ namespace multimedia
          switch(pbase->m_wparam)
          {
          case 131415:
-            // ViewToolsAlbum();
+            // ShowToolsAlbum();
             break;
          case 565758:
             {

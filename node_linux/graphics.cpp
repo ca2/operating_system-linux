@@ -490,12 +490,12 @@ namespace draw2d_gdiplus
    }
 
    
-   size_f64 graphics::GetViewportExt()
+   size_f64 graphics::get_context_extents()
    {
 
       //::size_f64 ::size_f64;
 
-      //::GetViewportExtEx(get_handle2(), &::size_f64);
+      //::Get_wiewportExtEx(get_handle2(), &::size_f64);
 
       //return ::size_f64;
       throw ::not_implemented();
@@ -534,10 +534,10 @@ namespace draw2d_gdiplus
    }
 
 
-   size_f64 graphics::SetViewportExt(const ::size_f64 & size)
+   size_f64 graphics::set_context_extents(const ::size_f64 & size)
    {
 
-      return SetViewportExt(size.cx, size.cy);
+      return set_context_extents(size.cx, size.cy);
 
    }
 
@@ -1403,8 +1403,8 @@ namespace draw2d_gdiplus
 //         //      //single_lock synchronouslock(::get_thread_toolset(::thread::tool_draw2d)->mutex());
 //
 //         //      if (nHeight >= get_processor_count() * 4 && (nWidth * nHeight) >= (get_processor_count() * 64)
-//         //            &&   m_pimage->fork_blend(point_i32(x + GetViewportOrg().x, y + GetViewportOrg().y), pgraphicsSrc->m_pimage,
-//         //                  point_i32(xSrc + pgraphicsSrc->GetViewportOrg().x, ySrc + pgraphicsSrc->GetViewportOrg().y),
+//         //            &&   m_pimage->fork_blend(point_i32(x + get_origin().x, y + get_origin().y), pgraphicsSrc->m_pimage,
+//         //                  point_i32(xSrc + pgraphicsSrc->get_origin().x, ySrc + pgraphicsSrc->get_origin().y),
 //         //                  ::size_f64(nWidth, nHeight)))
 //         //      {
 //
@@ -1420,8 +1420,8 @@ namespace draw2d_gdiplus
 //         //      }
 //         //      //else
 //         //      //{
-//         //      //   m_pimage->blend(point_i32(x + GetViewportOrg().x, y + GetViewportOrg().y), pgraphicsSrc->m_pimage,
-//         //      //                                     point_i32(xSrc + pgraphicsSrc->GetViewportOrg().x, ySrc + pgraphicsSrc->GetViewportOrg().y),
+//         //      //   m_pimage->blend(point_i32(x + get_origin().x, y + get_origin().y), pgraphicsSrc->m_pimage,
+//         //      //                                     point_i32(xSrc + pgraphicsSrc->get_origin().x, ySrc + pgraphicsSrc->get_origin().y),
 //         //      //                                     ::size_f64(nWidth, nHeight));
 //
 //         //      //}
@@ -1429,8 +1429,8 @@ namespace draw2d_gdiplus
 //         //   //else
 //         //   //{
 //
-//         //   //   m_pimage->from(point_i32(x + GetViewportOrg().x, y + GetViewportOrg().y), pgraphicsSrc->m_pimage,
-//         //   //                                    point_i32(xSrc + pgraphicsSrc->GetViewportOrg().x, ySrc + pgraphicsSrc->GetViewportOrg().y),
+//         //   //   m_pimage->from(point_i32(x + get_origin().x, y + get_origin().y), pgraphicsSrc->m_pimage,
+//         //   //                                    point_i32(xSrc + pgraphicsSrc->get_origin().x, ySrc + pgraphicsSrc->get_origin().y),
 //         //   //                                    ::size_f64(nWidth, nHeight));
 //
 //
@@ -1459,8 +1459,8 @@ namespace draw2d_gdiplus
 //            ret = m_pgraphics->DrawImage(
 //                  pbitmap,
 //                  rectangle, 
-//               (INT) (rectSrc.left + pgraphicsSrc->GetViewportOrg().x), 
-//               (INT) (rectSrc.top + pgraphicsSrc->GetViewportOrg().y), 
+//               (INT) (rectSrc.left + pgraphicsSrc->get_origin().x),
+//               (INT) (rectSrc.top + pgraphicsSrc->get_origin().y),
 //               (INT) (rectSrc.width()),
 //               (INT) (rectSrc.height()), 
 //               Gdiplus::UnitPixel, &imageattributes);
@@ -1469,16 +1469,16 @@ namespace draw2d_gdiplus
 //         else
 //         {
 //
-//            int xSrcViewport = (int) pgraphicsSrc->GetViewportOrg().x;
+//            int xSrcContext = (int) pgraphicsSrc->get_origin().x;
 //
-//            int ySrcViewport = (int) pgraphicsSrc->GetViewportOrg().y;
+//            int ySrcContext = (int) pgraphicsSrc->get_origin().y;
 //
 //            ret = m_pgraphics->DrawImage(
 //               pbitmap,
 //               (INT) rectDst.left, 
 //               (INT) rectDst.top,
-//               (INT) (rectSrc.left + xSrcViewport), 
-//               (INT) (rectSrc.top + ySrcViewport), 
+//               (INT) (rectSrc.left + xSrcContext), 
+//               (INT) (rectSrc.top + ySrcContext), 
 //               (INT) (rectSrc.width()), 
 //               (INT) (rectSrc.height()),
 //               Gdiplus::UnitPixel);
@@ -3184,8 +3184,8 @@ namespace draw2d_gdiplus
       //      if (nDestHeight >= cProcessor * 4 && (nDestWidth * nDestHeight) >= (cProcessor * 64))
       //      {
 
-      //         m_pimage->fork_blend(point_i32(xDest + GetViewportOrg().x, yDest + GetViewportOrg().y), pgraphicsSrc->m_pimage,
-      //                                                point_i32(xSrc + pgraphicsSrc->GetViewportOrg().x, ySrc + pgraphicsSrc->GetViewportOrg().y),
+      //         m_pimage->fork_blend(point_i32(xDest + get_origin().x, yDest + get_origin().y), pgraphicsSrc->m_pimage,
+      //                                                point_i32(xSrc + pgraphicsSrc->get_origin().x, ySrc + pgraphicsSrc->get_origin().y),
       //                                                ::size_f64(nSrcWidth, nDestHeight), (byte)(dRate * 255.0f));
 
       //         g_cForkBlend++;
@@ -3199,8 +3199,8 @@ namespace draw2d_gdiplus
       //      else
       //      {
 
-      //         m_pimage->blend(point_i32(xDest + GetViewportOrg().x, yDest + GetViewportOrg().y), pgraphicsSrc->m_pimage,
-      //                                           point_i32(xSrc+pgraphicsSrc->GetViewportOrg().x, ySrc + pgraphicsSrc->GetViewportOrg().y),
+      //         m_pimage->blend(point_i32(xDest + get_origin().x, yDest + get_origin().y), pgraphicsSrc->m_pimage,
+      //                                           point_i32(xSrc+pgraphicsSrc->get_origin().x, ySrc + pgraphicsSrc->get_origin().y),
       //                                           ::size_f64(nSrcWidth, nDestHeight), (byte)(dRate * 255.0f));
 
       //      }
@@ -3209,8 +3209,8 @@ namespace draw2d_gdiplus
       //   else
       //   {
 
-      //      m_pimage->from(point_i32(xDest + GetViewportOrg().x, yDest + GetViewportOrg().y), pgraphicsSrc->m_pimage,
-      //                                       point_i32(xSrc + pgraphicsSrc->GetViewportOrg().x, ySrc + pgraphicsSrc->GetViewportOrg().y),
+      //      m_pimage->from(point_i32(xDest + get_origin().x, yDest + get_origin().y), pgraphicsSrc->m_pimage,
+      //                                       point_i32(xSrc + pgraphicsSrc->get_origin().x, ySrc + pgraphicsSrc->get_origin().y),
       //                                       ::size_f64(nSrcWidth, nDestHeight), (byte) (dRate * 255.0f));
 
 
@@ -4456,14 +4456,14 @@ namespace draw2d_gdiplus
    }
 
 
-   size_f64 graphics::SetViewportExt(double x, double y)
+   size_f64 graphics::set_context_extents(double x, double y)
    {
 
       ::size_f64 size(0, 0);
       //if(get_handle1() != nullptr && get_handle1() != get_handle2())
-      //   ::SetViewportExtEx(get_handle1(), x, y, &::size_f64);
+      //   ::Set_wiewportExtEx(get_handle1(), x, y, &::size_f64);
       //if(get_handle2() != nullptr)
-      //   ::SetViewportExtEx(get_handle2(), x, y, &::size_f64);
+      //   ::Set_wiewportExtEx(get_handle2(), x, y, &::size_f64);
       return size;
 
    }
@@ -5183,11 +5183,11 @@ namespace draw2d_gdiplus
 //         (i32)(i16)pMetaRec->rdParm[1], (i32)(i16)pMetaRec->rdParm[0]);
 //         break;
 //      case META_SETVIEWPORTEXT:
-//         SetViewportExt(
+//         set_context_extents(
 //         (i32)(i16)pMetaRec->rdParm[1], (i32)(i16)pMetaRec->rdParm[0]);
 //         break;
 //      case META_SETVIEWPORTORG:
-//         SetViewportOrg(
+//         set_origin(
 //         (i32)(i16)pMetaRec->rdParm[1], (i32)(i16)pMetaRec->rdParm[0]);
 //         break;
 //      case META_SCALEWINDOWEXT:
@@ -5196,12 +5196,12 @@ namespace draw2d_gdiplus
 //         (i32)(i16)pMetaRec->rdParm[1], (i32)(i16)pMetaRec->rdParm[0]);
 //         break;
 //      case META_SCALEVIEWPORTEXT:
-//         ScaleViewportExt(
+//         scale_context_extents(
 //         (i32)(i16)pMetaRec->rdParm[3], (i32)(i16)pMetaRec->rdParm[2],
 //         (i32)(i16)pMetaRec->rdParm[1], (i32)(i16)pMetaRec->rdParm[0]);
 //         break;
 //      case META_OFFSETVIEWPORTORG:
-//         OffsetViewportOrg(
+//         offset_origin(
 //         (i32)(i16)pMetaRec->rdParm[1], (i32)(i16)pMetaRec->rdParm[0]);
 //         break;
 //      case META_SAVEDC:
@@ -5305,7 +5305,7 @@ namespace draw2d_gdiplus
 
 
       size_f64 sizeWinExt = GetWindowExt();
-      size_f64 sizeVpExt = GetViewportExt();
+      size_f64 sizeVpExt = get_context_extents();
       psize->cx = psize->cx * abs(sizeVpExt.cx) / abs(sizeWinExt.cx);
 
       psize->cy = psize->cy * abs(sizeVpExt.cy) / abs(sizeWinExt.cy);
@@ -5320,7 +5320,7 @@ namespace draw2d_gdiplus
 
       size_f64 sizeWinExt = GetWindowExt();
 
-      size_f64 sizeVpExt = GetViewportExt();
+      size_f64 sizeVpExt = get_context_extents();
 
       psize->cx = psize->cx * abs(sizeWinExt.cx) / abs(sizeVpExt.cx);
 
@@ -7238,7 +7238,7 @@ namespace draw2d_gdiplus
    //         //if (m_pimage != nullptr && pgraphicsSrc->m_pimage != nullptr)
    //         //{
 
-   //         //   const ::point_i32 & pointOff = GetViewportOrg();
+   //         //   const ::point_i32 & pointOff = get_origin();
 
    //         //   x += pointOff.x;
 

@@ -334,7 +334,15 @@ namespace acme_linux
       fork([this, str]()
            {
 
-              ::system("xdg-open \"" + str + "\" & ");
+               int iError = ::system("xdg-open \"" + str + "\" & ");
+
+               if(iError != 0)
+               {
+
+
+                  WARNING("node::shell_open xdg-open \"" << str << "\" returned error code " << iError);
+
+               }
 
            });
 
