@@ -5,12 +5,16 @@
 // dnf install ncurses-devel
 #include <ncurses.h>
 #include "acme/operating_system/_const_console.h"
+#include "acme/constant/status.h"
 #include <stdlib.h>
 #include <fcntl.h>
 #include <string.h>
 #include <unistd.h>
 #include <iostream>
 #include <sstream>
+
+
+void throw_exception(enum_status estatus);
 
 
 int __console_init(void ** ppscreen, void ** ppwindow, FILE * pfileOut, FILE * pfileIn, int cols, int lines)
@@ -73,13 +77,37 @@ int __console_init(void ** ppscreen, void ** ppwindow, FILE * pfileOut, FILE * p
 
       oss << str << " -S" << (strrchr(ptname, '/') + 1) << "/" << pt << " &";
 
-      system(oss.str().c_str());
+      auto iError = system(oss.str().c_str());
+
+      if(iError != 0)
+      {
+
+         throw_exception(::error_failed);
+
+      }
 
       int xterm_fd = open(ptname, O_RDWR);
 
       char c;
 
-      do read(xterm_fd, &c, 1); while (c != '\n');
+      do
+      {
+
+         auto iRead = read(xterm_fd, &c, 1);
+
+         if(iRead < 0)
+         {
+
+            auto iError = errno;
+
+            auto estatus = errno_to_status(iError);
+
+            throw_exception(estatus)
+
+         }
+
+      }
+      while (c != '\n');
 
       if (dup2(pt, 1) < 0)
       {
