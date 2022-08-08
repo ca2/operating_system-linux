@@ -4,6 +4,8 @@
 // apt install ncurses-dev
 // dnf install ncurses-devel
 #include <ncurses.h>
+#include <limits.h>
+#include "acme/_start.h"
 #include "acme/operating_system/_const_console.h"
 #include "acme/constant/status.h"
 #include <stdlib.h>
@@ -100,9 +102,9 @@ int __console_init(void ** ppscreen, void ** ppwindow, FILE * pfileOut, FILE * p
 
             auto iError = errno;
 
-            auto estatus = errno_to_status(iError);
+            auto estatus = _errno_to_status(iError);
 
-            throw_exception(estatus)
+            throw_exception(estatus);
 
          }
 
