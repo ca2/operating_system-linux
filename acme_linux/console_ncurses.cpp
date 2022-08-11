@@ -4,6 +4,7 @@
 // apt install ncurses-dev
 // dnf install ncurses-devel
 #include <ncurses.h>
+#include <limits.h>
 #include "acme/operating_system/_const_console.h"
 #include "acme/constant/status.h"
 #include <stdlib.h>
@@ -15,6 +16,7 @@
 
 
 void throw_exception(enum_status estatus);
+::enum_status _errno_to_status(int nErrno);
 
 
 int __console_init(void ** ppscreen, void ** ppwindow, FILE * pfileOut, FILE * pfileIn, int cols, int lines)
@@ -100,9 +102,9 @@ int __console_init(void ** ppscreen, void ** ppwindow, FILE * pfileOut, FILE * p
 
             auto iError = errno;
 
-            auto estatus = errno_to_status(iError);
+            auto estatus = _errno_to_status(iError);
 
-            throw_exception(estatus)
+            throw_exception(estatus);
 
          }
 
@@ -241,7 +243,9 @@ void __console_write(void * pscreen, const char * psz)
 {
 
    set_term((SCREEN *) pscreen);
+
    printw(psz);
+
    refresh();
 
 }
