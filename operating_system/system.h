@@ -285,16 +285,15 @@ typedef void * PVOID;
 #undef index
 
 
-
-
 #define WINBOOL int
 
 
 #define INFINITE_TIMEOUT UINT_MAX
 
+
+#ifndef offsetof
 #define offsetof(type, member)  __builtin_offsetof (type, member)
-
-
+#endif
 
 
 

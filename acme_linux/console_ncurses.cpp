@@ -245,7 +245,7 @@ void __console_write(void * pscreen, const char * psz)
 
    set_term((SCREEN *) pscreen);
 
-   printw(psz);
+   printw("%s", psz);
 
    refresh();
 
