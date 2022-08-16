@@ -4,7 +4,7 @@
 #pragma once
 
 
-#include "node_kde/_node_kde.h"
+#include "node_kde/_library.h"
 #include "aura_linux/_aura_linux.h"
 #include "aura/user/user/_user.h"
 

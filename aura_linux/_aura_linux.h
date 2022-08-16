@@ -6,7 +6,7 @@
 
 #include "aura/operating_system.h"
 #include "apex_linux/_apex_linux.h"
-#include "aura_posix/_aura_posix.h"
+#include "aura_posix/_library.h"
 
 
 #include "interaction_impl.h"
