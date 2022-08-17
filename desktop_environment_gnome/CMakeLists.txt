@@ -5,8 +5,8 @@ project(desktop_environment_gnome CXX)
 list(APPEND library_source
    _.cpp
    _.h
-   _desktop_environment_gnome.h
    _factory.cpp
+   _library.h
    framework.cpp
    framework.h
    node.cpp
