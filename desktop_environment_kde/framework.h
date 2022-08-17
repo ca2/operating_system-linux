@@ -9,7 +9,13 @@
 #include "_.h"
 
 
-#include "_desktop_environment_kde.h"
+#if BROAD_PRECOMPILED_HEADER
+
+
+#include "_library.h"
+
+
+#endif
 
 
 #include "aura/_defer.h"
