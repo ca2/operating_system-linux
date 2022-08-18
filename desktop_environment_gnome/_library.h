@@ -5,7 +5,7 @@
 
 
 #include "aura_linux/_aura_linux.h"
-#include "node_gnome/_node_gnome.h"
+#include "node_gnome/_library.h"
 #include "aura/user/user/_user.h"
 
 
