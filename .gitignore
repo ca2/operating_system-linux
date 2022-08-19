@@ -27,3 +27,4 @@ solution.vc.db*
 *.cmake
 Thumbs.db
 Makefile
+deployment.rc
