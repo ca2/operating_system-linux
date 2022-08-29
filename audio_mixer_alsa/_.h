@@ -1,7 +1,7 @@
 #pragma once
 
 
-#include "app-core/multimedia/multimedia/_.h"
+#include "app-core/multimedia/_.h"
 
 
 #if defined(_AUDIO_MIXER_ALSA_LIBRARY)
