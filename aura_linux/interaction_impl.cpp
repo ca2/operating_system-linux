@@ -2,7 +2,12 @@
 //#include "_linux.h"
 //#include "apex/platform/app_core.h"
 #include "aura/operating_system/linux/_linux.h"
-#include "acme/operating_system/_user.h"
+//#include "acme/operating_system/_user.h"
+#include "aura/message/user.h"
+#include "aura/platform/session.h"
+#include "aura/user/user/user.h"
+#include "aura/windowing/display.h"
+#include "aura/graphics/draw2d/graphics.h"
 ////#include "third/sn/sn.h"
 
 //::user::interaction * g_puserinteractionMouseCapture123 = nullptr;
@@ -4195,7 +4200,7 @@ namespace aura_linux
 //   }
 
 
-   void interaction_impl::set_context_org(::draw2d::graphics_pointer & pgraphics)
+   void interaction_impl::set_origin(::draw2d::graphics_pointer & pgraphics)
    {
 
       pgraphics->set_origin(::point_i32());

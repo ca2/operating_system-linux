@@ -51,7 +51,7 @@ __FACTORY_EXPORT void apex_linux_factory(::factory::factory * pfactory)
 
    //create_factory < ::linux::console, ::console::console >();
    //pfactory->add_factory_item < ::linux::crypto, ::crypto::crypto >();
-   pfactory->add_factory_item < ::apex_linux::ip_enum, ::net::ip_enum >();
+   //pfactory->add_factory_item < ::apex_linux::ip_enum, ::networking::ip_enum >();
 
 
 //   pfactory->add_factory_item < ::linux::interprocess_communication_base, ::interprocess_communication::base >();

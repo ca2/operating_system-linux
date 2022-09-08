@@ -1,4 +1,6 @@
 #include "framework.h"
+#include "node.h"
+#include "acme_file.h"
 #include <sys/utsname.h>
 
 

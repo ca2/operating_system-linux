@@ -8,6 +8,10 @@
 #pragma once
 
 
+#include "aura_linux/node.h"
+#include "node_gnome/node.h"
+
+
 namespace desktop_environment_gnome
 {
 

@@ -3,8 +3,9 @@
 //
 #include "framework.h"
 #include "node.h"
-//#include "appindicator.h"
 #include "windowing_x11/windowing_x11.h"
+#include "aura/platform/session.h"
+#include "aura/user/user/user.h"
 
 
 void gdk_branch(const ::procedure & procedure);

@@ -1,4 +1,8 @@
 #include "framework.h"
+#include "os_context.h"
+#include "node.h"
+#include "acme/filesystem/filesystem/acme_directory.h"
+#include "acme/filesystem/filesystem/acme_file.h"
 //#include "apex/platform/app_core.h"
 //#include "_linux.h"
 //#include "apex/os/linux/gnome_gnome.h"

@@ -13,6 +13,31 @@
 #endif
 
 
+namespace apex_linux
+{
+
+
+   class dir_context;
+   class dir_system;
+   class file_context;
+   class file_system;
+
+
+   class os_context;
+
+
+   class ip_enum;
+
+
+   class node;
+
+
+   class launcher;
+
+
+} // namespace apex_linux
+
+
 //::e_status gdiplus_draw_text(::draw2d::graphics * pgraphics, ::draw2d::path * ppath, const string & str, rectangle_f64 & rectParam, const ::e_align & ealign, const ::e_draw_text & edrawtext, ::write_text::font * pfont, double dFontWidth, ::draw2d::brush * pbrush = nullptr, bool bMeasure = false);
 
 

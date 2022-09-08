@@ -10,6 +10,11 @@ Copyright (ca) 1998 by PJ Naughter.
 
 
 */
+#pragma once
+
+
+
+#include "apex/networking/ip_enum.h"
 
 
 namespace apex_linux
@@ -17,7 +22,7 @@ namespace apex_linux
 
 
    class CLASS_DECL_APEX_LINUX ip_enum :
-      virtual public ::net::ip_enum
+      virtual public ::networking::ip_enum
    {
    public:
 
@@ -30,7 +35,7 @@ namespace apex_linux
 
 
       //      virtual ::count enumerate(ip_array & ipa);
-      virtual ::count enumerate(array < ::networking::address > & ipa) override;
+      virtual ::count enumerate(__pointer_array(::networking::address) & ipa) override;
 
    };
 

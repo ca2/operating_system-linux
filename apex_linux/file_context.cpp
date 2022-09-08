@@ -5,6 +5,7 @@
 #include <sys/stat.h>
 #include "acme/operating_system/ansi/file_raw.h"
 #include "acme/filesystem/filesystem/acme_directory.h"
+#include "acme/filesystem/filesystem/acme_file.h"
 
 
 struct PROCESS_INFO_t

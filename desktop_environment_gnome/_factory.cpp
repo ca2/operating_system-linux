@@ -1,4 +1,5 @@
 #include "framework.h"
+#include "node.h"
 
 
 __FACTORY_EXPORT void aura_linux_factory(::factory::factory * pfactory);

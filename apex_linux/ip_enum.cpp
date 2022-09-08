@@ -87,175 +87,175 @@ namespace apex_linux
    return true;
    }
    */
-   ::count ip_enum::enumerate(array < ::networking::address > & ipa)
+   ::count ip_enum::enumerate(__pointer_array(::networking::address) & ipa)
    {
 
-      //get this machines host name
-      char szHostname[256];
-      if (gethostname(szHostname, sizeof(szHostname)))
-      {
-         //FORMATTED_TRACE("Failed in call to gethostname, WSAGetLastError returns %d\n", WSAGetLastError());
-         return false;
-      }
-      {
-         struct addrinfo *result = nullptr;
-         struct addrinfo *ptr = nullptr;
-         struct addrinfo hints;
-         __zero(hints);
-         hints.ai_family = AF_INET;
-         hints.ai_socktype = SOCK_STREAM;
-         hints.ai_protocol = IPPROTO_TCP;
-         //hints.ai_flags = AI_NUMERICHOST;
-         int i = 0;
-
-         string str;
-
-         ::u32 dwRetval = getaddrinfo(szHostname, nullptr, &hints, &result);
-         if (dwRetval != 0)
-         {
-            printf("getaddrinfo failed with error: %d\n", dwRetval);
-            return 0;
-         }
-
-         printf("getaddrinfo returned success\n");
-
-
-         for (ptr = result; ptr != nullptr; ptr = ptr->ai_next)
-         {
-
-            printf("getaddrinfo response %d\n", i++);
-            printf("\tFlags: 0x%x\n", ptr->ai_flags);
-            printf("\tFamily: ");
-            switch (ptr->ai_family)
-            {
-            case AF_UNSPEC:
-               printf("Unspecified\n");
-               break;
-            case AF_INET:
-               
-               printf("AF_INET (IPv4)\n");
-
-               ipa.add(*ptr->ai_addr);
-
-               to_string(str, ipa.last().u.m_sa);
-
-               // sockaddr_ipv4 = (struct sockaddr_in *) ptr->ai_addr;
-               //printf("\tIPv4 address %s\n",
-               //inet_ntoa(sockaddr_ipv4->sin_addr));
-               break;
-            case AF_INET6:
-               printf("AF_INET6 (IPv6)\n");
-               ipa.add(*ptr->ai_addr);
-
-
-               // the InetNtop function is available on Windows Vista and later
-               // sockaddr_ipv6 = (struct sockaddr_in6 *) ptr->ai_addr;
-               // printf("\tIPv6 address %s\n",
-               //    InetNtop(AF_INET6, &sockaddr_ipv6->sin6_addr, ipstringbuffer, 46) );
-
-               // We use WSAAddressToString since it is supported on Windows XP and later
-               //sockaddr_ip = (LPSOCKADDR)ptr->ai_addr;
-               //// The buffer length is changed by each call to WSAAddresstoString
-               //// So we need to set it for each iteration through the loop for safety
-               //ipbufferlength = 46;
-               //iRetval = WSAAddressToString(sockaddr_ip, (::u32)ptr->ai_addrlen, nullptr,
-               // ipstringbuffer, &ipbufferlength);
-               //if (iRetval)
-               // printf("WSAAddressToString failed with %u\n", WSAGetLastError());
-               //else
-               // printf("\tIPv6 address %s\n", ipstringbuffer);
-               break;
-//            case AF_NETBIOS:
-//               printf("AF_NETBIOS (NetBIOS)\n");
+//      //get this machines host name
+//      char szHostname[256];
+//      if (gethostname(szHostname, sizeof(szHostname)))
+//      {
+//         //FORMATTED_TRACE("Failed in call to gethostname, WSAGetLastError returns %d\n", WSAGetLastError());
+//         return false;
+//      }
+//      {
+//         struct addrinfo *result = nullptr;
+//         struct addrinfo *ptr = nullptr;
+//         struct addrinfo hints;
+//         __zero(hints);
+//         hints.ai_family = AF_INET;
+//         hints.ai_socktype = SOCK_STREAM;
+//         hints.ai_protocol = IPPROTO_TCP;
+//         //hints.ai_flags = AI_NUMERICHOST;
+//         int i = 0;
+//
+//         string str;
+//
+//         ::u32 dwRetval = getaddrinfo(szHostname, nullptr, &hints, &result);
+//         if (dwRetval != 0)
+//         {
+//            printf("getaddrinfo failed with error: %d\n", dwRetval);
+//            return 0;
+//         }
+//
+//         printf("getaddrinfo returned success\n");
+//
+//
+//         for (ptr = result; ptr != nullptr; ptr = ptr->ai_next)
+//         {
+//
+//            printf("getaddrinfo response %d\n", i++);
+//            printf("\tFlags: 0x%x\n", ptr->ai_flags);
+//            printf("\tFamily: ");
+//            switch (ptr->ai_family)
+//            {
+//            case AF_UNSPEC:
+//               printf("Unspecified\n");
 //               break;
-            default:
-               printf("Other %d\n", ptr->ai_family);
-               break;
-            }
-
-         }
-      }
-
-      {
-         struct addrinfo *result = nullptr;
-         struct addrinfo *ptr = nullptr;
-         struct addrinfo hints;
-         __zero(hints);
-         hints.ai_family = AF_INET6;
-         hints.ai_socktype = SOCK_STREAM;
-         hints.ai_protocol = IPPROTO_TCP;
-         //hints.ai_flags = AI_NUMERICHOST;
-         int i = 0;
-
-         ::u32 dwRetval = getaddrinfo(szHostname, nullptr, &hints, &result);
-         if (dwRetval != 0)
-         {
-            printf("getaddrinfo failed with error: %d\n", dwRetval);
-            return 0;
-         }
-
-         printf("getaddrinfo returned success\n");
-
-         string str;
-
-         for (ptr = result; ptr != nullptr; ptr = ptr->ai_next)
-         {
-
-            printf("getaddrinfo response %d\n", i++);
-            printf("\tFlags: 0x%x\n", ptr->ai_flags);
-            printf("\tFamily: ");
-            switch (ptr->ai_family)
-            {
-            case AF_UNSPEC:
-               printf("Unspecified\n");
-               break;
-            case AF_INET:
-               printf("AF_INET (IPv4)\n");
-               ipa.add(*ptr->ai_addr);
-
-
-               // sockaddr_ipv4 = (struct sockaddr_in *) ptr->ai_addr;
-               //printf("\tIPv4 address %s\n",
-               //inet_ntoa(sockaddr_ipv4->sin_addr));
-               break;
-            case AF_INET6:
-               printf("AF_INET6 (IPv6)\n");
-
-               {
-                  auto ipv6 = (struct sockaddr_in6 *) ptr->ai_addr;
-                  ipa.add(::networking::address(*ipv6, (int)ptr->ai_addrlen));
-               }
-
-
-
-               // the InetNtop function is available on Windows Vista and later
-               // sockaddr_ipv6 = (struct sockaddr_in6 *) ptr->ai_addr;
-               // printf("\tIPv6 address %s\n",
-               //    InetNtop(AF_INET6, &sockaddr_ipv6->sin6_addr, ipstringbuffer, 46) );
-
-               // We use WSAAddressToString since it is supported on Windows XP and later
-               //sockaddr_ip = (LPSOCKADDR)ptr->ai_addr;
-               //// The buffer length is changed by each call to WSAAddresstoString
-               //// So we need to set it for each iteration through the loop for safety
-               //ipbufferlength = 46;
-               //iRetval = WSAAddressToString(sockaddr_ip, (::u32)ptr->ai_addrlen, nullptr,
-               // ipstringbuffer, &ipbufferlength);
-               //if (iRetval)
-               // printf("WSAAddressToString failed with %u\n", WSAGetLastError());
-               //else
-               // printf("\tIPv6 address %s\n", ipstringbuffer);
-               break;
-//            case AF_NETBIOS:
-//               printf("AF_NETBIOS (NetBIOS)\n");
+//            case AF_INET:
+//
+//               printf("AF_INET (IPv4)\n");
+//
+//               ipa.add(*ptr->ai_addr);
+//
+//               to_string(str, ipa.last().u.m_sa);
+//
+//               // sockaddr_ipv4 = (struct sockaddr_in *) ptr->ai_addr;
+//               //printf("\tIPv4 address %s\n",
+//               //inet_ntoa(sockaddr_ipv4->sin_addr));
 //               break;
-            default:
-               printf("Other %d\n", ptr->ai_family);
-               break;
-            }
-
-         }
-
-      }
+//            case AF_INET6:
+//               printf("AF_INET6 (IPv6)\n");
+//               ipa.add(*ptr->ai_addr);
+//
+//
+//               // the InetNtop function is available on Windows Vista and later
+//               // sockaddr_ipv6 = (struct sockaddr_in6 *) ptr->ai_addr;
+//               // printf("\tIPv6 address %s\n",
+//               //    InetNtop(AF_INET6, &sockaddr_ipv6->sin6_addr, ipstringbuffer, 46) );
+//
+//               // We use WSAAddressToString since it is supported on Windows XP and later
+//               //sockaddr_ip = (LPSOCKADDR)ptr->ai_addr;
+//               //// The buffer length is changed by each call to WSAAddresstoString
+//               //// So we need to set it for each iteration through the loop for safety
+//               //ipbufferlength = 46;
+//               //iRetval = WSAAddressToString(sockaddr_ip, (::u32)ptr->ai_addrlen, nullptr,
+//               // ipstringbuffer, &ipbufferlength);
+//               //if (iRetval)
+//               // printf("WSAAddressToString failed with %u\n", WSAGetLastError());
+//               //else
+//               // printf("\tIPv6 address %s\n", ipstringbuffer);
+//               break;
+////            case AF_NETBIOS:
+////               printf("AF_NETBIOS (NetBIOS)\n");
+////               break;
+//            default:
+//               printf("Other %d\n", ptr->ai_family);
+//               break;
+//            }
+//
+//         }
+//      }
+//
+//      {
+//         struct addrinfo *result = nullptr;
+//         struct addrinfo *ptr = nullptr;
+//         struct addrinfo hints;
+//         __zero(hints);
+//         hints.ai_family = AF_INET6;
+//         hints.ai_socktype = SOCK_STREAM;
+//         hints.ai_protocol = IPPROTO_TCP;
+//         //hints.ai_flags = AI_NUMERICHOST;
+//         int i = 0;
+//
+//         ::u32 dwRetval = getaddrinfo(szHostname, nullptr, &hints, &result);
+//         if (dwRetval != 0)
+//         {
+//            printf("getaddrinfo failed with error: %d\n", dwRetval);
+//            return 0;
+//         }
+//
+//         printf("getaddrinfo returned success\n");
+//
+//         string str;
+//
+//         for (ptr = result; ptr != nullptr; ptr = ptr->ai_next)
+//         {
+//
+//            printf("getaddrinfo response %d\n", i++);
+//            printf("\tFlags: 0x%x\n", ptr->ai_flags);
+//            printf("\tFamily: ");
+//            switch (ptr->ai_family)
+//            {
+//            case AF_UNSPEC:
+//               printf("Unspecified\n");
+//               break;
+//            case AF_INET:
+//               printf("AF_INET (IPv4)\n");
+//               ipa.add(*ptr->ai_addr);
+//
+//
+//               // sockaddr_ipv4 = (struct sockaddr_in *) ptr->ai_addr;
+//               //printf("\tIPv4 address %s\n",
+//               //inet_ntoa(sockaddr_ipv4->sin_addr));
+//               break;
+//            case AF_INET6:
+//               printf("AF_INET6 (IPv6)\n");
+//
+//               {
+//                  auto ipv6 = (struct sockaddr_in6 *) ptr->ai_addr;
+//                  ipa.add(::networking::address(*ipv6, (int)ptr->ai_addrlen));
+//               }
+//
+//
+//
+//               // the InetNtop function is available on Windows Vista and later
+//               // sockaddr_ipv6 = (struct sockaddr_in6 *) ptr->ai_addr;
+//               // printf("\tIPv6 address %s\n",
+//               //    InetNtop(AF_INET6, &sockaddr_ipv6->sin6_addr, ipstringbuffer, 46) );
+//
+//               // We use WSAAddressToString since it is supported on Windows XP and later
+//               //sockaddr_ip = (LPSOCKADDR)ptr->ai_addr;
+//               //// The buffer length is changed by each call to WSAAddresstoString
+//               //// So we need to set it for each iteration through the loop for safety
+//               //ipbufferlength = 46;
+//               //iRetval = WSAAddressToString(sockaddr_ip, (::u32)ptr->ai_addrlen, nullptr,
+//               // ipstringbuffer, &ipbufferlength);
+//               //if (iRetval)
+//               // printf("WSAAddressToString failed with %u\n", WSAGetLastError());
+//               //else
+//               // printf("\tIPv6 address %s\n", ipstringbuffer);
+//               break;
+////            case AF_NETBIOS:
+////               printf("AF_NETBIOS (NetBIOS)\n");
+////               break;
+//            default:
+//               printf("Other %d\n", ptr->ai_family);
+//               break;
+//            }
+//
+//         }
+//
+//      }
 
       return ipa.get_size();
 
