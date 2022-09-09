@@ -1,6 +1,9 @@
 #pragma once
 
 
+#include "app-core/multimedia/audio_mixer/device.h"
+
+
 namespace multimedia
 {
 
@@ -26,7 +29,7 @@ namespace multimedia
 
          ::multimedia::audio_mixer::audio_mixer * get_mixer();
          const char * GetSZPName();
-         bool OnCommand(WPARAM wparam, LPARAM lparam);
+         //bool OnCommand(WPARAM wparam, LPARAM lparam);
          void close();
          void MapDlgCtrlIDToLineControls(::multimedia::audio_mixer::source * pSource);
          void MapDlgCtrlIDToControls();

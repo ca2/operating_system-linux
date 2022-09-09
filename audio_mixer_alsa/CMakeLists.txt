@@ -4,7 +4,7 @@ project(audio_mixer_alsa CXX)
 
 list(APPEND library_source
    _.h
-   _library.h
+   #_library.h
    _factory.cpp
    audio_mixer.cpp
    audio_mixer.h

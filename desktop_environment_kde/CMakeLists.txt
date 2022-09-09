@@ -5,7 +5,7 @@ project(desktop_environment_kde CXX)
 list(APPEND library_source
    _.cpp
    _.h
-   _library.h
+   #_library.h
    _factory.cpp
    #appindicator.cpp
    #appindicator.h

@@ -1,6 +1,10 @@
 #pragma once
 
 
+#include "source.h"
+#include "app-core/multimedia/audio_mixer/destination.h"
+
+
 namespace multimedia
 {
 

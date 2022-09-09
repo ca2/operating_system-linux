@@ -1,6 +1,7 @@
 #pragma once
 
 
+#include "app-veriwell/multimedia/music/midi/message_out.h"
 #include <alsa/asoundlib.h>
 
 

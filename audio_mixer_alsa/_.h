@@ -28,6 +28,9 @@ namespace multimedia
       class departament;
 
 
+      class window;
+
+
    } // namespace audio_mixer_alsa
 
 

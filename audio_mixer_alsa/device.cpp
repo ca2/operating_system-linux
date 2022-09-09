@@ -1,5 +1,5 @@
 #include "framework.h"
-
+#include "device.h"
 
 
 namespace multimedia

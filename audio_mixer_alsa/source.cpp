@@ -1,5 +1,7 @@
 #include "framework.h"
-
+#include "source.h"
+#include "control.h"
+#include "destination.h"
 
 
 namespace multimedia

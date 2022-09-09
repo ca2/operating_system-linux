@@ -1,6 +1,9 @@
 #pragma once
 
 
+#include "app-core/multimedia/audio_mixer/control.h"
+
+
 namespace multimedia
 {
 
@@ -33,7 +36,7 @@ namespace multimedia
          virtual iptr add(::multimedia::audio_mixer::user::control * pcontrol);
 
          bool control_type(::multimedia::audio_mixer::e_control econtrol) const;
-         bool OnCommand(WPARAM wParam, LPARAM lParam);
+         //bool OnCommand(WPARAM wParam, LPARAM lParam);
          __pointer(::multimedia::audio_mixer::control_data) GetWindowDataByDlgCtrlID(::u32 nID);
          __pointer(::multimedia::audio_mixer::user::control) GetControlByDlgCtrlID(::u32 nID);
          //   bool OnNotify(::u32 nID, LPNMHDR lpnmhdr);

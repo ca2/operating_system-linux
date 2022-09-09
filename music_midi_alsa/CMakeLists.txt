@@ -5,7 +5,7 @@ project(music_midi_alsa CXX)
 list(APPEND library_source
    _.cpp
    _.h
-   _library.h
+   #_library.h
    _factory.cpp
    midi.cpp
    midi.h

@@ -1,4 +1,5 @@
 #include "framework.h"
+#include "midi.h"
 
 #if !BROAD_PRECOMPILED_HEADER
 #include "acme/_defer.h"

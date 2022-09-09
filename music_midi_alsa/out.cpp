@@ -1,5 +1,7 @@
 #include "framework.h"
-
+#include "out.h"
+#include "app-veriwell/multimedia/music/midi/sequencer.h"
+#include "app-veriwell/multimedia/music/midi/file.h"
 #if !BROAD_PRECOMPILED_HEADER
 #include "acme/_defer.h"
 #endif
@@ -443,7 +445,7 @@ namespace music
          }
 
 
-         void out::send_short_message(::music::midi::e_message emessage, int iChannel, int iData1, int iData2)
+         void out::send_short_message(::music::midi::enum_message emessage, int iChannel, int iData1, int iData2)
          {
 
             //return midiOutShortMsg(m_hmidiout, MIDIMSG(((int) etype) >> 4, iChannel, iData1, iData2));

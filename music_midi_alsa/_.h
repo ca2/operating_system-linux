@@ -4,6 +4,8 @@
 #include "app-veriwell/multimedia/_.h"
 
 
+#include "seqlib.h"
+
 
 #if defined(_VERIWELL_MULTIMEDIA_MUSIC_MIDI_ALSA_LIBRARY)
    #define CLASS_DECL_VERIWELL_MULTIMEDIA_MUSIC_MIDI_ALSA  CLASS_DECL_EXPORT
