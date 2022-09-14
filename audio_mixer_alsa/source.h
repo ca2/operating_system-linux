@@ -47,7 +47,7 @@ namespace multimedia
          //::multimedia::result GetControl(::u32 dwControlType, ::u32 dwControlFlags, ::multimedia::audio_mixer::control ** ppControl);
          void GetLineControls();
 
-         inline bool HasV001Controls();
+         bool HasV001Controls() override;
 
          source & operator = (const source & source);
 
