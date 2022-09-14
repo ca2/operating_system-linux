@@ -45,6 +45,8 @@ namespace music
 
             void general_midi_reset() override;
 
+            void xg_system_on() override;
+
             void reset_all_controllers() override;
 
             virtual void add_short_message(byte * pmessage, int iSize);

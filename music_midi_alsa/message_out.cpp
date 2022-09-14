@@ -281,6 +281,15 @@ namespace music
          }
 
 
+         void message_out::xg_system_on()
+         {
+
+            ::music::midi::message_out::xg_system_on();
+
+         }
+
+
+
       } // namespace alsa
 
 
