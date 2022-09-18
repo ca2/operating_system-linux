@@ -283,7 +283,7 @@ namespace apex_linux
 //
 //               }
 //
-//               get_app()->m_papplication->dir().ls(listing, strDir);
+//               get_app()->m_papexapplication->dir().ls(listing, strDir);
 //
 //            }
 //
@@ -296,7 +296,7 @@ namespace apex_linux
 //
 //            listing.m_bRecursive = false;
 //
-//            get_app()->m_papplication->dir().ls_file(listing, listing.m_pathFinal);
+//            get_app()->m_papexapplication->dir().ls_file(listing, listing.m_pathFinal);
 //
 //         }
 //
