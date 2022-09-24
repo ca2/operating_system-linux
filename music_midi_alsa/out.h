@@ -60,7 +60,7 @@ namespace music
             void sysex(const ::block & block) override;
 void tempo(int iTempo) override;
 
-            void send_short_message(::music::midi::enum_message etype, int iChannel, int iData1, int iData2) override;
+            void send_short_message(::music::midi::enum_midi_message etype, int iChannel, int iData1, int iData2) override;
 
 
             bool step() override;

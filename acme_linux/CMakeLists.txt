@@ -27,7 +27,7 @@ list(APPEND library_source
    )
 
 
-add_library(acme_linux SHARED ${library_source})
+add_library(${PROJECT_NAME} SHARED ${library_source})
 
 
 set_source_files_properties(console_ncurses.cpp PROPERTIES SKIP_PRECOMPILE_HEADERS ON)
@@ -64,12 +64,12 @@ elseif(LINUX)
 endif()
 
 
-list(APPEND library_include_directories ${CMAKE_CURRENT_SOURCE_DIR}/../..)
-list(APPEND library_include_directories ${CMAKE_CURRENT_SOURCE_DIR}/..)
 list(APPEND library_include_directories ${CMAKE_CURRENT_SOURCE_DIR})
-
+list(APPEND library_include_directories ${CMAKE_CURRENT_SOURCE_DIR}/..)
+list(APPEND library_include_directories ${CMAKE_CURRENT_SOURCE_DIR}/../..)
 
 target_include_directories(${PROJECT_NAME} PRIVATE ${library_include_directories})
+
 
 
 target_compile_definitions(acme_linux PRIVATE _ACME_LINUX_LIBRARY)

@@ -51,7 +51,7 @@ list(APPEND library_references
 
 
 
-add_library(desktop_environment_xfce SHARED ${library_source})
+add_library(${PROJECT_NAME} SHARED ${library_source})
 
 target_precompile_headers(desktop_environment_xfce PRIVATE framework.h)
 
@@ -79,12 +79,12 @@ endif ()
 add_dependencies(desktop_environment_xfce node_linux)
 
 
-list(APPEND library_include_directories ${CMAKE_CURRENT_SOURCE_DIR}/../..)
-list(APPEND library_include_directories ${CMAKE_CURRENT_SOURCE_DIR}/..)
 list(APPEND library_include_directories ${CMAKE_CURRENT_SOURCE_DIR})
-
+list(APPEND library_include_directories ${CMAKE_CURRENT_SOURCE_DIR}/..)
+list(APPEND library_include_directories ${CMAKE_CURRENT_SOURCE_DIR}/../..)
 
 target_include_directories(${PROJECT_NAME} PRIVATE ${library_include_directories})
+
 
 
 target_compile_definitions(desktop_environment_xfce PRIVATE _desktop_environment_xfce_LIBRARY)
