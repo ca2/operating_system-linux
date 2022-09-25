@@ -53,7 +53,7 @@ typedef struct _XTree  XTree;
 /* 3 functions types used by an xtree to manipulate the data attached to leafs
    of an XTree.
    XT_init_data_t function is used to initialise (typically to 0) the data
-   of a new node.
+   of a memory_new node.
    XT_add_data_t function is used to add 'value' to the data 'to'.
    XT_sub_data_t function is used to substract 'value' from the data 'from'.
 
@@ -74,7 +74,7 @@ typedef void (*XT_init_data_t) (void* value);
 typedef void (*XT_add_data_t) (void* to,   const void* value);
 typedef void (*XT_sub_data_t) (void* from, const void* value);
 
-/* If not NULL, the XT_filter_IPs_t function is called when a new ec is inserted
+/* If not NULL, the XT_filter_IPs_t function is called when a memory_new ec is inserted
    in the XTree. 
    It indicates to the XTree to filter a range of IPs at the top and/or at
    the bottom of the ec Stacktrace : *top is the offset of the first IP to take
@@ -90,7 +90,7 @@ typedef void (*XT_sub_data_t) (void* from, const void* value);
 typedef void (*XT_filter_IPs_t) (Addr* ips, Int n_ips,
                                  ::u32* top, ::u32* n_ips_sel);
 
-/* Create new XTree, using given allocation and free function.
+/* Create memory_new XTree, using given allocation and free function.
    This function never returns NULL.
    cc is the allocation cost centre.
    alloc_fn must not return NULL (that is, if it returns it must have
@@ -113,7 +113,7 @@ extern void VG_(XT_filter_maybe_below_main)
      (Addr* ips, Int n_ips,
       ::u32* top, ::u32* n_ips_sel);
 /* Same as VG_(XT_filter_maybe_below_main) but also filters one top function
-   (typically to ignore the top level malloc/new/... fn). */
+   (typically to ignore the top level malloc/memory_new/... fn). */
 extern void VG_(XT_filter_1top_and_maybe_below_main)
      (Addr* ips, Int n_ips,
       ::u32* top, ::u32* n_ips_sel);
@@ -193,7 +193,7 @@ typedef Long Time;
 
 typedef void MsFile;
 
-/* Create a new file or truncate existing file for printing xtrees in
+/* Create a memory_new file or truncate existing file for printing xtrees in
    massif format. time_unit is a string describing the unit used
    in Massif_Header time.
    Produces a user error msg and returns NULL if file cannot be opened.

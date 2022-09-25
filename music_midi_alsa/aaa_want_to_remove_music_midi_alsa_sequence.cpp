@@ -318,7 +318,7 @@ namespace music
    //
    //         //    sofs.pstrName     = m_pstrFile;
    //
-   //         //PSMF pSmf = new SMF();
+   //         //PSMF pSmf = memory_new SMF();
    //
    //         //smfrc = file()->OpenFile(&sofs);
    //         smfrc = file()->OpenFile(ar, openMode);
@@ -527,7 +527,7 @@ namespace music
    //               /*if(bThrow)
    //               {
    //               set_state(e_state_opened);
-   //               throw new exception(mmrc, MIDIPLAYERPRERROLLREADEVENTSEXCEPTION);
+   //               throw memory_new exception(mmrc, MIDIPLAYERPRERROLLREADEVENTSEXCEPTION);
    //               }*/
    ///*               goto seq_Preroll_Cleanup;
    //            }
@@ -550,7 +550,7 @@ namespace music
    //            if(bThrow)
    //            {
    //               set_state(e_state_opened);
-   //               throw new exception(get_app(), mmrc, MIDIPLAYERPRERROLLPREPAREHEADEREXCEPTION);
+   //               throw memory_new exception(get_app(), mmrc, MIDIPLAYERPRERROLLPREPAREHEADEREXCEPTION);
    //            }
    //            else
    //            {
@@ -567,7 +567,7 @@ namespace music
    //            if(bThrow)
    //            {
    //               set_state(e_state_opened);
-   //               throw new exception(get_app(), ::music::EMidiPlayerPrerollPrepareHeader);
+   //               throw memory_new exception(get_app(), ::music::EMidiPlayerPrerollPrepareHeader);
    //            }
    //            else
    //            {
@@ -664,7 +664,7 @@ namespace music
 
                //}
 
-               m_pmidiout = __sp(new midi_out(get_app(), strDriver));
+               m_pmidiout = __sp(memory_new midi_out(get_app(), strDriver));
 
             }
 
@@ -1334,7 +1334,7 @@ namespace music
                         {
                            if(plyriceventa == NULL)
                            {
-                              plyriceventa = new array <::ikaraoke::lyric_event_v1, ::ikaraoke::lyric_event_v1 &>;
+                              plyriceventa = memory_new array <::ikaraoke::lyric_event_v1, ::ikaraoke::lyric_event_v1 &>;
                            }
                            ::file::memory_buffer memFile(get_app(), (LPBYTE) &lpdwParam[1], pheader->m_dwLength - sizeof(::u32));
                            /* x2x                  CArchive ar(&memFile, CArchive::load);
@@ -1752,10 +1752,10 @@ namespace music
    //         int32_t i;
    //         for(i = 0; i < tka2DTokensTicks.get_size(); i++)
    //         {
-   //            pLyricEventsV2 = new ::ikaraoke::lyric_events_v2();
-   //            pLyricEventsV2B = new ::ikaraoke::lyric_events_v2();
-   //            pLyricEventsV2C = new ::ikaraoke::lyric_events_v2();
-   //            pLyricEventsV2_ = new ::ikaraoke::lyric_events_v2();
+   //            pLyricEventsV2 = memory_new ::ikaraoke::lyric_events_v2();
+   //            pLyricEventsV2B = memory_new ::ikaraoke::lyric_events_v2();
+   //            pLyricEventsV2C = memory_new ::ikaraoke::lyric_events_v2();
+   //            pLyricEventsV2_ = memory_new ::ikaraoke::lyric_events_v2();
    //            staticdata.m_eventsv1.add(pLyricEventsV2);
    //            staticdata.m_eventsv1.add(pLyricEventsV2B);
    //            staticdata.m_eventsv1.add(pLyricEventsV2C);
@@ -1930,7 +1930,7 @@ namespace music
    //
    //         for(i = 0; i < tka2DTokensTicks.get_size(); i++)
    //         {
-   //            pLyricEventsV1 = new ::ikaraoke::lyric_events_v1();
+   //            pLyricEventsV1 = memory_new ::ikaraoke::lyric_events_v1();
    //            pLyricEventsV1->m_iType = ikaraoke::EventAdvanceShow;
    //            pLyricEventsV1->m_iOrder = i;
    //            //staticdata.m_eventsTracksForPositionCB.add(pLyricEventsV1);
@@ -2425,7 +2425,7 @@ namespace music
 
             ASSERT(this != NULL);
 
-            event * pevent          = new event();
+            event * pevent          = memory_new event();
 
             pevent->m_eevent        = eevent;
             pevent->m_psequence     = this;

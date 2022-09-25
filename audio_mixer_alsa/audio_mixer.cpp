@@ -15,7 +15,7 @@ namespace multimedia
 
          //m_window.m_pmixer = this;
 
-//         m_pdevice = new ::multimedia::audio_mixer::device(this);
+//         m_pdevice = memory_new ::multimedia::audio_mixer::device(this);
 
       }
 

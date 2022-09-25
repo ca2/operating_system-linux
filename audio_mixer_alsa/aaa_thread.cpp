@@ -15,7 +15,7 @@ namespace multimedia
          
          SetMainWnd(NULL);
          m_bPendingShowCommand = false;
-         //    m_pmfmh = new CMessageFilterMainHook();
+         //    m_pmfmh = memory_new CMessageFilterMainHook();
       }
 
 
@@ -188,7 +188,7 @@ namespace multimedia
 
                //            if(m_poptionsimpact == NULL)
                {
-                  //                m_poptionsimpact = new COptionsDialog();
+                  //                m_poptionsimpact = memory_new COptionsDialog();
                   //              m_poptionsimpact->create(NULL);
                }
 

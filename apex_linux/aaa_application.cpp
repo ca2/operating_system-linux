@@ -193,7 +193,7 @@
 //{
 //
 //
-//   ::comm::command * pmaininitdata = new ::linux::command;
+//   ::comm::command * pmaininitdata = memory_new ::linux::command;
 //
 //
 //   pmaininitdata->m_hInstance = hInstance;

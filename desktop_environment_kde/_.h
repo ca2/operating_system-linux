@@ -11,12 +11,12 @@
    #define CLASS_DECL_DESKTOP_ENVIRONMENT_KDE  CLASS_DECL_IMPORT
 #endif
 
-#undef new
+
 #include <qmetatype.h>
 #include <QApplication>
 #include <QPalette>
 #include <QAbstractNativeEventFilter>
-#define new ACME_NEW
+//#define memory_new ACME_NEW
 
 namespace desktop_environment_kde
 {

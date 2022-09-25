@@ -314,7 +314,7 @@
 
 #include <winreg.h>
 #include <winnls.h>
-#include <new.h>
+#include <memory_new.h>
 #include <eh.h>
 
 #undef AfxWndProc

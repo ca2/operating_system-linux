@@ -129,7 +129,7 @@ typedef
       // With ISA 2.06, the "Vector-Scalar Floating-point" category
       // provides facilities to support vector and scalar binary floating-
       // point operations.  A unified register file is an integral part
-      // of this new facility, combining floating point and vector registers
+      // of this memory_new facility, combining floating point and vector registers
       // using a 64x128-bit vector.  These are referred to as VSR[0..63].
       // The floating point registers are now mapped into double word element 0
       // of VSR[0..31]. The 32x128-bit vector registers defined by the "Vector

@@ -1,17 +1,12 @@
 #include "framework.h"
-//#include "_linux.h"
-//#include "apex/platform/app_core.h"
+#include "aura/windowing/window.h"
+#include "aura/windowing/windowing.h"
 #include "aura/operating_system/linux/_linux.h"
-//#include "acme/operating_system/_user.h"
 #include "aura/message/user.h"
 #include "aura/platform/session.h"
 #include "aura/user/user/user.h"
 #include "aura/windowing/display.h"
 #include "aura/graphics/draw2d/graphics.h"
-////#include "third/sn/sn.h"
-
-//::user::interaction * g_puserinteractionMouseCapture123 = nullptr;
-//#define MESSAGE_WINDOW_PARENT (::oswindow((void *) (iptr) 1))
 
 
 #define TEST 0
@@ -2703,7 +2698,7 @@ namespace aura_linux
 
       __UNREFERENCED_PARAMETER(bRedraw);
 
-      //ASSERT(::is_window((oswindow) get_handle())); m_pfont = new ::write_text::font(*pfont);
+      //ASSERT(::is_window((oswindow) get_handle())); m_pfont = memory_new ::write_text::font(*pfont);
 
    }
 

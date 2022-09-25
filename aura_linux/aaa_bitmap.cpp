@@ -1,7 +1,7 @@
 #include "framework.h"
 
 
-#undef new
+
 
 
 namespace draw2d_gdiplus
@@ -44,7 +44,7 @@ namespace draw2d_gdiplus
 
       ::acme::del(m_pbitmap);
 
-      m_pbitmap = new ::Gdiplus::Bitmap(nWidth, nHeight, Gdiplus::PixelOffsetModeHighQuality);
+      m_pbitmap = normal_new ::Gdiplus::Bitmap(nWidth, nHeight, Gdiplus::PixelOffsetModeHighQuality);
 
       m_osdata[0] = m_pbitmap;
 
@@ -85,7 +85,7 @@ namespace draw2d_gdiplus
 
       }
 
-      m_pbitmap = new Gdiplus::Bitmap(ppixmap->width(), ppixmap->height(), m_iStride, PixelFormat32bppPARGB, (BYTE *) ppixmap->colorref());
+      m_pbitmap = normal_new Gdiplus::Bitmap(ppixmap->width(), ppixmap->height(), m_iStride, PixelFormat32bppPARGB, (BYTE *) ppixmap->colorref());
 
       if (m_pbitmap == nullptr)
       {
@@ -140,7 +140,7 @@ namespace draw2d_gdiplus
 
       }
 
-      m_pbitmap = new Gdiplus::Bitmap(abs(pbmi->bmiHeader.biWidth), abs(pbmi->bmiHeader.biHeight),m_iStride, PixelFormat32bppPARGB, (BYTE *)m_mem.get_data());
+      m_pbitmap = normal_new Gdiplus::Bitmap(abs(pbmi->bmiHeader.biWidth), abs(pbmi->bmiHeader.biHeight),m_iStride, PixelFormat32bppPARGB, (BYTE *)m_mem.get_data());
 
       if(m_pbitmap == nullptr)
       {
@@ -248,7 +248,7 @@ namespace draw2d_gdiplus
 
       ::acme::del(m_pbitmap);
 
-      m_pbitmap = new ::Gdiplus::Bitmap(nWidth, nHeight, Gdiplus::PixelOffsetModeHighQuality);
+      m_pbitmap = normal_new ::Gdiplus::Bitmap(nWidth, nHeight, Gdiplus::PixelOffsetModeHighQuality);
 
       m_osdata[0] = m_pbitmap;
 
@@ -260,7 +260,7 @@ namespace draw2d_gdiplus
 
       ::acme::del(m_pbitmap);
 
-      m_pbitmap = new ::Gdiplus::Bitmap(nWidth, nHeight, Gdiplus::PixelOffsetModeHighQuality);
+      m_pbitmap = normal_new ::Gdiplus::Bitmap(nWidth, nHeight, Gdiplus::PixelOffsetModeHighQuality);
 
       m_osdata[0] = m_pbitmap;
 

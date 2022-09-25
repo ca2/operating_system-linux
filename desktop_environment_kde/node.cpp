@@ -2,7 +2,7 @@
 // Created by camilo on 19/01/2021. --<33ThomasBS!!
 //
 #include "framework.h"
-
+#include "node.h"
 
 
 //void x11_kick_idle();
@@ -549,7 +549,7 @@ namespace desktop_environment_kde
 //   ::node_linux::appindicator *node::appindicator_allocate()
 //   {
 //
-//      return new ::node_kde::appindicator();
+//      return memory_new ::node_kde::appindicator();
 //
 //   }
 //
