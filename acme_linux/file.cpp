@@ -417,7 +417,7 @@ namespace acme_linux
       if(iRet < 0)
       {
 
-         throw file_exception(error_io, errno, m_path);
+         throw file_exception(error_io, errno, m_path, "fsync < 0");
 
       }
 
