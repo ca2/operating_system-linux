@@ -50,6 +50,9 @@
 
 #define DEFAULT_DIR_SEPARATOR "/"
 
+#define OPERATING_SYSTEM_NAME   	"linux"
+
+#define OPERATING_SYSTEM_NAMESPACE	linux
 
 
 
@@ -84,8 +87,6 @@
 
 
 
-#define OPERATING_SYSTEM_NAME   	"linux"
-#define OPERATING_SYSTEM_NAMESPACE	linux
 
 
 
