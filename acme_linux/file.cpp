@@ -286,12 +286,12 @@ namespace acme_linux
 
          if(iRead < 0)
          {
-            i32 iError = errno;
-            if(iError == EAGAIN)
+            i32 iErrNo = errno;
+            if(iErrNo == EAGAIN)
             {
 
             }
-            throw ::file::exception(error_io, errno);
+            throw ::file::exception(error_io, __errno(iErrNo), m_path, "read < 0");
          }
          else if(iRead == 0)
          {
@@ -337,7 +337,13 @@ namespace acme_linux
          if(iWrite < 0)
          {
 
-            throw ::file::exception(errno_to_status(errno), -1, errno, m_path);
+            auto iErrNo = errno;
+
+            auto estatus = errno_to_status(iErrNo);
+
+            auto errorcode = __errno(iErrNo);
+
+            throw ::file::exception(estatus, errorcode, m_path, "write < 0", m_eopen);
 
          }
 
@@ -359,7 +365,13 @@ namespace acme_linux
       if(m_iFile == INVALID_FILE)
       {
 
-         throw ::file::exception(errno_to_status(errno), -1, errno, m_path);
+         auto iErrNo = errno;
+
+         auto estatus = errno_to_status(iErrNo);
+
+         auto errorcode = __errno(iErrNo);
+
+         throw ::file::exception(estatus, errorcode, m_path, "m_iFile == INVALID_FILE", m_eopen);
 
       }
 
@@ -379,11 +391,23 @@ namespace acme_linux
 
       filesize posNew = ::lseek64(m_iFile, lLoOffset, iSeek);
 //      posNew |= ((filesize) lHiOffset) << 32;
-      if(posNew  == (filesize)-1)
-         throw ::file::exception(errno_to_status(errno), -1, errno, m_path);
+      if(posNew < 0)
+      {
+
+         auto iErrNo = errno;
+
+         auto estatus = errno_to_status(iErrNo);
+
+         auto errorcode = __errno(iErrNo);
+
+         throw ::file::exception(estatus, errorcode, m_path, "lseek64 < 0", m_eopen);
+
+      }
 
       return posNew;
+
    }
+
 
    filesize file::get_position() const
    {
@@ -395,8 +419,18 @@ namespace acme_linux
 
       filesize pos = ::lseek64(m_iFile, lLoOffset, SEEK_CUR);
       //    pos |= ((filesize)lHiOffset) << 32;
-      if(pos  == (filesize)-1)
-         throw ::file::exception(errno_to_status(errno), -1, errno, m_path);
+      if(pos < 0)
+      {
+
+         auto iErrNo = errno;
+
+         auto estatus = errno_to_status(iErrNo);
+
+         auto errorcode = __errno(iErrNo);
+
+         throw ::file::exception(estatus, errorcode, m_path, "lseek64 < 0", m_eopen);
+
+      }
 
       return pos;
    }
@@ -442,14 +476,24 @@ namespace acme_linux
       bool bError = false;
 
       if (m_iFile != INVALID_FILE)
-         bError = ::close(m_iFile) == -1;
+         bError = ::close(m_iFile) != 0;
 
       m_iFile = INVALID_FILE;
 
       m_path.Empty();
 
       if (bError)
-         throw ::file::exception(errno_to_status(errno), -1, errno, m_path);
+      {
+
+         auto iErrNo = errno;
+
+         auto estatus = errno_to_status(iErrNo);
+
+         auto errorcode = __errno(iErrNo);
+
+         throw ::file::exception(estatus, errorcode, m_path, "close != 0", m_eopen);
+
+      }
 
    }
 
@@ -497,7 +541,13 @@ namespace acme_linux
       if (::ftruncate64(m_iFile, dwNewLen) == -1)
       {
 
-         throw ::file::exception(errno_to_status(errno), -1, errno, m_path);
+         auto iErrNo = errno;
+
+         auto estatus = errno_to_status(iErrNo);
+
+         auto errorcode = __errno(iErrNo);
+
+         throw ::file::exception(estatus, errorcode, m_path, "ftruncate64 == -1", m_eopen);
 
       }
 
