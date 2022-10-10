@@ -433,7 +433,7 @@ namespace aura
 //      ::e_status node::start()
 //      {
 //
-//         ///__pointer(::node::system) psystem = m_psystem;
+//         ///::pointer<::node::system>psystem = m_psystem;
 //
 //         //auto estatus = psystem->inline_init();
 //

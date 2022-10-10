@@ -11,7 +11,7 @@ namespace apex_linux
    public:
 
 
-      //__pointer(::service)       m_pservice;
+      //::pointer<::service>      m_pservice;
 
       //SERVICE_STATUS             m_status;
 

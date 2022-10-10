@@ -57,8 +57,8 @@ namespace music
             void mmsystem_GetMidiOutDeviceInterface(::u32 i);*/
 
 
-            virtual __pointer(::music::midi::message_out) get_message_out(const string& strDevice) override;
-            virtual __pointer(::music::midi::sequencer) create_midi_sequencer(sequence * psequence, const string& strDevice) override;
+            virtual ::pointer<::music::midi::message_out>get_message_out(const string& strDevice) override;
+            virtual ::pointer<::music::midi::sequencer>create_midi_sequencer(sequence * psequence, const string& strDevice) override;
 
 
             using ::music::midi::midi::translate_os_result;

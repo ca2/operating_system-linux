@@ -235,7 +235,7 @@ namespace apex_linux
 //            s_pservicehandler->control_stop(control);
 //            s_pservicehandler->update_state(SERVICE_STOPPED);
 //
-//            __pointer(::apex::system) psystem = s_pservicehandler->get_system();
+//            ::pointer<::apex::system>psystem = s_pservicehandler->get_system();
 //
 //            psystem->finalize();
 //

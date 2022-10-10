@@ -190,7 +190,7 @@ namespace aura_linux
 //
 //      ::user::interaction_impl::native_create_host();
 //
-////      __pointer(::user::system) pusersystem;
+////      ::pointer<::user::system>pusersystem;
 ////
 ////      if(m_puserinteraction->m_pusersystem)
 ////      {
@@ -446,7 +446,7 @@ namespace aura_linux
    void interaction_impl::_001OnMove(::message::message * pmessage)
    {
 
-//      __pointer(::message::size) psize(pmessage);
+//      ::pointer<::message::size>psize(pmessage);
 //
 //      if (m_bDestroyImplOnly)
 //      {
@@ -464,7 +464,7 @@ namespace aura_linux
 //
 //      }
 
-//      __pointer(::message::move) pmove(pmessage);
+//      ::pointer<::message::move>pmove(pmessage);
 //
 //      m_puserinteraction->layout().origin() = pmove->m_point;
 //
@@ -503,7 +503,7 @@ namespace aura_linux
 //
 //      }
 //
-//      __pointer(::message::size) psize(pmessage);
+//      ::pointer<::message::size>psize(pmessage);
 
 //      m_puserinteraction->window_state3().m_size = psize->m_size;
 //
@@ -524,7 +524,7 @@ namespace aura_linux
    void interaction_impl::_001OnShowWindow(::message::message * pmessage)
    {
 
-      __pointer(::message::show_window) pshowwindow(pmessage);
+      ::pointer<::message::show_window>pshowwindow(pmessage);
 
       if(!m_puserinteraction)
       {
@@ -734,7 +734,7 @@ namespace aura_linux
 
       */
 
-      __pointer(::user::interaction_impl) pWnd = (::user::interaction_impl *) this;
+      ::pointer<::user::interaction_impl>pWnd = (::user::interaction_impl *) this;
       if (pWnd.m_p != this)
          dumpcontext << " (Detached or temporary interaction_impl)";
       else
@@ -745,7 +745,7 @@ namespace aura_linux
       ::rectangle_i32 rectangle;
       ((::user::interaction_impl *) this)->m_puserinteraction->get_window_rect(&rectangle);
       dumpcontext << "\nrect = " << rectangle;
-      dumpcontext << "\nparent __pointer(::interaction_impl) = " << (void *)((::user::interaction_impl *) this)->get_parent();
+      dumpcontext << "\nparent ::pointer<::interaction_impl>= " << (void *)((::user::interaction_impl *) this)->get_parent();
 
 //      dumpcontext << "\nstyle = " << (void *)(dword_ptr)::GetWindowLong(get_handle(), GWL_STYLE);
       //    if (::GetWindowLong(get_handle(), GWL_STYLE) & WS_CHILD)
@@ -1127,7 +1127,7 @@ namespace aura_linux
 //
 //         auto pwindowing = puser->windowing();
 //
-//         __pointer(::message::key) pkey = pmessage;
+//         ::pointer<::message::key>pkey = pmessage;
 //
 //         //pwindowing->set(pkey, get_oswindow(), m_pwindow, pkey->m_atom, pkey->m_wparam, pkey->m_lparam);
 //
@@ -1193,7 +1193,7 @@ namespace aura_linux
 
          }
 
-         __pointer(::message::mouse) pmouse = pmessage;
+         ::pointer<::message::mouse>pmouse = pmessage;
 
          auto psession = get_session();
 
@@ -1440,7 +1440,7 @@ namespace aura_linux
       else if(bKeyMessage)
       {
 
-         __pointer(::user::interaction) puiFocus =  m_puserinteractionKeyboardFocus;
+         ::pointer<::user::interaction>puiFocus =  m_puserinteractionKeyboardFocus;
 
          if(puiFocus)
          {
@@ -1614,7 +1614,7 @@ namespace aura_linux
 //      ASSERT(get_handle() != nullptr);
 //      ASSERT_VALID(this);
 //
-//      __pointer(::user::interaction)pWndTopLevel=EnsureTopLevel();
+//      ::pointer<::user::interaction>WndTopLevel=EnsureTopLevel();
 //
 //      return interaction_impl::GetForegroundWindow() == pWndTopLevel->GetLastActivePopup();
 //   }
@@ -1622,7 +1622,7 @@ namespace aura_linux
 //   void interaction_impl::ActivateTopParent()
 //   {
 //      // special activate logic for floating toolbars and palettes
-//      __pointer(::user::interaction) pActiveWnd = GetForegroundWindow();
+//      ::pointer<::user::interaction>pActiveWnd = GetForegroundWindow();
 ////      if (pActiveWnd == nullptr || !(LNX_WINDOW(pActiveWnd)->get_handle() == get_handle() || ::IsChild(LNX_WINDOW(pActiveWnd)->get_handle(), get_handle())))
 //      {
 //         // clicking on floating frame when it does not have
@@ -1632,14 +1632,14 @@ namespace aura_linux
 //   }
 
    /*
-      __pointer(::user::frame_window) interaction_impl::top_level_frame()
+      ::pointer<::user::frame_window>interaction_impl::top_level_frame()
       {
          if (get_handle() == nullptr) // no oswindow attached
             return nullptr;
 
          ASSERT_VALID(this);
 
-         __pointer(::user::frame_window) pFrameWnd = nullptr;
+         ::pointer<::user::frame_window>pFrameWnd = nullptr;
          if(m_puserinteraction != this)
             pFrameWnd =  (m_puserinteraction);
          else
@@ -1649,14 +1649,14 @@ namespace aura_linux
 
          if (pFrameWnd != nullptr)
          {
-            __pointer(::user::frame_window) pTemp;
+            ::pointer<::user::frame_window>pTemp;
             while ((pTemp = pFrameWnd->get_parent_frame()) != nullptr)
                pFrameWnd = pTemp;
          }
          return pFrameWnd;
       }*/
 
-   /*   __pointer(::interaction_impl) interaction_impl::GetSafeOwner(::interaction_impl * pParent, oswindow* pWndTop)
+   /*   ::pointer<::interaction_impl>interaction_impl::GetSafeOwner(::interaction_impl * pParent, oswindow* pWndTop)
       {
          oswindow hWnd = GetSafeOwner_((oswindow) pParent->get_handle(), pWndTop);
          return ::linux::interaction_impl::from_handle(hWnd);
@@ -1821,7 +1821,7 @@ namespace aura_linux
 //   bool interaction_impl::HandleFloatingSysCommand(::u32 nID, lparam lparam)
 //
 //   {
-//      /*      __pointer(::user::interaction) pParent = GetTopLevelParent();
+//      /*      ::pointer<::user::interaction>pParent = GetTopLevelParent();
 //            switch (nID & 0xfff0)
 //            {
 //            case SC_PREVWINDOW:
@@ -1875,11 +1875,11 @@ namespace aura_linux
 //      ASSERT(puiStop == nullptr || puiStop->is_window());
 //      ASSERT(pmessage != nullptr);
 //
-//      __pointer(::user::message) pmessage(pmessage);
+//      ::pointer<::user::message>pmessage(pmessage);
 //      // walk from the target interaction_impl up to the hWndStop interaction_impl checking
 //      //  if any interaction_impl wants to translate this message
 //
-//      for (__pointer(::user::interaction) pinteraction = pmessage->m_puserinteraction; pinteraction != nullptr; pinteraction->get_parent())
+//      for (::pointer<::user::interaction>pinteraction = pmessage->m_puserinteraction; pinteraction != nullptr; pinteraction->get_parent())
 //      {
 //
 //         pinteraction->pre_translate_message(pmessage);
@@ -1913,10 +1913,10 @@ namespace aura_linux
 //               return false;
 //
 //            // check if in permanent ::collection::map, if it is reflect it (could be OLE control)
-//            __pointer(::interaction_impl) pWnd =  (pMap->lookup_permanent(hWndChild)); */
+//            ::pointer<::interaction_impl>pWnd =  (pMap->lookup_permanent(hWndChild)); */
 //
 //      __s_throw(todo());
-////      __pointer(::user::interaction) pWnd =  (FromHandlePermanent(hWndChild));
+////      ::pointer<::user::interaction>pWnd =  (FromHandlePermanent(hWndChild));
 ////      ASSERT(pWnd == nullptr || pWnd->get_handle() == hWndChild);
 ////      if (pWnd == nullptr)
 ////      {
@@ -2725,10 +2725,10 @@ namespace aura_linux
 //   }
 //
 //   /*
-//      __pointer(::user::frame_window) interaction_impl::EnsureParentFrame()
+//      ::pointer<::user::frame_window>interaction_impl::EnsureParentFrame()
 //      {
 //
-//         __pointer(::user::frame_window) pFrameWnd=get_parent_frame();
+//         ::pointer<::user::frame_window>pFrameWnd=get_parent_frame();
 //
 //         ENSURE_VALID(pFrameWnd);
 //
@@ -2740,7 +2740,7 @@ namespace aura_linux
 //      ::user::interaction * interaction_impl::EnsureTopLevelParent()
 //      {
 //
-//         __pointer(::user::interaction)pWnd=GetTopLevelParent();
+//         ::pointer<::user::interaction>Wnd=GetTopLevelParent();
 //
 //         ENSURE_VALID(pWnd);
 //
@@ -3826,7 +3826,7 @@ namespace aura_linux
    void interaction_impl::_001OnSetCursor(::message::message * pmessage)
    {
 
-//      __pointer(::user::message) pmessage(pmessage);
+//      ::pointer<::user::message>pmessage(pmessage);
 //
 //      auto psession = get_session();
 //
@@ -4120,7 +4120,7 @@ namespace aura_linux
 //      oswindow hWnd = hParent;
 //      if (hWnd == nullptr)
 //      {
-//         /* trans      __pointer(frame_window) pFrame = channel::GetRoutingFrame_();
+//         /* trans      ::pointer<frame_window>pFrame = channel::GetRoutingFrame_();
 //         if (pFrame != nullptr)
 //         hWnd = pFrame->get_handle();
 //         else
@@ -4172,7 +4172,7 @@ namespace aura_linux
 //
 ////   void interaction_impl::_001OnEraseBkgnd(::message::message * pmessage)
 ////   {
-////      __pointer(::message::erase_bkgnd) perasebkgnd(pmessage);
+////      ::pointer<::message::erase_bkgnd>perasebkgnd(pmessage);
 ////      perasebkgnd->m_bRet = true;
 ////      perasebkgnd->set_result(true);
 ////   }

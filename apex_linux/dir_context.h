@@ -16,8 +16,8 @@ namespace apex_linux
       ::file::path                  m_pathDownload;
       ::file::path                  m_pathMusic;
       ::file::path                  m_pathDocument;
-      __reference(file_system)      m_pfilesystem;
-      __reference(dir_system)       m_pdirsystem;
+      ::pointer<file_system>     m_pfilesystem;
+      ::pointer<dir_system>      m_pdirsystem;
 
 
       dir_context();

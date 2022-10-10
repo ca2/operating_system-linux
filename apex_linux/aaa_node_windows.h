@@ -152,7 +152,7 @@ i32 CLASS_DECL_APEX_LINUX __linux_main(::apex::system * psystem, ::create * pmai
 //CLASS_DECL_APEX_LINUX HINSTANCE __find_string_resource_handle(::u32 nID);
 //
 
-CLASS_DECL_APEX_LINUX __pointer(::apex::application) __get_app();
+CLASS_DECL_APEX_LINUX ::pointer<::apex::application>__get_app();
 
 CLASS_DECL_APEX_LINUX i32 app_main(::apex::system * psystem, HINSTANCE hInstance, HINSTANCE hPrevInstance, char * pCmdLine, ::e_display edisplay);
 

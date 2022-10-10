@@ -37,14 +37,14 @@ namespace multimedia
 
          bool control_type(::multimedia::audio_mixer::e_control econtrol) const;
          //bool OnCommand(WPARAM wParam, LPARAM lParam);
-         __pointer(::multimedia::audio_mixer::control_data) GetWindowDataByDlgCtrlID(::u32 nID);
-         __pointer(::multimedia::audio_mixer::user::control) GetControlByDlgCtrlID(::u32 nID);
+         ::pointer<::multimedia::audio_mixer::control_data>GetWindowDataByDlgCtrlID(::u32 nID);
+         ::pointer<::multimedia::audio_mixer::user::control>GetControlByDlgCtrlID(::u32 nID);
          //   bool OnNotify(::u32 nID, LPNMHDR lpnmhdr);
          void OnVHScroll(::u32 nSBCode, ::u32 nPos, ::user::interaction * pscrollbar);
-         __pointer(::multimedia::audio_mixer::control_data) GetWindowData(int32_t iType);
+         ::pointer<::multimedia::audio_mixer::control_data>GetWindowData(int32_t iType);
          void OnMixerControlChange();
-         __pointer(::multimedia::audio_mixer::user::control) GetControl(int32_t iType);
-         __pointer(::multimedia::audio_mixer::user::control) GetControlByIndex(::index iIndex);
+         ::pointer<::multimedia::audio_mixer::user::control>GetControl(int32_t iType);
+         ::pointer<::multimedia::audio_mixer::user::control>GetControlByIndex(::index iIndex);
          void Prepare();
          bool CreateWindowsVolumeV001(::user::interaction * puserinteractionParent, ::u32 nStartID, ::u32 * nNextID);
 

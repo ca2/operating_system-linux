@@ -26,12 +26,12 @@ namespace aura_linux
       string                           m_strWindowText;
       ::user::primitive *              m_pbasewnd;
       bool                             m_bExposing;
-      //__pointer(x11data)             m_px11data;
+      //::pointer<x11data>            m_px11data;
       i32                              m_iDepth;
       i32                              m_iScreen;
       bool                             m_bEnabled;
 
-      //__pointer(::thread)            m_pthreadDraw;
+      //::pointer<::thread>           m_pthreadDraw;
       ::rectangle_i64                  m_rectLastPos;
       ::duration                       m_durationLastPos;
 
@@ -97,7 +97,7 @@ namespace aura_linux
       // subclassing/unsubclassing functions
       virtual void pre_subclass_window() override;
 //      bool SubclassWindow(oswindow hWnd);
-//      //bool SubclassDlgItem(::u32 nID, __pointer(::interaction_impl) pParent);
+//      //bool SubclassDlgItem(::u32 nID, ::pointer<::interaction_impl>pParent);
 //      oswindow UnsubclassWindow();
 
       // handling of RT_DLGINIT resource (extension to RT_DIALOG)
@@ -125,7 +125,7 @@ namespace aura_linux
 //      // advanced creation (allows access to extended styles)
 //      virtual bool create_window_ex(
 //      ::user::interaction * pinteraction,
-//      __pointer(::user::system) pusersystem,
+//      ::pointer<::user::system>pusersystem,
 //      ::user::interaction * pParentWnd = nullptr,
 //      id id = ::id()) override;
 
@@ -135,7 +135,7 @@ namespace aura_linux
 
 //      virtual bool native_create_window_ex(
 //      ::user::interaction * pinteraction,
-//      __pointer(::user::system) pusersystem,
+//      ::pointer<::user::system>pusersystem,
 //      ::user::interaction * pParentWnd = nullptr,
 //      id id = ::id());
 

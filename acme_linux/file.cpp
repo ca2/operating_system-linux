@@ -75,7 +75,7 @@ namespace acme_linux
 
    }
 
-//   __pointer(::file::file) file::Duplicate() const
+//   ::pointer<::file::file>file::Duplicate() const
 //
 //   {
 //
@@ -967,7 +967,7 @@ CLASS_DECL_ACME void vfxGetModuleShortFileName(void * hInst, string& strShortNam
 }
 
 
-CLASS_DECL_ACME bool posix_resolve_shortcut(string & strTarget, const char * pszSource, __pointer(::user::primitive) puiMessageParentOptional)
+CLASS_DECL_ACME bool posix_resolve_shortcut(string & strTarget, const char * pszSource, ::pointer<::user::primitive>puiMessageParentOptional)
 {
 
    char realname[_POSIX_PATH_MAX * 4];

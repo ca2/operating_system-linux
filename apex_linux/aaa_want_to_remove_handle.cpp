@@ -16,7 +16,7 @@ namespace linux
       //single_lock synchronouslock(&pMap->m_mutex, true);
 
       array < oswindow > oswindowaRemove;
-      array < __pointer(::linux::window) > wndptraRemove;
+      array < ::pointer<::linux::window >>wndptraRemove;
 
       //POSITION pos = pMap->m_temporaryMap.get_start_position();
       //while (pos != nullptr)

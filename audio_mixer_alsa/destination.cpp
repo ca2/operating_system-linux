@@ -44,7 +44,7 @@ namespace multimedia
       void destination::initialize_source_info()
       {
 
-         __pointer(::multimedia::audio_mixer_alsa::source)     lpSource;
+         ::pointer<::multimedia::audio_mixer_alsa::source>    lpSource;
 
          //int32_t iConnections = (int32_t) m_mixerline.cConnections;
 

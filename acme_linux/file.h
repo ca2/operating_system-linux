@@ -81,7 +81,7 @@ namespace acme_linux
       void WriteHuge(const void * pBuffer, u64 dwCount);
 
 
-//      virtual __pointer(::file::file) Duplicate() const;
+//      virtual ::pointer<::file::file>Duplicate() const;
 
       virtual ::filesize translate(::filesize c, ::enum_seek eseek) override;
       virtual void set_size(filesize dwNewLen) override;
@@ -117,7 +117,7 @@ namespace acme_linux
 ////      ::e_status PASCAL ErrnoToException(i32 nErrno);
 //      void throw_os_error(::i32 lOsError, const char * pszFileName = nullptr);
 
-//      //void PASCAL ThrowErrno(__pointer(::acme::application) papp, i32 nErrno, const char * pszFileName = nullptr);
+//      //void PASCAL ThrowErrno(::pointer<::acme::application>papp, i32 nErrno, const char * pszFileName = nullptr);
 
 //
 //

@@ -270,7 +270,7 @@ namespace music
          //}
 
 
-         __pointer(::music::midi::message_out) midi::get_message_out(const string& strDevice)
+         ::pointer<::music::midi::message_out>midi::get_message_out(const string& strDevice)
          {
 
 
@@ -294,7 +294,7 @@ namespace music
          }
 
 
-         __pointer(::music::midi::sequencer) midi::create_midi_sequencer(sequence * psequence, const string& strDevice)
+         ::pointer<::music::midi::sequencer>midi::create_midi_sequencer(sequence * psequence, const string& strDevice)
          {
 
 

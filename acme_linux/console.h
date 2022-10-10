@@ -20,8 +20,8 @@ namespace acme_linux
       void *                  m_pscreen;
       void *                  m_pwindow;
       ::string_stream         m_cout;
-      __pointer(stdio_file)   m_pfileOut;
-      __pointer(stdio_file)   m_pfileIn;
+      ::pointer<stdio_file>  m_pfileOut;
+      ::pointer<stdio_file>  m_pfileIn;
       int                     m_iW;
       int                     m_iH;
       int                     m_iColor;
