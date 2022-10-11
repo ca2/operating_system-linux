@@ -7,7 +7,7 @@
 #include "_node_linux.h"
 
 
-#include "interprocess_communication.h"
+#include "inteprocess_channel.h"
 
 
 //#include "buffer.h"

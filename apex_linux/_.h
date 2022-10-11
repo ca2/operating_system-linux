@@ -127,7 +127,7 @@ namespace apex_linux
 
 //#include "dir_system.h"
 //#include "file_context.h"
-//#include "interprocess_communication.h"
+//#include "inteprocess_channel.h"
 
 
 //#include "os_context.h"
