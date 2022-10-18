@@ -71,7 +71,7 @@ namespace node_xfce
 
          gdk_monitor_get_geometry(pmonitor, &rect);
 
-         __copy(prectangle, rect);
+         copy(prectangle, &rect);
 
          return true;
 
@@ -106,7 +106,7 @@ namespace node_xfce
 
          gdk_monitor_get_workarea(pmonitor, &rect);
 
-         __copy(prectangle, rect);
+         copy(prectangle, &rect);
 
          return true;
 

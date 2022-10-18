@@ -191,7 +191,7 @@
 
                status = pgraphics->MeasureString(text.m_wstr, (INT)iSize, pfont, rectangle_f32, &format, &box);
 
-               __copy(rectParam, box);
+               copy(&rectParam, &box);
 
             }
 
@@ -210,7 +210,7 @@
 
                status = pgraphics->MeasureString(text.m_wstr, (INT)iSize, pfont, rectangle_f32, &format, &box);
 
-               __copy(rectParam, box);
+               copy(&rectParam, &box);
 
             }
 
@@ -249,7 +249,7 @@
 
             status = pgraphics->MeasureString(text.m_wstr, (INT)iSize, pfont, rectangle_f32, &format, &box);
 
-            __copy(rectParam, box);
+            copy(&rectParam, &box);
 
          }
 

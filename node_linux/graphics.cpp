@@ -810,7 +810,7 @@ namespace draw2d_gdiplus
 
       Gdiplus::Rect rectangle_i32;
 
-      __copy(rectangle, rectParam);
+      copy(&rectangle, &rectParam);
 
       return m_pgraphics->DrawRectangle(ppen->get_os_data < ::Gdiplus::Pen *> (this), rectangle) == ::Gdiplus::Ok;
 
@@ -1288,7 +1288,7 @@ namespace draw2d_gdiplus
 
       Gdiplus::Rect rectangle_i32;
 
-      __copy(rectangle, rectParam);
+      copy(&rectangle, &rectParam);
 
       Gdiplus::Brush* posbrush = pbrush->get_os_data < Gdiplus::Brush * >(this);
 
@@ -3554,7 +3554,7 @@ namespace draw2d_gdiplus
 
          Gdiplus::RectF rectangle_i32;
 
-         __copy(rectangle, rectParam);
+         copy(&rectangle, &rectParam);
 
          Gdiplus::SolidBrush b(Gdiplus::Color(color.m_iA, color.m_iR, color.m_iG, color.m_iB));
 
@@ -4520,7 +4520,7 @@ namespace draw2d_gdiplus
 
       m_pgraphics->GetClipBounds(&rectangle);
 
-      __copy(prectangle, rectangle);
+      copy(prectangle, &rectangle);
 
       return 1;
 
@@ -4590,7 +4590,7 @@ namespace draw2d_gdiplus
 
       Gdiplus::RectF r;
 
-      __copy(r, rectangle);
+      copy(&r, &rectangle);
 
       r.X += (Gdiplus::REAL)m_pointAddShapeTranslate.x;
 
@@ -4608,7 +4608,7 @@ namespace draw2d_gdiplus
 
       Gdiplus::RectF r;
 
-      __copy(r, rectangle);
+      copy(&r, &rectangle);
 
       r.X += (Gdiplus::REAL)m_pointAddShapeTranslate.x;
 
@@ -4628,7 +4628,7 @@ namespace draw2d_gdiplus
 
       Gdiplus::RectF r;
 
-      __copy(r, oval);
+      copy(&r, &oval);
 
       r.X += (Gdiplus::REAL)m_pointAddShapeTranslate.x;
 
@@ -4650,7 +4650,7 @@ namespace draw2d_gdiplus
 
       Gdiplus::RectF r;
 
-      __copy(r, oval);
+      copy(&r, &oval);
 
       r.X += (Gdiplus::REAL)m_pointAddShapeTranslate.x;
 
