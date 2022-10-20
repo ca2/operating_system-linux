@@ -3,6 +3,7 @@
 //
 // apt install ncurses-dev
 // dnf install ncurses-devel
+#undef OK
 #include <ncurses.h>
 #include <limits.h>
 #include "acme/_start.h"
