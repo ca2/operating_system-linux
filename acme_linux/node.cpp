@@ -201,7 +201,7 @@ namespace acme_linux
    }
 
 
-   id_array node::get_pids()
+   atom_array node::get_pids()
    {
 
       return ::acme_posix::node::get_pids();
@@ -209,14 +209,14 @@ namespace acme_linux
    }
 
 
-   id_array node::module_path_get_pid(const char* pszModulePath, bool bModuleNameIsPropertyFormatted)
+   atom_array node::module_path_get_pid(const char* pszModulePath, bool bModuleNameIsPropertyFormatted)
    {
 
       return ::acme_posix::node::module_path_get_pid(pszModulePath, bModuleNameIsPropertyFormatted);
 
-//         id_array iaPid;
+//         atom_array iaPid;
 //
-//         id_array pids = get_pids();
+//         atom_array pids = get_pids();
 //
 //         string strPath;
 //

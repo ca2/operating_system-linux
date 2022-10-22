@@ -4,9 +4,8 @@
 #include "file_system.h"
 #include "acme/filesystem/filesystem/acme_file.h"
 #include "acme/filesystem/filesystem/acme_directory.h"
-//#include "apex/xml/_.h"
 #include "acme/constant/id.h"
-//#include "_linux.h"
+#include "apex/platform/system.h"
 #undef USE_MISC
 
 #ifdef RASPBIAN
@@ -97,9 +96,9 @@ namespace apex_linux
 
       auto psystem = m_psystem;
 
-      __refer(m_pfilesystem, psystem->m_papexsystem->m_pfilesystem.get());
+      m_pfilesystem = psystem->m_papexsystem->m_pfilesystem.get();
 
-      __refer(m_pdirsystem, psystem->m_papexsystem->m_pdirsystem.get());
+      m_pdirsystem = psystem->m_papexsystem->m_pdirsystem.get();
 
       //return ::success;
 

@@ -3,11 +3,10 @@
 #include "node.h"
 #include "acme/filesystem/filesystem/acme_directory.h"
 #include "acme/filesystem/filesystem/acme_file.h"
-//#include "apex/platform/app_core.h"
-//#include "_linux.h"
-//#include "apex/os/linux/gnome_gnome.h"
+#include "apex/filesystem/file/set.h"
 #include "apex/operating_system/freedesktop/desktop_file.h"
-
+#include "apex/platform/system.h"
+#include "apex/operating_system/department.h"
 
 
 i32 daemonize_process(const ::string & _cmd_line, i32 * pprocessId);
@@ -863,7 +862,7 @@ namespace apex_linux
    void os_context::get_default_browser(string & strId, ::file::path & path, string & strParam)
    {
 
-      string str = m_psystem->m_papexsystem->process().get_output("/bin/sh -c \"xdg-settings get default-web-browser\"");
+      string str = m_psystem->m_papexsystem->operating_system().get_output("/bin/sh -c \"xdg-settings get default-web-browser\"");
 
       str.trim();
 

@@ -1,8 +1,7 @@
 #include "framework.h"
 #include "file.h"
 #include "acme_directory.h"
-//#include "acme/node/ansios/ansios.h"
-//#include "_linux.h"
+#include "acme/exception/dump_context.h"
 
 
 #include <fcntl.h>
@@ -596,9 +595,9 @@ namespace acme_linux
 
       ::file::file::dump(dumpcontext);
 
-      dumpcontext << "with handle " << (::u32)m_iFile;
-      dumpcontext << " and name \"" << m_path << "\"";
-      dumpcontext << "\n";
+//      dumpcontext << "with handle " << (::u32)m_iFile;
+//      dumpcontext << " and name \"" << m_path << "\"";
+//      dumpcontext << "\n";
 
    }
 

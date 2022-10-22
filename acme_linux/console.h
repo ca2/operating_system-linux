@@ -2,6 +2,7 @@
 
 
 #include "acme/operating_system/console.h"
+#include "acme/filesystem/file/text_stream.h"
 
 
 namespace acme_linux
