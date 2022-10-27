@@ -186,7 +186,7 @@ namespace desktop_environment_kde
 //
 //      return estatus;
 
-//      auto psystem = m_psystem->m_papexsystem;
+//      auto psystem = acmesystem()->m_papexsystem;
 //
 //      if (psystem->m_bGtkApp)
 //      {
@@ -203,7 +203,7 @@ namespace desktop_environment_kde
 //         ////
 //         ////      //auto idle_source = g_idle_source_new();
 //         ////
-//         ////      //g_source_set_callback(idle_source, &linux_start_system, (::apex::system *) m_psystem, nullptr);
+//         ////      //g_source_set_callback(idle_source, &linux_start_system, (::apex::system *) acmesystem(), nullptr);
 //         ////
 //         ////      //g_source_attach(idle_source, g_main_context_default());
 //         ////
@@ -264,7 +264,7 @@ namespace desktop_environment_kde
 //
 //         //x11_add_filter();
 //
-//         auto psystem = m_psystem->m_paurasystem;
+//         auto psystem = acmesystem()->m_paurasystem;
 //
 //         psystem->fork([]()
 //                     {
@@ -288,12 +288,12 @@ namespace desktop_environment_kde
    }
 
 
-   void node::initialize(::object *pobject)
+   void node::initialize(::particle * pparticle)
    {
 
       //auto estatus =
       //
-      ::node_kde::node::initialize(pobject);
+      ::node_kde::node::initialize(pparticle);
 
 //      if(!estatus)
 //      {

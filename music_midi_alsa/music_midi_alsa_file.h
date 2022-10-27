@@ -23,7 +23,7 @@ namespace music
 
 
 
-         file(::object * pobject);
+         file(::particle * pparticle);
          virtual ~file();
 
 

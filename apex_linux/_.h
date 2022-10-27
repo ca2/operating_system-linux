@@ -118,7 +118,7 @@ namespace apex_linux
 //   //CLASS_DECL_APEX_LINUX bool        delete_file(const char* pFileName);
 //
 //   //CLASS_DECL_APEX_LINUX i32     get_menu_string(HMENU hMenu, ::u32 uDItem, string& str, ::u32 flags);
-//   //CLASS_DECL_APEX_LINUX void        time_to_file_time(::matter* pobject, const ::earth::time& time, LPFILETIME pFileTime);
+//   //CLASS_DECL_APEX_LINUX void        time_to_file_time(::particle * pparticle, const ::earth::time& time, LPFILETIME pFileTime);
 //
 //   ////CLASS_DECL_APEX_LINUX ::file::path get_known_folder(REFKNOWNFOLDERID kfid);
 //

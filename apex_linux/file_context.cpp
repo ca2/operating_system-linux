@@ -6,6 +6,7 @@
 #include "acme/operating_system/ansi/file_raw.h"
 #include "acme/filesystem/filesystem/acme_directory.h"
 #include "acme/filesystem/filesystem/acme_file.h"
+#include "acme/platform/system.h"
 
 
 struct PROCESS_INFO_t
@@ -30,12 +31,12 @@ namespace apex_linux
    }
 
 
-   void file_context::initialize(::object * pobject)
+   void file_context::initialize(::particle * pparticle)
    {
 
       //auto estatus =
 
-         ::object::initialize(pobject);
+         ::object::initialize(pparticle);
 
 //      if(!estatus)
 //      {
@@ -99,7 +100,7 @@ namespace apex_linux
 //   bool file_context::is_link(string strPath)
 //   {
 //
-//      return m_psystem->m_pacmepath->is_link(strPath);
+//      return acmepath()->is_link(strPath);
 //
 //   }
 
@@ -109,7 +110,7 @@ namespace apex_linux
 
       ::file::path pathNetworkPayload;
 
-      auto psystem = m_psystem;
+      auto psystem = acmesystem();
 
       auto pacmedir = psystem->m_pacmedirectory;
 
@@ -123,7 +124,7 @@ namespace apex_linux
    void file_context::erase(const ::file::path & path)
    {
 
-      m_psystem->m_pacmefile->erase(path);
+      acmefile()->erase(path);
 
    }
 

@@ -158,13 +158,13 @@ public:
 
 
    fixed_alloc_no_sync     m_alloc;
-   ::mutex                   m_mutex;
+   ::pointer < ::mutex >                   m_pmutex;
    void (* m_pfnConstructObject)(CT* pObject);
    void (* m_pfnDestructObject)(CT* pObject);
    map < HANDLE, HANDLE, CT *, CT *> m_permanentMap;
    map < HANDLE, HANDLE, CT *, CT *> m_temporaryMap;
 
-   handle_map(::object * pobject);
+   handle_map(::particle * pparticle);
    virtual ~handle_map()
    {
       delete_temp();
@@ -188,7 +188,7 @@ class CLASS_DECL_APEX oswindow_map :
    public handle_map < ::linux::oswindow_handle, ::linux::window >
 {
 public:
-   oswindow_map(::object * pobject) : handle_map < ::linux::oswindow_handle, ::linux::window >(pobject) {}
+   oswindow_map(::particle * pparticle) : handle_map < ::linux::oswindow_handle, ::linux::window >(pparticle) {}
 };
 
 /*class CLASS_DECL_APEX hdc_map :
@@ -213,12 +213,12 @@ public:
 
 
 template < class HT, class CT >
-handle_map < HT, CT > ::handle_map(::object * pobject) :
-   ::object(pobject),
+handle_map < HT, CT > ::handle_map(::particle * pparticle) :
+   ::object(pparticle),
    m_permanentMap(papp, 1024),
    m_temporaryMap(papp, 1024),
    m_alloc(sizeof(CT), 1024),
-   m_mutex(pobject)
+   m_pmutex(pparticle)
 {
 
    ASSERT(HT::s_iHandleCount == 1 || HT::s_iHandleCount == 2);
@@ -235,7 +235,7 @@ template < class HT, class CT >
 CT* handle_map < HT, CT >::from_handle(HANDLE h, CT * (*pfnAllocator) (::pointer<::apex::application> HANDLE), ::pointer<::apex::application>app)
 {
 
-   single_lock synchronouslock(&m_mutex, true);
+   single_lock synchronouslock(m_pmutex, true);
 
    ASSERT(HT::s_iHandleCount == 1 || HT::s_iHandleCount == 2);
 
@@ -321,7 +321,7 @@ template < class HT, class CT >
 void handle_map < HT, CT >::set_permanent(HANDLE h, CT * permOb)
 {
 
-   single_lock synchronouslock(&m_mutex, true);
+   single_lock synchronouslock(m_pmutex, true);
 
    //bool bEnable = __enable_memory_tracking(false);
    m_permanentMap[(LPVOID)h] = permOb;
@@ -335,7 +335,7 @@ template < class HT, class CT >
 void handle_map < HT, CT > ::erase_handle(HANDLE h)
 {
 
-   single_lock synchronouslock(&m_mutex, true);
+   single_lock synchronouslock(m_pmutex, true);
 
    // make sure the handle entry is consistent before deleting
    CT* pTemp = lookup_temporary(h);
@@ -366,7 +366,7 @@ template < class HT, class CT >
 void handle_map < HT, CT >::delete_temp()
 {
 
-   single_lock synchronouslock(&m_mutex, true);
+   single_lock synchronouslock(m_pmutex, true);
 
    if (::is_null(this))
       return;
@@ -418,7 +418,7 @@ template < class HT, class CT >
 inline CT* handle_map <HT, CT>::lookup_permanent(HANDLE h)
 {
 
-   single_lock synchronouslock(&m_mutex, true);
+   single_lock synchronouslock(m_pmutex, true);
 
    CT * pt = m_permanentMap.get(h, (CT*) nullptr);
    if(pt != nullptr && pt->get_os_data() == (void *) h)
@@ -432,7 +432,7 @@ template < class HT, class CT >
 inline CT* handle_map <HT, CT>::lookup_temporary(HANDLE h)
 {
 
-   single_lock synchronouslock(&m_mutex, true);
+   single_lock synchronouslock(m_pmutex, true);
 
    CT * pt = m_temporaryMap.get(h, (CT*) nullptr);
    if(pt != nullptr && pt->get_os_data() == (void *) h)

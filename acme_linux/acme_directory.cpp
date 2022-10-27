@@ -2,6 +2,8 @@
 #include "framework.h"
 #include "acme_directory.h"
 #include "acme_file.h"
+#include "acme/platform/system.h"
+#include "acme/filesystem/filesystem/path_array.h"
 
 
 namespace acme_linux
@@ -166,7 +168,7 @@ namespace acme_linux
    ::file::path acme_directory::app_relative()
    {
 
-      ::file::path path = m_psystem->m_pacmefile->module();
+      ::file::path path = acmefile()->module();
 
       path = relative(path);
 
@@ -227,7 +229,7 @@ namespace acme_linux
 
    #else
 
-      return m_psystem->m_pacmefile->module() - 4;
+      return acmefile()->module() - 4;
 
    #endif
 
@@ -258,7 +260,7 @@ namespace acme_linux
 
    #else
 
-      return m_psystem->m_pacmefile->module() - 4;
+      return acmefile()->module() - 4;
 
    #endif
 
@@ -290,11 +292,11 @@ namespace acme_linux
 
    #elif defined(__APPLE__)
 
-      return m_psystem->m_pacmepath->app_module().folder(3);
+      return acmepath()->app_module().folder(3);
 
    #else
 
-      return m_psystem->m_pacmefile->module() - 4;
+      return acmefile()->module() - 4;
 
    #endif
 
@@ -421,7 +423,7 @@ namespace acme_linux
 //   ::file::path acme_directory::bookmark()
 //   {
 //
-//      auto psystem = m_psystem;
+//      auto psystem = acmesystem();
 //
 //      auto pacmedir = psystem->m_pacmedirectory;
 //

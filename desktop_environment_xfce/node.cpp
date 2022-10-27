@@ -57,7 +57,7 @@ namespace desktop_environment_xfce
    void node::defer_notify_startup_complete()
    {
 
-      auto psystem = m_psystem->m_papexsystem;
+      auto psystem = acmesystem()->m_papexsystem;
 
       string strApplicationServerName = psystem->get_application_server_name();
 
@@ -75,7 +75,7 @@ namespace desktop_environment_xfce
 
       return estatus;
 
-//      auto psystem = m_psystem->m_papexsystem;
+//      auto psystem = acmesystem()->m_papexsystem;
 //
 //      if (psystem->m_bGtkApp)
 //      {
@@ -92,7 +92,7 @@ namespace desktop_environment_xfce
 //      ////
 //      ////      //auto idle_source = g_idle_source_new();
 //      ////
-//      ////      //g_source_set_callback(idle_source, &linux_start_system, (::apex::system *) m_psystem, nullptr);
+//      ////      //g_source_set_callback(idle_source, &linux_start_system, (::apex::system *) acmesystem(), nullptr);
 //      ////
 //      ////      //g_source_attach(idle_source, g_main_context_default());
 //      ////
@@ -150,7 +150,7 @@ namespace desktop_environment_xfce
 //
 //            x11_add_idle_source(this);
 //
-//             auto psystem = m_psystem->m_papexsystem;
+//             auto psystem = acmesystem()->m_papexsystem;
 //
 //               psystem->on_start_system();
 //
@@ -184,12 +184,12 @@ namespace desktop_environment_xfce
    }
 
 
-   ::e_status node::initialize(::object *pobject)
+   ::e_status node::initialize(::particle * pparticle)
    {
 
       ::node_xfce::g_defer_init();
 
-      auto estatus = ::aura::linux::node::initialize(pobject);
+      auto estatus = ::aura::linux::node::initialize(pparticle);
 
       if(!estatus)
       {
@@ -198,7 +198,7 @@ namespace desktop_environment_xfce
 
       }
 
-      estatus = ::node_xfce::node::initialize(pobject);
+      estatus = ::node_xfce::node::initialize(pparticle);
 
       if(!estatus)
       {
@@ -282,7 +282,7 @@ namespace desktop_environment_xfce
 
       // indirect wall-changer sourceforge.net contribution
 
-      auto psystem = m_psystem->m_papexsystem;
+      auto psystem = acmesystem()->m_papexsystem;
 
       auto pnode = psystem->node();
 
@@ -365,7 +365,7 @@ namespace desktop_environment_xfce
 
       // wall-changer sourceforge.net contribution
 
-      auto psystem = m_psystem->m_papexsystem;
+      auto psystem = acmesystem()->m_papexsystem;
 
       auto pnode =  psystem->node();
 
@@ -417,7 +417,7 @@ namespace desktop_environment_xfce
    void node::enable_wallpaper_change_notification()
    {
 
-      auto psystem = m_psystem->m_papexsystem;
+      auto psystem = acmesystem()->m_papexsystem;
 
       auto pnode = psystem->node();
 

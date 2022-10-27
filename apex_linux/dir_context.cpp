@@ -4,6 +4,7 @@
 #include "file_system.h"
 #include "acme/filesystem/filesystem/acme_file.h"
 #include "acme/filesystem/filesystem/acme_directory.h"
+#include "acme/filesystem/filesystem/listing.h"
 #include "acme/constant/id.h"
 #include "apex/platform/system.h"
 #undef USE_MISC
@@ -36,7 +37,7 @@ inline bool linux_dir_myspace(char ch)
 
    path = pathHome / ".config/user-dirs.dirs";
 
-   auto straLines = pmatter->m_psystem->m_pacmefile->lines(path);
+   auto straLines = pmatter->acmefile()->lines(path);
 
    string strPrefix = str + "=";
 
@@ -80,12 +81,12 @@ namespace apex_linux
    }
 
 
-   void dir_context::initialize(::object * pobject)
+   void dir_context::initialize(::particle * pparticle)
    {
 
       //auto estatus =
 
-         ::object::initialize(pobject);
+         ::object::initialize(pparticle);
 
 //      if (!estatus)
 //      {
@@ -94,7 +95,7 @@ namespace apex_linux
 //
 //      }
 
-      auto psystem = m_psystem;
+      auto psystem = acmesystem();
 
       m_pfilesystem = psystem->m_papexsystem->m_pfilesystem.get();
 
@@ -312,7 +313,7 @@ namespace apex_linux
 
          //::file::path_array stra;
 
-         m_psystem->m_pacmedirectory->enumerate(listing);
+         acmedirectory()->enumerate(listing);
 
 //         for(i32 i = 0; i < stra.get_count(); i++)
 //         {
@@ -356,7 +357,7 @@ namespace apex_linux
 //            else
 //            {
 //
-//               path.m_iSize = m_psystem->m_pacmefile->get_size(strPath);
+//               path.m_iSize = acmefile()->get_size(strPath);
 //
 //            }
 //
@@ -374,7 +375,7 @@ namespace apex_linux
    bool dir_context::is(const ::file::path & path)
    {
 
-      if(m_psystem->m_pacmedirectory->is(path))
+      if(acmedirectory()->is(path))
       {
 
          return true;
@@ -383,7 +384,7 @@ namespace apex_linux
 
       bool bIsDir = false;
 
-      if(!m_psystem->m_pacmedirectory->_is(bIsDir, path))
+      if(!acmedirectory()->_is(bIsDir, path))
       {
 
          return false;
@@ -509,7 +510,7 @@ namespace apex_linux
    void dir_context::create(const ::file::path & path)
    {
 
-      m_psystem->m_pacmedirectory->create(path);
+      acmedirectory()->create(path);
 
    }
 
@@ -615,7 +616,7 @@ namespace apex_linux
    }
 
 
-   ::file::path dir_context::userquicklaunch(::object * pobject)
+   ::file::path dir_context::userquicklaunch(::particle * pparticle)
    {
 
       ::file::path path;
@@ -627,7 +628,7 @@ namespace apex_linux
    }
 
 
-   ::file::path dir_context::userprograms(::object * pobject)
+   ::file::path dir_context::userprograms(::particle * pparticle)
    {
 
       ::file::path path;

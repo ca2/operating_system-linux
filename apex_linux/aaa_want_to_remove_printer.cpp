@@ -10,9 +10,9 @@ namespace linux
 
 
    printer::printer(::pointer<base_application>papp) :
-      ::object(pobject),
-      ::user::printer(pobject),
-      m_documentproperties(pobject)
+      ::object(pparticle),
+      ::user::printer(pparticle),
+      m_documentproperties(pparticle)
    {
    }
 
@@ -64,7 +64,7 @@ namespace linux
 
 
    printer::document_properties::document_properties(::pointer<base_application>papp) :
-      ::object(pobject)
+      ::object(pparticle)
    {
       m_hdc = nullptr;
       m_pdevmode = nullptr;

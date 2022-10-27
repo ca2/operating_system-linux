@@ -2,6 +2,9 @@
 #include "file.h"
 #include "acme_directory.h"
 #include "acme/exception/dump_context.h"
+#include "acme/exception/io.h"
+#include "acme/filesystem/file/exception.h"
+#include "acme/filesystem/file/status.h"
 
 
 #include <fcntl.h>
@@ -40,8 +43,8 @@ namespace acme_linux
    }
 
 
-//   file::file(::matter * pobject, int iFile) :
-//      ::matter(pobject)
+//   file::file(::particle * pparticle, int iFile) :
+//      ::matter(pparticle)
 //   {
 //
 //      m_iFile = iFile;
@@ -49,8 +52,8 @@ namespace acme_linux
 //   }
 //
 //
-//   file::file(::matter * pobject, const ::file::path & pszFileName, const enumeration < ::file::e_open > & eopen) :
-//      ::matter(pobject)
+//   file::file(::particle * pparticle, const ::file::path & pszFileName, const enumeration < ::file::e_open > & eopen) :
+//      ::matter(pparticle)
 //   {
 //
 //      m_iFile = INVALID_FILE;
@@ -111,7 +114,7 @@ namespace acme_linux
       if ((eopen & ::file::e_open_defer_create_directory) && (eopen & ::file::e_open_write))
       {
 
-         m_psystem->m_pacmedirectory->create(pszFileName.folder());
+         acmedirectory()->create(pszFileName.folder());
 
       }
 
@@ -181,7 +184,7 @@ namespace acme_linux
       dwPermission |= S_IRGRP | S_IWGRP | S_IXGRP;
       dwPermission |= S_IROTH | S_IROTH;
 
-      //auto path = m_psystem->m_pacmepath->final(m_path);
+      //auto path = acmepath()->final(m_path);
 
       // attempt file creation
       //HANDLE hFile = shell::CreateFile(utf8_to_unicode(m_path), dwAccess, dwShareMode, &sa, dwCreateFlag, FILE_ATTRIBUTE_NORMAL, nullptr);
@@ -450,7 +453,13 @@ namespace acme_linux
       if(iRet < 0)
       {
 
-         throw file_exception(error_io, errno, m_path, "fsync < 0");
+         int iErrNo = errno;
+
+         auto estatus = errno_to_status(iErrNo);
+
+         auto errorcode = __errno(iErrNo);
+
+         throw ::file::exception(estatus, errorcode, m_path, "fsync < 0", m_eopen);
 
       }
 
@@ -582,31 +591,29 @@ namespace acme_linux
    }
 
 
-   void file::assert_ok() const
-   {
-
-      ::file::file::assert_ok();
-
-   }
-
-
-   void file::dump(dump_context & dumpcontext) const
-   {
-
-      ::file::file::dump(dumpcontext);
-
-//      dumpcontext << "with handle " << (::u32)m_iFile;
-//      dumpcontext << " and name \"" << m_path << "\"";
-//      dumpcontext << "\n";
-
-   }
+//   void file::assert_ok() const
+//   {
+//
+//      ::file::file::assert_ok();
+//
+//   }
+//
+//
+//   void file::dump(dump_context & dumpcontext) const
+//   {
+//
+//      ::file::file::dump(dumpcontext);
+//
+////      dumpcontext << "with handle " << (::u32)m_iFile;
+////      dumpcontext << " and name \"" << m_path << "\"";
+////      dumpcontext << "\n";
+//
+//   }
 
 
 
    string file::GetFileName() const
    {
-
-
 
       ::file::file_status status;
 

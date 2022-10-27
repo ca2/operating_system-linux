@@ -10,7 +10,7 @@ __FACTORY_EXPORT void node_linux_factory(::factory::factory * pfactory)
    if (edesktop & ::user::e_desktop_kde)
    {
 
-      auto & pfactoryKde = pfactory->m_psystem->factory("desktop_environment", "kde");
+      auto & pfactoryKde = pfactory->acmesystem()->factory("desktop_environment", "kde");
 
       if(!pfactoryKde)
       {
@@ -25,7 +25,7 @@ __FACTORY_EXPORT void node_linux_factory(::factory::factory * pfactory)
    else if ((edesktop & ::user::e_desktop_gnome) || (edesktop & ::user::e_desktop_lxde))
    {
 
-      auto & pfactoryGnome = pfactory->m_psystem->factory("desktop_environment", "gnome");
+      auto & pfactoryGnome = pfactory->acmesystem()->factory("desktop_environment", "gnome");
 
       if(!pfactoryGnome)
       {
@@ -40,7 +40,7 @@ __FACTORY_EXPORT void node_linux_factory(::factory::factory * pfactory)
    else if (edesktop & ::user::e_desktop_xfce)
    {
 
-      auto & pfactoryXfce = pfactory->m_psystem->factory("desktop_environment", "xfce");
+      auto & pfactoryXfce = pfactory->acmesystem()->factory("desktop_environment", "xfce");
 
       if(!pfactoryXfce)
       {
@@ -55,12 +55,12 @@ __FACTORY_EXPORT void node_linux_factory(::factory::factory * pfactory)
    else
    {
 
-      auto & pfactoryGnome = pfactory->m_psystem->factory("desktop_environment", "gnome");
+      auto & pfactoryGnome = pfactory->acmesystem()->factory("desktop_environment", "gnome");
 
       if (!pfactoryGnome)
       {
 
-         auto & pfactoryKde = pfactory->m_psystem->factory("desktop_environment", "kde");
+         auto & pfactoryKde = pfactory->acmesystem()->factory("desktop_environment", "kde");
 
          if(!pfactoryKde)
          {

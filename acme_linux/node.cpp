@@ -1,6 +1,7 @@
 #include "framework.h"
 #include "node.h"
 #include "acme_file.h"
+#include "acme/primitive/collection/string_array.h"
 #include <sys/utsname.h>
 
 
@@ -46,7 +47,7 @@ namespace acme_linux
 //
 //      if (k._open(HKEY_LOCAL_MACHINE, strKey, true))
 //      {
-//         ::file::path str = m_psystem->m_pnodedir->system() / "CrashDumps" / strModuleNameWithTheExeExtension;
+//         ::file::path str = acmesystem()->m_pnodedir->system() / "CrashDumps" / strModuleNameWithTheExeExtension;
 //         wstring wstr = str;
 //         RegSetValueExW(k.m_hkey, L"DumpFolder", 0, REG_EXPAND_SZ, (byte*)wstr.c_str(), ::u32((wcslen(wstr) + 1) * sizeof(wchar_t)));
 //         ::u32 dw = 10;
@@ -117,7 +118,7 @@ namespace acme_linux
    void node::calculate_linux_distribution()
    {
 
-      auto lines = m_psystem->m_pacmefile->lines("/etc/os-release");
+      auto lines = acmefile()->lines("/etc/os-release");
 
       ::string strId;
 
@@ -365,7 +366,7 @@ namespace acme_linux
 //
 ////         string strTarget(psz);
 ////
-////         auto psystem = m_psystem;
+////         auto psystem = acmesystem();
 ////
 ////         auto pnode = psystem->node();
 ////
@@ -387,7 +388,7 @@ namespace acme_linux
 ////
 ////                             char * pszError = strError.get_string_buffer(iBufferSize);
 ////
-////                             auto psystem = m_psystem;
+////                             auto psystem = acmesystem();
 ////
 ////                             auto pnode = psystem->node();
 ////

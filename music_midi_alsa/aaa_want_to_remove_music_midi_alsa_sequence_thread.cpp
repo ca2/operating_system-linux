@@ -13,10 +13,10 @@ namespace music
       {
 
 
-         sequence_thread::sequence_thread(::object * pobject) :
-            object(pobject),
-            thread(pobject),
-            ::music::midi::sequence_thread(pobject)
+         sequence_thread::sequence_thread(::particle * pparticle) :
+            object(pparticle),
+            thread(pparticle),
+            ::music::midi::sequence_thread(pparticle)
          {
          }
 

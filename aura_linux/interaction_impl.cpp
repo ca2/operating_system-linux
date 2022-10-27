@@ -1212,7 +1212,7 @@ namespace aura_linux
 //         if(m_puserinteraction != nullptr && m_puserinteraction->get_session()  != nullptr && m_puserinteraction->get_session() != get_session())
 //         {
 //
-//            auto psystem = m_psystem;
+//            auto psystem = acmesystem();
 //
 //            auto psession = psystem->node();
 //
@@ -2264,8 +2264,8 @@ namespace aura_linux
 //      oswindow m_hwnd;
 //      HDC m_hdc;
 //
-//      print_window(::object * pobject, oswindow hwnd, HDC hdc, ::u32 tickTimeout) :
-//         ::object(pobject)
+//      print_window(::particle * pparticle, oswindow hwnd, HDC hdc, ::u32 tickTimeout) :
+//         ::object(pparticle)
 //      {
 //         m_event.ResetEvent();
 //         m_hwnd = hwnd;

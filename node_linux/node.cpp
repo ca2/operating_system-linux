@@ -27,10 +27,10 @@ namespace aura
       }
 
 
-      e_status node::initialize(::object* pobject)
+      e_status node::initialize(::particle * pparticle)
       {
 
-         auto estatus = ::apex::linux::node::initialize(pobject);
+         auto estatus = ::apex::linux::node::initialize(pparticle);
 
          if(!estatus)
          {
@@ -39,7 +39,7 @@ namespace aura
 
          }
 
-         estatus = ::aura::posix::node::initialize(pobject);
+         estatus = ::aura::posix::node::initialize(pparticle);
 
          if(!estatus)
          {
@@ -48,7 +48,7 @@ namespace aura
 
          }
 
-         estatus = ::aura::node::initialize(pobject);
+         estatus = ::aura::node::initialize(pparticle);
 
          if(!estatus)
          {
@@ -433,7 +433,7 @@ namespace aura
 //      ::e_status node::start()
 //      {
 //
-//         ///::pointer<::node::system>psystem = m_psystem;
+//         ///::pointer<::node::system>psystem = acmesystem();
 //
 //         //auto estatus = psystem->inline_init();
 //
@@ -444,7 +444,7 @@ namespace aura
 //
 //         //}
 //
-//         auto estatus = m_psystem->on_start_system();
+//         auto estatus = acmesystem()->on_start_system();
 //
 //         if (!estatus)
 //         {
@@ -462,7 +462,7 @@ namespace aura
 //
 //         }
 //
-//         estatus = m_psystem->inline_term();
+//         estatus = acmesystem()->inline_term();
 //
 //         if (!estatus)
 //         {

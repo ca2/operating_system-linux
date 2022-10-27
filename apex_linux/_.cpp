@@ -1,7 +1,6 @@
 #include "framework.h"
-
-
 #include "apex/library.h"
+#include "acme/exception/exception.h"
 
 
 void CLASS_DECL_APEX_LINUX __cdecl _ca2_purecall()
@@ -10,11 +9,6 @@ void CLASS_DECL_APEX_LINUX __cdecl _ca2_purecall()
    throw ::exception(error_pure_call);
 
 }
-
-
-
-
-
 
 
 namespace linux
@@ -131,7 +125,7 @@ namespace linux
 
    //CLASS_DECL_ACME ::file::path user_appdata_local();
 
-   //CLASS_DECL_APEX_LINUX void time_to_file_time(::matter* pobject, const ::earth::time& time, LPFILETIME pFileTime)
+   //CLASS_DECL_APEX_LINUX void time_to_file_time(::particle * pparticle, const ::earth::time& time, LPFILETIME pFileTime)
    //{
 
    //   SYSTEMTIME sysTime;

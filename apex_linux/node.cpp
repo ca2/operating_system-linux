@@ -4,7 +4,7 @@
 #include "acme/filesystem/filesystem/acme_path.h"
 //#include "acme_linux/acme.h"
 #include "node.h"
-#include "aura/operating_system/linux/_.h"
+////#include "aura/operating_system/linux/_.h"
 
 
 bool __node_node_pre_init();
@@ -46,12 +46,12 @@ namespace apex_linux
    }
 
 
-   void node::initialize(::object * pobject)
+   void node::initialize(::particle * pparticle)
    {
 
       //auto estatus =
 
-      ::acme_linux::node::initialize(pobject);
+      ::acme_linux::node::initialize(pparticle);
 
 //         if (!estatus)
 //         {

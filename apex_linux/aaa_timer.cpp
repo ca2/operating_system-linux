@@ -19,7 +19,7 @@ VOID CALLBACK apex_timer_TimerRoutine(PVOID pParam, BOOLEAN TimerOrWaitFired);
 //   }
 //
 //   begin();
-//   //synchronous_lock synchronouslock(mutex());
+//   //synchronous_lock synchronouslock(this->synchronization());
 //
 //   //increment_reference_count(OBJECT_REFERENCE_COUNT_DEBUG_ARGS);
 //
@@ -40,7 +40,7 @@ VOID CALLBACK apex_timer_TimerRoutine(PVOID pParam, BOOLEAN TimerOrWaitFired);
 //void timer::impl_init()
 //{
 //
-//   synchronous_lock synchronouslock(mutex());
+//   synchronous_lock synchronouslock(this->synchronization());
 //
 //   m_hTimer = nullptr;
 //
@@ -59,7 +59,7 @@ VOID CALLBACK apex_timer_TimerRoutine(PVOID pParam, BOOLEAN TimerOrWaitFired);
 //void timer::impl_term()
 //{
 //
-//   synchronous_lock synchronouslock(mutex());
+//   synchronous_lock synchronouslock(this->synchronization());
 //
 //   if(m_hTimerQueue != nullptr && m_hTimerQueue != INVALID_HANDLE_VALUE)
 //   {
@@ -76,7 +76,7 @@ VOID CALLBACK apex_timer_TimerRoutine(PVOID pParam, BOOLEAN TimerOrWaitFired);
 //void timer::impl_stop()
 //{
 //
-//   synchronous_lock synchronouslock(mutex());
+//   synchronous_lock synchronouslock(this->synchronization());
 //
 //   if(m_hTimerQueue != nullptr && m_hTimer != nullptr)
 //   {
@@ -94,7 +94,7 @@ VOID CALLBACK apex_timer_TimerRoutine(PVOID pParam, BOOLEAN TimerOrWaitFired);
 //bool timer::impl_restart()
 //{
 //
-//   synchronous_lock synchronouslock(mutex());
+//   synchronous_lock synchronouslock(this->synchronization());
 //
 //   DeleteTimerQueueTimer(m_hTimerQueue, m_hTimer, nullptr);
 //

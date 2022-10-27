@@ -13,10 +13,10 @@ namespace music
       {
 
 
-         player::player(::object * pobject) :
-            object(pobject),
-            thread(pobject),
-            ::music::midi::player(pobject)
+         player::player(::particle * pparticle) :
+            object(pparticle),
+            thread(pparticle),
+            ::music::midi::player(pparticle)
          {
 
             m_psequencethread = __sp(memory_new ::music::midi::alsa::sequence_thread(this));

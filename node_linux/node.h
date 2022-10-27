@@ -28,7 +28,7 @@ namespace aura
          virtual ~node();
 
 
-         virtual e_status initialize(::object* pobject) override;
+         virtual e_status initialize(::particle * pparticle) override;
 
 
          string get_user_name();

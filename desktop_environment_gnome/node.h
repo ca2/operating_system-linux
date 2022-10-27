@@ -33,7 +33,7 @@ namespace desktop_environment_gnome
 
       void start_node() override;
 
-      void initialize(::object * pobject) override;
+      void initialize(::particle * pparticle) override;
 
       virtual bool windowing_message_loop_step();
 

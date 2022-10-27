@@ -13,7 +13,7 @@ namespace linux
       //if(::is_null(pMap))
       //   return;
 
-      //single_lock synchronouslock(&pMap->m_mutex, true);
+      //single_lock synchronouslock(&pMap->m_pmutex, true);
 
       array < oswindow > oswindowaRemove;
       array < ::pointer<::linux::window >>wndptraRemove;

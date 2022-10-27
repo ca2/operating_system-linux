@@ -1,6 +1,7 @@
 #include "framework.h"
 #include "os_context.h"
 #include "node.h"
+#include "acme/exception/not_implemented.h"
 #include "acme/filesystem/filesystem/acme_directory.h"
 #include "acme/filesystem/filesystem/acme_file.h"
 #include "apex/filesystem/file/set.h"
@@ -59,7 +60,7 @@ namespace apex_linux
    string os_context::get_command_line()
    {
 
-      return m_psystem->m_papexsystem->get_command_line();
+      return acmesystem()->m_papexsystem->get_command_line();
 
    }
 
@@ -98,7 +99,7 @@ namespace apex_linux
       //::sync();
       //::reboot(RB_AUTOBOOT);
 
-      m_psystem->m_pnode->reboot();
+      acmesystem()->m_pnode->reboot();
 
       //return false;
 
@@ -596,7 +597,7 @@ namespace apex_linux
    void os_context::link_open(const string & strUrl, const string & strProfile)
    {
 
-      auto psystem = m_psystem;
+      auto psystem = acmesystem();
 
       auto pnode = psystem->node();
 
@@ -605,7 +606,7 @@ namespace apex_linux
    }
 
 
-   bool os_context::create_service(::object * pobject)
+   bool os_context::create_service(::particle * pparticle)
    {
 
       //throw ::not_implemented();
@@ -658,7 +659,7 @@ namespace apex_linux
    }
 
 
-   bool os_context::erase_service(::object * pobject)
+   bool os_context::erase_service(::particle * pparticle)
    {
 //      throw ::not_implemented();
       return false;
@@ -699,7 +700,7 @@ namespace apex_linux
       */
    }
 
-   bool os_context::start_service(::object * pobject)
+   bool os_context::start_service(::particle * pparticle)
    {
       //throw ::not_implemented();
       return false;
@@ -740,7 +741,7 @@ namespace apex_linux
             */
    }
 
-   bool os_context::stop_service(::object * pobject)
+   bool os_context::stop_service(::particle * pparticle)
    {
       throw ::not_implemented();
       return false;
@@ -862,7 +863,7 @@ namespace apex_linux
    void os_context::get_default_browser(string & strId, ::file::path & path, string & strParam)
    {
 
-      string str = m_psystem->m_papexsystem->operating_system().get_output("/bin/sh -c \"xdg-settings get default-web-browser\"");
+      string str = acmesystem()->m_papexsystem->operating_system().get_output("/bin/sh -c \"xdg-settings get default-web-browser\"");
 
       str.trim();
 
@@ -934,7 +935,7 @@ namespace apex_linux
 
          // 2018-01-29 call_async("/bin/bash", "-c \"" + strTarget + "\"", strFolder, SW_SHOWDEFAULT, false);
 
-         auto psystem = m_psystem;
+         auto psystem = acmesystem();
 
          auto pnode = psystem->node();
 
@@ -978,7 +979,7 @@ namespace apex_linux
 
          //::system("nohup xdg-open \"" + strTarget + "\" > /dev/null 2>&1&");
 
-         auto psystem = m_psystem;
+         auto psystem = acmesystem();
 
          auto pnode = psystem->node()->m_papexnode->m_pApexPlatform;
 
@@ -1002,7 +1003,7 @@ namespace apex_linux
 //
 //            char * pszError = strError.get_string_buffer(iBufferSize);
 //
-//            auto psystem = m_psystem;
+//            auto psystem = acmesystem();
 //
 //            auto pnode = psystem->node();
 //
@@ -1035,9 +1036,9 @@ namespace apex_linux
 
       string_array stra;
 
-      m_psystem->m_pacmedirectory->list(stra, "/proc/", ::file::e_flag_folder);
+      acmedirectory()->list(stra, "/proc/", ::file::e_flag_folder);
 
-      auto psystem = m_psystem;
+      auto psystem = acmesystem();
 
       auto pnode = psystem->node();
 
@@ -1074,7 +1075,7 @@ namespace apex_linux
 
       ::file::path_array patha;
 
-      path.ascendants_path(patha);
+      ascendants_path(path, patha);
 
       for(auto & path : patha)
       {
@@ -1164,7 +1165,7 @@ namespace apex_linux
       if ((st.st_mode & S_IEXEC) != 0)
       {
 
-         auto psystem = m_psystem;
+         auto psystem = acmesystem();
 
          auto pnode = psystem->node();
 
@@ -1196,7 +1197,7 @@ namespace apex_linux
    ::file::path os_context::_get_auto_start_desktop_file_path(const ::string & strAppId)
    {
 
-      auto pathHome = m_psystem->m_pacmedirectory->home();
+      auto pathHome = acmedirectory()->home();
 
       string strDesktopFileName(strAppId);
 
@@ -1237,7 +1238,7 @@ namespace apex_linux
       else
       {
 
-         m_psystem->m_pacmefile->erase(pathAutoStartDesktopFilePath);
+         acmefile()->erase(pathAutoStartDesktopFilePath);
 
       }
 
@@ -1250,7 +1251,7 @@ namespace apex_linux
 
       ::file::path pathAutoStartDesktopFilePath = _get_auto_start_desktop_file_path(strAppId);
 
-      return pathAutoStartDesktopFilePath.has_char() && m_psystem->m_pacmefile->exists(pathAutoStartDesktopFilePath);
+      return pathAutoStartDesktopFilePath.has_char() && acmefile()->exists(pathAutoStartDesktopFilePath);
 
    }
 

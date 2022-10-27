@@ -23,12 +23,12 @@ namespace aura_linux
    }
 
 
-   void node::initialize(::object* pobject)
+   void node::initialize(::particle * pparticle)
    {
 
       //auto estatus =
 
-         ::apex_linux::node::initialize(pobject);
+         ::apex_linux::node::initialize(pparticle);
 
 //         if(!estatus)
 //         {
@@ -39,7 +39,7 @@ namespace aura_linux
 
       //estatus =
       //
-      ::aura_posix::node::initialize(pobject);
+      ::aura_posix::node::initialize(pparticle);
 
 //         if(!estatus)
 //         {
@@ -50,7 +50,7 @@ namespace aura_linux
 
       //estatus =
       //
-      ::aura::node::initialize(pobject);
+      ::aura::node::initialize(pparticle);
 
 //         if(!estatus)
 //         {

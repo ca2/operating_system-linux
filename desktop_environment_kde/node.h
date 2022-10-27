@@ -43,7 +43,7 @@ namespace desktop_environment_kde
 
       void system_main() override;
 
-      void initialize(::object * pobject) override;
+      void initialize(::particle * pparticle) override;
 
       //virtual void os_calc_user_dark_mode() override;
 

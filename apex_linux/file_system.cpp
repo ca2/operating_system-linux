@@ -20,12 +20,12 @@ namespace apex_linux
    }
 
 
-   void file_system::initialize(::object * pobject)
+   void file_system::initialize(::particle * pparticle)
    {
 
       //auto estatus =
 
-         ::file_system::initialize(pobject);
+         ::file_system::initialize(pparticle);
 
 //      if(!estatus)
 //      {
@@ -66,11 +66,11 @@ namespace apex_linux
 //
 //      }
 //
-//      ::file::path pathAppModule = m_psystem->m_pacmefile->module();
+//      ::file::path pathAppModule = acmefile()->module();
 //
 //      m_pathModule = pathAppModule;
 //
-//      auto psystem = m_psystem;
+//      auto psystem = acmesystem();
 //
 //      auto pacmefile = psystem->m_pacmefile;
 //

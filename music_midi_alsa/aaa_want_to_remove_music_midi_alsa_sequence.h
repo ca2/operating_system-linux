@@ -134,7 +134,7 @@ namespace music
          sp(midi_out)                  m_pmidiout;
 
 
-         sequence(::object * pobject);
+         sequence(::particle * pparticle);
          virtual ~sequence();
 
 

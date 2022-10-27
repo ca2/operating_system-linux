@@ -13,9 +13,9 @@ namespace music
       {
 
 
-         file::file(::object * pobject) :
-            object(pobject),
-            ::music::midi::file(pobject)
+         file::file(::particle * pparticle) :
+            object(pparticle),
+            ::music::midi::file(pparticle)
          {
 
             m_tkLength              = 0;

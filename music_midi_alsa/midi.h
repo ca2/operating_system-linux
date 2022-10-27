@@ -62,7 +62,7 @@ namespace music
 
 
             using ::music::midi::midi::translate_os_result;
-            virtual ::e_status translate_os_result(string & strMessage, string & strOsMessage, ::music::midi::object * pobject, int64_t iOsResult, const string & strContext, const string & strText);
+            virtual ::e_status translate_os_result(string & strMessage, string & strOsMessage, ::music::midi::particle * pparticle, int64_t iOsResult, const string & strContext, const string & strText);
 
 
             virtual bool Initialize();

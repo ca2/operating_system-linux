@@ -56,7 +56,7 @@ namespace desktop_environment_gnome
    void node::defer_notify_startup_complete()
    {
 
-      auto psystem = m_psystem->m_papexsystem;
+      auto psystem = acmesystem()->m_papexsystem;
 
       string strApplicationServerName = psystem->get_application_server_name();
 
@@ -76,7 +76,7 @@ namespace desktop_environment_gnome
 
       //return estatus;
 
-//      auto psystem = m_psystem->m_papexsystem;
+//      auto psystem = acmesystem()->m_papexsystem;
 //
 //      if (psystem->m_bGtkApp)
 //      {
@@ -93,7 +93,7 @@ namespace desktop_environment_gnome
 //      ////
 //      ////      //auto idle_source = g_idle_source_new();
 //      ////
-//      ////      //g_source_set_callback(idle_source, &linux_start_system, (::apex::system *) m_psystem, nullptr);
+//      ////      //g_source_set_callback(idle_source, &linux_start_system, (::apex::system *) acmesystem(), nullptr);
 //      ////
 //      ////      //g_source_attach(idle_source, g_main_context_default());
 //      ////
@@ -151,7 +151,7 @@ namespace desktop_environment_gnome
 //
 //            x11_add_idle_source(this);
 //
-//             auto psystem = m_psystem->m_papexsystem;
+//             auto psystem = acmesystem()->m_papexsystem;
 //
 //               psystem->on_start_system();
 //
@@ -185,14 +185,14 @@ namespace desktop_environment_gnome
    }
 
 
-   void node::initialize(::object *pobject)
+   void node::initialize(::particle * pparticle)
    {
 
       //::node_gnome::g_defer_init();
 
       //auto estatus =
       //
-      ::aura_linux::node::initialize(pobject);
+      ::aura_linux::node::initialize(pparticle);
 
 //      if(!estatus)
 //      {
@@ -203,7 +203,7 @@ namespace desktop_environment_gnome
 
       //estatus =
       //
-      ::node_gnome::node::initialize(pobject);
+      ::node_gnome::node::initialize(pparticle);
 
 //      if(!estatus)
 //      {
@@ -288,7 +288,7 @@ namespace desktop_environment_gnome
 //
 //      // indirect wall-changer sourceforge.net contribution
 //
-//      auto psystem = m_psystem->m_papexsystem;
+//      auto psystem = acmesystem()->m_papexsystem;
 //
 //      auto pnode = psystem->node();
 //
@@ -371,7 +371,7 @@ namespace desktop_environment_gnome
 //
 //      // wall-changer sourceforge.net contribution
 //
-//      auto psystem = m_psystem->m_papexsystem;
+//      auto psystem = acmesystem()->m_papexsystem;
 //
 //      auto pnode =  psystem->node();
 //
