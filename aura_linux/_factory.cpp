@@ -1,4 +1,7 @@
 #include "framework.h"
+#include "node.h"
+#include "interaction_impl.h"
+#include "acme/primitive/primitive/factory.h"
 
 
 __FACTORY_EXPORT void apex_linux_factory(::factory::factory * pfactory);

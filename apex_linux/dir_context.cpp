@@ -126,7 +126,7 @@ namespace apex_linux
 
 //      auto pdocument = create_xml_document();
 //
-//      pdocument->load(pcontext->m_papexcontext->file().as_string(appdata() /"configuration\\directory.xml"));
+//      pdocument->load(pcontext->m_papexcontext->file()->as_string(appdata() /"configuration\\directory.xml"));
 //
 //      if(pdocument->root() && pdocument->root()->get_name() == "directory_configuration")
 //      {
@@ -283,7 +283,7 @@ namespace apex_linux
 //
 //               }
 //
-//               get_app()->m_papexapplication->dir().ls(listing, strDir);
+//               get_app()->m_papexapplication->dir()->ls(listing, strDir);
 //
 //            }
 //
@@ -296,7 +296,7 @@ namespace apex_linux
 //
 //            listing.m_bRecursive = false;
 //
-//            get_app()->m_papexapplication->dir().ls_file(listing, listing.m_pathFinal);
+//            get_app()->m_papexapplication->dir()->ls_file(listing, listing.m_pathFinal);
 //
 //         }
 //

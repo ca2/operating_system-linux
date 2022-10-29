@@ -555,7 +555,7 @@ namespace desktop_environment_xfce
 //      node_fork(__routine([psession]
 //                           {
 //
-//                              synchronous_lock sl(user_mutex());
+//                              synchronous_lock sl(user_synchronization());
 //
 //                              //xdisplay d(x11_get_display());
 //

@@ -2,6 +2,7 @@
 #include "framework.h"
 #include "acme_directory.h"
 #include "acme_file.h"
+#include "acme/operating_system/process.h"
 #include "acme/platform/system.h"
 #include "acme/filesystem/filesystem/path_array.h"
 
@@ -596,7 +597,7 @@ namespace acme_linux
 
          strCandidate = stra[i] / pszTopic;
 
-         //if (m_pcontext->m_papexcontext->file().exists(strCandidate))
+         //if (file()->exists(strCandidate))
          if (m_pacmefile->exists(strCandidate))
          {
 

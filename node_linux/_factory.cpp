@@ -1,4 +1,7 @@
 #include "framework.h"
+#include "node.h"
+#include "acme/exception/resource.h"
+#include "acme/platform/system.h"
 #include <sys/utsname.h>
 
 
