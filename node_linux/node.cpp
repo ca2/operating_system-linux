@@ -369,7 +369,7 @@ namespace aura
 //
 //         //#else
 //         //
-//         //   strPathDll = ::dir::matter() / "time" / process_platform_dir_name() /"stage/_desk_tb.dll";
+//         //   strPathDll = ::dir::matter() / "time" / process_platform_name() /"stage/_desk_tb.dll";
 //         //
 //         //#endif
 //
