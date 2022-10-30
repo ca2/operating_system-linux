@@ -21,7 +21,7 @@ namespace acme_linux
       ~stdio_file() override;
 
 
-      void dump(dump_context & dumpcontext) const override;
+      // void dump(dump_context & dumpcontext) const override;
 
 
       void open(const ::file::path & pszFileName, const ::file::e_open & eopen) override;

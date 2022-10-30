@@ -50,7 +50,7 @@ namespace aura_linux
 
 
       //void assert_ok() const override;
-      //void dump(dump_context & dumpcontext) const override;
+      //// void dump(dump_context & dumpcontext) const override;
 
 
       static const MESSAGE * GetCurrentMessage();
