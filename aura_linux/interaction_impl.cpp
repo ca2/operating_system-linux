@@ -689,71 +689,71 @@ namespace aura_linux
    }
 
 
-   void interaction_impl::assert_ok() const
-   {
-
-      if (get_os_data() == nullptr)
-      {
-
-         return;
-
-      }
-
-   }
-
-
-   void interaction_impl::dump(dump_context & dumpcontext) const
-   {
-
-      ::object::dump(dumpcontext);
-
-      dumpcontext << "\nm_hWnd = " << (void *)((interaction_impl *) this)->get_os_data();
-
-      /*
-
-      if (get_handle() == nullptr || get_handle() == oswindow_BOTTOM ||
-               get_handle() == oswindow_TOPMOST || get_handle() == oswindow_NOTOPMOST)
-      {
-
-         // not a normal interaction_impl - nothing more to dump
-            return;
-
-      }
-
-      */
-
-      /*
-
-      if (!::is_window((oswindow) get_handle()))
-      {
-
-         // not a valid interaction_impl
-         dumpcontext << " (illegal oswindow)";
-         return; // don't do anything more
-
-      }
-
-      */
-
-      ::pointer<::user::interaction_impl>pWnd = (::user::interaction_impl *) this;
-      if (pWnd.m_p != this)
-         dumpcontext << " (Detached or temporary interaction_impl)";
-      else
-         dumpcontext << " (permanent interaction_impl)";
-
-      char szBuf [64];
-
-      ::rectangle_i32 rectangle;
-      ((::user::interaction_impl *) this)->m_puserinteraction->get_window_rect(&rectangle);
-      dumpcontext << "\nrect = " << rectangle;
-      dumpcontext << "\nparent ::pointer<::interaction_impl>= " << (void *)((::user::interaction_impl *) this)->get_parent();
-
-//      dumpcontext << "\nstyle = " << (void *)(dword_ptr)::GetWindowLong(get_handle(), GWL_STYLE);
-      //    if (::GetWindowLong(get_handle(), GWL_STYLE) & WS_CHILD)
-      //     dumpcontext << "\nid = " << __get_dialog_control_id(get_handle());
-
-      dumpcontext << "\n";
-   }
+//   void interaction_impl::assert_ok() const
+//   {
+//
+//      if (get_os_data() == nullptr)
+//      {
+//
+//         return;
+//
+//      }
+//
+//   }
+//
+//
+//   void interaction_impl::dump(dump_context & dumpcontext) const
+//   {
+//
+//      ::object::dump(dumpcontext);
+//
+//      dumpcontext << "\nm_hWnd = " << (void *)((interaction_impl *) this)->get_os_data();
+//
+//      /*
+//
+//      if (get_handle() == nullptr || get_handle() == oswindow_BOTTOM ||
+//               get_handle() == oswindow_TOPMOST || get_handle() == oswindow_NOTOPMOST)
+//      {
+//
+//         // not a normal interaction_impl - nothing more to dump
+//            return;
+//
+//      }
+//
+//      */
+//
+//      /*
+//
+//      if (!::is_window((oswindow) get_handle()))
+//      {
+//
+//         // not a valid interaction_impl
+//         dumpcontext << " (illegal oswindow)";
+//         return; // don't do anything more
+//
+//      }
+//
+//      */
+//
+//      ::pointer<::user::interaction_impl>pWnd = (::user::interaction_impl *) this;
+//      if (pWnd.m_p != this)
+//         dumpcontext << " (Detached or temporary interaction_impl)";
+//      else
+//         dumpcontext << " (permanent interaction_impl)";
+//
+//      char szBuf [64];
+//
+//      ::rectangle_i32 rectangle;
+//      ((::user::interaction_impl *) this)->m_puserinteraction->get_window_rect(&rectangle);
+//      dumpcontext << "\nrect = " << rectangle;
+//      dumpcontext << "\nparent ::pointer<::interaction_impl>= " << (void *)((::user::interaction_impl *) this)->get_parent();
+//
+////      dumpcontext << "\nstyle = " << (void *)(dword_ptr)::GetWindowLong(get_handle(), GWL_STYLE);
+//      //    if (::GetWindowLong(get_handle(), GWL_STYLE) & WS_CHILD)
+//      //     dumpcontext << "\nid = " << __get_dialog_control_id(get_handle());
+//
+//      dumpcontext << "\n";
+//   }
 
 
    void interaction_impl::start_destroying_window()
@@ -1253,7 +1253,7 @@ namespace aura_linux
 
                   ::rectangle_i32 rcMonitor;
 
-                  pdisplay->get_monitor_rectangle(0, &rcMonitor);
+                  pdisplay->get_monitor_rectangle(0, rcMonitor);
 
                   if (rectWindow.left >= rcMonitor.left)
                   {
