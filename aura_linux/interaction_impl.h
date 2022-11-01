@@ -165,7 +165,7 @@ namespace aura_linux
 
 
 
-      virtual bool _is_window() const override;
+      bool _is_window() override;
 
 #if(WINVER >= 0x0500)
 

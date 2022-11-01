@@ -2357,7 +2357,7 @@ namespace aura_linux
    }
 
 
-   bool interaction_impl::_is_window() const
+   bool interaction_impl::_is_window()
    {
 
       if(::is_null(m_pwindow))

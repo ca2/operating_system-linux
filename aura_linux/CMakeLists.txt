@@ -5,7 +5,7 @@ project(aura_linux CXX)
 list(APPEND library_source
    _.cpp
    _.h
-   _aura_linux.h
+   #_aura_linux.h
    _const.h
    _factory.cpp
    interaction_impl.cpp

@@ -3,9 +3,13 @@
 //
 #include "framework.h"
 #include "node.h"
-#include "windowing_x11/windowing_x11.h"
+#include "acme/constant/id.h"
+#include "acme/platform/system.h"
+#include "apex/platform/system.h"
 #include "aura/platform/session.h"
 #include "aura/user/user/user.h"
+#include "aura/windowing/windowing.h"
+#include "windowing_x11/windowing_x11.h"
 
 
 void gdk_branch(const ::procedure & procedure);
