@@ -368,7 +368,7 @@ namespace music
                               snd_seq_queue_tempo_set_ppq(tempo, 15 * dwTempoDivision);
                               break;
                               default:
-                                 //output_debug_string("Invalid SMPTE frames " + ::::str::ch().from((::i32)uSMPTE));
+                                 //output_debug_string("Invalid SMPTE frames " + ::unicode_from((::i32)uSMPTE));
                                  output_debug_string("Invalid SMPTE frames ");
                      throw ::exception(error_failed);
 

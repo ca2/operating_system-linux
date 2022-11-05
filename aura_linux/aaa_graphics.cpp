@@ -5459,7 +5459,7 @@ namespace draw2d_gdiplus
    //   const char * psz = pszStart;
    //   while (*psz)
    //   {
-   //      const char * pszNext = ::::str::ch().utf8_inc(psz);
+   //      const char * pszNext = ::unicode_utf8_inc(psz);
    //      if (pszNext == nullptr)
    //         break;
    //      iLen = pszNext - psz;
@@ -5597,7 +5597,7 @@ namespace draw2d_gdiplus
 
             wchar_t wch = text.m_wstr.c_str()[i + iStart];
 
-            int iUtf8Length = ::::::str::ch().ch().ansichar_uni_len(wch);
+            int iUtf8Length = ::::unicode_ch().ansichar_uni_len(wch);
 
             for (index iAnsiChar = 0; iAnsiChar < iUtf8Length; iAnsiChar++)
             {
@@ -5980,7 +5980,7 @@ namespace draw2d_gdiplus
       {
          try
          {
-            iLen = ::::str::ch().get_utf8_char_length(psz);
+            iLen = ::unicode_get_utf8_char_length(psz);
          }
          catch(...)
          {

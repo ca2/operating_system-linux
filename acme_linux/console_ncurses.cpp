@@ -18,7 +18,7 @@
 
 
 void throw_exception(enum_status estatus);
-::enum_status _errno_to_status(int nErrno);
+::enum_status _errno_status(int nErrno);
 
 
 int __console_init(void ** ppscreen, void ** ppwindow, FILE * pfileOut, FILE * pfileIn, int cols, int lines)
@@ -104,7 +104,7 @@ int __console_init(void ** ppscreen, void ** ppwindow, FILE * pfileOut, FILE * p
 
             auto iError = errno;
 
-            auto estatus = _errno_to_status(iError);
+            auto estatus = _errno_status(iError);
 
             throw_exception(estatus);
 

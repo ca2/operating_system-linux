@@ -707,7 +707,7 @@ namespace music
    //         if (err < 0)
    //         {
    //
-   //            ::output_debug_string("Could not connect to port "+::::str::ch().from(m_iClient)+":"+::::str::ch().from(m_iPort)+"\n");
+   //            ::output_debug_string("Could not connect to port "+::unicode_from(m_iClient)+":"+::unicode_from(m_iPort)+"\n");
    //
    //            return ::error_failed;
    //

@@ -293,7 +293,7 @@ namespace acme_linux
             {
 
             }
-            throw ::file::exception(error_io, __errno(iErrNo), m_path, "read < 0");
+            throw ::file::exception(error_io, errno_error_code(iErrNo), m_path, "read < 0");
          }
          else if(iRead == 0)
          {
@@ -341,9 +341,9 @@ namespace acme_linux
 
             auto iErrNo = errno;
 
-            auto estatus = errno_to_status(iErrNo);
+            auto estatus = errno_status(iErrNo);
 
-            auto errorcode = __errno(iErrNo);
+            auto errorcode = errno_error_code(iErrNo);
 
             throw ::file::exception(estatus, errorcode, m_path, "write < 0", m_eopen);
 
@@ -369,9 +369,9 @@ namespace acme_linux
 
          auto iErrNo = errno;
 
-         auto estatus = errno_to_status(iErrNo);
+         auto estatus = errno_status(iErrNo);
 
-         auto errorcode = __errno(iErrNo);
+         auto errorcode = errno_error_code(iErrNo);
 
          throw ::file::exception(estatus, errorcode, m_path, "m_iFile == INVALID_FILE", m_eopen);
 
@@ -398,9 +398,9 @@ namespace acme_linux
 
          auto iErrNo = errno;
 
-         auto estatus = errno_to_status(iErrNo);
+         auto estatus = errno_status(iErrNo);
 
-         auto errorcode = __errno(iErrNo);
+         auto errorcode = errno_error_code(iErrNo);
 
          throw ::file::exception(estatus, errorcode, m_path, "lseek64 < 0", m_eopen);
 
@@ -426,9 +426,9 @@ namespace acme_linux
 
          auto iErrNo = errno;
 
-         auto estatus = errno_to_status(iErrNo);
+         auto estatus = errno_status(iErrNo);
 
-         auto errorcode = __errno(iErrNo);
+         auto errorcode = errno_error_code(iErrNo);
 
          throw ::file::exception(estatus, errorcode, m_path, "lseek64 < 0", m_eopen);
 
@@ -455,9 +455,9 @@ namespace acme_linux
 
          int iErrNo = errno;
 
-         auto estatus = errno_to_status(iErrNo);
+         auto estatus = errno_status(iErrNo);
 
-         auto errorcode = __errno(iErrNo);
+         auto errorcode = errno_error_code(iErrNo);
 
          throw ::file::exception(estatus, errorcode, m_path, "fsync < 0", m_eopen);
 
@@ -475,7 +475,7 @@ namespace acme_linux
 //         return;
 //
 //      if (!::FlushFileBuffers((HANDLE)m_iFile))
-//         throw ::file::exception(errno_to_status(errno), -1, errno, m_path);
+//         throw ::file::exception(errno_status(errno), -1, errno, m_path);
    }
 
    void file::close()
@@ -495,9 +495,9 @@ namespace acme_linux
 
          auto iErrNo = errno;
 
-         auto estatus = errno_to_status(iErrNo);
+         auto estatus = errno_status(iErrNo);
 
-         auto errorcode = __errno(iErrNo);
+         auto errorcode = errno_error_code(iErrNo);
 
          throw ::file::exception(estatus, errorcode, m_path, "close != 0", m_eopen);
 
@@ -551,9 +551,9 @@ namespace acme_linux
 
          auto iErrNo = errno;
 
-         auto estatus = errno_to_status(iErrNo);
+         auto estatus = errno_status(iErrNo);
 
-         auto errorcode = __errno(iErrNo);
+         auto errorcode = errno_error_code(iErrNo);
 
          throw ::file::exception(estatus, errorcode, m_path, "ftruncate64 == -1", m_eopen);
 
@@ -668,7 +668,7 @@ namespace acme_linux
 
 //   {
 //      if (nErrno != 0)
-//         vfxThrowFileexception(file_exception::errno_to_status(nErrno), errno, pszFileName);
+//         vfxThrowFileexception(file_exception::errno_status(nErrno), errno, pszFileName);
 
 //   }
 

@@ -37,7 +37,7 @@
    Char functions.
    ------------------------------------------------------------------ */
 
-extern Bool  VG_(isspace) ( HChar c );
+extern Bool  VG_(character_isspace) ( HChar c );
 extern Bool  VG_(isdigit) ( HChar c );
 extern HChar VG_(tolower) ( HChar c );
 

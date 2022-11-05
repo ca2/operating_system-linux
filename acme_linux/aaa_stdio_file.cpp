@@ -91,7 +91,7 @@ namespace acme_linux
 
          int iError = errno;
 
-         ::e_status estatus = ::errno_to_status(iError);
+         ::e_status estatus = ::errno_status(iError);
 
          throw ::exception(estatus);
 
@@ -132,7 +132,7 @@ namespace acme_linux
 
          clearerr(m_pStream);
 
-         auto estatus = errno_to_status(iErrNo);
+         auto estatus = errno_status(iErrNo);
 
          throw ::file_exception(estatus, iErrNo, m_path);
 

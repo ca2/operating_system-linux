@@ -523,9 +523,9 @@ namespace apex_linux
                try
                {
 
-                  strCommand = ::::str::ch().consume_quoted_value(psz);
-                  ::::str::ch().consume_spaces(psz);
-                  ::::str::ch().consume(psz, "\"%L\"");
+                  strCommand = ::unicode_consume_quoted_value(psz);
+                  ::unicode_consume_spaces(psz);
+                  ::unicode_consume(psz, "\"%L\"");
                   strParam = psz;
 
                }

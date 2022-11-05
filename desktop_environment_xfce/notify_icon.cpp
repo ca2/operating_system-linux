@@ -144,7 +144,7 @@ namespace node_xfce
 
          string strId(strAppId);
 
-         string strMatterRoot = ::::str::ch().token(strId, "/");
+         string strMatterRoot = ::unicode_token(strId, "/");
 
          if(strMatterRoot.is_empty())
          {

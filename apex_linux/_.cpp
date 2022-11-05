@@ -1,5 +1,5 @@
 #include "framework.h"
-#include "apex/library.h"
+#include "acme/_library.h"
 #include "acme/exception/exception.h"
 
 
@@ -30,7 +30,7 @@ namespace linux
    //bool CLASS_DECL_APEX_LINUX shell_get_special_folder_path(HWND hwnd, ::file::path& str, i32 csidl, bool fCreate)
    //{
 
-   //   return ::SHGetSpecialFolderPathW(hwnd, wtostring(str, MAX_PATH * 8), csidl, fCreate) != false;
+   //   return ::SHGetSpecialFolderPathW(hwnd, wstring_adaptor(str, MAX_PATH * 8), csidl, fCreate) != false;
 
    //}
 
@@ -57,7 +57,7 @@ namespace linux
    //::u32 get_current_directory(string& str)
    //{
 
-   //   return ::GetCurrentDirectoryW(MAX_PATH * 8, wtostring(str, MAX_PATH * 8));
+   //   return ::GetCurrentDirectoryW(MAX_PATH * 8, wstring_adaptor(str, MAX_PATH * 8));
 
    //}
 
@@ -65,7 +65,7 @@ namespace linux
    //::u32 get_temp_path(string& str)
    //{
 
-   //   return ::GetTempPathW(MAX_PATH * 8, wtostring(str, MAX_PATH * 8));
+   //   return ::GetTempPathW(MAX_PATH * 8, wstring_adaptor(str, MAX_PATH * 8));
 
    //}
 
