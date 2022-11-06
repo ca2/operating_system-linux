@@ -2,10 +2,11 @@
 #include "dir_context.h"
 #include "dir_system.h"
 #include "file_system.h"
+#include "acme/constant/id.h"
 #include "acme/filesystem/filesystem/acme_file.h"
 #include "acme/filesystem/filesystem/acme_directory.h"
 #include "acme/filesystem/filesystem/listing.h"
-#include "acme/constant/id.h"
+#include "acme/primitive/string/international.h"
 #include "apex/platform/system.h"
 #undef USE_MISC
 
@@ -320,7 +321,7 @@ namespace apex_linux
 //
 //            auto & strPath = stra[i];
 //
-//            if(!::str().begins(strPath, listing.m_pathFinal))
+//            if(!string_begins(strPath, listing.m_pathFinal))
 //               continue;
 //
 //            bool bIsDir;
@@ -663,7 +664,7 @@ namespace apex_linux
    bool dir_context::is_inside(const ::file::path & pszDir, const ::file::path & pszPath)
    {
 
-      return ::str().begins_ci(pszDir, pszPath);
+      return pszDir.begins_ci(pszPath);
 
    }
 

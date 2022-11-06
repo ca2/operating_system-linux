@@ -3,6 +3,7 @@
 #include "acme_directory.h"
 #include "acme_file.h"
 #include "acme/operating_system/process.h"
+#include "acme/platform/node.h"
 #include "acme/platform/system.h"
 #include "acme/filesystem/filesystem/path_array.h"
 
@@ -399,7 +400,7 @@ namespace acme_linux
    ::file::path acme_directory::stage(string strAppId, string strPlatform, string strConfiguration)
    {
 
-      return inplace_install(strAppId, strPlatform, strConfiguration) / "time" / time_binary_platform(strPlatform) / strConfiguration;
+      return inplace_install(strAppId, strPlatform, strConfiguration) / "time" / acmenode()->time_binary_platform(strPlatform) / strConfiguration;
 
    }
 

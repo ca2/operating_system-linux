@@ -63,7 +63,7 @@ namespace music
 
             string strDriver(strDevice);
 
-            ::str().begins_eat_ci(strDriver, "alsa:");
+            strDriver.begins_eat_ci("alsa:");
 
             int err = snd_rawmidi_open(NULL, &m_prawmidi, strDriver, SND_RAWMIDI_SYNC);
 

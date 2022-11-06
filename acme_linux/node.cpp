@@ -5,6 +5,9 @@
 #include <sys/utsname.h>
 
 
+#include  "acme/operating_system/ansi/binreloc.h"
+
+
 ::user::enum_desktop _calculate_edesktop();
 ::user::enum_desktop _get_edesktop();
 

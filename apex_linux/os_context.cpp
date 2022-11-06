@@ -5,9 +5,10 @@
 #include "acme/filesystem/filesystem/acme_directory.h"
 #include "acme/filesystem/filesystem/acme_file.h"
 #include "apex/filesystem/file/set.h"
+#include "apex/operating_system/department.h"
 #include "apex/operating_system/freedesktop/desktop_file.h"
 #include "apex/platform/system.h"
-#include "apex/operating_system/department.h"
+
 
 
 i32 daemonize_process(const ::string & _cmd_line, i32 * pprocessId);

@@ -3,6 +3,9 @@
 #include "acme_file.h"
 
 
+#include "acme/operating_system/ansi/binreloc.h"
+
+
 namespace acme_linux
 {
 
