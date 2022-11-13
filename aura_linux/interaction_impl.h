@@ -282,7 +282,7 @@ namespace aura_linux
       //virtual bool display(::e_display edisplay) override;
 
 //      virtual bool WfiOnStartDock();
-//      virtual void WfiOnDock(edisplay edisplay);
+//      virtual void WfiOnDock(::e_display edisplay);
 //      virtual void prodevian_prepare_down();
 //      virtual void prodevian_prepare_up();
 //      virtual void WfiOnRestore();
