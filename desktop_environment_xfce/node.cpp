@@ -598,13 +598,13 @@ namespace desktop_environment_xfce
 //
 //                                 GdkRectangle rect;
 //
-//                                 __zero(rect);
+//                                 zero(rect);
 //
 //                                 gdk_monitor_get_workarea(pmonitor, &rect);
 //
 //                                 __copy(rectWorkspace, rect);
 //
-//                                 __zero(rect);
+//                                 zero(rect);
 //
 //                                 gdk_monitor_get_geometry(pmonitor, &rect);
 //

@@ -1154,7 +1154,7 @@ namespace apex_linux
 
       }
 
-      __zero(st);
+      zero(st);
 
       if (stat(str, &st) < 0)
       {
