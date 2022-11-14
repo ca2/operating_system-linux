@@ -325,7 +325,7 @@ namespace aura_linux
 
       m_puserinteraction->install_message_routing(pchannel);
 
-      MESSAGE_LINK(e_message_create, pchannel, this,&interaction_impl::on_message_create);
+      MESSAGE_LINK(MESSAGE_CREATE, pchannel, this,&interaction_impl::on_message_create);
 
       if(!m_puserinteraction->m_bMessageWindow)
       {
@@ -350,7 +350,7 @@ namespace aura_linux
 
       }
 
-      MESSAGE_LINK(e_message_destroy, pchannel, this,&interaction_impl::_001OnDestroy);
+      MESSAGE_LINK(MESSAGE_DESTROY, pchannel, this,&interaction_impl::_001OnDestroy);
 
    }
 
@@ -637,7 +637,7 @@ namespace aura_linux
 //      if (m_puserinteraction->m_pthread != nullptr)
 //      {
 //
-//         synchronous_lock synchronouslock(m_puserinteraction->m_pthread->mutex());
+//         synchronous_lock synchronouslock(m_puserinteraction->m_pthread->synchronization());
 //
 //         if(m_puserinteraction->m_pthread->m_puiptra != nullptr)
 //         {
