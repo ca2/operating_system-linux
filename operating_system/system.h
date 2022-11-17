@@ -37,20 +37,20 @@
 
 
 #include <strings.h>
-#include <string.h>
+#include <cstring>
 
 
-#include <errno.h>
+#include <cerrno>
 
 
-#include <stdarg.h>
-#include <stdlib.h>
-#include <stdio.h>
+#include <cstdarg>
+#include <cstdlib>
+#include <cstdio>
 
-#include <time.h>
+#include <ctime>
 
 
-#include <limits.h>
+#include <climits>
 
 #define sync unistd_sync
 #include <unistd.h>

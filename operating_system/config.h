@@ -38,7 +38,7 @@
 #define BROAD_PRECOMPILED_HEADER 1
 #endif
 
-
+using errno_t = int;
 
 #define OPERATING_SYSTEM_NAMESPACE linux
 
