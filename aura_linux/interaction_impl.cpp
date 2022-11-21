@@ -537,7 +537,7 @@ namespace aura_linux
       if(pshowwindow->m_bShow)
       {
 
-         INFORMATION("linux::interaction_impl::_001OnShowWindow VISIBLE edisplay=" << __string(m_puserinteraction->const_layout().design().display().m_eenum));
+         INFORMATION("linux::interaction_impl::_001OnShowWindow VISIBLE edisplay=" << as_string(m_puserinteraction->const_layout().design().display().m_eenum));
 
          //m_puserinteraction->ModifyStyle(0, WS_VISIBLE);
 
