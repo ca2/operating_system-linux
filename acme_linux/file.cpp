@@ -228,7 +228,7 @@ namespace acme_linux
 
       m_estatus = success;
 
-      set_ok();
+      set_ok_flag();
 
    }
 

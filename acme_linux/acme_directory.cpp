@@ -5,7 +5,7 @@
 #include "acme/operating_system/process.h"
 #include "acme/platform/node.h"
 #include "acme/platform/system.h"
-#include "acme/filesystem/filesystem/path_array.h"
+//#include "acme/filesystem/filesystem/path_array.h"
 
 
 namespace acme_linux

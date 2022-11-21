@@ -2,7 +2,7 @@
 
 
 #include "acme/operating_system/console.h"
-#include "acme/filesystem/file/text_stream.h"
+//#include "acme/filesystem/file/text_stream.h"
 
 
 namespace acme_linux
@@ -18,20 +18,19 @@ namespace acme_linux
       //__creatable_from_library(console, ::console::console, "acme_linux");
 
 
-      void *                  m_pscreen;
-      void *                  m_pwindow;
-      ::string_stream         m_cout;
-      ::pointer<stdio_file>  m_pfileOut;
-      ::pointer<stdio_file>  m_pfileIn;
-      int                     m_iW;
-      int                     m_iH;
-      int                     m_iColor;
+      void *                                       m_pscreen;
+      void *                                       m_pwindow;
+      ::pointer<stdio_file>                        m_pfileOut;
+      ::pointer<stdio_file>                        m_pfileIn;
+      int                                          m_iW;
+      int                                          m_iH;
+      int                                          m_iColor;
 
 
       console();
       ~console() override;
 
-      ::string_stream & cout() override;
+      //::write_text_stream < ::file::file > & cout() override;
 
       void redirect_io();
       void SetWindowSize(int height,int width);

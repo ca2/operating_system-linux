@@ -4,7 +4,7 @@
 class FileException;
 struct FileStatus;
 
-#include "acme/filesystem/file/file.h"
+//#include "acme/filesystem/file/file.h"
 
 //void CLASS_DECL_ACME vfxGetRoot(const widechar * pszPath, string& wstrRoot);
 

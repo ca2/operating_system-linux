@@ -34,12 +34,12 @@ namespace acme_linux
    }
 
 
-   string_stream & console::cout()
-   {
-
-      return m_cout;
-
-   }
+//   ::write_text_stream < ::file::file > & console::cout()
+//   {
+//
+//      return m_cout;
+//
+//   }
 
 
    // maximum mumber of lines the output console should have
@@ -127,14 +127,14 @@ namespace acme_linux
 
          m_pfileIn.create(this);
          m_pfileOut.create(this);
-         auto pFILEIn = tmpfile();
+         auto pFILEIn = stdin;
 
-         auto pFILEOut = tmpfile();
+         auto pFILEOut = stdout;
 
          m_pfileIn->m_pfile = pFILEIn;
          m_pfileOut->m_pfile = pFILEOut;
 
-         m_cout.m_p = m_pfileOut;
+         m_cout.m_pfile = m_pfileOut;
 
          __console_init(&m_pscreen, &m_pwindow, m_pfileOut->m_pfile, m_pfileIn->m_pfile, m_iW, m_iH);
 
