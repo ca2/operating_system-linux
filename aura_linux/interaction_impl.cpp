@@ -102,14 +102,14 @@ namespace aura_linux
    ::user::interaction_impl * interaction_impl::from_handle(::oswindow oswindow)
    {
 
-      if(is_null(oswindow))
+      if(::is_null(oswindow))
       {
 
          return nullptr;
 
       }
 
-      if(is_null(oswindow->m_puserinteractionimpl))
+      if(::is_null(oswindow->m_puserinteractionimpl))
       {
 
          return nullptr;
@@ -537,7 +537,7 @@ namespace aura_linux
       if(pshowwindow->m_bShow)
       {
 
-         INFORMATION("linux::interaction_impl::_001OnShowWindow VISIBLE edisplay=" << as_string(m_puserinteraction->const_layout().design().display().m_eenum));
+         INFORMATION("linux::interaction_impl::_001OnShowWindow VISIBLE edisplay=" << ::as_string(m_puserinteraction->const_layout().design().display().m_eenum));
 
          //m_puserinteraction->ModifyStyle(0, WS_VISIBLE);
 
