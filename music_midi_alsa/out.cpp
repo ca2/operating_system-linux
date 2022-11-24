@@ -1,5 +1,6 @@
 #include "framework.h"
 #include "out.h"
+#include "acme/platform/application.h"
 #include "app-veriwell/multimedia/music/midi/sequencer.h"
 #include "app-veriwell/multimedia/music/midi/file.h"
 #if !BROAD_PRECOMPILED_HEADER
@@ -162,7 +163,7 @@ namespace music
 
             }
 
-            string clientName = m_pcontext->m_pacmeapplicationMain->m_strAppId;
+            string clientName = acmeapplication()->m_strAppId;
 
             int result = snd_seq_open(&m_pseq, "default", SND_SEQ_OPEN_DUPLEX, 0);
 
@@ -668,7 +669,7 @@ namespace music
 
             }
 
-            snd_seq_ev_set_sysex(&event, block.size(), block.get_data());
+            snd_seq_ev_set_sysex(&event, block.size(), (void *) block.get_data());
 
             //snd_seq_event_output_direct(m_pseq, &event);
 
