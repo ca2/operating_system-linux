@@ -33,13 +33,13 @@ namespace aura_linux
 
       //::pointer<::thread>           m_pthreadDraw;
       ::rectangle_i64                  m_rectLastPos;
-      ::duration                       m_durationLastPos;
+      class ::time                       m_timeLastPos;
 
       ::point_i32                      m_pointLastMove;
       bool                             m_bMoveEvent;
       ::size_i32                       m_sizeLastSize;
       bool                             m_bSizeEvent;
-      ::duration                       m_durationLastPlacementEvent;
+      class ::time                       m_timeLastPlacementEvent;
 
 
       interaction_impl();

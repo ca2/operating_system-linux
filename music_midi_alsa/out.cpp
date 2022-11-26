@@ -729,7 +729,7 @@ namespace music
          }
 
 
-         ::duration out::get_time_position()
+         ::time out::get_time_position()
          {
 
 

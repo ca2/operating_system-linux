@@ -27,10 +27,10 @@ void gdk_branch(const ::procedure & procedure);
 
 
 // template < typename PRED >
-// auto gdk_sync(const duration & durationTimeout, PRED pred, e_priority epriority = priority_normal)
+// auto gdk_sync(const class time & timeTimeout, PRED pred, e_priority epriority = priority_normal)
 // {
 
-//    return sync_predicate(&gdk_branch, pred, durationTimeout, epriority);
+//    return sync_predicate(&gdk_branch, pred, timeTimeout, epriority);
 
 // }
 

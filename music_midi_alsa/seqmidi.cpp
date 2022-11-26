@@ -70,7 +70,7 @@
 //	ep->data.note.channel = devchan & 0xf;
 //	ep->data.note.note = note;
 //	ep->data.note.velocity = vel;
-//	ep->data.note.duration = length;
+//	ep->data.note.time = length;
 //	ep->data.note.off_velocity = velOff;
 //
 //	seq_write(ctxp, ep);
@@ -93,7 +93,7 @@
 //	ep->data.note.channel = devchan & 0xf;
 //	ep->data.note.note = note;
 //	ep->data.note.velocity = vel;
-//	ep->data.note.duration = 0;
+//	ep->data.note.time = 0;
 //	ep->data.note.off_velocity = 0;
 //
 //	seq_write(ctxp, ep);
@@ -116,7 +116,7 @@
 //	ep->data.note.channel = devchan & 0xf;
 //	ep->data.note.note = note;
 //	ep->data.note.velocity = vel;
-//	ep->data.note.duration = 0;
+//	ep->data.note.time = 0;
 //	ep->data.note.off_velocity = 0;
 //
 //	seq_write(ctxp, ep);

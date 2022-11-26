@@ -1696,14 +1696,14 @@ SP_LIBEXPORT(sp_album *) sp_track_album(sp_track *track);
 SP_LIBEXPORT(const char *) sp_track_name(sp_track *track);
 
 /**
- * The duration, in milliseconds, of the specified track
+ * The time, in milliseconds, of the specified track
  *
  * @param[in]   track      A track object
  *
- * @return                 The duration of the specified track, in milliseconds
+ * @return                 The time of the specified track, in milliseconds
  *                         If no metadata is available for the track yet, this function returns 0.
  */
-SP_LIBEXPORT(int) sp_track_duration(sp_track *track);
+SP_LIBEXPORT(int) sp_track_time(sp_track *track);
 
 /**
  * Returns popularity for track
@@ -2081,7 +2081,7 @@ SP_LIBEXPORT(const char *) sp_albumbrowse_review(sp_albumbrowse *alb);
  * @return                -1 if the request was served from the local cache
  *                        If the result is not yet loaded the return value is undefined
  */
-SP_LIBEXPORT(int) sp_albumbrowse_backend_request_duration(sp_albumbrowse *alb);
+SP_LIBEXPORT(int) sp_albumbrowse_backend_request_time(sp_albumbrowse *alb);
 
 
 /**
@@ -2305,7 +2305,7 @@ SP_LIBEXPORT(const char *) sp_artistbrowse_biography(sp_artistbrowse *arb);
  * @return                -1 if the request was served from the local cache
  *                        If the result is not yet loaded the return value is undefined
  */
-SP_LIBEXPORT(int) sp_artistbrowse_backend_request_duration(sp_artistbrowse *arb);
+SP_LIBEXPORT(int) sp_artistbrowse_backend_request_time(sp_artistbrowse *arb);
 
 
 /**
@@ -3853,7 +3853,7 @@ SP_LIBEXPORT(sp_track *) sp_toplistbrowse_track(sp_toplistbrowse *tlb, int index
  * @return                -1 if the request was served from the local cache
  *                        If the result is not yet loaded the return value is undefined
  */
-SP_LIBEXPORT(int) sp_toplistbrowse_backend_request_duration(sp_toplistbrowse *tlb);
+SP_LIBEXPORT(int) sp_toplistbrowse_backend_request_time(sp_toplistbrowse *tlb);
 
 
 /** @} */

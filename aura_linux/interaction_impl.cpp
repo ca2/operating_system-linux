@@ -381,7 +381,7 @@ namespace aura_linux
    void interaction_impl::_thread_delayed_placement()
    {
 
-      while(m_durationLastPlacementEvent.elapsed() < 40_ms || m_puserinteraction->layout().is_changing())
+      while(m_timeLastPlacementEvent.elapsed() < 40_ms || m_puserinteraction->layout().is_changing())
       {
 
          if(!task_sleep(10_ms))
@@ -997,10 +997,10 @@ namespace aura_linux
    }
 
 
-   ::duration     durationDebugmessage_handlerTime;
+   ::time     timeDebugmessage_handlerTime;
    int            iDebugmessage_handlerTime;
-   ::duration     durationLastMouseMove;
-   ::duration     durationLastPaint;
+   ::time     timeLastMouseMove;
+   ::time     timeLastPaint;
 
 
    void interaction_impl::message_handler(::message::message * pmessage)

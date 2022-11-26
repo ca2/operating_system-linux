@@ -1616,7 +1616,7 @@ typedef
    of __builtin_dwarf_cfa() into %rbp and then add %rbp to the
    list of trashed registers at the end of the inline assembly
    fragments; gcc won't allow %rbp to appear in that list.  Hence
-   instead we need to stash %rbp in %r15 for the duration of the asm,
+   instead we need to stash %rbp in %r15 for the time of the asm,
    and say that %r15 is trashed instead.  gcc seems happy to go with
    that.
 
@@ -1683,7 +1683,7 @@ typedef
    Because gcc does not know about the hidden call, it may allocate
    that local in the redzone.  Unfortunately the hidden call may then
    trash it before it comes to use it.  So we must step clear of the
-   redzone, for the duration of the hidden call, to make it safe.
+   redzone, for the time of the hidden call, to make it safe.
 
    Probably the same problem afflicts the other redzone-style ABIs too
    (ppc64-linux); but for those, the stack is
