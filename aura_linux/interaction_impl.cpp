@@ -997,10 +997,10 @@ namespace aura_linux
    }
 
 
-   ::time     timeDebugmessage_handlerTime;
+   class ::time     timeDebugmessage_handlerTime;
    int            iDebugmessage_handlerTime;
-   ::time     timeLastMouseMove;
-   ::time     timeLastPaint;
+   class ::time     timeLastMouseMove;
+   class ::time     timeLastPaint;
 
 
    void interaction_impl::message_handler(::message::message * pmessage)
