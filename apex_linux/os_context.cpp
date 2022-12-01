@@ -372,7 +372,7 @@ namespace apex_linux
                {
 
                   keyPlugin.SetValue("Description", "ca2 plugin for NPAPI");
-                  keyPlugin.SetValue("Path", ::apex::get_system()->m_strCa2Module("npca2.dll"));
+                  keyPlugin.SetValue("Path", ::apexacmesystem()->m_strCa2Module("npca2.dll"));
                   keyPlugin.SetValue("ProductName", "ca2 plugin for NPAPI");
                   keyPlugin.SetValue("Vendor", "ca2 Desenvolvimento de Software Ltda.");
                   keyPlugin.SetValue("Version", get_app()->file_as_string(dir()->ca2("appdata/x86/ca2_build.txt")));
@@ -888,7 +888,7 @@ namespace apex_linux
 
       }
 
-      //string str = ::apex::get_system()->process().get_output("xdg-settings get default-web-browser");
+      //string str = ::apexacmesystem()->process().get_output("xdg-settings get default-web-browser");
 
       if(str.find_ci("chrome") >= 0)
       {

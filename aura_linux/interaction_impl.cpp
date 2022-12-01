@@ -779,7 +779,7 @@ namespace aura_linux
 ////
 ////         send_message(e_message_ncdestroy, 0, 0);
 ////
-////         auto pwindowing = ::aura::get_system()->windowing();
+////         auto pwindowing = ::auraacmesystem()->windowing();
 ////
 ////         pwindowing->erase_window(this);
 ////
@@ -4125,7 +4125,7 @@ namespace aura_linux
 //         if (pFrame != nullptr)
 //         hWnd = pFrame->get_handle();
 //         else
-//         hWnd = ::aura::get_system()->GetMainWnd()->get_handle();*/
+//         hWnd = ::auraacmesystem()->GetMainWnd()->get_handle();*/
 //      }
 //
 //      // a popup ::user::interaction_impl cannot be owned by a child ::user::interaction_impl
