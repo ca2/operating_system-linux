@@ -208,9 +208,9 @@ extern "C" void _BPT();
 
 
 
-typedef unsigned short  wd16char;
-typedef wchar_t         wd32char;
-typedef wd32char        widechar;
+typedef unsigned short  ::wd16_character;
+typedef wchar_t         ::wd32_character;
+typedef ::wd32_character        ::wide_character;
 
 #define DECL_C
 

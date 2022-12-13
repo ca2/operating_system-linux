@@ -6,7 +6,7 @@ struct FileStatus;
 
 //#include "acme/filesystem/file/file.h"
 
-//void CLASS_DECL_ACME vfxGetRoot(const widechar * pszPath, string& wstrRoot);
+//void CLASS_DECL_ACME vfxGetRoot(const ::wide_character * pszPath, string& wstrRoot);
 
 //void CLASS_DECL_ACME vfxGetRoot(wstring & wstrRoot, const wstring & wstrPath);
 

@@ -890,7 +890,7 @@ namespace apex_linux
 
       //string str = ::apexacmesystem()->process().get_output("xdg-settings get default-web-browser");
 
-      if(str.find_ci("chrome") >= 0)
+      if(str.case_insensitive_find("chrome") >= 0)
       {
 
          strId = "chrome";
