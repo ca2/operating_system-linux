@@ -151,7 +151,7 @@ namespace apex_linux
       for(i32 i = 0; i < dwa.get_count(); i++)
       {
 
-         if(get_process_path(dwa[i]).compare_ci(lpszName) == 0)
+         if(get_process_path(dwa[i]).case_insensitive_order(lpszName) == 0)
          {
 
             dwPid = dwa[i];
@@ -177,7 +177,7 @@ namespace apex_linux
       for(i32 i = 0; i < dwa.get_count(); i++)
       {
 
-         if(get_process_path(dwa[i]).title().compare_ci(lpszName) == 0)
+         if(get_process_path(dwa[i]).title().case_insensitive_order(lpszName) == 0)
          {
 
             dwPid = dwa[i];
@@ -615,7 +615,7 @@ namespace apex_linux
 
       /*
             if(papp->m_strAppName.is_empty()
-            || papp->m_strAppName.compare_ci("bergedge") == 0
+            || papp->m_strAppName.case_insensitive_order("bergedge") == 0
             || !papp->is_serviceable())
                return false;
 
@@ -667,7 +667,7 @@ namespace apex_linux
 
       /*
             if(papp->m_strAppName.is_empty()
-            || papp->m_strAppName.compare_ci("bergedge") == 0
+            || papp->m_strAppName.case_insensitive_order("bergedge") == 0
             || !papp->is_serviceable())
                return false;
 
@@ -708,7 +708,7 @@ namespace apex_linux
 
       /*
             if(papp->m_strAppName.is_empty()
-            || papp->m_strAppName.compare_ci("bergedge") == 0
+            || papp->m_strAppName.case_insensitive_order("bergedge") == 0
             || !papp->is_serviceable())
                return false;
 
@@ -749,7 +749,7 @@ namespace apex_linux
 
       /*
             if(papp->m_strAppName.is_empty()
-            || papp->m_strAppName.compare_ci("bergedge") == 0
+            || papp->m_strAppName.case_insensitive_order("bergedge") == 0
             || !papp->is_serviceable())
                return false;
 
@@ -868,7 +868,7 @@ namespace apex_linux
 
       str.trim();
 
-      if(str.ends_ci(".desktop"))
+      if(str.case_insensitive_ends(".desktop"))
       {
 
          ::file::path pathDesktop = "/usr/share/applications";
@@ -1102,7 +1102,7 @@ namespace apex_linux
 
       string str(file);
 
-      if(str.begins_eat_ci("\""))
+      if(str.case_insensitive_begins_eat("\""))
       {
 
          strsize iFind = str.find("\"");
@@ -1117,7 +1117,7 @@ namespace apex_linux
          str = str.Left(iFind);
 
       }
-      else if(str.begins_eat_ci("\'"))
+      else if(str.case_insensitive_begins_eat("\'"))
       {
 
          strsize iFind = str.find("\'");

@@ -4,7 +4,7 @@
 class FileException;
 struct FileStatus;
 
-//#include "acme/filesystem/file/file.h"
+#include "acme/filesystem/file/file.h"
 
 //void CLASS_DECL_ACME vfxGetRoot(const ::wide_character * pszPath, string& wstrRoot);
 
@@ -86,7 +86,7 @@ namespace acme_linux
 
       virtual ::filesize translate(::filesize c, ::enum_seek eseek) override;
       virtual void set_size(filesize dwNewLen) override;
-      virtual filesize get_size() const override;
+      virtual filesize size() const override;
 
       virtual memsize read(void * pdata, memsize nCount) override;
 

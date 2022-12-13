@@ -276,7 +276,7 @@ namespace music
 
             string strEngine = device_engine(strDevice);
 
-            if (strEngine.compare_ci("rtmidi") == 0)
+            if (strEngine.case_insensitive_order("rtmidi") == 0)
             {
 
                return m_pmidiRealTime->get_message_out(strDevice);
@@ -298,7 +298,7 @@ namespace music
          {
 
 
-            if (strDevice.compare_ci("alsa") == 0)
+            if (strDevice.case_insensitive_order("alsa") == 0)
             {
 
                return __new(::music::midi::sequencer(psequence, get_message_out(strDevice)));

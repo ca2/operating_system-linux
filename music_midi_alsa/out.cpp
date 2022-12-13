@@ -75,7 +75,7 @@ namespace music
 
             //string strDriver(strDevice);
 
-            //strDriver.begins_eat_ci("alsa:");
+            //strDriver.case_insensitive_begins_eat("alsa:");
 
             //m_strDriver = strDriver;
 

@@ -53,7 +53,7 @@ inline bool linux_dir_myspace(char ch)
 
    path = straLines[0];
 
-   path.begins_eat_ci(strPrefix);
+   path.case_insensitive_begins_eat(strPrefix);
 
    path.find_replace("$HOME", pathHome);
 
@@ -664,7 +664,7 @@ namespace apex_linux
    bool dir_context::is_inside(const ::file::path & pszDir, const ::file::path & pszPath)
    {
 
-      return pszDir.begins_ci(pszPath);
+      return pszDir.case_insensitive_begins(pszPath);
 
    }
 

@@ -199,9 +199,9 @@ void debug_break();
 
 
 
-typedef unsigned short  ::wd16_character;
-typedef wchar_t         ::wd32_character;
-typedef ::wd32_character        ::wide_character;
+typedef unsigned short        wd16_character;
+typedef wchar_t               wd32_character;
+typedef wd32_character        wide_character;
 
 #define DECL_C
 

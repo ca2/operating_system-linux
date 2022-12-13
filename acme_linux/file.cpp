@@ -5,6 +5,7 @@
 #include "acme/exception/io.h"
 #include "acme/filesystem/file/exception.h"
 #include "acme/filesystem/file/status.h"
+#include "acme/platform/debug.h"
 
 
 #include <fcntl.h>
@@ -195,7 +196,7 @@ namespace acme_linux
 
          int iError = errno;
 
-         auto estatus = failed_errno_to_status(iError);
+         auto estatus = failed_errno_status(iError);
 
          m_estatus = estatus;
 
@@ -562,7 +563,7 @@ namespace acme_linux
    }
 
 
-   filesize file::get_size() const
+   filesize file::size() const
    {
 
       filesize dwLen, dwCur;

@@ -112,6 +112,8 @@ using errno_t = int;
 
 
 #include <initializer_list>
+#include <compare>
+
 
 #endif
 
