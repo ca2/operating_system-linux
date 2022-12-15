@@ -6,6 +6,7 @@
 #include "acme/filesystem/filesystem/acme_file.h"
 #include "acme/filesystem/filesystem/acme_directory.h"
 #include "acme/filesystem/filesystem/listing.h"
+#include "acme/parallelization/task_flag.h"
 #include "acme/primitive/string/international.h"
 #include "apex/platform/system.h"
 #undef USE_MISC
@@ -553,7 +554,7 @@ namespace apex_linux
 
          int iErrNo = errno;
 
-         auto estatus = failed_errno_to_status(iErrNo);
+         auto estatus = failed_errno_status(iErrNo);
 
          throw ::exception(estatus);
 
