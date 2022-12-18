@@ -4253,7 +4253,7 @@ namespace draw2d_gdiplus
 
       DOCINFOW di;
 
-      __memset(&di, 0, sizeof(DOCINFOW));
+      memory_set(&di, 0, sizeof(DOCINFOW));
 
       di.cbSize = sizeof(DOCINFOW);
 
