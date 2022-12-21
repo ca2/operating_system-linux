@@ -191,7 +191,7 @@ namespace acme_linux
 
       string strFolder;
 
-      strsize iFind = strAppId.find('/');
+      auto pFind = strAppId.find('/');
 
       if (strPlatform.case_insensitive_order("win32") == 0 || strPlatform.case_insensitive_order("x86") == 0)
       {
@@ -208,7 +208,7 @@ namespace acme_linux
 
       }
 
-      if (iFind < 0)
+      if (::is_null(pFind))
       {
 
          path /= strAppId;
@@ -217,9 +217,9 @@ namespace acme_linux
       else
       {
 
-         path /= strAppId.Left(iFind);
+         path /= strAppId(0, pFind);
 
-         path /= strAppId.Mid(iFind + 1);
+         path /= strAppId(pFind + 1);
 
       }
 
@@ -248,7 +248,7 @@ namespace acme_linux
 
       string strFolder;
 
-      strsize iFind = strAppId.find('/');
+      auto pFind = strAppId.find('/');
 
       path = ca2roaming();
 
@@ -273,7 +273,7 @@ namespace acme_linux
    ::file::path acme_directory::install()
    {
 
-      if (m_pathInstallFolder == nullptr || m_pathInstallFolder.is_empty())
+      if (m_pathInstallFolder.is_empty())
       {
 
          return default_install();
