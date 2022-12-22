@@ -1393,7 +1393,7 @@ namespace aura_linux
 //
 //            s_iMotionNotify++;
 //
-//            if (strUserInteractionType.contains_ci("button"))
+//            if (strUserInteractionType.case_insensitive_contains("button"))
 //            {
 //
 //               output_debug_string("mouse_move::userinteraction=button");

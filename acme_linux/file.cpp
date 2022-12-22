@@ -120,7 +120,7 @@ namespace acme_linux
       }
 
       m_iFile = INVALID_FILE;
-      m_path.Empty();
+      m_path.empty();
 
       m_path     = pszFileName;
 
@@ -489,7 +489,7 @@ namespace acme_linux
 
       m_iFile = INVALID_FILE;
 
-      m_path.Empty();
+      m_path.empty();
 
       if (bError)
       {
@@ -519,7 +519,7 @@ namespace acme_linux
 
       }
 
-      m_path.Empty();
+      m_path.empty();
 
    }
 

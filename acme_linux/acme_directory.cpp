@@ -217,9 +217,9 @@ namespace acme_linux
       else
       {
 
-         path /= strAppId.Left(iFind);
+         path /= strAppId.left(iFind);
 
-         path /= strAppId.Mid(iFind + 1);
+         path /= strAppId.substr(iFind + 1);
 
       }
 

@@ -300,7 +300,7 @@ namespace desktop_environment_xfce
 
       bool bOk2 = true;
 
-      //if(::file::system_short_name().contains_ci("manjaro"))
+      //if(::file::system_short_name().case_insensitive_contains("manjaro"))
       {
 
          bOk2 = ::node_xfce::gsettings_set("org.xfce.desktop.wm.preferences", "theme", strUserTheme);
