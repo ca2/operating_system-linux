@@ -12,7 +12,7 @@ namespace linux
 
       str = ::string_from_strdup(get_current_dir_name());
 
-      return str.get_length();
+      return str.length();
 
    }
 
