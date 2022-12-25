@@ -28,7 +28,7 @@ namespace apex_linux
       virtual void terminate_processes_by_title(const ::string & lpszName) override;
 
 
-      bool has_alias_in_path(const char * psz, bool bNoUI, bool bNoMount) override;
+      bool has_alias_in_path(const ::scoped_string & scopedstr, bool bNoUI, bool bNoMount) override;
 
 
       virtual bool linux_can_exec(const ::string &file);

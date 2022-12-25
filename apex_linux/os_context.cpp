@@ -890,7 +890,7 @@ namespace apex_linux
 
       //string str = ::apexacmesystem()->process().get_output("xdg-settings get default-web-browser");
 
-      if(str.case_insensitive_find("chrome") >= 0)
+      if(str.case_insensitive_contains("chrome"))
       {
 
          strId = "chrome";
@@ -1069,10 +1069,10 @@ namespace apex_linux
    }
 
 
-   bool os_context::has_alias_in_path(const char * psz, bool bNoUI, bool bNoMount)
+   bool os_context::has_alias_in_path(const ::scoped_string & str, bool bNoUI, bool bNoMount)
    {
 
-      ::file::path path(psz);
+      ::file::path path(str);
 
       ::file::path_array patha;
 
@@ -1105,7 +1105,7 @@ namespace apex_linux
       if(str.case_insensitive_begins_eat("\""))
       {
 
-         strsize iFind = str.find("\"");
+         strsize iFind = str.find_index("\"");
 
          if(iFind < 0)
          {
@@ -1120,7 +1120,7 @@ namespace apex_linux
       else if(str.case_insensitive_begins_eat("\'"))
       {
 
-         strsize iFind = str.find("\'");
+         strsize iFind = str.find_index("\'");
 
          if(iFind < 0)
          {
@@ -1135,7 +1135,7 @@ namespace apex_linux
       else
       {
 
-         strsize iFind = str.find(" ");
+         strsize iFind = str.find_index(" ");
 
          if(iFind > 0)
          {
@@ -1143,7 +1143,6 @@ namespace apex_linux
             str = str.left(iFind);
 
          }
-
 
       }
 
