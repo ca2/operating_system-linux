@@ -201,7 +201,6 @@ namespace acme_linux
 
       ASSERT_VALID(this);
 
-      //rString = &afxWchNil;    // is_empty string without deallocating
       rString.empty();
       const i32 nMaxSize = 128;
       char * psz = rString.get_string_buffer(nMaxSize);

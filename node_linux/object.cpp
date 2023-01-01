@@ -69,8 +69,6 @@ namespace draw2d_gdiplus
    void object::assert_ok() const
    {
       ::object::assert_ok();
-      //ASSERT(get_handle() == nullptr ||
-      // (afxData.bWin95 || ::GetObjectType(get_handle()) != 0));
    }
 
 #endif

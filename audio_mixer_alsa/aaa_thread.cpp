@@ -65,19 +65,7 @@ namespace multimedia
          IGUI_WIN_MSG_LINK(WM_USER, pinterface, this, &thread::OnUserMessage);
       }
 
-      // BEGIN_MESSAGE_MAP(thread, thread)
-      //{{AFX_MSG_MAP(thread)
-      // NOTE - the ClassWizard will add and remove mapping macros here.
-      //}}AFX_MSG_MAP
-      //    ON_THREAD_MESSAGE(thread::MessageMixerThread, OnMixerMessage)
-      /* xxx   ON_THREAD_MESSAGE(VMSM_V001, OnVmsmV001)
-      ON_THREAD_MESSAGE(VMSM_EXCEPTION, OnVmsmException) */
-      //    ON_THREAD_MESSAGE(WM_USER, OnUserMessage)
-      // END_MESSAGE_MAP()
-
-      /////////////////////////////////////////////////////////////////////////////
-      // thread message handlers
-
+      
 
       void thread::OnMixerMessage(::signal_details * pobj)
       {

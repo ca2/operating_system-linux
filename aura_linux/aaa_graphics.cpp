@@ -3327,19 +3327,17 @@ namespace draw2d_gdiplus
       }
       else
       {
-         // map against logical inch for non-constrained mapping modes
+         
          i32 cxPerInch, cyPerInch;
          if (this != nullptr)
          {
             ASSERT_VALID(this);
-            //ASSERT(get_handle1() != nullptr);  // no HDC attached or created?
+            
             cxPerInch = GetDeviceCaps(LOGPIXELSX);
             cyPerInch = GetDeviceCaps(LOGPIXELSY);
          }
          else
          {
-//            cxPerInch = afxData.cxPixelsPerInch;
-            //          cyPerInch = afxData.cyPixelsPerInch;
          }
          ASSERT(cxPerInch != 0 && cyPerInch != 0);
          psize->cx = psize->cx * HIMETRIC_INCH / cxPerInch;
@@ -3367,19 +3365,17 @@ namespace draw2d_gdiplus
       }
       else
       {
-         // map against logical inch for non-constrained mapping modes
+         
          i32 cxPerInch, cyPerInch;
          if (this != nullptr)
          {
             ASSERT_VALID(this);
-            //ASSERT(get_handle1() != nullptr);  // no HDC attached or created?
+            
             cxPerInch = GetDeviceCaps(LOGPIXELSX);
             cyPerInch = GetDeviceCaps(LOGPIXELSY);
          }
          else
          {
-//            cxPerInch = afxData.cxPixelsPerInch;
-            //          cyPerInch = afxData.cyPixelsPerInch;
          }
          ASSERT(cxPerInch != 0 && cyPerInch != 0);
          psize->cx = psize->cx* cxPerInch/ HIMETRIC_INCH;
@@ -4138,21 +4134,6 @@ namespace draw2d_gdiplus
 
       return m_pgraphics != nullptr;
 
-      /*ASSERT(get_handle1() == nullptr);      // only attach once, detach on destroy
-      ASSERT(get_handle2() == nullptr);    // only attach to an is_empty DC
-
-      if (hDC == nullptr)
-      {
-         return false;
-      }
-      // remember early to avoid leak
-      set_handle1(hDC);
-      hdc_map* pMap = afxMapHDC(true); // create map if not exist
-      ASSERT(pMap != nullptr);
-      pMap->set_permanent(get_handle1(), this);
-
-      SetAttribDC(get_handle1());     // Default to same as output
-      return true;*/
    }
 
 
