@@ -898,7 +898,7 @@ typedef
       Iop_QSub8Ux8, Iop_QSub16Ux4, Iop_QSub32Ux2, Iop_QSub64Ux1,
       Iop_QSub8Sx8, Iop_QSub16Sx4, Iop_QSub32Sx2, Iop_QSub64Sx1,
 
-      /* ABSOLUTE VALUE */
+      /* ABSOLUTE PAYLOAD */
       Iop_Abs8x8, Iop_Abs16x4, Iop_Abs32x2,
 
       /* MULTIPLICATION (normal / high half of signed/unsigned / plynomial ) */
@@ -1563,7 +1563,7 @@ typedef
        * matrix transpose is performed. */
       Iop_PwBitMtxXpose64x2,
 
-      /* ABSOLUTE VALUE */
+      /* ABSOLUTE PAYLOAD */
       Iop_Abs8x16, Iop_Abs16x8, Iop_Abs32x4, Iop_Abs64x2,
 
       /* AVERAGING: note: (arg1 + arg2 + 1) >>u 1 */

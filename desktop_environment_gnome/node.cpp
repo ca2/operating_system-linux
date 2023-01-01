@@ -19,7 +19,7 @@ namespace desktop_environment_gnome
 {
 
 
-   CLASS_DECL_ACME void _os_process_user_theme_color(string strTheme);
+   //CLASS_DECL_ACME void _os_process_user_theme_color(string strTheme);
 
 
    node::node()
@@ -29,7 +29,7 @@ namespace desktop_environment_gnome
 
       defer_initialize_x11();
 
-      m_pGtkSettingsDefault = nullptr;
+      ///m_pGtkSettingsDeposthemecolorsfault = nullptr;
 
    }
 
@@ -37,12 +37,12 @@ namespace desktop_environment_gnome
    node::~node()
    {
 
-      if(m_pGtkSettingsDefault)
-      {
-
-         g_object_unref(m_pGtkSettingsDefault);
-
-      }
+//      if(m_pGtkSettingsDefault)
+//      {
+//
+//         g_object_unref(m_pGtkSettingsDefault);
+//
+//      }
 
    }
 
@@ -233,7 +233,7 @@ namespace desktop_environment_gnome
 
       //}
 
-      auto psession = get_session();
+      auto psession = acmesession();
 
       if(::is_null(psession))
       {
@@ -459,12 +459,12 @@ namespace desktop_environment_gnome
    void node::handle(::topic * ptopic, ::context * pcontext)
    {
 
-      if(ptopic->m_atom == ::id_operating_system_user_theme_change)
-      {
-
-         _os_process_user_theme_color(m_strTheme);
-
-      }
+//      if(ptopic->m_atom == ::id_operating_system_user_theme_change)
+//      {
+//
+//         //_os_process_user_theme_color(m_strTheme);
+//
+//      }
 
       ::node_gnome::node::handle(ptopic, pcontext);
 

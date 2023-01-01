@@ -187,6 +187,31 @@ namespace acme_linux
 
       //auto path = acmepath()->final(m_path);
 
+      if(eopen & ::file::e_open_file)
+      {
+
+         if(acmedirectory()->is(m_path))
+         {
+
+            if(openParam & ::file::e_open_no_exception_on_open)
+            {
+
+               m_estatus = error_not_a_file;
+
+               return;
+
+            }
+            else
+            {
+
+               throw ::exception(error_not_a_file);
+
+            }
+
+         }
+
+      }
+
       // attempt file creation
       //HANDLE hFile = shell::CreateFile(utf8_to_unicode(m_path), dwAccess, dwShareMode, &sa, dwCreateFlag, FILE_ATTRIBUTE_NORMAL, nullptr);
       int iFile = ::open(m_path, dwFlags, dwPermission); //::open(m_path, dwAccess, dwShareMode, &sa, dwCreateFlag, FILE_ATTRIBUTE_NORMAL, nullptr);
@@ -362,7 +387,7 @@ namespace acme_linux
    }
 
 
-   ::filesize file::translate(::filesize offset, ::enum_seek eseek)
+   void file::translate(::filesize offset, ::enum_seek eseek)
    {
 
       if(m_iFile == INVALID_FILE)
@@ -383,7 +408,7 @@ namespace acme_linux
       ASSERT(eseek == ::e_seek_set || eseek == ::e_seek_from_end || eseek == ::e_seek_current);
       ASSERT(::e_seek_set == SEEK_SET && ::e_seek_from_end == SEEK_END && ::e_seek_current == SEEK_CUR);
 
-      ::i32 lLoOffset = offset & 0xffffffff;
+      //::i32 lLoOffset = offset & 0xffffffff;
       //::i32 lHiOffset = (lOff >> 32) & 0xffffffff;
 
       //0	SEEK_SET
@@ -392,9 +417,11 @@ namespace acme_linux
 
       int iSeek = (int) eseek;
 
-      filesize posNew = ::lseek64(m_iFile, lLoOffset, iSeek);
+
+      //auto posNew = ::lseek(m_iFile, offset, iSeek);
+      long int i = lseek(m_iFile, offset, iSeek);
 //      posNew |= ((filesize) lHiOffset) << 32;
-      if(posNew < 0)
+      if(i < 0)
       {
 
          auto iErrNo = errno;
@@ -407,7 +434,7 @@ namespace acme_linux
 
       }
 
-      return posNew;
+      //return i;
 
    }
 
@@ -566,15 +593,17 @@ namespace acme_linux
    filesize file::size() const
    {
 
-      filesize dwLen, dwCur;
+      filesize length, current;
 
       // seek is a non const operation
       file* pFile = (file*)this;
-      dwCur = pFile->get_position();
-      dwLen = pFile->seek_to_end();
-      VERIFY(dwCur == (u64)pFile->set_position(dwCur));
+      current = pFile->get_position();
+      pFile->seek_to_end();
+      length = pFile->get_position();
+      pFile->set_position(current);
+      VERIFY(current == pFile->get_position());
 
-      return (filesize) dwLen;
+      return (filesize) length;
 
    }
 

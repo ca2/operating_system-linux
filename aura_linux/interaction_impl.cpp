@@ -1,6 +1,7 @@
 #include "framework.h"
 #include "interaction_impl.h"
 #include "acme/constant/message.h"
+#include "acme/platform/keep.h"
 #include "aura/windowing/window.h"
 #include "aura/windowing/windowing.h"
 #include "aura/message/user.h"
@@ -465,7 +466,7 @@ namespace aura_linux
 //
 //      }
 
-//      ::pointer<::message::move>pmove(pmessage);
+//      ::pointer<::message::transfer>pmove(pmessage);
 //
 //      m_puserinteraction->layout().origin() = pmove->m_point;
 //
@@ -1303,7 +1304,7 @@ namespace aura_linux
          {
 
             // We are at the message handler routine.
-            // mouse messages originated from message handler and that are mouse move events should end up with the correct cursor.
+            // mouse messages originated from message handler and that are mouse transfer events should end up with the correct cursor.
             // So the routine starts by setting to the default cursor,
             // what forces, at the end of message processing, setting the bergedge cursor to the default cursor, if no other
             // handler has set it to another one.
@@ -2445,30 +2446,30 @@ namespace aura_linux
    void interaction_impl::_001OnExitZoomed()
    {
 
-      if(!m_pwindow)
-      {
-
-         return;
-
-      }
-
-      auto psession = get_session();
-
-      auto puser = psession->user();
-
-      auto pwindowing = puser->windowing1();
-
-      if(pwindowing)
-      {
-
-         pwindowing->windowing_post([this]()
-         {
-
-            m_pwindow->exit_zoomed();
-
-         });
-
-      }
+//      if(!m_pwindow)
+//      {
+//
+//         return;
+//
+//      }
+//
+//      auto psession = get_session();
+//
+//      auto puser = psession->user();
+//
+//      auto pwindowing = puser->windowing1();
+//
+//      if(pwindowing)
+//      {
+//
+//         pwindowing->windowing_post([this]()
+//         {
+//
+//            m_pwindow->exit_zoomed();
+//
+//         });
+//
+//      }
 
    }
 

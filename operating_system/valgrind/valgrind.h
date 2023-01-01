@@ -935,12 +935,12 @@ typedef
     _zzq_args[3] = (unsigned int)(_zzq_arg3);                     \
     _zzq_args[4] = (unsigned int)(_zzq_arg4);                     \
     _zzq_args[5] = (unsigned int)(_zzq_arg5);                     \
-        __asm__ volatile("move $11, %1\n\t" /*default*/           \
-                     "move $12, %2\n\t" /*ptr*/                   \
+        __asm__ volatile("transfer $11, %1\n\t" /*default*/           \
+                     "transfer $12, %2\n\t" /*ptr*/                   \
                      __SPECIAL_INSTRUCTION_PREAMBLE               \
                      /* T3 = client_request ( T4 ) */             \
                      "or $13, $13, $13\n\t"                       \
-                     "move %0, $11\n\t"     /*result*/            \
+                     "transfer %0, $11\n\t"     /*result*/            \
                      : "=r" (_zzq_result)                         \
                      : "r" (_zzq_default), "r" (&_zzq_args[0])    \
                      : "$11", "$12", "memory");                   \
@@ -953,7 +953,7 @@ typedef
     __asm__ volatile(__SPECIAL_INSTRUCTION_PREAMBLE               \
                      /* %t9 = guest_NRADDR */                     \
                      "or $14, $14, $14\n\t"                       \
-                     "move %0, $11"     /*result*/                \
+                     "transfer %0, $11"     /*result*/                \
                      : "=r" (__addr)                              \
                      :                                            \
                      : "$11"                                      \
@@ -1006,12 +1006,12 @@ typedef
     _zzq_args[3] = (unsigned long int)(_zzq_arg3);                  \
     _zzq_args[4] = (unsigned long int)(_zzq_arg4);                  \
     _zzq_args[5] = (unsigned long int)(_zzq_arg5);                  \
-        __asm__ volatile("move $11, %1\n\t" /*default*/             \
-                         "move $12, %2\n\t" /*ptr*/                 \
+        __asm__ volatile("transfer $11, %1\n\t" /*default*/             \
+                         "transfer $12, %2\n\t" /*ptr*/                 \
                          __SPECIAL_INSTRUCTION_PREAMBLE             \
                          /* $11 = client_request ( $12 ) */         \
                          "or $13, $13, $13\n\t"                     \
-                         "move %0, $11\n\t"     /*result*/          \
+                         "transfer %0, $11\n\t"     /*result*/          \
                          : "=r" (_zzq_result)                       \
                          : "r" (_zzq_default), "r" (&_zzq_args[0])  \
                          : "$11", "$12", "memory");                 \
@@ -1024,7 +1024,7 @@ typedef
     __asm__ volatile(__SPECIAL_INSTRUCTION_PREAMBLE                 \
                      /* $11 = guest_NRADDR */                       \
                      "or $14, $14, $14\n\t"                         \
-                     "move %0, $11"     /*result*/                  \
+                     "transfer %0, $11"     /*result*/                  \
                      : "=r" (__addr)                                \
                      :                                              \
                      : "$11");                                      \
@@ -5168,7 +5168,7 @@ typedef
          "lw $28, 0($29) \n\t"                                    \
          "lw $31, 4($29) \n\t"                                    \
          "addu $29, $29, 8 \n\t"                                  \
-         "move %0, $2\n"                                          \
+         "transfer %0, $2\n"                                          \
          : /*out*/   "=r" (_res)                                  \
          : /*in*/    "0" (&_argvec[0])                            \
          : /*trash*/ "memory", __CALLER_SAVED_REGS                \
@@ -5195,7 +5195,7 @@ typedef
          "lw $28, 0($29) \n\t"                                    \
          "lw $31, 4($29) \n\t"                                    \
          "addu $29, $29, 8 \n\t"                                  \
-         "move %0, $2\n"                                          \
+         "transfer %0, $2\n"                                          \
          : /*out*/   "=r" (_res)                                  \
          : /*in*/    "0" (&_argvec[0])                            \
          : /*trash*/ "memory",  __CALLER_SAVED_REGS               \
@@ -5224,7 +5224,7 @@ typedef
          "lw $28, 0($29) \n\t"                                    \
          "lw $31, 4($29) \n\t"                                    \
          "addu $29, $29, 8 \n\t"                                  \
-         "move %0, $2\n"                                          \
+         "transfer %0, $2\n"                                          \
          : /*out*/   "=r" (_res)                                  \
          : /*in*/    "0" (&_argvec[0])                            \
          : /*trash*/ "memory", __CALLER_SAVED_REGS                \
@@ -5255,7 +5255,7 @@ typedef
          "lw $28, 0($29) \n\t"                                    \
          "lw $31, 4($29) \n\t"                                    \
          "addu $29, $29, 8 \n\t"                                  \
-         "move %0, $2\n"                                          \
+         "transfer %0, $2\n"                                          \
          : /*out*/   "=r" (_res)                                  \
          : /*in*/    "0" (&_argvec[0])                            \
          : /*trash*/ "memory", __CALLER_SAVED_REGS                \
@@ -5288,7 +5288,7 @@ typedef
          "lw $28, 0($29) \n\t"                                    \
          "lw $31, 4($29) \n\t"                                    \
          "addu $29, $29, 8 \n\t"                                  \
-         "move %0, $2\n"                                          \
+         "transfer %0, $2\n"                                          \
          : /*out*/   "=r" (_res)                                  \
          : /*in*/    "0" (&_argvec[0])                            \
          : /*trash*/ "memory", __CALLER_SAVED_REGS                \
@@ -5324,7 +5324,7 @@ typedef
          "lw $28, 0($29) \n\t"                                    \
          "lw $31, 4($29) \n\t"                                    \
          "addu $29, $29, 8 \n\t"                                  \
-         "move %0, $2\n"                                          \
+         "transfer %0, $2\n"                                          \
          : /*out*/   "=r" (_res)                                  \
          : /*in*/    "0" (&_argvec[0])                            \
          : /*trash*/ "memory", __CALLER_SAVED_REGS                \
@@ -5363,7 +5363,7 @@ typedef
          "lw $28, 0($29) \n\t"                                    \
          "lw $31, 4($29) \n\t"                                    \
          "addu $29, $29, 8 \n\t"                                  \
-         "move %0, $2\n"                                          \
+         "transfer %0, $2\n"                                          \
          : /*out*/   "=r" (_res)                                  \
          : /*in*/    "0" (&_argvec[0])                            \
          : /*trash*/ "memory", __CALLER_SAVED_REGS                \
@@ -5406,7 +5406,7 @@ typedef
          "lw $28, 0($29) \n\t"                                    \
          "lw $31, 4($29) \n\t"                                    \
          "addu $29, $29, 8 \n\t"                                  \
-         "move %0, $2\n"                                          \
+         "transfer %0, $2\n"                                          \
          : /*out*/   "=r" (_res)                                  \
          : /*in*/    "0" (&_argvec[0])                            \
          : /*trash*/ "memory", __CALLER_SAVED_REGS                \
@@ -5452,7 +5452,7 @@ typedef
          "lw $28, 0($29) \n\t"                                    \
          "lw $31, 4($29) \n\t"                                    \
          "addu $29, $29, 8 \n\t"                                  \
-         "move %0, $2\n"                                          \
+         "transfer %0, $2\n"                                          \
          : /*out*/   "=r" (_res)                                  \
          : /*in*/    "0" (&_argvec[0])                            \
          : /*trash*/ "memory", __CALLER_SAVED_REGS                \
@@ -5501,7 +5501,7 @@ typedef
          "lw $28, 0($29) \n\t"                                    \
          "lw $31, 4($29) \n\t"                                    \
          "addu $29, $29, 8 \n\t"                                  \
-         "move %0, $2\n"                                          \
+         "transfer %0, $2\n"                                          \
          : /*out*/   "=r" (_res)                                  \
          : /*in*/    "0" (&_argvec[0])                            \
          : /*trash*/ "memory", __CALLER_SAVED_REGS                \
@@ -5553,7 +5553,7 @@ typedef
          "lw $28, 0($29) \n\t"                                    \
          "lw $31, 4($29) \n\t"                                    \
          "addu $29, $29, 8 \n\t"                                  \
-         "move %0, $2\n"                                          \
+         "transfer %0, $2\n"                                          \
          : /*out*/   "=r" (_res)                                  \
          : /*in*/    "0" (&_argvec[0])                            \
          : /*trash*/ "memory", __CALLER_SAVED_REGS                \
@@ -5609,7 +5609,7 @@ typedef
          "lw $28, 0($29) \n\t"                                    \
          "lw $31, 4($29) \n\t"                                    \
          "addu $29, $29, 8 \n\t"                                  \
-         "move %0, $2\n"                                          \
+         "transfer %0, $2\n"                                          \
          : /*out*/   "=r" (_res)                                  \
          : /*in*/    "0" (&_argvec[0])                            \
          : /*trash*/ "memory", __CALLER_SAVED_REGS                \
@@ -5668,7 +5668,7 @@ typedef
          "lw $28, 0($29) \n\t"                                    \
          "lw $31, 4($29) \n\t"                                    \
          "addu $29, $29, 8 \n\t"                                  \
-         "move %0, $2\n"                                          \
+         "transfer %0, $2\n"                                          \
          : /*out*/   "=r" (_res)                                  \
          : /*in*/    "r" (&_argvec[0])                            \
          : /*trash*/ "memory", __CALLER_SAVED_REGS                \
@@ -5699,7 +5699,7 @@ typedef
       __asm__ volatile(                                           \
          "ld $25, 0(%1)\n\t"  /* target->t9 */                    \
          VALGRIND_CALL_NOREDIR_T9                                 \
-         "move %0, $2\n"                                          \
+         "transfer %0, $2\n"                                          \
          : /*out*/   "=r" (_res)                                  \
          : /*in*/    "0" (&_argvec[0])                            \
          : /*trash*/ "memory", __CALLER_SAVED_REGS                \
@@ -5718,7 +5718,7 @@ typedef
          "ld $4, 8(%1)\n\t"   /* arg1*/                           \
          "ld $25, 0(%1)\n\t"  /* target->t9 */                    \
          VALGRIND_CALL_NOREDIR_T9                                 \
-         "move %0, $2\n"                                          \
+         "transfer %0, $2\n"                                          \
          : /*out*/   "=r" (_res)                                  \
          : /*in*/    "r" (&_argvec[0])                            \
          : /*trash*/ "memory", __CALLER_SAVED_REGS                \
@@ -5739,7 +5739,7 @@ typedef
          "ld $5, 16(%1)\n\t"                                      \
          "ld $25, 0(%1)\n\t"  /* target->t9 */                    \
          VALGRIND_CALL_NOREDIR_T9                                 \
-         "move %0, $2\n"                                          \
+         "transfer %0, $2\n"                                          \
          : /*out*/   "=r" (_res)                                  \
          : /*in*/    "r" (&_argvec[0])                            \
          : /*trash*/ "memory", __CALLER_SAVED_REGS                \
@@ -5762,7 +5762,7 @@ typedef
          "ld $6, 24(%1)\n\t"                                      \
          "ld $25, 0(%1)\n\t"  /* target->t9 */                    \
          VALGRIND_CALL_NOREDIR_T9                                 \
-         "move %0, $2\n"                                          \
+         "transfer %0, $2\n"                                          \
          : /*out*/   "=r" (_res)                                  \
          : /*in*/    "r" (&_argvec[0])                            \
          : /*trash*/ "memory", __CALLER_SAVED_REGS                \
@@ -5787,7 +5787,7 @@ typedef
          "ld $7, 32(%1)\n\t"                                      \
          "ld $25, 0(%1)\n\t"  /* target->t9 */                    \
          VALGRIND_CALL_NOREDIR_T9                                 \
-         "move %0, $2\n"                                          \
+         "transfer %0, $2\n"                                          \
          : /*out*/   "=r" (_res)                                  \
          : /*in*/    "r" (&_argvec[0])                            \
          : /*trash*/ "memory", __CALLER_SAVED_REGS                \
@@ -5814,7 +5814,7 @@ typedef
          "ld $8, 40(%1)\n\t"                                      \
          "ld $25, 0(%1)\n\t"  /* target->t9 */                    \
          VALGRIND_CALL_NOREDIR_T9                                 \
-         "move %0, $2\n"                                          \
+         "transfer %0, $2\n"                                          \
          : /*out*/   "=r" (_res)                                  \
          : /*in*/    "r" (&_argvec[0])                            \
          : /*trash*/ "memory", __CALLER_SAVED_REGS                \
@@ -5843,7 +5843,7 @@ typedef
          "ld $9, 48(%1)\n\t"                                      \
          "ld $25, 0(%1)\n\t"  /* target->t9 */                    \
          VALGRIND_CALL_NOREDIR_T9                                 \
-         "move %0, $2\n"                                          \
+         "transfer %0, $2\n"                                          \
          : /*out*/   "=r" (_res)                                  \
          : /*in*/    "r" (&_argvec[0])                            \
          : /*trash*/ "memory", __CALLER_SAVED_REGS                \
@@ -5875,7 +5875,7 @@ typedef
          "ld $10, 56(%1)\n\t"                                     \
          "ld $25, 0(%1) \n\t"  /* target->t9 */                   \
          VALGRIND_CALL_NOREDIR_T9                                 \
-         "move %0, $2\n"                                          \
+         "transfer %0, $2\n"                                          \
          : /*out*/   "=r" (_res)                                  \
          : /*in*/    "r" (&_argvec[0])                            \
          : /*trash*/ "memory", __CALLER_SAVED_REGS                \
@@ -5909,7 +5909,7 @@ typedef
          "ld $11, 64(%1)\n\t"                                     \
          "ld $25, 0(%1) \n\t"  /* target->t9 */                   \
          VALGRIND_CALL_NOREDIR_T9                                 \
-         "move %0, $2\n"                                          \
+         "transfer %0, $2\n"                                          \
          : /*out*/   "=r" (_res)                                  \
          : /*in*/    "r" (&_argvec[0])                            \
          : /*trash*/ "memory", __CALLER_SAVED_REGS                \
@@ -5948,7 +5948,7 @@ typedef
          "ld $25, 0(%1)\n\t"  /* target->t9 */                    \
          VALGRIND_CALL_NOREDIR_T9                                 \
          "daddu $29, $29, 8\n\t"                                  \
-         "move %0, $2\n"                                          \
+         "transfer %0, $2\n"                                          \
          : /*out*/   "=r" (_res)                                  \
          : /*in*/    "r" (&_argvec[0])                            \
          : /*trash*/ "memory", __CALLER_SAVED_REGS                \
@@ -5990,7 +5990,7 @@ typedef
          "ld $25, 0(%1)\n\t"  /* target->t9 */                    \
          VALGRIND_CALL_NOREDIR_T9                                 \
          "daddu $29, $29, 16\n\t"                                 \
-         "move %0, $2\n"                                          \
+         "transfer %0, $2\n"                                          \
          : /*out*/   "=r" (_res)                                  \
          : /*in*/    "r" (&_argvec[0])                            \
          : /*trash*/ "memory", __CALLER_SAVED_REGS                \
@@ -6036,7 +6036,7 @@ typedef
          "ld $25, 0(%1)\n\t"  /* target->t9 */                    \
          VALGRIND_CALL_NOREDIR_T9                                 \
          "daddu $29, $29, 24\n\t"                                 \
-         "move %0, $2\n"                                          \
+         "transfer %0, $2\n"                                          \
          : /*out*/   "=r" (_res)                                  \
          : /*in*/    "r" (&_argvec[0])                            \
          : /*trash*/ "memory", __CALLER_SAVED_REGS                \
@@ -6085,7 +6085,7 @@ typedef
          "ld $25, 0(%1)\n\t"  /* target->t9 */                    \
          VALGRIND_CALL_NOREDIR_T9                                 \
          "daddu $29, $29, 32\n\t"                                 \
-         "move %0, $2\n"                                          \
+         "transfer %0, $2\n"                                          \
          : /*out*/   "=r" (_res)                                  \
          : /*in*/    "r" (&_argvec[0])                            \
          : /*trash*/ "memory", __CALLER_SAVED_REGS                \
@@ -6312,7 +6312,7 @@ VALGRIND_PRINTF_BACKTRACE(const char *format, ...)
 }
 
 
-/* These requests allow control to move from the simulated CPU to the
+/* These requests allow control to transfer from the simulated CPU to the
    real CPU, calling an arbitrary function.
    
    Note that the current ThreadId is inserted as the first argument.
@@ -6546,12 +6546,12 @@ VALGRIND_PRINTF_BACKTRACE(const char *format, ...)
     VALGRIND_DO_CLIENT_REQUEST_STMT(VG_USERREQ__MEMPOOL_TRIM,     \
                                     pool, addr, size, 0, 0)
 
-/* Resize and/or move a piece associated with a memory pool. */
+/* Resize and/or transfer a piece associated with a memory pool. */
 #define VALGRIND_MOVE_MEMPOOL(poolA, poolB)                       \
     VALGRIND_DO_CLIENT_REQUEST_STMT(VG_USERREQ__MOVE_MEMPOOL,     \
                                     poolA, poolB, 0, 0, 0)
 
-/* Resize and/or move a piece associated with a memory pool. */
+/* Resize and/or transfer a piece associated with a memory pool. */
 #define VALGRIND_MEMPOOL_CHANGE(pool, addrA, addrB, size)         \
     VALGRIND_DO_CLIENT_REQUEST_STMT(VG_USERREQ__MEMPOOL_CHANGE,   \
                                     pool, addrA, addrB, size, 0)

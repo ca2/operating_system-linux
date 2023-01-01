@@ -542,7 +542,7 @@ typedef struct x265_param
      * The total number of threads will be determined by the number of threads
      * assigned to all nodes. The worker threads will each be given affinity for
      * their node, they will not be allowed to migrate between nodes, but they
-     * will be allowed to move between CPU cores within their node.
+     * will be allowed to transfer between CPU cores within their node.
      *
      * If the three pool features: bEnableWavefront, bDistributeModeAnalysis and
      * bDistributeMotionEstimation are all disabled, then numaPools is ignored
@@ -775,7 +775,7 @@ typedef struct x265_param
      * should detect scene cuts. The default (40) is recommended. */
     int       scenecutThreshold;
 
-    /* Replace keyframes by using a column of intra blocks that move across the video
+    /* Replace keyframes by using a column of intra blocks that transfer across the video
      * from one side to the other, thereby "refreshing" the image. In effect, instead of a
      * big keyframe, the keyframe is "spread" over many frames. */
     int       bIntraRefresh;

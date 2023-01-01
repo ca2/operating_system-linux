@@ -84,7 +84,7 @@ namespace acme_linux
 
 //      virtual ::pointer<::file::file>Duplicate() const;
 
-      virtual ::filesize translate(::filesize c, ::enum_seek eseek) override;
+      virtual void translate(::filesize c, ::enum_seek eseek) override;
       virtual void set_size(filesize dwNewLen) override;
       virtual filesize size() const override;
 

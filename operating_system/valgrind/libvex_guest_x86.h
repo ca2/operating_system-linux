@@ -77,7 +77,7 @@
    gets a stack underflow fault if the register is empty.  A write of
    a register (only a write, not a modify) gets a stack overflow fault
    if the register is full.  Note that "over" vs "under" is pretty
-   meaningless since the FP stack pointer can move around arbitrarily,
+   meaningless since the FP stack pointer can transfer around arbitrarily,
    so it's really just two different kinds of exceptions:
    register-empty and register full.
 

@@ -53,9 +53,9 @@ typedef
 /* Describes how a reservation segment can be resized. */
 typedef
    enum {
-      SmLower,  // lower end can move up
+      SmLower,  // lower end can transfer up
       SmFixed,  // cannot be shrunk
-      SmUpper   // upper end can move down
+      SmUpper   // upper end can transfer down
    }
    ShrinkMode;
 

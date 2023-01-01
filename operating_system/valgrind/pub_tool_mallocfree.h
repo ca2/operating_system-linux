@@ -46,7 +46,7 @@ extern void*  VG_(realloc)       ( const HChar* cc, void* p, SizeT size );
 extern void   VG_(realloc_shrink)( void* ptr, SizeT size );
 extern HChar* VG_(strdup)        ( const HChar* cc, const HChar* s );
 
-// TODO: move somewhere else
+// TODO: transfer somewhere else
 // Call here to bomb the system when out of memory (mmap anon fails)
 __attribute__((noreturn))
 extern void VG_(out_of_memory_NORETURN) ( const HChar* who, SizeT szB );

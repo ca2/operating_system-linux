@@ -4,9 +4,9 @@
 // apt install ncurses-dev
 // dnf install ncurses-devel
 #undef OK
+#include "acme/_start.h"
 #include <ncurses.h>
 #include <limits.h>
-#include "acme/_start.h"
 #include "acme/operating_system/_const_console.h"
 #include "acme/constant/status.h"
 #include <stdlib.h>

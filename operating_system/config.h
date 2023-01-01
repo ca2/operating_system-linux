@@ -9,6 +9,8 @@
 
 #define _THREAD_SAFE
 
+#define _LARGEFILE64_SOURCE
+
 
 #define PARALLELIZATION_PTHREAD
 

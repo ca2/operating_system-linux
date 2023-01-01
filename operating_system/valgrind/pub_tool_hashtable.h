@@ -108,7 +108,7 @@ extern VgHashNode** VG_(HT_to_array) ( const VgHashTable *table,
 /* Reset the table's iterator to point to the first element. */
 extern void VG_(HT_ResetIter) ( VgHashTable *table );
 
-/* Return the element pointed to by the iterator and move on to the
+/* Return the element pointed to by the iterator and transfer on to the
    next one.  Returns NULL if the last one has been passed, or if
    HT_ResetIter() has not been called previously.  Asserts if the
    table has been modified (HT_add_node, HT_remove) since
