@@ -252,11 +252,11 @@ namespace apex_linux
 //
 //         {
 //
-//            ___scoped_restore(listing.m_pathUser);
+//            scoped_restore(listing.m_pathUser);
 //
-//            ___scoped_restore(listing.m_pathFinal);
+//            scoped_restore(listing.m_pathFinal);
 //
-//            ___scoped_restore(listing.m_eextract);
+//            scoped_restore(listing.m_eextract);
 //
 //            ::file::listing straDir;
 //
@@ -294,7 +294,7 @@ namespace apex_linux
 //         if(listing.m_bFile)
 //         {
 //
-//            ___scoped_restore(listing.m_bRecursive);
+//            scoped_restore(listing.m_bRecursive);
 //
 //            listing.m_bRecursive = false;
 //
