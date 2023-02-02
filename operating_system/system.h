@@ -52,9 +52,9 @@
 
 #include <limits.h>
 
-#define sync unistd_sync
-#include <unistd.h>
-#undef sync
+//#define sync unistd_sync
+//#include <unistd.h>
+//#undef sync
 
 
 #include <wchar.h>
