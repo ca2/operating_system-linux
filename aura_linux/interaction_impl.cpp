@@ -745,7 +745,7 @@ namespace aura_linux
 //      char szBuf [64];
 //
 //      ::rectangle_i32 rectangle;
-//      ((::user::interaction_impl *) this)->m_puserinteraction->get_window_rect(&rectangle);
+//      ((::user::interaction_impl *) this)->m_puserinteraction->window_rectangle(&rectangle);
 //      dumpcontext << "\nrect = " << rectangle;
 //      dumpcontext << "\nparent ::pointer<::interaction_impl>= " << (void *)((::user::interaction_impl *) this)->get_parent();
 //
@@ -1233,14 +1233,14 @@ namespace aura_linux
 //
 //               ::rectangle_i32 rectWindow32;
 //
-//               ::get_window_rect((oswindow) get_handle(), &rectWindow32);
+//               ::window_rectangle((oswindow) get_handle(), &rectWindow32);
 //
 //               ::copy(rectWindow, rectWindow32);
 //
 //            }
 //            else
                {
-                  m_puserinteraction->get_window_rect(rectWindow);
+                  m_puserinteraction->window_rectangle(rectWindow);
                }
 
                auto puser = psession->user();
@@ -1795,7 +1795,7 @@ namespace aura_linux
 //                     hWndChild = ::GetNextWindow(hWndChild, GW_HWNDNEXT))
 //                  {
 //                     ::rectangle_i32 rectangle;
-//                     ::get_window_rect(hWndChild, &rectangle);
+//                     ::window_rectangle(hWndChild, &rectangle);
 //                     screen_to_client(&rectangle);
 //                     ::set_window_position(hWndChild, nullptr,
 //                        rectangle.left+xAmount, rectangle.top+yAmount, 0, 0,
@@ -1974,14 +1974,14 @@ namespace aura_linux
 //
 //      ::rectangle_i32 rectClient;
 //
-//      m_puserinteraction->get_client_rect(rectClient);
+//      m_puserinteraction->client_rectangle(rectClient);
 //
 //
 //      //pgraphics->FillSolidRect(rectClient, 0x00000000);
 //
 //      //return;
 //      ::rectangle_i32 rectUpdate;
-//      m_puserinteraction->get_window_rect(rectUpdate);
+//      m_puserinteraction->window_rectangle(rectUpdate);
 ////      SetContextOrgEx(hdc, 0, 0, nullptr);
 //      ::rectangle_i32 rectPaint;
 //      rectPaint = rectUpdate;
@@ -2526,7 +2526,7 @@ namespace aura_linux
 //
 //      ::rectangle_i32 rectClient;
 //
-//      //oswindow->get_client_rect(rectClient);
+//      //oswindow->client_rectangle(rectClient);
 //
 //      rectClient.left = 0;
 //      rectClient.top = 0;

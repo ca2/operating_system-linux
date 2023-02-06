@@ -219,12 +219,12 @@ namespace aura_linux
       //virtual bool set_window_position(iptr z, i32 x, i32 y, i32 cx, i32 cy, ::u32 nFlags);
 //      virtual ::u32 ArrangeIconicWindows();
       //virtual bool BringWindowToTop();
-//      virtual bool get_window_rect(RECTANGLE_I64 * prectangle);
+//      virtual bool window_rectangle(RECTANGLE_I64 * prectangle);
 
   //    virtual bool _001GetWindowRect(RECTANGLE_I64 * prectangle);
 
-      //using ::user::interaction_impl::get_client_rect;
-      //virtual bool get_client_rect(RECTANGLE_I64 * prectangle);
+      //using ::user::interaction_impl::client_rectangle;
+      //virtual bool client_rectangle(RECTANGLE_I64 * prectangle);
 
 
       //virtual bool has_focus() override;
