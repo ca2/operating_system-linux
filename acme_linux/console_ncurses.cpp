@@ -3,7 +3,6 @@
 //
 // apt install ncurses-dev
 // dnf install ncurses-devel
-#undef OK
 #include "framework.h"
 #include "acme/_start.h"
 #include "acme/primitive/primitive/e_status.h"

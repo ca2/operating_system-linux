@@ -30,7 +30,7 @@ list(APPEND library_source
 add_library(${PROJECT_NAME} SHARED ${library_source})
 
 
-set_source_files_properties(console_ncurses.cpp PROPERTIES SKIP_PRECOMPILE_HEADERS ON)
+#set_source_files_properties(console_ncurses.cpp PROPERTIES SKIP_PRECOMPILE_HEADERS ON)
 
 
 list(APPEND library_references
