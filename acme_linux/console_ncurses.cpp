@@ -4,11 +4,14 @@
 // apt install ncurses-dev
 // dnf install ncurses-devel
 #undef OK
+#include "framework.h"
 #include "acme/_start.h"
-#include <ncurses.h>
-#include <limits.h>
+#include "acme/primitive/primitive/e_status.h"
 #include "acme/operating_system/_const_console.h"
 #include "acme/constant/status.h"
+#include "acme/_operating_system.h"
+#include <ncurses.h>
+#include <limits.h>
 #include <stdlib.h>
 #include <fcntl.h>
 #include <string.h>
@@ -18,7 +21,7 @@
 
 
 void throw_exception(enum_status estatus);
-::enum_status _errno_status(int nErrno);
+//::e_status errno_status(int nErrno);
 
 
 int __console_init(void ** ppscreen, void ** ppwindow, FILE * pfileOut, FILE * pfileIn, int cols, int lines)
@@ -104,9 +107,9 @@ int __console_init(void ** ppscreen, void ** ppwindow, FILE * pfileOut, FILE * p
 
             auto iError = errno;
 
-            auto estatus = _errno_status(iError);
+            auto estatus = errno_status(iError);
 
-            throw_exception(estatus);
+            throw_exception(estatus.m_eenum);
 
          }
 

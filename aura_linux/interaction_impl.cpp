@@ -337,7 +337,7 @@ namespace aura_linux
          //MESSAGE_LINK(e_message_nccalcsize, pchannel, this,&interaction_impl::_001OnNcCalcSize);
 
          // linux
-         MESSAGE_LINK(e_message_move, pchannel, this, &interaction_impl::_001OnMove);
+         MESSAGE_LINK(e_message_reposition, pchannel, this, &interaction_impl::_001OnMove);
          MESSAGE_LINK(e_message_size, pchannel, this, &interaction_impl::_001OnSize);
          MESSAGE_LINK(e_message_show_window, pchannel, this, &interaction_impl::_001OnShowWindow);
 
@@ -1222,9 +1222,10 @@ namespace aura_linux
 //
 //         }
 
-            if (m_bTranslateMouseMessageCursor && !pmouse->m_bTranslated)
+            //if (m_bTranslateMouseMessageCursor && !pmouse->m_bTranslated)
+            if(false)
             {
-               pmouse->m_bTranslated = true;
+               //pmouse->m_bTranslated = true;
                ::rectangle_i32 rectWindow;
 //            if(m_bScreenRelativeMouseMessagePosition)
 //            {
@@ -1245,7 +1246,7 @@ namespace aura_linux
 
                auto puser = psession->user();
 
-               auto pwindowing = puser->windowing1();
+               auto pwindowing = puser->windowing();
 
                auto pdisplay = pwindowing->display();
 
@@ -1296,7 +1297,7 @@ namespace aura_linux
 
          auto puser = psession->user();
 
-         auto pwindowing = puser->windowing1();
+         auto pwindowing = puser->windowing();
 
          pwindowing->set(pmouse, oswindow(), m_pwindow, pmouse->m_atom, pmouse->m_wparam, pmouse->m_lparam);
 
@@ -2064,7 +2065,7 @@ namespace aura_linux
 
       auto puser = psession->user();
 
-      auto pwindowing = puser->windowing1();
+      auto pwindowing = puser->windowing();
 
       if(pwindowing)
       {
@@ -2095,7 +2096,7 @@ namespace aura_linux
 
       auto puser = psession->user();
 
-      auto pwindowing = puser->windowing1();
+      auto pwindowing = puser->windowing();
 
       if(pwindowing)
       {
@@ -2126,7 +2127,7 @@ namespace aura_linux
 //
 //      auto puser = psession->user();
 //
-//      auto pwindowing = puser->windowing1();
+//      auto pwindowing = puser->windowing();
 //
 //      if(pwindowing)
 //      {
