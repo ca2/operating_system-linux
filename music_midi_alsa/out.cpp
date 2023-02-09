@@ -669,7 +669,7 @@ namespace music
 
             }
 
-            snd_seq_ev_set_sysex(&event, block.size(), (void *) block.get_data());
+            snd_seq_ev_set_sysex(&event, block.size(), (void *) block.data());
 
             //snd_seq_event_output_direct(m_pseq, &event);
 
@@ -729,7 +729,7 @@ namespace music
          }
 
 
-         ::time out::get_time_position()
+         class ::time out::get_time_position()
          {
 
 
