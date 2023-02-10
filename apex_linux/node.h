@@ -42,6 +42,8 @@ namespace apex_linux
 
       //void shell_open(const ::file::path & path, const ::string& strParams, const ::file::path & pathFolder) override;
 
+      void integration_factory() override;
+
 
    };
 

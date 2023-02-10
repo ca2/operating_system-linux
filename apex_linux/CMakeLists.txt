@@ -20,6 +20,8 @@ list(APPEND library_source
     framework.h
     #interprocess_communication.cpp
     #interprocess_communication.h
+        integration_context.cpp
+        integration_context.h
     ip_enum.cpp
     ip_enum.h
     launcher.cpp
