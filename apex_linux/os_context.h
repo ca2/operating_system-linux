@@ -34,9 +34,6 @@ namespace apex_linux
       virtual bool linux_can_exec(const ::string &file);
 
 
-      //virtual ::file::path get_module_path(HMODULE hmodule) override;
-
-
       bool path_pid(::u32 & dwPid, const ::string & lpszName) override;
       bool title_pid(::u32 & dwPid, const ::string & lpszName) override;
       void get_all_processes(u32_array & dwa) override;
