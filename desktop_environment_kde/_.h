@@ -5,7 +5,7 @@
 #include "operating-system-posix/node_kde/_.h"
 
 
-#if defined(_DESKTOP_ENVIRONMENT_KDE_LIBRARY)
+#if defined(_desktop_environment_kde_project)
    #define CLASS_DECL_DESKTOP_ENVIRONMENT_KDE  CLASS_DECL_EXPORT
 #else
    #define CLASS_DECL_DESKTOP_ENVIRONMENT_KDE  CLASS_DECL_IMPORT

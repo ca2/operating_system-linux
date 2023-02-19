@@ -5,7 +5,7 @@
 #include "aura_linux/_.h"
 
 
-#if defined(_NODE_LINUX_LIBRARY)
+#if defined(_node_linux_project)
 #define CLASS_DECL_NODE_LINUX  CLASS_DECL_EXPORT
 #else
 #define CLASS_DECL_NODE_LINUX  CLASS_DECL_IMPORT

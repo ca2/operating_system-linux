@@ -6,7 +6,7 @@
 #include "aura_posix/_.h"
 
 
-#if defined(_AURA_LINUX_LIBRARY)
+#if defined(_aura_linux_project)
 #define CLASS_DECL_AURA_LINUX  CLASS_DECL_EXPORT
 #else
 #define CLASS_DECL_AURA_LINUX  CLASS_DECL_IMPORT
