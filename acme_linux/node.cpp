@@ -6,6 +6,7 @@
 
 
 #include  "acme/operating_system/ansi/binreloc.h"
+#include  "acme/operating_system/ansi/_pthread.h"
 
 
 ::user::enum_desktop _calculate_edesktop();
@@ -410,6 +411,24 @@ namespace acme_linux
 //
 //
 //      }
+
+
+   bool node::set_process_priority(::enum_priority epriority)
+   {
+
+      i32 iPolicy = SCHED_OTHER;
+
+      sched_param schedparam;
+
+      schedparam.sched_priority = 0;
+
+      get_os_priority(&iPolicy, &schedparam, epriority);
+
+      sched_setscheduler(0, iPolicy, &schedparam);
+
+      return true;
+
+   }
 
 
 

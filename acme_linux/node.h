@@ -124,6 +124,9 @@ namespace acme_linux
       //void shell_execute_async(const char *psz, const char * pszParams) override;
 
 
+      bool set_process_priority(::enum_priority epriority) override;
+
+
    };
 
 
