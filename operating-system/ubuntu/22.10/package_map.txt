@@ -20,4 +20,5 @@ third/pcre=none
 third/libmpg123=none
 third/mpg123=none
 third/swresample=none
+third/libarchive=none
 app-core/text_to_speech_sapi=none
