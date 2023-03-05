@@ -17,6 +17,10 @@
 
 #define ENABLE_BINRELOC
 
+
+#define HAS_FREEDESKTOP
+
+
 #ifndef LINUX
 #define LINUX
 #endif
