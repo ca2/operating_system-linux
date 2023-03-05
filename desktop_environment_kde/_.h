@@ -2,7 +2,7 @@
 
 
 #include "aura_linux/_.h"
-#include "operating-system-posix/node_kde/_.h"
+#include "operating_system-posix/node_kde/_.h"
 
 
 #if defined(_desktop_environment_kde_project)

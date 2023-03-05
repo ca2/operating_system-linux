@@ -5,7 +5,7 @@
 			<Depends filename="../../../source/app/aura/aura.cbp" />
 		</Project>
 		<Project filename="../../../source/app-core/weather/weather.cbp">
-			<Depends filename="../../../operating-system/operating-system-linux/app/app.cbp" />
+			<Depends filename="../../../operating_system/operating_system-linux/app/app.cbp" />
 			<Depends filename="../../../source/app/aura/aura.cbp" />
 			<Depends filename="../../../source/app/axis/axis.cbp" />
 			<Depends filename="../../../source/app/base/base.cbp" />
@@ -14,16 +14,16 @@
 			<Depends filename="../../../source/app/experience_core/experience_core.cbp" />
 		</Project>
 		<Project filename="../../../source/app-core/app_core_desk/app_core_desk.cbp">
-			<Depends filename="../../../operating-system/operating-system-linux/app/app.cbp" />
+			<Depends filename="../../../operating_system/operating_system-linux/app/app.cbp" />
 			<Depends filename="../../../source/app/draw2d_cairo/draw2d_cairo.cbp" />
 			<Depends filename="../../../source/app/experience_core/experience_core.cbp" />
 		</Project>
 		<Project filename="../../../source/app-core/todo/todo.cbp">
 			<Depends filename="../../../source/app/ace/ace.cbp" />
-			<Depends filename="../../../operating-system/operating-system-linux/app/app.cbp" />
+			<Depends filename="../../../operating_system/operating_system-linux/app/app.cbp" />
 			<Depends filename="../../../source/app-veriwell/audio_decode_libmpg123/audio_decode_libmpg123.cbp" />
 			<Depends filename="../../../source/app-core/audio_decode_wave/audio_decode_wave.cbp" />
-			<Depends filename="../../../operating-system/operating-system-linux/audio_alsa/audio_alsa.cbp" />
+			<Depends filename="../../../operating_system/operating_system-linux/audio_alsa/audio_alsa.cbp" />
 			<Depends filename="../../../source/app/aura/aura.cbp" />
 			<Depends filename="../../../source/app/axis/axis.cbp" />
 			<Depends filename="../../../source/app/base/base.cbp" />
@@ -35,34 +35,34 @@
 		</Project>
 		<Project filename="../../../source/app-core/clockverse/clockverse.cbp">
 			<Depends filename="../../../source/app/ace/ace.cbp" />
-			<Depends filename="../../../operating-system/operating-system-linux/app/app.cbp" />
+			<Depends filename="../../../operating_system/operating_system-linux/app/app.cbp" />
 			<Depends filename="../../../source/app-core/hellomultiverse/hellomultiverse.cbp" />
 			<Depends filename="../../../source/app-cidadedecuritiba/alphaclock/alphaclock.cbp" />
 			<Depends filename="../../../source/app-core/flag/flag.cbp" />
 			<Depends filename="../../../source/app-veriwell/audio_decode_libmpg123/audio_decode_libmpg123.cbp" />
 			<Depends filename="../../../source/app-core/audio_decode_wave/audio_decode_wave.cbp" />
-			<Depends filename="../../../operating-system/operating-system-linux/audio_alsa/audio_alsa.cbp" />
+			<Depends filename="../../../operating_system/operating_system-linux/audio_alsa/audio_alsa.cbp" />
 			<Depends filename="../../../source/app/draw2d_cairo/draw2d_cairo.cbp" />
 			<Depends filename="../../../source/app/experience_core/experience_core.cbp" />
 		</Project>
 		<Project filename="../../../source/app-core/auraclick/auraclick.cbp">
-			<Depends filename="../../../operating-system/operating-system-linux/app/app.cbp" />
+			<Depends filename="../../../operating_system/operating_system-linux/app/app.cbp" />
 			<Depends filename="../../../source/app-veriwell/audio_decode_libmpg123/audio_decode_libmpg123.cbp" />
 			<Depends filename="../../../source/app-core/audio_decode_wave/audio_decode_wave.cbp" />
-			<Depends filename="../../../operating-system/operating-system-linux/audio_alsa/audio_alsa.cbp" />
+			<Depends filename="../../../operating_system/operating_system-linux/audio_alsa/audio_alsa.cbp" />
 			<Depends filename="../../../source/app/draw2d_cairo/draw2d_cairo.cbp" />
 			<Depends filename="../../../source/app-core/multimedia/multimedia.cbp" />
 		</Project>
 		<Project filename="../../../source/app-core/auratype/auratype.cbp">
-			<Depends filename="../../../operating-system/operating-system-linux/app/app.cbp" />
+			<Depends filename="../../../operating_system/operating_system-linux/app/app.cbp" />
 			<Depends filename="../../../source/app-core/audio_decode_wave/audio_decode_wave.cbp" />
-			<Depends filename="../../../operating-system/operating-system-linux/audio_alsa/audio_alsa.cbp" />
+			<Depends filename="../../../operating_system/operating_system-linux/audio_alsa/audio_alsa.cbp" />
 			<Depends filename="../../../source/app-core/multimedia/multimedia.cbp" />
 		</Project>
 		<Project filename="../../../source/app-core/chronometer/chronometer.cbp">
 			<Depends filename="../../../source/app-veriwell/audio_decode_libmpg123/audio_decode_libmpg123.cbp" />
 			<Depends filename="../../../source/app-core/audio_decode_wave/audio_decode_wave.cbp" />
-			<Depends filename="../../../operating-system/operating-system-linux/audio_alsa/audio_alsa.cbp" />
+			<Depends filename="../../../operating_system/operating_system-linux/audio_alsa/audio_alsa.cbp" />
 			<Depends filename="../../../source/app/draw2d_cairo/draw2d_cairo.cbp" />
 			<Depends filename="../../../source/app-core/multimedia/multimedia.cbp" />
 		</Project>
@@ -86,23 +86,23 @@
 			<Depends filename="../../../source/app-veriwell/asciimedia/asciimedia.cbp" />
 			<Depends filename="../../../source/app-veriwell/audio_decode_libmpg123/audio_decode_libmpg123.cbp" />
 			<Depends filename="../../../source/app-core/audio_decode_wave/audio_decode_wave.cbp" />
-			<Depends filename="../../../operating-system/operating-system-linux/audio_alsa/audio_alsa.cbp" />
+			<Depends filename="../../../operating_system/operating_system-linux/audio_alsa/audio_alsa.cbp" />
 			<Depends filename="../../../source/app/draw2d_cairo/draw2d_cairo.cbp" />
 			<Depends filename="../../../source/app/experience_anthill/experience_anthill.cbp" />
-			<Depends filename="../../../operating-system/operating-system-linux/music_midi_alsa/music_midi_alsa.cbp" />
+			<Depends filename="../../../operating_system/operating_system-linux/music_midi_alsa/music_midi_alsa.cbp" />
 			<Depends filename="../../../source/app-core/resident/resident.cbp" />
 			<Depends filename="../../../source/app-veriwell/multimedia/veriwell_multimedia.cbp" />
 		</Project>
 		<Project filename="../../../source/app/ace/ace.cbp" />
 		<Project filename="../../../source/app-core/announcecom/announcecom.cbp" />
-		<Project filename="../../../operating-system/operating-system-linux/app/app.cbp">
+		<Project filename="../../../operating_system/operating_system-linux/app/app.cbp">
 			<Depends filename="../../../source/app/ace/ace.cbp" />
 			<Depends filename="../../../source/app/aura/aura.cbp" />
 			<Depends filename="../../../source/app/base/base.cbp" />
 			<Depends filename="../../../source/app/aura/aura.cbp" />
 		</Project>
 		<Project filename="../../../source/app-core/hellomultiverse/hellomultiverse.cbp">
-			<Depends filename="../../../operating-system/operating-system-linux/app/app.cbp" />
+			<Depends filename="../../../operating_system/operating_system-linux/app/app.cbp" />
 			<Depends filename="../../../source/app/axis/axis.cbp" />
 			<Depends filename="../../../source/app/base/base.cbp" />
 			<Depends filename="../../../source/app/aura/aura.cbp" />
@@ -111,12 +111,12 @@
 		</Project>
 		<Project filename="../../../source/app-cidadedecuritiba/alphaclock/alphaclock.cbp">
 			<Depends filename="../../../source/app/ace/ace.cbp" />
-			<Depends filename="../../../operating-system/operating-system-linux/app/app.cbp" />
+			<Depends filename="../../../operating_system/operating_system-linux/app/app.cbp" />
 			<Depends filename="../../../source/app-core/flag/flag.cbp" />
 			<Depends filename="../../../source/app-core/hellomultiverse/hellomultiverse.cbp" />
 		</Project>
 		<Project filename="../../../source/app-core/flag/flag.cbp">
-			<Depends filename="../../../operating-system/operating-system-linux/app/app.cbp" />
+			<Depends filename="../../../operating_system/operating_system-linux/app/app.cbp" />
 			<Depends filename="../../../source/app-core/hellomultiverse/hellomultiverse.cbp" />
 			<Depends filename="../../../source/app/aura/aura.cbp" />
 			<Depends filename="../../../source/app/axis/axis.cbp" />
@@ -153,7 +153,7 @@
 		<Project filename="../../../source/app-core/audio_decode_youtube_player_api_for_iframe/audio_decode_youtube_player_api_for_iframe.cbp">
 			<Depends filename="../../../source/app-core/youtube/youtube.cbp" />
 		</Project>
-		<Project filename="../../../operating-system/operating-system-linux/audio_alsa/audio_alsa.cbp">
+		<Project filename="../../../operating_system/operating_system-linux/audio_alsa/audio_alsa.cbp">
 			<Depends filename="../../../source/app/base/base.cbp" />
 			<Depends filename="../../../source/app/aura/aura.cbp" />
 			<Depends filename="../../../source/app-core/multimedia/multimedia.cbp" />
@@ -203,7 +203,7 @@
 			<Depends filename="../../../source/app-core/id3lib/id3lib.cbp" />
 			<Depends filename="../../../source/app/aura/aura.cbp" />
 		</Project>
-		<Project filename="../../../operating-system/operating-system-linux/music_midi_alsa/music_midi_alsa.cbp">
+		<Project filename="../../../operating_system/operating_system-linux/music_midi_alsa/music_midi_alsa.cbp">
 			<Depends filename="../../../source/app-veriwell/multimedia/veriwell_multimedia.cbp" />
 		</Project>
 		<Project filename="../../../source/app/programming/programming.cbp">
@@ -212,10 +212,10 @@
 		</Project>
 		<Project filename="../../../source/app-core/resident/resident.cbp">
 			<Depends filename="../../../source/app-core/announcecom/announcecom.cbp" />
-			<Depends filename="../../../operating-system/operating-system-linux/app/app.cbp" />
+			<Depends filename="../../../operating_system/operating_system-linux/app/app.cbp" />
 			<Depends filename="../../../source/app-veriwell/audio_decode_libmpg123/audio_decode_libmpg123.cbp" />
 			<Depends filename="../../../source/app-core/audio_decode_wave/audio_decode_wave.cbp" />
-			<Depends filename="../../../operating-system/operating-system-linux/audio_alsa/audio_alsa.cbp" />
+			<Depends filename="../../../operating_system/operating_system-linux/audio_alsa/audio_alsa.cbp" />
 			<Depends filename="../../../source/app/aura/aura.cbp" />
 			<Depends filename="../../../source/app/axis/axis.cbp" />
 			<Depends filename="../../../source/app/base/base.cbp" />
