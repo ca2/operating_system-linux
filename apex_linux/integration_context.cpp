@@ -171,9 +171,16 @@ namespace apex_linux
       int context::command_system(const ::scoped_string &scopedstrCommand)
       {
 
-         int iExitCode = 0;
+         auto functionTrace = [&](auto etracelevel, auto & str)
+         {
 
-         acmenode()->command_system(m_straOutput, iExitCode, scopedstrCommand, e_command_system_inline_log);
+            m_straOutput.add_trace(etracelevel, str);
+
+            ::std_inline_log()(etracelevel, str);
+
+         };
+
+         auto iExitCode = acmenode()->command_system(scopedstrCommand, functionTrace);
 
          return iExitCode;
 
