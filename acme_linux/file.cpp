@@ -107,7 +107,7 @@ namespace acme_linux
 
       auto eopen = openParam;
 
-      ASSERT(__is_valid_string(pszFileName));
+      ASSERT(is_string_ok(pszFileName));
 
       // file objects are always binary and CreateFile does not need flag
       eopen -= ::file::e_open_binary;
@@ -278,7 +278,7 @@ namespace acme_linux
 
       ASSERT(pdata != nullptr);
 
-      ASSERT(__is_valid_address(pdata, nCount));
+      ASSERT(is_memory_segment_ok(pdata, nCount));
 
 //      if(m_iPutCharacter >= 0)
 //      {
@@ -349,7 +349,7 @@ namespace acme_linux
 
       ASSERT(pdata != nullptr);
 
-      ASSERT(__is_valid_address(pdata, nCount, false));
+      ASSERT(is_memory_segment_ok(pdata, nCount, false));
 
       memsize pos = 0;
 
