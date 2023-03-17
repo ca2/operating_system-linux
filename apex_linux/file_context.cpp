@@ -51,7 +51,7 @@ namespace apex_linux
    }
 
 
-   file_pointer file_context::get_file(const ::payload & varFile, const ::file::e_open & eopen)
+   file_pointer file_context::get_file(const ::payload & varFile, ::file::e_open eopen)
    {
 
       return ::file_context::get_file(varFile, eopen);

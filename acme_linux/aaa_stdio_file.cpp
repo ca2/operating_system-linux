@@ -27,7 +27,7 @@ namespace acme_linux
    }
 
 
-   void stdio_file::open(const ::file::path & path, const ::file::e_open & eopen)
+   void stdio_file::open(const ::file::path & path, ::file::e_open eopen)
    {
 
       if(path.is_empty())

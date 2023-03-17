@@ -26,7 +26,7 @@ namespace apex_linux
       void init_context() override;
 
 
-      file_pointer get_file(const ::payload & varFile, const ::file::e_open & eopen) override;
+      file_pointer get_file(const ::payload & varFile, ::file::e_open eopen) override;
 
 
       //virtual bool is_link(string strPath) override;

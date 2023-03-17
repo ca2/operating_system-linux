@@ -24,7 +24,7 @@ namespace acme_linux
       // void dump(dump_context & dumpcontext) const override;
 
 
-      void open(const ::file::path & pszFileName, const ::file::e_open & eopen) override;
+      void open(const ::file::path & pszFileName, ::file::e_open eopen) override;
 
       filesize get_position() const override;
 
