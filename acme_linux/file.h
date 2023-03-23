@@ -72,7 +72,7 @@ namespace acme_linux
       virtual void SetFilePath(const char * pszNewName);
 
 
-      virtual void open(const ::file::path & pszFileName, ::file::e_open eopen) override;
+      void open(const ::file::path & pszFileName, ::file::e_open eopen, ::pointer < ::file::exception > * ppfilexception) override;
 
 
       //virtual bool PASCAL GetStatus(const char * pszFileName, ::file::file_status& rStatus);
