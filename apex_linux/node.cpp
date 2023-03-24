@@ -122,62 +122,64 @@ namespace apex_linux
    void node::on_create_app_shortcut(::acme::application * papplication)
    {
 
-      string strAppName;
+      defer_create_app_shortcut(papplication);
 
-      if (papplication->m_strAppName.has_char())
-      {
-
-         strAppName = m_strAppName;
-
-      }
-      else
-      {
-
-         string strAppIdUnderscore = papplication->m_strAppId;
-
-         strAppIdUnderscore.find_replace("/", "_");
-
-         strAppIdUnderscore.find_replace("-", "_");
-
-         strAppName = strAppIdUnderscore;
-
-      }
-
-      string strRoot = papplication->m_strAppId.left(papplication->m_strAppId.find('/'));
-
-      //auto pathCreatedShortcut = acmedirectory()->roaming() / m_strAppId / "created_shortcut.txt";
-
-      ::file::path pathShortcut;
-
-      pathShortcut = acmedirectory()->roaming() / "Microsoft/Windows/Start Menu/Programs" / strRoot / (strAppName + ".lnk");
-
-      auto path = acmefile()->module();
-
-      ::file::path pathTarget;
-      ::file::path pathIcon;
-      int iIcon = -1;
-
-      auto plink = acmenode()->m_papexnode->resolve_link(pathShortcut);
-
-      // Enough condition to create shortcut
-      bool bEnoughCondition1 = !plink;
-      bool bEnoughCondition2 = !(plink->m_elink &::file::e_link_target);
-      bool bEnoughCondition3 = !acmepath()->final_is_same(plink->m_pathTarget, path);
-      bool bEnoughCondition4 = !(plink->m_elink & ::file::e_link_icon);
-      bool bEnoughCondition5 = plink->m_pathIcon.trimmed().is_empty() || !acmefile()->exists(plink->m_pathIcon);
-
-      //if (!acmefile()->exists(pathCreatedShortcut)
-      if (bEnoughCondition1
-         || bEnoughCondition2
-         || bEnoughCondition3
-         || bEnoughCondition4
-         || bEnoughCondition5
-         )
-      {
-
-         create_app_shortcut();
-
-      }
+//      string strAppName;
+//
+//      if (papplication->m_strAppName.has_char())
+//      {
+//
+//         strAppName = m_strAppName;
+//
+//      }
+//      else
+//      {
+//
+//         string strAppIdUnderscore = papplication->m_strAppId;
+//
+//         strAppIdUnderscore.find_replace("/", "_");
+//
+//         strAppIdUnderscore.find_replace("-", "_");
+//
+//         strAppName = strAppIdUnderscore;
+//
+//      }
+//
+//      string strRoot = papplication->m_strAppId.left(papplication->m_strAppId.find('/'));
+//
+//      //auto pathCreatedShortcut = acmedirectory()->roaming() / m_strAppId / "created_shortcut.txt";
+//
+//      ::file::path pathShortcut;
+//
+//      pathShortcut = acmedirectory()->roaming() / "Microsoft/Windows/Start Menu/Programs" / strRoot / (strAppName + ".lnk");
+//
+//      auto path = acmefile()->module();
+//
+//      ::file::path pathTarget;
+//      ::file::path pathIcon;
+//      int iIcon = -1;
+//
+//      auto plink = acmenode()->m_papexnode->resolve_link(pathShortcut);
+//
+//      // Enough condition to create shortcut
+//      bool bEnoughCondition1 = !plink;
+//      bool bEnoughCondition2 = !(plink->m_elink &::file::e_link_target);
+//      bool bEnoughCondition3 = !acmepath()->final_is_same(plink->m_pathTarget, path);
+//      bool bEnoughCondition4 = !(plink->m_elink & ::file::e_link_icon);
+//      bool bEnoughCondition5 = plink->m_pathIcon.trimmed().is_empty() || !acmefile()->exists(plink->m_pathIcon);
+//
+//      //if (!acmefile()->exists(pathCreatedShortcut)
+//      if (bEnoughCondition1
+//         || bEnoughCondition2
+//         || bEnoughCondition3
+//         || bEnoughCondition4
+//         || bEnoughCondition5
+//         )
+//      {
+//
+//         create_app_shortcut();
+//
+//      }
 
    }
 

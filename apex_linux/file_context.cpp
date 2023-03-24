@@ -51,10 +51,10 @@ namespace apex_linux
    }
 
 
-   file_pointer file_context::get_file(const ::payload & varFile, ::file::e_open eopen)
+   file_pointer file_context::get_file(const ::payload & varFile, ::file::e_open eopen, ::pointer < ::file::exception > * ppfileexception)
    {
 
-      return ::file_context::get_file(varFile, eopen);
+      return ::file_context::get_file(varFile, eopen, ppfileexception);
 
    }
 

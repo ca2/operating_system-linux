@@ -23,7 +23,7 @@ __FACTORY_EXPORT void acme_linux_factory(::factory::factory * pfactory)
    pfactory->add_factory_item < ::acme_linux::acme_path, ::acme_path >();
 
    pfactory->add_factory_item < ::acme_linux::console, ::console::console >();
-   pfactory->add_factory_item < ::acme_linux::file, ::file::file >();
+   //pfactory->add_factory_item < ::acme_linux::file, ::file::file >();
    //pfactory->add_factory_item < ::linux::stdio_file, ::file::file >();
    //pfactory->add_factory_item < ::linux::stdio_file, ::file::text_file >();
 

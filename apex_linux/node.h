@@ -45,6 +45,9 @@ namespace apex_linux
       void integration_factory() override;
 
 
+      void on_create_app_shortcut(::acme::application * papplication) override;
+
+
    };
 
 
