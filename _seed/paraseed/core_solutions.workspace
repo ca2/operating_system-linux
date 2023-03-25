@@ -22,7 +22,7 @@
 			<Depends filename="../../../source/app/ace/ace.cbp" />
 			<Depends filename="../../../operating_system/operating_system-linux/app/app.cbp" />
 			<Depends filename="../../../source/app-veriwell/audio_decode_libmpg123/audio_decode_libmpg123.cbp" />
-			<Depends filename="../../../source/app-core/audio_decode_wave/audio_decode_wave.cbp" />
+			<Depends filename="../../../source/audio/audio_decode_wave/audio_decode_wave.cbp" />
 			<Depends filename="../../../operating_system/operating_system-linux/audio_alsa/audio_alsa.cbp" />
 			<Depends filename="../../../source/app/aura/aura.cbp" />
 			<Depends filename="../../../source/app/axis/axis.cbp" />
@@ -40,7 +40,7 @@
 			<Depends filename="../../../source/app-cidadedecuritiba/alphaclock/alphaclock.cbp" />
 			<Depends filename="../../../source/app-core/flag/flag.cbp" />
 			<Depends filename="../../../source/app-veriwell/audio_decode_libmpg123/audio_decode_libmpg123.cbp" />
-			<Depends filename="../../../source/app-core/audio_decode_wave/audio_decode_wave.cbp" />
+			<Depends filename="../../../source/audio/audio_decode_wave/audio_decode_wave.cbp" />
 			<Depends filename="../../../operating_system/operating_system-linux/audio_alsa/audio_alsa.cbp" />
 			<Depends filename="../../../source/app/draw2d_cairo/draw2d_cairo.cbp" />
 			<Depends filename="../../../source/app/experience_core/experience_core.cbp" />
@@ -48,20 +48,20 @@
 		<Project filename="../../../source/app-core/auraclick/auraclick.cbp">
 			<Depends filename="../../../operating_system/operating_system-linux/app/app.cbp" />
 			<Depends filename="../../../source/app-veriwell/audio_decode_libmpg123/audio_decode_libmpg123.cbp" />
-			<Depends filename="../../../source/app-core/audio_decode_wave/audio_decode_wave.cbp" />
+			<Depends filename="../../../source/audio/audio_decode_wave/audio_decode_wave.cbp" />
 			<Depends filename="../../../operating_system/operating_system-linux/audio_alsa/audio_alsa.cbp" />
 			<Depends filename="../../../source/app/draw2d_cairo/draw2d_cairo.cbp" />
 			<Depends filename="../../../source/app-core/multimedia/multimedia.cbp" />
 		</Project>
 		<Project filename="../../../source/app-core/auratype/auratype.cbp">
 			<Depends filename="../../../operating_system/operating_system-linux/app/app.cbp" />
-			<Depends filename="../../../source/app-core/audio_decode_wave/audio_decode_wave.cbp" />
+			<Depends filename="../../../source/audio/audio_decode_wave/audio_decode_wave.cbp" />
 			<Depends filename="../../../operating_system/operating_system-linux/audio_alsa/audio_alsa.cbp" />
 			<Depends filename="../../../source/app-core/multimedia/multimedia.cbp" />
 		</Project>
 		<Project filename="../../../source/app-core/chronometer/chronometer.cbp">
 			<Depends filename="../../../source/app-veriwell/audio_decode_libmpg123/audio_decode_libmpg123.cbp" />
-			<Depends filename="../../../source/app-core/audio_decode_wave/audio_decode_wave.cbp" />
+			<Depends filename="../../../source/audio/audio_decode_wave/audio_decode_wave.cbp" />
 			<Depends filename="../../../operating_system/operating_system-linux/audio_alsa/audio_alsa.cbp" />
 			<Depends filename="../../../source/app/draw2d_cairo/draw2d_cairo.cbp" />
 			<Depends filename="../../../source/app-core/multimedia/multimedia.cbp" />
@@ -85,7 +85,7 @@
 		<Project filename="../../../source/app-veriwell/waven/waven.cbp">
 			<Depends filename="../../../source/app-veriwell/asciimedia/asciimedia.cbp" />
 			<Depends filename="../../../source/app-veriwell/audio_decode_libmpg123/audio_decode_libmpg123.cbp" />
-			<Depends filename="../../../source/app-core/audio_decode_wave/audio_decode_wave.cbp" />
+			<Depends filename="../../../source/audio/audio_decode_wave/audio_decode_wave.cbp" />
 			<Depends filename="../../../operating_system/operating_system-linux/audio_alsa/audio_alsa.cbp" />
 			<Depends filename="../../../source/app/draw2d_cairo/draw2d_cairo.cbp" />
 			<Depends filename="../../../source/app/experience_anthill/experience_anthill.cbp" />
@@ -147,10 +147,10 @@
 			<Depends filename="../../../source/app/aura/aura.cbp" />
 			<Depends filename="../../../source/app-core/multimedia/multimedia.cbp" />
 		</Project>
-		<Project filename="../../../source/app-core/audio_decode_wave/audio_decode_wave.cbp">
+		<Project filename="../../../source/audio/audio_decode_wave/audio_decode_wave.cbp">
 			<Depends filename="../../../source/app-core/multimedia/multimedia.cbp" />
 		</Project>
-		<Project filename="../../../source/app-core/audio_decode_youtube_player_api_for_iframe/audio_decode_youtube_player_api_for_iframe.cbp">
+		<Project filename="../../../source/audio/audio_decode_youtube_player_api_for_iframe/audio_decode_youtube_player_api_for_iframe.cbp">
 			<Depends filename="../../../source/app-core/youtube/youtube.cbp" />
 		</Project>
 		<Project filename="../../../operating_system/operating_system-linux/audio_alsa/audio_alsa.cbp">
@@ -214,7 +214,7 @@
 			<Depends filename="../../../source/app-core/announcecom/announcecom.cbp" />
 			<Depends filename="../../../operating_system/operating_system-linux/app/app.cbp" />
 			<Depends filename="../../../source/app-veriwell/audio_decode_libmpg123/audio_decode_libmpg123.cbp" />
-			<Depends filename="../../../source/app-core/audio_decode_wave/audio_decode_wave.cbp" />
+			<Depends filename="../../../source/audio/audio_decode_wave/audio_decode_wave.cbp" />
 			<Depends filename="../../../operating_system/operating_system-linux/audio_alsa/audio_alsa.cbp" />
 			<Depends filename="../../../source/app/aura/aura.cbp" />
 			<Depends filename="../../../source/app/axis/axis.cbp" />

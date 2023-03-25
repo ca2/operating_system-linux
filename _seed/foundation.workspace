@@ -12,8 +12,8 @@
 			<Depends filename="../app/app.cbp" />
 			<Depends filename="../../../source/app/aqua/aqua.cbp" />
 			<Depends filename="../../../source/app-veriwell/audio_decode_libmpg123/audio_decode_libmpg123.cbp" />
-			<Depends filename="../../../source/app-core/audio_decode_wave/audio_decode_wave.cbp" />
-			<Depends filename="../../../source/app-core/audio/audio.cbp" />
+			<Depends filename="../../../source/audio/audio_decode_wave/audio_decode_wave.cbp" />
+			<Depends filename="../../../source/audio/audio/audio.cbp" />
 			<Depends filename="../audio_alsa/audio_alsa.cbp" />
 			<Depends filename="../../../source/app/aura/aura.cbp" />
 			<Depends filename="../../../source/app/axis/axis.cbp" />
@@ -44,8 +44,8 @@
 			<Depends filename="../../../source/app/apex/apex.cbp" />
 			<Depends filename="../../../source/app/aqua/aqua.cbp" />
 			<Depends filename="../../../source/app-veriwell/audio_decode_libmpg123/audio_decode_libmpg123.cbp" />
-			<Depends filename="../../../source/app-core/audio_decode_wave/audio_decode_wave.cbp" />
-			<Depends filename="../../../source/app-core/audio/audio.cbp" />
+			<Depends filename="../../../source/audio/audio_decode_wave/audio_decode_wave.cbp" />
+			<Depends filename="../../../source/audio/audio/audio.cbp" />
 			<Depends filename="../audio_alsa/audio_alsa.cbp" />
 			<Depends filename="../../../source/app/aura/aura.cbp" />
 			<Depends filename="../../../source/app/axis/axis.cbp" />
@@ -71,10 +71,10 @@
 			<Depends filename="../../../source/app-core/multimedia/multimedia.cbp" />
 			<Depends filename="../../../source/app-veriwell/multimedia/veriwell_multimedia.cbp" />
 		</Project>
-		<Project filename="../../../source/app-core/audio_decode_wave/audio_decode_wave.cbp">
+		<Project filename="../../../source/audio/audio_decode_wave/audio_decode_wave.cbp">
 			<Depends filename="../../../source/app-core/multimedia/multimedia.cbp" />
 		</Project>
-		<Project filename="../../../source/app-core/audio/audio.cbp" />
+		<Project filename="../../../source/audio/audio/audio.cbp" />
 		<Project filename="../audio_alsa/audio_alsa.cbp" />
 		<Project filename="../../../source/app/aura/aura.cbp" />
 		<Project filename="../../../source/app/axis/axis.cbp">
