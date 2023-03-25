@@ -8,7 +8,7 @@
 		<Project filename="../app/app.cbp">
 			<Depends filename="../../../source/app/aura/aura.cbp" />
 		</Project>
-		<Project filename="../../../source/audio/audioaura/audioaura.cbp">
+		<Project filename="../../../source/app-core/audioaura/audioaura.cbp">
 			<Depends filename="../../../source/app/acme/acme.cbp" />
 			<Depends filename="../../../source/app/apex/apex.cbp" />
 			<Depends filename="../app/app.cbp" />

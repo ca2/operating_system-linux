@@ -7,7 +7,7 @@
 		<Project filename="../../../source/app-cidadedecuritiba/alphaclock/alphaclock.cbp">
 			<Depends filename="../../../source/app-core/flag/flag.cbp" />
 		</Project>
-		<Project filename="../../../source/audio/audioaura/audioaura.cbp">
+		<Project filename="../../../source/app-core/audioaura/audioaura.cbp">
 			<Depends filename="../app/app.cbp" />
 			<Depends filename="../../../source/audio/audio/audio.cbp" />
 			<Depends filename="../../../source/app-veriwell/audio_decode_libmpg123/audio_decode_libmpg123.cbp" />
