@@ -30,7 +30,7 @@
 #endif
 
 
-//#ifdef RASPBIAN
+//#ifdef RASPBERRYPIOS
 //#pragma pack(4)
 //#endif
 
@@ -38,7 +38,7 @@
 #define c_cdecl
 
 
-#ifdef RASPBIAN
+#ifdef RASPBERRYPIOS
 #define BROAD_PRECOMPILED_HEADER 0
 #else
 #define BROAD_PRECOMPILED_HEADER 1

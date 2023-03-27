@@ -136,7 +136,7 @@ namespace node_xfce
 
       //}
 
-#elif defined(LINUX) && !defined(RASPBIAN)
+#elif defined(LINUX) && !defined(RASPBERRYPIOS)
 
       {
 
@@ -374,7 +374,7 @@ namespace node_xfce
 //      return true;
 //
 //
-//#elif defined(LINUX) && !defined(RASPBIAN)
+//#elif defined(LINUX) && !defined(RASPBERRYPIOS)
 //
 //      if(m_pindicator)
 //      {

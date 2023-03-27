@@ -11,7 +11,7 @@
 #include "apex/platform/system.h"
 #undef USE_MISC
 
-#ifdef RASPBIAN
+#ifdef RASPBERRYPIOS
 #include <sys/types.h>
 #include <unistd.h>
 #endif

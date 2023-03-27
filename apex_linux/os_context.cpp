@@ -17,7 +17,7 @@ i32 daemonize_process(const ::string & _cmd_line, i32 * pprocessId);
 
 
 #include <sys/stat.h>
-
+#include <unistd.h>
 
 
 string empty_get_file_content_type(string)

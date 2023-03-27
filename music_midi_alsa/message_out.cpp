@@ -172,7 +172,7 @@ namespace music
                if(m_prawmidi != nullptr)
                {
 
-                  snd_rawmidi_write(m_prawmidi, m_file.data(), m_file.size());
+                  snd_rawmidi_write(m_prawmidi, m_file.data_begin(), m_file.size());
 
                }
 

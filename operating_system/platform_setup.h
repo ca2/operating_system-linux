@@ -1,6 +1,6 @@
 
 
-//#define RASPBIAN
+//#define RASPBERRYPIOS
 #define __PC
 #define MANJARO
 
