@@ -28,7 +28,7 @@
 		</Project>
 		<Project filename="../../../source/app-core/todo/todo.cbp">
 			<Depends filename="../../../source/app-veriwell/audio_decode_libmpg123/audio_decode_libmpg123.cbp" />
-			<Depends filename="../../../source/app-core/audio_decode_wave/audio_decode_wave.cbp" />
+			<Depends filename="../../../source/audio/audio_decode_wave/audio_decode_wave.cbp" />
 			<Depends filename="../../../source/app/aura/aura.cbp" />
 			<Depends filename="../../../source/app/experience_core/experience_core.cbp" />
 			<Depends filename="../../../source/app-core/gcom/gcom.cbp" />
@@ -39,21 +39,21 @@
 			<Depends filename="../../../source/app-cidadedecuritiba/alphaclock/alphaclock.cbp" />
 			<Depends filename="../../../source/app-core/flag/flag.cbp" />
 			<Depends filename="../../../source/app-veriwell/audio_decode_libmpg123/audio_decode_libmpg123.cbp" />
-			<Depends filename="../../../source/app-core/audio_decode_wave/audio_decode_wave.cbp" />
+			<Depends filename="../../../source/audio/audio_decode_wave/audio_decode_wave.cbp" />
 			<Depends filename="../../../source/app/experience_core/experience_core.cbp" />
 		</Project>
 		<Project filename="../../../source/app-core/auraclick/auraclick.cbp">
 			<Depends filename="../../../source/app-veriwell/audio_decode_libmpg123/audio_decode_libmpg123.cbp" />
-			<Depends filename="../../../source/app-core/audio_decode_wave/audio_decode_wave.cbp" />
+			<Depends filename="../../../source/audio/audio_decode_wave/audio_decode_wave.cbp" />
 			<Depends filename="../../../source/app-core/multimedia/multimedia.cbp" />
 		</Project>
 		<Project filename="../../../source/app-core/auratype/auratype.cbp">
-			<Depends filename="../../../source/app-core/audio_decode_wave/audio_decode_wave.cbp" />
+			<Depends filename="../../../source/audio/audio_decode_wave/audio_decode_wave.cbp" />
 			<Depends filename="../../../source/app-core/multimedia/multimedia.cbp" />
 		</Project>
 		<Project filename="../../../source/app-core/chronometer/chronometer.cbp">
 			<Depends filename="../../../source/app-veriwell/audio_decode_libmpg123/audio_decode_libmpg123.cbp" />
-			<Depends filename="../../../source/app-core/audio_decode_wave/audio_decode_wave.cbp" />
+			<Depends filename="../../../source/audio/audio_decode_wave/audio_decode_wave.cbp" />
 			<Depends filename="../../../source/app-core/multimedia/multimedia.cbp" />
 		</Project>
 		<Project filename="../../../source/app-core/timer/timer.cbp">
@@ -63,7 +63,7 @@
 		<Project filename="../../../source/app-veriwell/waven/waven.cbp">
 			<Depends filename="../../../source/app-veriwell/asciimedia/asciimedia.cbp" />
 			<Depends filename="../../../source/app-veriwell/audio_decode_libmpg123/audio_decode_libmpg123.cbp" />
-			<Depends filename="../../../source/app-core/audio_decode_wave/audio_decode_wave.cbp" />
+			<Depends filename="../../../source/audio/audio_decode_wave/audio_decode_wave.cbp" />
 			<Depends filename="../../../source/app/experience_anthill/experience_anthill.cbp" />
 			<Depends filename="../../../source/app-core/resident/resident.cbp" />
 			<Depends filename="../../../source/app-veriwell/multimedia/veriwell_multimedia.cbp" />
@@ -97,17 +97,17 @@
 			<Depends filename="../../../source/app-veriwell/veriwell/veriwell.cbp" />
 			<Depends filename="../../../source/app-veriwell/multimedia/veriwell_multimedia.cbp" />
 		</Project>
-		<Project filename="../../../source/app-core/audio/audio.cbp" />
+		<Project filename="../../../source/audio/audio/audio.cbp" />
 		<Project filename="../audio_alsa/audio_alsa.cbp" />
 		<Project filename="../../../source/app-veriwell/audio_decode_libmpg123/audio_decode_libmpg123.cbp">
-			<Depends filename="../../../source/app-core/audio/audio.cbp" />
+			<Depends filename="../../../source/audio/audio/audio.cbp" />
 			<Depends filename="../../../source/app/aura/aura.cbp" />
 			<Depends filename="../../../source/app-core/multimedia/multimedia.cbp" />
 		</Project>
-		<Project filename="../../../source/app-core/audio_decode_wave/audio_decode_wave.cbp">
+		<Project filename="../../../source/audio/audio_decode_wave/audio_decode_wave.cbp">
 			<Depends filename="../../../source/app-core/multimedia/multimedia.cbp" />
 		</Project>
-		<Project filename="../../../source/app-core/audio_decode_youtube_player_api_for_iframe/audio_decode_youtube_player_api_for_iframe.cbp">
+		<Project filename="../../../source/audio/audio_decode_youtube_player_api_for_iframe/audio_decode_youtube_player_api_for_iframe.cbp">
 			<Depends filename="../../../source/app-core/youtube/youtube.cbp" />
 		</Project>
 		<Project filename="../../../source/app/aura/aura.cbp" />
@@ -129,7 +129,7 @@
 		<Project filename="../../../source/app-core/resident/resident.cbp">
 			<Depends filename="../../../source/app-core/announcecom/announcecom.cbp" />
 			<Depends filename="../../../source/app-veriwell/audio_decode_libmpg123/audio_decode_libmpg123.cbp" />
-			<Depends filename="../../../source/app-core/audio_decode_wave/audio_decode_wave.cbp" />
+			<Depends filename="../../../source/audio/audio_decode_wave/audio_decode_wave.cbp" />
 			<Depends filename="../../../source/app/aura/aura.cbp" />
 			<Depends filename="../../../source/app/experience_core/experience_core.cbp" />
 			<Depends filename="../../../source/app-core/multimedia/multimedia.cbp" />
