@@ -22,7 +22,7 @@
 		</Project>
 		<Project filename="../../../source/app-core/auraverse/auraverse.cbp">
 			<Depends filename="../app/app.cbp" />
-			<Depends filename="../../../source/app-core/audio_decode_wave/audio_decode_wave.cbp" />
+			<Depends filename="../../../source/audio/audio_decode_wave/audio_decode_wave.cbp" />
 			<Depends filename="../../audio_alsa/audio_alsa.cbp" />
 			<Depends filename="../../../source/app/draw2d_cairo/draw2d_cairo.cbp" />
 			<Depends filename="../../../source/app/axis/html_lite/html_lite.cbp" />
@@ -94,7 +94,7 @@
 			<Depends filename="../../../source/app/draw2d_cairo/draw2d_cairo.cbp" />
 			<Depends filename="../../../source/app-core/wndfrm_core/wndfrm_core.cbp" />
 		</Project>
-		<Project filename="../../../source/app-core/audio_decode_wave/audio_decode_wave.cbp">
+		<Project filename="../../../source/audio/audio_decode_wave/audio_decode_wave.cbp">
 			<Depends filename="../../../source/app-core/multimedia/multimedia.cbp" />
 		</Project>
 		<Project filename="../../audio_alsa/audio_alsa.cbp">

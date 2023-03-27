@@ -65,11 +65,11 @@
 			<Depends filename="../../../source/app-core/multimedia/multimedia.cbp" />
 			<Depends filename="../../../source/app-veriwell/multimedia/veriwell_multimedia.cbp" />
 		</Project>
-		<Project filename="../../../source/app-core/audio_decode_spotify/audio_decode_spotify.cbp">
+		<Project filename="../../../source/audio/audio_decode_spotify/audio_decode_spotify.cbp">
 			<Depends filename="../../../source/app-core/multimedia/multimedia.cbp" />
 			<Depends filename="../../../source/app-core/multimedia_playlist_spotify/multimedia_playlist_spotify.cbp" />
 		</Project>
-		<Project filename="../../../source/app-core/audio_decode_wave/audio_decode_wave.cbp">
+		<Project filename="../../../source/audio/audio_decode_wave/audio_decode_wave.cbp">
 			<Depends filename="../../../source/app-core/multimedia/multimedia.cbp" />
 		</Project>
 		<Project filename="../../audio_alsa/audio_alsa.cbp">
@@ -123,7 +123,7 @@
 		</Project>
 		<Project filename="../../../source/app-core/tesseract/tesseract.cbp">
 			<Depends filename="../../../source/app-veriwell/audio_decode_libmpg123/audio_decode_libmpg123.cbp" />
-			<Depends filename="../../../source/app-core/audio_decode_wave/audio_decode_wave.cbp" />
+			<Depends filename="../../../source/audio/audio_decode_wave/audio_decode_wave.cbp" />
 			<Depends filename="../../audio_alsa/audio_alsa.cbp" />
 			<Depends filename="../../../source/app-core/id3lib/id3lib.cbp" />
 			<Depends filename="../../../source/app-core/multimedia/multimedia.cbp" />

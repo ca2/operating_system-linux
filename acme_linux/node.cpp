@@ -9,6 +9,9 @@
 #include  "acme/operating_system/ansi/_pthread.h"
 
 
+#include <unistd.h>
+
+
 ::user::enum_desktop _calculate_edesktop();
 ::user::enum_desktop _get_edesktop();
 

@@ -136,7 +136,7 @@ namespace node_gnome
 
       //}
 
-#elif defined(LINUX) && !defined(RASPBIAN)
+#elif defined(LINUX) && !defined(RASPBERRYPIOS)
 
       {
 
@@ -374,7 +374,7 @@ namespace node_gnome
 //      return true;
 //
 //
-//#elif defined(LINUX) && !defined(RASPBIAN)
+//#elif defined(LINUX) && !defined(RASPBERRYPIOS)
 //
 //      if(m_pindicator)
 //      {

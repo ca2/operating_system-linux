@@ -29,7 +29,7 @@
 		</Project>
 		<Project filename="../../../mnt/ubuntu1/ca2/app-core/auraverse/auraverse.cbp">
 			<Depends filename="../../../mnt/ubuntu1/ca2/platform/app/app.cbp" />
-			<Depends filename="../../../mnt/ubuntu1/ca2/app-core/audio_decode_wave/audio_decode_wave.cbp" />
+			<Depends filename="../../../mnt/ubuntu1/ca2/audio/audio_decode_wave/audio_decode_wave.cbp" />
 			<Depends filename="../../../mnt/ubuntu1/ca2/platform/audio_alsa/audio_alsa.cbp" />
 			<Depends filename="../../../mnt/ubuntu1/ca2/app/draw2d_cairo/draw2d_cairo.cbp" />
 			<Depends filename="../../../mnt/ubuntu1/ca2/app/axis/html_lite/html_lite.cbp" />
@@ -164,7 +164,7 @@
 			<Depends filename="../../../mnt/ubuntu1/ca2/platform/app/app.cbp" />
 			<Depends filename="../../../mnt/ubuntu1/ca2/app-veriwell/asciimedia/asciimedia.cbp" />
 			<Depends filename="../../../mnt/ubuntu1/ca2/app-veriwell/audio_decode_libmpg123/audio_decode_libmpg123.cbp" />
-			<Depends filename="../../../mnt/ubuntu1/ca2/app-core/audio_decode_spotify/audio_decode_spotify.cbp" />
+			<Depends filename="../../../mnt/ubuntu1/ca2/audio/audio_decode_spotify/audio_decode_spotify.cbp" />
 			<Depends filename="../../../mnt/ubuntu1/ca2/platform/audio_alsa/audio_alsa.cbp" />
 			<Depends filename="../../../mnt/ubuntu1/ca2/app/axis/image_jpeg/axis_image_jpeg.cbp" />
 			<Depends filename="../../../mnt/ubuntu1/ca2/app/axis/image_png/axis_image_png.cbp" />
@@ -185,10 +185,10 @@
 			<Depends filename="../../../mnt/ubuntu1/ca2/app-core/multimedia/multimedia.cbp" />
 			<Depends filename="../../../mnt/ubuntu1/ca2/app-veriwell/multimedia/veriwell_multimedia.cbp" />
 		</Project>
-		<Project filename="../../../mnt/ubuntu1/ca2/app-core/audio_decode_spotify/audio_decode_spotify.cbp">
+		<Project filename="../../../mnt/ubuntu1/ca2/audio/audio_decode_spotify/audio_decode_spotify.cbp">
 			<Depends filename="../../../mnt/ubuntu1/ca2/app-core/multimedia/multimedia.cbp" />
 		</Project>
-		<Project filename="../../../mnt/ubuntu1/ca2/app-core/audio_decode_wave/audio_decode_wave.cbp">
+		<Project filename="../../../mnt/ubuntu1/ca2/audio/audio_decode_wave/audio_decode_wave.cbp">
 			<Depends filename="../../../mnt/ubuntu1/ca2/app-core/multimedia/multimedia.cbp" />
 		</Project>
 		<Project filename="../../../mnt/ubuntu1/ca2/platform/audio_alsa/audio_alsa.cbp">
@@ -305,7 +305,7 @@
 		</Project>
 		<Project filename="../../../mnt/ubuntu1/ca2/game/pacman/pacman.cbp">
 			<Depends filename="../../../mnt/ubuntu1/ca2/app-core/hellomultiverse/hellomultiverse.cbp" />
-			<Depends filename="../../../mnt/ubuntu1/ca2/app-core/audio_decode_wave/audio_decode_wave.cbp" />
+			<Depends filename="../../../mnt/ubuntu1/ca2/audio/audio_decode_wave/audio_decode_wave.cbp" />
 			<Depends filename="../../../mnt/ubuntu1/ca2/platform/audio_alsa/audio_alsa.cbp" />
 			<Depends filename="../../../mnt/ubuntu1/ca2/app/atom/iconv/atomiconv.cbp" />
 			<Depends filename="../../../mnt/ubuntu1/ca2/app/aura/aura.cbp" />
