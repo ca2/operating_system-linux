@@ -126,7 +126,7 @@ namespace acme_linux
    string acme_directory::system_short_name()
    {
 
-   #ifdef _UWP
+   #ifdef UNIVERSAL_WINDOWS
 
       return "metro";
 
@@ -153,7 +153,7 @@ namespace acme_linux
    }
 
 
-   #ifdef _UWP
+   #ifdef UNIVERSAL_WINDOWS
 
 
    ::file::path acme_directory::app_relative()
@@ -419,7 +419,7 @@ namespace acme_linux
 //   #endif
 
 
-   #if defined(_UWP) || defined(__APPLE__) || defined(LINUX) || defined(ANDROID)
+   #if defined(UNIVERSAL_WINDOWS) || defined(__APPLE__) || defined(LINUX) || defined(ANDROID)
 
 
 //   ::file::path acme_directory::bookmark()
@@ -437,7 +437,7 @@ namespace acme_linux
    #endif
 
 
-   #ifdef _UWP
+   #ifdef UNIVERSAL_WINDOWS
 
 
    ::file::path acme_directory::home()

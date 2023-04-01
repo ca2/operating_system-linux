@@ -89,7 +89,7 @@ namespace apex_linux
    void app_launcher::run()
    {
 
-//#ifdef _UWP
+//#ifdef UNIVERSAL_WINDOWS
 //
 //      //return false;
 //

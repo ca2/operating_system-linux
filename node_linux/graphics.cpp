@@ -7133,7 +7133,7 @@ namespace draw2d_gdiplus
          {
 
             ::image_pointer pimage1;
-            //#ifdef _UWP
+            //#ifdef UNIVERSAL_WINDOWS
             //            g_pimagea.add(pimage1);
             //#endif
 
