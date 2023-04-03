@@ -110,7 +110,7 @@ namespace node_gnome
 
 #elif defined(MACOS)
 
-      #elif defined(_UWP)
+      #elif defined(UNIVERSAL_WINDOWS)
 
 #elif defined(ANDROID)
 
