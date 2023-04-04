@@ -39,7 +39,8 @@ list(APPEND library_references
    )
 
 
-add_library(audio_mixer_alsa SHARED ${library_source} )
+add_library(${PROJECT_NAME} SHARED ${library_source})
+add_library(static_${PROJECT_NAME} STATIC ${library_source})
 
 
 target_precompile_headers(audio_mixer_alsa PRIVATE framework.h)
@@ -74,15 +75,13 @@ elseif(LINUX OR FREEBSD)
 endif()
 
 
-
 list(APPEND library_include_directories ${CMAKE_CURRENT_SOURCE_DIR})
 list(APPEND library_include_directories ${CMAKE_CURRENT_SOURCE_DIR}/..)
 list(APPEND library_include_directories ${CMAKE_CURRENT_SOURCE_DIR}/../..)
 
+
 target_include_directories(${PROJECT_NAME} PRIVATE ${library_include_directories})
-
-
-
+target_include_directories(static_${PROJECT_NAME} PRIVATE ${library_include_directories})
 
 
 target_compile_definitions(audio_mixer_alsa PRIVATE _AUDIO_MIXER_ALSA_LIBRARY)
