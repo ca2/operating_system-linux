@@ -45,7 +45,7 @@ list(APPEND library_references
         apex_posix)
 
 
-add_library(${PROJECT_NAME} SHARED ${library_source})
+add_library(static_${PROJECT_NAME} STATIC ${library_source})
 
 
 target_precompile_headers(apex_linux PRIVATE framework.h)
