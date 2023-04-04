@@ -49,7 +49,8 @@ add_library(${PROJECT_NAME} SHARED ${library_source})
 add_library(static_${PROJECT_NAME} STATIC ${library_source})
 
 
-target_precompile_headers(apex_linux PRIVATE framework.h)
+target_precompile_headers(${PROJECT_NAME} PRIVATE framework.h)
+target_precompile_headers(static_${PROJECT_NAME} PRIVATE framework.h)
 
 
 set_target_properties(apex_linux PROPERTIES LINKER_LANGUAGE CXX)

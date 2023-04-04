@@ -54,7 +54,8 @@ list(APPEND library_references
 add_library(${PROJECT_NAME} SHARED ${library_source})
 add_library(static_${PROJECT_NAME} STATIC ${library_source})
 
-target_precompile_headers(desktop_environment_xfce PRIVATE framework.h)
+target_precompile_headers(${PROJECT_NAME} PRIVATE framework.h)
+target_precompile_headers(static_${PROJECT_NAME} PRIVATE framework.h)
 
 set_target_properties(desktop_environment_xfce PROPERTIES LINKER_LANGUAGE CXX)
 
@@ -70,7 +71,8 @@ elseif (LINUX)
       pkg_check_modules(PKGCONFIG glib-2.0 gtk+-3.0 gdk-3.0 ${APPINDICATOR_PKG_MODULE})
    endif()
    target_compile_options(desktop_environment_xfce PRIVATE -fpermissive)
-   target_compile_options(desktop_environment_xfce PRIVATE ${PKGCONFIG_CFLAGS})
+   target_compile_options(${PROJECT_NAME} PRIVATE ${PKGCONFIG_CFLAGS})
+target_compile_options(static_${PROJECT_NAME} PRIVATE ${PKGCONFIG_CFLAGS})
    #target_link_options(desktop_environment_xfce PRIVATE -Wl,-rpath=$ORIGIN)
    target_link_libraries(desktop_environment_xfce PRIVATE ${library_references} ${PKGCONFIG_LIBRARIES})
    target_link_options(desktop_environment_xfce PRIVATE -Wl,-z,defs)

@@ -50,7 +50,8 @@ list(APPEND library_references
 
 add_library(desktop_environment_kde SHARED ${library_source} )
 
-target_precompile_headers(desktop_environment_kde PRIVATE framework.h)
+target_precompile_headers(${PROJECT_NAME} PRIVATE framework.h)
+target_precompile_headers(static_${PROJECT_NAME} PRIVATE framework.h)
 
 set_target_properties(desktop_environment_kde PROPERTIES LINKER_LANGUAGE CXX)
 
@@ -66,7 +67,8 @@ elseif (LINUX)
       pkg_check_modules(PKGCONFIG Qt5X11Extras Qt5Core Qt5UiTools)
    endif()
    target_compile_options(desktop_environment_kde PRIVATE -fpermissive)
-   target_compile_options(desktop_environment_kde PRIVATE ${PKGCONFIG_CFLAGS})
+   target_compile_options(${PROJECT_NAME} PRIVATE ${PKGCONFIG_CFLAGS})
+target_compile_options(static_${PROJECT_NAME} PRIVATE ${PKGCONFIG_CFLAGS})
    if(KDE_DESKTOP)
       list(APPEND library_include_directories ${CMAKE_CURRENT_SOURCE_DIR})
 list(APPEND library_include_directories ${CMAKE_CURRENT_SOURCE_DIR}/..)

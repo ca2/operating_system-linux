@@ -32,7 +32,8 @@ list(APPEND library_references
    )
 
 
-target_precompile_headers(aura_linux PRIVATE framework.h)
+target_precompile_headers(${PROJECT_NAME} PRIVATE framework.h)
+target_precompile_headers(static_${PROJECT_NAME} PRIVATE framework.h)
 
 
 set_target_properties(aura_linux PROPERTIES LINKER_LANGUAGE CXX)
