@@ -39,7 +39,8 @@ list(APPEND library_references
    acme_posix)
 
 
-target_precompile_headers(acme_linux PRIVATE framework.h)
+target_precompile_headers(${PROJECT_NAME} PRIVATE framework.h)
+target_precompile_headers(static_${PROJECT_NAME} PRIVATE framework.h)
 
 
 set_target_properties(acme_linux PROPERTIES LINKER_LANGUAGE CXX)

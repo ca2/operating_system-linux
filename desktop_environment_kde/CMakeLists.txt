@@ -48,9 +48,11 @@ list(APPEND library_references
 
 #set_source_files_properties(q_node_impl.cpp PROPERTIES SKIP_PRECOMPILE_HEADERS ON)
 
-add_library(desktop_environment_kde SHARED ${library_source} )
+add_library(${PROJECT_NAME} ${library_source})
+add_library(static_${PROJECT_NAME} STATIC ${library_source})
 
-target_precompile_headers(desktop_environment_kde PRIVATE framework.h)
+target_precompile_headers(${PROJECT_NAME} PRIVATE framework.h)
+target_precompile_headers(static_${PROJECT_NAME} PRIVATE framework.h)
 
 set_target_properties(desktop_environment_kde PROPERTIES LINKER_LANGUAGE CXX)
 

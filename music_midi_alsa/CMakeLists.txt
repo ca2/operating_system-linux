@@ -31,9 +31,11 @@ list(APPEND library_references
    )
 
 
-add_library(music_midi_alsa SHARED ${library_source} )
+add_library(${PROJECT_NAME} ${library_source})
+add_library(static_${PROJECT_NAME} STATIC ${library_source})
 
-target_precompile_headers(music_midi_alsa PRIVATE framework.h)
+target_precompile_headers(${PROJECT_NAME} PRIVATE framework.h)
+target_precompile_headers(static_${PROJECT_NAME} PRIVATE framework.h)
 
 set_target_properties(music_midi_alsa PROPERTIES LINKER_LANGUAGE CXX)
 
