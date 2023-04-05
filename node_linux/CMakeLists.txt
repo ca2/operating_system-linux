@@ -45,7 +45,9 @@ elseif(LINUX)
 
 
     target_link_libraries(node_linux PRIVATE z dl pthread ${library_references})
-    target_link_options(node_linux PRIVATE -Wl,-z,defs)
+    target_link_options(${PROJECT_NAME} PRIVATE -Wl,-z,defs)
+    target_link_options(static_${PROJECT_NAME} PRIVATE --whole-archive)
+
 
 
 endif()

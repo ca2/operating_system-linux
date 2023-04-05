@@ -84,7 +84,9 @@ target_include_directories(static_${PROJECT_NAME} PRIVATE ${library_include_dire
    if(KDE_DESKTOP)
       target_link_libraries(desktop_environment_kde PRIVATE KF5::Notifications)
    endif()
-   target_link_options(desktop_environment_kde PRIVATE -Wl,-z,defs)
+   target_link_options(${PROJECT_NAME} PRIVATE -Wl,-z,defs)
+    target_link_options(static_${PROJECT_NAME} PRIVATE --whole-archive)
+
 endif ()
 
 
