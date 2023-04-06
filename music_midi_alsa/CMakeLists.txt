@@ -46,7 +46,13 @@ if (MSVC)
    target_link_options(music_midi_alsa PRIVATE "/SUBSYSTEM:WINDOWS")
    target_link_libraries(music_midi_alsa PRIVATE ${library_references})
 elseif (LINUX)
-   target_compile_options(music_midi_alsa PRIVATE -fpermissive)
+
+
+   target_compile_options(${PROJECT_NAME} PRIVATE -fpermissive)
+   target_compile_options(static_${PROJECT_NAME} PRIVATE -fpermissive)
+   target_compile_definitions(static_${PROJECT_NAME} PRIVATE CUBE)
+
+
    #target_link_options(music_midi_alsa PRIVATE -Wl,-rpath=$ORIGIN)
    target_link_libraries(music_midi_alsa PRIVATE ${library_references})
    target_link_libraries(music_midi_alsa PRIVATE asound)

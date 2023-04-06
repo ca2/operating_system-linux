@@ -29,6 +29,10 @@
 #define _LINUX
 #endif
 
+#ifndef POSIX_PLATFORM
+#define POSIX_PLATFORM
+#endif
+
 
 //#ifdef RASPBERRYPIOS
 //#pragma pack(4)
