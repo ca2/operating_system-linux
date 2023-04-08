@@ -137,7 +137,7 @@ namespace multimedia
 //
 //         rect rect(0, 0, 0, 0);
 //
-//         ::audio_mixer::user::level_control * plevelcontrol = source->get_device()->get_mixer()->get_callback()->allocate_level_control();
+//         ::audio_mixer_user::level_control * plevelcontrol = source->get_device()->get_mixer()->get_callback()->allocate_level_control();
 //         if(plevelcontrol == NULL)
 //            return false;
 //         plevelcontrol->Initialize(pParent, nVolumeID);
@@ -148,7 +148,7 @@ namespace multimedia
 //         mcdvVolume.m_uiControlID = m_mixercontrol.dwControlID;
 //         mcdvVolume.nRange  = nRange;
 //         mcdvVolume.nPageInc = nPageInc;
-//         plevelcontrol->SetOrientation(::audio_mixer::user::level_control::orientation_vertical);
+//         plevelcontrol->SetOrientation(::audio_mixer_user::level_control::orientation_vertical);
 //         plevelcontrol->SetRange(0, mcdvVolume.nRange);
 //         plevelcontrol->SetLineSize(1);
 //         plevelcontrol->SetPageSize(mcdvVolume.nPageInc);
@@ -157,7 +157,7 @@ namespace multimedia
 //
 //
 //         string str;
-//         ::audio_mixer::user::label * plabelVolume = source->get_device()->get_mixer()->get_callback()->allocate_label();
+//         ::audio_mixer_user::label * plabelVolume = source->get_device()->get_mixer()->get_callback()->allocate_label();
 //         if(plabelVolume == NULL)
 //            return false;
 //         plabelVolume->Initialize(pParent, nVolumeLabelID);
@@ -173,7 +173,7 @@ namespace multimedia
 //
 //         if(lcChannels == 2)
 //         {
-//            ::audio_mixer::user::level_control * pcontrol = source->get_device()->get_mixer()->get_callback()->allocate_level_control();
+//            ::audio_mixer_user::level_control * pcontrol = source->get_device()->get_mixer()->get_callback()->allocate_level_control();
 //            if(pcontrol == NULL)
 //               return false;
 //
@@ -186,14 +186,14 @@ namespace multimedia
 //            mcdvBalance.nRange  = nRange;
 //            mcdvBalance.nPageInc = nPageInc;
 //
-//            pcontrol->SetOrientation(::audio_mixer::user::level_control::orientation_horizontal);
+//            pcontrol->SetOrientation(::audio_mixer_user::level_control::orientation_horizontal);
 //            pcontrol->SetRange(0, mcdvBalance.nRange);
 //            pcontrol->SetLineSize(1);
 //            pcontrol->SetPageSize(mcdvBalance.nPageInc);
 //
 //            add(pcontrol);
 //
-//            ::audio_mixer::user::label * plabel = m_pmixersource->get_device()->get_mixer()->get_callback()->allocate_label();
+//            ::audio_mixer_user::label * plabel = m_pmixersource->get_device()->get_mixer()->get_callback()->allocate_label();
 //            if(plabel == NULL)
 //               return false;
 //
@@ -266,7 +266,7 @@ namespace multimedia
 //         for(int32_t iItem = 0; iItem < iItemCount; iItem++)
 //         {
 //            nMuteID = nID++;
-//            ::audio_mixer::user::toggle_control * pbtMute = m_pmixersource->get_device()->get_mixer()->get_callback()->allocate_toggle_control();
+//            ::audio_mixer_user::toggle_control * pbtMute = m_pmixersource->get_device()->get_mixer()->get_callback()->allocate_toggle_control();
 //            pbtMute->Initialize(pParent, nMuteID);
 //            pbtMute->set_label(str);
 //            ::audio_mixer::control_data_switch & mcdmMute = pbtMute->get_data();
@@ -402,12 +402,12 @@ namespace multimedia
 //            ASSERT(cMultipleItems == 1);
 //            if(cChannels == 2)
 //            {
-//               ::audio_mixer::user::level_control * pslVolume =
-//                  (::audio_mixer::user::level_control *)
+//               ::audio_mixer_user::level_control * pslVolume =
+//                  (::audio_mixer_user::level_control *)
 //                  (GetControl(::audio_mixer::control_data::TypeStereoVolume));
 //               ::audio_mixer::control_data_volume * lpmcdVolume = (::audio_mixer::control_data_volume *) GetWindowData(::audio_mixer::control_data::TypeStereoVolume);
-//               ::audio_mixer::user::level_control * pslBalance =
-//                  (::audio_mixer::user::level_control *)
+//               ::audio_mixer_user::level_control * pslBalance =
+//                  (::audio_mixer_user::level_control *)
 //                  (GetControl(::audio_mixer::control_data::TypeStereoBalance));
 //               double dActualBalance = pslBalance->GetPos();
 //
@@ -438,7 +438,7 @@ namespace multimedia
 //            }
 //            else if(cChannels == 1)
 //            {
-//               ::audio_mixer::user::level_control * pslVolume = (::audio_mixer::user::level_control *)
+//               ::audio_mixer_user::level_control * pslVolume = (::audio_mixer_user::level_control *)
 //                  (GetControl(::audio_mixer::control_data::TypeStereoVolume));
 //               ::audio_mixer::control_data_volume * lpmcdVolume = (::audio_mixer::control_data_volume *) GetWindowData(::audio_mixer::control_data::TypeStereoVolume);
 //
@@ -453,7 +453,7 @@ namespace multimedia
 //         {
 //            for(int32_t i = 0; i < this->get_size(); i++)
 //            {
-//               ::audio_mixer::user::toggle_control * pmutecontrol = (::audio_mixer::user::toggle_control *)
+//               ::audio_mixer_user::toggle_control * pmutecontrol = (::audio_mixer_user::toggle_control *)
 //                  GetControlByIndex(i);
 //
 //
@@ -497,7 +497,7 @@ namespace multimedia
       audio_mixer::control * pcontrol = GetControlByDlgCtrlID(lpnmhdr->idFrom);
       if(pcontrol != NULL)
       {
-      //            ::audio_mixer::user::level_control * plevelcontrol = (::audio_mixer::user::level_control *) pcontrol;
+      //            ::audio_mixer_user::level_control * plevelcontrol = (::audio_mixer_user::level_control *) pcontrol;
       /*if(base < CSliderCtrl >::bases(pusercontrol))
       {
       CSliderCtrl * pSlider = (CSliderCtrl *) pusercontrol;
@@ -674,10 +674,10 @@ namespace multimedia
 //            ::audio_mixer::user_control * pcontrol = GetControlByDlgCtrlID((::u32) pParamWnd->GetDlgCtrlId());
 //            if(pcontrol != NULL)
 //            {
-//               ::audio_mixer::user::level_control * pSlider = dynamic_cast<::audio_mixer::user::level_control*>(pcontrol);
+//               ::audio_mixer_user::level_control * pSlider = dynamic_cast<::audio_mixer_user::level_control*>(pcontrol);
 //               if(NULL != pSlider)
 //               {
-//                  //mix::SliderInterface * pSlider = dynamic_cast < ::audio_mixer::user::level_control * > ( pusercontrol);
+//                  //mix::SliderInterface * pSlider = dynamic_cast < ::audio_mixer_user::level_control * > ( pusercontrol);
 //                  ::audio_mixer::control_data * pData;
 //                  if(NULL != (pData = GetWindowDataByDlgCtrlID((::u32) pParamWnd->GetDlgCtrlId())))
 //                  {
@@ -687,19 +687,19 @@ namespace multimedia
 //                     {
 //                        sp(::multimedia::audio_mixer_alsa::source) source = m_pmixersource;
 //                        sp(::multimedia::audio_mixer_alsa::device) device = source->get_device();
-//                        ::audio_mixer::user::level_control * pslBalance;
-//                        ::audio_mixer::user::level_control * pslVolume;
+//                        ::audio_mixer_user::level_control * pslBalance;
+//                        ::audio_mixer_user::level_control * pslVolume;
 //                        if(pData->get_type() == ::audio_mixer::control_data::TypeStereoBalance)
 //                        {
 //                           pslBalance = pSlider;
-//                           pslVolume = dynamic_cast < ::audio_mixer::user::level_control * >
+//                           pslVolume = dynamic_cast < ::audio_mixer_user::level_control * >
 //                              (GetControl(::audio_mixer::control_data::TypeStereoVolume));
 //                           ASSERT(pslVolume != NULL);
 //                        }
 //                        else if(pData->get_type() == ::audio_mixer::control_data::TypeStereoVolume)
 //                        {
 //                           pslVolume = pSlider;
-//                           pslBalance = dynamic_cast < ::audio_mixer::user::level_control * >
+//                           pslBalance = dynamic_cast < ::audio_mixer_user::level_control * >
 //                              ( GetControl(::audio_mixer::control_data::TypeStereoBalance));
 //                           ASSERT(pslVolume != NULL);
 //                        }
@@ -802,8 +802,8 @@ namespace multimedia
 //
 //         ::audio_mixer::user_control * pwnd = GetControlByDlgCtrlID((::u32)wID);
 //
-//         ::audio_mixer::user::toggle_control * pmutecontrol =
-//            dynamic_cast < ::audio_mixer::user::toggle_control  * >
+//         ::audio_mixer_user::toggle_control * pmutecontrol =
+//            dynamic_cast < ::audio_mixer_user::toggle_control  * >
 //            (pwnd);
 //
 //         if(pmutecontrol != NULL)

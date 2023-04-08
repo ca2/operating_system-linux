@@ -34,15 +34,15 @@ namespace audio_mixer_alsa
 
       ~control() override;
 
-      //using ::audio_mixer::user::control_ptr_array::add;
-      virtual iptr add(::audio_mixer::user::control *pcontrol);
+      //using ::audio_mixer_user::control_ptr_array::add;
+      virtual iptr add(::audio_mixer_user::control *pcontrol);
 
       bool control_type(::audio_mixer::e_control econtrol) const;
 
       //bool OnCommand(WPARAM wParam, LPARAM lParam);
       ::pointer<::audio_mixer::control_data> GetWindowDataByDlgCtrlID(::u32 nID);
 
-      ::pointer<::audio_mixer::user::control> GetControlByDlgCtrlID(::u32 nID);
+      ::pointer<::audio_mixer_user::control> GetControlByDlgCtrlID(::u32 nID);
 
       //   bool OnNotify(::u32 nID, LPNMHDR lpnmhdr);
       void OnVHScroll(::u32 nSBCode, ::u32 nPos, ::user::interaction *pscrollbar);
@@ -51,9 +51,9 @@ namespace audio_mixer_alsa
 
       void OnMixerControlChange();
 
-      ::pointer<::audio_mixer::user::control> GetControl(int32_t iType);
+      ::pointer<::audio_mixer_user::control> GetControl(int32_t iType);
 
-      ::pointer<::audio_mixer::user::control> GetControlByIndex(::index iIndex);
+      ::pointer<::audio_mixer_user::control> GetControlByIndex(::index iIndex);
 
       void Prepare();
 
