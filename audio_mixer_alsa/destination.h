@@ -15,7 +15,7 @@ namespace multimedia
 
       class CLASS_DECL_AUDIO_MIXER_ALSA destination :
          virtual public ::multimedia::audio_mixer_alsa::source,
-         virtual public ::multimedia::audio_mixer::destination
+         virtual public ::audio_mixer::destination
       {
       public:
 
@@ -30,13 +30,13 @@ namespace multimedia
          void initialize_all_controls();
          void initialize_source_info();
 
-         ::multimedia::audio_mixer::source_array & get_source_info();
+         ::audio_mixer::source_array & get_source_info();
          void operator delete(void *);
 
          destination & operator = (const destination & device);
 
-         ::multimedia::audio_mixer::device * get_device();
-         void set_device(::multimedia::audio_mixer::device * pdevice);
+         ::audio_mixer::device * get_device();
+         void set_device(::audio_mixer::device * pdevice);
 
 
          virtual ::u32 get_mixer_line_id();

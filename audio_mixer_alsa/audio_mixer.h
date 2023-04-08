@@ -13,7 +13,7 @@ namespace multimedia
 
 
       class CLASS_DECL_AUDIO_MIXER_ALSA audio_mixer :
-         virtual public ::multimedia::audio_mixer::audio_mixer
+         virtual public ::audio_mixer::audio_mixer
       {
       public:
 
@@ -26,8 +26,8 @@ namespace multimedia
 
 
 
-         ::multimedia::audio_mixer::callback * get_callback();
-         void set_callback(::multimedia::audio_mixer::callback * pcallback);
+         ::audio_mixer::callback * get_callback();
+         void set_callback(::audio_mixer::callback * pcallback);
 
 
          void set_new_device(::u32 uiMixerId);

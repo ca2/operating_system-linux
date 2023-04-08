@@ -29,7 +29,7 @@ namespace multimedia
 
       destination::~destination()
       {
-         //    Carray<::multimedia::audio_mixer::source, ::multimedia::audio_mixer::source &>::~Carray<::multimedia::audio_mixer::source, ::multimedia::audio_mixer::source &>();
+         //    Carray<::audio_mixer::source, ::audio_mixer::source &>::~Carray<::audio_mixer::source, ::audio_mixer::source &>();
          //CMixerLine::~CMixerLine();
       }
 
@@ -71,7 +71,7 @@ namespace multimedia
 
          GetLineControls();
 
-         ::multimedia::audio_mixer::source_array & sourcea = m_mixersourcea;
+         ::audio_mixer::source_array & sourcea = m_mixersourcea;
 
          for(int32_t i = 0; i < sourcea.get_size(); i++)
          {
@@ -89,9 +89,9 @@ namespace multimedia
       {
 
 
-         ::multimedia::audio_mixer::source::update_all_controls();
+         ::audio_mixer::source::update_all_controls();
 
-         ::multimedia::audio_mixer::source_array & sourcea = m_mixersourcea;
+         ::audio_mixer::source_array & sourcea = m_mixersourcea;
 
          for(int32_t i = 0; i < sourcea.get_size(); i++)
          {
@@ -123,7 +123,7 @@ namespace multimedia
       }
 
 
-      ::multimedia::audio_mixer::device * destination::get_device()
+      ::audio_mixer::device * destination::get_device()
       {
 
          //return m_pdevice;
@@ -133,7 +133,7 @@ namespace multimedia
       }
 
 
-      void destination::set_device(::multimedia::audio_mixer::device * pdevice)
+      void destination::set_device(::audio_mixer::device * pdevice)
       {
 
          //m_pdevice = pdevice;
@@ -141,7 +141,7 @@ namespace multimedia
       }
 
 
-      ::multimedia::audio_mixer::source_array & destination::get_source_info()
+      ::audio_mixer::source_array & destination::get_source_info()
       {
 
          return m_mixersourcea;

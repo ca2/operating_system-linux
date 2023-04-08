@@ -15,7 +15,7 @@ namespace multimedia
 
          //m_window.m_pmixer = this;
 
-//         m_pdevice = memory_new ::multimedia::audio_mixer::device(this);
+//         m_pdevice = memory_new ::audio_mixer::device(this);
 
       }
 
@@ -354,7 +354,7 @@ namespace multimedia
 //      }
 
 
-      ::multimedia::audio_mixer::callback * audio_mixer::get_callback()
+      ::audio_mixer::callback * audio_mixer::get_callback()
       {
 
          //return m_pcallback;
@@ -364,7 +364,7 @@ namespace multimedia
       }
 
 
-      void audio_mixer::set_callback(::multimedia::audio_mixer::callback * pcallback)
+      void audio_mixer::set_callback(::audio_mixer::callback * pcallback)
       {
 
          //m_pcallback = pcallback;

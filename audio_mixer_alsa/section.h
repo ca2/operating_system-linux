@@ -10,7 +10,7 @@ namespace multimedia
 
 
       class CLASS_DECL_AUDIO_MIXER_ALSA departament :
-         virtual public ::multimedia::audio_mixer::department
+         virtual public ::audio_mixer::department
       {
       public:
 

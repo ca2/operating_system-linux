@@ -21,7 +21,7 @@ namespace multimedia
 
 
       source::source(source & source) :
-         ::multimedia::audio_mixer::source(source)
+         ::audio_mixer::source(source)
       {
          operator =(source);
       }
@@ -97,7 +97,7 @@ namespace multimedia
 //               //*m_mixerlinecontrols.pamxctrl = m_mixerlinecontrols.pamxctrl[i];
 //               *pamxctrl = m_mixerlinecontrols.pamxctrl[i];
 //               lpMixerControl->Prepare();
-//               //            ::multimedia::audio_mixer::audio_mixer::get_control_type_name(pamxctrl, lpMixerControl->m_strTypeName);
+//               //            ::audio_mixer::audio_mixer::get_control_type_name(pamxctrl, lpMixerControl->m_strTypeName);
 //
 //               switch (pamxctrl->dwControlType)
 //               {
@@ -150,9 +150,9 @@ namespace multimedia
 
       }
 
-      /*::multimedia::result source::GetControl(::u32 dwControlType, ::u32 dwControlFlags,  ::multimedia::audio_mixer::control ** ppControl)
+      /*::multimedia::result source::GetControl(::u32 dwControlType, ::u32 dwControlFlags,  ::audio_mixer::control ** ppControl)
       {
-      ::multimedia::audio_mixer::control_array & controla = m_mixercontrola;
+      ::audio_mixer::control_array & controla = m_mixercontrola;
       if(controla.get_size() <= 0)
       GetLineControls();
       if(controla.get_size() <= 0)
@@ -171,7 +171,7 @@ namespace multimedia
 
       /*void source::OnArrayReallocation(void *pNewPointer)
       {
-      m_pmixerdestination = (::multimedia::audio_mixer::destination *) pNewPointer;
+      m_pmixerdestination = (::audio_mixer::destination *) pNewPointer;
       }*/
 
       void source::OnMixerLineChange()
@@ -183,7 +183,7 @@ namespace multimedia
 
       void source::update_all_controls()
       {
-         ::multimedia::audio_mixer::control_array & controla = get_control_array();
+         ::audio_mixer::control_array & controla = get_control_array();
          for(int32_t i = 0; i < controla.get_size(); i++)
          {
             controla[i]->OnMixerControlChange();
@@ -216,12 +216,12 @@ namespace multimedia
       }
 
 
-      ::multimedia::audio_mixer::device * source::get_device()
+      ::audio_mixer::device * source::get_device()
       {
          return m_pdestination->get_device();
       }
 
-      void source::SetDestination(::multimedia::audio_mixer::destination * pdestination)
+      void source::SetDestination(::audio_mixer::destination * pdestination)
       {
          m_pdestination = pdestination;
       }
@@ -251,7 +251,7 @@ namespace multimedia
       }
 
 
-      void source::mixerGetLineInfo(::u32 dwSource, ::multimedia::audio_mixer::destination * pdestination)
+      void source::mixerGetLineInfo(::u32 dwSource, ::audio_mixer::destination * pdestination)
       {
          
 //         sp(::multimedia::audio_mixer_alsa::destination) destination = pdestination;
@@ -263,7 +263,7 @@ namespace multimedia
       }
 
 
-      ::multimedia::audio_mixer::destination * source::get_destination()
+      ::audio_mixer::destination * source::get_destination()
       {
 
          return m_pdestination;
@@ -279,7 +279,7 @@ namespace multimedia
       }
 
 
-      ::multimedia::audio_mixer::control_array & source::get_control_array()
+      ::audio_mixer::control_array & source::get_control_array()
       {
 
          return m_mixercontrola;
