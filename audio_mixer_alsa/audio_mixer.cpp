@@ -1,10 +1,10 @@
 #include "framework.h"
 #include "audio_mixer.h"
 
-
-namespace multimedia
-{
-
+//
+//namespace multimedia
+//{
+//
 
    namespace audio_mixer_alsa
    {
@@ -303,7 +303,7 @@ namespace multimedia
 //      void audio_mixer::OnMixerLineChange(HMIXER hMixer, ::u32 dwLineID)
 //      {
 //
-//         sp(::multimedia::audio_mixer_alsa::device) device = m_pdevice;
+//         sp(::audio_mixer_alsa::device) device = m_pdevice;
 //
 //         if(hMixer == device->m_hMixer)
 //         {
@@ -324,7 +324,7 @@ namespace multimedia
 //      void audio_mixer::OnMixerControlChange(HMIXER hMixer, ::u32 dwControlID)
 //      {
 //
-//         sp(::multimedia::audio_mixer_alsa::device) device = m_pdevice;
+//         sp(::audio_mixer_alsa::device) device = m_pdevice;
 //
 //         if(hMixer == device->m_hMixer)
 //         {
@@ -344,7 +344,7 @@ namespace multimedia
 //      bool audio_mixer::OnCommand(WPARAM wparam, LPARAM lparam)
 //      {
 //
-//         sp(::multimedia::audio_mixer_alsa::device) device = m_pdevice;
+//         sp(::audio_mixer_alsa::device) device = m_pdevice;
 //
 //         if(device != NULL && device->OnCommand(wparam, lparam))
 //            return TRUE;
@@ -374,5 +374,5 @@ namespace multimedia
 
    } // namespace audio_mixer_alsa
 
-
-} // namespace multimedia
+//
+//} // namespace multimedia

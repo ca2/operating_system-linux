@@ -18,7 +18,7 @@
       public:
 
 
-         ::pointer<::multimedia::audio_mixer_alsa::window>           m_pwindow;
+         ::pointer<::audio_mixer_alsa::window>           m_pwindow;
 
 
          audio_mixer();
