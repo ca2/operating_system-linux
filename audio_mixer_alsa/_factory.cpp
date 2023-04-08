@@ -21,7 +21,7 @@ __FACTORY_EXPORT void audio_mixer_alsa_factory(::factory::factory * pfactory)
    pfactory->add_factory_item < ::multimedia::audio_mixer_alsa::source, ::audio_mixer::source >();
    //pfactory->add_factory_item < ::multimedia::audio_mixer_alsa::thread, ::audio_mixer::thread >();
    /*System.factory().creatable_small < user::label                 >  (System.type_info < ::audio_mixer::user::label              > ());
-   System.factory().creatable_small < user::control               >  (System.type_info < ::audio_mixer::user::control            > ());
+   System.factory().creatable_small < user::control               >  (System.type_info < ::audio_mixer::user_control            > ());
    System.factory().creatable_small < user::level_control         >  (System.type_info < ::audio_mixer::user::level_control      > ());
    System.factory().creatable_small < user::toggle_control        >  (System.type_info < ::audio_mixer::user::toggle_control     > ());*/
 

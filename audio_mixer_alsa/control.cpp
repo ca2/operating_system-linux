@@ -35,7 +35,7 @@ namespace multimedia
 //         if(m_mixercontroldetails.paDetails != NULL)
 //            free(m_mixercontroldetails.paDetails);
 //
-//         ::audio_mixer::user::control * pcontrol;
+//         ::audio_mixer::user_control * pcontrol;
 //
 //         for(int32_t i = 0; i < this->get_size(); i++)
 //         {
@@ -292,9 +292,9 @@ namespace multimedia
          //m_mixercontroldetails.dwControlID = m_mixercontrol.dwControlID;
       }
 
-      ::pointer<::audio_mixer::user::control>control::GetControl(int32_t iType)
+      ::pointer<::audio_mixer::user_control>control::GetControl(int32_t iType)
       {
-//         ::audio_mixer::user::control  * pusercontrol = NULL;
+//         ::audio_mixer::user_control  * pusercontrol = NULL;
 //         for(int32_t i = 0; i < this->get_size(); i++)
 //         {
 //            pusercontrol = this->element_at(i);
@@ -308,7 +308,7 @@ namespace multimedia
          return NULL;
       }
 
-      ::pointer<::audio_mixer::user::control>control::GetControlByIndex(::index iIndex)
+      ::pointer<::audio_mixer::user_control>control::GetControlByIndex(::index iIndex)
       {
          //return this->element_at(iIndex);
 
@@ -467,7 +467,7 @@ namespace multimedia
 
       ::pointer<::audio_mixer::control_data>control::GetWindowData(int32_t iType)
       {
-//         ::audio_mixer::user::control * pusercontrol = NULL;
+//         ::audio_mixer::user_control * pusercontrol = NULL;
 //         for(int32_t i = 0; i < this->get_size(); i++)
 //         {
 //            pusercontrol = this->element_at(i);
@@ -616,9 +616,9 @@ namespace multimedia
 
       }*/
 
-      ::pointer<::audio_mixer::user::control>control::GetControlByDlgCtrlID(::u32 nID)
+      ::pointer<::audio_mixer::user_control>control::GetControlByDlgCtrlID(::u32 nID)
       {
-//         ::audio_mixer::user::control * pusercontrol = NULL;
+//         ::audio_mixer::user_control * pusercontrol = NULL;
 //         for(int32_t i = 0; i < this->get_size(); i++)
 //         {
 //            pusercontrol = this->element_at(i);
@@ -636,7 +636,7 @@ namespace multimedia
 
       ::pointer<::audio_mixer::control_data>control::GetWindowDataByDlgCtrlID(::u32 nID)
       {
-//         ::audio_mixer::user::control * pusercontrol = NULL;
+//         ::audio_mixer::user_control * pusercontrol = NULL;
 //         for(int32_t i = 0; i < this->get_size(); i++)
 //         {
 //            pusercontrol = this->element_at(i);
@@ -671,7 +671,7 @@ namespace multimedia
 //            nSBCode == SB_PAGEDOWN ||
 //            nSBCode == SB_TOP )
 //         {
-//            ::audio_mixer::user::control * pcontrol = GetControlByDlgCtrlID((::u32) pParamWnd->GetDlgCtrlId());
+//            ::audio_mixer::user_control * pcontrol = GetControlByDlgCtrlID((::u32) pParamWnd->GetDlgCtrlId());
 //            if(pcontrol != NULL)
 //            {
 //               ::audio_mixer::user::level_control * pSlider = dynamic_cast<::audio_mixer::user::level_control*>(pcontrol);
@@ -800,7 +800,7 @@ namespace multimedia
 //         ::u16 wNotifyCode = HIWORD(wParam);
 //         ::u16 wID = LOWORD(wParam);
 //
-//         ::audio_mixer::user::control * pwnd = GetControlByDlgCtrlID((::u32)wID);
+//         ::audio_mixer::user_control * pwnd = GetControlByDlgCtrlID((::u32)wID);
 //
 //         ::audio_mixer::user::toggle_control * pmutecontrol =
 //            dynamic_cast < ::audio_mixer::user::toggle_control  * >
@@ -884,7 +884,7 @@ namespace multimedia
       }
 
 
-      iptr control::add(::audio_mixer::user::control * pcontrol)
+      iptr control::add(::audio_mixer::user_control * pcontrol)
       {
          //pcontrol->m_pdata->m_iIndex = this->get_size();
          //return control_ptr_array::add(pcontrol);

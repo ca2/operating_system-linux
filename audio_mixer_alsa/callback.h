@@ -1,7 +1,7 @@
 #pragma once
 
 
-#include "app-core/multimedia/audio_mixer/user/_.h"
+#include "audio-system/audio_mixer/user/_.h"
 
 
 namespace multimedia
