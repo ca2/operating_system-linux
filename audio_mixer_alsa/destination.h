@@ -2,11 +2,11 @@
 
 
 #include "source.h"
-#include "app-core/multimedia/audio_mixer/destination.h"
+#include "audio-system/audio_mixer/destination.h"
 
-
-namespace multimedia
-{
+//
+//namespace multimedia
+//{
 
 
    namespace audio_mixer_alsa
@@ -46,10 +46,10 @@ namespace multimedia
 
    } // namespace audio_mixer_alsa
 
-
-
-} // namespace multimedia
-
-
-
-
+//
+//
+//} // namespace multimedia
+//
+//
+//
+//

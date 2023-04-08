@@ -1,11 +1,11 @@
 #pragma once
 
 
-#include "app-core/multimedia/audio_mixer/source.h"
-
-
-namespace multimedia
-{
+#include "audio-system/audio_mixer/source.h"
+//
+//
+//namespace multimedia
+//{
 
 
    namespace audio_mixer_alsa
@@ -57,12 +57,12 @@ namespace multimedia
 
    } // namespace audio_mixer_alsa
 
-
-} // namespace multimedia
-
-
-
-
-
-
-
+//
+//} // namespace multimedia
+//
+//
+//
+//
+//
+//
+//
