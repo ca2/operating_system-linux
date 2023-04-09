@@ -63,7 +63,7 @@ namespace multimedia
 //            m_mixerlinecontrols.pamxctrl[i].cbStruct = sizeof(MIXERCONTROL);
 //         }
 //
-//         sp(::multimedia::audio_mixer_alsa::device) device = get_device();
+//         sp(::audio_mixer_alsa::device) device = get_device();
 //
 //         mmrc = mixerGetLineControls(
 //            (HMIXEROBJ) device->m_hMixer,
@@ -83,7 +83,7 @@ namespace multimedia
 //            //    int32_t         nIndex;
 //            PMIXERCONTROL       pamxctrl;
 //            //        LPMIXERCONTROLDETAILS lpmcd;
-//            sp(::multimedia::audio_mixer_alsa::control)     lpMixerControl;
+//            sp(::audio_mixer_alsa::control)     lpMixerControl;
 //
 //            //        if (0 != (APP_OPTF_DEBUGLOG & gfuAppOptions))
 //            //          MixAppDebugLog(NULL);
@@ -235,7 +235,7 @@ namespace multimedia
 //         m_mixerline.dwSource       = dwSource;
 //
 //
-//         sp(::multimedia::audio_mixer_alsa::device) device = get_device();
+//         sp(::audio_mixer_alsa::device) device = get_device();
 //
 //         ::multimedia::result mmrc = ::mixerGetLineInfo((HMIXEROBJ)device->m_hMixer, &m_mixerline, fdwInfo);
 //
@@ -254,7 +254,7 @@ namespace multimedia
       void source::mixerGetLineInfo(::u32 dwSource, ::audio_mixer::destination * pdestination)
       {
          
-//         sp(::multimedia::audio_mixer_alsa::destination) destination = pdestination;
+//         sp(::audio_mixer_alsa::destination) destination = pdestination;
 //
 //         ::multimedia::result mmrc = mixerGetLineInfo(dwSource, destination->m_mixerline.dwDestination, MIXER_GETLINEINFOF_SOURCE);
 //         SetDestination(pdestination);

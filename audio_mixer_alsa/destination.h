@@ -14,7 +14,7 @@
 
 
       class CLASS_DECL_AUDIO_MIXER_ALSA destination :
-         virtual public ::multimedia::audio_mixer_alsa::source,
+         virtual public ::audio_mixer_alsa::source,
          virtual public ::audio_mixer::destination
       {
       public:

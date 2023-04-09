@@ -76,7 +76,7 @@ namespace multimedia
 //         int32_t                         nRange;
 //         int32_t                         nPageInc;
 //
-//         sp(::multimedia::audio_mixer_alsa::source) source = m_pmixersource;
+//         sp(::audio_mixer_alsa::source) source = m_pmixersource;
 //
 //         ASSERT(source != NULL);
 //
@@ -226,7 +226,7 @@ namespace multimedia
 //
 //         ASSERT(m_pmixersource != NULL);
 //
-//         sp(::multimedia::audio_mixer_alsa::source) source = m_pmixersource;
+//         sp(::audio_mixer_alsa::source) source = m_pmixersource;
 //
 //         lcChannels = (::u32)source->m_mixerline.cChannels;
 //         if (MIXERCONTROL_CONTROLF_UNIFORM & m_mixercontrol.fdwControl)
@@ -363,8 +363,8 @@ namespace multimedia
 //         //    pmxcd_u     = &pmaci_fader->pmxcd_u[0];
 //         //    nRange      = pmaci_fader->nRange;
 //
-//         sp(::multimedia::audio_mixer_alsa::source) source = m_pmixersource;
-//         sp(::multimedia::audio_mixer_alsa::device) device = source->get_device();
+//         sp(::audio_mixer_alsa::source) source = m_pmixersource;
+//         sp(::audio_mixer_alsa::device) device = source->get_device();
 //
 //         cChannels = (::u32)source->m_mixerline.cChannels;
 //         if (MIXERCONTROL_CONTROLF_UNIFORM & m_mixercontrol.fdwControl)
@@ -685,8 +685,8 @@ namespace multimedia
 //                     if(pData->get_type() == ::audio_mixer::control_data::TypeStereoBalance ||
 //                        pData->get_type() == ::audio_mixer::control_data::TypeStereoVolume)
 //                     {
-//                        sp(::multimedia::audio_mixer_alsa::source) source = m_pmixersource;
-//                        sp(::multimedia::audio_mixer_alsa::device) device = source->get_device();
+//                        sp(::audio_mixer_alsa::source) source = m_pmixersource;
+//                        sp(::audio_mixer_alsa::device) device = source->get_device();
 //                        ::audio_mixer_user::level_control * pslBalance;
 //                        ::audio_mixer_user::level_control * pslVolume;
 //                        if(pData->get_type() == ::audio_mixer::control_data::TypeStereoBalance)
@@ -816,8 +816,8 @@ namespace multimedia
 //                  if(wNotifyCode == BN_CLICKED)
 //                  {
 //
-//                     sp(::multimedia::audio_mixer_alsa::source) source = m_pmixersource;
-//                     sp(::multimedia::audio_mixer_alsa::device) device = source->get_device();
+//                     sp(::audio_mixer_alsa::source) source = m_pmixersource;
+//                     sp(::audio_mixer_alsa::device) device = source->get_device();
 //
 //                     m_mixercontroldetails.cChannels = (::u32)source->m_mixerline.cChannels;
 //                     if(MIXERCONTROL_CONTROLF_UNIFORM & m_mixercontrol.fdwControl)

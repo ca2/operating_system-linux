@@ -121,7 +121,7 @@ namespace multimedia
       void device::initialize_destinations()
       {
 
-//         sp(::multimedia::audio_mixer_alsa::destination)    lpDestination;
+//         sp(::audio_mixer_alsa::destination)    lpDestination;
 //
 //         m_mixerdestinationa.set_size_create(m_mixercaps.cDestinations);
 //
@@ -186,7 +186,7 @@ namespace multimedia
 //            return MMSYSERR_ERROR;
 //         for(int32_t i = 0; i < m_mixerdestinationa.get_size(); i++)
 //         {
-//            sp(::multimedia::audio_mixer_alsa::destination) destination = m_mixerdestinationa(i);
+//            sp(::audio_mixer_alsa::destination) destination = m_mixerdestinationa(i);
 //            ::u32 dw = destination->m_mixerline.dwComponentType;
 //            if(dw == dwComponentType)
 //            {
@@ -205,7 +205,7 @@ namespace multimedia
 //
 //         for(int32_t i = 0; i < m_mixerdestinationa.get_size(); i++)
 //         {
-//            sp(::multimedia::audio_mixer_alsa::destination) destination = m_mixerdestinationa(i);
+//            sp(::audio_mixer_alsa::destination) destination = m_mixerdestinationa(i);
 //            MapLineControls(destination);
 //            ::audio_mixer::source_array & sourcea = destination->get_source_info();
 //            for(int32_t j = 0; j < sourcea.get_size(); j++)
@@ -225,7 +225,7 @@ namespace multimedia
 //         for(int32_t i = 0; i < m_mixerdestinationa.get_size(); i++)
 //         {
 //
-//            sp(::multimedia::audio_mixer_alsa::destination) destination = m_mixerdestinationa(i);
+//            sp(::audio_mixer_alsa::destination) destination = m_mixerdestinationa(i);
 //
 //            m_mapIDToLine.set_at(destination->get_mixer_line().dwLineID, destination);
 //
@@ -234,7 +234,7 @@ namespace multimedia
 //            for(int32_t j = 0; j < sourcea.get_size(); j++)
 //            {
 //
-//               sp(::multimedia::audio_mixer_alsa::source) source = sourcea(j);
+//               sp(::audio_mixer_alsa::source) source = sourcea(j);
 //
 //               m_mapIDToLine.set_at(source->m_mixerline.dwLineID, source);
 //
@@ -270,7 +270,7 @@ namespace multimedia
 //         ::audio_mixer::control_array & controla = psource->get_control_array();
 //         for(int32_t k = 0; k < controla.get_size(); k++)
 //         {
-//            sp(::multimedia::audio_mixer_alsa::control) control = controla(k);
+//            sp(::audio_mixer_alsa::control) control = controla(k);
 //            m_mapIDToControl.set_at(control->GetMixerControl().dwControlID, control);
 //            for(int32_t l = 0; l < control->get_size(); l++)
 //            {
@@ -288,7 +288,7 @@ namespace multimedia
 //         ::audio_mixer::destination_array & destinationa = m_mixerdestinationa;
 //         for(int32_t i = 0; i < destinationa.get_size(); i++)
 //         {
-//            sp(::multimedia::audio_mixer_alsa::destination) destination = destinationa(i);
+//            sp(::audio_mixer_alsa::destination) destination = destinationa(i);
 //            MapDlgCtrlIDToLineControls(destination);
 //            ::audio_mixer::source_array & sourcea = destination->get_source_info();
 //            for(int32_t j = 0; j < sourcea.get_size(); j++)
