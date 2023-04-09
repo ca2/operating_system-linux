@@ -1,10 +1,10 @@
 #include "framework.h"
 #include "audio_mixer.h"
 
-
-namespace multimedia
-{
-
+//
+//namespace multimedia
+//{
+//
 
    namespace audio_mixer_alsa
    {
@@ -374,5 +374,5 @@ namespace multimedia
 
    } // namespace audio_mixer_alsa
 
-
-} // namespace multimedia
+//
+//} // namespace multimedia

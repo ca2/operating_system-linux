@@ -10,9 +10,9 @@
    #define CLASS_DECL_AUDIO_MIXER_ALSA  CLASS_DECL_IMPORT
 #endif
 
-
-namespace multimedia
-{
+//
+//namespace multimedia
+//{
 
 
    namespace audio_mixer_alsa
@@ -33,11 +33,11 @@ namespace multimedia
 
    } // namespace audio_mixer_alsa
 
-
-} // namespace multimedia
-
-
-
+//
+//} // namespace multimedia
+//
+//
+//
 
 
 
