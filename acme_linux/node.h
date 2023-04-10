@@ -127,6 +127,9 @@ namespace acme_linux
       bool set_process_priority(::enum_priority epriority) override;
 
 
+      ::pointer <::operating_system::summary > operating_system_summary() override;
+
+
    };
 
 
