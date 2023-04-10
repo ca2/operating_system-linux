@@ -440,7 +440,7 @@ namespace acme_linux
       auto psummary = __create_new < ::operating_system::summary >();
 
 
-      ::particle::initialize(pparticle);
+      //::particle::initialize(pparticle);
 
       ::string strOs;
       ::string strVer;
@@ -452,25 +452,25 @@ namespace acme_linux
 
          auto set = acmefile()->parse_standard_configuration("/etc/os-release");
 
-         m_strDistro = set["ID"];
-         m_strDistroBranch = set["VARIANT_ID"];
-         m_strDesktopEnvironment = m_strDistroBranch;
-         m_strDistroRelease = set["VERSION_ID"];
-         m_strDistroFamily = set["ID_LIKE"];
+         psummary->m_strDistro = set["ID"];
+         psummary->m_strDistroBranch = set["VARIANT_ID"];
+         psummary->m_strDesktopEnvironment = psummary->m_strDistroBranch;
+         psummary->m_strDistroRelease = set["VERSION_ID"];
+         psummary->m_strDistroFamily = set["ID_LIKE"];
 
-         m_strDistro.make_lower();
-         m_strDistroBranch.make_lower();
-         m_strDesktopEnvironment.make_lower();
-         m_strDistroRelease.make_lower();
-         m_strDistroFamily.make_lower();
+         psummary->m_strDistro.make_lower();
+         psummary->m_strDistroBranch.make_lower();
+         psummary->m_strDesktopEnvironment.make_lower();
+         psummary->m_strDistroRelease.make_lower();
+         psummary->m_strDistroFamily.make_lower();
 
-         if (m_strDistroFamily.case_insensitive_equals("arch"))
+         if (psummary->m_strDistroFamily.case_insensitive_equals("arch"))
          {
 
             auto setArch = acmefile()->parse_standard_configuration("/etc/os-release");
 
-            m_strDistroRelease = setArch["DISTRIB_RELEASE"];
-            m_strDistroRelease.make_lower();
+            psummary->m_strDistroRelease = setArch["DISTRIB_RELEASE"];
+            psummary->m_strDistroRelease.make_lower();
 
          }
 
@@ -554,45 +554,45 @@ namespace acme_linux
 
       }
 
-      if (m_strDistroFamily.is_empty())
+      if (psummary->m_strDistroFamily.is_empty())
       {
 
-         m_strDistroFamily = m_strDistro;
+         psummary->m_strDistroFamily = psummary->m_strDistro;
 
       }
 
-      if (m_strDistro.case_insensitive_equals("ubuntu"))
+      if (psummary->m_strDistro.case_insensitive_equals("ubuntu"))
       {
 
-         m_strDistroFamily = "debian";
+         psummary->m_strDistroFamily = "debian";
 
       }
-      else if (m_strDistro.case_insensitive_equals("debian"))
+      else if (psummary->m_strDistro.case_insensitive_equals("debian"))
       {
 
-         m_strDistroFamily = "debian";
+         psummary->m_strDistroFamily = "debian";
 
       }
-      else if (m_strDistro.case_insensitive_equals("opensuse-tumbleweed"))
+      else if (psummary->m_strDistro.case_insensitive_equals("opensuse-tumbleweed"))
       {
 
-         m_strDistroFamily = "zypper";
+         psummary->m_strDistroFamily = "zypper";
 
       }
-      else if (m_strDistro.case_insensitive_equals("opensuse-leap"))
+      else if (psummary->m_strDistro.case_insensitive_equals("opensuse-leap"))
       {
 
-         m_strDistroFamily = "zypper";
+         psummary->m_strDistroFamily = "zypper";
 
       }
 
-      if (m_strDistro.case_insensitive_equals("fedora"))
+      if (psummary->m_strDistro.case_insensitive_equals("fedora"))
       {
 
-         if (m_strDistroBranch.case_insensitive_equals("workstation"))
+         if (psummary->m_strDistroBranch.case_insensitive_equals("workstation"))
          {
 
-            m_strDesktopEnvironment = "gnome";
+            psummary->m_strDesktopEnvironment = "gnome";
 
          }
 
@@ -600,13 +600,13 @@ namespace acme_linux
 
       //::string strLowerCaseCurrentDesktop;
 
-      if (m_strDesktopEnvironment.is_empty())
+      if (psummary->m_strDesktopEnvironment.is_empty())
       {
          ///# echo "DESKTOP_ENVIRONMENT is empty here"
 
-         if (m_strDistroFamily.case_insensitive_equals("debian")
-             || m_strDistroFamily.case_insensitive_equals("zypper")
-             || m_strDistroFamily.case_insensitive_equals("arch"))
+         if (psummary->m_strDistroFamily.case_insensitive_equals("debian")
+             || psummary->m_strDistroFamily.case_insensitive_equals("zypper")
+             || psummary->m_strDistroFamily.case_insensitive_equals("arch"))
          {
             //      if [ "$__SYSTEM_DISTRO_FAMILY" = "debian" ] || [ "$__SYSTEM_DISTRO_FAMILY" = "zypper" ] || [ "$__SYSTEM_DISTRO_FAMILY" = "arch" ];
             //      then
@@ -625,7 +625,7 @@ namespace acme_linux
                //
                //# echo "lower case xdg_current_desktop contains gnome"
 
-               m_strDesktopEnvironment = "gnome";
+               psummary->m_strDesktopEnvironment = "gnome";
 
             }
             else if (strLowerCaseCurrentDesktop.equals("kde"))
@@ -638,7 +638,7 @@ namespace acme_linux
                //
                //# echo "lower case xdg_current_desktop contains gnome"
 
-               m_strDesktopEnvironment = "kde";
+               psummary->m_strDesktopEnvironment = "kde";
 
             }
             else if (strLowerCaseCurrentDesktop.equals("lxde"))
@@ -651,106 +651,106 @@ namespace acme_linux
                //
                //# echo "lower case xdg_current_desktop contains lxde"
 
-               m_strDesktopEnvironment = "lxde";
+               psummary->m_strDesktopEnvironment = "lxde";
 
             }
 
-            if (m_strDistroFamily.case_insensitive_equals("debian"))
+            if (psummary->m_strDistroFamily.case_insensitive_equals("debian"))
             {
 
-               m_strDistroBranch = m_strDesktopEnvironment;
+               psummary->m_strDistroBranch = psummary->m_strDesktopEnvironment;
 
             }
-            else if (m_strDistroFamily.case_insensitive_equals("zypper"))
+            else if (psummary->m_strDistroFamily.case_insensitive_equals("zypper"))
             {
 
-               m_strDistroBranch = m_strDesktopEnvironment;
+               psummary->m_strDistroBranch = psummary->m_strDesktopEnvironment;
 
             }
-            else if (m_strDistroFamily.case_insensitive_equals("arch"))
+            else if (psummary->m_strDistroFamily.case_insensitive_equals("arch"))
             {
 
-               m_strDistroBranch = m_strDesktopEnvironment;
+               psummary->m_strDistroBranch = psummary->m_strDesktopEnvironment;
 
             }
 
          }
 
-         if (m_strDistro.case_insensitive_equals("ubuntu"))
+         if (psummary->m_strDistro.case_insensitive_equals("ubuntu"))
          {
 
-            if (m_strDesktopEnvironment.case_insensitive_equals("kde"))
+            if (psummary->m_strDesktopEnvironment.case_insensitive_equals("kde"))
             {
 
-               m_strSlashedOperatingSystem = "kubuntu/" + m_strDistroRelease;
+               psummary->m_strSlashedOperatingSystem = "kubuntu/" + psummary->m_strDistroRelease;
 
             }
             else
             {
 
-               m_strSlashedOperatingSystem = m_strDistro + "/" + m_strDistroRelease;
+               psummary->m_strSlashedOperatingSystem =psummary-> m_strDistro + "/" +psummary-> m_strDistroRelease;
             }
 
          }
          else
          {
 
-            m_strSlashedOperatingSystem = m_strDistro + "/" + m_strDistroBranch + "/" + m_strDistroRelease;
+            psummary->m_strSlashedOperatingSystem =psummary->m_strDistro + "/" + psummary->m_strDistroBranch + "/" + psummary->m_strDistroRelease;
 
          }
 
 
-         if (m_strDistroFamily == "debian")
+         if (psummary->m_strDistroFamily == "debian")
          {
 
-            m_strSudoInstall = "sudo apt -y install";
-            m_strStandardPackageFileExtension = "deb";
-            m_strPackagePlatform = "amd64";
+            psummary->m_strSudoInstall = "sudo apt -y install";
+            psummary->m_strStandardPackageFileExtension = "deb";
+            psummary->m_strPackagePlatform = "amd64";
 
          }
-         else if (m_strDistroFamily == "fedora")
+         else if (psummary->m_strDistroFamily == "fedora")
          {
 
-            m_strSudoInstall = "sudo dnf -y install";
-            m_strStandardPackageFileExtension = "rpm";
-            m_strPackagePlatform = "x86_64";
+            psummary->m_strSudoInstall = "sudo dnf -y install";
+            psummary->m_strStandardPackageFileExtension = "rpm";
+            psummary->m_strPackagePlatform = "x86_64";
 
          }
-         else if (m_strDistroFamily == "zypper")
+         else if (psummary->m_strDistroFamily == "zypper")
          {
 
-            m_strSudoInstall = "sudo zypper --non-interactive install";
-            m_strStandardPackageFileExtension = "rpm";
-            m_strPackagePlatform = "x86_64";
+            psummary->m_strSudoInstall = "sudo zypper --non-interactive install";
+            psummary->m_strStandardPackageFileExtension = "rpm";
+            psummary->m_strPackagePlatform = "x86_64";
 
          }
 
-         if (m_strDesktopEnvironment == "kde")
+         if (psummary->m_strDesktopEnvironment == "kde")
          {
 
-            m_strTerminal = "konsole";
+            psummary->m_strTerminal = "konsole";
 
          }
          else
          {
 
-            m_strTerminal = "gnome-terminal";
+            psummary->m_strTerminal = "gnome-terminal";
 
          }
 
-         m_strUnderscoreOperatingSystem = m_strSlashedOperatingSystem;
+         psummary->m_strUnderscoreOperatingSystem = psummary->m_strSlashedOperatingSystem;
 
-         m_strUnderscoreOperatingSystem.find_replace("/", "_");
+         psummary->m_strUnderscoreOperatingSystem.find_replace("/", "_");
 
-         acmenode()->set_environment_variable("__SYSTEM_DISTRO", m_strDistro);
-         acmenode()->set_environment_variable("__SYSTEM_DISTRO_FAMILY", m_strDistroFamily);
-         acmenode()->set_environment_variable("__SYSTEM_DISTRO_BRANCH", m_strDistroBranch);
-         acmenode()->set_environment_variable("__SYSTEM_DISTRO_RELEASE", m_strDistroRelease);
-         acmenode()->set_environment_variable("__SYSTEM_DESKTOP_ENVIRONMENT", m_strDesktopEnvironment);
-         acmenode()->set_environment_variable("__SYSTEM_SLASHED_OPERATING_SYSTEM", m_strSlashedOperatingSystem);
-         acmenode()->set_environment_variable("__SYSTEM_UNDERSCORE_OPERATING_SYSTEM", m_strUnderscoreOperatingSystem);
-         acmenode()->set_environment_variable("__SYSTEM_SUDO_INSTALL", m_strSudoInstall);
-         acmenode()->set_environment_variable("__SYSTEM_TERMINAL", m_strTerminal);
+         acmenode()->set_environment_variable("__SYSTEM_DISTRO", psummary->m_strDistro);
+         acmenode()->set_environment_variable("__SYSTEM_DISTRO_FAMILY", psummary->m_strDistroFamily);
+         acmenode()->set_environment_variable("__SYSTEM_DISTRO_BRANCH", psummary->m_strDistroBranch);
+         acmenode()->set_environment_variable("__SYSTEM_DISTRO_RELEASE", psummary->m_strDistroRelease);
+         acmenode()->set_environment_variable("__SYSTEM_DESKTOP_ENVIRONMENT", psummary->m_strDesktopEnvironment);
+         acmenode()->set_environment_variable("__SYSTEM_SLASHED_OPERATING_SYSTEM", psummary->m_strSlashedOperatingSystem);
+         acmenode()->set_environment_variable("__SYSTEM_UNDERSCORE_OPERATING_SYSTEM", psummary->m_strUnderscoreOperatingSystem);
+         acmenode()->set_environment_variable("__SYSTEM_SUDO_INSTALL", psummary->m_strSudoInstall);
+         acmenode()->set_environment_variable("__SYSTEM_TERMINAL", psummary->m_strTerminal);
 
       }
 
