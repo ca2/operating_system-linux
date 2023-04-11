@@ -754,6 +754,7 @@ namespace acme_linux
 
       }
 
+      return psummary;
 
    }
 
