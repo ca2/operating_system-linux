@@ -6,6 +6,7 @@ default_draw2d=app/draw2d_cairo
 default_write_text=operating_system-posix/write_text_pango
 default_audio=operating_system-posix/audio_alsa
 default_music_midi=operating_system-linux/music_midi_alsa
+default_audio_mixer=operating_system-linux/audio_mixer_alsa
 default_acme_platform1=operating_system-linux/acme_linux
 default_acme_platform2=operating_system-posix/acme_posix
 default_apex_platform1=operating_system-linux/apex_linux
