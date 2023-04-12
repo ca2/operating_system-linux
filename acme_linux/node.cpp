@@ -682,20 +682,20 @@ namespace acme_linux
             if (psummary->m_strDesktopEnvironment.case_insensitive_equals("kde"))
             {
 
-               psummary->m_strSlashedOperatingSystem = "kubuntu/" + psummary->m_strDistroRelease;
+               psummary->m_strSlashedStore = "kubuntu/" + psummary->m_strDistroRelease;
 
             }
             else
             {
 
-               psummary->m_strSlashedOperatingSystem =psummary-> m_strDistro + "/" +psummary-> m_strDistroRelease;
+               psummary->m_strSlashedStore =psummary-> m_strDistro + "/" +psummary-> m_strDistroRelease;
             }
 
          }
          else
          {
 
-            psummary->m_strSlashedOperatingSystem =psummary->m_strDistro + "/" + psummary->m_strDistroBranch + "/" + psummary->m_strDistroRelease;
+            psummary->m_strSlashedStore=psummary->m_strDistro + "/" + psummary->m_strDistroBranch + "/" + psummary->m_strDistroRelease;
 
          }
 
@@ -738,7 +738,9 @@ namespace acme_linux
 
          }
 
-         psummary->m_strUnderscoreOperatingSystem = psummary->m_strSlashedOperatingSystem;
+         psummary->m_strUnderscoreOperatingSystem = psummary->m_strSlashedStore;
+
+         psummary->m_strSlashedIntegration = psummary->m_strSlashedStore;
 
          psummary->m_strUnderscoreOperatingSystem.find_replace("/", "_");
 
@@ -747,7 +749,8 @@ namespace acme_linux
          acmenode()->set_environment_variable("__SYSTEM_DISTRO_BRANCH", psummary->m_strDistroBranch);
          acmenode()->set_environment_variable("__SYSTEM_DISTRO_RELEASE", psummary->m_strDistroRelease);
          acmenode()->set_environment_variable("__SYSTEM_DESKTOP_ENVIRONMENT", psummary->m_strDesktopEnvironment);
-         acmenode()->set_environment_variable("__SYSTEM_SLASHED_OPERATING_SYSTEM", psummary->m_strSlashedOperatingSystem);
+         acmenode()->set_environment_variable("__SYSTEM_SLASHED_STORE", psummary->m_strSlashedStore);
+         acmenode()->set_environment_variable("__SYSTEM_SLASHED_INTEGRATION", psummary->m_strSlashedIntegration);
          acmenode()->set_environment_variable("__SYSTEM_UNDERSCORE_OPERATING_SYSTEM", psummary->m_strUnderscoreOperatingSystem);
          acmenode()->set_environment_variable("__SYSTEM_SUDO_INSTALL", psummary->m_strSudoInstall);
          acmenode()->set_environment_variable("__SYSTEM_TERMINAL", psummary->m_strTerminal);
