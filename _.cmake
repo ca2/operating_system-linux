@@ -322,6 +322,9 @@ if (KDE_DESKTOP)
 endif ()
 
 
+set(static_acme_extra_pkgconfig cairo xcb x11 xkbcommon xcb-render xcb-aux x11-xcb)
+set(static_aura_posix_pkgconfig libstartup-notification-1.0)
+
 set(static_acme_pkgconfig freetype2 libidn ${static_acme_extra_pkgconfig} ncurses dbus-glib-1)
 set(static_apex_pkgconfig libcrypto libssl libarchive)
 set(static_database_cairo_pkgconfig freetype2 pango cairo pangocairo)
