@@ -3,48 +3,58 @@ project(desktop_environment_kde CXX)
 
 
 list(APPEND library_source
-   _.cpp
-   _.h
-   #_library.h
-   _factory.cpp
-   #appindicator.cpp
-   #appindicator.h
-   #application.cpp
-   #application.h
-   #clipboard_data.h
-   #copydesk.cpp
-   #copydesk.h
-   #enum_display_monitors.cpp
-   #framework.cpp
-   #framework.h
-   #gdk.cpp
-   #gdk.h
-   #gnome_direct.cpp
-   #gtk_clipboard.cpp
-   node.cpp
-   node.h
-   #node_impl.cpp
-   #node_impl.h
-   #q_node_impl.cpp
-   #q_node_impl.h
-   )
+        _.cpp
+        _.h
+        #_library.h
+        _factory.cpp
+        #appindicator.cpp
+        #appindicator.h
+        #application.cpp
+        #application.h
+        #clipboard_data.h
+        #copydesk.cpp
+        #copydesk.h
+        #enum_display_monitors.cpp
+        #framework.cpp
+        #framework.h
+        #gdk.cpp
+        #gdk.h
+        #gnome_direct.cpp
+        #gtk_clipboard.cpp
+        node.cpp
+        node.h
+        #node_impl.cpp
+        #node_impl.h
+        #q_node_impl.cpp
+        #q_node_impl.h
+        )
 
 
 list(APPEND library_references
-   acme
-   acme_posix
-   acme_linux
-   apex
-   apex_posix
-   apex_linux
-   aqua
-   aura
-   aura_posix
-   aura_linux
-   windowing_xcb
-   node_kde
-   )
+        acme
+        acme_posix
+        acme_linux
+        apex
+        apex_posix
+        apex_linux
+        aqua
+        aura
+        aura_posix
+        aura_linux
+        windowing_xcb
+        node_kde
+        )
 
+
+list(APPEND static_library_references ${library_references})
+list(TRANSFORM static_library_references PREPEND static_)
+
+
+
+list(APPEND system_libraries
+        Qt5::Core
+        Qt5::Widgets
+        )
 
 #set_source_files_properties(q_node_impl.cpp PROPERTIES SKIP_PRECOMPILE_HEADERS ON)
 
@@ -58,39 +68,31 @@ set_target_properties(desktop_environment_kde PROPERTIES LINKER_LANGUAGE CXX)
 
 
 if (MSVC)
-   target_compile_options(desktop_environment_kde PRIVATE "/MD$<$<CONFIG:Debug>:d>")
-   target_link_options(desktop_environment_kde PRIVATE "/DEFAULTLIB:msvcrt$<$<CONFIG:Debug>:d>")
-   target_link_options(desktop_environment_kde PRIVATE "/SUBSYSTEM:WINDOWS")
-   target_link_libraries(desktop_environment_kde PRIVATE ${library_references})
+    target_compile_options(desktop_environment_kde PRIVATE "/MD$<$<CONFIG:Debug>:d>")
+    target_link_options(desktop_environment_kde PRIVATE "/DEFAULTLIB:msvcrt$<$<CONFIG:Debug>:d>")
+    target_link_options(desktop_environment_kde PRIVATE "/SUBSYSTEM:WINDOWS")
+    target_link_libraries(desktop_environment_kde PRIVATE ${library_references})
 elseif (LINUX)
 
-   if(NOT DONT_USE_PKG_CONFIG)
-      pkg_check_modules(PKGCONFIG Qt5X11Extras Qt5Core Qt5UiTools)
-   endif()
+    #
+    #   if(NOT DONT_USE_PKG_CONFIG)
+    #      pkg_check_modules(PKGCONFIG Qt5X11Extras Qt5Core Qt5UiTools)
+    #   endif()
 
 
-   target_compile_options(${PROJECT_NAME} PRIVATE -fpermissive)
-   target_compile_options(static_${PROJECT_NAME} PRIVATE -fpermissive)
-   target_compile_definitions(static_${PROJECT_NAME} PRIVATE CUBE)
+    target_compile_options(${PROJECT_NAME} PRIVATE -fpermissive)
+    target_compile_options(static_${PROJECT_NAME} PRIVATE -fpermissive)
+    target_compile_definitions(static_${PROJECT_NAME} PRIVATE CUBE)
 
 
-   target_compile_options(${PROJECT_NAME} PRIVATE ${PKGCONFIG_CFLAGS})
-target_compile_options(static_${PROJECT_NAME} PRIVATE ${PKGCONFIG_CFLAGS})
-   if(KDE_DESKTOP)
-      list(APPEND library_include_directories ${CMAKE_CURRENT_SOURCE_DIR})
-list(APPEND library_include_directories ${CMAKE_CURRENT_SOURCE_DIR}/..)
-list(APPEND library_include_directories ${CMAKE_CURRENT_SOURCE_DIR}/../..)
+    target_compile_options(${PROJECT_NAME} PRIVATE ${PKGCONFIG_CFLAGS})
+    target_compile_options(static_${PROJECT_NAME} PRIVATE ${PKGCONFIG_CFLAGS})
 
-target_include_directories(${PROJECT_NAME} PRIVATE ${library_include_directories})
-target_include_directories(static_${PROJECT_NAME} PRIVATE ${library_include_directories})
+    #target_link_options(desktop_environment_kde PRIVATE -Wl,-rpath=$ORIGIN)
+    target_link_libraries(${PROJECT_NAME} PRIVATE ${library_references} ${system_libraries} ${PKGCONFIG_LIBRARIES})
+    target_link_libraries(static_${PROJECT_NAME} PRIVATE ${static_library_references} ${system_libraries} ${PKGCONFIG_LIBRARIES})
 
-   endif()
-   #target_link_options(desktop_environment_kde PRIVATE -Wl,-rpath=$ORIGIN)
-   target_link_libraries(desktop_environment_kde PRIVATE ${library_references} ${PKGCONFIG_LIBRARIES})
-   if(KDE_DESKTOP)
-      target_link_libraries(desktop_environment_kde PRIVATE KF5::Notifications)
-   endif()
-   target_link_options(${PROJECT_NAME} PRIVATE -Wl,-z,defs)
+    target_link_options(${PROJECT_NAME} PRIVATE -Wl,-z,defs)
     target_link_options(static_${PROJECT_NAME} PRIVATE --whole-archive)
 
 endif ()
@@ -105,7 +107,6 @@ list(APPEND library_include_directories ${CMAKE_CURRENT_SOURCE_DIR}/../..)
 
 target_include_directories(${PROJECT_NAME} PRIVATE ${library_include_directories})
 target_include_directories(static_${PROJECT_NAME} PRIVATE ${library_include_directories})
-
 
 
 target_compile_definitions(desktop_environment_kde PRIVATE _MUSIC_MIDI_ALSA_LIBRARY)

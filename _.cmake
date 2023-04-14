@@ -12,6 +12,10 @@ if (CMAKE_CXX_COMPILER_ID STREQUAL "GNU")
 
 endif ()
 
+
+set(DONT_USE_PKG_CONFIG FALSE)
+
+
 if ($ENV{XDG_CURRENT_DESKTOP} STREQUAL "KDE")
     set(KDE_DESKTOP TRUE)
     message(STATUS "System is KDE")
@@ -108,6 +112,8 @@ message(STATUS "DISTRO is ${DISTRO}")
 if (${DISTRO} STREQUAL "ubuntu")
 
     set(UBUNTU TRUE)
+
+    set(DEBIAN_LIKE TRUE)
 
     message(STATUS "UBUNTU has been set TRUE")
 
@@ -212,7 +218,15 @@ if (KDE_DESKTOP)
             KIO
             IconThemes
             )
+
     find_package(LibKWorkspace CONFIG REQUIRED)
+
+    find_package(Qt5 ${QT_MIN_VERSION} REQUIRED COMPONENTS
+            Core
+            DBus
+            UiTools
+            X11Extras
+            )
 
     # Find KDE modules
 
@@ -310,8 +324,19 @@ if (KDE_DESKTOP)
     list(APPEND app_common_dependencies
             desktop_environment_kde)
 
-    list(APPEND static_app_common_dependencies
-            static_desktop_environment_kde)
+#    list(APPEND static_app_common_dependencies
+#            static_desktop_environment_kde
+#            static_node_kde
+#            static_windowing_xcb
+#            KF5::Notifications
+#            KF5::ConfigWidgets
+#            KF5::IconThemes
+#            KF5::KIOCore
+#            KF5::KIOFileWidgets
+#            KF5::KIOWidgets
+#            KF5::KIONTLM
+#            PW::KWorkspace
+#            )
 
     set(default_windowing "windowing_xcb")
 
@@ -322,15 +347,25 @@ if (KDE_DESKTOP)
 endif ()
 
 
-set(static_acme_extra_pkgconfig cairo xcb x11 xkbcommon xcb-render xcb-aux x11-xcb)
-set(static_aura_posix_pkgconfig libstartup-notification-1.0)
+#set(static_acme_extra_pkgconfig cairo xcb x11 xkbcommon xcb-render xcb-aux x11-xcb)
+#set(static_aura_posix_pkgconfig libstartup-notification-1.0)
+#
+#set(static_acme_pkgconfig freetype2 libidn ${static_acme_extra_pkgconfig} ncurses dbus-glib-1)
+#set(static_apex_pkgconfig libcrypto libssl libarchive)
+#set(static_database_cairo_pkgconfig freetype2 pango cairo pangocairo)
+#set(static_database_sqlite3_pkgconfig sqlite3)
+#set(static_mpg123_pkgconfig ${MPG123_PKG_MODULE})
+#set(static_desktop_environment_gnome_pkgconfig glib-2.0 gtk+-3.0 gdk-3.0 ${APPINDICATOR_PKG_MODULE})
+#set(static_desktop_environment_kde_pkgconfig Qt5X11Extras Qt5Core Qt5UiTools)
 
-set(static_acme_pkgconfig freetype2 libidn ${static_acme_extra_pkgconfig} ncurses dbus-glib-1)
-set(static_apex_pkgconfig libcrypto libssl libarchive)
-set(static_database_cairo_pkgconfig freetype2 pango cairo pangocairo)
-set(static_database_sqlite3_pkgconfig sqlite3)
-set(static_mpg123_pkgconfig ${MPG123_PKG_MODULE})
-set(static_desktop_environment_gnome_pkgconfig glib-2.0 gtk+-3.0 gdk-3.0 ${APPINDICATOR_PKG_MODULE})
+#if (KDE_DESKTOP)
+#    set(static_desktop_environment_pkgconfig ${static_desktop_environment_kde_pkgconfig})
+#elseif (GNOME_DESKTOP)
+#    set(static_desktop_environment_pkgconfig ${static_desktop_environment_gnome_pkgconfig})
+#else ()
+#    set(static_desktop_environment_pkgconfig ${static_desktop_environment_gnome_pkgconfig})
+#endif()
+#
 
 
 set(LIBCXX_TARGETING_MSVC OFF)

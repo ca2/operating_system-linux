@@ -39,6 +39,10 @@ list(APPEND library_references
    acme_posix)
 
 
+list(APPEND static_library_references ${library_references})
+list(TRANSFORM static_library_references PREPEND static_)
+
+
 target_precompile_headers(${PROJECT_NAME} PRIVATE framework.h)
 target_precompile_headers(static_${PROJECT_NAME} PRIVATE framework.h)
 
@@ -68,6 +72,9 @@ elseif(LINUX)
 
 
     target_link_libraries(${PROJECT_NAME} PRIVATE dl ncurses ${library_references})
+    target_link_libraries(static_${PROJECT_NAME} PRIVATE dl ncurses ${static_library_references})
+
+
     target_link_options(${PROJECT_NAME} PRIVATE -Wl,-z,defs)
     target_link_options(static_${PROJECT_NAME} PRIVATE --whole-archive)
 
