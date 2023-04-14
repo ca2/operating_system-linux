@@ -58,7 +58,7 @@ list(APPEND system_libraries
 
 #set_source_files_properties(q_node_impl.cpp PROPERTIES SKIP_PRECOMPILE_HEADERS ON)
 
-add_library(${PROJECT_NAME} ${library_source})
+add_library(${PROJECT_NAME} SHARED ${library_source})
 add_library(static_${PROJECT_NAME} STATIC ${library_source})
 
 target_precompile_headers(${PROJECT_NAME} PRIVATE framework.h)
