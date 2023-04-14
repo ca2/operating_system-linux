@@ -266,11 +266,11 @@ if (LXDE_DESKTOP)
     list(APPEND app_common_dependencies
             desktop_environment_gnome)
 
-    list(APPEND static_app_common_dependencies
-            static_desktop_environment_gnome
-            static_node_gnome
-            static_node_gtk
-            static_windowing_x11)
+#    list(APPEND static_app_common_dependencies
+#            static_desktop_environment_gnome
+#            static_node_gnome
+#            static_node_gtk
+#            static_windowing_x11)
 
     set(default_windowing "windowing_x11")
 
