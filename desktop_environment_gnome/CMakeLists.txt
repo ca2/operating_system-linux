@@ -31,6 +31,11 @@ list(APPEND library_references
    )
 
 
+
+list(APPEND static_library_references ${library_references})
+list(TRANSFORM static_library_references PREPEND static_)
+
+
 add_library(${PROJECT_NAME} SHARED ${library_source})
 add_library(static_${PROJECT_NAME} STATIC ${library_source})
 
@@ -72,8 +77,6 @@ elseif (LINUX)
 endif ()
 
 
-add_dependencies(${PROJECT_NAME} node_linux)
-add_dependencies(${PROJECT_NAME} node_gtk)
 
 
 list(APPEND library_include_directories ${CMAKE_CURRENT_SOURCE_DIR})
