@@ -1,4 +1,11 @@
 
+if ("${CMAKE_BUILD_TYPE}" STREQUAL "")
+
+    set(CMAKE_BUILD_TYPE Debug)
+
+endif()
+
+
 if (NOT ${CMAKE_SYSTEM_NAME} STREQUAL "Linux")
 
     error("This file is designed to be used only for linux systems...")
