@@ -141,20 +141,16 @@ namespace apex_linux
    }
 
 
-   bool os_context::path_pid(::u32 & dwPid, const ::string & lpszName)
+   ::process_identifier os_context::module_path_process_identifier(const ::string &lpszName)
    {
 
-      u32_array dwa;
-
-      get_all_processes(dwa);
+      auto dwa = processes_identifiers();
 
       for(i32 i = 0; i < dwa.get_count(); i++)
       {
 
-         if(get_process_path(dwa[i]).case_insensitive_order(lpszName) == 0)
+         if(process_identifier_module_path(dwa[i]).case_insensitive_equals(lpszName))
          {
-
-            dwPid = dwa[i];
 
             return true;
 
@@ -167,22 +163,18 @@ namespace apex_linux
    }
 
 
-   bool os_context::title_pid(::u32 & dwPid, const ::string & lpszName)
+   ::process_identifier os_context::title_process_identifier(const ::string & lpszName)
    {
 
-      u32_array dwa;
-
-      get_all_processes(dwa);
+      auto dwa = processes_identifiers();
 
       for(i32 i = 0; i < dwa.get_count(); i++)
       {
 
-         if(get_process_path(dwa[i]).title().case_insensitive_order(lpszName) == 0)
+         if(process_identifier_module_path(dwa[i]).title().case_insensitive_equals(lpszName))
          {
 
-            dwPid = dwa[i];
-
-            return true;
+            return dwa[i];
 
          }
 
@@ -193,22 +185,22 @@ namespace apex_linux
    }
 
 
-   ::file::path os_context::get_process_path(::u32 dwPid)
+   ::file::path os_context::process_identifier_module_path(::process_identifier dwPid)
    {
 
       throw ::not_implemented();
 
-      return "";
+      return {};
 
    }
 
 
-   void os_context::get_all_processes(u32_array & dwa )
+   ::process_identifier_array os_context::processes_identifiers()
    {
 
       throw ::not_implemented();
 
-      return;
+      return {};
 
       /*
             dwa.set_size(0);
@@ -820,7 +812,7 @@ namespace apex_linux
    }
 
 
-   int os_context::get_pid()
+   ::process_identifier os_context::current_process_identifier()
    {
 
       return ::getpid();
@@ -1033,7 +1025,7 @@ namespace apex_linux
    }
 
 
-   void os_context::list_process(::file::path_array & patha, u32_array & uaPid)
+   void os_context::list_process(::file::path_array & patha, ::process_identifier_array & uaPid)
    {
 
       ::output_debug_string("linux::os_context::list_process");
@@ -1054,7 +1046,7 @@ namespace apex_linux
          if(iPid > 0)
          {
 
-            ::file::path path = pnode->module_path_from_pid(iPid);
+            ::file::path path = pnode->process_identifier_module_path(iPid);
 
             if(path.has_char())
             {

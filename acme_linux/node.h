@@ -93,21 +93,21 @@ namespace acme_linux
 
       virtual bool load_modules_diff(string_array& straOld, string_array& straNew, const char* pszExceptDir);
 
-      virtual atom_array get_pids();
+      ::process_identifier_array processes_identifiers() override;
 
-      virtual atom_array module_path_get_pid(const char* pszModulePath, bool bModuleNameIsPropertyFormatted);
+      ::process_identifier_array module_path_processes_identifiers(const string & strModulePath, bool bModuleNameIsPropertyFormatted) override;
 
-      virtual string module_path_from_pid(u32 pid);
+      string process_identifier_module_path(::process_identifier pid) override;
 
-      virtual string command_line_from_pid(u32 pid);
+      string process_identifier_command_line(::process_identifier pid) override;
 
-      virtual bool is_shared_library_busy(u32 processid, const string_array& stra);
+      bool is_shared_library_busy(::process_identifier processid, const string_array& stra) override;
 
-      virtual bool is_shared_library_busy(const string_array& stra);
+      bool is_shared_library_busy(const string_array& stra) override;
 
-      virtual bool process_contains_module(string& strImage, ::u32 processID, const char* pszLibrary);
+      bool process_contains_module(string& strImage, ::process_identifier processID, const ::string & strLibrary) override;
 
-      virtual void shared_library_process(dword_array& dwa, string_array& straProcesses, const char* pszLibrary);
+      ::process_identifier_array shared_library_process(string_array& straProcesses, const ::string & strLibrary) override;
 
       virtual bool is_process_running(::u32 pid);
 

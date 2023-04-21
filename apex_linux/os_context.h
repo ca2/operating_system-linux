@@ -34,11 +34,11 @@ namespace apex_linux
       virtual bool linux_can_exec(const ::string &file);
 
 
-      bool path_pid(::u32 & dwPid, const ::string & lpszName) override;
-      bool title_pid(::u32 & dwPid, const ::string & lpszName) override;
-      void get_all_processes(u32_array & dwa) override;
-      ::file::path get_process_path(::u32 dwPid) override;
-      int get_pid() override;
+      ::process_identifier module_path_process_identifier(const ::string & lpszName) override;
+      ::process_identifier title_process_identifier(const ::string & lpszName) override;
+      ::process_identifier_array processes_identifiers() override;
+      ::file::path process_identifier_module_path(::process_identifier dwPid) override;
+      ::process_identifier current_process_identifier() override;
 
       ::payload connection_settings_get_auto_detect() override;
       ::payload connection_settings_get_auto_config_url() override;
@@ -83,7 +83,7 @@ namespace apex_linux
 
       void file_open(const ::file::path & pathTarget, const ::string & strParams = "", const ::file::path & pathFolder = "") override;
 
-      void list_process(::file::path_array & patha, u32_array & iaPid) override;
+      void list_process(::file::path_array & patha, ::process_identifier_array & processidentifierarray) override;
 
 
       virtual ::file::path _get_auto_start_desktop_file_path(const ::string & strAppId);
