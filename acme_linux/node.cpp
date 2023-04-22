@@ -193,18 +193,18 @@ namespace acme_linux
 //      }
 
 
-   bool node::process_modules(string_array& stra, u32 processID)
+   bool node::process_modules(string_array& stra, ::process_identifier pid)
    {
 
-      return ::acme_posix::node::process_modules(stra, processID);
+      return ::acme_posix::node::process_modules(stra, pid);
 
    }
 
 
-   bool node::load_modules_diff(string_array& straOld, string_array& straNew, const char* pszExceptDir)
+   bool node::load_modules_diff(string_array& straOld, string_array& straNew, const ::string & strExceptDir)
    {
 
-      return ::acme_posix::node::load_modules_diff(straOld, straNew, pszExceptDir);
+      return ::acme_posix::node::load_modules_diff(straOld, straNew, strExceptDir);
 
    }
 
@@ -257,7 +257,7 @@ namespace acme_linux
    }
 
 
-   string node::process_identifier_command_line(process_identifier pid)
+   string node::process_identifier_command_line(::process_identifier pid)
    {
 
       return ::acme_posix::node::process_identifier_command_line(pid);
@@ -297,7 +297,7 @@ namespace acme_linux
    }
 
 
-   bool node::is_process_running(::u32 pid)
+   bool node::is_process_running(::process_identifier pid)
    {
 
       return ::acme_posix::node::is_process_running(pid);
@@ -305,18 +305,18 @@ namespace acme_linux
    }
 
 
-   string node::get_environment_variable(const char* pszEnvironmentVariable)
+   string node::get_environment_variable(const ::scoped_string & scopestrEnvironmentVariable)
    {
 
-      return ::acme_posix::node::get_environment_variable(pszEnvironmentVariable);
+      return ::acme_posix::node::get_environment_variable(scopestrEnvironmentVariable);
 
    }
 
 
-   string node::expand_environment_variables(const string & str)
+   string node::expand_environment_variables(const ::scoped_string & scopedstr)
    {
 
-      return ::acme_posix::node::expand_environment_variables(str);
+      return ::acme_posix::node::expand_environment_variables(scopedstr);
 
    }
 

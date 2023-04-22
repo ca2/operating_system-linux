@@ -89,19 +89,19 @@ namespace acme_linux
       static ::user::enum_desktop _calculate_edesktop();
 
 
-      virtual bool process_modules(string_array& stra, u32 processID);
+      bool process_modules(string_array& stra, ::process_identifier pid) override;
 
-      virtual bool load_modules_diff(string_array& straOld, string_array& straNew, const char* pszExceptDir);
+      bool load_modules_diff(string_array& straOld, string_array& straNew, const ::string & strExceptDir) override;
 
       ::process_identifier_array processes_identifiers() override;
 
-      ::process_identifier_array module_path_processes_identifiers(const string & strModulePath, bool bModuleNameIsPropertyFormatted) override;
+      ::process_identifier_array module_path_processes_identifiers(const ::string & strModulePath, bool bModuleNameIsPropertyFormatted) override;
 
       string process_identifier_module_path(::process_identifier pid) override;
 
       string process_identifier_command_line(::process_identifier pid) override;
 
-      bool is_shared_library_busy(::process_identifier processid, const string_array& stra) override;
+      bool is_shared_library_busy(::process_identifier pid, const string_array& stra) override;
 
       bool is_shared_library_busy(const string_array& stra) override;
 
@@ -109,14 +109,14 @@ namespace acme_linux
 
       ::process_identifier_array shared_library_process(string_array& straProcesses, const ::string & strLibrary) override;
 
-      virtual bool is_process_running(::u32 pid);
+      bool is_process_running(::process_identifier pid) override;
 
-      virtual string get_environment_variable(const char* pszEnvironmentVariable);
+      string get_environment_variable(const ::scoped_string & scopedstrEnvironmentVariable) override;
 
-      virtual string expand_environment_variables(const string & str);
+      string expand_environment_variables(const ::scoped_string & scopedstr) override;
 
 
-      virtual array <::serial::port_info> list_serial_ports();
+      array <::serial::port_info> list_serial_ports() override;
 
 
       void shell_open(const ::file::path & path, const ::string & strParams = "", const ::file::path & pathFolder = "") override;
