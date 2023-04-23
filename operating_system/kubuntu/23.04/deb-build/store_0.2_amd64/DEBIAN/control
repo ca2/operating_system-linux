@@ -1,0 +1,9 @@
+Package: store
+Version: 0.2
+Architecture: amd64
+Depends: libfreeimage3,libstartup-notification0
+Maintainer: Camilo Sasuke Thomas Borregaard Sørensen <camilosasuketbs@gmail.com>
+Description: store
+ ca2 store application.
+
+
