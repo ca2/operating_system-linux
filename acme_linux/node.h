@@ -73,7 +73,7 @@ namespace acme_linux
       //virtual ::e_status ::windows::last_error_status(::u32 dwLastError);
 
 
-      string audio_get_default_library_name() override;
+      string audio_get_default_implementation_name() override;
 
 
       void calculate_linux_distribution() override;

@@ -69,10 +69,10 @@ namespace acme_linux
    }
 
 
-   string node::audio_get_default_library_name()
+   string node::audio_get_default_implementation_name()
    {
 
-      return "audio_alsa";
+      return acmesystem()->implementation_name("audio", "alsa");
 
    }
 
