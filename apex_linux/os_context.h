@@ -34,8 +34,8 @@ namespace apex_linux
       virtual bool linux_can_exec(const ::string &file);
 
 
-      ::process_identifier module_path_process_identifier(const ::string & lpszName) override;
-      ::process_identifier title_process_identifier(const ::string & lpszName) override;
+      ::process_identifier_array module_path_processes_identifiers(const ::scoped_string & scopedstrName) override;
+      ::process_identifier_array title_processes_identifiers(const ::scoped_string & scopedstrName) override;
       ::process_identifier_array processes_identifiers() override;
       ::file::path process_identifier_module_path(::process_identifier dwPid) override;
       ::process_identifier current_process_identifier() override;

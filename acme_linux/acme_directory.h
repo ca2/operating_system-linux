@@ -27,7 +27,7 @@ namespace acme_linux
       ::file::path beforeca2() override;
       ::file::path module() override;
       ::file::path relative(::file::path path) override;
-      ::file::path app_relative() override;
+      ::string appid() override;
       ::file::path appdata() override; // appdata
       ::file::path archive() override;
       ::file::path tool() override;

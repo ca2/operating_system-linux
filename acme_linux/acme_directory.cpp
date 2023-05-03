@@ -3,6 +3,7 @@
 #include "acme_directory.h"
 #include "acme_file.h"
 #include "acme/operating_system/process.h"
+#include "acme/platform/application.h"
 #include "acme/platform/node.h"
 #include "acme/platform/system.h"
 //#include "acme/filesystem/filesystem/path_array.h"
@@ -70,7 +71,7 @@ namespace acme_linux
    ::file::path acme_directory::appdata()
    {
 
-      return ca2roaming() / "appdata" / app_relative();
+      return roaming() / appid();
 
    }
 
@@ -167,14 +168,16 @@ namespace acme_linux
    #else
 
 
-   ::file::path acme_directory::app_relative()
+   ::string acme_directory::appid()
    {
 
-      ::file::path path = acmefile()->module();
+//      ::file::path path = acmefile()->module();
+//
+//      path = relative(path);
+//
+//      return path;
 
-      path = relative(path);
-
-      return path;
+      return acmeapplication()->m_strAppId;
 
    }
 

@@ -2,6 +2,7 @@
 #include "node.h"
 #include "acme_file.h"
 #include "acme/operating_system/summary.h"
+#include "acme/platform/system.h"
 #include <sys/utsname.h>
 
 

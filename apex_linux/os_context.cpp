@@ -141,46 +141,50 @@ namespace apex_linux
    }
 
 
-   ::process_identifier os_context::module_path_process_identifier(const ::string &lpszName)
+   ::process_identifier_array os_context::module_path_processes_identifiers(const ::scoped_string & scopedstrName)
    {
+
+      ::process_identifier_array processidentifiera;
 
       auto dwa = processes_identifiers();
 
       for(i32 i = 0; i < dwa.get_count(); i++)
       {
 
-         if(process_identifier_module_path(dwa[i]).case_insensitive_equals(lpszName))
+         if(process_identifier_module_path(dwa[i]).case_insensitive_equals(scopedstrName))
          {
 
-            return true;
+            processidentifiera.add(dwa[i]);
 
          }
 
       }
 
-      return false;
+      return processidentifiera;
 
    }
 
 
-   ::process_identifier os_context::title_process_identifier(const ::string & lpszName)
+   ::process_identifier_array os_context::title_processes_identifiers(const ::scoped_string & scopedstrName)
    {
+
+      ::process_identifier_array processidentifiera;
 
       auto dwa = processes_identifiers();
 
       for(i32 i = 0; i < dwa.get_count(); i++)
       {
 
-         if(process_identifier_module_path(dwa[i]).title().case_insensitive_equals(lpszName))
+         if(process_identifier_module_path(dwa[i]).title().case_insensitive_equals(scopedstrName))
          {
 
-            return dwa[i];
+            processidentifiera.add(dwa[i]);
 
          }
 
       }
 
-      return false;
+      return processidentifiera;
 
    }
 
