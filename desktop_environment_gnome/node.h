@@ -27,8 +27,6 @@ namespace desktop_environment_gnome
       ~node() override;
 
 
-      int node_init_check(int * pi, char *** ppz) override;
-
       void defer_notify_startup_complete() override;
 
       void start_node() override;

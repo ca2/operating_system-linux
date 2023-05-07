@@ -111,14 +111,6 @@ namespace apex_linux
    }
 
 
-   int node::node_init_check(int*, char***)
-   {
-
-      return ::success;
-
-   }
-
-
    void node::on_create_app_shortcut(::acme::application * papplication)
    {
 

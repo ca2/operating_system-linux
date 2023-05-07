@@ -35,9 +35,6 @@ namespace apex_linux
 
       virtual ::e_status process_init();
 
-      virtual int node_init_check(int *, char ***);
-
-
       void _001InitializeShellOpen() override;
 
       //void shell_open(const ::file::path & path, const ::string& strParams, const ::file::path & pathFolder) override;
