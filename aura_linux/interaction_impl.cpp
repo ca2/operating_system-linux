@@ -2051,7 +2051,7 @@ namespace aura_linux
 //   }
 
 
-   void interaction_impl::_001OnExitIconic()
+   void interaction_impl::_001OnAfterExitIconic()
    {
 
       if(!m_pwindow)
@@ -2082,7 +2082,7 @@ namespace aura_linux
    }
 
 
-   void interaction_impl::_001OnExitFullScreen()
+   void interaction_impl::_001OnAfterExitFullScreen()
    {
 
       if(!m_pwindow)
@@ -2113,7 +2113,7 @@ namespace aura_linux
    }
 
 
-   void interaction_impl::_001OnExitZoomed()
+   void interaction_impl::_001OnAfterExitZoomed()
    {
 
 //      if(!m_pwindow)

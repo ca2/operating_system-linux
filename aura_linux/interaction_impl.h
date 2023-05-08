@@ -211,9 +211,9 @@ namespace aura_linux
 //      i32 GetWindowRgn(HRGN hRgn);
 
 
-      virtual void _001OnExitIconic() override;
-      virtual void _001OnExitFullScreen() override;
-      virtual void _001OnExitZoomed() override;
+      void _001OnAfterExitIconic() override;
+      void _001OnAfterExitFullScreen() override;
+      void _001OnAfterExitZoomed() override;
 
 
       //virtual bool set_window_position(iptr z, i32 x, i32 y, i32 cx, i32 cy, ::u32 nFlags);
