@@ -234,7 +234,7 @@ namespace acme_linux
 
       strProcPidMaps.format("/proc/%d/maps", (int) processidentifier);
 
-      auto stra = ::transfer(acmedirectory()->enumerate_content(strProcPidMaps));
+      auto stra = ::transfer(acmefile()->case_insensitive_unique_column_cells(strProcPidMaps, 5));
 
       ::generic::array::copy(patha, stra);
 
