@@ -89,7 +89,7 @@ namespace acme_linux
       static ::user::enum_desktop _calculate_edesktop();
 
 
-      bool process_modules(string_array& stra, ::process_identifier pid) override;
+      ::file::path_array process_identifier_modules_paths(::process_identifier processidentifier) override;
 
       bool load_modules_diff(string_array& straOld, string_array& straNew, const ::string & strExceptDir) override;
 
@@ -101,9 +101,9 @@ namespace acme_linux
 
       string process_identifier_command_line(::process_identifier pid) override;
 
-      bool is_shared_library_busy(::process_identifier pid, const string_array& stra) override;
+      //bool is_shared_library_busy(::process_identifier pid, const string_array& stra) override;
 
-      bool is_shared_library_busy(const string_array& stra) override;
+      //bool is_shared_library_busy(const string_array& stra) override;
 
       bool process_contains_module(string& strImage, ::process_identifier processID, const ::string & strLibrary) override;
 

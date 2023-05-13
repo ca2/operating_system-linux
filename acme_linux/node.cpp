@@ -1,9 +1,20 @@
 #include "framework.h"
 #include "node.h"
 #include "acme_file.h"
+#include "acme/filesystem/filesystem/acme_directory.h"
 #include "acme/operating_system/summary.h"
 #include "acme/platform/system.h"
-#include <sys/utsname.h>
+
+
+void copy(::file::path & path, const ::string & str)
+{
+
+   path = str;
+
+}
+
+
+#include "acme/primitive/collection/_generic_array.h"
 
 
 #include  "acme/operating_system/ansi/binreloc.h"
@@ -11,6 +22,10 @@
 
 
 #include <unistd.h>
+#include <sys/utsname.h>
+
+
+
 
 
 ::user::enum_desktop _calculate_edesktop();
@@ -193,11 +208,37 @@ namespace acme_linux
 //
 //      }
 
+//   ::dl_iterate_phdr(__get_module_names, &patha);
+//   int __get_module_names(struct dl_phdr_info * pinfo, size_t size, void *data)
+//   {
+//
+//      auto ppatha = (::file::path_array *) data;
+//
+//      ppatha->add(pinfo->dlpi_name);
+//
+//      return 0;
+//
+//   }
 
-   bool node::process_modules(string_array& stra, ::process_identifier pid)
+   //::dl_iterate_phdr(__get_module_names, &patha);
+
+
+
+
+   ::file::path_array node::process_identifier_modules_paths(::process_identifier processidentifier)
    {
 
-      return ::acme_posix::node::process_modules(stra, pid);
+      ::file::path_array patha;
+
+      ::string strProcPidMaps;
+
+      strProcPidMaps.format("/proc/%d/maps", (int) processidentifier);
+
+      auto stra = ::transfer(acmedirectory()->enumerate_content(strProcPidMaps));
+
+      ::generic::array::copy(patha, stra);
+
+      return ::transfer(patha);
 
    }
 
@@ -266,20 +307,20 @@ namespace acme_linux
    }
 
 
-   bool node::is_shared_library_busy(::process_identifier processid, const string_array& stra)
-   {
-
-      return ::acme_posix::node::is_shared_library_busy(processid, stra);
-
-   }
-
-
-   bool node::is_shared_library_busy(const string_array& stra)
-   {
-
-      return ::acme_posix::node::is_shared_library_busy(stra);
-
-   }
+//   bool node::is_shared_library_busy(::process_identifier processid, const string_array& stra)
+//   {
+//
+//      return ::acme_posix::node::is_shared_library_busy(processid, stra);
+//
+//   }
+//
+//
+//   bool node::is_shared_library_busy(const string_array& stra)
+//   {
+//
+//      return ::acme_posix::node::is_shared_library_busy(stra);
+//
+//   }
 
 
    bool node::process_contains_module(string& strImage, ::process_identifier processID, const ::string & strLibrary)
