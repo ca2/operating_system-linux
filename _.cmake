@@ -177,12 +177,6 @@ if (EXISTS $ENV{HOME}/__config/xfce.txt)
 
 endif ()
 
-if (GNOME_DESKTOP)
-
-    message(STATUS "Adding GNOME/X11 dependency.")
-
-endif ()
-
 if (KDE_DESKTOP)
 
     set(WITH_XCB TRUE)
@@ -307,6 +301,8 @@ endif ()
 
 if (GNOME_DESKTOP)
 
+
+    message(STATUS "Adding GNOME/X11 dependency.")
 
     list(APPEND app_common_dependencies
             desktop_environment_gnome)

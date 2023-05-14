@@ -2,6 +2,7 @@
 #include "node.h"
 #include "acme_file.h"
 #include "acme/filesystem/filesystem/acme_directory.h"
+#include "acme/filesystem/filesystem/listing.h"
 #include "acme/operating_system/summary.h"
 #include "acme/platform/system.h"
 
@@ -234,7 +235,7 @@ namespace acme_linux
 
       strProcPidMaps.format("/proc/%d/maps", (int) processidentifier);
 
-      auto stra = ::transfer(acmefile()->case_insensitive_unique_column_cells(strProcPidMaps, 5));
+      auto stra = ::transfer(acmedirectory()->enumerate_content(strProcPidMaps));
 
       ::generic::array::copy(patha, stra);
 
@@ -254,7 +255,26 @@ namespace acme_linux
    ::process_identifier_array node::processes_identifiers()
    {
 
-      return ::acme_posix::node::processes_identifiers();
+      ::file::listing listing;
+
+      listing.set_folder_listing("/proc");
+
+      acmedirectory()->enumerate(listing);
+
+      process_identifier_array processidentifiera;
+
+      for(auto & path : listing)
+      {
+
+         ::process_identifier processidentifier;
+
+         processidentifier = atol(path.title());
+
+         processidentifiera.add(processidentifier);
+
+      }
+
+      return ::transfer(processidentifiera);
 
    }
 
