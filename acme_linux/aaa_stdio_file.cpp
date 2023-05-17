@@ -203,7 +203,7 @@ namespace acme_linux
 
       rString.empty();
       const i32 nMaxSize = 128;
-      char * psz = rString.get_string_buffer(nMaxSize);
+      char * psz = rString.get_buffer(nMaxSize);
 
       char * pszResult;
 
@@ -212,7 +212,7 @@ namespace acme_linux
       {
          pszResult = fgets(psz, nMaxSize+1, m_pStream);
 
-         rString.release_string_buffer();
+         rString.release_buffer();
 
          // handle error/eof case
          if (pszResult == nullptr && !feof(m_pStream))
@@ -233,18 +233,18 @@ namespace acme_linux
 
          nLen = rString.get_length();
 
-         psz = rString.get_string_buffer(nMaxSize + nLen) + nLen;
+         psz = rString.get_buffer(nMaxSize + nLen) + nLen;
 
       }
 
       // remov '\n' from end of string if present
-      psz = rString.get_string_buffer(0);
+      psz = rString.get_buffer(0);
 
       nLen = rString.get_length();
 
       if (nLen != 0 && psz[nLen-1] == '\n')
 
-         rString.get_string_buffer(nLen-1);
+         rString.get_buffer(nLen-1);
 
       return pszResult != nullptr;
 

@@ -456,7 +456,7 @@ namespace acme_linux
 ////
 ////                             int iBufferSize = 4096;
 ////
-////                             char * pszError = strError.get_string_buffer(iBufferSize);
+////                             char * pszError = strError.get_buffer(iBufferSize);
 ////
 ////                             auto psystem = acmesystem();
 ////
@@ -464,7 +464,7 @@ namespace acme_linux
 ////
 ////                             int iBool = pnode->os_launch_uri(strUri, pszError, iBufferSize);
 ////
-////                             strError.release_string_buffer();
+////                             strError.release_buffer();
 ////
 ////                             if(!iBool)
 ////                             {

@@ -870,7 +870,7 @@ namespace aura_linux
          if (hWnd != nullptr)
          {
             i32 nLen = ::GetWindowTextLength(hWnd);
-            ::GetWindowText(hWnd, rectString.get_string_buffer(nLen), nLen+1);
+            ::GetWindowText(hWnd, rectString.get_buffer(nLen), nLen+1);
             rectString.ReleaseBuffer();
          }
 
