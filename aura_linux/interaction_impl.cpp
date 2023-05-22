@@ -853,12 +853,12 @@ namespace aura_linux
    }
 
 
-   void interaction_impl::get_window_text(string & rectString)
-   {
-
-      rectString = m_strWindowText;
-
-   }
+//   void interaction_impl::get_window_text(string & rectString)
+//   {
+//
+//      rectString = m_strWindowText;
+//
+//   }
 
    /*
       i32 interaction_impl::GetDlgItemText(i32 nID, string & rectString) const
@@ -2324,22 +2324,22 @@ namespace aura_linux
 //
 
 
-   void interaction_impl::set_window_text(const ::string & strText)
-   {
-
-      m_strWindowText = strText;
-
-      //windowing_output_debug_string("\nlinux::interaction_impl::set_window_text");
-
-      //fflush(stdout);
-
-//      x11_store_name(m_oswindow, m_strWindowText);
-
-      //windowing_output_debug_string("\nlinux::interaction_impl::set_window_text END");
-
-      //fflush(stdout);
-
-   }
+//   void interaction_impl::set_window_text(const ::string & strText)
+//   {
+//
+//      m_strWindowText = strText;
+//
+//      //windowing_output_debug_string("\nlinux::interaction_impl::set_window_text");
+//
+//      //fflush(stdout);
+//
+////      x11_store_name(m_oswindow, m_strWindowText);
+//
+//      //windowing_output_debug_string("\nlinux::interaction_impl::set_window_text END");
+//
+//      //fflush(stdout);
+//
+//   }
 
 
 //   strsize interaction_impl::GetWindowText(char * pszString, strsize nMaxCount)

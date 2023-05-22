@@ -189,11 +189,11 @@ namespace aura_linux
 
 
       // oswindow Text Functions
-      void set_window_text(const ::string & strString) override;
+      //void set_window_text(const ::string & strString) override;
 
       //strsize GetWindowText(char * pszStringBuf, strsize nMaxCount);
 
-      void get_window_text(string & str) override;
+      //void get_window_text(string & str) override;
       //strsize GetWindowTextLength();
       void SetFont(::write_text::font* pFont, bool bRedraw = true);
       ::write_text::font* GetFont();

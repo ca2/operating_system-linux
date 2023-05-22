@@ -1,12 +1,16 @@
 
+
 message(STATUS "CMAKE_SYSTEM_NAME is ${CMAKE_SYSTEM_NAME}")
-FIND_PACKAGE(PkgConfig)
 
-include(FindPkgConfig)
+#FIND_PACKAGE(PkgConfig)
 
-IF(PKG_CONFIG_FOUND)
+#include(FindPkgConfig)
+
+#IF(PKG_CONFIG_FOUND)
     # use pkg_check_modules()
-ENDIF(PKG_CONFIG_FOUND)
+#ENDIF(PKG_CONFIG_FOUND)
+set(USE_PKGCONFIG TRUE)
+
 
 if ("${CMAKE_BUILD_TYPE}" STREQUAL "")
 

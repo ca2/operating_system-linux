@@ -75,7 +75,7 @@ if (MSVC)
 elseif (LINUX)
 
     #
-    #   if(NOT DONT_USE_PKG_CONFIG)
+    #   if(USE_PKGCONFIG)
     #      pkg_check_modules(PKGCONFIG Qt5X11Extras Qt5Core Qt5UiTools)
     #   endif()
 
