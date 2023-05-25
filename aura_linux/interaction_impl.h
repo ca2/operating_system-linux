@@ -146,7 +146,7 @@ namespace aura_linux
 
       // Advanced: virtual AdjustWindowRect
 //      enum AdjustType { adjustBorder = 0, adjustOutside = 1 };
-//      virtual void CalcWindowRect(RECTANGLE_I32 * pClientRect, ::u32 nAdjustType = adjustBorder);
+//      virtual void CalcWindowRect(::rectangle_i32 * pClientRect, ::u32 nAdjustType = adjustBorder);
 
 
 
@@ -219,12 +219,12 @@ namespace aura_linux
       //virtual bool set_window_position(iptr z, i32 x, i32 y, i32 cx, i32 cy, ::u32 nFlags);
 //      virtual ::u32 ArrangeIconicWindows();
       //virtual bool BringWindowToTop();
-//      virtual bool window_rectangle(RECTANGLE_I64 * prectangle);
+//      virtual bool window_rectangle(::rectangle_i64 * prectangle);
 
-  //    virtual bool _001GetWindowRect(RECTANGLE_I64 * prectangle);
+  //    virtual bool _001GetWindowRect(::rectangle_i64 * prectangle);
 
       //using ::user::interaction_impl::client_rectangle;
-      //virtual bool client_rectangle(RECTANGLE_I64 * prectangle);
+      //virtual bool client_rectangle(::rectangle_i64 * prectangle);
 
 
       //virtual bool has_keyboard_focus() override;
@@ -232,21 +232,21 @@ namespace aura_linux
 
       //virtual ::point_i32 client_screen_top_left() override;
 
-//      virtual bool client_to_screen(RECTANGLE_I32 * prectangle);
+//      virtual bool client_to_screen(::rectangle_i32 * prectangle);
 
-//      virtual bool client_to_screen(POINT_I32 * ppoint);
+//      virtual bool client_to_screen(::point_i32 * ppoint);
 
-//      virtual bool client_to_screen(RECTANGLE_I64 * prectangle);
+//      virtual bool client_to_screen(::rectangle_i64 * prectangle);
 
-//      virtual bool client_to_screen(POINT_I64 * ppoint);
+//      virtual bool client_to_screen(::point_i64 * ppoint);
 
-//      virtual bool screen_to_client(RECTANGLE_I32 * prectangle);
+//      virtual bool screen_to_client(::rectangle_i32 * prectangle);
 
-//      virtual bool screen_to_client(POINT_I32 * ppoint);
+//      virtual bool screen_to_client(::point_i32 * ppoint);
 
-//      virtual bool screen_to_client(RECTANGLE_I64 * prectangle);
+//      virtual bool screen_to_client(::rectangle_i64 * prectangle);
 
-//      virtual bool screen_to_client(POINT_I64 * ppoint);
+//      virtual bool screen_to_client(::point_i64 * ppoint);
 
 
 //      virtual bool GetWindowPlacement(WINDOWPLACEMENT* puserinteractionpl);
@@ -255,9 +255,9 @@ namespace aura_linux
 
 
       // Coordinate Mapping Fufnctions
-//      virtual void MapWindowPoints(::user::interaction * puserinteractionTo, POINT_I32 * pPoint, ::u32 nCount);
+//      virtual void MapWindowPoints(::user::interaction * puserinteractionTo, ::point_i32 * pPoint, ::u32 nCount);
 //
-//      virtual void MapWindowPoints(::user::interaction * puserinteractionTo, RECTANGLE_I32 * prectangle);
+//      virtual void MapWindowPoints(::user::interaction * puserinteractionTo, ::rectangle_i32 * prectangle);
 
 
       // Update/Painting Functions
@@ -269,7 +269,7 @@ namespace aura_linux
 
 //      virtual void UpdateWindow();
 //      virtual void SetRedraw(bool bRedraw = true);
-//      virtual bool GetUpdateRect(RECTANGLE_I32 * prectangle, bool bErase = false);
+//      virtual bool GetUpdateRect(::rectangle_i32 * prectangle, bool bErase = false);
 //
 //      virtual i32 GetUpdateRgn(::draw2d::region* pRgn, bool bErase = false);
 //      virtual void Invalidate(bool bErase = true);

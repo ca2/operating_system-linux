@@ -1808,7 +1808,7 @@ namespace aura_linux
 //   }
 //
 //
-//   void interaction_impl::CalcWindowRect(RECTANGLE_I32 * pClientRect, ::u32 nAdjustType)
+//   void interaction_impl::CalcWindowRect(::rectangle_i32 * pClientRect, ::u32 nAdjustType)
 //   {
 //
 //      /*::u32 dwExStyle = GetExStyle();
@@ -2473,7 +2473,7 @@ namespace aura_linux
 //   }
 //
 //
-//   void interaction_impl::MapWindowPoints(::user::interaction * puserinteractionTo, POINT_I32 * pPoint, ::u32 nCount)
+//   void interaction_impl::MapWindowPoints(::user::interaction * puserinteractionTo, ::point_i32 * pPoint, ::u32 nCount)
 //
 //   {
 //
@@ -2486,14 +2486,14 @@ namespace aura_linux
 //   }
 //
 //
-//   void interaction_impl::MapWindowPoints(::user::interaction * puserinteractionTo, RECTANGLE_I32 * prectangle)
+//   void interaction_impl::MapWindowPoints(::user::interaction * puserinteractionTo, ::rectangle_i32 * prectangle)
 //
 //   {
 //
 //      throw ::not_implemented();
 //
 ////      ASSERT(::is_window((oswindow) get_handle()));
-////      ::MapWindowPoints(get_handle(), (oswindow) puserinteractionTo->get_handle(), (POINT_I32 *)prectangle, 2);
+////      ::MapWindowPoints(get_handle(), (oswindow) puserinteractionTo->get_handle(), (::point_i32 *)prectangle, 2);
 //
 //
 //   }
@@ -2601,7 +2601,7 @@ namespace aura_linux
 //      //::SendMessage(get_handle(), WM_SETREDRAW, bRedraw, 0);
 //   }
 //
-//   bool interaction_impl::GetUpdateRect(RECTANGLE_I32 * prectangle, bool bErase)
+//   bool interaction_impl::GetUpdateRect(::rectangle_i32 * prectangle, bool bErase)
 //
 //   {
 //      throw ::not_implemented();
@@ -3133,7 +3133,7 @@ namespace aura_linux
 //
 //   }
 //
-//   i32 interaction_impl::ScrollWindowEx(i32 dx, i32 dy, const rectangle_i32 & pRectScroll, const rectangle_i32 & lpRectClip, ::draw2d::region * prgnUpdate, RECTANGLE_I32 * lpRectUpdate, ::u32 flags)
+//   i32 interaction_impl::ScrollWindowEx(i32 dx, i32 dy, const rectangle_i32 & pRectScroll, const rectangle_i32 & lpRectClip, ::draw2d::region * prgnUpdate, ::rectangle_i32 * lpRectUpdate, ::u32 flags)
 //
 //   {
 //
@@ -3302,7 +3302,7 @@ namespace aura_linux
 //
 //      __s_throw(not_implemented());
 ////      const ::point_i32 & point;
-////      ::GetcaretPos((POINT_I32 *)&point); return point;
+////      ::GetcaretPos((::point_i32 *)&point); return point;
 //
 //   }
 //
@@ -3696,9 +3696,9 @@ namespace aura_linux
 ////   { Default(); }
 ////   void interaction_impl::OnStyleChanging(i32, LPSTYLESTRUCT)
 ////   { Default(); }
-//   void interaction_impl::OnSizing(::u32, RECTANGLE_I32 *)
+//   void interaction_impl::OnSizing(::u32, ::rectangle_i32 *)
 //   { Default(); }
-//   void interaction_impl::OnMoving(::u32, RECTANGLE_I32 *)
+//   void interaction_impl::OnMoving(::u32, ::rectangle_i32 *)
 //   { Default(); }
 //   void interaction_impl::OncaptureChanged(::user::interaction *)
 //   { Default(); }
