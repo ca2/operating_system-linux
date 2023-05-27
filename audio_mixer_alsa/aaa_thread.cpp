@@ -123,7 +123,7 @@ namespace multimedia
          //    m_pMixerDocTemplate->open_new_document();
          //  if(GetMainWnd() != NULL)
          //{
-         //  GetMainWnd()->SetForegroundWindow();
+         //  GetMainWnd()->set_foreground_window();
          //}
          //}
       }
@@ -182,7 +182,7 @@ namespace multimedia
 
                //            if(m_poptionsimpact != NULL)
                {
-                  //            m_poptionsimpact->ShowWindow(SW_SHOWNORMAL);
+                  //            m_poptionsimpact->show_window(SW_SHOWNORMAL);
                }
 
             }
@@ -220,7 +220,7 @@ namespace multimedia
                //{
                //  bVisible = (pAlbum->GetStyle() & WS_VISIBLE) != 0;
                //if(bVisible)
-               //  pAlbum->ShowWindow(SW_HIDE);
+               //  pAlbum->show_window(SW_HIDE);
                //}
                lpdata->bVisible = bVisible;*/
             }

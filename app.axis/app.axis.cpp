@@ -99,7 +99,7 @@ int32_t __lnx_main(int32_t argc, char * argv[])
 
    }
 
-   pinitmaindata->m_nCmdShow              = e_display_restored;
+   pinitmaindata->m_nCmdShow              = e_display_normal;
 
    psystem->init_main_data(pinitmaindata);
 

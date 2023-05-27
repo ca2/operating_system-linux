@@ -33,7 +33,7 @@ namespace apex_linux
       //      wstring(m_strFile),
       //      wstring(m_strParameters),
       //      wstring(m_strDirectory),
-      //      linux_show_window(m_edisplay, m_eactivation));
+      //      linux_show_window(m_edisplay,XXXm_eactivation));
 
       //}
 

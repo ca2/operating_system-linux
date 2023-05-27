@@ -552,7 +552,7 @@ namespace aura_linux
             if(m_puserinteraction->window_previous_display() == ::e_display_iconic)
             {
 
-               m_puserinteraction->_001OnDeiconify(::e_display_restored);
+               m_puserinteraction->_001OnDeiconify(::e_display_normal);
 
             }
             else
@@ -1630,7 +1630,7 @@ namespace aura_linux
 //      {
 //         // clicking on floating frame when it does not have
 //         // focus itself -- activate the toplevel frame instead.
-//         EnsureTopLevel()->SetForegroundWindow();
+//         EnsureTopLevel()->set_foreground_window();
 //      }
 //   }
 
@@ -1832,7 +1832,7 @@ namespace aura_linux
 //               if (LOWORD(lparam) == VK_F6 && pParent != nullptr)
 //
 //               {
-//                  pParent->SetFocus();
+//                  pParent->XXXSetFocus();
 //                  return true;
 //               }
 //               break;
@@ -1855,15 +1855,15 @@ namespace aura_linux
 //                     // and focus after sending it.
 //                     oswindow hWndSave = get_handle();
 //                     oswindow hWndFocus = ::GetFocus();
-//                     pParent->SetActiveWindow();
+//                     pParent->XXXSetActiveWindow();
 //                     pParent->send_message(WM_SYSCOMMAND, nID, lparam);
 //
 //
 //                     // be very careful here...
 //                     if (::is_window(hWndSave))
-//                        ::SetActiveWindow(hWndSave);
+//                        ::XXXSetActiveWindow(hWndSave);
 //                     if (::is_window(hWndFocus))
-//                        ::SetFocus(hWndFocus);
+//                        ::XXXSetFocus(hWndFocus);
 //                  }
 //               }
 //               return true;
@@ -2911,7 +2911,7 @@ namespace aura_linux
 //   }
 
 
-//   ::user::interaction * interaction_impl::SetActiveWindow()
+//   ::user::interaction * interaction_impl::XXXSetActiveWindow()
 //   {
 //
 //      return nullptr;
@@ -3333,7 +3333,7 @@ namespace aura_linux
 //
 
 
-//   bool interaction_impl::SetForegroundWindow()
+//   bool interaction_impl::set_foreground_window()
 //   {
 //
 //      return ::set_foreground_window(get_handle()) != false;
