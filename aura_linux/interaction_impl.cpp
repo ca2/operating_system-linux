@@ -423,7 +423,7 @@ namespace aura_linux
       if (bSize)
       {
 
-         FORMATTED_INFORMATION("linux::interaction_impl Window Manager Size (%d, %d)", m_sizeLastSize.cx, m_sizeLastSize.cy);
+         FORMATTED_INFORMATION("linux::interaction_impl Window Manager Size (%d, %d)", m_sizeLastSize.cx(), m_sizeLastSize.cy());
 
          m_puserinteraction->set_size(m_sizeLastSize);
 
@@ -1260,14 +1260,14 @@ namespace aura_linux
                   if (rectWindow.left >= rcMonitor.left)
                   {
 
-                     pmouse->m_point.x += (::i32) rectWindow.left;
+                     pmouse->m_point.x() += (::i32) rectWindow.left;
 
                   }
 
                   if (rectWindow.top >= rcMonitor.top)
                   {
 
-                     pmouse->m_point.y += (::i32) rectWindow.top;
+                     pmouse->m_point.y() += (::i32) rectWindow.top;
 
                   }
 
@@ -1278,14 +1278,14 @@ namespace aura_linux
                   if (rectWindow.left >= 0)
                   {
 
-                     pmouse->m_point.x += (::i32) rectWindow.left;
+                     pmouse->m_point.x() += (::i32) rectWindow.left;
 
                   }
 
                   if (rectWindow.top >= 0)
                   {
 
-                     pmouse->m_point.y += (::i32) rectWindow.top;
+                     pmouse->m_point.y() += (::i32) rectWindow.top;
 
                   }
 
