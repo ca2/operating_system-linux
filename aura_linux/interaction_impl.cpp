@@ -408,7 +408,7 @@ namespace aura_linux
       if (bMove)
       {
 
-         INFORMATION("linux::interaction_impl Window Manager Move ("<<m_pointLastMove.x<<", "<<m_pointLastMove.y<<")");
+         INFORMATION("linux::interaction_impl Window Manager Move ("<<m_pointLastMove.x()<<", "<<m_pointLastMove.y()<<")");
 
          m_puserinteraction->set_position(m_pointLastMove);
 
