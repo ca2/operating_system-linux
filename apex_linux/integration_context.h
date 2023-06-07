@@ -1,4 +1,4 @@
-﻿// From apex/platform/integration_context.h by camilo on 2023-02-09 20:40 <3ThomasBorregaardSørensen!!
+// From apex/platform/integration_context.h by camilo on 2023-02-09 20:40 <3ThomasBorregaardSorensen!!
 #pragma once
 
 

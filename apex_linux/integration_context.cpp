@@ -1,4 +1,4 @@
-﻿// From apex/platform/integration_context.h by camilo on 2023-02-09 20:41 <3ThomasBorregaardSørensen!!
+// From apex/platform/integration_context.h by camilo on 2023-02-09 20:41 <3ThomasBorregaardSorensen!!
 #include "framework.h"
 #include "node.h"
 #include "integration_context.h"

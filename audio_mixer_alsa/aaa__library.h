@@ -1,4 +1,4 @@
-// From very old audio_mixer_mmsystem->audio_mixer_alsa:code by camilo on 2022-03-27 10:55 <3ThomasBorregaardSørensen!! (Thomas Likes number 5!!)
+// From very old audio_mixer_mmsystem->audio_mixer_alsa:code by camilo on 2022-03-27 10:55 <3ThomasBorregaardSorensen!! (Thomas Likes number 5!!)
 #pragma once
 
 
