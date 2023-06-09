@@ -1220,8 +1220,8 @@ typedef struct x265_param
         int videoFormat;
 
         /* Video full range flag indicates the black level and range of the luma
-         * and chroma signals as derived from E′Y, E′PB, and E′PR or E′R, E′G,
-         * and E′B real-valued component signals. The default is false */
+         * and chroma signals as derived from E'Y, E'PB, and E'PR or E'R, E'G,
+         * and E'B real-valued component signals. The default is false */
         int bEnableVideoFullRangeFlag;
 
         /* Color description present flag in the VUI. If this is set then

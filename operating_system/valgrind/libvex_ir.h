@@ -1537,7 +1537,7 @@ typedef
         end
 
         do i = 0 to 7
-            VR[dst].hword[i] <- 0b0 || (prod[2×i] ^ prod[2×i+1])
+            VR[dst].hword[i] <- 0b0 || (prod[2xi] ^ prod[2xi+1])
         end
       */
       Iop_PolynomialMulAdd8x16, Iop_PolynomialMulAdd16x8,
