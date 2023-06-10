@@ -1451,7 +1451,7 @@ void x265_encoder_parameters(x265_encoder *, x265_param *);
 /* x265_encoder_headers:
  *      return the SPS and PPS that will be used for the whole stream.
  *      *pi_nal is the number of NAL units outputted in pp_nal.
- *      returns negative on error, total byte size of payload data on success
+ *      returns negative on error, total ::u8 size of payload data on success
  *      the payloads of all output NALs are guaranteed to be sequential in memory. */
 int x265_encoder_headers(x265_encoder *, x265_nal **pp_nal, ::u32 *pi_nal);
 

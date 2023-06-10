@@ -63,14 +63,14 @@ namespace draw2d_gdiplus
    // Standard exception processing
 
 
-   /*void __get_gray_bitmap(::aura::application * papp, const ::draw2d::bitmap &rSrc, ::draw2d::bitmap *pDest, COLORREF crBackground)
+   /*void __get_gray_bitmap(::aura::application * papp, const ::draw2d::bitmap &rSrc, ::draw2d::bitmap *pDest, color32_t crBackground)
    {
       ASSERT(pDest);
       ASSERT_KINDOF(::draw2d::bitmap, pDest);
 
       BITMAP bm;
       ::draw2d::graphics_pointer graphicsMem, graphicsMask;
-      COLORREF cr;
+      color32_t cr;
       ::draw2d::bitmap_pointer bmpMask(papp);
       ::draw2d::bitmap *pOldMask, *pOldMem;
       const DWORD   CP_ROP = 0xE20746;
@@ -121,14 +121,14 @@ namespace draw2d_gdiplus
       }
    }
 
-   void __draw_gray_bitmap(::aura::application * papp, ::draw2d::graphics * pgraphics, i32 x, i32 y, const ::draw2d::bitmap &rSrc, COLORREF crBackground)
+   void __draw_gray_bitmap(::aura::application * papp, ::draw2d::graphics * pgraphics, i32 x, i32 y, const ::draw2d::bitmap &rSrc, color32_t crBackground)
    {
       ASSERT(pgraphics);
       ASSERT_KINDOF(::draw2d::graphics_pointer, pgraphics);
 
       BITMAP bm;
       ::draw2d::graphics_pointer graphicsMem, graphicsMask;
-      COLORREF cr;
+      color32_t cr;
       ::draw2d::bitmap_pointer bmpMask(papp);
       ::draw2d::bitmap *pOldMask, *pOldMem;
       const DWORD   CP_ROP = 0xE20746;
@@ -176,7 +176,7 @@ namespace draw2d_gdiplus
 
       BITMAP bm;
       ::draw2d::graphics_pointer graphicsSrc, graphicsMask, graphicsDest;
-      COLORREF cr;
+      color32_t cr;
       ::draw2d::bitmap_pointer bmpMask(papp);
       ::draw2d::bitmap *pOldMask, *pOldSrc;
       ::draw2d::brush brChecker;
@@ -245,7 +245,7 @@ namespace draw2d_gdiplus
 
       BITMAP bm;
       ::draw2d::graphics_pointer graphicsSrc, graphicsMask;
-      COLORREF cr;
+      color32_t cr;
       ::draw2d::bitmap_pointer bmpMask(papp);
       ::draw2d::bitmap *pOldMask, *pOldSrc;
       ::draw2d::brush brChecker;

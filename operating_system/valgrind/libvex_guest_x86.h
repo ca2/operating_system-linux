@@ -47,8 +47,8 @@
 /* The integer parts should be pretty straightforward. */
 
 /* Hmm, subregisters.  The simulated state is stored in memory in the
-   host's byte ordering, so we can't say here what the offsets of %ax,
-   %al, %ah etc are since that depends on the host's byte ordering,
+   host's ::u8 ordering, so we can't say here what the offsets of %ax,
+   %al, %ah etc are since that depends on the host's ::u8 ordering,
    which we don't know. */
 
 /* FPU.  For now, just simulate 8 64-bit registers, their tags, and
@@ -70,7 +70,7 @@
      In general, a reference to a register ST(i) actually references
      F[ (ftop+i) & 7 ].
 
-   FTAG0 .. FTAG0+7 are the tags.  Each is a byte, zero means empty,
+   FTAG0 .. FTAG0+7 are the tags.  Each is a ::u8, zero means empty,
    non-zero means non-empty.
 
    The general rule appears to be that a read or modify of a register

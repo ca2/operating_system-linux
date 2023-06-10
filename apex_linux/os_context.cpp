@@ -256,7 +256,7 @@ namespace apex_linux
 
             key1.QueryValue("DefaultConnectionSettings", mem);
 
-            bool bAutoDetect = (((byte *) mem.get_data())[8] & 0x08) != 0;
+            bool bAutoDetect = (((::u8 *) mem.get_data())[8] & 0x08) != 0;
 
             return bAutoDetect;
       */

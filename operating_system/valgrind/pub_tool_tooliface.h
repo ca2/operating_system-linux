@@ -123,7 +123,7 @@ extern void VG_(basic_tool_funcs)(
    // Memcheck uses this.
    //
    // VexGuestExtents* vge points to a structure which states the
-   // precise byte ranges of original code from which this translation
+   // precise ::u8 ranges of original code from which this translation
    // was made (there may be up to three different ranges involved).
    // Note again that these are the real addresses from which the code
    // came.  And so it should be the case that closure->readdr is the

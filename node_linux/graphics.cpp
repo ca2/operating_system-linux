@@ -29,14 +29,14 @@ count g_cForkBlend = 0;
 * @return New array with ::size_f64 width * height
 */
 void trilinearImageScaling(
-COLORREF * ret, int width, int height, int scan,
-COLORREF * pixels, int w, int h, // larger image
-COLORREF * pixels2, int w2, int h2, // smaller image
+color32_t * ret, int width, int height, int scan,
+color32_t * pixels, int w, int h, // larger image
+color32_t * pixels2, int w2, int h2, // smaller image
 int scan2)
 {
 
    int index, index2;
-   COLORREF A, B, C, D, E, F, G, H;
+   color32_t A, B, C, D, E, F, G, H;
    float x, y, x2, y2, w_diff, h_diff, w2_diff, h2_diff, red, green, blue, alpha;
    // find ratio for larger image
    float w_ratio = ((float)(w - 1)) / width;
@@ -47,11 +47,11 @@ int scan2)
    // estimate h3 distance
    float h3_diff = (w - width) / (float)(w - w2);
    int offset = 0;
-   COLORREF * line;
-   COLORREF * line2;
-   COLORREF * lineRet;
-   int wscan = scan / sizeof(COLORREF);
-   int wscan2 = scan2 / sizeof(COLORREF);
+   color32_t * line;
+   color32_t * line2;
+   color32_t * lineRet;
+   int wscan = scan / sizeof(color32_t);
+   int wscan2 = scan2 / sizeof(color32_t);
    for (int i = 0; i<height; i++)
    {
       lineRet = ret + wscan * i;
@@ -389,7 +389,7 @@ namespace draw2d_gdiplus
    }
 
 
-   //COLORREF graphics::GetNearestColor(const ::color::color & color)
+   //color32_t graphics::GetNearestColor(const ::color::color & color)
    //{
 
    //   //return ::GetNearestColor(get_handle2(), color);
@@ -1831,17 +1831,17 @@ namespace draw2d_gdiplus
    //            //::image_pointer pimage = m_pimage;
    //            //int iScan = pimage->m_iScan;
    //            //::image_pointer pimageMipmap = pgraphicsSrc->m_pimage;
-   //            //COLORREF * pcrMipmap = imageMipmap.m_pcolorref;
+   //            //color32_t * pcrMipmap = imageMipmap.m_pcolorref;
    //            //int iMimapScan = imageMipmap.m_iScan;
    //            //::size_f64 sizeMipmap = imageMipmap.m_size;
 
    //            //trilinearImageScaling(
-   //            //&pimage->m_pcolorref[xDst + iScan * yDst / sizeof(COLORREF)],
+   //            //&pimage->m_pcolorref[xDst + iScan * yDst / sizeof(color32_t)],
    //            //nDstWidth, nDstHeight,
    //            //iScan,
-   //            //&pcrMipmap[x1 + y1 * iMimapScan / sizeof(COLORREF)],
+   //            //&pcrMipmap[x1 + y1 * iMimapScan / sizeof(color32_t)],
    //            //cx1, cy1,
-   //            //&pcrMipmap[x2 + y2 * iMimapScan / sizeof(COLORREF)],
+   //            //&pcrMipmap[x2 + y2 * iMimapScan / sizeof(color32_t)],
    //            //cx2, cy2,
    //            //iMimapScan);
 
@@ -2072,7 +2072,7 @@ namespace draw2d_gdiplus
 
          m_pimage->map();
 
-         m_pimage->colorref()[(int) point.x + (int) point.y * m_pimage->scan_size()] = color;
+         m_pimage->image32()[(int) point.x + (int) point.y * m_pimage->scan_size()] = color;
 
       }
       else
@@ -2095,13 +2095,13 @@ namespace draw2d_gdiplus
 
          m_pimage->map();
 
-         ::color::color color = m_pimage->colorref()[(int) point.x + (int) point.y * m_pimage->scan_size()];
+         ::color::color color = m_pimage->image32()[(int) point.x + (int) point.y * m_pimage->scan_size()];
 
          color.m_iR = (int) (color.m_iR * (1.0 - colorChange.da()) + colorChange.m_iR * colorChange.da());
          color.m_iG = (int) (color.m_iG * (1.0 - colorChange.da()) + colorChange.m_iG * colorChange.da());
          color.m_iB = (int) (color.m_iB * (1.0 - colorChange.da()) + colorChange.m_iB * colorChange.da());
 
-         m_pimage->colorref()[(int) point.x + (int) point.y * m_pimage->scan_size()] = color;
+         m_pimage->image32()[(int) point.x + (int) point.y * m_pimage->scan_size()] = color;
          //colorCurrent.m_iA = colorCurrent.m_iA * (1.0 - color.da()) + color.m_iR * color.da();
 
       }
@@ -2975,7 +2975,7 @@ namespace draw2d_gdiplus
    }
 
 
-   i32 graphics::GetPath(::point_f64 * pPoints, byte * lpTypes, count nCount)
+   i32 graphics::GetPath(::point_f64 * pPoints, ::u8 * lpTypes, count nCount)
 
    {
 
@@ -3186,7 +3186,7 @@ namespace draw2d_gdiplus
 
       //         m_pimage->fork_blend(point_i32(xDest + get_origin().x, yDest + get_origin().y), pgraphicsSrc->m_pimage,
       //                                                point_i32(xSrc + pgraphicsSrc->get_origin().x, ySrc + pgraphicsSrc->get_origin().y),
-      //                                                ::size_f64(nSrcWidth, nDestHeight), (byte)(dRate * 255.0f));
+      //                                                ::size_f64(nSrcWidth, nDestHeight), (::u8)(dRate * 255.0f));
 
       //         g_cForkBlend++;
 
@@ -3201,7 +3201,7 @@ namespace draw2d_gdiplus
 
       //         m_pimage->blend(point_i32(xDest + get_origin().x, yDest + get_origin().y), pgraphicsSrc->m_pimage,
       //                                           point_i32(xSrc+pgraphicsSrc->get_origin().x, ySrc + pgraphicsSrc->get_origin().y),
-      //                                           ::size_f64(nSrcWidth, nDestHeight), (byte)(dRate * 255.0f));
+      //                                           ::size_f64(nSrcWidth, nDestHeight), (::u8)(dRate * 255.0f));
 
       //      }
 
@@ -3211,7 +3211,7 @@ namespace draw2d_gdiplus
 
       //      m_pimage->from(point_i32(xDest + get_origin().x, yDest + get_origin().y), pgraphicsSrc->m_pimage,
       //                                       point_i32(xSrc + pgraphicsSrc->get_origin().x, ySrc + pgraphicsSrc->get_origin().y),
-      //                                       ::size_f64(nSrcWidth, nDestHeight), (byte) (dRate * 255.0f));
+      //                                       ::size_f64(nSrcWidth, nDestHeight), (::u8) (dRate * 255.0f));
 
 
       //   }
@@ -3526,7 +3526,7 @@ namespace draw2d_gdiplus
    //   */
    //}
 
-   /*void graphics::fill_rectangle(const rectangle_i32 &  prectangle, COLORREF clr)
+   /*void graphics::fill_rectangle(const rectangle_i32 &  prectangle, color32_t clr)
 
    {
       ::SetBkColor(get_handle1(), clr);
@@ -5195,7 +5195,7 @@ namespace draw2d_gdiplus
 //      case META_SETBKCOLOR:
 //      {
 //         ::draw2d::brush_pointer brush(e_create);
-//         brush->create_solid(*(UNALIGNED COLORREF*)&pMetaRec->rdParm[0]);
+//         brush->create_solid(*(UNALIGNED color32_t*)&pMetaRec->rdParm[0]);
 //         set(brush);
 //      }
 //      break;
@@ -5203,7 +5203,7 @@ namespace draw2d_gdiplus
 //      {
 //         ::draw2d::brush_pointer brush(e_create);
 //
-//         brush->create_solid(*(UNALIGNED COLORREF*)&pMetaRec->rdParm[0]);
+//         brush->create_solid(*(UNALIGNED color32_t*)&pMetaRec->rdParm[0]);
 //         set(brush);
 //      }
 //      break;

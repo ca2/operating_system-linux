@@ -235,12 +235,12 @@
 //}
 //
 ///*
-// * Send a sysex event. The status byte is to distiguish
+// * Send a sysex event. The status ::u8 is to distiguish
 // * continuation sysex messages.
 // *  Arguments:
 // *    ctxp      - Application context
 // *    ep        - Event template
-// *    status    - Status byte for sysex
+// *    status    - Status ::u8 for sysex
 // *    data      - Data to send
 // *    length    - Length of data
 // */

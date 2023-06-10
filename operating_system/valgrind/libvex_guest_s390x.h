@@ -108,7 +108,7 @@ typedef struct {
 
    /*  320 */  ULong guest_counter;
    /*  328 */  ::u32 guest_fpc;
-   /*  332 */  UChar unused[4]; /* 4-byte hole to get 8-byte alignment */
+   /*  332 */  UChar unused[4]; /* 4-::u8 hole to get 8-::u8 alignment */
    /*  336 */  ULong guest_IA;
 
 /*------------------------------------------------------------*/

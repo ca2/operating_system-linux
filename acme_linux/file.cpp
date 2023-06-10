@@ -281,9 +281,9 @@
 ////      if(m_iPutCharacter >= 0)
 ////      {
 ////
-////         auto p = (byte *) pdata;
+////         auto p = (::u8 *) pdata;
 ////
-////         *p = (byte) m_iPutCharacter;
+////         *p = (::u8) m_iPutCharacter;
 ////
 ////         m_iPutCharacter = -1;
 ////
@@ -493,7 +493,7 @@
 //            ::read
 //            ::write
 //
-//            access the system directly no buffering : direct I/O - efficient for large writes - innefficient for lots of single byte writes
+//            access the system directly no buffering : direct I/O - efficient for large writes - innefficient for lots of single ::u8 writes
 //
 //            */
 //
@@ -952,7 +952,7 @@
 ////   int file::put_byte_back(int iCharacter)
 ////   {
 ////
-////      m_iPutCharacter = (int)(byte)iCharacter;
+////      m_iPutCharacter = (int)(::u8)iCharacter;
 ////
 ////      return 0;
 ////

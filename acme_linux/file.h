@@ -104,7 +104,7 @@
 //
 //      virtual u64 GetBufferPtr(::u32 nCommand, u64 nCount = 0, void ** ppBufStart = nullptr, void ** ppBufMax = nullptr);
 //
-//      //void put_byte_back(::byte byte) override;
+//      //void put_byte_back(::u8 u8) override;
 //
 //
 //   };
