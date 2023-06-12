@@ -1014,7 +1014,7 @@ namespace apex_linux
 //            if(!iBool)
 //            {
 //
-//               INFORMATION("Error launching file : \"" << strUri << "\" , " << strError);
+//               information() << "Error launching file : \"" << strUri << "\" , " << strError;
 //
 //            }
 //

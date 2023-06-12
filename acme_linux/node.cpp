@@ -413,7 +413,7 @@ namespace acme_linux
                {
 
 
-                  WARNING("node::shell_open xdg-open \"" << str << "\" returned error code " << iError);
+                  warning() <<"node::shell_open xdg-open \"" << str << "\" returned error code " << iError;
 
                }
 
@@ -469,7 +469,7 @@ namespace acme_linux
 ////                             if(!iBool)
 ////                             {
 ////
-////                                INFORMATION("Error launching file : \"" << strUri << "\" , " << strError);
+////                                information() << "Error launching file : \"" << strUri << "\" , " << strError;
 ////
 ////                             }
 ////

@@ -2803,7 +2803,7 @@ namespace music
    //                        break;
    //                     default:
    //                        iCount = 0;
-   //                        printf("FORMATTED_WARNING: play: not implemented yet Meta %d\n", pevent->GetMetaType());
+   //                        printf("warning: play: not implemented yet Meta %d\n", pevent->GetMetaType());
    //                        break;
    //                     }
    //                  }
@@ -2814,14 +2814,14 @@ namespace music
    //                  break;
    //               default:
    //                  iCount = 0;
-   //                  printf("FORMATTED_WARNING: play: not implemented yet %d\n", pevent->GetFullType());
+   //                  printf("warning: play: not implemented yet %d\n", pevent->GetFullType());
    //                  break;
    //               }
    //            }
    //            break;
    //         default:
    //            iCount = 0;
-   //            printf("FORMATTED_WARNING: play: not implemented yet %d\n", pevent->GetType());
+   //            printf("warning: play: not implemented yet %d\n", pevent->GetType());
    //            break;
    //         }
    //
