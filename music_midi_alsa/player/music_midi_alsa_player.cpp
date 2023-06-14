@@ -39,7 +39,7 @@ namespace music
 
             m_psequencethread->ResumeThread();
 
-            TRACE("player::initialize_instance %X\n", get_os_int());
+            information("player::initialize_instance %X\n", get_os_int());
 
             set_thread_priority(::priority_normal);
 

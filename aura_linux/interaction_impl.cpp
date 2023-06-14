@@ -1043,7 +1043,7 @@ namespace aura_linux
 
          g_iMouseMove++;
 
-         //TRACE("linux::interaction_impl::message_handler e_message_mouse_move");
+         //information("linux::interaction_impl::message_handler e_message_mouse_move");
          //printf("g_iMouseMove = %d\n", g_iMouseMove);
 
       }
@@ -1054,7 +1054,7 @@ namespace aura_linux
       else if(pmessage->m_atom == e_message_left_button_up)
       {
 
-         TRACE("e_message_left_button_up (0)");
+         information("e_message_left_button_up (0)");
 
       }
 
@@ -1094,11 +1094,11 @@ namespace aura_linux
 
          if (m_puserinteraction->layout().is_moving())
          {
-            //TRACE("moving: skip pre translate message");
+            //information("moving: skip pre translate message");
          }
          else if (m_puserinteraction->layout().is_sizing())
          {
-            //TRACE("sizing: skip pre translate message");
+            //information("sizing: skip pre translate message");
          }
          else
          {
@@ -1883,7 +1883,7 @@ namespace aura_linux
 //      if(m_puserinteraction->is_message_only_window())
 //      {
 //
-//         TRACE("good : opt out!");
+//         information("good : opt out!");
 //
 //      }
 //      else
@@ -1948,7 +1948,7 @@ namespace aura_linux
 //
 //         if(m_event.wait(millis(tickTimeout)).timeout())
 //         {
-//            TRACE("print_window::time_out");
+//            information("print_window::time_out");
 //         }
 //      }
 //
