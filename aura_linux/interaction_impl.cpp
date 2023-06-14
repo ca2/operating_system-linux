@@ -408,7 +408,7 @@ namespace aura_linux
       if (bMove)
       {
 
-         INFORMATION("linux::interaction_impl Window Manager Move ("<<m_pointLastMove.x()<<", "<<m_pointLastMove.y()<<")");
+         information() << "linux::interaction_impl Window Manager Move ("<<m_pointLastMove.x()<<", "<<m_pointLastMove.y()<<")";
 
          m_puserinteraction->set_position(m_pointLastMove);
 
@@ -423,7 +423,7 @@ namespace aura_linux
       if (bSize)
       {
 
-         FORMATTED_INFORMATION("linux::interaction_impl Window Manager Size (%d, %d)", m_sizeLastSize.cx(), m_sizeLastSize.cy());
+         information("linux::interaction_impl Window Manager Size (%d, %d)", m_sizeLastSize.cx(), m_sizeLastSize.cy());
 
          m_puserinteraction->set_size(m_sizeLastSize);
 
@@ -538,7 +538,7 @@ namespace aura_linux
       if(pshowwindow->m_bShow)
       {
 
-         INFORMATION("linux::interaction_impl::_001OnShowWindow VISIBLE edisplay=" << ::as_string(m_puserinteraction->const_layout().design().display().m_eenum));
+         information() << "linux::interaction_impl::_001OnShowWindow VISIBLE edisplay=" << ::as_string(m_puserinteraction->const_layout().design().display().m_eenum);
 
          //m_puserinteraction->ModifyStyle(0, WS_VISIBLE);
 
@@ -848,7 +848,7 @@ namespace aura_linux
    */
    void interaction_impl::pre_translate_message(::message::message * pmessage)
    {
-      __UNREFERENCED_PARAMETER(pmessage);
+      UNREFERENCED_PARAMETER(pmessage);
       // no default processing
    }
 
@@ -1876,7 +1876,7 @@ namespace aura_linux
    void interaction_impl::on_message_create(::message::message * pmessage)
    {
 
-      __UNREFERENCED_PARAMETER(pmessage);
+      UNREFERENCED_PARAMETER(pmessage);
 
 //      Default();
 
@@ -2368,7 +2368,7 @@ namespace aura_linux
    void interaction_impl::SetFont(::write_text::font* pfont, bool bRedraw)
    {
 
-      __UNREFERENCED_PARAMETER(bRedraw);
+      UNREFERENCED_PARAMETER(bRedraw);
 
       //ASSERT(::is_window((oswindow) get_handle())); m_pfont = memory_new ::write_text::font(*pfont);
 

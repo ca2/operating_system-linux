@@ -119,11 +119,11 @@ namespace acme_linux
 
       ::u32 nRead = 0;
 
-      //if ((nRead = fread(pdata, sizeof(byte), nCount, m_pStream)) == 0 && !feof(m_pStream))
+      //if ((nRead = fread(pdata, sizeof(::u8), nCount, m_pStream)) == 0 && !feof(m_pStream))
 
       // throw ::file::exception(error_file, errno, m_path);
 
-      nRead = fread(pdata, sizeof(byte), nCount, m_pStream);
+      nRead = fread(pdata, sizeof(::u8), nCount, m_pStream);
 
       if(!feof(m_pStream) && ferror(m_pStream))
       {
@@ -149,7 +149,7 @@ namespace acme_linux
       ASSERT_VALID(this);
       ASSERT(m_pStream != nullptr);
 
-      if (fwrite(pdata, sizeof(byte), nCount, m_pStream) != nCount)
+      if (fwrite(pdata, sizeof(::u8), nCount, m_pStream) != nCount)
       {
 
          throw ::file::exception(error_file, errno, m_path);

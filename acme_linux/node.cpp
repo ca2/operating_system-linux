@@ -73,11 +73,11 @@ namespace acme_linux
 //      {
 //         ::file::path str = acmesystem()->m_pnodedir->system() / "CrashDumps" / strModuleNameWithTheExeExtension;
 //         wstring wstr = str;
-//         RegSetValueExW(k.m_hkey, L"DumpFolder", 0, REG_EXPAND_SZ, (byte*)wstr.c_str(), ::u32((wcslen(wstr) + 1) * sizeof(wchar_t)));
+//         RegSetValueExW(k.m_hkey, L"DumpFolder", 0, REG_EXPAND_SZ, (::u8*)wstr.c_str(), ::u32((wcslen(wstr) + 1) * sizeof(wchar_t)));
 //         ::u32 dw = 10;
-//         RegSetValueExW(k.m_hkey, L"DumpCount", 0, REG_DWORD, (byte*)&dw, sizeof(dw));
+//         RegSetValueExW(k.m_hkey, L"DumpCount", 0, REG_DWORD, (::u8*)&dw, sizeof(dw));
 //         dw = 2;
-//         RegSetValueExW(k.m_hkey, L"DumpType", 0, REG_DWORD, (byte*)&dw, sizeof(dw));
+//         RegSetValueExW(k.m_hkey, L"DumpType", 0, REG_DWORD, (::u8*)&dw, sizeof(dw));
 //
 //      }
 //
@@ -413,7 +413,7 @@ namespace acme_linux
                {
 
 
-                  warning("node::shell_open xdg-open \"" << str << "\" returned error code " << iError);
+                  warning() <<"node::shell_open xdg-open \"" << str << "\" returned error code " << iError;
 
                }
 
@@ -469,7 +469,7 @@ namespace acme_linux
 ////                             if(!iBool)
 ////                             {
 ////
-////                                INFORMATION("Error launching file : \"" << strUri << "\" , " << strError);
+////                                information() << "Error launching file : \"" << strUri << "\" , " << strError;
 ////
 ////                             }
 ////

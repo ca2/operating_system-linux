@@ -158,7 +158,7 @@ typedef
 
 /* Check that memory at _qzz_addr is addressable for _qzz_len bytes.
    If suitable addressibility is not established, Valgrind prints an
-   error message and returns the address of the first offending byte.
+   error message and returns the address of the first offending ::u8.
    Otherwise it returns zero. */
 #define VALGRIND_CHECK_MEM_IS_ADDRESSABLE(_qzz_addr,_qzz_len)      \
     VALGRIND_DO_CLIENT_REQUEST_EXPR(0,                             \
@@ -168,7 +168,7 @@ typedef
 /* Check that memory at _qzz_addr is addressable and defined for
    _qzz_len bytes.  If suitable addressibility and definedness are not
    established, Valgrind prints an error message and returns the
-   address of the first offending byte.  Otherwise it returns zero. */
+   address of the first offending ::u8.  Otherwise it returns zero. */
 #define VALGRIND_CHECK_MEM_IS_DEFINED(_qzz_addr,_qzz_len)        \
     VALGRIND_DO_CLIENT_REQUEST_EXPR(0,                           \
                             VG_USERREQ__CHECK_MEM_IS_DEFINED,    \
@@ -177,7 +177,7 @@ typedef
 /* Use this macro to force the definedness and addressibility of an
    lvalue to be checked.  If suitable addressibility and definedness
    are not established, Valgrind prints an error message and returns
-   the address of the first offending byte.  Otherwise it returns
+   the address of the first offending ::u8.  Otherwise it returns
    zero. */
 #define VALGRIND_CHECK_VALUE_IS_DEFINED(__lvalue)                \
    VALGRIND_CHECK_MEM_IS_DEFINED(                                \

@@ -83,7 +83,7 @@
    state into a temporary value.  Afterwards, one can write ("Put")
    them back into the guest state.
 
-   Get and Put are characterised by a byte offset into the guest
+   Get and Put are characterised by a ::u8 offset into the guest
    state, a small integer which effectively gives the identity of the
    referenced guest register, and a type, which indicates the size of
    the value to be transferred.
@@ -278,9 +278,9 @@ typedef
       Ico_F64i,  /* 64-bit unsigned int to be interpreted literally
                     as a IEEE754 double value. */
       Ico_V128,  /* 128-bit restricted vector constant, with 1 bit
-                    (repeated 8 times) for each of the 16 x 1-byte lanes */
+                    (repeated 8 times) for each of the 16 x 1-::u8 lanes */
       Ico_V256   /* 256-bit restricted vector constant, with 1 bit
-                    (repeated 8 times) for each of the 32 x 1-byte lanes */
+                    (repeated 8 times) for each of the 32 x 1-::u8 lanes */
    }
    IRConstTag;
 
@@ -1045,7 +1045,7 @@ typedef
          is undefined. */
       Iop_Perm8x8,
 
-      /* MISC CONVERSION -- get high bits of each byte lane, a la
+      /* MISC CONVERSION -- get high bits of each ::u8 lane, a la
          x86/amd64 pmovmskb */
       Iop_GetMSBs8x8, /* I64 -> I8 */
 
@@ -1519,8 +1519,8 @@ typedef
         Example for polynomial multiply add for vector of bytes
         do i = 0 to 15
             prod[i].bit[0:14] <- 0
-            srcA <- VR[argL].byte[i]
-            srcB <- VR[argR].byte[i]
+            srcA <- VR[argL].::u8[i]
+            srcB <- VR[argR].::u8[i]
             do j = 0 to 7
                 do k = 0 to j
                     gbit <- srcA.bit[k] & srcB.bit[j-k]
@@ -1537,7 +1537,7 @@ typedef
         end
 
         do i = 0 to 7
-            VR[dst].hword[i] <- 0b0 || (prod[2×i] ^ prod[2×i+1])
+            VR[dst].hword[i] <- 0b0 || (prod[2xi] ^ prod[2xi+1])
         end
       */
       Iop_PolynomialMulAdd8x16, Iop_PolynomialMulAdd16x8,
@@ -1784,7 +1784,7 @@ typedef
       Iop_Reverse8sIn16_x8,
       Iop_Reverse8sIn32_x4, Iop_Reverse16sIn32_x4,
       Iop_Reverse8sIn64_x2, Iop_Reverse16sIn64_x2, Iop_Reverse32sIn64_x2,
-      Iop_Reverse1sIn8_x16, /* Reverse bits in each byte lane. */
+      Iop_Reverse1sIn8_x16, /* Reverse bits in each ::u8 lane. */
 
       /* PERMUTING -- copy src bytes to dst,
          as indexed by control vector bytes:
@@ -1794,7 +1794,7 @@ typedef
       Iop_Perm8x16,
       Iop_Perm32x4, /* ditto, except argR values are restricted to 0 .. 3 */
 
-      /* MISC CONVERSION -- get high bits of each byte lane, a la
+      /* MISC CONVERSION -- get high bits of each ::u8 lane, a la
          x86/amd64 pmovmskb */
       Iop_GetMSBs8x16, /* V128 -> I16 */
 

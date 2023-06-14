@@ -93,7 +93,7 @@ namespace multimedia
          //   m_pmixerthread = (::audio_mixer::thread *) __begin_thread(System.type_info < ::audio_mixer::thread > ());
          //   if(m_pmixerthread == NULL)
          //      return false;
-         //   return true�
+         //   return true;
          return true;
       }
 

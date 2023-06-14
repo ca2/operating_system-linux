@@ -162,11 +162,11 @@ typedef
          value with 4 8-bit lanes.  [7:0] pertain to the next insn to
          execute, [15:8] for the one after that, etc.  The per-insn
          update to ITSTATE is to unsignedly shift it right 8 bits,
-         hence introducing a zero byte for the furthest ahead
-         instruction.  As per the next para, a zero byte denotes the
+         hence introducing a zero ::u8 for the furthest ahead
+         instruction.  As per the next para, a zero ::u8 denotes the
          condition ALWAYS.
 
-         Each byte lane has one of the two following formats:
+         Each ::u8 lane has one of the two following formats:
 
          cccc 0001  for an insn which is part of an IT block.  cccc is
                     the guarding condition (standard ARM condition
@@ -177,7 +177,7 @@ typedef
 
          If the bottom 4 bits are zero then the top 4 must be too.
 
-         Given the byte lane for an instruction, the guarding
+         Given the ::u8 lane for an instruction, the guarding
          condition for the instruction is (((lane >> 4) & 0xF) ^ 0xE).
          This is not as stupid as it sounds, because the front end
          elides the shift.  And the am-I-in-an-IT-block check is

@@ -210,9 +210,9 @@ namespace draw2d_gdiplus
 
       int iScan = 0;
 
-      color32_t * pcolorref = nullptr;
+      color32_t * pimage32 = nullptr;
 
-      if (!m_pbitmap->create_bitmap(nullptr, size, (void**)&pcolorref, &iScan))
+      if (!m_pbitmap->create_bitmap(nullptr, size, (void**)&pimage32, &iScan))
       {
 
          destroy();
@@ -230,7 +230,7 @@ namespace draw2d_gdiplus
 
       }
 
-      pixmap::init(size, pcolorref, iScan);
+      pixmap::init(size, pimage32, iScan);
 
       m_pgraphics->set(m_pbitmap);
       m_pgraphics->set_origin(origin());
@@ -334,7 +334,7 @@ namespace draw2d_gdiplus
 
       HDC hdc = __graphics(pgraphics)->get_hdc();
 
-      bool bOk = GetDIBits(hdc, (HBITMAP)bitmap->get_os_data(), 0, height(), m_pcolorrefRaw, nullptr, DIB_RGB_COLORS) != false;
+      bool bOk = GetDIBits(hdc, (HBITMAP)bitmap->get_os_data(), 0, height(), m_pimage32Raw, nullptr, DIB_RGB_COLORS) != false;
 
       g()->set(bitmap);
 
@@ -454,20 +454,20 @@ namespace draw2d_gdiplus
 
          i32 scanSrc = pimageSrc->scan_size();
 
-         u8 * pdst = &((u8 *)pimageDst->colorref())[scanDst * rectDst.top + rectDst.left * sizeof(COLORREF)];
+         u8 * pdst = &((u8 *)pimageDst->colorref())[scanDst * rectDst.top + rectDst.left * sizeof(color32_t)];
 
-         u8 * psrc = &((u8 *)pimageSrc->colorref())[scanSrc * pointSrc.y + pointSrc.x * sizeof(COLORREF)];
+         u8 * psrc = &((u8 *)pimageSrc->colorref())[scanSrc * pointSrc.y + pointSrc.x * sizeof(color32_t)];
 
-         COLORREF * pdst2;
+         color32_t * pdst2;
 
-         COLORREF * psrc2;
+         color32_t * psrc2;
 
          for (int y = 0; y < yEnd; y++)
          {
 
-            pdst2 = (COLORREF *)&pdst[scanDst * y];
+            pdst2 = (color32_t *)&pdst[scanDst * y];
 
-            psrc2 = (COLORREF *)&psrc[scanSrc * y];
+            psrc2 = (color32_t *)&psrc[scanSrc * y];
 
             memory_copy(pdst2, psrc2, xEnd * 4);
 
@@ -599,8 +599,8 @@ namespace draw2d_gdiplus
       u8 * dest = (u8 *)colorref();
       i32 iSize = cx*cy;
 
-      byte b;
-      byte bMax;
+      ::u8 b;
+      ::u8 bMax;
       while (iSize-- > 0)
       {
          if (srcM[0] == 255)
@@ -610,11 +610,11 @@ namespace draw2d_gdiplus
          else
          {
             bMax = 0;
-            b = (byte)(r1[0] - r2[0]);
+            b = (::u8)(r1[0] - r2[0]);
             bMax = maximum(b, bMax);
-            b = (byte)(r1[1] - r2[1]);
+            b = (::u8)(r1[1] - r2[1]);
             bMax = maximum(b, bMax);
-            b = (byte)(r1[2] - r2[2]);
+            b = (::u8)(r1[2] - r2[2]);
             bMax = maximum(b, bMax);
             bMax = 255 - bMax;
          }

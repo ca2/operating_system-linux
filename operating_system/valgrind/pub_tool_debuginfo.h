@@ -88,7 +88,7 @@ extern Bool VG_(get_fnname_w_offset)
    directory name info.
    If dirname is non-null, directory info is written to *dirname, if
    it is available; if not available, '\0' is written to the first
-   byte.
+   ::u8.
 
    NOTE: See IMPORTANT COMMENT above about persistence and ownership.
 

@@ -142,15 +142,15 @@ extern void VG_(apply_to_GP_regs)(void (*f)(ThreadId tid,
 // Returns False at the end.  'tid' is the iterator and you can only
 // safely change it by making calls to these functions.
 extern void VG_(thread_stack_reset_iter) ( /*OUT*/ThreadId* tid );
-// stack_min is the address of the lowest stack byte,
-// stack_max is the address of the highest stack byte.
+// stack_min is the address of the lowest stack ::u8,
+// stack_max is the address of the highest stack ::u8.
 // In other words, the live stack is [stack_min, stack_max].
 extern Bool VG_(thread_stack_next)       ( /*MOD*/ThreadId* tid,
                                            /*OUT*/Addr* stack_min, 
                                            /*OUT*/Addr* stack_max );
 
 // Returns .client_stack_highest_byte for the given thread
-// i.e. the highest addressable byte of the stack.
+// i.e. the highest addressable ::u8 of the stack.
 extern Addr VG_(thread_get_stack_max) ( ThreadId tid );
 
 // Returns how many bytes have been allocated for the stack of the given thread
