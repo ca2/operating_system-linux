@@ -169,7 +169,7 @@ namespace acme_linux
       if(m_elinuxdistribution <= 0)
       {
 
-         output_debug_string("WARNING: Unknown linux distribution with id \"" + strId + "\".");
+         output_debug_string("warning: Unknown linux distribution with id \"" + strId + "\".");
 
          m_elinuxdistribution = e_linux_distribution_unknown;
 
@@ -413,7 +413,7 @@ namespace acme_linux
                {
 
 
-                  WARNING("node::shell_open xdg-open \"" << str << "\" returned error code " << iError);
+                  warning("node::shell_open xdg-open \"" << str << "\" returned error code " << iError);
 
                }
 
