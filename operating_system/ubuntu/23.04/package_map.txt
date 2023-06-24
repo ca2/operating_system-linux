@@ -25,4 +25,5 @@ port/avcodec=none
 port/avformat=none
 port/swresample=none
 port/swscale=none
+port/base/unac=none
 app-core/text_to_speech_sapi=none
