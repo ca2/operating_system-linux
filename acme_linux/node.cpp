@@ -81,7 +81,7 @@ namespace acme_linux
 //
 //      }
 //
-//      output_debug_string("test01");
+//      infomration("test01");
 
    }
 
@@ -169,7 +169,7 @@ namespace acme_linux
       if(m_elinuxdistribution <= 0)
       {
 
-         output_debug_string("warning: Unknown linux distribution with id \"" + strId + "\".");
+         infomration("warning: Unknown linux distribution with id \"" + strId + "\".");
 
          m_elinuxdistribution = e_linux_distribution_unknown;
 

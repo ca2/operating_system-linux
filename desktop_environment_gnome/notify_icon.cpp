@@ -410,7 +410,7 @@ namespace node_gnome
 //   void notify_icon::_001OnDestroy(::message::message* pmessage)
 //   {
 //
-//      output_debug_string("notify_icon::_001OnDestroy");
+//      infomration("notify_icon::_001OnDestroy");
 //
 //   }
 

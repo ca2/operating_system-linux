@@ -124,7 +124,7 @@ bool on_init_timer_thread();
 //   if (!g_bAura)
 //   {
 //
-//      output_debug_string("there is timer on (apex_timer_TimerRoutine) and apex is going away (!g_bAura)\n");
+//      infomration("there is timer on (apex_timer_TimerRoutine) and apex is going away (!g_bAura)\n");
 //
 //      return;
 //
@@ -157,7 +157,7 @@ bool on_init_timer_thread();
 //      if (ptimer && ptimer->get_context_thread() && ptimer->get_context_thread()->is_set_finish())
 //      {
 //
-//         output_debug_string("time context thread is set finish");
+//         infomration("time context thread is set finish");
 //
 //      }
 //      else

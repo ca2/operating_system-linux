@@ -263,13 +263,13 @@ namespace aura_linux
 ////            if(m_pwindow)
 ////            {
 ////
-////               output_debug_string("window created");
+////               infomration("window created");
 ////
 ////            }
 ////            else
 ////            {
 ////
-////               output_debug_string("window not created");
+////               infomration("window not created");
 ////
 ////            }
 ////
@@ -1029,13 +1029,13 @@ namespace aura_linux
       else if(pmessage->m_atom == e_message_left_button_down)
       {
 
-         output_debug_string("linux::interaction_impl::e_message_left_button_down\n");
+         infomration("linux::interaction_impl::e_message_left_button_down\n");
 
       }
       else if(pmessage->m_atom == e_message_left_button_up)
       {
 
-         output_debug_string("linux::interaction_impl::e_message_left_button_up\n");
+         infomration("linux::interaction_impl::e_message_left_button_up\n");
 
       }
       else if(pmessage->m_atom == e_message_mouse_move)
@@ -1077,7 +1077,7 @@ namespace aura_linux
 //         if(iDebugmessage_handlerTime > 20)
 //         {
 //
-//            ::output_debug_string("interaction_impl::message handler flooded?\n");
+//            ::infomration("interaction_impl::message handler flooded?\n");
 //
 //         }
 //         else
@@ -1330,7 +1330,7 @@ namespace aura_linux
 //            else if(g_puserinteractionMouseCapture123 != m_puserinteractionCapture)
 //            {
 //
-//               output_debug_string("different capture (1)");
+//               infomration("different capture (1)");
 //
 //            }
 
@@ -1344,7 +1344,7 @@ namespace aura_linux
 //            if(g_puserinteractionMouseCapture123 != puserinteractionMouse)
 //            {
 //
-//               output_debug_string("different capture (2)");
+//               infomration("different capture (2)");
 //
 //            }
 //
@@ -1360,7 +1360,7 @@ namespace aura_linux
          {
 
 
-            ::output_debug_string("left_button_down (A)");
+            ::infomration("left_button_down (A)");
 
          }
 
@@ -1375,14 +1375,14 @@ namespace aura_linux
          {
 
 
-            ::output_debug_string("left_button_down");
+            ::infomration("left_button_down");
 
          }
          else if(pmouse->m_atom == e_message_left_button_up)
          {
 
 
-            ::output_debug_string("left_button_up");
+            ::infomration("left_button_up");
 
          }
 
@@ -1398,7 +1398,7 @@ namespace aura_linux
 //            if (strUserInteractionType.case_insensitive_contains("button"))
 //            {
 //
-//               output_debug_string("mouse_move::userinteraction=button");
+//               infomration("mouse_move::userinteraction=button");
 //
 //            }
 //            else

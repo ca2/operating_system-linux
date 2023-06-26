@@ -400,7 +400,7 @@ namespace apex_linux
 
    bool dir_context::name_is(const ::file::path & str)
    {
-      //output_debug_string(str);
+      //infomration(str);
       strsize iLast = str.length() - 1;
       while(iLast >= 0)
       {

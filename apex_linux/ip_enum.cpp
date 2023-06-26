@@ -28,7 +28,7 @@ namespace apex_linux
 //      //Code requires at least Winsock 1.1
 //      if ((LOBYTE(wsaData.wVersion) != 1) || (HIBYTE(wsaData.wVersion) != 1))
 //      {
-//         information("Failed to find a usable winsock stack which supports Winsock 1.1\n");
+//         information("Failed to find a usable winsock stack which supports Winsock 1.1");
 //         __throw(error_not_supported);
 //      }
    }
@@ -63,7 +63,7 @@ namespace apex_linux
    //check the length of the IP adress
    if (pHostEnt->h_length != 4)
    {
-   information("IP address returned is not 32 bits !!\n");
+   information("IP address returned is not 32 bits !!");
    return false;
    }
 

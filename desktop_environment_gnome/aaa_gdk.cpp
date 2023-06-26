@@ -410,7 +410,7 @@
 //
 //         default:
 //
-//            output_debug_string(
+//            infomration(
 //               "Failed to get wallpaper setting. If your Desktop Environment is not listed at \"Preferences->Integration-> Current Desktop Environment\", then it is not supported.");
 //            //return "";
 //
@@ -473,7 +473,7 @@
 //
 //         default:
 //
-//            output_debug_string(
+//            infomration(
 //               "Failed to get wallpaper setting. If your Desktop Environment is not listed at \"Preferences->Integration-> Current Desktop Environment\", then it is not supported.");
 //            //return "";
 //
