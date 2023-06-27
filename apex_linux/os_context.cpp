@@ -1032,7 +1032,7 @@ namespace apex_linux
    void os_context::list_process(::file::path_array & patha, ::process_identifier_array & uaPid)
    {
 
-      ::infomration("linux::os_context::list_process");
+      ::information("linux::os_context::list_process");
 
       string_array stra;
 

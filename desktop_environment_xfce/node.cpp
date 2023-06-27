@@ -226,7 +226,7 @@ namespace desktop_environment_xfce
 
       default:
 
-      infomration("Failed to change wallpaper. If your Desktop Environment is not listed at \"Preferences->Integration-> Current Desktop Environment\", then it is not supported.");
+      information("Failed to change wallpaper. If your Desktop Environment is not listed at \"Preferences->Integration-> Current Desktop Environment\", then it is not supported.");
       return false;
 
       }
@@ -288,7 +288,7 @@ namespace desktop_environment_xfce
 
          default:
 
-            infomration("Failed to change wallpaper. If your Desktop Environment is not listed at \"Preferences->Integration-> Current Desktop Environment\", then it is not supported.");
+            information("Failed to change wallpaper. If your Desktop Environment is not listed at \"Preferences->Integration-> Current Desktop Environment\", then it is not supported.");
             return false;
 
       }
@@ -343,7 +343,7 @@ namespace desktop_environment_xfce
          break;
          default:
 
-            infomration("Failed to get wallpaper setting. If your Desktop Environment is not listed at \"Preferences->Integration-> Current Desktop Environment\", then it is not supported.");
+            information("Failed to get wallpaper setting. If your Desktop Environment is not listed at \"Preferences->Integration-> Current Desktop Environment\", then it is not supported.");
             //return "";
 
       }

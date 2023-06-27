@@ -401,7 +401,7 @@
 //		if (snd_seq_ev_is_channel_type(ep))
 //      {
 //
-//         infomration("Missed a case in set_channel");
+//         information("Missed a case in set_channel");
 //
 //      }
 ////			g_warning("Missed a case in set_channel");

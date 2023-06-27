@@ -273,7 +273,7 @@ namespace desktop_environment_kde
 //
 //         default:
 //
-//            infomration(
+//            information(
 //               "Failed to change wallpaper. If your Desktop Environment is not listed at \"Preferences->Integration-> Current Desktop Environment\", then it is not supported.");
 //            return false;
 //
@@ -335,7 +335,7 @@ namespace desktop_environment_kde
 //
 //         default:
 //
-//            infomration(
+//            information(
 //               "Failed to change wallpaper. If your Desktop Environment is not listed at \"Preferences->Integration-> Current Desktop Environment\", then it is not supported.");
 //            return false;
 //
@@ -387,7 +387,7 @@ namespace desktop_environment_kde
 //            break;
 //         default:
 //
-//            infomration(
+//            information(
 //               "Failed to get wallpaper setting. If your Desktop Environment is not listed at \"Preferences->Integration-> Current Desktop Environment\", then it is not supported.");
 //            //return "";
 //

@@ -410,7 +410,7 @@ namespace node_xfce
 //   void notify_icon::_001OnDestroy(::message::message* pmessage)
 //   {
 //
-//      infomration("notify_icon::_001OnDestroy");
+//      information("notify_icon::_001OnDestroy");
 //
 //   }
 

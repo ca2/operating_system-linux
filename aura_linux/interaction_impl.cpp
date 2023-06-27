@@ -263,13 +263,13 @@ namespace aura_linux
 ////            if(m_pwindow)
 ////            {
 ////
-////               infomration("window created");
+////               information("window created");
 ////
 ////            }
 ////            else
 ////            {
 ////
-////               infomration("window not created");
+////               information("window not created");
 ////
 ////            }
 ////
@@ -1029,13 +1029,13 @@ namespace aura_linux
       else if(pmessage->m_atom == e_message_left_button_down)
       {
 
-         infomration("linux::interaction_impl::e_message_left_button_down\n");
+         information("linux::interaction_impl::e_message_left_button_down\n");
 
       }
       else if(pmessage->m_atom == e_message_left_button_up)
       {
 
-         infomration("linux::interaction_impl::e_message_left_button_up\n");
+         information("linux::interaction_impl::e_message_left_button_up\n");
 
       }
       else if(pmessage->m_atom == e_message_mouse_move)
@@ -1077,7 +1077,7 @@ namespace aura_linux
 //         if(iDebugmessage_handlerTime > 20)
 //         {
 //
-//            ::infomration("interaction_impl::message handler flooded?\n");
+//            ::information("interaction_impl::message handler flooded?\n");
 //
 //         }
 //         else
@@ -1330,7 +1330,7 @@ namespace aura_linux
 //            else if(g_puserinteractionMouseCapture123 != m_puserinteractionCapture)
 //            {
 //
-//               infomration("different capture (1)");
+//               information("different capture (1)");
 //
 //            }
 
@@ -1344,7 +1344,7 @@ namespace aura_linux
 //            if(g_puserinteractionMouseCapture123 != puserinteractionMouse)
 //            {
 //
-//               infomration("different capture (2)");
+//               information("different capture (2)");
 //
 //            }
 //
@@ -1360,7 +1360,7 @@ namespace aura_linux
          {
 
 
-            ::infomration("left_button_down (A)");
+            ::information("left_button_down (A)");
 
          }
 
@@ -1375,14 +1375,14 @@ namespace aura_linux
          {
 
 
-            ::infomration("left_button_down");
+            ::information("left_button_down");
 
          }
          else if(pmouse->m_atom == e_message_left_button_up)
          {
 
 
-            ::infomration("left_button_up");
+            ::information("left_button_up");
 
          }
 
@@ -1398,7 +1398,7 @@ namespace aura_linux
 //            if (strUserInteractionType.case_insensitive_contains("button"))
 //            {
 //
-//               infomration("mouse_move::userinteraction=button");
+//               information("mouse_move::userinteraction=button");
 //
 //            }
 //            else

@@ -411,13 +411,13 @@ namespace aura
 //         //if (CreateProcessW(wstrPath, wstrParam, nullptr, nullptr, false, 0, nullptr, wstrSystem, &si, &pi))
 //         //{
 //
-//         //   infomration("created");
+//         //   information("created");
 //
 //         //}
 //         //else
 //         //{
 //
-//         //   infomration("not created");
+//         //   information("not created");
 //
 //         //}
 //
