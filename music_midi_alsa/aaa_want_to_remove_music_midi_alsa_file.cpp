@@ -457,7 +457,7 @@ namespace music
 //            return 0xffffffff;
 //
 //         if(m_tempomap.get_size() <= 0)
-//            return 0x80000000;
+//            return I32_MINIMUM;
 //
 //         ::music::midi::tempo_map_entry *    ptempo;
 //         int32_t                      idx;
@@ -988,7 +988,7 @@ namespace music
 //         //   int32_t                  i;
 //         imedia::position               tkLastDelta = 0 ;
 //         imedia::position                   tkOnQuarterNoteDelta = 0;
-//         //   imedia::position               tkLastPositionCB = 0x7fffffff;
+//         //   imedia::position               tkLastPositionCB = I32_MAXIMUM;
 //         //CXfplayerApp *pApp = (CXfplayerApp *) &System;
 //         //ASSERT(pApp != NULL);
 //         //CXfplayerDoc *pDoc = (CXfplayerDoc *) pApp->GetPlayingDocument();

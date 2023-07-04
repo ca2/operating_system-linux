@@ -307,7 +307,7 @@
 //      memsize readNow;
 //      while(nCount > 0)
 //      {
-//         readNow = (size_t) minimum(0x7fffffff, nCount);
+//         readNow = (size_t) minimum(I32_MAXIMUM, nCount);
 //         i32 iRead = ::read(m_iFile, &((u8 *)pdata)[pos], readNow);
 //
 //         if(iRead < 0)
@@ -354,7 +354,7 @@
 //      while(nCount > 0)
 //      {
 //
-//         auto bytesToWrite = minimum(0x7fffffff, nCount);
+//         auto bytesToWrite = minimum(I32_MAXIMUM, nCount);
 //
 //         auto pdataToWrite = ((const u8 *)pdata) + pos;
 //

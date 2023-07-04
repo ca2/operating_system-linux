@@ -1279,7 +1279,7 @@ namespace music
                   {
                      ::music::midi::event event;
                      file()->GetTempoEvent(event);
-   //                  file()->StreamEvent(event.GetDelta(), &event, lpmidihdr, 0x7fffffff, 256);
+   //                  file()->StreamEvent(event.GetDelta(), &event, lpmidihdr, I32_MAXIMUM, 256);
                      // lpmidihdr->dwBytesRecorded = sizeof(gmModeOn);
                      // memcpy(lpmidihdr->lpData, gmModeOn, sizeof(gmModeOn));
                   }
@@ -1919,7 +1919,7 @@ namespace music
    //               time3,
    //               time4);
    //
-   //            imedia_time time5(0x7fffffff);
+   //            imedia_time time5(I32_MAXIMUM);
    //
    //            pLyricEventsV2->m_msaTokensDuration.ElementDiff(
    //               ms2DTokensMillis(i),
@@ -1976,7 +1976,7 @@ namespace music
    //               time3,
    //               time4);
    //
-   //            imedia_time time5(0x7fffffff);
+   //            imedia_time time5(I32_MAXIMUM);
    //
    //            pLyricEventsV2->m_msaTokensDuration.ElementDiff(
    //               ms2DTokensMillis(i),
@@ -2035,7 +2035,7 @@ namespace music
    //               time3,
    //               time4);
    //
-   //            imedia_time time5(0x7fffffff);
+   //            imedia_time time5(I32_MAXIMUM);
    //
    //            pLyricEventsV2->m_msaTokensDuration.ElementDiff(
    //               ms2DTokensMillis(i),
@@ -2096,7 +2096,7 @@ namespace music
    //               time3,
    //               time4);
    //
-   //            imedia_time time5(0x7fffffff);
+   //            imedia_time time5(I32_MAXIMUM);
    //
    //            pLyricEventsV2->m_msaTokensDuration.ElementDiff(
    //               ms2DTokensMillis(i),
