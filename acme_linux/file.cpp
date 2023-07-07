@@ -363,11 +363,11 @@
 //         if(iWrite < 0)
 //         {
 //
-//            auto iErrNo = errno;
+//            auto cerrornumber = c_error_number();
 //
 //            auto estatus = errno_status(iErrNo);
 //
-//            auto errorcode = errno_error_code(iErrNo);
+//            auto errorcode = cerrornumber.error_code();
 //
 //            throw ::file::exception(estatus, errorcode, m_path, "write < 0", m_eopen);
 //
@@ -391,11 +391,11 @@
 //      if(m_iFile == INVALID_FILE)
 //      {
 //
-//         auto iErrNo = errno;
+//         auto cerrornumber = c_error_number();
 //
 //         auto estatus = errno_status(iErrNo);
 //
-//         auto errorcode = errno_error_code(iErrNo);
+//         auto errorcode = cerrornumber.error_code();
 //
 //         throw ::file::exception(estatus, errorcode, m_path, "m_iFile == INVALID_FILE", m_eopen);
 //
@@ -422,11 +422,11 @@
 //      if(i < 0)
 //      {
 //
-//         auto iErrNo = errno;
+//         auto cerrornumber = c_error_number();
 //
 //         auto estatus = errno_status(iErrNo);
 //
-//         auto errorcode = errno_error_code(iErrNo);
+//         auto errorcode = cerrornumber.error_code();
 //
 //         throw ::file::exception(estatus, errorcode, m_path, "lseek64 < 0", m_eopen);
 //
@@ -450,11 +450,11 @@
 //      if(pos < 0)
 //      {
 //
-//         auto iErrNo = errno;
+//         auto cerrornumber = c_error_number();
 //
 //         auto estatus = errno_status(iErrNo);
 //
-//         auto errorcode = errno_error_code(iErrNo);
+//         auto errorcode = cerrornumber.error_code();
 //
 //         throw ::file::exception(estatus, errorcode, m_path, "lseek64 < 0", m_eopen);
 //
@@ -483,7 +483,7 @@
 //
 //         auto estatus = errno_status(iErrNo);
 //
-//         auto errorcode = errno_error_code(iErrNo);
+//         auto errorcode = cerrornumber.error_code();
 //
 //         throw ::file::exception(estatus, errorcode, m_path, "fsync < 0", m_eopen);
 //
@@ -519,11 +519,11 @@
 //      if (bError)
 //      {
 //
-//         auto iErrNo = errno;
+//         auto cerrornumber = c_error_number();
 //
 //         auto estatus = errno_status(iErrNo);
 //
-//         auto errorcode = errno_error_code(iErrNo);
+//         auto errorcode = cerrornumber.error_code();
 //
 //         throw ::file::exception(estatus, errorcode, m_path, "close != 0", m_eopen);
 //
@@ -575,11 +575,11 @@
 //      if (::ftruncate64(m_iFile, dwNewLen) == -1)
 //      {
 //
-//         auto iErrNo = errno;
+//         auto cerrornumber = c_error_number();
 //
 //         auto estatus = errno_status(iErrNo);
 //
-//         auto errorcode = errno_error_code(iErrNo);
+//         auto errorcode = cerrornumber.error_code();
 //
 //         throw ::file::exception(estatus, errorcode, m_path, "ftruncate64 == -1", m_eopen);
 //
