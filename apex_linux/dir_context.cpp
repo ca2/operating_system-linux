@@ -552,7 +552,7 @@ namespace apex_linux
 
          int iErrNo = errno;
 
-         auto estatus = failed_errno_status(iErrNo);
+         auto estatus = cerrornumber.failed_estatus();
 
          throw ::exception(estatus);
 
