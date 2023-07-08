@@ -48,12 +48,12 @@ namespace desktop_environment_gnome
 
 
 
-   void node::start_node()
-   {
-
-      node_gnome::node::start_node();
-
-   }
+//   void node::start_node()
+//   {
+//
+//      node_gnome::node::start_node();
+//
+//   }
 
 
    void node::initialize(::particle * pparticle)
@@ -66,59 +66,59 @@ namespace desktop_environment_gnome
    }
 
 
-   bool node::windowing_message_loop_step()
-   {
-
-      set_main_user_itask(get_current_itask());
-
-      //if(get_main_user_itask() != get_current_itask())
-      //{
-
-
-
-      //}
-
-      auto psession = acmesession();
-
-      if(::is_null(psession))
-      {
-
-         return false;
-
-      }
-
-      auto paurasession = psession->m_paurasession;
-
-      if(::is_null(paurasession))
-      {
-
-         return false;
-
-      }
-
-      auto puser = paurasession->user();
-
-      if(::is_null(puser))
-      {
-
-         return false;
-
-      }
-
-      auto pwindowing = puser->windowing();
-
-      if(::is_null(pwindowing))
-      {
-
-         return false;
-
-      }
-
-      bool bRet = pwindowing->message_loop_step();
-
-      return bRet;
-
-   }
+//   bool node::windowing_message_loop_step()
+//   {
+//
+//      set_main_user_itask(get_current_itask());
+//
+//      //if(get_main_user_itask() != get_current_itask())
+//      //{
+//
+//
+//
+//      //}
+//
+//      auto psession = acmesession();
+//
+//      if(::is_null(psession))
+//      {
+//
+//         return false;
+//
+//      }
+//
+//      auto paurasession = psession->m_paurasession;
+//
+//      if(::is_null(paurasession))
+//      {
+//
+//         return false;
+//
+//      }
+//
+//      auto puser = paurasession->user();
+//
+//      if(::is_null(puser))
+//      {
+//
+//         return false;
+//
+//      }
+//
+//      auto pwindowing = puser->windowing();
+//
+//      if(::is_null(pwindowing))
+//      {
+//
+//         return false;
+//
+//      }
+//
+//      bool bRet = pwindowing->message_loop_step();
+//
+//      return bRet;
+//
+//   }
 
 
 //   string node::os_get_user_theme()
@@ -301,51 +301,51 @@ namespace desktop_environment_gnome
 //   }
 
 
-   void node::handle(::topic * ptopic, ::context * pcontext)
-   {
+//   void node::handle(::topic * ptopic, ::context * pcontext)
+//   {
+//
+////      if(ptopic->m_atom == ::id_operating_system_user_theme_change)
+////      {
+////
+////         //_os_process_user_theme_color(m_strTheme);
+////
+////      }
+//
+//      ::node_gnome::node::handle(ptopic, pcontext);
+//
+//   }
 
-//      if(ptopic->m_atom == ::id_operating_system_user_theme_change)
+//
+//   bool node::should_launch_on_node(::topic * ptopic)
+//   {
+//
+//      if(::is_null(ptopic))
 //      {
 //
-//         //_os_process_user_theme_color(m_strTheme);
+//         return false;
 //
 //      }
-
-      ::node_gnome::node::handle(ptopic, pcontext);
-
-   }
-
-
-   bool node::should_launch_on_node(::topic * ptopic)
-   {
-
-      if(::is_null(ptopic))
-      {
-
-         return false;
-
-      }
-
-      if(ptopic->m_atom == id_operating_system_user_color_change)
-      {
-
-         return false;
-
-      }
-
-      return false;
-
-   }
+//
+//      if(ptopic->m_atom == id_operating_system_user_color_change)
+//      {
+//
+//         return false;
+//
+//      }
+//
+//      return false;
+//
+//   }
 
 
-   bool node::launch_on_node(::topic * ptopic)
-   {
-
-      auto bOk = ::node_gnome::node::launch_on_node(ptopic);
-
-      return bOk;
-
-   }
+//   bool node::launch_on_node(::topic * ptopic)
+//   {
+//
+//      auto bOk = ::node_gnome::node::launch_on_node(ptopic);
+//
+//      return bOk;
+//
+//   }
 
 
 } // namespace desktop_environment_gnome

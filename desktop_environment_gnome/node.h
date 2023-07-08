@@ -29,18 +29,18 @@ namespace desktop_environment_gnome
 
       //void defer_notify_startup_complete() override;
 
-      void start_node() override;
+      //void start_node() override;
 
       void initialize(::particle * pparticle) override;
 
-      virtual bool windowing_message_loop_step();
+      //virtual bool windowing_message_loop_step();
 
-      void handle(::topic * ptopic, ::context * pcontext) override;
-
-      bool should_launch_on_node(::topic * ptopic) override;
-
-      bool launch_on_node(::topic * ptopic) override;
-
+//      void handle(::topic * ptopic, ::context * pcontext) override;
+//
+//      bool should_launch_on_node(::topic * ptopic) override;
+//
+//      bool launch_on_node(::topic * ptopic) override;
+//
 
    };
 
