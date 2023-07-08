@@ -27,10 +27,10 @@ void copy(::file::path & path, const ::string & str)
 
 
 
-
-
-::user::enum_desktop _calculate_edesktop();
-::user::enum_desktop _get_edesktop();
+//
+//
+//::user::enum_desktop _calculate_edesktop();
+//::user::enum_desktop _get_edesktop();
 
 
 namespace acme_linux
@@ -178,29 +178,15 @@ namespace acme_linux
    }
 
 
-   ::user::enum_desktop node::get_edesktop()
-   {
-
-      return ::acme::node::get_edesktop();
-
-   }
-
-
-   ::user::enum_desktop node::calculate_edesktop()
-   {
-
-      return _get_edesktop();
-
-   }
+//   ::user::enum_desktop node::get_edesktop()
+//   {
+//
+//      return ::acme::node::get_edesktop();
+//
+//   }
 
 
-   ::user::enum_desktop node::_get_edesktop()
-   {
-
-      return ::_get_edesktop();
-
-   }
-
+//x
 
 //      ::user::enum_desktop node::_calculate_edesktop()
 //      {
@@ -391,12 +377,12 @@ namespace acme_linux
    }
 
 
-   ::user::enum_desktop node::_calculate_edesktop()
-   {
-
-      return ::_calculate_edesktop();
-
-   }
+//   ::user::enum_desktop node::_calculate_edesktop()
+//   {
+//
+//      return ::_calculate_edesktop();
+//
+//   }
 
 
    void node::shell_open(const ::file::path & path, const ::string & strParams, const ::file::path & pathFolder)

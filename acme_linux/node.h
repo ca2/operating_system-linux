@@ -22,7 +22,7 @@ namespace acme_linux
 
       //__creatable_from_library(node, ::acme::node, "acme_linux");
 
-      ::user::enum_desktop             m_edesktop;
+      //::user::enum_desktop             m_edesktop;
 
 
       //static ::user::enum_desktop      s_edesktop;
@@ -79,14 +79,14 @@ namespace acme_linux
       void calculate_linux_distribution() override;
 
 
-      ::user::enum_desktop get_edesktop() override;
-
-
-      ::user::enum_desktop calculate_edesktop() override;
-
-
-      static ::user::enum_desktop _get_edesktop();
-      static ::user::enum_desktop _calculate_edesktop();
+//      ::user::enum_desktop get_edesktop() override;
+//
+//
+//      ::user::enum_desktop calculate_edesktop() override;
+//
+//
+//      static ::user::enum_desktop _get_edesktop();
+//      static ::user::enum_desktop _calculate_edesktop();
 
 
       ::file::path_array process_identifier_modules_paths(::process_identifier processidentifier) override;

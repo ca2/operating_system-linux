@@ -5,10 +5,13 @@
 #include <sys/utsname.h>
 
 
+::user::enum_desktop get_edesktop();
+
+
 __FACTORY_EXPORT void node_linux_factory(::factory::factory * pfactory)
 {
 
-   auto edesktop = ::acme_linux::node::_get_edesktop();
+   auto edesktop = ::get_edesktop();
 
    if (edesktop & ::user::e_desktop_kde)
    {
