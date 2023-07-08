@@ -12,6 +12,9 @@
 #define _LARGEFILE64_SOURCE
 
 
+#define HAVE_UNISTD_H 1
+
+
 #define PARALLELIZATION_PTHREAD
 
 
