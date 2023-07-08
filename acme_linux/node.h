@@ -85,7 +85,7 @@ namespace acme_linux
 //      ::user::enum_desktop calculate_edesktop() override;
 //
 //
-//      static ::user::enum_desktop _get_edesktop();
+//      static ::user::enum_desktop get_edesktop();
 //      static ::user::enum_desktop _calculate_edesktop();
 
 
