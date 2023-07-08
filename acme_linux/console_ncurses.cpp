@@ -101,9 +101,9 @@ int __console_init(void ** ppscreen, void ** ppwindow, FILE * pfileOut, FILE * p
          if(iRead < 0)
          {
 
-            auto iError = errno;
+            auto cerrornumber = c_error_number();
 
-            auto estatus = errno_status(iError);
+            auto estatus = cerrornumber.estatus();
 
             throw_exception(estatus.m_eenum);
 

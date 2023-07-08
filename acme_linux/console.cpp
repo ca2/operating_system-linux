@@ -1,5 +1,5 @@
 #include "framework.h"
-#include "acme/filesystem/file/stdio_file.h"
+#include "acme/operating_system/shared_posix/stdio_file.h"
 #include "acme/operating_system/console.h"
 #include "console.h"
 
