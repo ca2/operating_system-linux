@@ -48,22 +48,6 @@ namespace desktop_environment_gnome
 
 
 
-
-
-   void node::defer_notify_startup_complete()
-   {
-
-      auto psystem = acmesystem()->m_papexsystem;
-
-      string strApplicationServerName = psystem->get_application_server_name();
-
-      gdk_notify_startup_complete_with_id (strApplicationServerName);
-
-      gdk_notify_startup_complete();
-
-   }
-
-
    void node::start_node()
    {
 

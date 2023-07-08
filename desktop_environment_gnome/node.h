@@ -27,7 +27,7 @@ namespace desktop_environment_gnome
       ~node() override;
 
 
-      void defer_notify_startup_complete() override;
+      //void defer_notify_startup_complete() override;
 
       void start_node() override;
 
