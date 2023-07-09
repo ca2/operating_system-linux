@@ -127,7 +127,7 @@ set(WITH_X11 TRUE)
 set(WITH_XCB TRUE)
 set(USE_OPENSSL TRUE)
 set(PTHREAD TRUE)
-
+set(PLATFORM_NAME "linux")
 
 message(STATUS "DISTRO is ${DISTRO}")
 
