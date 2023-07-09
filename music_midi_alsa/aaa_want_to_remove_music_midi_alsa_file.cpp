@@ -335,7 +335,7 @@ namespace music
 //         //psfi->dwTracks      = m_ptracks->get_size();
 //         psfi->dwFormat      = m_dwFormat;
 //         psfi->dwTimeDivision= m_dwTimeDivision;
-//         psfi->tkLength      = m_tkLength;
+//         psfi->tickLength      = m_tkLength;
 //
 //         return ::music::success;
 //      }
@@ -350,7 +350,7 @@ namespace music
 //      * hSmf                      - Specifies the open MIDI file to perform
 //      *                             the conversion on.
 //      *
-//      * tkOffset                  - Specifies the tick offset into the stream
+//      * tickOffset                  - Specifies the tick offset into the stream
 //      *                             to convert.
 //      *
 //      * Returns the number of milliseconds from the start of the stream.
@@ -360,7 +360,7 @@ namespace music
 //      * might not be valid at a later time if the tempo track is rewritten.
 //      *
 //      *****************************************************************************/
-//      int_ptr file::TicksToMillisecs(imedia::position tkOffset)
+//      int_ptr file::TicksToMillisecs(imedia::position tickOffset)
 //      {
 //         single_lock(&m_cs, true);
 //         if(!IsOpened())
@@ -371,10 +371,10 @@ namespace music
 //         ::u32                 uSMPTE;
 //         ::u32                dwTicksPerSec;
 //
-//         if (tkOffset > m_tkLength)
+//         if (tickOffset > m_tkLength)
 //         {
 //            information( "sTTM: Clipping ticks to file length!");
-//            tkOffset = m_tkLength;
+//            tickOffset = m_tkLength;
 //         }
 //
 //         /* SMPTE time is easy -- no tempo map, just linear conversion
@@ -391,7 +391,7 @@ namespace music
 //            dwTicksPerSec = (::u32)uSMPTE *
 //               (::u32)(::u8)(m_dwTimeDivision & 0xFF);
 //
-//            return (::u32)muldiv32((int32_t) tkOffset, 1000L, dwTicksPerSec);
+//            return (::u32)muldiv32((int32_t) tickOffset, 1000L, dwTicksPerSec);
 //         }
 //
 //         /* Walk the tempo map and find the nearest tick position. Linearly
@@ -401,7 +401,7 @@ namespace music
 //         for (idx = 0; idx < m_tempomap.get_size(); idx++)
 //         {
 //            ptempo = &m_tempomap.element_at(idx);
-//            if (tkOffset < ptempo->tkTempo)
+//            if (tickOffset < ptempo->tickTempo)
 //               break;
 //         }
 //
@@ -421,7 +421,7 @@ namespace music
 //         /* ptempo is the tempo map entry preceding the requested tick offset.
 //         */
 //
-//         return ptempo->msBase + muldiv32((int32_t)(tkOffset - ptempo->tkTempo), ptempo->dwTempo, 1000L * m_dwTimeDivision);
+//         return ptempo->msBase + muldiv32((int32_t)(tickOffset - ptempo->tickTempo), ptempo->dwTempo, 1000L * m_dwTimeDivision);
 //
 //      }
 //
@@ -463,7 +463,7 @@ namespace music
 //         int32_t                      idx;
 //         ::u32                    uSMPTE;
 //         ::u32                   dwTicksPerSec;
-//         imedia::position                   tkOffset;
+//         imedia::position                   tickOffset;
 //
 //         /* SMPTE time is easy -- no tempo map, just linear conversion
 //         ** Note that 30-Drop means nothing to us here since we're not
@@ -500,15 +500,15 @@ namespace music
 //         /* ptempo is the tempo map entry preceding the requested tick offset.
 //         */
 //
-//         tkOffset = ptempo->tkTempo + muldiv32((int32_t) msOffset-ptempo->msBase, 1000L * m_dwTimeDivision, ptempo->dwTempo);
+//         tickOffset = ptempo->tickTempo + muldiv32((int32_t) msOffset-ptempo->msBase, 1000L * m_dwTimeDivision, ptempo->dwTempo);
 //
-//         if (tkOffset > m_tkLength)
+//         if (tickOffset > m_tkLength)
 //         {
 //            information( "sMTT: Clipping ticks to file length!");
-//            tkOffset = m_tkLength;
+//            tickOffset = m_tkLength;
 //         }
 //
-//         return tkOffset;
+//         return tickOffset;
 //      }
 //
 //      imedia::time  file::PositionToTime(
@@ -523,53 +523,53 @@ namespace music
 //         return MillisecsToTicks(time);
 //      }
 //
-//      void  file::PositionToTime(imedia::time_array & timea, imedia::position_array  & positiona, int_ptr tkOffset)
+//      void  file::PositionToTime(imedia::time_array & timea, imedia::position_array  & positiona, int_ptr tickOffset)
 //      {
-//         if(tkOffset < 0)
+//         if(tickOffset < 0)
 //         {
 //            for(int32_t i = 0; i < positiona.get_size(); i++)
 //            {
-//               imedia::position tk = positiona[i];
-//               imedia::position tkResult =  tk + tkOffset;
-//               if(tkResult > tk)
-//                  tkResult = 0;
+//               imedia::position tick = positiona[i];
+//               imedia::position tickResult =  tick + tickOffset;
+//               if(tickResult > tick)
+//                  tickResult = 0;
 //
 //               timea.add(
-//                  PositionToTime(tkResult));
+//                  PositionToTime(tickResult));
 //            }
 //         }
 //         else
 //         {
 //            for(int32_t i = 0; i < positiona.get_size(); i++)
 //            {
-//               imedia::position tk = positiona[i];
-//               imedia::position tkResult =  tk + tkOffset;
-//               if(tkResult < tk)
-//                  tkResult = 0xFFFFFFFF;
+//               imedia::position tick = positiona[i];
+//               imedia::position tickResult =  tick + tickOffset;
+//               if(tickResult < tick)
+//                  tickResult = 0xFFFFFFFF;
 //               timea.add(
 //                  PositionToTime(
-//                  tkResult));
+//                  tickResult));
 //            }
 //         }
 //      }
 //
-//      void file::TicksToMillisecs(imedia::time_2darray * p2DMillis, imedia::position_2darray *p2DTicks, int_ptr tkOffset)
+//      void file::TicksToMillisecs(imedia::time_array_array * ptimeaa, imedia::position_2darray & tickaa, int_ptr tickOffset)
 //      {
-//         ASSERT(p2DMillis->get_size() == 0);
-//         p2DMillis->set_app(get_app());
-//         p2DMillis->set_size_create(p2DTicks->get_size());
+//         ASSERT(ptimeaa->get_size() == 0);
+//         ptimeaa->set_app(get_app());
+//         ptimeaa->set_size_create(ptickaa->get_size());
 //         int32_t i;
-//         for(i = 0; i < p2DTicks->get_size(); i++)
+//         for(i = 0; i < ptickaa->get_size(); i++)
 //         {
 //            TicksToMillisecs(
-//               p2DMillis->element_at(i),
-//               p2DTicks->element_at(i),
-//               tkOffset);
+//               ptimeaa->element_at(i),
+//               ptickaa->element_at(i),
+//               tickOffset);
 //         }
 //
 //      }
 //
-//      void file::PositionToTime(imedia::time_2darray  & timea, imedia::position_2darray  & positiona, int_ptr tkOffset)
+//      void file::PositionToTime(imedia::time_array_array  & timea, imedia::position_2darray  & positiona, int_ptr tickOffset)
 //      {
 //         ASSERT(timea.get_size() == 0);
 //         timea.set_app(get_app());
@@ -580,40 +580,40 @@ namespace music
 //            PositionToTime(
 //               timea[i],
 //               positiona[i],
-//               tkOffset);
+//               tickOffset);
 //         }
 //
 //      }
 //
-//      void  file::TicksToMillisecs(imedia::time_array *pMillisArray, imedia::position_array *pTickArray, int_ptr tkOffset)
+//      void  file::TicksToMillisecs(imedia::time_array *pMillisArray, imedia::position_array *pTickArray, int_ptr tickOffset)
 //      {
-//         if(tkOffset < 0)
+//         if(tickOffset < 0)
 //         {
 //            for(int32_t i = 0; i < pTickArray->get_size(); i++)
 //            {
-//               imedia::position tk = pTickArray->operator [](i);
-//               imedia::position tkResult =  tk + tkOffset;
-//               if(tkResult > tk)
-//                  tkResult = 0;
+//               imedia::position tick = pTickArray->operator [](i);
+//               imedia::position tickResult =  tick + tickOffset;
+//               if(tickResult > tick)
+//                  tickResult = 0;
 //
 //               pMillisArray->add(
 //                  (imedia::time)
 //                  TicksToMillisecs(
-//                  tkResult));
+//                  tickResult));
 //            }
 //         }
 //         else
 //         {
 //            for(int32_t i = 0; i < pTickArray->get_size(); i++)
 //            {
-//               imedia::position tk = pTickArray->operator [](i);
-//               imedia::position tkResult =  tk + tkOffset;
-//               if(tkResult < tk)
-//                  tkResult = 0xFFFFFFFF;
+//               imedia::position tick = pTickArray->operator [](i);
+//               imedia::position tickResult =  tick + tickOffset;
+//               if(tickResult < tick)
+//                  tickResult = 0xFFFFFFFF;
 //               pMillisArray->add(
 //                  (imedia::time)
 //                  TicksToMillisecs(
-//                  tkResult));
+//                  tickResult));
 //            }
 //         }
 //      }
@@ -689,14 +689,14 @@ namespace music
 //
 //      }
 //
-//      ::e_status file::StreamEventF1(imedia::position tkDelta,
+//      ::e_status file::StreamEventF1(imedia::position tickDelta,
 //         array < ::music::midi::event *, ::music::midi::event * > & eventptra,
 //         LPMIDIHDR lpmh,
-//         imedia::position tkMax,
+//         imedia::position tickMax,
 //         ::u32 cbPrerollNomimalMax
 //         )
 //      {
-//         UNREFERENCED_PARAMETER(tkMax);
+//         UNREFERENCED_PARAMETER(tickMax);
 //         UNREFERENCED_PARAMETER(cbPrerollNomimalMax);
 //         ::e_status               smfrc;
 //
@@ -745,7 +745,7 @@ namespace music
 //         GetFlags().unsignalize(::music::midi::file::InsertSysEx);
 //         //m_dwPendingUserEvent = ((MEVT_F_CALLBACK | MEVT_F_LONG |(((::u32)MEVT_COMMENT)<<24)) & 0xFF000000L);
 //
-//         smfrc = InsertParmData(tkDelta, lpmh);
+//         smfrc = InsertParmData(tickDelta, lpmh);
 //         if (::music::success != smfrc)
 //         {
 //            information( "smfInsertParmData[2] %u", (::u32)smfrc);
@@ -758,15 +758,15 @@ namespace music
 //
 //
 //      ::e_status file::StreamEvent(
-//         imedia::position                   tkDelta,
+//         imedia::position                   tickDelta,
 //         ::music::midi::event *        pEvent,
 //         LPMIDIHDR               lpmh,
-//         imedia::position                   tkMax,
+//         imedia::position                   tickMax,
 //         ::u32                   cbPrerollNominalMax)
 //      {
-//         UNREFERENCED_PARAMETER(tkMax);
+//         UNREFERENCED_PARAMETER(tickMax);
 //         UNREFERENCED_PARAMETER(cbPrerollNominalMax);
-//         //   information("file::StreamEvent tkDelta %d\n", tkDelta);
+//         //   information("file::StreamEvent tickDelta %d\n", tickDelta);
 //
 //         ::u32                   dwTempo;
 //         LPDWORD                 lpdw;
@@ -814,7 +814,7 @@ namespace music
 //               pEvent->SetNotePitch((::u8) iNotePitch);
 //            }
 //
-//            *lpdw++ = (::u32)tkDelta;
+//            *lpdw++ = (::u32)tickDelta;
 //            *lpdw++ = 0;
 //            /**lpdw++ = (((::u32)MEVT_SHORTMSG)<<24) |
 //               ((::u32)pEvent->GetFullType()) |
@@ -845,7 +845,7 @@ namespace music
 //            //::u32 dw = (((::u32)MEVT_TEMPO)<<24)| dwTempo;
 //
 //
-//            *lpdw++ = (::u32)tkDelta;
+//            *lpdw++ = (::u32)tickDelta;
 //            *lpdw++ = 0;
 //            //*lpdw++ = dw;
 //
@@ -854,7 +854,7 @@ namespace music
 //         //       else if ((Meta == pEvent->GetType()) &&
 //         //          (05 == pEvent->GetType()))
 //         ///      {
-//         /**lpdw++ = (::u32)pEvent->tkDelta;
+//         /**lpdw++ = (::u32)pEvent->tickDelta;
 //         *lpdw++ = 0;
 //         *lpdw++ = MEVT_F_SHORT | MEVT_F_CALLBACK |
 //         (((::u32)MEVT_SHORTMSG )<<24) |
@@ -873,7 +873,7 @@ namespace music
 //         //            m_fdwSMF &= ~FlagInsertSysEx;
 //         //         m_dwPendingUserEvent = MEVT_F_CALLBACK |(((::u32)MEVT_LONGMSG )<<24);
 //         //m_dwPendingUserEvent = (((::u32)MEVT_LONGMSG )<<24);
-//         //         smfrc = smfInsertParmData(pSmf, pEvent->tkDelta, lpmh);
+//         //         smfrc = smfInsertParmData(pSmf, pEvent->tickDelta, lpmh);
 //         //            if (::music::success != smfrc)
 //         //            {
 //         //                information( "smfInsertParmData[2] %u", (::u32)smfrc);
@@ -883,7 +883,7 @@ namespace music
 //         //            lpdw = (LPDWORD)(lpmh->lpData + lpmh->dwBytesRecorded);
 //
 //
-//         //smfrc = smfInsertParmData(pSmf, pEvent->tkDelta, lpmh);
+//         //smfrc = smfInsertParmData(pSmf, pEvent->tickDelta, lpmh);
 //         //if (::music::success != smfrc)
 //         //{
 //         //    information( "smfInsertParmData[2] %u", (::u32)smfrc);
@@ -927,7 +927,7 @@ namespace music
 //               //m_dwPendingUserEvent = ((::u32)MEVT_LONGMSG) << 24;
 //            }
 //
-//            smfrc = InsertParmData(tkDelta, lpmh);
+//            smfrc = InsertParmData(tickDelta, lpmh);
 //            if (::music::success != smfrc)
 //            {
 //               information( "smfInsertParmData[2] %u", (::u32)smfrc);
@@ -938,11 +938,11 @@ namespace music
 //         }
 //         else // Meta
 //         {
-//            // se o meta event possuir tkDelta > 0,
+//            // se o meta event possuir tickDelta > 0,
 //            // insere o evento no stream para que nao haja perda de sincronismo
-//            if(tkDelta > 0)
+//            if(tickDelta > 0)
 //            {
-//               InsertPadEvent(tkDelta, lpmh);
+//               InsertPadEvent(tickDelta, lpmh);
 //               lpdw = (LPDWORD)(lpmh->lpData + lpmh->dwBytesRecorded);
 //            }
 //         }
@@ -959,7 +959,7 @@ namespace music
 //      *
 //      * lpmh                      - Contains information about the buffer to fill.
 //      *
-//      * tkMax                     - Specifies a cutoff point in the stream
+//      * tickMax                     - Specifies a cutoff point in the stream
 //      *                             beyond which events will not be read.
 //      *
 //      * Return@rdes
@@ -971,7 +971,7 @@ namespace music
 //      *****************************************************************************/
 //      ::e_status file::StreamRender(
 //         LPMIDIHDR               lpmh,
-//         imedia::position                   tkMax,
+//         imedia::position                   tickMax,
 //         ::u32                   cbPrerollNominalMax)
 //      {
 //
@@ -980,15 +980,15 @@ namespace music
 //         ::music::midi::event * pevent;
 //         LPDWORD                 lpdw;
 //         //    ::u32                   dwTempo;
-//         imedia::position               tkDelta;
-//         //   imedia::position               tkPosition;
-//         //   imedia::position               tkMin;
-//         //   imedia::position               tk;
+//         imedia::position               tickDelta;
+//         //   imedia::position               tickPosition;
+//         //   imedia::position               tickMin;
+//         //   imedia::position               tick;
 //         int32_t                  iTrackFound;
 //         //   int32_t                  i;
-//         imedia::position               tkLastDelta = 0 ;
-//         imedia::position                   tkOnQuarterNoteDelta = 0;
-//         //   imedia::position               tkLastPositionCB = I32_MAXIMUM;
+//         imedia::position               tickLastDelta = 0 ;
+//         imedia::position                   tickOnQuarterNoteDelta = 0;
+//         //   imedia::position               tickLastPositionCB = I32_MAXIMUM;
 //         //CXfplayerApp *pApp = (CXfplayerApp *) &System;
 //         //ASSERT(pApp != NULL);
 //         //CXfplayerDoc *pDoc = (CXfplayerDoc *) pApp->GetPlayingDocument();
@@ -1031,19 +1031,19 @@ namespace music
 //         }
 //         /*if(pDoc->m_iBufferingOffsetTokenIndex >= pDoc->m_TokensOffsetTicks.get_size())
 //         {
-//         tkNextOffsetLyricEvent = -1;
+//         tickNextOffsetLyricEvent = -1;
 //         }
 //         else
 //         {
-//         tkNextOffsetLyricEvent = pDoc->m_TokensOffsetTicks[pDoc->m_iBufferingOffsetTokenIndex ];
+//         tickNextOffsetLyricEvent = pDoc->m_TokensOffsetTicks[pDoc->m_iBufferingOffsetTokenIndex ];
 //         }
 //         if(pDoc->m_iBufferingTokenIndex >= pDoc->m_TokensTicks.get_size())
 //         {
-//         tkNextLyricEvent = -1;
+//         tickNextLyricEvent = -1;
 //         }
 //         else
 //         {
-//         tkNextLyricEvent = pDoc->m_TokensTicks[pDoc->m_iBufferingTokenIndex ];
+//         tickNextLyricEvent = pDoc->m_TokensTicks[pDoc->m_iBufferingTokenIndex ];
 //         }*/
 //         //   ::ikaraoke::lyric_events_v1 *pEventsV1;
 //         while(TRUE)
@@ -1072,12 +1072,12 @@ namespace music
 //
 //
 //
-//            //smfrc = GetNextEventTkPosition(&tkPosition, tkMax);
+//            //smfrc = GetNextEventTkPosition(&tickPosition, tickMax);
 //
 //
 //            /*        if (::music::success != smfrc)
 //            {
-//            smfrc = GetNextEvent((event_v1 *)&event, tkMax, TRUE);
+//            smfrc = GetNextEvent((event_v1 *)&event, tickMax, TRUE);
 //            ASSERT(::music::success != smfrc); */
 //
 //            /* smfGetNextEvent doesn't set this because smfSeek uses it
@@ -1085,7 +1085,7 @@ namespace music
 //            ** seek point and reaching end-of-file.
 //            **
 //            ** To the ::fontopus::user, however, we present the selection between
-//            ** their given tkBase and tkEnd as the entire file, therefore
+//            ** their given tickBase and tickEnd as the entire file, therefore
 //            ** we want to translate this into EOF.
 //            */
 //            /*if (SReachedTkMax == smfrc)
@@ -1097,7 +1097,7 @@ namespace music
 //            break;
 //            }*/
 //            iTrackFound = -1;
-//            tkLastDelta = 0;
+//            tickLastDelta = 0;
 //            /*      while(TRUE)
 //            {
 //            for(i = 0; i < m_eventsTracksForPositionCB.get_size(); i++)
@@ -1106,7 +1106,7 @@ namespace music
 //            if(pEventsV1->GetClassOrder() == 1)
 //            {
 //            while(m_ptracks->m_tkPosition >
-//            (tk = pEventsV1->GetCurrentTkTokenPosition()))
+//            (tick = pEventsV1->GetCurrentTkTokenPosition()))
 //            {
 //            pEventsV1->m_iCurrentToken++;
 //            }
@@ -1114,28 +1114,28 @@ namespace music
 //            else
 //            {
 //            while(m_ptracks->m_tkPosition >
-//            (tk = ((::ikaraoke::lyric_events_v2 *)pEventsV1)->GetCurrentTkNotePosition()))
+//            (tick = ((::ikaraoke::lyric_events_v2 *)pEventsV1)->GetCurrentTkNotePosition()))
 //            {
 //            pEventsV1->m_iCurrentNote++;
 //            }
 //            }
 //            if(iTrackFound < 0)
 //            {
-//            if(tk >= 0)
-//            if(tkPosition >= tk)
+//            if(tick >= 0)
+//            if(tickPosition >= tick)
 //            {
-//            tkMin = tk;
+//            tickMin = tick;
 //            iTrackFound = i;
 //            }
 //            }
 //            else
 //            {
-//            if(tk >= 0)
-//            if(tkPosition >= tk)
+//            if(tick >= 0)
+//            if(tickPosition >= tick)
 //            {
-//            if(tk < tkMin)
+//            if(tick < tickMin)
 //            {
-//            tkMin = tk;
+//            tickMin = tick;
 //            iTrackFound = i;
 //            }
 //            }
@@ -1155,8 +1155,8 @@ namespace music
 //            //            information("ReadEvents m_ptracks->m_tkPosition = %d\n", m_ptracks->m_tkPosition);
 //            //         }
 //            #endif
-//            tkDelta = tkMin - m_ptracks->m_tkPosition;
-//            if((tkDelta - tkLastDelta) == 0)
+//            tickDelta = tickMin - m_ptracks->m_tkPosition;
+//            if((tickDelta - tickLastDelta) == 0)
 //            {
 //            pEventsV1->m_tkDelta = 0;
 //            InsertLyricEvents(pEventsV1, lpmh);
@@ -1178,12 +1178,12 @@ namespace music
 //            }
 //            lpdw = (LPDWORD)(lpmh->lpData + lpmh->dwBytesRecorded);
 //            }
-//            pEventsV1->m_tkDelta = tkDelta - tkLastDelta;
+//            pEventsV1->m_tkDelta = tickDelta - tickLastDelta;
 //            InsertLyricEvents(pEventsV1, lpmh);
 //            }
 //
 //            iTrackFound = -1;
-//            tkLastDelta = tkDelta;
+//            tickLastDelta = tickDelta;
 //            }
 //            if (lpmh->dwBufferLength - lpmh->dwBytesRecorded < 4*sizeof(::u32))
 //            {
@@ -1210,11 +1210,11 @@ namespace music
 //            }*/
 //            if (lpmh->dwBufferLength - lpmh->dwBytesRecorded < 4*sizeof(::u32))
 //            {
-//               m_ptracks->m_tkPosition += tkDelta;
+//               m_ptracks->m_tkPosition += tickDelta;
 //               break;
 //            }
 //
-//            smfrc = GetNextEvent(pevent, tkMax, TRUE);
+//            smfrc = GetNextEvent(pevent, tickMax, TRUE);
 //            if (::music::success != smfrc)
 //            {
 //               /* smfGetNextEvent doesn't set this because smfSeek uses it
@@ -1222,7 +1222,7 @@ namespace music
 //               ** seek point and reaching end-of-file.
 //               **
 //               ** To the ::fontopus::user, however, we present the selection between
-//               ** their given tkBase and tkEnd as the entire file, therefore
+//               ** their given tickBase and tickEnd as the entire file, therefore
 //               ** we want to translate this into EOF.
 //               */
 //               if (::music::SReachedTkMax == smfrc)
@@ -1234,7 +1234,7 @@ namespace music
 //               break;
 //            }
 //            ::e_status vmsr;
-//            vmsr = StreamEvent(tkDelta, pevent, lpmh, tkMax, cbPrerollNominalMax);
+//            vmsr = StreamEvent(tickDelta, pevent, lpmh, tickMax, cbPrerollNominalMax);
 //
 //         }
 //
@@ -1251,7 +1251,7 @@ namespace music
 //      *
 //      * lpmh                      - Contains information about the buffer to fill.
 //      *
-//      * tkMax                     - Specifies a cutoff point in the stream
+//      * tickMax                     - Specifies a cutoff point in the stream
 //      *                             beyond which events will not be read.
 //      *
 //      * Return@rdes
@@ -1272,7 +1272,7 @@ namespace music
 //         ::u32                   dwRounded;
 //         ::u32               dwLength;
 //         ::u32               dwSize;
-//         imedia::position               tkDelta;
+//         imedia::position               tickDelta;
 //
 //         if(pLyricEvent != NULL)
 //         {
@@ -1285,7 +1285,7 @@ namespace music
 //         (::ikaraoke::lyric_events_v2 *) pLyricEvent;
 //         pPendingLyricEventV2->m_iCurrentNote++;
 //         if(pPendingLyricEventV2->m_iCurrentNote <
-//         pPendingLyricEventV2->m_msaNotesPosition.get_size())
+//         pPendingLyricEventV2->m_timeaNotesPosition.get_size())
 //         {
 //         ::u32_array dwArray;
 //         //            VERIFY(1 == pPendingLyricEventV2->GetNoteTokens(m_pPendingLyricEventV1->m_iCurrentNote, dwArray));
@@ -1306,11 +1306,11 @@ namespace music
 //         return ::music::success;
 //         }
 //
-//         tkDelta = m_pendingLyricEventArray[0].m_tkDelta;
+//         tickDelta = m_pendingLyricEventArray[0].m_tkDelta;
 //
-//         ASSERT(tkDelta >= 0);
+//         ASSERT(tickDelta >= 0);
 //
-//         /* Can't fit 4 ::u32's? (tkDelta + stream-id + event + some data)
+//         /* Can't fit 4 ::u32's? (tickDelta + stream-id + event + some data)
 //         ** Can't do anything.
 //         */
 //         /*ASSERT(lpmh->dwBufferLength >= lpmh->dwBytesRecorded);
@@ -1320,7 +1320,7 @@ namespace music
 //
 //         if (lpmh->dwBufferLength - lpmh->dwBytesRecorded < 4 * sizeof(::u32))
 //         {
-//         if (0 == tkDelta)
+//         if (0 == tickDelta)
 //         return ::music::success;
 //
 //         /* If we got here with a real delta, that means smfReadEvents screwed
@@ -1352,8 +1352,8 @@ namespace music
 //         dwRounded = dwSize;
 //         //dwRounded = (dwLength + 3) & (~3L);
 //
-//         //tkOffset = tkDelta;
-//         *lpdw++ = (::u32) tkDelta;
+//         //tickOffset = tickDelta;
+//         *lpdw++ = (::u32) tickDelta;
 //         *lpdw++ = 0;
 //         //*lpdw++ = ((MEVT_F_CALLBACK | MEVT_F_LONG |(((::u32)MEVT_LONGMSG)<<24)) & 0xFF000000L )   | (dwLength & 0x00FFFFFFL);;
 //         *lpdw++ = ((MEVT_F_CALLBACK | MEVT_F_LONG |(((::u32)MEVT_COMMENT)<<24)) & 0xFF000000L )   | (dwLength & 0x00FFFFFFL);;
@@ -1388,7 +1388,7 @@ namespace music
 //      }
 //
 //      ::e_status file::InsertPadEvent(
-//         imedia::position            tkDelta,
+//         imedia::position            tickDelta,
 //         LPMIDIHDR         lpmh)
 //
 //      {
@@ -1397,11 +1397,11 @@ namespace music
 //         ::u32               dwLength;
 //
 //
-//         ASSERT(tkDelta >= 0);
+//         ASSERT(tickDelta >= 0);
 //         //    assert(pSmf != NULL);
 //         ASSERT(lpmh != NULL);
 //
-//         /* Can't fit 4 ::u32's? (tkDelta + stream-id + event + some data)
+//         /* Can't fit 4 ::u32's? (tickDelta + stream-id + event + some data)
 //         ** Can't do anything.
 //         */
 //         ASSERT(lpmh->dwBufferLength >= lpmh->dwBytesRecorded);
@@ -1416,7 +1416,7 @@ namespace music
 //
 //         if (lpmh->dwBufferLength - lpmh->dwBytesRecorded < 4 * sizeof(::u32))
 //         {
-//            if (0 == tkDelta)
+//            if (0 == tickDelta)
 //               return ::music::success;
 //
 //            /* If we got here with a real delta, that means smfReadEvents screwed
@@ -1437,8 +1437,8 @@ namespace music
 //
 //         dwRounded = (dwLength + 3) & (~3L);
 //
-//         //tkOffset = tkDelta;
-//         *lpdw++ = (::u32) tkDelta;
+//         //tickOffset = tickDelta;
+//         *lpdw++ = (::u32) tickDelta;
 //         *lpdw++ = 0;
 //         //*lpdw++ = ((MEVT_F_CALLBACK | MEVT_F_LONG |(((::u32)MEVT_LONGMSG)<<24)) & 0xFF000000L )   | (dwLength & 0x00FFFFFFL);;
 //         //   *lpdw++ = ((MEVT_F_CALLBACK | MEVT_F_LONG |(((::u32)MEVT_COMMENT)<<24)) & 0xFF000000L )   | (dwLength & 0x00FFFFFFL);;
@@ -1482,7 +1482,7 @@ namespace music
 //      *
 //      * pSmf                      - Specifies the file to read data from.
 //      *
-//      * tkDelta                   - Specfices the tick delta for the data.
+//      * tickDelta                   - Specfices the tick delta for the data.
 //      *
 //      * lpmh                      - Contains information about the buffer to fill.
 //      *
@@ -1498,7 +1498,7 @@ namespace music
 //      *
 //      *****************************************************************************/
 //      ::e_status file::InsertParmData(
-//         imedia::position                   tkDelta,
+//         imedia::position                   tickDelta,
 //         LPMIDIHDR               lpmh)
 //      {
 //         ::u32                   dwLength;
@@ -1508,14 +1508,14 @@ namespace music
 //         //    assert(pSmf != NULL);
 //         ASSERT(lpmh != NULL);
 //
-//         /* Can't fit 4 ::u32's? (tkDelta + stream-id + event + some data)
+//         /* Can't fit 4 ::u32's? (tickDelta + stream-id + event + some data)
 //         ** Can't do anything.
 //         */
 //         ASSERT(lpmh->dwBufferLength >= lpmh->dwBytesRecorded);
 //
 //         if (lpmh->dwBufferLength - lpmh->dwBytesRecorded < 4*sizeof(::u32))
 //         {
-//            if (0 == tkDelta)
+//            if (0 == tickDelta)
 //               return ::music::success;
 //
 //            /* If we got here with a real delta, that means smfReadEvents screwed
@@ -1530,7 +1530,7 @@ namespace music
 //         dwLength = lpmh->dwBufferLength - lpmh->dwBytesRecorded - 3*sizeof(::u32);
 //         dwLength = min(dwLength, m_cbPendingUserEvent);
 //
-//         *lpdw++ = (::u32)tkDelta;
+//         *lpdw++ = (::u32)tickDelta;
 //         *lpdw++ = 0L;
 //         *lpdw++ = (m_dwPendingUserEvent & 0xFF000000L) | (dwLength & 0x00FFFFFFL);
 //
@@ -1573,7 +1573,7 @@ namespace music
 //      *
 //      * hSmf                      - Handle of file to seek within
 //      *
-//      * tkPosition                - The position to seek to in the track.
+//      * tickPosition                - The position to seek to in the track.
 //      *
 //      * lpmh                      - A buffer to contain the state information.
 //      *
@@ -1612,7 +1612,7 @@ namespace music
 //
 //
 //      ::e_status file::seek(
-//         imedia::position                   tkPosition,
+//         imedia::position                   tickPosition,
 //         LPMIDIHDR               lpmh)
 //      {
 //         ::e_status     smfrc;
@@ -1623,7 +1623,7 @@ namespace music
 //         ::u32                    idxChannel;
 //         ::u32                    idxController;
 //
-//         _SyncSeek(tkPosition);
+//         _SyncSeek(tickPosition);
 //
 //         memset(&m_keyframe, 0, sizeof(m_keyframe));
 //
@@ -1639,7 +1639,7 @@ namespace music
 //         m_ptracks->seek_begin();
 //         //for (ptrk = m_rTracks, idxTrack = m_dwTracks; idxTrack--; ptrk++)
 //
-//         while (::music::success == (smfrc = GetNextEvent(pevent, tkPosition, FALSE)))
+//         while (::music::success == (smfrc = GetNextEvent(pevent, tickPosition, FALSE)))
 //         {
 //
 //            if (::music::midi::Meta == (bEvent = pevent->GetFullType()))
@@ -1766,8 +1766,8 @@ namespace music
 //            }
 //         }
 //
-//         /* Force all tracks to be at tkPosition. We are guaranteed that
-//         ** all tracks will be past the event immediately preceding tkPosition;
+//         /* Force all tracks to be at tickPosition. We are guaranteed that
+//         ** all tracks will be past the event immediately preceding tickPosition;
 //         ** this will force correct delta-ticks to be generated so that events
 //         ** on all tracks will line up properly on a seek into the middle of the
 //         ** file.
@@ -1779,15 +1779,15 @@ namespace music
 //         //   for (idxTrack = m_dwTracks; idxTrack--;)
 //         //  {
 //         //   ptrk = m_tracks[idxTrack];
-//         //  ptrk->tkPosition        = tkPosition;
+//         //  ptrk->tickPosition        = tickPosition;
 //         //}
-//         //return seek(tkPosition);
+//         //return seek(tickPosition);
 //
 //         return ::music::success;
 //      }
 //
 //      ::e_status file::seek(
-//         imedia::position                   tkPosition)
+//         imedia::position                   tickPosition)
 //      {
 //         ::e_status  smfrc;
 //         ::music::midi::event *     pevent;
@@ -1799,7 +1799,7 @@ namespace music
 //
 //         m_ptracks->seek_begin();
 //
-//         while(::music::success == (smfrc = GetNextEvent(pevent, tkPosition, FALSE)));
+//         while(::music::success == (smfrc = GetNextEvent(pevent, tickPosition, FALSE)));
 //
 //         if (::music::SReachedTkMax != smfrc)
 //         {
@@ -2005,7 +2005,7 @@ namespace music
 //
 //      ::e_status file::GetNextEvent(
 //         ::music::midi::event *&  pevent,
-//         imedia::position             tkMax,
+//         imedia::position             tickMax,
 //         bool               bTkMaxInclusive)
 //      {
 //         if (GetFlags().is_signalized(::music::midi::file::EndOfFile))
@@ -2024,23 +2024,23 @@ namespace music
 //            }
 //            if(m_mepaOnQuarterNote.get_size() > 0)
 //            {
-//               imedia::position tkMod = m_ptracks->m_tkPosition  % WORDSWAP(m_pFileHeader->wDivision);
-//               imedia::position tkQuarterNote;
-//               if(tkMod == 0)
+//               imedia::position tickMod = m_ptracks->m_tkPosition  % WORDSWAP(m_pFileHeader->wDivision);
+//               imedia::position tickQuarterNote;
+//               if(tickMod == 0)
 //               {
-//                  tkQuarterNote = m_ptracks->m_tkPosition;
+//                  tickQuarterNote = m_ptracks->m_tkPosition;
 //               }
 //               else
 //               {
-//                  tkQuarterNote = m_ptracks->m_tkPosition + WORDSWAP(m_pFileHeader->wDivision) - tkMod;
+//                  tickQuarterNote = m_ptracks->m_tkPosition + WORDSWAP(m_pFileHeader->wDivision) - tickMod;
 //               }
-//               imedia::position tkPosition;
-//               ::e_status smfrc = GetNextEventTkPosition(&tkPosition, tkMax);
+//               imedia::position tickPosition;
+//               ::e_status smfrc = GetNextEventTkPosition(&tickPosition, tickMax);
 //               if(smfrc == ::music::SEndOfFile)
 //                  GetFlags().signalize(::music::midi::file::EndOfFile);
-//               if(tkPosition > tkQuarterNote)
+//               if(tickPosition > tickQuarterNote)
 //               {
-//                  m_ptracks->m_tkPosition  = tkQuarterNote;
+//                  m_ptracks->m_tkPosition  = tickQuarterNote;
 //                  *pevent = *m_mepaOnQuarterNote.element_at(0);
 //                  delete m_mepaOnQuarterNote.element_at(0);
 //                  m_mepaOnQuarterNote.remove_at(0);
@@ -2051,7 +2051,7 @@ namespace music
 //
 //         ::e_status smfrc   = m_ptracks->GetNextEvent(
 //            pevent,
-//            tkMax,
+//            tickMax,
 //            bTkMaxInclusive,
 //            false,
 //            false);
@@ -2089,7 +2089,7 @@ namespace music
 //
 //      ::e_status file::GetNextEventTkPosition(
 //         imedia::position * pTkPosition,
-//         imedia::position tkMax)
+//         imedia::position tickMax)
 //      {
 //
 //         if (GetFlags().is_signalized(::music::midi::file::EndOfFile))
@@ -2099,7 +2099,7 @@ namespace music
 //
 //         return m_ptracks->GetNextEventTkPosition(
 //            pTkPosition,
-//            tkMax);
+//            tickMax);
 //      }
 //
 //
@@ -2153,7 +2153,7 @@ namespace music
 //
 //
 //
-//      int32_t file::CalcMelodyTrack(::music::midi::events **ppEvents, imedia::position_array *pTicks)
+//      int32_t file::CalcMelodyTrack(::music::midi::events **ppEvents, imedia::position_array & ticka)
 //      {
 //         //    return -1;
 //         return m_ptracks->CalcMelodyTrack(ppEvents, pTicks, m_pFileHeader->wFormat);
@@ -2376,19 +2376,19 @@ namespace music
 //
 //      }*/
 //
-//      /*::e_status ChangeEventDelta(::music::midi::event *pEvent, imedia::position tkNewDelta)
+//      /*::e_status ChangeEventDelta(::music::midi::event *pEvent, imedia::position tickNewDelta)
 //      {
 //      ::e_status smfrc;
-//      if(pEvent->_GetDelta() != tkNewDelta)
+//      if(pEvent->_GetDelta() != tickNewDelta)
 //      {
 //      track * pTrack = m_ptracks->GetEventTrack(pEvent);
 //      if(pTrack == NULL)
 //      return TrackNotFound;
 //      ::u8 buffer[256];
-//      ::u32 dwSetUsed = ::music::midi::event::SetVDWord(buffer, 256, tkNewDelta);
-//      imedia::position tkOldDelta;
-//      ::u32 dwGetUsed = ::music::midi::event::GetVDWord(pEvent->GetImage(), 256, &tkOldDelta);
-//      ASSERT(tkOldDelta == pEvent->_GetDelta());
+//      ::u32 dwSetUsed = ::music::midi::event::SetVDWord(buffer, 256, tickNewDelta);
+//      imedia::position tickOldDelta;
+//      ::u32 dwGetUsed = ::music::midi::event::GetVDWord(pEvent->GetImage(), 256, &tickOldDelta);
+//      ASSERT(tickOldDelta == pEvent->_GetDelta());
 //      ::u8 * hpbImage = pEvent->GetImage();
 //      if(dwSetUsed != dwGetUsed)
 //      {
@@ -2413,7 +2413,7 @@ namespace music
 //      return smfrc;
 //      }
 //      }
-//      ::music::midi::event::SetVDWord(hpbImage, dwSetUsed, tkNewDelta);
+//      ::music::midi::event::SetVDWord(hpbImage, dwSetUsed, tickNewDelta);
 //      return ::music::success;
 //      }
 //      else
@@ -2480,13 +2480,13 @@ namespace music
 //      }
 //
 //
-//      ::music::midi::tempo_map_entry * file::GetTempoMapEntry(const imedia::position & tk)
+//      ::music::midi::tempo_map_entry * file::GetTempoMapEntry(const imedia::position & tick)
 //      {
 //         int32_t idx;
 //         for (idx = 0; idx < m_tempomap.get_size(); idx++)
 //         {
 //            ::music::midi::tempo_map_entry & tempo = m_tempomap.element_at(idx);
-//            if((int32_t) tk < (int32_t) tempo.tkTempo)
+//            if((int32_t) tick < (int32_t) tempo.tickTempo)
 //               break;
 //         }
 //         if(idx <= 0)
@@ -2591,20 +2591,20 @@ namespace music
 //
 //      ::e_status file::WorkStreamRender(
 //         LPMIDIHDR               lpmh,
-//         imedia::position                   tkMax,
+//         imedia::position                   tickMax,
 //         ::u32                   cbPrerollNominalMax)
 //      {
 //         ::e_status       smfrc;
 //         ::music::midi::event *           pevent;
 //         array < ::music::midi::event *, ::music::midi::event * > eventptraPositionCB;
 //         LPDWORD                    lpdw;
-//         imedia::position                        tkDelta;
-//         imedia::position                        tkLastDelta = 0 ;
-//         imedia::position                      tkOnQuarterNoteDelta = 0;
-//         //   imedia::position                        tkLastPosition;
-//         imedia::position      tkPosition;
-//         imedia::position      tkPositionF1;
-//         imedia::position &    tkLastPosition = m_positionLastWorkRender;
+//         imedia::position                        tickDelta;
+//         imedia::position                        tickLastDelta = 0 ;
+//         imedia::position                      tickOnQuarterNoteDelta = 0;
+//         //   imedia::position                        tickLastPosition;
+//         imedia::position      tickPosition;
+//         imedia::position      tickPositionF1;
+//         imedia::position &    tickLastPosition = m_positionLastWorkRender;
 //         ASSERT(lpmh != NULL);
 //
 //         /////////////////////////////////////////////////////////////////////////////
@@ -2632,9 +2632,9 @@ namespace music
 //            return ::music::SEndOfFile;
 //         }
 //
-//         if(tkLastPosition > GetPosition())
+//         if(tickLastPosition > GetPosition())
 //         {
-//            tkLastPosition = GetPosition();
+//            tickLastPosition = GetPosition();
 //         }
 //         while(true)
 //         {
@@ -2662,15 +2662,15 @@ namespace music
 //               break;
 //            }
 //
-//            tkLastDelta = 0;
+//            tickLastDelta = 0;
 //
 //            if (lpmh->dwBufferLength - lpmh->dwBytesRecorded < 4*sizeof(::u32))
 //            {
-//               //         m_ptracks->m_tkPosition += tkDelta;
+//               //         m_ptracks->m_tkPosition += tickDelta;
 //               break;
 //            }
 //
-//            smfrc = WorkGetNextEvent(pevent, tkMax, TRUE);
+//            smfrc = WorkGetNextEvent(pevent, tickMax, TRUE);
 //            if (::music::success != smfrc)
 //            {
 //               // smfGetNextEvent doesn't set this because smfSeek uses it
@@ -2678,7 +2678,7 @@ namespace music
 //               // seek point and reaching end-of-file.
 //               //
 //               // To the ::fontopus::user, however, we present the selection between
-//               // their given tkBase and tkEnd as the entire file, therefore
+//               // their given tickBase and tickEnd as the entire file, therefore
 //               // we want to translate this into EOF.
 //               //
 //               return smfrc;
@@ -2687,10 +2687,10 @@ namespace music
 //               break;
 //            }
 //
-//            ASSERT(GetPosition() >= tkLastPosition);
+//            ASSERT(GetPosition() >= tickLastPosition);
 //
-//            tkPosition  = GetPosition();
-//            tkDelta     = tkPosition - tkLastPosition;
+//            tickPosition  = GetPosition();
+//            tickDelta     = tickPosition - tickLastPosition;
 //
 //            // The position CB events are grouped in a single position CB
 //            // event after other type of simultaneous events.
@@ -2709,9 +2709,9 @@ namespace music
 //                  // This is the first PositionCB event
 //                  // at the F1 position.
 //                  eventptraPositionCB.add(pevent);
-//                  tkPositionF1   = tkPosition;
+//                  tickPositionF1   = tickPosition;
 //               }
-//               else if(tkPosition == tkPositionF1)
+//               else if(tickPosition == tickPositionF1)
 //               {
 //                  // This is another PositionCB event
 //                  // at the F1 position.
@@ -2722,15 +2722,15 @@ namespace music
 //                  // This is another PositionCB event
 //                  // at another position.
 //
-//                  ASSERT(tkPositionF1 >= tkLastPosition);
+//                  ASSERT(tickPositionF1 >= tickLastPosition);
 //
-//                  tkDelta = tkPositionF1 - tkLastPosition;
-//                  StreamEventF1(tkDelta, eventptraPositionCB, lpmh, tkMax, cbPrerollNominalMax);
-//                  tkLastPosition = tkPositionF1;
+//                  tickDelta = tickPositionF1 - tickLastPosition;
+//                  StreamEventF1(tickDelta, eventptraPositionCB, lpmh, tickMax, cbPrerollNominalMax);
+//                  tickLastPosition = tickPositionF1;
 //                  eventptraPositionCB.remove_all();
 //
 //                  eventptraPositionCB.add(pevent);
-//                  tkPositionF1   = tkPosition;
+//                  tickPositionF1   = tickPosition;
 //               }
 //            }
 //            else
@@ -2739,11 +2739,11 @@ namespace music
 //               {
 //                  if(pevent->GetPosition() != eventptraPositionCB[0]->GetPosition())
 //                  {
-//                     ASSERT(tkPositionF1 >= tkLastPosition);
+//                     ASSERT(tickPositionF1 >= tickLastPosition);
 //
-//                     tkDelta = tkPositionF1 - tkLastPosition;
-//                     StreamEventF1(tkDelta, eventptraPositionCB, lpmh, tkMax, cbPrerollNominalMax);
-//                     tkDelta = tkPosition - tkPositionF1;
+//                     tickDelta = tickPositionF1 - tickLastPosition;
+//                     StreamEventF1(tickDelta, eventptraPositionCB, lpmh, tickMax, cbPrerollNominalMax);
+//                     tickDelta = tickPosition - tickPositionF1;
 //                     eventptraPositionCB.remove_all();
 //                  }
 //                  else
@@ -2752,26 +2752,26 @@ namespace music
 //                     // has the same position of the eventptraPositionCB events.
 //                     // So, when these eventptraPositionCB events are streamed,
 //                     // the event delta will be zero.
-//                     tkDelta = tkPosition - tkPositionF1;
-//                     tkPositionF1   = tkPosition;
+//                     tickDelta = tickPosition - tickPositionF1;
+//                     tickPositionF1   = tickPosition;
 //                  }
 //               }
 //               /*         if(pevent->get_type() == NoteOn)
 //               {
 //               information("WorkStreamRender: NoteOn     position %d Delta %d Track %d\n",
 //               m_ptracks->GetPosition(),
-//               tkDelta,
+//               tickDelta,
 //               pevent->GetTrack());
 //               }
 //               else
 //               {
 //               information("WorkStreamRender: Type Other position %d Delta %d\n",
 //               m_ptracks->GetPosition(),
-//               tkDelta);
+//               tickDelta);
 //               }*/
 //
-//               StreamEvent(tkDelta, pevent, lpmh, tkMax, cbPrerollNominalMax);
-//               tkLastPosition = tkPosition;
+//               StreamEvent(tickDelta, pevent, lpmh, tickMax, cbPrerollNominalMax);
+//               tickLastPosition = tickPosition;
 //            }
 //
 //         }
@@ -2781,7 +2781,7 @@ namespace music
 //
 //      ::e_status file::WorkGetNextRawEvent(
 //         ::music::midi::event *&      pevent,
-//         imedia::position                tkMax,
+//         imedia::position                tickMax,
 //         bool                  bTkMaxInclusive)
 //      {
 //         if(GetFlags().is_signalized(::music::midi::file::EndOfFile))
@@ -2790,7 +2790,7 @@ namespace music
 //         }
 //         ::e_status smfrc = m_ptracks->WorkGetNextRawEvent(
 //            pevent,
-//            tkMax,
+//            tickMax,
 //            bTkMaxInclusive,
 //            false);
 //         if(smfrc == ::music::SEndOfFile)
@@ -2802,7 +2802,7 @@ namespace music
 //
 //      ::e_status file::WorkGetNextRawMidiEvent(
 //         ::music::midi::event *&      pevent,
-//         imedia::position                tkMax,
+//         imedia::position                tickMax,
 //         bool                  bTkMaxInclusive)
 //      {
 //         if(GetFlags().is_signalized(::music::midi::file::EndOfFile))
@@ -2811,7 +2811,7 @@ namespace music
 //         }
 //         ::e_status smfrc = m_ptracks->WorkGetNextRawMidiEvent(
 //            pevent,
-//            tkMax,
+//            tickMax,
 //            bTkMaxInclusive,
 //            false);
 //         if(smfrc == ::music::SEndOfFile)
@@ -2823,7 +2823,7 @@ namespace music
 //
 //      ::e_status file::WorkGetNextEvent(
 //         ::music::midi::event *&      pevent,
-//         imedia::position                tkMax,
+//         imedia::position                tickMax,
 //         bool                  bTkMaxInclusive)
 //      {
 //         if (GetFlags().is_signalized(::music::midi::file::EndOfFile))
@@ -2843,23 +2843,23 @@ namespace music
 //         }
 //         if(m_mepaOnQuarterNote.get_size() > 0)
 //         {
-//         imedia::position tkMod = m_ptracks->m_tkPosition  % WORDSWAP(m_pFileHeader->wDivision);
-//         imedia::position tkQuarterNote;
-//         if(tkMod == 0)
+//         imedia::position tickMod = m_ptracks->m_tkPosition  % WORDSWAP(m_pFileHeader->wDivision);
+//         imedia::position tickQuarterNote;
+//         if(tickMod == 0)
 //         {
-//         tkQuarterNote = m_ptracks->m_tkPosition;
+//         tickQuarterNote = m_ptracks->m_tkPosition;
 //         }
 //         else
 //         {
-//         tkQuarterNote = m_ptracks->m_tkPosition + WORDSWAP(m_pFileHeader->wDivision) - tkMod;
+//         tickQuarterNote = m_ptracks->m_tkPosition + WORDSWAP(m_pFileHeader->wDivision) - tickMod;
 //         }
-//         imedia::position tkPosition;
-//         ::e_status smfrc = GetNextEventTkPosition(&tkPosition, tkMax);
+//         imedia::position tickPosition;
+//         ::e_status smfrc = GetNextEventTkPosition(&tickPosition, tickMax);
 //         if(smfrc == ::music::SEndOfFile)
 //         GetFlags().signalize(::music::midi::file::EndOfFile);
-//         if(tkPosition > tkQuarterNote)
+//         if(tickPosition > tickQuarterNote)
 //         {
-//         m_ptracks->m_tkPosition  = tkQuarterNote;
+//         m_ptracks->m_tkPosition  = tickQuarterNote;
 //         pevent = m_mepaOnQuarterNote.element_at(0);
 //         delete m_mepaOnQuarterNote.element_at(0);
 //         m_mepaOnQuarterNote.remove_at(0);
@@ -2873,7 +2873,7 @@ namespace music
 //         {
 //            smfrc   = m_ptracks->WorkGetNextEvent(
 //               pevent,
-//               tkMax,
+//               tickMax,
 //               bTkMaxInclusive,
 //               false);
 //            if(smfrc != ::music::success)
@@ -2938,7 +2938,7 @@ namespace music
 //
 //
 //      ::e_status file::WorkSeek(
-//         imedia::position                   tkPosition,
+//         imedia::position                   tickPosition,
 //         LPMIDIHDR               lpmh)
 //      {
 //
@@ -2950,7 +2950,7 @@ namespace music
 //         ::u32                       idxChannel;
 //         ::u32                       idxController;
 //
-//         _SyncSeek(tkPosition);
+//         _SyncSeek(tickPosition);
 //
 //         m_positionLastWorkRender.set_maximum();
 //
@@ -2963,7 +2963,7 @@ namespace music
 //
 //         m_ptracks->WorkSeekBegin();
 //
-//         while (::music::success == (smfrc = WorkGetNextEvent(pevent, tkPosition, FALSE)))
+//         while (::music::success == (smfrc = WorkGetNextEvent(pevent, tickPosition, FALSE)))
 //         {
 //            if (::music::midi::Meta == (bEvent = pevent->GetFullType()))
 //            {
@@ -3066,8 +3066,8 @@ namespace music
 //            }
 //         }
 //
-//         /* Force all tracks to be at tkPosition. We are guaranteed that
-//         ** all tracks will be past the event immediately preceding tkPosition;
+//         /* Force all tracks to be at tickPosition. We are guaranteed that
+//         ** all tracks will be past the event immediately preceding tickPosition;
 //         ** this will force correct delta-ticks to be generated so that events
 //         ** on all tracks will line up properly on a seek into the middle of the
 //         ** file.
@@ -3079,9 +3079,9 @@ namespace music
 //         //   for (idxTrack = m_dwTracks; idxTrack--;)
 //         //  {
 //         //   ptrk = m_tracks[idxTrack];
-//         //  ptrk->tkPosition        = tkPosition;
+//         //  ptrk->tickPosition        = tickPosition;
 //         //}
-//         //return seek(tkPosition);
+//         //return seek(tickPosition);
 //
 //         return ::music::success;
 //      }
@@ -3111,7 +3111,7 @@ namespace music
 //                  ** Use defaults of 500,000 uSec/qn from MIDI spec
 //                  */
 //
-//                  tempo.tkTempo = 0;
+//                  tempo.tickTempo = 0;
 //                  tempo.msBase  = 0;
 //                  tempo.dwTempo = ::music::midi::DefaultTempo;
 //                  m_tempomap.add(tempo);
@@ -3120,7 +3120,7 @@ namespace music
 //                  bFirst = false;
 //               }
 //
-//               tempo.tkTempo = m_ptracks->m_tkPosition;
+//               tempo.tickTempo = m_ptracks->m_tkPosition;
 //
 //               if (bFirst)
 //                  tempo.msBase = 0;
@@ -3130,11 +3130,11 @@ namespace music
 //                  /* NOTE: Better not be here unless we're q/n format!
 //                  */
 //                  //                ptempo->msBase = (ptempo-1)->msBase +
-//                  //                               muldiv32(ptempo->tkTempo-((ptempo-1)->tkTempo),
+//                  //                               muldiv32(ptempo->tickTempo-((ptempo-1)->tickTempo),
 //                  //                                      (ptempo-1)->dwTempo,
 //                  //                                    1000L*m_dwTimeDivision);
 //                  tempo.msBase = (pLastTempo)->msBase +
-//                     muldiv32((int32_t) (tempo.tkTempo-((pLastTempo)->tkTempo)),
+//                     muldiv32((int32_t) (tempo.tickTempo-((pLastTempo)->tickTempo)),
 //                     (pLastTempo)->dwTempo,
 //                     1000L * m_dwTimeDivision);
 //               }
@@ -3151,7 +3151,7 @@ namespace music
 //            information("File contains no tempo map! Insert default tempo.");
 //
 //            ::music::midi::tempo_map_entry * ptempo = &m_tempomap.add_new();
-//            ptempo->tkTempo = 0;
+//            ptempo->tickTempo = 0;
 //            ptempo->msBase  = 0;
 //            //      ptempo->dwTempo = DefaultTempo;
 //            ptempo->dwTempo = ::music::midi::DefaultTempo;
@@ -3227,16 +3227,16 @@ namespace music
 //         m_evtrkv1ptraSeek.add(ptracksv1);
 //      }
 //
-//      void file::_SyncSeek(imedia::position tkPosition)
+//      void file::_SyncSeek(imedia::position tickPosition)
 //      {
 //         for(int32_t i = 0; i < m_evtrkv1ptraSeek.get_size(); i++)
 //         {
-//            _SyncSeek(tkPosition, m_evtrkv1ptraSeek.element_at(i));
+//            _SyncSeek(tickPosition, m_evtrkv1ptraSeek.element_at(i));
 //         }
 //      }
 //
 //      void file::_SyncSeek(
-//         imedia::position tkPosition,
+//         imedia::position tickPosition,
 //         ::ikaraoke::events_tracks_v1 *ptracksv1)
 //      {
 //         ASSERT(ptracksv1 != NULL);
@@ -3252,12 +3252,12 @@ namespace music
 //            if(pEventsV1->GetClassOrder() == 2)
 //            {
 //               pEventsV2 = (::ikaraoke::lyric_events_v2 *) pEventsV1;
-//               iNoteIndex = pEventsV2->GetPositionNote(tkPosition);
+//               iNoteIndex = pEventsV2->GetPositionNote(tickPosition);
 //               if(iNoteIndex >= 0)
 //               {
 //                  break;
 //               }
-//               iTokenIndex = pEventsV2->GetPositionToken(tkPosition);
+//               iTokenIndex = pEventsV2->GetPositionToken(tickPosition);
 //               if(iTokenIndex >= 0)
 //               {
 //                  break;

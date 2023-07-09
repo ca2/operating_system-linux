@@ -40,7 +40,7 @@ namespace music
 
 
             bool PlayRate(double dRate = 0.0, ::u32 dwEllapse = 584) override;
-            bool Play(imedia_position tkStart, ::u32 dwEllapse = 584) override;
+            bool Play(imedia_position tickStart, ::u32 dwEllapse = 584) override;
 
             virtual bool init_thread() override;
             virtual void term_thread() override;

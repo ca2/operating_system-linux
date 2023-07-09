@@ -251,14 +251,14 @@ namespace music
          }
 
 
-//         void sequence_thread::Play(imedia_position tkStart)
+//         void sequence_thread::Play(imedia_position tickStart)
 //         {
 //
 //            ASSERT(get_sequence() != NULL);
 //
 //            ASSERT(get_sequence()->get_state() == ::music::midi::sequence::e_state_opened);
 //
-//            PrerollAndWait(tkStart);
+//            PrerollAndWait(tickStart);
 //
 //            get_sequence()->Start();
 //
@@ -279,13 +279,13 @@ namespace music
 //         }
 
 
-//         void sequence_thread::PrerollAndWait(imedia_position tkStart)
+//         void sequence_thread::PrerollAndWait(imedia_position tickStart)
 //         {
 //
 //            ::music::midi::PREROLL                 preroll;
 //
-//            preroll.tkBase = tkStart;
-//            preroll.tkEnd  = get_sequence()->m_tkLength;
+//            preroll.tickBase = tickStart;
+//            preroll.tickEnd  = get_sequence()->m_tkLength;
 //
 //            get_sequence()->set_midi_out_device(m_pplayer->get_midi_out_device());
 //
@@ -313,8 +313,8 @@ namespace music
 //            ::math::math::MaxClip(&dRate, 1.0);
 //            ::math::math::MinClip(&dRate,  0.0);
 //
-//            preroll.tkBase = (imedia_position) (int32_t) ((double) get_sequence()->m_tkLength * dRate);
-//            preroll.tkEnd  = get_sequence()->m_tkLength;
+//            preroll.tickBase = (imedia_position) (int32_t) ((double) get_sequence()->m_tkLength * dRate);
+//            preroll.tickEnd  = get_sequence()->m_tkLength;
 //
 //            get_sequence()->set_midi_out_device(m_pplayer->get_midi_out_device());
 //
@@ -333,7 +333,7 @@ namespace music
 //
 //            //    if(!get_sequence()->IsInSpecialModeV001())
 //            //  {
-//            //    SendMessage(m_oswindow_, WM_USER, 33, preroll.tkBase);
+//            //    SendMessage(m_oswindow_, WM_USER, 33, preroll.tickBase);
 //            //}
 //         }
 

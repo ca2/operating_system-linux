@@ -154,7 +154,7 @@ namespace music
 //         void Prepare(int32_t iTrack, ::ikaraoke::data & data);
 //         void Prepare(
 //            string_array_array & straa,
-//            imedia_position_2darray & tka2DTokensTicks,
+//            imedia_position_2darray & tickaaTokensTicks,
 //            int32_t iMelodyTrack,
 //            int2a & ia2TokenLine,
 //            ::ikaraoke::data & data);
@@ -228,7 +228,7 @@ namespace music
 
          //imedia_position MillisecsToTicks(imedia_time msOffset);
 
-         //imedia_time TicksToMillisecs(imedia_position tkOffset);
+         //imedia_time TicksToMillisecs(imedia_position tickOffset);
 
          bool IsPlaying();
 
