@@ -11,7 +11,7 @@
 #include "apex/platform/system.h"
 #undef USE_MISC
 
-#ifdef RASPBERRYPIOS
+#if defined(RASPBERRYPIOS) || defined(LINUX)
 #include <sys/types.h>
 #include <unistd.h>
 #endif
@@ -550,7 +550,7 @@ namespace apex_linux
       if(::rmdir(path) < 0)
       {
 
-         int iErrNo = errno;
+         auto cerrornumber = c_error_number();
 
          auto estatus = cerrornumber.failed_estatus();
 
