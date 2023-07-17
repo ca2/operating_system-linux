@@ -1213,7 +1213,7 @@ namespace apex_linux
    }
 
 
-   void os_context::register_user_auto_start(const string & strAppId, const string & strCommand, const string & strArguments, bool bRegister)
+   void os_context::register_user_auto_start(const string & strAppId, const ::file::path & pathExecutable, const string & strArguments, bool bRegister)
    {
 
       ::file::path pathAutoStartDesktopFilePath = _get_auto_start_desktop_file_path(strAppId);
