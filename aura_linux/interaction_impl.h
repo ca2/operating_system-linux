@@ -336,7 +336,7 @@ namespace aura_linux
       virtual bool EnableWindow(bool bEnable = true);
 
 
-      void prodevian_update_screen() override;
+      //void prodevian_update_screen() override;
 
 
       DECLARE_MESSAGE_HANDLER(on_message_create);

@@ -3993,41 +3993,41 @@ namespace aura_linux
 //   }
 
 
-   void interaction_impl::prodevian_update_screen()
-   {
-
-      if(!m_puserinteraction)
-      {
-
-         //return false;
-
-         throw ::exception(error_null_pointer);
-
-      }
-
-      if(m_puserinteraction->m_ewindowflag & e_window_flag_embedded_prodevian)
-      {
-
-         _001UpdateScreen();
-
-      }
-      else
-      {
-
-         //x11_async_runnable(__routine([&]()
-         //{
-
-            //synchronous_lock synchronouslock(x11_mutex());
-
-            _001UpdateScreen();
-
-         //}));
-
-      }
-
-      //return true;
-
-   }
+//   void interaction_impl::prodevian_update_screen()
+//   {
+//
+//      if(!m_puserinteraction)
+//      {
+//
+//         //return false;
+//
+//         throw ::exception(error_null_pointer);
+//
+//      }
+//
+//      if(m_puserinteraction->m_ewindowflag & e_window_flag_embedded_prodevian)
+//      {
+//
+//         _001UpdateScreen();
+//
+//      }
+//      else
+//      {
+//
+//         //x11_async_runnable(__routine([&]()
+//         //{
+//
+//            //synchronous_lock synchronouslock(x11_mutex());
+//
+//            _001UpdateScreen();
+//
+//         //}));
+//
+//      }
+//
+//      //return true;
+//
+//   }
 
 
    void interaction_impl::non_top_most_upper_window_rects(::rectangle_i32_array& recta)
