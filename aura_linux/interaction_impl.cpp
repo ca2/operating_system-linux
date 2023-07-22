@@ -3875,7 +3875,7 @@ namespace aura_linux
    }
 
 
-   void interaction_impl::window_show_change_visibility(::e_display edisplay, ::e_activation eactivation)
+   void interaction_impl::_window_show_change_visibility(::e_display edisplay, ::e_activation eactivation)
    {
 
       __keep_flag_on(m_puserinteraction->layout().m_eflag, ::user::interaction_layout::flag_show_window);
@@ -3914,7 +3914,7 @@ namespace aura_linux
 //      else
 //      {
 //
-//         ::user::interaction_impl::window_show_change_visibility(edisplay, eactivation);
+        ::user::interaction_impl::_window_show_change_visibility(edisplay, eactivation);
 //
 //      }
 
