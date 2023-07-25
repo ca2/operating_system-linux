@@ -143,6 +143,8 @@ if (${DISTRO} STREQUAL "ubuntu")
 
     set(MPG123_PKG_MODULE "libmpg123")
 
+    set(HAS_SYSTEM_UNAC TRUE)
+
 elseif (${DISTRO} STREQUAL "debian")
 
     set(DEBIAN TRUE)
@@ -417,6 +419,9 @@ include_directories(${WORKSPACE_FOLDER}/source/app)
 include_directories(${WORKSPACE_FOLDER}/source/app/include)
 include_directories(${WORKSPACE_FOLDER}/source/include)
 include_directories(${WORKSPACE_FOLDER}/port/_)
+if(NOT ${HAS_SYSTEM_UNAC})
+include_directories(${WORKSPACE_FOLDER}/port/base/unac/include)
+endif()
 include_directories(${WORKSPACE_FOLDER}/port/include)
 include_directories(${WORKSPACE_FOLDER}/operating_system)
 if (OPERATING_SYSTEM_POSIX)
