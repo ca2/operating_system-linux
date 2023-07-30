@@ -10,7 +10,7 @@ message(STATUS "CMAKE_SYSTEM_NAME is ${CMAKE_SYSTEM_NAME}")
     # use pkg_check_modules()
 #ENDIF(PKG_CONFIG_FOUND)
 set(USE_PKGCONFIG TRUE)
-
+set(CURL_NANO_HTTP TRUE)
 
 if ("${CMAKE_BUILD_TYPE}" STREQUAL "")
 

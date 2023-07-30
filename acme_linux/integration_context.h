@@ -2,17 +2,17 @@
 #pragma once
 
 
-#include "apex/platform/integration_context.h"
+#include "acme/platform/integration_context.h"
 
 
-namespace apex_linux
+namespace acme_linux
 {
 
    namespace integration
    {
 
 
-      class CLASS_DECL_APEX context :
+      class CLASS_DECL_ACME_LINUX context :
          virtual public ::integration::context
    {
       public:
@@ -79,7 +79,7 @@ namespace apex_linux
 
       virtual void git_clone();
 
-      virtual void bash(const ::scoped_string &scopedstr);
+      virtual i32 bash(const ::scoped_string &scopedstr);
 
       virtual ::string prepare_path(const ::file::path &path);
 

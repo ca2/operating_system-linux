@@ -5,20 +5,20 @@
 #include "acme/filesystem/file/file.h"
 #include "acme/filesystem/file/memory_file.h"
 #include "acme/filesystem/filesystem/acme_directory.h"
+#include "acme/platform/application.h"
 #include "acme/platform/node.h"
 #include "acme/platform/system.h"
 #include "acme/primitive/primitive/url.h"
-#include "apex/filesystem/filesystem/file_context.h"
-#include "apex/networking/http/context.h"
-#include "apex/platform/application.h"
-#include "apex/platform/system.h"
+//#include "apex/filesystem/filesystem/file_context.h"
+//#include "apex/networking/http/context.h"
+//#include "apex/platform/system.h"
 
 
 #include "acme/_operating_system.h"
 
 
 
-namespace apex_linux
+namespace acme_linux
 {
 
 
@@ -54,11 +54,13 @@ namespace apex_linux
       void context::prepare()
       {
 
-         m_path = m_strName / m_strRelease / m_strPlatform / m_strConfiguration;
+         m_pathBase = m_strName / m_strRelease;
 
-         m_pathSource2 = m_pathFolder / m_path / "source";
+         m_pathPlatformConfiguration = m_strPlatform / m_strConfiguration;
 
-         acmedirectory()->create(m_pathSource2);
+         m_pathSource = m_pathFolder / m_pathBase / m_pathPlatformConfiguration / "source";
+
+         acmedirectory()->create(m_pathSource);
 
       }
 
@@ -66,7 +68,7 @@ namespace apex_linux
       void context::change_to_source_directory()
       {
 
-         acmedirectory()->change_current(m_pathSource2);
+         acmedirectory()->change_current(m_pathSource);
 
       }
 
@@ -194,7 +196,7 @@ namespace apex_linux
 
             string strPath;
 
-            strPath = this->prepare_path(m_pathFolder / m_path / "source");
+            strPath = this->prepare_path(m_pathFolder / m_pathBase / m_pathPlatformConfiguration / "source");
 
             if (strPath.length() > 20)
             {
@@ -253,7 +255,7 @@ namespace apex_linux
 
             auto url = m_pathDownloadURL;
 
-            acmeapplication()->m_papexapplication->http().download(url, pmemoryFileTarGz, set);
+            acmesystem()->http_download(pmemoryFileTarGz, url, set);
 
             //auto pathTar = m_pathFolder / m_path / (m_strName + ".tar");
 
@@ -265,7 +267,7 @@ namespace apex_linux
 
             pmemoryFileTar->seek_to_begin();
 
-            this->untar(m_pathFolder / m_path, pmemoryFileTar, 1);
+            this->untar(m_pathFolder / m_pathBase / m_pathPlatformConfiguration, pmemoryFileTar, 1);
 
          }
 
@@ -280,7 +282,7 @@ namespace apex_linux
       }
 
 
-      void context::bash(const ::scoped_string &scopedstr)
+      ::i32 context::bash(const ::scoped_string &scopedstr)
       {
 
          string strEscaped = scopedstr;
@@ -302,10 +304,11 @@ namespace apex_linux
 
          //
 
-         command_system(strCommand);
+         auto iExitCode = command_system(strCommand);
 
          ///command_system("cmd.exe -c \"C:\\msys64\\msys2_shell.cmd\" \"" + strEscaped + "\"");
 
+         return iExitCode;
 
       }
 
@@ -324,10 +327,10 @@ namespace apex_linux
    void node::integration_factory()
    {
 
-      acmesystem()->m_psubsystem->m_pfactory->add_factory_item<::apex_linux::integration::context, ::integration::context>();
+      acmesystem()->m_psubsystem->m_pfactory->add_factory_item<::acme_linux::integration::context, ::integration::context>();
 
    }
 
 
-} // namespace apex_linux
+} // namespace acme_linux
 

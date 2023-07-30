@@ -20,6 +20,8 @@ list(APPEND library_source
    file.h
    framework.cpp
    framework.h
+   integration_context.cpp
+   integration_context.h
    node.cpp
    node.h
    #stdio_file.cpp
