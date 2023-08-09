@@ -269,6 +269,7 @@ set(default_music_midi "music_midi_alsa")
 set(default_node "node_linux")
 set(default_audio_mixer "audio_mixer_alsa")
 set(default_gpu "gpu_opengl")
+set(default_networking "networking_bsd")
 #add_compile_definitions(default_draw2d=draw2d_cairo)
 #add_compile_definitions(default_imaging=imaging_freeimage)
 #add_compile_definitions(default_write_text=write_text_pango)
@@ -292,6 +293,8 @@ if (LXDE_DESKTOP)
 
     set(default_windowing "windowing_x11")
 
+    set(default_desktop_environment desktop_environment_gnome)
+
     add_compile_definitions(DESKTOP_ENVIRONMENT_GNOME)
 
     add_compile_definitions(default_windowing=windowing_x11)
@@ -309,6 +312,8 @@ if (XFCE_DESKTOP)
 
     set(default_windowing "windowing_x11")
 
+    set(default_desktop_environment desktop_environment_xfce)
+
     add_compile_definitions(DESKTOP_ENVIRONMENT_XFCE)
 
     add_compile_definitions(default_windowing=windowing_x11)
@@ -318,12 +323,10 @@ endif ()
 
 if (GNOME_DESKTOP)
 
-
     message(STATUS "Adding GNOME/X11 dependency.")
 
     list(APPEND app_common_dependencies
             desktop_environment_gnome)
-
 
     list(APPEND static_app_common_dependencies
             static_desktop_environment_gnome
@@ -333,6 +336,8 @@ if (GNOME_DESKTOP)
             static_windowing_x11)
 
     set(default_windowing "windowing_x11")
+
+    set(default_desktop_environment desktop_environment_gnome)
 
     add_compile_definitions(DESKTOP_ENVIRONMENT_GNOME)
 
@@ -359,6 +364,8 @@ if (KDE_DESKTOP)
 #            )
 
     set(default_windowing "windowing_xcb")
+
+    set(default_desktop_environment desktop_environment_kde)
 
     add_compile_definitions(DESKTOP_ENVIRONMENT_KDE)
 

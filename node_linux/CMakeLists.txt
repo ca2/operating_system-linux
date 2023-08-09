@@ -72,6 +72,10 @@ elseif(LINUX)
 endif()
 
 
+add_dependencies(${PROJECT_NAME} ${default_desktop_environment})
+
+
+
 list(APPEND library_include_directories ${CMAKE_CURRENT_SOURCE_DIR})
 list(APPEND library_include_directories ${CMAKE_CURRENT_SOURCE_DIR}/..)
 list(APPEND library_include_directories ${CMAKE_CURRENT_SOURCE_DIR}/../..)

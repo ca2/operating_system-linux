@@ -98,7 +98,7 @@ elseif (LINUX)
 endif ()
 
 
-add_dependencies(desktop_environment_kde node_linux)
+#add_dependencies(desktop_environment_kde node_linux)
 
 
 list(APPEND library_include_directories ${CMAKE_CURRENT_SOURCE_DIR})

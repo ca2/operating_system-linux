@@ -87,7 +87,7 @@ target_compile_options(static_${PROJECT_NAME} PRIVATE ${PKGCONFIG_CFLAGS})
 endif ()
 
 
-add_dependencies(desktop_environment_xfce node_linux)
+#add_dependencies(desktop_environment_xfce node_linux)
 
 
 list(APPEND library_include_directories ${CMAKE_CURRENT_SOURCE_DIR})
