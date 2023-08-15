@@ -167,6 +167,8 @@ elseif ("${DISTRO}" STREQUAL "raspbian")
 
     add_compile_definitions(RASPBERRYPIOS)
 
+    set(HAS_SYSTEM_UNAC TRUE)
+
     message(STATUS "RASPBERRYPIOS defined!!")
 
 else ()
