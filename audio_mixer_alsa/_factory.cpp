@@ -16,7 +16,7 @@ __FACTORY_EXPORT void audio_mixer_alsa_factory(::factory::factory * pfactory)
    pfactory->add_factory_item < ::audio_mixer_alsa::destination, ::audio_mixer::destination >();
    pfactory->add_factory_item < ::audio_mixer_alsa::device, ::audio_mixer::device >();
    pfactory->add_factory_item < ::audio_mixer_alsa::line_info, ::audio_mixer::line_info >();
-   pfactory->add_factory_item < ::audio_mixer_alsa::audio_mixer, ::audio_mixer::audio_mixer >();
+   pfactory->add_factory_item < ::audio_mixer_alsa::audio_mixer, ::aqua::audio_mixer >();
    //System.factory().cloneable_large < departament                   >  (System.type_info < ::audio_mixer::font                     > ());
    pfactory->add_factory_item < ::audio_mixer_alsa::source, ::audio_mixer::source >();
    //pfactory->add_factory_item < ::audio_mixer_alsa::thread, ::audio_mixer::thread >();

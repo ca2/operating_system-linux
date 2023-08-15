@@ -4,8 +4,10 @@
 #include "acme/exception/not_implemented.h"
 #include "acme/filesystem/filesystem/acme_directory.h"
 #include "acme/filesystem/filesystem/acme_file.h"
+#include "acme/filesystem/filesystem/acme_path.h"
+#include "acme/filesystem/filesystem/link.h"
 #include "apex/filesystem/file/set.h"
-#include "apex/filesystem/filesystem/link.h"
+//#include "apex/filesystem/filesystem/link.h"
 #include "apex/operating_system/department.h"
 #include "apex/operating_system/freedesktop/desktop_file.h"
 #include "apex/platform/system.h"
@@ -874,7 +876,7 @@ namespace apex_linux
          if(file_exists(pathDesktop))
          {
 
-            auto plink = resolve_link(pathDesktop, ::file::e_link_target);
+            auto plink = acmepath()->resolve_link(pathDesktop, ::file::e_link_target);
 
             if(plink && plink->m_elink & ::file::e_link_target)
             {
