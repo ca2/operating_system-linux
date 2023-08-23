@@ -8,7 +8,7 @@
 #include "acme/filesystem/filesystem/listing.h"
 #include "acme/parallelization/task_flag.h"
 #include "acme/primitive/string/international.h"
-#include "apex/platform/system.h"
+#include "acme/platform/system.h"
 #undef USE_MISC
 
 #if defined(RASPBERRYPIOS) || defined(LINUX)
@@ -65,7 +65,7 @@ inline bool linux_dir_myspace(char ch)
 }
 
 
-namespace apex_linux
+namespace acme_linux
 {
 
 
@@ -99,9 +99,9 @@ namespace apex_linux
 
       auto psystem = acmesystem();
 
-      m_pfilesystem = psystem->m_papexsystem->m_pfilesystem.get();
+      m_pfilesystem = psystem->m_pfilesystem.get();
 
-      m_pdirsystem = psystem->m_papexsystem->m_pdirsystem.get();
+      m_pdirsystem = psystem->m_pdirsystem.get();
 
       //return ::success;
 
@@ -840,7 +840,7 @@ namespace apex_linux
    }
 
 
-} // namespace apex_linux
+} // namespace acme_linux
 
 
 

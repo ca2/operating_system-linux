@@ -10,14 +10,14 @@ list(APPEND library_source
         app_launcher.h
         #crypto.cpp
         #crypto.h
-        dir_context.cpp
-        dir_context.h
-        dir_system.cpp
-        dir_system.h
-        file_context.cpp
-        file_context.h
-        file_system.cpp
-        file_system.h
+#        dir_context.cpp
+#        dir_context.h
+#        dir_system.cpp
+#        dir_system.h
+#        file_context.cpp
+#        file_context.h
+#        file_system.cpp
+#        file_system.h
         framework.cpp
         framework.h
         #interprocess_communication.cpp

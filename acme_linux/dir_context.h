@@ -4,11 +4,11 @@
 #include "acme/filesystem/filesystem/dir_context.h"
 
 
-namespace apex_linux
+namespace acme_linux
 {
 
 
-   class CLASS_DECL_APEX dir_context :
+   class CLASS_DECL_ACME dir_context :
       virtual public ::dir_context
    {
    public:
@@ -109,7 +109,7 @@ namespace apex_linux
    };
 
 
-} // namespace apex_linux
+} // namespace acme_linux
 
 
 

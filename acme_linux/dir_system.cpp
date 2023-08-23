@@ -8,7 +8,7 @@
 #include <link.h>
 
 
-namespace apex_linux
+namespace acme_linux
 {
 
 
@@ -47,7 +47,7 @@ namespace apex_linux
     }
 
 
-} // namespace apex_linux
+} // namespace acme_linux
 
 
 

@@ -4,11 +4,11 @@
 #include "acme/filesystem/filesystem/dir_system.h"
 
 
-namespace apex_linux
+namespace acme_linux
 {
 
 
-   class CLASS_DECL_APEX dir_system :
+   class CLASS_DECL_ACME_LINUX dir_system :
       virtual public ::dir_system
    {
    public:

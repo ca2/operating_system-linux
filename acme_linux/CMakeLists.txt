@@ -3,30 +3,38 @@ project(acme_linux CXX)
 
 
 list(APPEND library_source
-   _.cpp
-   _.h
-   _acme_linux.h
-   _factory.cpp
-   acme_directory.cpp
-   acme_directory.h
-   acme_file.cpp
-   acme_file.h
-   acme_path.cpp
-   acme_path.h
-   console.cpp
-   console.h
-   console_ncurses.cpp
-   file.cpp
-   file.h
-   framework.cpp
-   framework.h
-   integration_context.cpp
-   integration_context.h
-   node.cpp
-   node.h
-   #stdio_file.cpp
-   #stdio_file.h
-   )
+        _.cpp
+        _.h
+        _acme_linux.h
+        _factory.cpp
+        acme_directory.cpp
+        acme_directory.h
+        acme_file.cpp
+        acme_file.h
+        acme_path.cpp
+        acme_path.h
+        console.cpp
+        console.h
+        console_ncurses.cpp
+        dir_context.cpp
+        dir_context.h
+        dir_system.cpp
+        dir_system.h
+        file.cpp
+        file.h
+        file_context.cpp
+        file_context.h
+        file_system.cpp
+        file_system.h
+        framework.cpp
+        framework.h
+        integration_context.cpp
+        integration_context.h
+        node.cpp
+        node.h
+        #stdio_file.cpp
+        #stdio_file.h
+)
 
 
 add_library(${PROJECT_NAME} SHARED ${library_source})
@@ -37,8 +45,8 @@ add_library(static_${PROJECT_NAME} STATIC ${library_source})
 
 
 list(APPEND library_references
-   acme
-   acme_posix)
+        acme
+        acme_posix)
 
 
 list(APPEND static_library_references ${library_references})
@@ -62,15 +70,12 @@ if (MSVC)
     target_link_libraries(acme_linux PRIVATE acme apex aqua aura Gdiplus)
 
 
-elseif(LINUX)
-
-
+elseif (LINUX)
 
 
     target_compile_options(${PROJECT_NAME} PRIVATE -fpermissive)
     target_compile_options(static_${PROJECT_NAME} PRIVATE -fpermissive)
     target_compile_definitions(static_${PROJECT_NAME} PRIVATE CUBE)
-
 
 
     target_link_libraries(${PROJECT_NAME} PRIVATE dl ncurses ${library_references})
@@ -81,8 +86,7 @@ elseif(LINUX)
     target_link_options(static_${PROJECT_NAME} PRIVATE --whole-archive)
 
 
-
-endif()
+endif ()
 
 
 list(APPEND library_include_directories ${CMAKE_CURRENT_SOURCE_DIR})
@@ -91,7 +95,6 @@ list(APPEND library_include_directories ${CMAKE_CURRENT_SOURCE_DIR}/../..)
 
 target_include_directories(${PROJECT_NAME} PRIVATE ${library_include_directories})
 target_include_directories(static_${PROJECT_NAME} PRIVATE ${library_include_directories})
-
 
 
 target_compile_definitions(acme_linux PRIVATE _ACME_LINUX_LIBRARY)

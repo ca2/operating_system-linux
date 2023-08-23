@@ -5,11 +5,6 @@
 #include "apex/platform/launcher.h"
 #include "app_launcher.h"
 #include "launcher.h"
-#include "dir_system.h"
-#include "dir_context.h"
-#include "file_system.h"
-#include "operating_system-posix/apex_posix/file_context.h"
-#include "file_context.h"
 //#include "process.h"
 #include "os_context.h"
 #include "apex/parallelization/service_handler.h"
@@ -38,11 +33,6 @@ __FACTORY_EXPORT void apex_linux_factory(::factory::factory * pfactory)
 
    acme_linux_factory(pfactory);
 
-   pfactory->add_factory_item < ::apex_linux::dir_system, ::dir_system >();
-   pfactory->add_factory_item < ::apex_linux::file_system, ::file_system >();
-
-   pfactory->add_factory_item < ::apex_linux::dir_context, ::dir_context >();
-   pfactory->add_factory_item < ::apex_linux::file_context, ::file_context >();
 
    //create_factory < ::linux::stdio_file, ::file::text_file >();
    //create_factory < ::linux::file, ::file::file >();
@@ -67,7 +57,7 @@ __FACTORY_EXPORT void apex_linux_factory(::factory::factory * pfactory)
    //pfactory->add_factory_item < ::file::os_watcher, ::file::watcher >();
    //pfactory->add_factory_item < ::file::os_watch, ::file::watch >();
 
-   pfactory->add_factory_item < ::apex_linux::file_context, ::file_context >();
+   //pfactory->add_factory_item < ::apex_linux::file_context, ::file_context >();
    pfactory->add_factory_item < ::apex_linux::service_handler, ::service_handler >();
 
    pfactory->add_factory_item < ::apex_linux::node, ::acme::node >();

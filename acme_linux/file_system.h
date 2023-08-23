@@ -4,11 +4,11 @@
 #include "acme/filesystem/filesystem/file_system.h"
 
 
-namespace apex_linux
+namespace acme_linux
 {
 
 
-   class CLASS_DECL_APEX file_system:
+   class CLASS_DECL_ACME_LINUX file_system:
       virtual public ::file_system
    {
    public:
@@ -28,7 +28,7 @@ namespace apex_linux
    };
 
 
-} // namespace apex_linux
+} // namespace acme_linux
 
 
 

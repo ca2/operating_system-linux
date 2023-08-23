@@ -12,4 +12,19 @@
 #endif
 
 
+namespace acme_linux
+{
+
+
+   class file_context;
+   class file_system;
+
+
+   class dir_context;
+   class dir_system;
+
+
+} // namespace acme_linux
+
+
 

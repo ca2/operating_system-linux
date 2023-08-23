@@ -1,12 +1,15 @@
 #pragma once
 
 
-namespace apex_linux
+#include "acme_posix/file_context.h"
+
+
+namespace acme_linux
 {
 
 
-   class CLASS_DECL_APEX file_context :
-      virtual public ::apex_posix::file_context
+   class CLASS_DECL_ACME_LINUX file_context :
+      virtual public ::acme_posix::file_context
    {
    public:
 
@@ -42,7 +45,7 @@ namespace apex_linux
    };
 
 
-} // namespace apex_linux
+} // namespace acme_linux
 
 
 
