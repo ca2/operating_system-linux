@@ -1975,7 +1975,7 @@ namespace aura_linux
 //
 //      ::rectangle_i32 rectClient;
 //
-//      m_puserinteraction->client_rectangle(rectClient);
+//      m_puserinteraction->rectangle(rectClient);
 //
 //
 //      //pgraphics->FillSolidRect(rectClient, 0x00000000);
@@ -2527,7 +2527,7 @@ namespace aura_linux
 //
 //      ::rectangle_i32 rectClient;
 //
-//      //oswindow->client_rectangle(rectClient);
+//      //oswindow->rectangle(rectClient);
 //
 //      rectClient.left = 0;
 //      rectClient.top = 0;

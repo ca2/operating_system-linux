@@ -223,8 +223,8 @@ namespace aura_linux
 
   //    virtual bool _001GetWindowRect(::rectangle_i64 * prectangle);
 
-      //using ::user::interaction_impl::client_rectangle;
-      //virtual bool client_rectangle(::rectangle_i64 * prectangle);
+      //using ::user::interaction_impl::this->rectangle;
+      //virtual bool this->rectangle(::rectangle_i64 * prectangle);
 
 
       //virtual bool has_keyboard_focus() override;
