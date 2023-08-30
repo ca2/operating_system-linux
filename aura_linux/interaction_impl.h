@@ -82,7 +82,7 @@ namespace aura_linux
       DECLARE_MESSAGE_HANDLER(_001OnShowWindow);
 
 
-      void _window_show_change_visibility_unlocked(::e_display edisplay, ::e_activation eactivation) override;
+      //void _window_show_change_visibility_unlocked(::e_display edisplay, ::e_activation eactivation) override;
 
 
       virtual ::user::interaction_impl * from_os_data(void * pdata) override;

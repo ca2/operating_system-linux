@@ -3875,52 +3875,52 @@ namespace aura_linux
    }
 
 
-   void interaction_impl::_window_show_change_visibility_unlocked(::e_display edisplay, ::e_activation eactivation)
-   {
-
-      __keep_flag_on(m_puserinteraction->layout().m_eflag, ::user::interaction_layout::flag_show_window);
-
-//      //auto edisplay = m_puserinteraction->layout().design().display();
+//   void interaction_impl::_window_show_change_visibility_unlocked(::e_display edisplay, ::e_activation eactivation)
+//   {
 //
-//      //auto eactivation = m_puserinteraction->layout().design().activation();
+//      __keep_flag_on(m_puserinteraction->layout().m_eflag, ::user::interaction_layout::flag_show_window);
 //
-//      //if(eactivation &)
-////      {
+////      //auto edisplay = m_puserinteraction->layout().design().display();
 ////
-////         wm_add_erase_state(m_oswindow, net_wm_state_hidden, false);
+////      //auto eactivation = m_puserinteraction->layout().design().activation();
+////
+////      //if(eactivation &)
+//////      {
+//////
+//////         wm_add_erase_state(m_oswindow, net_wm_state_hidden, false);
+//////
+//////      }
+//////
+////
+////      m_pwindow->show_window(edisplay, eactivation);
+////
+//////      if (edisplay == e_display_full_screen)
+//////      {
+//////
+//////         if(m_puserinteraction->m_bWorkspaceFullScreen)
+//////         {
+//////
+//////            ::show_window(m_oswindow, e_display_zoomed);
+//////
+//////         }
+//////         else
+//////         {
+//////
+//////            m_oswindow->full_screen();
+//////
+//////         }
+//////
+//////      }
+//////      else
+//////      {
+//////
+////
+//
+//        ::user::interaction_impl::_window_show_change_visibility_unlocked(edisplay, eactivation);
 ////
 ////      }
-////
 //
-//      m_pwindow->show_window(edisplay, eactivation);
-//
-////      if (edisplay == e_display_full_screen)
-////      {
-////
-////         if(m_puserinteraction->m_bWorkspaceFullScreen)
-////         {
-////
-////            ::show_window(m_oswindow, e_display_zoomed);
-////
-////         }
-////         else
-////         {
-////
-////            m_oswindow->full_screen();
-////
-////         }
-////
-////      }
-////      else
-////      {
-////
-//
-
-        ::user::interaction_impl::_window_show_change_visibility_unlocked(edisplay, eactivation);
-//
-//      }
-
-   }
+//   }
 
 
 //   ::user::interaction * interaction_impl::GetNextWindow(::u32 nFlag)
