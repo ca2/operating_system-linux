@@ -1029,13 +1029,13 @@ namespace aura_linux
       else if(pmessage->m_atom == e_message_left_button_down)
       {
 
-         information("linux::interaction_impl::e_message_left_button_down\n");
+         information("linux::interaction_impl::e_message_left_button_down");
 
       }
       else if(pmessage->m_atom == e_message_left_button_up)
       {
 
-         information("linux::interaction_impl::e_message_left_button_up\n");
+         information("linux::interaction_impl::e_message_left_button_up");
 
       }
       else if(pmessage->m_atom == e_message_mouse_move)
