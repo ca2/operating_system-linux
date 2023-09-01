@@ -5490,7 +5490,7 @@ namespace draw2d_gdiplus
 
       daRight.erase_all();
 
-      wstring wstrBefore(str.left()(iStartParam));
+      wstring wstrBefore(str.left(iStartParam));
 
       wstring wstrMiddle(str.substr(iStartParam, iCountParam));
 
