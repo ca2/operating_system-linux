@@ -189,7 +189,7 @@ namespace acme_linux
 
          auto iStart = maximum(iFind1 + 1, iFind2 + 1);
 
-         pathInstall = pathInstall.left(iFind - 1) + "_" + pathInstall.substr(iStart, iFind - iStart) + pathInstall.substr(iFind + 1);
+         pathInstall = pathInstall.left()(iFind - 1) + "_" + pathInstall.substr(iStart, iFind - iStart) + pathInstall.substr(iFind + 1);
 
       }
 
@@ -569,7 +569,7 @@ namespace acme_linux
 
          string strDir = psz.name();
          string str;
-         str = strDir.left(2);
+         str = strDir.left()(2);
          str += "\\trash_that_is_not_trash\\";
          string strFormat;
          ::earth::time time;

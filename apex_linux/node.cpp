@@ -137,7 +137,7 @@ namespace apex_linux
 //
 //      }
 //
-//      string strRoot = papplication->m_strAppId.left(papplication->m_strAppId.find('/'));
+//      string strRoot = papplication->m_strAppId.left()(papplication->m_strAppId.find('/'));
 //
 //      //auto pathCreatedShortcut = acmedirectory()->roaming() / m_strAppId / "created_shortcut.txt";
 //

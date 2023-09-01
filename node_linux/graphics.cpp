@@ -870,8 +870,8 @@ namespace draw2d_gdiplus
    {
 
       //ASSERT(get_handle1() != nullptr);
-      //return ::Chord(get_handle1(),rectParam.left,rectParam.top,
-      //               rectParam.right,rectParam.bottom,pointStart.x,pointStart.y,
+      //return ::Chord(get_handle1(),rectParam.left(),rectParam.top(),
+      //               rectParam.right(),rectParam.bottom(),pointStart.x,pointStart.y,
       //               pointEnd.x, pointEnd.y) != false;
       throw ::not_implemented();
 
@@ -942,7 +942,7 @@ namespace draw2d_gdiplus
 
    //   }
 
-   //   return (m_pgraphics->DrawEllipse(ppen,rectParam.left,rectParam.top,rectParam.right - rectParam.left,rectParam.bottom - rectParam.top)) == Gdiplus::Status::Ok;
+   //   return (m_pgraphics->DrawEllipse(ppen,rectParam.left(),rectParam.top(),rectParam.right() - rectParam.left(),rectParam.bottom() - rectParam.top())) == Gdiplus::Status::Ok;
 
    //}
 
@@ -991,9 +991,9 @@ namespace draw2d_gdiplus
 
       }
 
-      return (m_pgraphics->DrawEllipse(ppen,(Gdiplus::REAL)rectParam.left,(Gdiplus::REAL)rectParam.top,
-                                       (Gdiplus::REAL)(rectParam.right - rectParam.left),
-                                       (Gdiplus::REAL)(rectParam.bottom - rectParam.top))) == Gdiplus::Status::Ok;
+      return (m_pgraphics->DrawEllipse(ppen,(Gdiplus::REAL)rectParam.left(),(Gdiplus::REAL)rectParam.top(),
+                                       (Gdiplus::REAL)(rectParam.right() - rectParam.left()),
+                                       (Gdiplus::REAL)(rectParam.bottom() - rectParam.top()))) == Gdiplus::Status::Ok;
 
    }
 
@@ -1041,7 +1041,7 @@ namespace draw2d_gdiplus
 
       }
 
-      return (m_pgraphics->FillEllipse(pbrush, rectParam.left, rectParam.top, rectParam.right - rectParam.left, rectParam.bottom - rectParam.top)) == Gdiplus::Status::Ok;
+      return (m_pgraphics->FillEllipse(pbrush, rectParam.left(), rectParam.top(), rectParam.right() - rectParam.left(), rectParam.bottom() - rectParam.top())) == Gdiplus::Status::Ok;
 
    }*/
 
@@ -1089,9 +1089,9 @@ namespace draw2d_gdiplus
 
       }
 
-      return (m_pgraphics->FillEllipse(pbrush,(Gdiplus::REAL)rectParam.left,(Gdiplus::REAL)rectParam.top,
-                                       (Gdiplus::REAL)(rectParam.right - rectParam.left),
-                                       (Gdiplus::REAL)(rectParam.bottom - rectParam.top))) == Gdiplus::Status::Ok;
+      return (m_pgraphics->FillEllipse(pbrush,(Gdiplus::REAL)rectParam.left(),(Gdiplus::REAL)rectParam.top(),
+                                       (Gdiplus::REAL)(rectParam.right() - rectParam.left()),
+                                       (Gdiplus::REAL)(rectParam.bottom() - rectParam.top()))) == Gdiplus::Status::Ok;
 
    }
 
@@ -1112,8 +1112,8 @@ namespace draw2d_gdiplus
    {
 
       //ASSERT(get_handle1() != nullptr);
-      //return ::Pie(get_handle1(), rectParam.left, rectParam.top,
-      //             rectParam.right, rectParam.bottom, pointStart.x, pointStart.y,
+      //return ::Pie(get_handle1(), rectParam.left(), rectParam.top(),
+      //             rectParam.right(), rectParam.bottom(), pointStart.x, pointStart.y,
       //             pointEnd.x, pointEnd.y) != false;
       throw ::not_implemented();
 
@@ -1454,13 +1454,13 @@ namespace draw2d_gdiplus
 //            Gdiplus::ColorMatrixFlagsDefault,
 //               Gdiplus::ColorAdjustTypeBitmap);
 //
-//            Gdiplus::Rect rectangle_i32((INT) rectDst.left, (INT) rectDst.top, (INT) rectDst.width(), (INT) rectDst.height());
+//            Gdiplus::Rect rectangle_i32((INT) rectDst.left(), (INT) rectDst.top(), (INT) rectDst.width(), (INT) rectDst.height());
 //
 //            ret = m_pgraphics->DrawImage(
 //                  pbitmap,
 //                  rectangle, 
-//               (INT) (rectSrc.left + pgraphicsSrc->get_origin().x),
-//               (INT) (rectSrc.top + pgraphicsSrc->get_origin().y),
+//               (INT) (rectSrc.left() + pgraphicsSrc->get_origin().x),
+//               (INT) (rectSrc.top() + pgraphicsSrc->get_origin().y),
 //               (INT) (rectSrc.width()),
 //               (INT) (rectSrc.height()), 
 //               Gdiplus::UnitPixel, &imageattributes);
@@ -1475,10 +1475,10 @@ namespace draw2d_gdiplus
 //
 //            ret = m_pgraphics->DrawImage(
 //               pbitmap,
-//               (INT) rectDst.left, 
-//               (INT) rectDst.top,
-//               (INT) (rectSrc.left + xSrcContext), 
-//               (INT) (rectSrc.top + ySrcContext), 
+//               (INT) rectDst.left(), 
+//               (INT) rectDst.top(),
+//               (INT) (rectSrc.left() + xSrcContext), 
+//               (INT) (rectSrc.top() + ySrcContext), 
 //               (INT) (rectSrc.width()), 
 //               (INT) (rectSrc.height()),
 //               Gdiplus::UnitPixel);
@@ -1525,7 +1525,7 @@ namespace draw2d_gdiplus
 ////      }
 ////
 ////      bool bOk = ::BitBlt(hdcDst, 
-////         rectDst.left, rectDst.top,
+////         rectDst.left(), rectDst.top(),
 ////         rectDst.width(), rectDst.height(),
 ////         hdcSrc,
 ////         pointSrc.x, pointSrc.y, SRCCOPY) != false;
@@ -1553,15 +1553,15 @@ namespace draw2d_gdiplus
 
       double nDstHeight = rectDstParam.height();
 
-      double xSrc = rectSrcParam.left;
+      double xSrc = rectSrcParam.left();
 
-      double ySrc = rectSrcParam.top;
+      double ySrc = rectSrcParam.top();
 
       double nSrcWidth = rectSrcParam.width();
 
       double nSrcHeight = rectSrcParam.height();
 
-      Gdiplus::RectF rectDst((Gdiplus::REAL) rectDstParam.left, (Gdiplus::REAL)rectDstParam.top, (Gdiplus::REAL)rectDstParam.width(), (Gdiplus::REAL)rectDstParam.height());
+      Gdiplus::RectF rectDst((Gdiplus::REAL) rectDstParam.left(), (Gdiplus::REAL)rectDstParam.top(), (Gdiplus::REAL)rectDstParam.width(), (Gdiplus::REAL)rectDstParam.height());
 
       if (pgraphicsSrc == nullptr || pgraphicsSrc->get_current_bitmap() == nullptr)
       {
@@ -1578,7 +1578,7 @@ namespace draw2d_gdiplus
          if (pgraphicsSrc->m_pimage->m_emipmap == ::draw2d::mipmap_anisotropic
                && (pgraphicsSrc->m_pimage->width() == rectSrcParam.width()
                    && pgraphicsSrc->m_pimage->height() == rectSrcParam.height()
-                   && rectSrcParam.left == 0 && rectSrcParam.top == 0
+                   && rectSrcParam.left() == 0 && rectSrcParam.top() == 0
                   && rectDstParam.width() > 0 && rectDstParam.height() > 0))
          {
 
@@ -2757,8 +2757,8 @@ namespace draw2d_gdiplus
    bool graphics::ArcTo(const rectangle_f64 & rectParam,const point_f64 & pointStart,const point_f64 & pointEnd)
    {
 ////      ASSERT(get_handle1() != nullptr);
-      //return ArcTo(rectParam.left, rectParam.top, rectParam.right,
-        //           rectParam.bottom, pointStart.x, pointStart.y, pointEnd.x, pointEnd.y);
+      //return ArcTo(rectParam.left(), rectParam.top(), rectParam.right(),
+        //           rectParam.bottom(), pointStart.x, pointStart.y, pointEnd.x, pointEnd.y);
          //   if (::is_null(m_pgraphics))
    //   {
 
@@ -3122,7 +3122,7 @@ namespace draw2d_gdiplus
    bool graphics::PlayMetaFile(HENHMETAFILE hEnhMF, const rectangle_f64 &  rectBounds)
    {
 
-      Gdiplus::RectF rectangle_i32((Gdiplus::REAL) rectBounds.left,(Gdiplus::REAL) rectBounds.top,(Gdiplus::REAL) width(rectBounds),(Gdiplus::REAL) height(rectBounds));
+      Gdiplus::RectF rectangle_i32((Gdiplus::REAL) rectBounds.left(),(Gdiplus::REAL) rectBounds.top(),(Gdiplus::REAL) width(rectBounds),(Gdiplus::REAL) height(rectBounds));
 
       ap(Gdiplus::Metafile) pMeta = normal_new Gdiplus::Metafile(hEnhMF, false);
 
@@ -3250,7 +3250,7 @@ namespace draw2d_gdiplus
          Gdiplus::ColorMatrixFlagsDefault,
          Gdiplus::ColorAdjustTypeBitmap);
 
-      Gdiplus::RectF rectfDst((Gdiplus::REAL) rectDst.left, (Gdiplus::REAL) rectDst.top, (Gdiplus::REAL) rectDst.width(), (Gdiplus::REAL) rectDst.height());
+      Gdiplus::RectF rectfDst((Gdiplus::REAL) rectDst.left(), (Gdiplus::REAL) rectDst.top(), (Gdiplus::REAL) rectDst.width(), (Gdiplus::REAL) rectDst.height());
 
       if (pgraphicsSrc == nullptr)
       {
@@ -3285,8 +3285,8 @@ namespace draw2d_gdiplus
       {
 
          ret =  m_pgraphics->DrawImage(pbitmap,rectfDst,
-            (Gdiplus::REAL) rectSrc.left,
-            (Gdiplus::REAL) rectSrc.top,
+            (Gdiplus::REAL) rectSrc.left(),
+            (Gdiplus::REAL) rectSrc.top(),
             (Gdiplus::REAL) rectSrc.width(),
             (Gdiplus::REAL) rectSrc.height(),
             Gdiplus::UnitPixel,&imageattributes);
@@ -3507,7 +3507,7 @@ namespace draw2d_gdiplus
    //            SelectClipRgn(&rgnLast);
    //            get_clip_box(&rectangle);
    //            pBrushOld = set(pBrushLast);
-   //            PatBlt(rectangle.left, rectangle.top, rectangle.width(), rectangle.height(), PATINVERT);
+   //            PatBlt(rectangle.left(), rectangle.top(), rectangle.width(), rectangle.height(), PATINVERT);
    //            set(pBrushOld);
    //            pBrushOld = nullptr;
    //         }
@@ -3516,7 +3516,7 @@ namespace draw2d_gdiplus
    //         SelectClipRgn(rgnUpdate.get_os_data() != nullptr ? &rgnUpdate : &rgnNew);
    //         get_clip_box(&rectangle);
    //         pBrushOld = set(pBrush);
-   //         PatBlt(rectangle.left, rectangle.top, rectangle.width(), rectangle.height(), PATINVERT);
+   //         PatBlt(rectangle.left(), rectangle.top(), rectangle.width(), rectangle.height(), PATINVERT);
 
    //         // cleanup DC
    //         if (pBrushOld != nullptr)
@@ -3584,7 +3584,7 @@ namespace draw2d_gdiplus
       //   && crTopLeft == crBottomRight)
       //{
 
-      //   m_pgraphics->DrawRectangle(&pen, rectangle.left, rectangle.top, rectangle.width(), rectangle.height());
+      //   m_pgraphics->DrawRectangle(&pen, rectangle.left(), rectangle.top(), rectangle.width(), rectangle.height());
 
       //} else
       if ((eborder & e_border_left) && (eborder & e_border_top))
@@ -3594,12 +3594,12 @@ namespace draw2d_gdiplus
 
          Gdiplus::PointF pa[3];
 
-         pa[0].X = (Gdiplus::REAL) rectangle.left;
-         pa[0].Y = (Gdiplus::REAL) rectangle.bottom;
-         pa[1].X = (Gdiplus::REAL) rectangle.left;
-         pa[1].Y = (Gdiplus::REAL) rectangle.top;
-         pa[2].X = (Gdiplus::REAL) rectangle.right;
-         pa[2].Y = (Gdiplus::REAL)rectangle.top;
+         pa[0].X = (Gdiplus::REAL) rectangle.left();
+         pa[0].Y = (Gdiplus::REAL) rectangle.bottom();
+         pa[1].X = (Gdiplus::REAL) rectangle.left();
+         pa[1].Y = (Gdiplus::REAL) rectangle.top();
+         pa[2].X = (Gdiplus::REAL) rectangle.right();
+         pa[2].Y = (Gdiplus::REAL)rectangle.top();
 
          path.AddLines(pa, 3);
 
@@ -3613,20 +3613,20 @@ namespace draw2d_gdiplus
          {
 
             m_pgraphics->DrawLine(&pen, 
-               (Gdiplus::REAL) rectangle.left, 
-               (Gdiplus::REAL)rectangle.bottom - 1, 
-               (Gdiplus::REAL)rectangle.left, 
-               (Gdiplus::REAL)rectangle.top);
+               (Gdiplus::REAL) rectangle.left(), 
+               (Gdiplus::REAL)rectangle.bottom() - 1, 
+               (Gdiplus::REAL)rectangle.left(), 
+               (Gdiplus::REAL)rectangle.top());
 
          }
          else if (eborder & e_border_top)
          {
 
             m_pgraphics->DrawLine(&pen, 
-               (Gdiplus::REAL)rectangle.left,
-               (Gdiplus::REAL)rectangle.top, 
-               (Gdiplus::REAL)rectangle.right, 
-               (Gdiplus::REAL)rectangle.top);
+               (Gdiplus::REAL)rectangle.left(),
+               (Gdiplus::REAL)rectangle.top(), 
+               (Gdiplus::REAL)rectangle.right(), 
+               (Gdiplus::REAL)rectangle.top());
 
          }
 
@@ -3639,12 +3639,12 @@ namespace draw2d_gdiplus
 
          Gdiplus::PointF pa[3];
 
-         pa[0].X = (Gdiplus::REAL) rectangle.left;
-         pa[0].Y = (Gdiplus::REAL) rectangle.bottom;
-         pa[1].X = (Gdiplus::REAL) rectangle.right;
-         pa[1].Y = (Gdiplus::REAL) rectangle.bottom;
-         pa[2].X = (Gdiplus::REAL) rectangle.right;
-         pa[2].Y = (Gdiplus::REAL) rectangle.top;
+         pa[0].X = (Gdiplus::REAL) rectangle.left();
+         pa[0].Y = (Gdiplus::REAL) rectangle.bottom();
+         pa[1].X = (Gdiplus::REAL) rectangle.right();
+         pa[1].Y = (Gdiplus::REAL) rectangle.bottom();
+         pa[2].X = (Gdiplus::REAL) rectangle.right();
+         pa[2].Y = (Gdiplus::REAL) rectangle.top();
 
          path.AddLines(pa, 3);
 
@@ -3658,20 +3658,20 @@ namespace draw2d_gdiplus
          {
 
             m_pgraphics->DrawLine(&pen,
-               (Gdiplus::REAL)rectangle.left, 
-               (Gdiplus::REAL)rectangle.bottom,
-               (Gdiplus::REAL)rectangle.right,
-               (Gdiplus::REAL)rectangle.bottom);
+               (Gdiplus::REAL)rectangle.left(), 
+               (Gdiplus::REAL)rectangle.bottom(),
+               (Gdiplus::REAL)rectangle.right(),
+               (Gdiplus::REAL)rectangle.bottom());
 
          }
          else if (eborder & e_border_right)
          {
 
             m_pgraphics->DrawLine(&pen, 
-               (Gdiplus::REAL)rectangle.right, 
-               (Gdiplus::REAL)rectangle.bottom, 
-               (Gdiplus::REAL)rectangle.right, 
-               (Gdiplus::REAL)rectangle.top + 1);
+               (Gdiplus::REAL)rectangle.right(), 
+               (Gdiplus::REAL)rectangle.bottom(), 
+               (Gdiplus::REAL)rectangle.right(), 
+               (Gdiplus::REAL)rectangle.top() + 1);
 
          }
 
@@ -3699,7 +3699,7 @@ namespace draw2d_gdiplus
    //   //   && crTopLeft == crBottomRight)
    //   //{
 
-   //   //   m_pgraphics->DrawRectangle(&pen, rectangle.left, rectangle.top, rectangle.width(), rectangle.height());
+   //   //   m_pgraphics->DrawRectangle(&pen, rectangle.left(), rectangle.top(), rectangle.width(), rectangle.height());
 
    //   //} else
    //   if ((eborder & e_border_left) && (eborder & e_border_top))
@@ -3709,12 +3709,12 @@ namespace draw2d_gdiplus
 
    //      Gdiplus::PointF pa[3];
 
-   //      pa[0].X = (Gdiplus::REAL) rectangle.left;
-   //      pa[0].Y = (Gdiplus::REAL) rectangle.bottom - 1;
-   //      pa[1].X = (Gdiplus::REAL) rectangle.left;
-   //      pa[1].Y = (Gdiplus::REAL) rectangle.top;
-   //      pa[2].X = (Gdiplus::REAL) rectangle.right;
-   //      pa[2].Y = (Gdiplus::REAL) rectangle.top;
+   //      pa[0].X = (Gdiplus::REAL) rectangle.left();
+   //      pa[0].Y = (Gdiplus::REAL) rectangle.bottom() - 1;
+   //      pa[1].X = (Gdiplus::REAL) rectangle.left();
+   //      pa[1].Y = (Gdiplus::REAL) rectangle.top();
+   //      pa[2].X = (Gdiplus::REAL) rectangle.right();
+   //      pa[2].Y = (Gdiplus::REAL) rectangle.top();
 
    //      path.AddLines(pa, 3);
 
@@ -3727,13 +3727,13 @@ namespace draw2d_gdiplus
    //      if (eborder & e_border_left)
    //      {
 
-   //         m_pgraphics->DrawLine(&pen, (Gdiplus::REAL) rectangle.left, (Gdiplus::REAL)rectangle.bottom-1, (Gdiplus::REAL)rectangle.left, (Gdiplus::REAL)rectangle.top);
+   //         m_pgraphics->DrawLine(&pen, (Gdiplus::REAL) rectangle.left(), (Gdiplus::REAL)rectangle.bottom()-1, (Gdiplus::REAL)rectangle.left(), (Gdiplus::REAL)rectangle.top());
 
    //      }
    //      else if (eborder & e_border_top)
    //      {
 
-   //         m_pgraphics->DrawLine(&pen, (Gdiplus::REAL)rectangle.left, (Gdiplus::REAL)rectangle.top, (Gdiplus::REAL)rectangle.right, (Gdiplus::REAL)rectangle.top);
+   //         m_pgraphics->DrawLine(&pen, (Gdiplus::REAL)rectangle.left(), (Gdiplus::REAL)rectangle.top(), (Gdiplus::REAL)rectangle.right(), (Gdiplus::REAL)rectangle.top());
 
    //      }
 
@@ -3747,12 +3747,12 @@ namespace draw2d_gdiplus
 
    //      Gdiplus::PointF pa[3];
 
-   //      pa[0].X = (Gdiplus::REAL) rectangle.left;
-   //      pa[0].Y = (Gdiplus::REAL) rectangle.bottom;
-   //      pa[1].X = (Gdiplus::REAL) rectangle.right;
-   //      pa[1].Y = (Gdiplus::REAL) rectangle.top;
-   //      pa[2].X = (Gdiplus::REAL) rectangle.right;
-   //      pa[2].Y = (Gdiplus::REAL) rectangle.top + 1;
+   //      pa[0].X = (Gdiplus::REAL) rectangle.left();
+   //      pa[0].Y = (Gdiplus::REAL) rectangle.bottom();
+   //      pa[1].X = (Gdiplus::REAL) rectangle.right();
+   //      pa[1].Y = (Gdiplus::REAL) rectangle.top();
+   //      pa[2].X = (Gdiplus::REAL) rectangle.right();
+   //      pa[2].Y = (Gdiplus::REAL) rectangle.top() + 1;
 
    //      path.AddLines(pa, 3);
 
@@ -3763,13 +3763,13 @@ namespace draw2d_gdiplus
    //      if (eborder & e_border_bottom)
    //      {
 
-   //         m_pgraphics->DrawLine(&pen, (Gdiplus::REAL)rectangle.left, (Gdiplus::REAL)rectangle.bottom, (Gdiplus::REAL)rectangle.right, (Gdiplus::REAL)rectangle.bottom);
+   //         m_pgraphics->DrawLine(&pen, (Gdiplus::REAL)rectangle.left(), (Gdiplus::REAL)rectangle.bottom(), (Gdiplus::REAL)rectangle.right(), (Gdiplus::REAL)rectangle.bottom());
 
    //      }
    //      else if (eborder & e_border_right)
    //      {
 
-   //         m_pgraphics->DrawLine(&pen, (Gdiplus::REAL)rectangle.right, (Gdiplus::REAL)rectangle.bottom, (Gdiplus::REAL)rectangle.right, (Gdiplus::REAL)rectangle.top + 1);
+   //         m_pgraphics->DrawLine(&pen, (Gdiplus::REAL)rectangle.right(), (Gdiplus::REAL)rectangle.bottom(), (Gdiplus::REAL)rectangle.right(), (Gdiplus::REAL)rectangle.top() + 1);
 
    //      }
 
@@ -3815,12 +3815,12 @@ namespace draw2d_gdiplus
 
             Gdiplus::PointF pa[3];
 
-            pa[0].X = (Gdiplus::REAL) rectangle.left;
-            pa[0].Y = (Gdiplus::REAL) rectangle.bottom - 1;
-            pa[1].X = (Gdiplus::REAL) rectangle.left;
-            pa[1].Y = (Gdiplus::REAL) rectangle.top;
-            pa[2].X = (Gdiplus::REAL) rectangle.right;
-            pa[2].Y = (Gdiplus::REAL) rectangle.top;
+            pa[0].X = (Gdiplus::REAL) rectangle.left();
+            pa[0].Y = (Gdiplus::REAL) rectangle.bottom() - 1;
+            pa[1].X = (Gdiplus::REAL) rectangle.left();
+            pa[1].Y = (Gdiplus::REAL) rectangle.top();
+            pa[2].X = (Gdiplus::REAL) rectangle.right();
+            pa[2].Y = (Gdiplus::REAL) rectangle.top();
 
             path.AddLines(pa, 3);
 
@@ -3833,13 +3833,13 @@ namespace draw2d_gdiplus
             if (eborder & e_border_left)
             {
 
-               m_pgraphics->DrawLine(&pen, (Gdiplus::REAL) rectangle.left, (Gdiplus::REAL)rectangle.bottom - 1, (Gdiplus::REAL)rectangle.left, (Gdiplus::REAL)rectangle.top);
+               m_pgraphics->DrawLine(&pen, (Gdiplus::REAL) rectangle.left(), (Gdiplus::REAL)rectangle.bottom() - 1, (Gdiplus::REAL)rectangle.left(), (Gdiplus::REAL)rectangle.top());
 
             }
             else if (eborder & e_border_top)
             {
 
-               m_pgraphics->DrawLine(&pen, (Gdiplus::REAL)rectangle.left, (Gdiplus::REAL)rectangle.top, (Gdiplus::REAL)rectangle.right, (Gdiplus::REAL)rectangle.top);
+               m_pgraphics->DrawLine(&pen, (Gdiplus::REAL)rectangle.left(), (Gdiplus::REAL)rectangle.top(), (Gdiplus::REAL)rectangle.right(), (Gdiplus::REAL)rectangle.top());
 
             }
 
@@ -3858,12 +3858,12 @@ namespace draw2d_gdiplus
 
             Gdiplus::PointF pa[3];
 
-            pa[0].X = (Gdiplus::REAL) rectangle.left;
-            pa[0].Y = (Gdiplus::REAL) rectangle.bottom;
-            pa[1].X = (Gdiplus::REAL) rectangle.right;
-            pa[1].Y = (Gdiplus::REAL) rectangle.top;
-            pa[2].X = (Gdiplus::REAL) rectangle.right;
-            pa[2].Y = (Gdiplus::REAL) rectangle.top + 1;
+            pa[0].X = (Gdiplus::REAL) rectangle.left();
+            pa[0].Y = (Gdiplus::REAL) rectangle.bottom();
+            pa[1].X = (Gdiplus::REAL) rectangle.right();
+            pa[1].Y = (Gdiplus::REAL) rectangle.top();
+            pa[2].X = (Gdiplus::REAL) rectangle.right();
+            pa[2].Y = (Gdiplus::REAL) rectangle.top() + 1;
 
             path.AddLines(pa, 3);
 
@@ -3874,13 +3874,13 @@ namespace draw2d_gdiplus
             if (eborder & e_border_bottom)
             {
 
-               m_pgraphics->DrawLine(&pen, (Gdiplus::REAL)rectangle.left, (Gdiplus::REAL)rectangle.bottom, (Gdiplus::REAL)rectangle.right, (Gdiplus::REAL)rectangle.bottom);
+               m_pgraphics->DrawLine(&pen, (Gdiplus::REAL)rectangle.left(), (Gdiplus::REAL)rectangle.bottom(), (Gdiplus::REAL)rectangle.right(), (Gdiplus::REAL)rectangle.bottom());
 
             }
             else if (eborder & e_border_right)
             {
 
-               m_pgraphics->DrawLine(&pen, (Gdiplus::REAL)rectangle.right, (Gdiplus::REAL)rectangle.bottom, (Gdiplus::REAL)rectangle.right, (Gdiplus::REAL)rectangle.top + 1);
+               m_pgraphics->DrawLine(&pen, (Gdiplus::REAL)rectangle.right(), (Gdiplus::REAL)rectangle.bottom(), (Gdiplus::REAL)rectangle.right(), (Gdiplus::REAL)rectangle.top() + 1);
 
             }
 
@@ -3932,12 +3932,12 @@ namespace draw2d_gdiplus
 
    //         Gdiplus::Point pa[3];
 
-   //         pa[0].X = rectangle.left;
-   //         pa[0].Y = rectangle.bottom - 1;
-   //         pa[1].X = rectangle.left;
-   //         pa[1].Y = rectangle.top;
-   //         pa[2].X = rectangle.right;
-   //         pa[2].Y = rectangle.top;
+   //         pa[0].X = rectangle.left();
+   //         pa[0].Y = rectangle.bottom() - 1;
+   //         pa[1].X = rectangle.left();
+   //         pa[1].Y = rectangle.top();
+   //         pa[2].X = rectangle.right();
+   //         pa[2].Y = rectangle.top();
 
    //         path.AddLines(pa, 3);
 
@@ -3950,13 +3950,13 @@ namespace draw2d_gdiplus
    //         if (eborder & e_border_left)
    //         {
 
-   //            m_pgraphics->DrawLine(&pen, rectangle.left, rectangle.bottom - 1, rectangle.left, rectangle.top);
+   //            m_pgraphics->DrawLine(&pen, rectangle.left(), rectangle.bottom() - 1, rectangle.left(), rectangle.top());
 
    //         }
    //         else if (eborder & e_border_top)
    //         {
 
-   //            m_pgraphics->DrawLine(&pen, rectangle.left, rectangle.top, rectangle.right, rectangle.top);
+   //            m_pgraphics->DrawLine(&pen, rectangle.left(), rectangle.top(), rectangle.right(), rectangle.top());
 
    //         }
 
@@ -3975,12 +3975,12 @@ namespace draw2d_gdiplus
 
    //         Gdiplus::Point pa[3];
 
-   //         pa[0].X = rectangle.left;
-   //         pa[0].Y = rectangle.bottom;
-   //         pa[1].X = rectangle.right;
-   //         pa[1].Y = rectangle.top;
-   //         pa[2].X = rectangle.right;
-   //         pa[2].Y = rectangle.top + 1;
+   //         pa[0].X = rectangle.left();
+   //         pa[0].Y = rectangle.bottom();
+   //         pa[1].X = rectangle.right();
+   //         pa[1].Y = rectangle.top();
+   //         pa[2].X = rectangle.right();
+   //         pa[2].Y = rectangle.top() + 1;
 
    //         path.AddLines(pa, 3);
 
@@ -3991,13 +3991,13 @@ namespace draw2d_gdiplus
    //         if (eborder & e_border_bottom)
    //         {
 
-   //            m_pgraphics->DrawLine(&pen, rectangle.left, rectangle.bottom, rectangle.right, rectangle.bottom);
+   //            m_pgraphics->DrawLine(&pen, rectangle.left(), rectangle.bottom(), rectangle.right(), rectangle.bottom());
 
    //         }
    //         else if (eborder & e_border_right)
    //         {
 
-   //            m_pgraphics->DrawLine(&pen, rectangle.right, rectangle.bottom, rectangle.right, rectangle.top + 1);
+   //            m_pgraphics->DrawLine(&pen, rectangle.right(), rectangle.bottom(), rectangle.right(), rectangle.top() + 1);
 
    //         }
 
@@ -4735,11 +4735,11 @@ namespace draw2d_gdiplus
    //{
    //   i32 nRetVal = ERROR;
    //   //if(get_handle1() != nullptr && get_handle1() != get_handle2())
-   //   //   nRetVal = ::ExcludeClipRect(get_handle1(), rectParam.left, rectParam.top,
-   //   //                               rectParam.right, rectParam.bottom);
+   //   //   nRetVal = ::ExcludeClipRect(get_handle1(), rectParam.left(), rectParam.top(),
+   //   //                               rectParam.right(), rectParam.bottom());
    //   //if(get_handle2() != nullptr)
-   //   //   nRetVal = ::ExcludeClipRect(get_handle2(), rectParam.left, rectParam.top,
-   //   //                               rectParam.right, rectParam.bottom);
+   //   //   nRetVal = ::ExcludeClipRect(get_handle2(), rectParam.left(), rectParam.top(),
+   //   //                               rectParam.right(), rectParam.bottom());
    //   return nRetVal;
    //}
 
@@ -4757,14 +4757,14 @@ namespace draw2d_gdiplus
    //{
    //   i32 nRetVal = ERROR;
 
-   //   Gdiplus::Rect rectangle_i32(rectBounds.left, rectBounds.top, width(rectBounds),  height(rectBounds));
+   //   Gdiplus::Rect rectangle_i32(rectBounds.left(), rectBounds.top(), width(rectBounds),  height(rectBounds));
 
    //   m_pgraphics->IntersectClip(rectangle);
 
    //   //if(get_handle1() != nullptr && get_handle1() != get_handle2())
-   //   //   nRetVal = ::IntersectClipRect(get_handle1(),rectBounds.left,rectBounds.top,rectBounds.right,rectBounds.bottom);
+   //   //   nRetVal = ::IntersectClipRect(get_handle1(),rectBounds.left(),rectBounds.top(),rectBounds.right(),rectBounds.bottom());
    //   //if(get_handle2() != nullptr)
-   //   //   nRetVal = ::IntersectClipRect(get_handle2(),rectBounds.left,rectBounds.top,rectBounds.right,rectBounds.bottom);
+   //   //   nRetVal = ::IntersectClipRect(get_handle2(),rectBounds.left(),rectBounds.top(),rectBounds.right(),rectBounds.bottom());
    //   return SIMPLEREGION;
    //}
 
@@ -5490,7 +5490,7 @@ namespace draw2d_gdiplus
 
       daRight.erase_all();
 
-      wstring wstrBefore(str.left(iStartParam));
+      wstring wstrBefore(str.left()(iStartParam));
 
       wstring wstrMiddle(str.substr(iStartParam, iCountParam));
 
@@ -6190,7 +6190,7 @@ namespace draw2d_gdiplus
 
    //      Gdiplus::SolidBrush b(Gdiplus::Color(color.m_iA, color.m_iR, color.m_iG, color.m_iB));
 
-   //      m_pgraphics->FillRectangle(&b, rectangle.left, rectangle.top, rectangle.width(), rectangle.height());
+   //      m_pgraphics->FillRectangle(&b, rectangle.left(), rectangle.top(), rectangle.width(), rectangle.height());
 
    //      //if (emodeOld != Gdiplus::SmoothingModeNone)
    //      //{
@@ -6992,10 +6992,10 @@ namespace draw2d_gdiplus
 
       //Gdiplus::PointF points[2];
 
-      //points[0].X    = (Gdiplus::REAL) rectParam.left;
-      //points[0].Y    = (Gdiplus::REAL) rectParam.top;
-      //points[1].X    = (Gdiplus::REAL) rectParam.right;
-      //points[1].Y    = (Gdiplus::REAL) rectParam.bottom;
+      //points[0].X    = (Gdiplus::REAL) rectParam.left();
+      //points[0].Y    = (Gdiplus::REAL) rectParam.top();
+      //points[1].X    = (Gdiplus::REAL) rectParam.right();
+      //points[1].Y    = (Gdiplus::REAL) rectParam.bottom();
 
       //m.TransformPoints(points, 2);
 
@@ -7003,10 +7003,10 @@ namespace draw2d_gdiplus
 
       //::rectangle_i32 rectangle;
 
-      //rectangle.left      = (LONG) points[0].X;
-      //rectangle.top       = (LONG) points[0].Y;
-      //rectangle.right     = (LONG) points[1].X;
-      //rectangle.bottom    = (LONG) points[1].Y;
+      //rectangle.left()      = (LONG) points[0].X;
+      //rectangle.top()       = (LONG) points[0].Y;
+      //rectangle.right()     = (LONG) points[1].X;
+      //rectangle.bottom()    = (LONG) points[1].Y;
 
       //Gdiplus::Bitmap * pbitmap = ((Gdiplus::Bitmap *) m_pbitmap->get_os_data());
 

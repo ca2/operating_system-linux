@@ -381,7 +381,7 @@ namespace draw2d_gdiplus
          if (pointSrc.x < 0)
          {
 
-            rectDst.left -= pointSrc.x;
+            rectDst.left() -= pointSrc.x;
 
             pointSrc.x = 0;
 
@@ -390,20 +390,20 @@ namespace draw2d_gdiplus
          if (pointSrc.y < 0)
          {
 
-            rectDst.top -= pointSrc.y;
+            rectDst.top() -= pointSrc.y;
 
             pointSrc.y = 0;
 
          }
 
-         if (rectDst.left < 0)
+         if (rectDst.left() < 0)
          {
 
-            size.cx += rectDst.left;
+            size.cx += rectDst.left();
 
-            pointSrc.x -= rectDst.left;
+            pointSrc.x -= rectDst.left();
 
-            rectDst.left = 0;
+            rectDst.left() = 0;
 
          }
 
@@ -414,14 +414,14 @@ namespace draw2d_gdiplus
 
          }
 
-         if (rectDst.top < 0)
+         if (rectDst.top() < 0)
          {
 
-            size.cy += rectDst.top;
+            size.cy += rectDst.top();
 
-            pointSrc.y -= rectDst.top;
+            pointSrc.y -= rectDst.top();
 
-            rectDst.top = 0;
+            rectDst.top() = 0;
 
          }
 
@@ -432,9 +432,9 @@ namespace draw2d_gdiplus
 
          }
 
-         int xEnd = minimum(size.cx, minimum(pimageSrc->width() - pointSrc.x, pimageDst->width() - rectDst.left));
+         int xEnd = minimum(size.cx, minimum(pimageSrc->width() - pointSrc.x, pimageDst->width() - rectDst.left()));
 
-         int yEnd = minimum(size.cy, minimum(pimageSrc->height() - pointSrc.y, pimageDst->height() - rectDst.top));
+         int yEnd = minimum(size.cy, minimum(pimageSrc->height() - pointSrc.y, pimageDst->height() - rectDst.top()));
 
          if (xEnd < 0)
          {
@@ -454,7 +454,7 @@ namespace draw2d_gdiplus
 
          i32 scanSrc = pimageSrc->scan_size();
 
-         u8 * pdst = &((u8 *)pimageDst->colorref())[scanDst * rectDst.top + rectDst.left * sizeof(color32_t)];
+         u8 * pdst = &((u8 *)pimageDst->colorref())[scanDst * rectDst.top() + rectDst.left() * sizeof(color32_t)];
 
          u8 * psrc = &((u8 *)pimageSrc->colorref())[scanSrc * pointSrc.y + pointSrc.x * sizeof(color32_t)];
 

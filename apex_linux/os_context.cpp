@@ -1115,7 +1115,7 @@ namespace apex_linux
 
          }
 
-         str = str.left(iFind);
+         str = str.left()(iFind);
 
       }
       else if(str.case_insensitive_begins_eat("\'"))
@@ -1130,7 +1130,7 @@ namespace apex_linux
 
          }
 
-         str = str.left(iFind);
+         str = str.left()(iFind);
 
       }
       else
@@ -1141,7 +1141,7 @@ namespace apex_linux
          if(iFind > 0)
          {
 
-            str = str.left(iFind);
+            str = str.left()(iFind);
 
          }
 
