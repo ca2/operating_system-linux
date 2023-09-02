@@ -28,3 +28,4 @@ port/swscale=none
 port/base/unac=none
 port/base/iconv=none
 app-core/text_to_speech_sapi=none
+port/graphics3d/assimp=none
