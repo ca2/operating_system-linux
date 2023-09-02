@@ -1029,13 +1029,13 @@ namespace aura_linux
       else if(pmessage->m_atom == e_message_left_button_down)
       {
 
-         information("linux::interaction_impl::e_message_left_button_down\n");
+         information("linux::interaction_impl::e_message_left_button_down");
 
       }
       else if(pmessage->m_atom == e_message_left_button_up)
       {
 
-         information("linux::interaction_impl::e_message_left_button_up\n");
+         information("linux::interaction_impl::e_message_left_button_up");
 
       }
       else if(pmessage->m_atom == e_message_mouse_move)
@@ -1257,17 +1257,17 @@ namespace aura_linux
 
                   pdisplay->get_monitor_rectangle(0, rcMonitor);
 
-                  if (rectWindow.left >= rcMonitor.left)
+                  if (rectWindow.left() >= rcMonitor.left())
                   {
 
-                     pmouse->m_point.x() += (::i32) rectWindow.left;
+                     pmouse->m_point.x() += (::i32) rectWindow.left();
 
                   }
 
-                  if (rectWindow.top >= rcMonitor.top)
+                  if (rectWindow.top() >= rcMonitor.top())
                   {
 
-                     pmouse->m_point.y() += (::i32) rectWindow.top;
+                     pmouse->m_point.y() += (::i32) rectWindow.top();
 
                   }
 
@@ -1275,17 +1275,17 @@ namespace aura_linux
                else
                {
 
-                  if (rectWindow.left >= 0)
+                  if (rectWindow.left() >= 0)
                   {
 
-                     pmouse->m_point.x() += (::i32) rectWindow.left;
+                     pmouse->m_point.x() += (::i32) rectWindow.left();
 
                   }
 
-                  if (rectWindow.top >= 0)
+                  if (rectWindow.top() >= 0)
                   {
 
-                     pmouse->m_point.y() += (::i32) rectWindow.top;
+                     pmouse->m_point.y() += (::i32) rectWindow.top();
 
                   }
 
@@ -1799,7 +1799,7 @@ namespace aura_linux
 //                     ::window_rectangle(hWndChild, &rectangle);
 //                     screen_to_client(&rectangle);
 //                     ::set_window_position(hWndChild, nullptr,
-//                        rectangle.left+xAmount, rectangle.top+yAmount, 0, 0,
+//                        rectangle.left()+xAmount, rectangle.top()+yAmount, 0, 0,
 //                        SWP_NOSIZE|SWP_NOACTIVATE|SWP_NOZORDER);
 //                  }
 //               }
@@ -2426,7 +2426,7 @@ namespace aura_linux
 ////   void interaction_impl::MoveWindow(const ::rectangle_i32 & rectangle, bool bRepaint)
 ////   {
 ////
-////      MoveWindow(rectangle.left, rectangle.top, rectangle.right - rectangle.left, rectangle.bottom - rectangle.top, bRepaint);
+////      MoveWindow(rectangle.left(), rectangle.top(), rectangle.right() - rectangle.left(), rectangle.bottom() - rectangle.top(), bRepaint);
 ////
 ////   }
 //
@@ -2529,10 +2529,10 @@ namespace aura_linux
 //
 //      //oswindow->rectangle(rectClient);
 //
-//      rectClient.left = 0;
-//      rectClient.top = 0;
-//      rectClient.right = 500;
-//      rectClient.bottom = 500;
+//      rectClient.left() = 0;
+//      rectClient.top() = 0;
+//      rectClient.right() = 500;
+//      rectClient.bottom() = 500;
 ////      (dynamic_cast < ::linux::graphics * >(g.m_p))->attach(cairo_create(cairo_xlib_surface_create(oswindow->display(), oswindow->interaction_impl(), oswindow->draw2d(),rectClient.width(), rectClient.height())));
 //
 //      windowing_output_debug_string("\nlinux::interaction_impl::GetDC END");

@@ -175,7 +175,7 @@
       if (dFontWidth == 1.0)
       {
 
-         Gdiplus::RectF rectangle_f32((Gdiplus::REAL) rectParam.left, (Gdiplus::REAL) rectParam.top, (Gdiplus::REAL) (width(rectParam) * dFontWidth), (Gdiplus::REAL) (height(rectParam)));
+         Gdiplus::RectF rectangle_f32((Gdiplus::REAL) rectParam.left(), (Gdiplus::REAL) rectParam.top(), (Gdiplus::REAL) (width(rectParam) * dFontWidth), (Gdiplus::REAL) (height(rectParam)));
 
          strsize iSize = text.m_wstr.get_length();
 
@@ -229,7 +229,7 @@
 
          ap(Gdiplus::Matrix) pmNew = m.Clone();
 
-         status = pmNew->Translate((Gdiplus::REAL) rectParam.left, (Gdiplus::REAL) rectParam.top);
+         status = pmNew->Translate((Gdiplus::REAL) rectParam.left(), (Gdiplus::REAL) rectParam.top());
 
          status = pmNew->Scale((Gdiplus::REAL) dFontWidth, (Gdiplus::REAL) 1.0, Gdiplus::MatrixOrderAppend);
 
@@ -263,7 +263,7 @@
 
          //ap(Gdiplus::Matrix) pmNew = m.Clone();
 
-         //status = pmNew->Translate((Gdiplus::REAL) rectParam.left, (Gdiplus::REAL) rectParam.top);
+         //status = pmNew->Translate((Gdiplus::REAL) rectParam.left(), (Gdiplus::REAL) rectParam.top());
 
          //status = pmNew->Scale((Gdiplus::REAL) m_pfont->m_dFontWidth, (Gdiplus::REAL) 1.0, Gdiplus::MatrixOrderAppend);
 
