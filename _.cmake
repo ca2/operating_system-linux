@@ -157,6 +157,14 @@ elseif (${DISTRO} STREQUAL "debian")
 
     set(MPG123_PKG_MODULE "libmpg123")
 
+elseif (${DISTRO} STREQUAL "fedora")
+
+    set(FEDORA TRUE)
+
+    add_compile_definitions(FEDORA_LINUX)
+
+    message(STATUS "FEDORA has been set TRUE")
+
 elseif ("${DISTRO}" STREQUAL "raspbian")
 
     set(RASPBIAN TRUE)
