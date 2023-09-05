@@ -181,18 +181,9 @@ namespace desktop_environment_kde
    void node::initialize(::particle * pparticle)
    {
 
-      //auto estatus =
-      //
-      ::node_kde::node::initialize(pparticle);
+      information() << "desktop_environment_kde::node initialize";
 
-//      if(!estatus)
-//      {
-//
-//         return estatus;
-//
-//      }
-//
-//      return estatus;
+      ::node_kde::node::initialize(pparticle);
 
    }
 
