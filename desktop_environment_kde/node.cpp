@@ -79,9 +79,6 @@ namespace desktop_environment_kde
 
       m_qpalette = QApplication::palette();
 
-      //m_pGtkSettingsDefault = nullptr;
-      //m_pnodeimpl = nullptr;
-
    }
 
 
