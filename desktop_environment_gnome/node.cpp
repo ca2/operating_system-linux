@@ -69,9 +69,9 @@ namespace desktop_environment_gnome
 //   bool node::windowing_message_loop_step()
 //   {
 //
-//      set_main_user_itask(get_current_itask());
+//      set_main_user_itask(current_itask());
 //
-//      //if(get_main_user_itask() != get_current_itask())
+//      //if(get_main_user_itask() != current_itask())
 //      //{
 //
 //
