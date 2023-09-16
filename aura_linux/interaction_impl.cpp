@@ -1199,15 +1199,15 @@ namespace aura_linux
 
          auto psession = get_session();
 
-         if(pmouse)
-         {
+         //if(pmouse)
+         //{
 
             if (psession != nullptr)
             {
 
                psession->on_ui_mouse_message(pmouse);
 
-               psession->m_pointCursor = pmouse->m_point;
+               psession->m_pointCursor = pmouse->m_pointAbsolute;
 
             }
 
@@ -1223,77 +1223,77 @@ namespace aura_linux
 //         }
 
             //if (m_bTranslateMouseMessageCursor && !pmouse->m_bTranslated)
-            if(false)
-            {
-               //pmouse->m_bTranslated = true;
-               ::rectangle_i32 rectWindow;
-//            if(m_bScreenRelativeMouseMessagePosition)
+//            if(false)
 //            {
+//               //pmouse->m_bTranslated = true;
+//               ::rectangle_i32 rectWindow;
+////            if(m_bScreenRelativeMouseMessagePosition)
+////            {
+////
+////               INFO("Screen Relative Mouse Message Position");
+////
+////               ::rectangle_i32 rectWindow32;
+////
+////               ::window_rectangle((oswindow) get_handle(), &rectWindow32);
+////
+////               ::copy(rectWindow, rectWindow32);
+////
+////            }
+////            else
+//               {
+//                  m_puserinteraction->window_rectangle(rectWindow);
+//               }
 //
-//               INFO("Screen Relative Mouse Message Position");
+//               auto puser = psession->user();
 //
-//               ::rectangle_i32 rectWindow32;
+//               auto pwindowing = puser->windowing();
 //
-//               ::window_rectangle((oswindow) get_handle(), &rectWindow32);
+//               auto pdisplay = pwindowing->display();
 //
-//               ::copy(rectWindow, rectWindow32);
+//               if (pdisplay->get_monitor_count() > 0)
+//               {
+//
+//                  ::rectangle_i32 rcMonitor;
+//
+//                  pdisplay->get_monitor_rectangle(0, rcMonitor);
+//
+//                  if (rectWindow.left() >= rcMonitor.left())
+//                  {
+//
+//                     pmouse->m_point.x() += (::i32) rectWindow.left();
+//
+//                  }
+//
+//                  if (rectWindow.top() >= rcMonitor.top())
+//                  {
+//
+//                     pmouse->m_point.y() += (::i32) rectWindow.top();
+//
+//                  }
+//
+//               }
+//               else
+//               {
+//
+//                  if (rectWindow.left() >= 0)
+//                  {
+//
+//                     pmouse->m_point.x() += (::i32) rectWindow.left();
+//
+//                  }
+//
+//                  if (rectWindow.top() >= 0)
+//                  {
+//
+//                     pmouse->m_point.y() += (::i32) rectWindow.top();
+//
+//                  }
+//
+//               }
 //
 //            }
-//            else
-               {
-                  m_puserinteraction->window_rectangle(rectWindow);
-               }
 
-               auto puser = psession->user();
-
-               auto pwindowing = puser->windowing();
-
-               auto pdisplay = pwindowing->display();
-
-               if (pdisplay->get_monitor_count() > 0)
-               {
-
-                  ::rectangle_i32 rcMonitor;
-
-                  pdisplay->get_monitor_rectangle(0, rcMonitor);
-
-                  if (rectWindow.left() >= rcMonitor.left())
-                  {
-
-                     pmouse->m_point.x() += (::i32) rectWindow.left();
-
-                  }
-
-                  if (rectWindow.top() >= rcMonitor.top())
-                  {
-
-                     pmouse->m_point.y() += (::i32) rectWindow.top();
-
-                  }
-
-               }
-               else
-               {
-
-                  if (rectWindow.left() >= 0)
-                  {
-
-                     pmouse->m_point.x() += (::i32) rectWindow.left();
-
-                  }
-
-                  if (rectWindow.top() >= 0)
-                  {
-
-                     pmouse->m_point.y() += (::i32) rectWindow.top();
-
-                  }
-
-               }
-
-            }
-
-         }
+         //}
 
          auto puser = psession->user();
 
@@ -1310,7 +1310,7 @@ namespace aura_linux
             // what forces, at the end of message processing, setting the bergedge cursor to the default cursor, if no other
             // handler has set it to another one.
 
-            m_puserinteraction->m_pinteractionimpl->_on_mouse_move_step(pmouse->m_point);
+            m_puserinteraction->m_pinteractionimpl->_on_mouse_move_step(pmouse->m_pointAbsolute);
 
          }
 
@@ -1367,7 +1367,7 @@ namespace aura_linux
          if(!puserinteractionMouse)
          {
 
-            puserinteractionMouse = m_puserinteraction->child_from_point(pmouse->m_point);
+            puserinteractionMouse = m_puserinteraction->child_from_point(pmouse->m_pointAbsolute);
 
          }
 
@@ -2061,23 +2061,23 @@ namespace aura_linux
 
       }
 
-      auto psession = get_session();
+//      auto psession = get_session();
+//
+//      auto puser = psession->user();
+//
+//      auto pwindowing = puser->windowing();
+//
+//      if(pwindowing)
+//      {
 
-      auto puser = psession->user();
-
-      auto pwindowing = puser->windowing();
-
-      if(pwindowing)
-      {
-
-         pwindowing->windowing_post([this]()
+         user_post([this]()
                           {
 
                              m_pwindow->exit_iconify();
 
                           });
 
-      }
+      //}
 
    }
 
@@ -2092,23 +2092,23 @@ namespace aura_linux
 
       }
 
-      auto psession = get_session();
+//      auto psession = get_session();
+//
+//      auto puser = psession->user();
+//
+//      auto pwindowing = puser->windowing();
+//
+//      if(pwindowing)
+//      {
 
-      auto puser = psession->user();
-
-      auto pwindowing = puser->windowing();
-
-      if(pwindowing)
-      {
-
-         pwindowing->windowing_post([this]()
+         user_post([this]()
          {
 
             m_pwindow->exit_full_screen();
 
          });
 
-      }
+      //}
 
    }
 
