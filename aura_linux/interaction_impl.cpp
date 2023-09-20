@@ -1386,7 +1386,7 @@ namespace aura_linux
 
          }
 
-//         string strUserInteractionType(::is_null(puserinteractionMouse) ? "(null)" : __type_name(puserinteractionMouse));
+//         string strUserInteractionType(::is_null(puserinteractionMouse) ? "(null)" : ::type(puserinteractionMouse).name());
 //
 //         if(pmouse->m_atom == e_message_mouse_move)
 //         {
