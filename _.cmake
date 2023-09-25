@@ -245,6 +245,8 @@ if (KDE_DESKTOP)
       ConfigWidgets
       KIO
       IconThemes
+      Plasma
+      PlasmaQuick
    )
 
    find_package(LibKWorkspace CONFIG REQUIRED)
