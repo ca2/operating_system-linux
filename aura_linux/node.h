@@ -37,6 +37,9 @@ namespace aura_linux
       void browse_for_folder(::file::path & pathFolder) override;
 
 
+
+
+
    };
 
 
