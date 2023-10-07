@@ -71,7 +71,7 @@ namespace desktop_environment_gnome
 //
 //      set_main_user_itask(current_itask());
 //
-//      //if(get_main_user_itask() != current_itask())
+//      //if(main_user_itask() != current_itask())
 //      //{
 //
 //
