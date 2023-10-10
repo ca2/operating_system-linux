@@ -1375,14 +1375,14 @@ namespace aura_linux
          {
 
 
-            ::information("left_button_down");
+            information("left_button_down");
 
          }
          else if(pmouse->m_atom == e_message_left_button_up)
          {
 
 
-            ::information("left_button_up");
+            information("left_button_up");
 
          }
 
