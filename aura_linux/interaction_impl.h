@@ -353,7 +353,7 @@ namespace aura_linux
 
       void hide_software_keyboard(::user::element * pelement) override;
 
-      virtual void message_handler(::message::message * pusermessage) override;
+      //virtual void message_handler(::message::message * pusermessage) override;
 
       virtual void default_window_procedure(::message::message * pusermessage) override;
 
