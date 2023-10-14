@@ -6,7 +6,7 @@
 
 //#include "exception.h"
 
-string get_error_message(::u32 dwError);
+//string get_error_message(::u32 dwError);
 
 
 //CLASS_DECL_APEX_LINUX bool __initialize();

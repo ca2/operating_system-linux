@@ -1,6 +1,8 @@
 
 
-message(STATUS "CMAKE_SYSTEM_NAME is ${CMAKE_SYSTEM_NAME}")
+
+
+#message(STATUS "CMAKE_SYSTEM_NAME is ${CMAKE_SYSTEM_NAME}")
 
 #FIND_PACKAGE(PkgConfig)
 
@@ -26,11 +28,19 @@ if (NOT ${CMAKE_SYSTEM_NAME} STREQUAL "Linux")
 endif ()
 
 
-if (CMAKE_CXX_COMPILER_ID STREQUAL "GNU")
-
-   SET(CMAKE_CXX_FLAGS "-fPIC -fexceptions -fnon-call-exceptions -frtti")
-
-endif ()
+#if (CMAKE_CXX_COMPILER_ID STREQUAL "GNU")
+#
+#   message(STATUS "GNU Compiler")
+#
+#   string(APPEND CMAKE_CXX_FLAGS "-fPIC -fexceptions -fnon-call-exceptions -frtti")
+#
+#   #set(EXTRA_CXX_TARGET_COMPILER_OPTIONS "-ansi")
+#
+#else()
+#
+#   #set(EXTRA_CXX_TARGET_COMPILER_OPTIONS "")
+#
+#endif ()
 
 
 set(DONT_USE_PKG_CONFIG NOT PKG_CONFIG_FOUND)
@@ -187,15 +197,18 @@ else ()
 
 endif ()
 
+
 message(STATUS "DISTRO_RELEASE is ${DISTRO_RELEASE}")
 
 
 set(ALSA_MIDI TRUE)
 set(INTERPROCESS_COMMUNICATION_SYSTEM_5 TRUE)
 
+
 add_compile_definitions(WITH_X11)
 link_libraries(pthread)
 include(FindPkgConfig)
+
 
 if (EXISTS $ENV{HOME}/__config/xfce.txt)
 
@@ -203,6 +216,7 @@ if (EXISTS $ENV{HOME}/__config/xfce.txt)
    message(STATUS "Adding Xfce/X11 dependency.")
 
 endif ()
+
 
 if (KDE_DESKTOP)
 
@@ -293,13 +307,13 @@ set(default_networking "networking_bsd")
 #add_compile_definitions(default_music_midi=music_midi_alsa)
 #add_compile_definitions(default_node=node_linux)
 
+
 set(LINUX TRUE)
 
 
 if (LXDE_DESKTOP)
 
-   list(APPEND app_common_dependencies
-      desktop_environment_gnome)
+   list(APPEND app_common_dependencies desktop_environment_gnome)
 
    #    list(APPEND static_app_common_dependencies
    #            static_desktop_environment_gnome
@@ -320,11 +334,9 @@ endif ()
 
 if (XFCE_DESKTOP)
 
-   list(APPEND app_common_dependencies
-      desktop_environment_xfce)
+   list(APPEND app_common_dependencies desktop_environment_xfce)
 
-   list(APPEND static_app_common_dependencies
-      static_desktop_environment_xfce)
+   list(APPEND static_app_common_dependencies static_desktop_environment_xfce)
 
    set(default_windowing "windowing_x11")
 
@@ -341,8 +353,7 @@ if (GNOME_DESKTOP)
 
    message(STATUS "Adding GNOME/X11 dependency.")
 
-   list(APPEND app_common_dependencies
-      desktop_environment_gnome)
+   list(APPEND app_common_dependencies desktop_environment_gnome)
 
    list(APPEND static_app_common_dependencies
       static_desktop_environment_gnome
@@ -362,8 +373,7 @@ endif ()
 
 if (KDE_DESKTOP)
 
-   list(APPEND app_common_dependencies
-      desktop_environment_kde)
+   list(APPEND app_common_dependencies desktop_environment_kde)
 
    #    list(APPEND static_app_common_dependencies
    #            static_desktop_environment_kde

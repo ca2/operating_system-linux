@@ -2,7 +2,7 @@
 //#include "node/platform/node.h"
 #include "acme/filesystem/filesystem/acme_directory.h"
 #include "acme/filesystem/filesystem/acme_path.h"
-//#include "acme_linux/acme.h"
+#include "acme/platform/application.h"
 #include "node.h"
 ////#include "aura/operating_system/linux/_.h"
 
@@ -174,6 +174,25 @@ namespace apex_linux
 //      }
 
    }
+
+
+   ::file::path node::app_shortcut_path(::acme::application* papplication)
+   {
+
+      ::file::path pathShortcut;
+
+      ::string strDesktopFileName;
+
+      strDesktopFileName = papplication->m_strAppId;
+
+      strDesktopFileName.find_replace("/", ".");
+
+      pathShortcut = acmedirectory()->home() / ".local/share/applications" / (strDesktopFileName + ".desktop");
+
+      return pathShortcut;
+
+   }
+
 
 
 } // namespace apex_linux

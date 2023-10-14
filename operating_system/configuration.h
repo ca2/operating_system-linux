@@ -65,7 +65,7 @@ using errno_t = int;
 
 #define OPERATING_SYSTEM_NAME   	"linux"
 
-#define OPERATING_SYSTEM_NAMESPACE	linux
+//#define OPERATING_SYSTEM_NAMESPACE	linux
 
 
 
