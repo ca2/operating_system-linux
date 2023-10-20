@@ -34,7 +34,7 @@ public:
       }
       else
       {
-         //         information("process_data::m_hProcess == nullptr");
+         //         informationf("process_data::m_hProcess == nullptr");
       }
    }
 

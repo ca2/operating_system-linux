@@ -362,7 +362,7 @@ namespace draw2d_gdiplus
          catch(...)
          {
 
-            information("graphics::set(::draw2d::bitmap *) : Failed to delete Gdiplus::Graphics");
+            informationf("graphics::set(::draw2d::bitmap *) : Failed to delete Gdiplus::Graphics");
 
          }
 
@@ -1412,7 +1412,7 @@ namespace draw2d_gdiplus
 //
 //         //         if (g_cForkBlend % 100 == 0)
 //         //         {
-//         //            information("\nfork_blend(" + __str(g_cForkBlend) + ") sample=" + __str(nWidth) + "," + __str(nHeight));
+//         //            informationf("\nfork_blend(" + __str(g_cForkBlend) + ") sample=" + __str(nWidth) + "," + __str(nHeight));
 //         //         }
 //
 //         //         return true;
@@ -3192,7 +3192,7 @@ namespace draw2d_gdiplus
 
       //         if (g_cForkBlend % 100 == 0)
       //         {
-      //            information("\nfork_blend(" + __str(g_cForkBlend) + ") sample=" + __str(nSrcWidth) + "," + __str(nDestHeight));
+      //            informationf("\nfork_blend(" + __str(g_cForkBlend) + ") sample=" + __str(nSrcWidth) + "," + __str(nDestHeight));
       //         }
 
       //      }
@@ -4030,7 +4030,7 @@ namespace draw2d_gdiplus
          catch (...)
          {
 
-            information("graphics::DeleteDC : Failed to delete Gdiplus::Graphics");
+            informationf("graphics::DeleteDC : Failed to delete Gdiplus::Graphics");
 
          }
 
@@ -4046,7 +4046,7 @@ namespace draw2d_gdiplus
          if (!bDeleted)
          {
 
-            information("graphics::DeleteDC : Failed to delete GDI device context");
+            informationf("graphics::DeleteDC : Failed to delete GDI device context");
 
          }
 
@@ -4163,7 +4163,7 @@ namespace draw2d_gdiplus
       catch(...)
       {
 
-         information("graphics::Detach : Failed to delete Gdiplus::Graphics");
+         informationf("graphics::Detach : Failed to delete Gdiplus::Graphics");
 
       }
 

@@ -263,13 +263,13 @@ namespace aura_linux
 ////            if(m_pwindow)
 ////            {
 ////
-////               information("window created");
+////               informationf("window created");
 ////
 ////            }
 ////            else
 ////            {
 ////
-////               information("window not created");
+////               informationf("window not created");
 ////
 ////            }
 ////
@@ -423,7 +423,7 @@ namespace aura_linux
       if (bSize)
       {
 
-         information("linux::interaction_impl Window Manager Size (%d, %d)", m_sizeLastSize.cx(), m_sizeLastSize.cy());
+         informationf("linux::interaction_impl Window Manager Size (%d, %d)", m_sizeLastSize.cx(), m_sizeLastSize.cy());
 
          m_puserinteraction->set_size(m_sizeLastSize);
 
@@ -1035,13 +1035,13 @@ namespace aura_linux
 //      else if(pmessage->m_atom == e_message_left_button_down)
 //      {
 //
-//         information("linux::interaction_impl::e_message_left_button_down");
+//         informationf("linux::interaction_impl::e_message_left_button_down");
 //
 //      }
 //      else if(pmessage->m_atom == e_message_left_button_up)
 //      {
 //
-//         information("linux::interaction_impl::e_message_left_button_up");
+//         informationf("linux::interaction_impl::e_message_left_button_up");
 //
 //      }
 //      else if(pmessage->m_atom == e_message_mouse_move)
@@ -1049,7 +1049,7 @@ namespace aura_linux
 //
 //         g_iMouseMove++;
 //
-//         //information("linux::interaction_impl::message_handler e_message_mouse_move");
+//         //informationf("linux::interaction_impl::message_handler e_message_mouse_move");
 //         //printf("g_iMouseMove = %d\n", g_iMouseMove);
 //
 //      }
@@ -1060,7 +1060,7 @@ namespace aura_linux
 //      else if(pmessage->m_atom == e_message_left_button_up)
 //      {
 //
-//         information("e_message_left_button_up (0)");
+//         informationf("e_message_left_button_up (0)");
 //
 //      }
 //
@@ -1083,7 +1083,7 @@ namespace aura_linux
 ////         if(iDebugmessage_handlerTime > 20)
 ////         {
 ////
-////            ::information("interaction_impl::message handler flooded?\n");
+////            ::informationf("interaction_impl::message handler flooded?\n");
 ////
 ////         }
 ////         else
@@ -1100,11 +1100,11 @@ namespace aura_linux
 //
 //         if (m_puserinteraction->layout().is_moving())
 //         {
-//            //information("moving: skip pre translate message");
+//            //informationf("moving: skip pre translate message");
 //         }
 //         else if (m_puserinteraction->layout().is_sizing())
 //         {
-//            //information("sizing: skip pre translate message");
+//            //informationf("sizing: skip pre translate message");
 //         }
 //         else
 //         {
@@ -1336,7 +1336,7 @@ namespace aura_linux
 ////            else if(g_puserinteractionMouseCapture123 != m_puserinteractionCapture)
 ////            {
 ////
-////               information("different capture (1)");
+////               informationf("different capture (1)");
 ////
 ////            }
 //
@@ -1350,7 +1350,7 @@ namespace aura_linux
 ////            if(g_puserinteractionMouseCapture123 != puserinteractionMouse)
 ////            {
 ////
-////               information("different capture (2)");
+////               informationf("different capture (2)");
 ////
 ////            }
 ////
@@ -1366,7 +1366,7 @@ namespace aura_linux
 //         {
 //
 //
-//            ::information("left_button_down (A)");
+//            ::informationf("left_button_down (A)");
 //
 //         }
 //
@@ -1381,14 +1381,14 @@ namespace aura_linux
 //         {
 //
 //
-//            information("left_button_down");
+//            informationf("left_button_down");
 //
 //         }
 //         else if(pmouse->m_atom == e_message_left_button_up)
 //         {
 //
 //
-//            information("left_button_up");
+//            informationf("left_button_up");
 //
 //         }
 //
@@ -1404,7 +1404,7 @@ namespace aura_linux
 ////            if (strUserInteractionType.case_insensitive_contains("button"))
 ////            {
 ////
-////               information("mouse_move::userinteraction=button");
+////               informationf("mouse_move::userinteraction=button");
 ////
 ////            }
 ////            else
@@ -1889,7 +1889,7 @@ namespace aura_linux
 //      if(m_puserinteraction->is_message_only_window())
 //      {
 //
-//         information("good : opt out!");
+//         informationf("good : opt out!");
 //
 //      }
 //      else
@@ -1954,7 +1954,7 @@ namespace aura_linux
 //
 //         if(m_event.wait(millis(tickTimeout)).timeout())
 //         {
-//            information("print_window::time_out");
+//            informationf("print_window::time_out");
 //         }
 //      }
 //

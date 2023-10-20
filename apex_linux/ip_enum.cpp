@@ -18,7 +18,7 @@ namespace apex_linux
 //      i32 err = WSAStartup(wVersionRequested, &wsaData);
 //      if (err != 0)
 //      {
-//         information("Failed in call to WSAStartup, return value was %d\n", err);
+//         informationf("Failed in call to WSAStartup, return value was %d\n", err);
 //         __throw(error_not_supported);
 //      }
 
@@ -28,7 +28,7 @@ namespace apex_linux
 //      //Code requires at least Winsock 1.1
 //      if ((LOBYTE(wsaData.wVersion) != 1) || (HIBYTE(wsaData.wVersion) != 1))
 //      {
-//         information("Failed to find a usable winsock stack which supports Winsock 1.1");
+//         informationf("Failed to find a usable winsock stack which supports Winsock 1.1");
 //         __throw(error_not_supported);
 //      }
    }
@@ -48,7 +48,7 @@ namespace apex_linux
    char szHostname[256];
    if (gethostname(szHostname, sizeof(szHostname)))
    {
-   information("Failed in call to gethostname, WSAGetLastError returns %d\n", WSAGetLastError());
+   informationf("Failed in call to gethostname, WSAGetLastError returns %d\n", WSAGetLastError());
    return false;
    }
 
@@ -56,14 +56,14 @@ namespace apex_linux
    HOSTENT* pHostEnt = gethostbyname(szHostname);
    if (pHostEnt == nullptr)
    {
-   information("Failed in call to gethostbyname, WSAGetLastError returns %d\n", WSAGetLastError());
+   informationf("Failed in call to gethostbyname, WSAGetLastError returns %d\n", WSAGetLastError());
    return false;
    }
 
    //check the length of the IP adress
    if (pHostEnt->h_length != 4)
    {
-   information("IP address returned is not 32 bits !!");
+   informationf("IP address returned is not 32 bits !!");
    return false;
    }
 
@@ -94,7 +94,7 @@ namespace apex_linux
 //      char szHostname[256];
 //      if (gethostname(szHostname, sizeof(szHostname)))
 //      {
-//         //information("Failed in call to gethostname, WSAGetLastError returns %d\n", WSAGetLastError());
+//         //informationf("Failed in call to gethostname, WSAGetLastError returns %d\n", WSAGetLastError());
 //         return false;
 //      }
 //      {
