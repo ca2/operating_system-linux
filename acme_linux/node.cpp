@@ -219,7 +219,7 @@ namespace acme_linux
 
       ::string strProcPidMaps;
 
-      strProcPidMaps.format("/proc/%d/maps", (int) processidentifier);
+      strProcPidMaps.formatf("/proc/%d/maps", (int) processidentifier);
 
       auto stra = ::transfer(acmedirectory()->enumerate_content(strProcPidMaps));
 

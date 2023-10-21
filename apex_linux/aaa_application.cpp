@@ -125,12 +125,12 @@
 //
 //               UINT uSize;
 //
-//               //strKey.format(
+//               //strKey.formatf(
 //               //"\\StringFileInfo\\%04x%04x\\FileDescription",
 //               //pTranslate[u].wLanguage,
 //               //pTranslate[u].wCodePage);
 //
-//               strKey.format(
+//               strKey.formatf(
 //               "\\StringFileInfo\\%04x%04x\\FileVersion",
 //               pTranslate[u].wLanguage,
 //               pTranslate[u].wCodePage);
