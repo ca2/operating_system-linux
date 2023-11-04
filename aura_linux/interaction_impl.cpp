@@ -542,7 +542,7 @@ namespace aura_linux
 
          //m_puserinteraction->ModifyStyle(0, WS_VISIBLE);
 
-         m_puserinteraction->m_bVisible = true;
+         //m_puserinteraction->m_bScreenVisible = true;
 
          if(m_puserinteraction->const_layout().design().display() == ::e_display_iconic && !m_pwindow->is_iconic())
          {
@@ -575,7 +575,7 @@ namespace aura_linux
       {
 
          //m_puserinteraction->ModifyStyle(WS_VISIBLE, 0, 0);
-         m_puserinteraction->m_bVisible = false;
+         //m_puserinteraction->m_bVisible = false;
 
       }
 
