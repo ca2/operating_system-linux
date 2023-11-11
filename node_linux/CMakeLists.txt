@@ -17,10 +17,13 @@ list(APPEND library_references
    acme
    acme_posix
    acme_linux
+   apex
    apex_posix
    apex_linux
+   aqua
    aura_posix
    aura_linux
+   aura
    )
 
 

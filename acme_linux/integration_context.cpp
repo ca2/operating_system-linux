@@ -327,7 +327,7 @@ namespace acme_linux
    void node::integration_factory()
    {
 
-      system()->m_psubsystem->m_pfactory->add_factory_item<::acme_linux::integration::context, ::integration::context>();
+      platform()->m_pfactory->add_factory_item<::acme_linux::integration::context, ::integration::context>();
 
    }
 

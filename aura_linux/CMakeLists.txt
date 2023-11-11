@@ -3,6 +3,12 @@ project(aura_linux CXX)
 
 
 list(APPEND library_source
+   hardware/device_group.cpp
+   hardware/device_group.h
+   hardware/devices.cpp
+   hardware/devices.h
+   hardware/udev.cpp
+   hardware/udev.h
    _.cpp
    _.h
    #_aura_linux.h
@@ -57,14 +63,23 @@ if (MSVC)
 elseif(LINUX)
 
 
+    if(USE_PKGCONFIG)
+        pkg_check_modules(PKGCONFIG libudev)
+    endif()
 
 
     target_compile_options(${PROJECT_NAME} PRIVATE $<$<COMPILE_LANGUAGE:CXX>:-fpermissive  ${EXTRA_CXX_TARGET_COMPILER_OPTIONS}>)
     target_compile_options(static_${PROJECT_NAME} PRIVATE $<$<COMPILE_LANGUAGE:CXX>:-fpermissive  ${EXTRA_CXX_TARGET_COMPILER_OPTIONS}>)
     target_compile_definitions(static_${PROJECT_NAME} PRIVATE CUBE)
 
+    target_compile_options(${PROJECT_NAME} PRIVATE ${PKGCONFIG_CFLAGS})
+    target_compile_options(static_${PROJECT_NAME} PRIVATE ${PKGCONFIG_CFLAGS})
+    target_link_options(${PROJECT_NAME} PRIVATE ${PKGCONFIG_LDFLAGS})
+    target_link_options(static_${PROJECT_NAME} PRIVATE ${PKGCONFIG_LDFLAGS})
+    #target_link_options(video_input_video_for_linux PRIVATE -Wl,-rpath=$ORIGIN)
+    #target_link_libraries(${PROJECT_NAME} PRIVATE ${library_references})
 
-    target_link_libraries(${PROJECT_NAME} PRIVATE ${library_references})
+    target_link_libraries(${PROJECT_NAME} PRIVATE ${library_references} ${PKGCONFIG_LIBRARIES})
     target_link_libraries(static_${PROJECT_NAME} PRIVATE ${static_library_references})
 
 

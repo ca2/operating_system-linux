@@ -63,7 +63,7 @@ namespace apex_linux
    string os_context::get_command_line()
    {
 
-      return application()->m_strCommandLine;
+      return platform()->m_strCommandLine;
 
    }
 
