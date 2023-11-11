@@ -165,7 +165,7 @@ namespace node_gnome
 
          pathFolder = path.folder();
 
-         auto psystem = acmesystem();
+         auto psystem = system();
 
          auto pnode = psystem->node();
 

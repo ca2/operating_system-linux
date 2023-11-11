@@ -1220,7 +1220,7 @@ namespace aura_linux
 ////         if(m_puserinteraction != nullptr && m_puserinteraction->get_session()  != nullptr && m_puserinteraction->get_session() != get_session())
 ////         {
 ////
-////            auto psystem = acmesystem();
+////            auto psystem = system();
 ////
 ////            auto psession = psystem->node();
 ////

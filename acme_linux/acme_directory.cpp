@@ -177,7 +177,7 @@ namespace acme_linux
 //
 //      return path;
 
-      return acmeapplication()->m_strAppId;
+      return application()->m_strAppId;
 
    }
 
@@ -428,7 +428,7 @@ namespace acme_linux
 //   ::file::path acme_directory::bookmark()
 //   {
 //
-//      auto psystem = acmesystem();
+//      auto psystem = system();
 //
 //      auto pacmedir = psystem->m_pacmedirectory;
 //

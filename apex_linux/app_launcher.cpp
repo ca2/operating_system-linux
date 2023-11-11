@@ -126,7 +126,7 @@ namespace apex_linux
 //
 //      ::file::path path = get_executable_path();
 //      
-//      auto psystem = acmesystem();
+//      auto psystem = system();
 //      
 //      auto pnode = psystem->node();
 //
@@ -182,7 +182,7 @@ namespace apex_linux
 ////
 ////      string strParams = get_params();
 //
-//      auto psystem = acmesystem();
+//      auto psystem = system();
 //
 //      auto pnode = psystem->node();
 //::string_array straOutput;

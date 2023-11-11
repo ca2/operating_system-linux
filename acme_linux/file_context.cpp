@@ -110,7 +110,7 @@ namespace acme_linux
 
       ::file::path pathNetworkPayload;
 
-      auto psystem = acmesystem();
+      auto psystem = system();
 
       auto pacmedir = psystem->m_pacmedirectory;
 

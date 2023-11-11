@@ -71,7 +71,7 @@ namespace acme_linux
 //
 //      if (k._open(HKEY_LOCAL_MACHINE, strKey, true))
 //      {
-//         ::file::path str = acmesystem()->m_pnodedir->system() / "CrashDumps" / strModuleNameWithTheExeExtension;
+//         ::file::path str = system()->m_pnodedir->system() / "CrashDumps" / strModuleNameWithTheExeExtension;
 //         wstring wstr = str;
 //         RegSetValueExW(k.m_hkey, L"DumpFolder", 0, REG_EXPAND_SZ, (::u8*)wstr.c_str(), ::u32((wcslen(wstr) + 1) * sizeof(wchar_t)));
 //         ::u32 dw = 10;
@@ -89,7 +89,7 @@ namespace acme_linux
    string node::audio_get_default_implementation_name()
    {
 
-      return acmesystem()->implementation_name("audio", "alsa");
+      return system()->implementation_name("audio", "alsa");
 
    }
 
@@ -422,7 +422,7 @@ namespace acme_linux
 //
 ////         string strTarget(psz);
 ////
-////         auto psystem = acmesystem();
+////         auto psystem = system();
 ////
 ////         auto pnode = psystem->node();
 ////
@@ -444,7 +444,7 @@ namespace acme_linux
 ////
 ////                             char * pszError = strError.get_buffer(iBufferSize);
 ////
-////                             auto psystem = acmesystem();
+////                             auto psystem = system();
 ////
 ////                             auto pnode = psystem->node();
 ////

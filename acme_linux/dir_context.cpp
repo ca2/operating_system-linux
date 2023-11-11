@@ -97,7 +97,7 @@ namespace acme_linux
 //
 //      }
 
-      auto psystem = acmesystem();
+      auto psystem = system();
 
       m_pfilesystem = psystem->m_pfilesystem.get();
 

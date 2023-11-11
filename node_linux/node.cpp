@@ -433,7 +433,7 @@ namespace aura
 //      ::e_status node::start()
 //      {
 //
-//         ///::pointer<::node::system>psystem = acmesystem();
+//         ///::pointer<::node::system>psystem = system();
 //
 //         //auto estatus = psystem->inline_init();
 //
@@ -444,7 +444,7 @@ namespace aura
 //
 //         //}
 //
-//         auto estatus = acmesystem()->on_start_system();
+//         auto estatus = system()->on_start_system();
 //
 //         if (!estatus)
 //         {
@@ -462,7 +462,7 @@ namespace aura
 //
 //         }
 //
-//         estatus = acmesystem()->inline_term();
+//         estatus = system()->inline_term();
 //
 //         if (!estatus)
 //         {

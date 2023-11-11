@@ -70,7 +70,7 @@ namespace acme_linux
 //
 //      m_pathModule = pathAppModule;
 //
-//      auto psystem = acmesystem();
+//      auto psystem = system();
 //
 //      auto pacmefile = psystem->m_pacmefile;
 //

@@ -78,7 +78,7 @@ namespace desktop_environment_gnome
 //
 //      //}
 //
-//      auto psession = acmesession();
+//      auto psession = session();
 //
 //      if(::is_null(psession))
 //      {
@@ -137,7 +137,7 @@ namespace desktop_environment_gnome
 //
 //      // indirect wall-changer sourceforge.net contribution
 //
-//      auto psystem = acmesystem()->m_papexsystem;
+//      auto psystem = system()->m_papexsystem;
 //
 //      auto pnode = psystem->node();
 //
@@ -220,7 +220,7 @@ namespace desktop_environment_gnome
 //
 //      // wall-changer sourceforge.net contribution
 //
-//      auto psystem = acmesystem()->m_papexsystem;
+//      auto psystem = system()->m_papexsystem;
 //
 //      auto pnode =  psystem->node();
 //

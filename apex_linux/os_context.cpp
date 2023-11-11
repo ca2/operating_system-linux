@@ -63,7 +63,7 @@ namespace apex_linux
    string os_context::get_command_line()
    {
 
-      return acmeapplication()->m_strCommandLine;
+      return application()->m_strCommandLine;
 
    }
 
@@ -102,7 +102,7 @@ namespace apex_linux
       //::sync();
       //::reboot(RB_AUTOBOOT);
 
-      acmesystem()->m_pnode->reboot();
+      system()->m_pnode->reboot();
 
       //return false;
 
@@ -596,7 +596,7 @@ namespace apex_linux
    void os_context::link_open(const string & strUrl, const string & strProfile)
    {
 
-      auto psystem = acmesystem();
+      auto psystem = system();
 
       auto pnode = psystem->node();
 
@@ -862,7 +862,7 @@ namespace apex_linux
    void os_context::get_default_browser(string & strId, ::file::path & path, string & strParam)
    {
 
-      string str = acmesystem()->m_papexsystem->operating_system().get_output("/bin/sh -c \"xdg-settings get default-web-browser\"");
+      string str = system()->m_papexsystem->operating_system().get_output("/bin/sh -c \"xdg-settings get default-web-browser\"");
 
       str.trim();
 
@@ -937,7 +937,7 @@ namespace apex_linux
 
          // 2018-01-29 call_async("/bin/bash", "-c \"" + strTarget + "\"", strFolder, SW_SHOWDEFAULT, false);
 
-         auto psystem = acmesystem();
+         auto psystem = system();
 
          auto pnode = psystem->node();
 
@@ -981,7 +981,7 @@ namespace apex_linux
 
          //::system("nohup xdg-open \"" + strTarget + "\" > /dev/null 2>&1&");
 
-         auto psystem = acmesystem();
+         auto psystem = system();
 
          auto pnode = psystem->node()->m_papexnode->m_pApexPlatform;
 
@@ -1005,7 +1005,7 @@ namespace apex_linux
 //
 //            char * pszError = strError.get_buffer(iBufferSize);
 //
-//            auto psystem = acmesystem();
+//            auto psystem = system();
 //
 //            auto pnode = psystem->node();
 //
@@ -1040,7 +1040,7 @@ namespace apex_linux
 
       acmedirectory()->list(stra, "/proc/", ::file::e_flag_folder);
 
-      auto psystem = acmesystem();
+      auto psystem = system();
 
       auto pnode = psystem->node();
 
@@ -1166,7 +1166,7 @@ namespace apex_linux
       if ((st.st_mode & S_IEXEC) != 0)
       {
 
-         auto psystem = acmesystem();
+         auto psystem = system();
 
          auto pnode = psystem->node();
 

@@ -245,7 +245,7 @@ namespace acme_linux
 
             property_set set;
 
-            acmesystem()->url()->defer_raw_http(set);
+            system()->url()->defer_raw_http(set);
 
             set["disable_common_name_cert_check"] = true;
 
@@ -255,7 +255,7 @@ namespace acme_linux
 
             auto url = m_pathDownloadURL;
 
-            acmesystem()->http_download(pmemoryFileTarGz, url, set);
+            system()->http_download(pmemoryFileTarGz, url, set);
 
             //auto pathTar = m_pathFolder / m_path / (m_strName + ".tar");
 
@@ -263,7 +263,7 @@ namespace acme_linux
 
             auto pmemoryFileTar = create_memory_file();
 
-            acmesystem()->uncompress(pmemoryFileTar, pmemoryFileTarGz, "zlib");
+            system()->uncompress(pmemoryFileTar, pmemoryFileTarGz, "zlib");
 
             pmemoryFileTar->seek_to_begin();
 
@@ -327,7 +327,7 @@ namespace acme_linux
    void node::integration_factory()
    {
 
-      acmesystem()->m_psubsystem->m_pfactory->add_factory_item<::acme_linux::integration::context, ::integration::context>();
+      system()->m_psubsystem->m_pfactory->add_factory_item<::acme_linux::integration::context, ::integration::context>();
 
    }
 

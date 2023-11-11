@@ -231,7 +231,7 @@
 //
 //      ::node_gnome::node * pnode = (::node_gnome::node *) data;
 //
-//      pnode->acmesystem()->m_papexsystem->signal(id_wallpaper_change);
+//      pnode->system()->m_papexsystem->signal(id_wallpaper_change);
 //
 //   }
 //
@@ -354,7 +354,7 @@
 //
 //         g_bInitializedUserTheme = true;
 //
-////         auto psystem = acmesystem()->m_papexsystem;
+////         auto psystem = system()->m_papexsystem;
 ////
 ////         psystem->start_subject_handling(id_os_user_theme);
 //
@@ -369,7 +369,7 @@
 //
 //      bool bOk = false;
 //
-//      auto psystem = acmesystem()->m_papexsystem;
+//      auto psystem = system()->m_papexsystem;
 //
 //      auto edesktop = get_edesktop();
 //
