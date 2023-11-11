@@ -427,6 +427,7 @@ set(LIBCXX_TARGETING_MSVC OFF)
 add_compile_definitions(UNICODE)
 add_compile_definitions(_UNICODE)
 
+list(APPEND app_common_dependencies ${default_node})
 
 #list(APPEND app_common_dependencies _console_application_build_helper)
 
