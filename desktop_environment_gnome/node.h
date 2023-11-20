@@ -33,7 +33,7 @@ namespace desktop_environment_gnome
 
       void initialize(::particle * pparticle) override;
 
-      //virtual bool windowing_message_loop_step();
+      //virtual bool aaa_windowing_message_loop_step();
 
 //      void handle(::topic * ptopic, ::context * pcontext) override;
 //

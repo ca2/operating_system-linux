@@ -36,7 +36,7 @@
 //const char * linux_g_direct_get_file_content_type(const char * pszPath);
 //
 //
-//void x11_add_idle_source();
+//void aaa_x11_add_idle_source();
 //
 //
 //void x11_add_filter();

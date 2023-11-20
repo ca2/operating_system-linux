@@ -66,7 +66,7 @@ namespace desktop_environment_gnome
    }
 
 
-//   bool node::windowing_message_loop_step()
+//   bool node::aaa_windowing_message_loop_step()
 //   {
 //
 //      set_main_user_itask(current_itask());
@@ -114,7 +114,7 @@ namespace desktop_environment_gnome
 //
 //      }
 //
-//      bool bRet = pwindowing->message_loop_step();
+//      bool bRet = pwindowing->aaa_message_loop_step();
 //
 //      return bRet;
 //

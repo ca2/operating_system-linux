@@ -13,6 +13,7 @@
 #ENDIF(PKG_CONFIG_FOUND)
 set(USE_PKGCONFIG TRUE)
 set(CURL_NANO_HTTP TRUE)
+set(HAS_WAYLAND TRUE)
 
 if ("${CMAKE_BUILD_TYPE}" STREQUAL "")
 
@@ -186,6 +187,8 @@ elseif ("${DISTRO}" STREQUAL "raspbian")
    add_compile_definitions(RASPBERRYPIOS)
 
    set(HAS_SYSTEM_UNAC TRUE)
+
+   set(HAS_WAYLAND FALSE)
 
    message(STATUS "RASPBERRYPIOS defined!!")
 

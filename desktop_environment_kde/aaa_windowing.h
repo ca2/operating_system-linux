@@ -23,7 +23,7 @@ namespace node_kde
       virtual ::e_status user_fork(const ::promise::procedure & routine) override;
 
 
-      virtual bool message_loop_step() override;
+      virtual bool aaa_message_loop_step() override;
 
 
    };

@@ -1004,15 +1004,15 @@ namespace aura_linux
 //   class ::time     timeLastPaint;
 
 
-//   void interaction_impl::message_handler(::message::message * pmessage)
+//   void interaction_impl::aaa_message_handler(::message::message * pmessage)
 //   {
 //
-//      ::user::interaction_impl::message_handler(pmessage);
+//      ::user::interaction_impl::aaa_message_handler(pmessage);
 //
 //   }
 
 
-//   void interaction_impl::message_handler(::message::message * pmessage)
+//   void interaction_impl::aaa_message_handler(::message::message * pmessage)
 //   {
 //
 //      bool bKeyMessage = false;
@@ -2303,17 +2303,17 @@ namespace aura_linux
 //   }
 
 
-//   bool interaction_impl::post_message(const ::id & id, wparam wparam, lparam lparam)
+//   bool interaction_impl::aaa_post_message(const ::id & id, wparam wparam, lparam lparam)
 //   {
 //
 ////      if(::is_set(m_pwindowthread))
 ////      {
 ////
-////         return ::user::interaction_impl::post_message(message, wparam, lparam);
+////         return ::user::interaction_impl::aaa_post_message(message, wparam, lparam);
 ////
 ////      }
 ////
-//      return ::post_message((oswindow) get_handle(), id, wparam, lparam) != false;
+//      return ::aaa_post_message((oswindow) get_handle(), id, wparam, lparam) != false;
 //
 //   }
 
