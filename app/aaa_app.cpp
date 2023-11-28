@@ -51,7 +51,7 @@
 //
 //   //void * p = aligned_memory_alloc(1024 * 1024 * 16);
 //
-//   //memory_free(p);
+//   //::heap::management::memory(::heap::e_memory_main)->free(p);
 //
 //   br_init_set_symbol(g_psz_br_init_symbol_app);
 //
@@ -77,7 +77,7 @@
 //int32_t __lnx_main(int32_t argc, char * argv[])
 //{
 //
-//   ::aura::system * psystem = memory_new ::aura::system();
+//   ::aura::system * psystem = aaa_primitive_new ::aura::system();
 //
 //   c_xstart();
 //
@@ -87,7 +87,7 @@
 //
 //   int32_t nReturnCode = 0;
 //
-//   ::create * pcommand  = memory_new ::create;
+//   ::create * pcommand  = aaa_primitive_new ::create;
 //
 //   if(argc > 0)
 //   {
@@ -211,7 +211,7 @@
 //
 ////      _set_purecall_handler(_ca2_purecall);
 //
-//      ::aura::system * psystem = memory_new ::aura::system();
+//      ::aura::system * psystem = aaa_primitive_new ::aura::system();
 //
 //
 //      //Sleep(30 * 1000);
@@ -221,7 +221,7 @@
 //
 //      int32_t nReturnCode = 0;
 //
-//      ::create * pcommand  = memory_new ::create;
+//      ::create * pcommand  = aaa_primitive_new ::create;
 //
 //      //pcommand->m_hInstance             = hInstance;
 //      //pcommand->m_hPrevInstance         = hPrevInstance;

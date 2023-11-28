@@ -64,7 +64,7 @@
 /* !! ABIWARNING !! ABIWARNING !! ABIWARNING !! ABIWARNING !!
    This enum comprises an ABI exported by Valgrind to programs
    which use client requests.  DO NOT CHANGE THE ORDER OF THESE
-   ENTRIES, NOR DELETE ANY -- add memory_new ones at the end.
+   ENTRIES, NOR DELETE ANY -- add new ones at the end.
 
    The identification ('C','T') for Callgrind has historical
    reasons: it was called "Calltree" before. Besides, ('C','G') would

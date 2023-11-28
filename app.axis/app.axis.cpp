@@ -25,7 +25,7 @@ int32_t main(int32_t argc, char * argv[])
 
    //void * p = aligned_memory_alloc(1024 * 1024 * 16);
 
-   //memory_free(p);
+   //::heap::management::memory(::heap::e_memory_main)->free(p);
 
    br_init_set_symbol(g_psz_br_init_symbol_app);
 
@@ -52,13 +52,13 @@ int32_t __lnx_main(int32_t argc, char * argv[])
   // if(!defer_core_init())
     //  return -1;
 
-   ::axis::system * psystem = memory_new ::axis::system(NULL);
+   ::axis::system * psystem = __new< ::axis::system >(NULL);
 
     psystem->::exception::translator::attach();
 
    int32_t nReturnCode = 0;
 
-   ::create * pinitmaindata  = memory_new ::create;
+   ::create * pinitmaindata  = __new< ::create >();
 
    pinitmaindata->m_hInstance             = NULL;
 
@@ -203,7 +203,7 @@ int32_t ca2_main(HINSTANCE hInstance, HINSTANCE hPrevInstance, const char * lpCm
 
 //      _set_purecall_handler(_ca2_purecall);
 
-      ::axis::system * psystem = memory_new ::axis::system(NULL);
+      ::axis::system * psystem = __new< ::axis::system >(NULL);
 
 
       //Sleep(30 * 1000);
@@ -213,7 +213,7 @@ int32_t ca2_main(HINSTANCE hInstance, HINSTANCE hPrevInstance, const char * lpCm
 
       int32_t nReturnCode = 0;
 
-      ::create * pinitmaindata  = memory_new ::create;
+      ::create * pinitmaindata  = __new< ::create >();
 
       pinitmaindata->m_hInstance             = hInstance;
       pinitmaindata->m_hPrevInstance         = hPrevInstance;

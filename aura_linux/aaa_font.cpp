@@ -140,7 +140,7 @@ namespace draw2d_gdiplus
 
          ::acme::del(m_pfontcollection);
 
-         m_pfontcollection = memory_new FontCollection();
+         m_pfontcollection = aaa_primitive_new FontCollection();
 
          m_pfontcollection->AddFontFile(pcontext->m_papexcontext->dir()->matter(m_strFontFamilyName));
 

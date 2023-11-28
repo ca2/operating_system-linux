@@ -110,7 +110,7 @@ extern Bool VG_(get_line) ( Int fd, HChar** bufpp, SizeT* nBufp, Int* lineno );
 /* Suppressions describe errors which we want to suppress, ie, not
    show the user, usually because it is caused by a problem in a library
    which we can't fix, replace or work around.  Suppressions are read from
-   a file at startup time.  This gives flexibility so that memory_new
+   a file at startup time.  This gives flexibility so that new
    suppressions can be added to the file as and when needed.
 */
 typedef

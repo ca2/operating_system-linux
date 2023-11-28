@@ -16,7 +16,7 @@
 #include <QApplication>
 #include <QPalette>
 #include <QAbstractNativeEventFilter>
-//#define memory_new ACME_NEW
+
 
 namespace desktop_environment_kde
 {

@@ -203,7 +203,7 @@ namespace aura_linux
 ////      else
 ////      {
 ////
-////         pusersystem = __new(::user::system);
+////         pusersystem = __allocate< ::user::system >();
 ////
 ////      }
 ////
@@ -1083,7 +1083,7 @@ namespace aura_linux
 ////         if(iDebugmessage_handlerTime > 20)
 ////         {
 ////
-////            ::informationf("interaction_impl::message handler flooded?\n");
+////            ::acme::get()->platform()->informationf("interaction_impl::message handler flooded?\n");
 ////
 ////         }
 ////         else
@@ -1366,7 +1366,7 @@ namespace aura_linux
 //         {
 //
 //
-//            ::informationf("left_button_down (A)");
+//            ::acme::get()->platform()->informationf("left_button_down (A)");
 //
 //         }
 //
@@ -2376,7 +2376,7 @@ namespace aura_linux
 
       UNREFERENCED_PARAMETER(bRedraw);
 
-      //ASSERT(::is_window((oswindow) get_handle())); m_pfont = memory_new ::write_text::font(*pfont);
+      //ASSERT(::is_window((oswindow) get_handle())); m_pfont = __new< ::write_text::font >(*pfont);
 
    }
 

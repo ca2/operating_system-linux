@@ -15,7 +15,7 @@
 
          //m_window.m_pmixer = this;
 
-//         m_pdevice = memory_new ::audio_mixer::device(this);
+//         m_pdevice = __new< ::audio_mixer::device >(this);
 
       }
 

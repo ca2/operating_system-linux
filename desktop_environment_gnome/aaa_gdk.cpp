@@ -489,7 +489,7 @@
 //   ::os_theme_colors *aaa_new_os_theme_colors(string strTheme)
 //   {
 //
-//      auto pthemecolors = memory_new ::os_theme_colors;
+//      auto pthemecolors = aaa_primitive_new ::os_theme_colors;
 //
 //      GtkStyleContext *pstylecontext = gtk_style_context_new();
 //

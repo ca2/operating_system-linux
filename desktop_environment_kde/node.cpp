@@ -427,7 +427,7 @@ namespace desktop_environment_kde
 //   ::node_linux::appindicator *node::appindicator_allocate()
 //   {
 //
-//      return memory_new ::node_kde::appindicator();
+//      return __new< ::node_kde::appindicator >();
 //
 //   }
 //

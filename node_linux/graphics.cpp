@@ -10,7 +10,7 @@ count g_cForkBlend = 0;
 
 /**
 *
-* Trilinear scale two images, pixels and pixels2, to get a memory_new
+* Trilinear scale two images, pixels and pixels2, to get a new
 * interpolated image with ::size_f64 width * height.
 * pixels is the larger image with ::size_f64 w * h.
 * pixels2 is the smaller image with ::size_f64 w2 * h2.
@@ -829,7 +829,7 @@ namespace draw2d_gdiplus
       //   {0,   0,  0,  1, 0},
       //   {1,   1,  1,  0, 1}};
 
-      //ColorMatrix * colorMatrix = memory_new ColorMatrix(colorMatrixElements);
+      //ColorMatrix * colorMatrix = __new< ColorMatrix >(colorMatrixElements);
 
       //imageAttributes.SetColorMatrix(
       //   colorMatrix,
@@ -840,7 +840,7 @@ namespace draw2d_gdiplus
 
       //e.Graphics.DrawImage(
       //   image,
-      //   memory_new Rectangle(150, 10, width, height),  // destination rectangle_i32
+      //   __new< Rectangle >(150, 10, width, height),  // destination rectangle_i32
       //   0, 0,        // upper-left corner of source rectangle_i32
       //   width,       // width of source rectangle_i32
       //   height,      // height of source rectangle_i32
@@ -3481,7 +3481,7 @@ namespace draw2d_gdiplus
    //         if (pRectLast != nullptr)
 
    //         {
-   //            // find difference between memory_new region and old region
+   //            // find difference between new region and old region
    //            rgnLast.create_rect(0, 0, 0, 0);
    //            rgnOutside.SetRectRgn(pRectLast);
 
@@ -3512,7 +3512,7 @@ namespace draw2d_gdiplus
    //            pBrushOld = nullptr;
    //         }
 
-   //         // draw into the update/memory_new region
+   //         // draw into the update/new region
    //         SelectClipRgn(rgnUpdate.get_os_data() != nullptr ? &rgnUpdate : &rgnNew);
    //         get_clip_box(&rectangle);
    //         pBrushOld = set(pBrush);
@@ -5562,7 +5562,6 @@ namespace draw2d_gdiplus
 
          ap(Gdiplus::Region) regiona(new_array, normal_new Gdiplus::Region[count]);
 
-//#define memory_new ACME_NEW
 
          Gdiplus::RectF box(0.0f, 0.0f, 0.0f, 0.0f);
 
@@ -5665,7 +5664,6 @@ namespace draw2d_gdiplus
 
       Gdiplus::Region * pCharRangeRegions = normal_new Gdiplus::Region[count];
 
-//#define memory_new ACME_NEW
 
       m_pgraphics->MeasureCharacterRanges(wstr, (INT) wstr.get_length(), m_pfont->get_os_data < Gdiplus::Font * >(this), box, &strFormat, (INT) count, pCharRangeRegions);
 
@@ -5745,7 +5743,6 @@ namespace draw2d_gdiplus
 
       Gdiplus::Region * pCharRangeRegions = normal_new Gdiplus::Region[count];
 
-//#define memory_new ACME_NEW
 
       m_pgraphics->MeasureCharacterRanges(wstr, (INT)wstr.get_length(), m_pfont->get_os_data < Gdiplus::Font * >(this), box, &strFormat, (INT)count, pCharRangeRegions);
 
@@ -6005,7 +6002,6 @@ namespace draw2d_gdiplus
 
       Gdiplus::Region * pCharRangeRegions = normal_new Gdiplus::Region[count];
 
-//#define memory_new ACME_NEW
 
       //Gdiplus::RectF box(0.0f, 0.0f, 128.0f * 1024.0f, 128.0f * 1024.0f);
 
@@ -6353,7 +6349,6 @@ namespace draw2d_gdiplus
 
             pmNew = normal_new Gdiplus::Matrix();
 
-//#define memory_new ACME_NEW
 
          }
          else

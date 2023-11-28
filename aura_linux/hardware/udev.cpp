@@ -312,7 +312,7 @@ namespace aura_linux
 
          //          // ::topic topic(id_video_input_device_added);
 
-         //          // auto psystem = ::platform::get()->system();
+         //          // auto psystem = this->platform()->system();
 
          //          // psystem->m_papexsystem->route(&topic, nullptr);
 
@@ -325,7 +325,7 @@ namespace aura_linux
 
          //          // ::topic topic(id_video_input_device_removed);
 
-         //          // auto psystem = ::platform::get()->system();
+         //          // auto psystem = this->platform()->system();
 
          //          // psystem->m_papexsystem->route(&topic, nullptr);
 

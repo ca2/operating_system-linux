@@ -127,7 +127,7 @@ struct ConstructDestruct
 {
    static void Construct(object* pObject)
    {
-      memory_new (pObject) TYPE;
+      aaa_primitive_new (pObject) TYPE;
    }
    static void Destruct(object* pObject)
    {
@@ -137,8 +137,8 @@ struct ConstructDestruct
    static void Construct(TYPE * pObject)
    {
 
-      memory_new (pObject) TYPE;
-//#define memory_new ACME_NEW
+      aaa_primitive_new (pObject) TYPE;
+
    }
    static void Destruct(TYPE * pObject)
    {

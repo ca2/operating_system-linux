@@ -15,7 +15,7 @@
 #include <mcheck.h>
 #define memory_alloc malloc
 #define memory_realloc realloc
-#define memory_free free
+#define ::heap::management::memory(::heap::e_memory_main)->free free
 #endif
 
 

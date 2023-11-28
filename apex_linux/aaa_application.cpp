@@ -196,7 +196,7 @@
 //{
 //
 //
-//   ::comm::command * pmaininitdata = memory_new ::linux::command;
+//   ::comm::command * pmaininitdata = aaa_primitive_new ::linux::command;
 //
 //
 //   pmaininitdata->m_hInstance = hInstance;

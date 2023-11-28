@@ -344,34 +344,34 @@
 /* Define to 1 if you have the `A_GETSTAT' and `A_SETSTAT' constants. */
 /* #undef SOLARIS_AUDITON_STAT */
 
-/* Define to 1 if you have the memory_new `execve' syscall which accepts flags. */
+/* Define to 1 if you have the new `execve' syscall which accepts flags. */
 /* #undef SOLARIS_EXECVE_SYSCALL_TAKES_FLAGS */
 
 /* Define to 1 if fpregset_t defines struct _fpchip_state */
 /* #undef SOLARIS_FPCHIP_STATE_TAKES_UNDERSCORE */
 
-/* Define to 1 if you have the memory_new `frealpathat' syscall. */
+/* Define to 1 if you have the new `frealpathat' syscall. */
 /* #undef SOLARIS_FREALPATHAT_SYSCALL */
 
-/* Define to 1 if you have the memory_new `gethrt' fasttrap. */
+/* Define to 1 if you have the new `gethrt' fasttrap. */
 /* #undef SOLARIS_GETHRT_FASTTRAP */
 
-/* Define to 1 if you have the memory_new `getrandom' syscall. */
+/* Define to 1 if you have the new `getrandom' syscall. */
 /* #undef SOLARIS_GETRANDOM_SYSCALL */
 
-/* Define to 1 if you have the memory_new `get_zone_offset' fasttrap. */
+/* Define to 1 if you have the new `get_zone_offset' fasttrap. */
 /* #undef SOLARIS_GETZONEOFFSET_FASTTRAP */
 
 /* Default platform for Valgrind launcher. */
 /* #undef SOLARIS_LAUNCHER_DEFAULT_PLATFORM */
 
-/* Define to 1 if you have the memory_new `lwp_name' syscall. */
+/* Define to 1 if you have the new `lwp_name' syscall. */
 /* #undef SOLARIS_LWP_NAME_SYSCALL */
 
-/* Define to 1 if you have the memory_new `lwp_sigqueue' syscall. */
+/* Define to 1 if you have the new `lwp_sigqueue' syscall. */
 /* #undef SOLARIS_LWP_SIGQUEUE_SYSCALL */
 
-/* Define to 1 if you have the memory_new `lwp_sigqueue' syscall which accepts pid.
+/* Define to 1 if you have the new `lwp_sigqueue' syscall which accepts pid.
    */
 /* #undef SOLARIS_LWP_SIGQUEUE_SYSCALL_TAKES_PID */
 
@@ -379,10 +379,10 @@
    constants. */
 /* #undef SOLARIS_MODCTL_MODNVL */
 
-/* Define to 1 if you have the memory_new `accept' syscall. */
+/* Define to 1 if you have the new `accept' syscall. */
 /* #undef SOLARIS_NEW_ACCEPT_SYSCALL */
 
-/* Define to 1 if you have the memory_new `pipe' syscall. */
+/* Define to 1 if you have the new `pipe' syscall. */
 /* #undef SOLARIS_NEW_PIPE_SYSCALL */
 
 /* Define to 1 if nscd attaches to /system/volatile/name_service_door. */
@@ -407,10 +407,10 @@
 /* Version number of the repository door cache protocol. */
 /* #undef SOLARIS_REPCACHE_PROTOCOL_VERSION */
 
-/* Define to 1 if you have the memory_new `sysstat' segment reservation. */
+/* Define to 1 if you have the new `sysstat' segment reservation. */
 /* #undef SOLARIS_RESERVE_SYSSTAT_ADDR */
 
-/* Define to 1 if you have the memory_new `sysstat_zone' segment reservation. */
+/* Define to 1 if you have the new `sysstat_zone' segment reservation. */
 /* #undef SOLARIS_RESERVE_SYSSTAT_ZONE_ADDR */
 
 /* Define to 1 if you have the schedctl page executable. */
@@ -439,7 +439,7 @@
 /* Define to 1 if you have the `utimesys' syscall. */
 /* #undef SOLARIS_UTIMESYS_SYSCALL */
 
-/* Define to 1 if you have the memory_new `uuidsys' syscall. */
+/* Define to 1 if you have the new `uuidsys' syscall. */
 /* #undef SOLARIS_UUIDSYS_SYSCALL */
 
 /* Define to 1 if you have the `ZONE_LIST_DEFUNCT' and `ZONE_GETATTR_DEFUNC'

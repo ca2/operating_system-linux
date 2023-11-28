@@ -203,11 +203,11 @@
 
    - deepCopyIRFoo is a deep copy constructor for IRFoos. 
      It recursively traverses the entire argument tree and
-     produces a complete memory_new tree.  All types have a deep copy
+     produces a complete new tree.  All types have a deep copy
      constructor.
 
    - shallowCopyIRFoo is the shallow copy constructor for IRFoos.
-     It creates a memory_new top-level copy of the supplied object,
+     It creates a new top-level copy of the supplied object,
      but does not copy any sub-objects.  Only some types have a
      shallow copy constructor.
 */
@@ -1003,7 +1003,7 @@ typedef
       Iop_InterleaveOddLanes8x8, Iop_InterleaveEvenLanes8x8,
       Iop_InterleaveOddLanes16x4, Iop_InterleaveEvenLanes16x4,
 
-      /* CONCATENATION -- build a memory_new value by concatenating either
+      /* CONCATENATION -- build a new value by concatenating either
          the even or odd lanes of both operands.  Note that
          Cat{Odd,Even}Lanes32x2 are identical to Interleave{HI,LO}32x2
          and so are omitted. */
@@ -1755,7 +1755,7 @@ typedef
       Iop_InterleaveOddLanes16x8, Iop_InterleaveEvenLanes16x8,
       Iop_InterleaveOddLanes32x4, Iop_InterleaveEvenLanes32x4,
 
-      /* CONCATENATION -- build a memory_new value by concatenating either
+      /* CONCATENATION -- build a new value by concatenating either
          the even or odd lanes of both operands.  Note that
          Cat{Odd,Even}Lanes64x2 are identical to Interleave{HI,LO}64x2
          and so are omitted. */
@@ -2254,9 +2254,9 @@ extern IRExpr** mkIRExprVec_13 ( IRExpr*, IRExpr*, IRExpr*, IRExpr*,
                                  IRExpr*, IRExpr*, IRExpr*, IRExpr*, IRExpr* );
 
 /* IRExpr copiers:
-   - shallowCopy: shallow-copy (ie. create a memory_new vector that shares the
+   - shallowCopy: shallow-copy (ie. create a new vector that shares the
      elements with the original).
-   - deepCopy: deep-copy (ie. create a completely memory_new vector). */
+   - deepCopy: deep-copy (ie. create a completely new vector). */
 extern IRExpr** shallowCopyIRExprVec ( IRExpr** );
 extern IRExpr** deepCopyIRExprVec ( IRExpr *const * );
 
@@ -2574,7 +2574,7 @@ typedef
       IRExpr*   addr;   /* store address */
       IRExpr*   expdHi; /* expected old value at *addr */
       IRExpr*   expdLo;
-      IRExpr*   dataHi; /* memory_new value for *addr */
+      IRExpr*   dataHi; /* new value for *addr */
       IRExpr*   dataLo;
    }
    IRCAS;
@@ -2853,14 +2853,14 @@ typedef
             described above on a comment at the definition of IRCAS.
 
             ppIRStmt output:
-               t<tmp> = CAS<end>(<addr> :: <expected> -> <memory_new>)
+               t<tmp> = CAS<end>(<addr> :: <expected> -> <new>)
             eg
                t1 = CASle(t2 :: t3->Add32(t3,1))
                which denotes a 32-bit atomic increment 
                of a value at address t2
 
             A double-element CAS may also be denoted, in which case <tmp>,
-            <expected> and <memory_new> are all pairs of items, separated by
+            <expected> and <new> are all pairs of items, separated by
             commas.
          */
          struct {
@@ -3003,7 +3003,7 @@ typedef
    }
    IRTypeEnv;
 
-/* Obtain a memory_new IRTemp */
+/* Obtain a new IRTemp */
 extern IRTemp newIRTemp ( IRTypeEnv*, IRType );
 
 /* Deep-copy a type environment */
@@ -3040,14 +3040,14 @@ typedef
    }
    IRSB;
 
-/* Allocate a memory_new, uninitialised IRSB */
+/* Allocate a new, uninitialised IRSB */
 extern IRSB* emptyIRSB ( void );
 
 /* Deep-copy an IRSB */
 extern IRSB* deepCopyIRSB ( const IRSB* );
 
 /* Deep-copy an IRSB, except for the statements list, which set to be
-   a memory_new, empty, list of statements. */
+   a new, empty, list of statements. */
 extern IRSB* deepCopyIRSBExceptStmts ( const IRSB* );
 
 /* Pretty-print an IRSB */

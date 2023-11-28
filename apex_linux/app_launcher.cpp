@@ -172,7 +172,7 @@ namespace apex_linux
 //      if(m_strApp == "app-core/clockverse")
 //      {
 //
-//         ::informationf("app-core/clockverse");
+//         ::acme::get()->platform()->informationf("app-core/clockverse");
 //
 //      }
 //

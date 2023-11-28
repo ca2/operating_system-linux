@@ -89,7 +89,7 @@ WordFM* VG_(newFM) ( void* (*alloc_nofail)( const HChar* cc, SizeT ),
 void VG_(deleteFM) ( WordFM*, void(*kFin)(UWord), void(*vFin)(UWord) );
 
 /* Add (k,v) to fm.  If a binding for k already exists, it is updated
-   to map to this memory_new v.  In that case we should really return the
+   to map to this new v.  In that case we should really return the
    previous v so that caller can finalise it.  Oh well.  Returns
    True if a binding for k already exists. */
 Bool VG_(addToFM) ( WordFM* fm, UWord k, UWord v );
@@ -149,7 +149,7 @@ void VG_(doneIterFM) ( WordFM* fm );
 
 // Deep copy a FM.  If dopyK is NULL, keys are copied verbatim.
 // If non-null, dopyK is applied to each key to generate the
-// version in the memory_new copy.  dopyK may be called with a NULL argument
+// version in the new copy.  dopyK may be called with a NULL argument
 // in which case it should return NULL. For all other argument values
 // dopyK must not return NULL. Ditto with dopyV for values.
 // VG_(dopyFM) never returns NULL.
