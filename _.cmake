@@ -78,6 +78,10 @@ string(TOLOWER ${CMAKE_BUILD_TYPE} tolower_cmake_build_type)
 
 message(STATUS "tolower_cmake_build_type = ${tolower_cmake_build_type}")
 
+if (CMAKE_CXX_COMPILER_ID STREQUAL "GNU")
+   set(CMAKE_CXX_EXTENSIONS OFF)
+endif()
+
 
 if (${tolower_cmake_build_type} STREQUAL "debug")
 

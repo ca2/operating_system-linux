@@ -125,8 +125,8 @@ namespace acme_linux
       if(!m_pscreen)
       {
 
-         m_pfileIn.create(this);
-         m_pfileOut.create(this);
+         __construct(m_pfileIn);
+         __construct(m_pfileOut);
          auto pFILEIn = stdin;
 
          auto pFILEOut = stdout;
