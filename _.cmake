@@ -178,6 +178,8 @@ elseif (${DISTRO} STREQUAL "fedora")
 
    add_compile_definitions(FEDORA_LINUX)
 
+   set(APPINDICATOR_PKG_MODULE "appindicator3-0.1")
+
    message(STATUS "FEDORA has been set TRUE")
 
 elseif ("${DISTRO}" STREQUAL "raspbian")
