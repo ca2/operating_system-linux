@@ -9,7 +9,6 @@
 #include "apex/filesystem/file/set.h"
 //#include "acme/filesystem/filesystem/link.h"
 #include "apex/operating_system/department.h"
-#include "apex/operating_system/freedesktop/desktop_file.h"
 #include "apex/platform/system.h"
 
 
@@ -1194,67 +1193,6 @@ namespace apex_linux
 
    }
 
-
-   ::file::path os_context::_get_auto_start_desktop_file_path(const ::string & strAppId)
-   {
-
-      auto pathHome = acmedirectory()->home();
-
-      string strDesktopFileName(strAppId);
-
-      strDesktopFileName.find_replace("/", ".");
-
-      strDesktopFileName += ".desktop";
-
-      ::file::path pathDesktopFile;
-
-      pathDesktopFile = pathHome / ".config/autostart" / strDesktopFileName;
-
-      return pathDesktopFile;
-
-   }
-
-
-   void os_context::register_user_auto_start(const string & strAppId, const ::file::path & pathExecutable, const string & strArguments, bool bRegister)
-   {
-
-      ::file::path pathAutoStartDesktopFilePath = _get_auto_start_desktop_file_path(strAppId);
-
-      if(bRegister)
-      {
-
-         auto pfile = __create_new < ::freedesktop::desktop_file >();
-
-         pfile->set_app_id(strAppId);
-
-         pfile->set_file_path(pathAutoStartDesktopFilePath);
-
-         pfile->create();
-
-         pfile->m_straLine._007SetLine("[Desktop Entry]", "X-GNOME-Autostart-enabled", "true");
-
-         pfile->write();
-
-      }
-      else
-      {
-
-         acmefile()->erase(pathAutoStartDesktopFilePath);
-
-      }
-
-
-   }
-
-
-   bool os_context::is_user_auto_start(const string & strAppId)
-   {
-
-      ::file::path pathAutoStartDesktopFilePath = _get_auto_start_desktop_file_path(strAppId);
-
-      return pathAutoStartDesktopFilePath.has_char() && acmefile()->exists(pathAutoStartDesktopFilePath);
-
-   }
 
 
 } // namespace apex_linux

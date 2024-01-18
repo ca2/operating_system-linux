@@ -86,12 +86,6 @@ namespace apex_linux
       void list_process(::file::path_array & patha, ::process_identifier_array & processidentifierarray) override;
 
 
-      virtual ::file::path _get_auto_start_desktop_file_path(const ::string & strAppId);
-
-      void register_user_auto_start(const string & strAppId, const ::file::path & pathExecutable, const string & strArguments,
-                                    bool bRegister) override;
-
-      bool is_user_auto_start(const string & strAppId) override;
 
 
    };
