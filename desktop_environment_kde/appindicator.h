@@ -15,10 +15,10 @@ namespace node_kde
 
 
       appindicator();
-      virtual ~appindicator();
+      ~appindicator() override;
 
 
-      virtual bool create(const char * pszId, const char * pszIcon, const char * pszFolder, user_notify_icon_bridge * pbridge);
+      bool create(const char * pszId, const char * pszIcon, const char * pszFolder, application_menu * papplicationmenu) override;
 
 
 
