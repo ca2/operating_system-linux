@@ -111,7 +111,7 @@ namespace acme_linux
    void dir_context::init_system()
    {
 
-      ::dir_context::init_system();
+      ::acme_posix::dir_context::init_system();
 
 //      if(!::dir_context::init_system())
 //      {
@@ -203,7 +203,7 @@ namespace acme_linux
 
       //auto estatus =
 
-         ::dir_context::init_context();
+         ::acme_posix::dir_context::init_context();
 
 //      if(!estatus)
 //      {

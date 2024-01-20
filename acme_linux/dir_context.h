@@ -1,7 +1,7 @@
 #pragma once
 
 
-#include "acme/filesystem/filesystem/dir_context.h"
+#include "acme_posix/dir_context.h"
 
 
 namespace acme_linux
@@ -9,7 +9,7 @@ namespace acme_linux
 
 
    class CLASS_DECL_ACME dir_context :
-      virtual public ::dir_context
+        virtual public ::acme_posix::dir_context
    {
    public:
 
