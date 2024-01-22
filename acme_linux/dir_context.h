@@ -14,11 +14,11 @@ namespace acme_linux
    public:
 
 
-      ::file::path                  m_pathImage;
-      ::file::path                  m_pathVideo;
-      ::file::path                  m_pathDownload;
-      ::file::path                  m_pathMusic;
-      ::file::path                  m_pathDocument;
+      //::file::path                  m_pathImage;
+      //::file::path                  m_pathVideo;
+      //::file::path                  m_pathDownload;
+      //::file::path                  m_pathMusic;
+      //::file::path                  m_pathDocument;
       ::pointer<file_system>     m_pfilesystem;
       ::pointer<dir_system>      m_pdirsystem;
 
@@ -99,11 +99,11 @@ namespace acme_linux
 
       virtual ::file::path commonprograms() override;
 
-      virtual ::file::path music() override;
-      virtual ::file::path video() override;
-      virtual ::file::path image() override;
-      virtual ::file::path download() override;
-      virtual ::file::path document() override;
+//      virtual ::file::path music() override;
+//      virtual ::file::path video() override;
+//      virtual ::file::path image() override;
+//      virtual ::file::path download() override;
+//      virtual ::file::path document() override;
 
 
    };
