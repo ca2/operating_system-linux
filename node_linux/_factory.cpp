@@ -37,7 +37,11 @@ __FACTORY_EXPORT void node_linux_factory(::factory::factory * pfactory)
    else if ((edesktop & ::user::e_desktop_gnome) || (edesktop & ::user::e_desktop_lxde))
    {
 
-      auto & pfactoryGnome = pfactory->system()->factory("desktop_environment", "gnome");
+      auto psystem = pfactory->system();
+
+      printf("Going to open desktop_environment_gnome\n");
+
+      auto & pfactoryGnome = psystem->factory("desktop_environment", "gnome");
 
       if(!pfactoryGnome)
       {
