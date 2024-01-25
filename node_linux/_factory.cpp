@@ -21,26 +21,42 @@ __FACTORY_EXPORT void node_linux_factory(::factory::factory * pfactory)
       if(!pfactoryKde)
       {
 
+         printf("desktop_environment_kde library failed to load\n");
+
          throw resource_exception();
 
       }
 
+      printf("desktop_environment_kde loaded\n");
+
       pfactoryKde->merge_to_global_factory();
+
+      printf("desktop_environment_kde merge_to_global_factory\n");
 
    }
    else if ((edesktop & ::user::e_desktop_gnome) || (edesktop & ::user::e_desktop_lxde))
    {
 
-      auto & pfactoryGnome = pfactory->system()->factory("desktop_environment", "gnome");
+      auto psystem = pfactory->system();
+
+      printf("Going to open desktop_environment_gnome\n");
+
+      auto & pfactoryGnome = psystem->factory("desktop_environment", "gnome");
 
       if(!pfactoryGnome)
       {
+
+         printf("desktop_environment_gnome library failed to load\n");
 
          throw resource_exception();
 
       }
 
+      printf("desktop_environment_gnome loaded\n");
+
       pfactoryGnome->merge_to_global_factory();
+
+      printf("desktop_environment_gnome merge_to_global_factory\n");
 
    }
    else if (edesktop & ::user::e_desktop_xfce)
@@ -51,11 +67,17 @@ __FACTORY_EXPORT void node_linux_factory(::factory::factory * pfactory)
       if(!pfactoryXfce)
       {
 
+         printf("desktop_environment_xfce library failed to load\n");
+
          throw resource_exception();
 
       }
 
+      printf("desktop_environment_xfce loaded\n");
+
       pfactoryXfce->merge_to_global_factory();
+
+      printf("desktop_environment_xfce merge_to_global_factory\n");
 
    }
    else
@@ -66,22 +88,34 @@ __FACTORY_EXPORT void node_linux_factory(::factory::factory * pfactory)
       if (!pfactoryGnome)
       {
 
+         printf("desktop_environment_gnome library failed to load (2)\n");
+
          auto & pfactoryKde = pfactory->system()->factory("desktop_environment", "kde");
 
          if(!pfactoryKde)
          {
 
+            printf("desktop_environment_kde library failed to load (2)\n");
+
             throw resource_exception();
 
          }
 
+         printf("desktop_environment_kde loaded (2)\n");
+
          pfactoryKde->merge_to_global_factory();
+
+         printf("desktop_environment_kde merge_to_global_factory (2)\n");
 
       }
       else
       {
 
+         printf("desktop_environment_gnome loaded (2)\n");
+
          pfactoryGnome->merge_to_global_factory();
+
+         printf("desktop_environment_gnome merge_to_global_factory (2)\n");
 
       }
 
