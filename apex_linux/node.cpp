@@ -151,7 +151,7 @@ namespace apex_linux
 //      ::file::path pathIcon;
 //      int iIcon = -1;
 //
-//      auto plink = acmenode()->m_papexnode->resolve_link(pathShortcut);
+//      auto plink = node()->m_papexnode->resolve_link(pathShortcut);
 //
 //      // Enough condition to create shortcut
 //      bool bEnoughCondition1 = !plink;

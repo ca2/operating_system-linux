@@ -46,7 +46,7 @@ namespace acme_linux
 
          ::particle::initialize(pparticle);
 
-         m_pmutexLines = acmenode()->create_mutex();
+         m_pmutexLines = node()->create_mutex();
 
       }
 
@@ -182,7 +182,7 @@ namespace acme_linux
 
          };
 
-         auto iExitCode = acmenode()->command_system(scopedstrCommand, functionTrace);
+         auto iExitCode = node()->command_system(scopedstrCommand, functionTrace);
 
          return iExitCode;
 

@@ -189,7 +189,7 @@ namespace apex_linux
 //int iExitCod = 0;
 ::string strCommand = get_executable_path();
 //
-      acmenode()->command_system(strCommand, 10_min);
+      node()->command_system(strCommand, 10_min);
 //
 //      //pnode->call_async(strPath, strParams, strDir, e_display_none, false);
 //
