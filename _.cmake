@@ -174,6 +174,18 @@ elseif (${DISTRO} STREQUAL "debian")
 
    set(MPG123_PKG_MODULE "libmpg123")
 
+elseif (${DISTRO} STREQUAL "opensuse-leap")
+
+   set(SUSE TRUE)
+
+   add_compile_definitions(SUSE_LINUX)
+
+   message(STATUS "SUSE has been set TRUE")
+
+   set(APPINDICATOR_PKG_MODULE "ayatana-appindicator3-0.1")
+
+   set(MPG123_PKG_MODULE "libmpg123")
+
 elseif (${DISTRO} STREQUAL "fedora")
 
    set(FEDORA TRUE)
