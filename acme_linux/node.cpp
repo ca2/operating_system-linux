@@ -524,7 +524,7 @@ namespace acme_linux
          }
 
       }
-      else if (node()->has_unix_shell_command("lsb_release"))
+      else if (this->has_unix_shell_command("lsb_release"))
       {
 
          //         }
@@ -535,8 +535,8 @@ namespace acme_linux
 
          //# linuxbase.org
 
-         strOs = node()->unix_shell_command_string("lsb_release -si");
-         strVer = node()->unix_shell_command_string("lsb_release -sr");
+         strOs = this->unix_shell_command_string("lsb_release -si");
+         strVer = this->unix_shell_command_string("lsb_release -sr");
 
          strOs.make_lower();
          strVer.make_lower();
@@ -598,8 +598,8 @@ namespace acme_linux
 
          // # Fall back to uname, e.g. "Linux <version>", also works for BSD, etc.
 
-         strOs = node()->unix_shell_command_string("uname -s");
-         strVer = node()->unix_shell_command_string("uname -r");
+         strOs = this->unix_shell_command_string("uname -s");
+         strVer = this->unix_shell_command_string("uname -r");
 
       }
 
@@ -662,7 +662,7 @@ namespace acme_linux
 
             //# echo "DISTRO_FAMILY is debian, zypper or arch"
 
-            auto strLowerCaseCurrentDesktop = node()->get_environment_variable("XDG_CURRENT_DESKTOP").lowered();
+            auto strLowerCaseCurrentDesktop = this->get_environment_variable("XDG_CURRENT_DESKTOP").lowered();
 
             //# echo "lower case xdg_current_desktop is $__SYSTEM_LOWER_CASE_CURRENT_DESKTOP"
             if (strLowerCaseCurrentDesktop.equals("gnome"))
@@ -796,16 +796,16 @@ namespace acme_linux
 
       psummary->m_strUnderscoreOperatingSystem.find_replace("/", "_");
 
-      node()->set_environment_variable("__SYSTEM_DISTRO", psummary->m_strDistro);
-      node()->set_environment_variable("__SYSTEM_DISTRO_FAMILY", psummary->m_strDistroFamily);
-      node()->set_environment_variable("__SYSTEM_DISTRO_BRANCH", psummary->m_strDistroBranch);
-      node()->set_environment_variable("__SYSTEM_DISTRO_RELEASE", psummary->m_strDistroRelease);
-      node()->set_environment_variable("__SYSTEM_DESKTOP_ENVIRONMENT", psummary->m_strDesktopEnvironment);
-      node()->set_environment_variable("__SYSTEM_SLASHED_STORE", psummary->m_strSlashedStore);
-      node()->set_environment_variable("__SYSTEM_SLASHED_INTEGRATION", psummary->m_strSlashedIntegration);
-      node()->set_environment_variable("__SYSTEM_UNDERSCORE_OPERATING_SYSTEM", psummary->m_strUnderscoreOperatingSystem);
-      node()->set_environment_variable("__SYSTEM_SUDO_INSTALL", psummary->m_strSudoInstall);
-      node()->set_environment_variable("__SYSTEM_TERMINAL", psummary->m_strTerminal);
+      this->set_environment_variable("__SYSTEM_DISTRO", psummary->m_strDistro);
+      this->set_environment_variable("__SYSTEM_DISTRO_FAMILY", psummary->m_strDistroFamily);
+      this->set_environment_variable("__SYSTEM_DISTRO_BRANCH", psummary->m_strDistroBranch);
+      this->set_environment_variable("__SYSTEM_DISTRO_RELEASE", psummary->m_strDistroRelease);
+      this->set_environment_variable("__SYSTEM_DESKTOP_ENVIRONMENT", psummary->m_strDesktopEnvironment);
+      this->set_environment_variable("__SYSTEM_SLASHED_STORE", psummary->m_strSlashedStore);
+      this->set_environment_variable("__SYSTEM_SLASHED_INTEGRATION", psummary->m_strSlashedIntegration);
+      this->set_environment_variable("__SYSTEM_UNDERSCORE_OPERATING_SYSTEM", psummary->m_strUnderscoreOperatingSystem);
+      this->set_environment_variable("__SYSTEM_SUDO_INSTALL", psummary->m_strSudoInstall);
+      this->set_environment_variable("__SYSTEM_TERMINAL", psummary->m_strTerminal);
 
       return psummary;
 
