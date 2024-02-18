@@ -174,7 +174,7 @@ elseif (${DISTRO} STREQUAL "debian")
 
    set(MPG123_PKG_MODULE "libmpg123")
 
-elseif (${DISTRO} STREQUAL "opensuse-leap")
+elseif (${DISTRO} STREQUAL "opensuse-leap" OR ${DISTRO} STREQUAL "opensuse-tumbleweed")
 
    set(SUSE TRUE)
 
