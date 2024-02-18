@@ -174,7 +174,7 @@ elseif (${DISTRO} STREQUAL "debian")
 
    set(MPG123_PKG_MODULE "libmpg123")
 
-elseif (${DISTRO} STREQUAL "opensuse-leap")
+elseif (${DISTRO} STREQUAL "opensuse-leap" OR ${DISTRO} STREQUAL "opensuse-tumbleweed")
 
    set(SUSE TRUE)
 
@@ -182,7 +182,7 @@ elseif (${DISTRO} STREQUAL "opensuse-leap")
 
    message(STATUS "SUSE has been set TRUE")
 
-   set(APPINDICATOR_PKG_MODULE "ayatana-appindicator3-0.1")
+   set(APPINDICATOR_PKG_MODULE "appindicator3-0.1")
 
    set(MPG123_PKG_MODULE "libmpg123")
 
