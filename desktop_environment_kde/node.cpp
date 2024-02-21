@@ -185,6 +185,12 @@ namespace desktop_environment_kde
    }
 
 
+   void node::reboot()
+   {
+
+      ::node_kde::node::reboot();
+
+   }
 
 //
 //   string node::os_get_user_theme()
