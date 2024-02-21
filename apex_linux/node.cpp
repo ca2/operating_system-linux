@@ -335,9 +335,7 @@ namespace apex_linux
    ::file::path node::process_identifier_module_path(::process_identifier dwPid)
    {
 
-      throw ::not_implemented();
-
-      return {};
+      return ::acme_linux::node::process_identifier_module_path(dwPid);
 
    }
 
@@ -345,9 +343,11 @@ namespace apex_linux
    ::process_identifier_array node::processes_identifiers()
    {
 
-      throw ::not_implemented();
+      return ::acme_linux::node::processes_identifiers();
 
-      return {};
+//      throw ::not_implemented();
+//
+//      return {};
 
       /*
             dwa.set_size(0);
@@ -365,6 +365,7 @@ namespace apex_linux
                dwa.set_size(cbNeeded / sizeof(::u32));
             }*/
    }
+
 
 //   string node::get_module_path(HMODULE hmodule)
 //   {
@@ -424,6 +425,7 @@ namespace apex_linux
             return strUrl;
       */
    }
+
 
    bool node::local_machine_set_run(const ::string & pszKey, const ::string & pszCommand)
    {
