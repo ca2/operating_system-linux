@@ -69,28 +69,8 @@ namespace apex_linux
 
    void os_context::shutdown(bool bIfPowerOff)
    {
-      /*      bool retval = true;
-            HANDLE hToken;
-            TOKEN_PRIVILEGES tokenprivileges;
-            if (!OpenProcessToken(GetCurrentProcess(),
-               TOKEN_ADJUST_PRIVILEGES | TOKEN_QUERY, &hToken))
-               return false;
-            LookupPrivilegeValue(nullptr, SE_SHUTDOWN_NAME, &tokenprivileges.Privileges[0].Luid);
-            tokenprivileges.PrivilegeCount = 1;
-            tokenprivileges.Privileges[0].Attributes = SE_PRIVILEGE_ENABLED;
-            AdjustTokenPrivileges(hToken, false, &tokenprivileges, 0, (PTOKEN_PRIVILEGES) nullptr, 0);
-            if (bIfPowerOff)
-               retval = ExitWindowsEx(EWX_POWEROFF, 0) != false;
-            else
-               retval = ExitWindowsEx(EWX_SHUTDOWN, 0) != false;
 
-            //reset the previlages
-            tokenprivileges.Privileges[0].Attributes = 0;
-            AdjustTokenPrivileges(hToken, false, &tokenprivileges, 0, (PTOKEN_PRIVILEGES) nullptr, 0);
-            return retval;*/
-
-      throw not_implemented();
-      //return false;
+      node()->unix_shell_command("shutdown -h now");
 
    }
 

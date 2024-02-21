@@ -27,7 +27,7 @@ namespace acme_linux
 
       //static ::user::enum_desktop      s_edesktop;
 
-
+      enum_linux_distribution          m_elinuxdistribution;
 
       ::file::path                     m_strTimeFolder;
       ::file::path                     m_strNetSeedFolder;
@@ -97,7 +97,7 @@ namespace acme_linux
 
       ::process_identifier_array module_path_processes_identifiers(const ::string & strModulePath, bool bModuleNameIsPropertyFormatted) override;
 
-      string process_identifier_module_path(::process_identifier pid) override;
+      ::file::path process_identifier_module_path(::process_identifier pid) override;
 
       string process_identifier_command_line(::process_identifier pid) override;
 
@@ -134,6 +134,7 @@ namespace acme_linux
 
 
 
+      enum_linux_distribution get_linux_distribution() const override;
 
 
    };

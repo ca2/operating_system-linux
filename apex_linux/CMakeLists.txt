@@ -28,8 +28,8 @@ list(APPEND library_source
         launcher.h
         node.cpp
         node.h
-        os_context.cpp
-        os_context.h
+        #os_context.cpp
+        #os_context.h
         service_handler.cpp
         service_handler.h
         )

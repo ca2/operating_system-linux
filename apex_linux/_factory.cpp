@@ -6,7 +6,7 @@
 #include "app_launcher.h"
 #include "launcher.h"
 //#include "process.h"
-#include "os_context.h"
+//#include "os_context.h"
 #include "apex/parallelization/service_handler.h"
 #include "service_handler.h"
 //#include "crypto.h"
@@ -36,7 +36,7 @@ __FACTORY_EXPORT void apex_linux_factory(::factory::factory * pfactory)
 
    //create_factory < ::linux::stdio_file, ::file::text_file >();
    //create_factory < ::linux::file, ::file::file >();
-   pfactory->add_factory_item < ::apex_linux::os_context, ::os_context >();
+   //pfactory->add_factory_item < ::apex_linux::os_context, ::os_context >();
    //pfactory->add_factory_item < ::linux::pipe, ::process::pipe >();
    //pfactory->add_factory_item < ::linux::process, ::process::process >();
 

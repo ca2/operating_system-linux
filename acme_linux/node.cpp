@@ -44,12 +44,16 @@ namespace acme_linux
 
       m_pAcmePlatform = this;
 
+      m_elinuxdistribution = e_linux_distribution_not_initialized;
+
    }
 
 
    node::~node()
-   = default;
+   {
 
+
+   }
 
 //      void initialize_matter(::matter * pmatter)
 //      {
@@ -297,7 +301,7 @@ namespace acme_linux
    }
 
 
-   string node::process_identifier_module_path(::process_identifier pid)
+   ::file::path node::process_identifier_module_path(::process_identifier pid)
    {
 
       return ::acme_posix::node::process_identifier_module_path(pid);
@@ -810,6 +814,30 @@ namespace acme_linux
       return psummary;
 
    }
+
+
+
+   ::enum_linux_distribution node::get_linux_distribution() const
+   {
+
+      if (m_elinuxdistribution == e_linux_distribution_not_initialized)
+      {
+
+         ((node *)this)->calculate_linux_distribution();
+
+      }
+
+      return m_elinuxdistribution;
+
+   }
+
+
+//   void node::calculate_linux_distribution()
+//   {
+//
+//      //return ::success;
+//
+//   }
 
 
 } // namespace acme_linux

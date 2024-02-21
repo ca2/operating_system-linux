@@ -23,7 +23,7 @@ namespace apex_linux
    class file_system;
 
 
-   class os_context;
+   //class os_context;
 
 
    class ip_enum;
