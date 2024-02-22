@@ -492,12 +492,9 @@ namespace acme_linux
 
       auto psummary = __create_new < ::operating_system::summary >();
 
-
-      //::particle::initialize(pparticle);
-
       ::string strOs;
+
       ::string strVer;
-      //}
 
       // freedesktop.org and systemd
       if (acmefile()->exists("/etc/os-release"))
@@ -524,6 +521,16 @@ namespace acme_linux
 
             psummary->m_strDistroRelease = setArch["DISTRIB_RELEASE"];
             psummary->m_strDistroRelease.make_lower();
+
+         }
+         else if(psummary->m_strDistro.case_insensitive_equals("opensuse-tumbleweed") && psummary->m_strDistroRelease.length() > 4)
+         {
+
+            //printf("This is a openSUSE Tumbleweed System...\n");
+            //printf("Gonna tweak a bit the version :-)...\n");
+            //pszVersion[4] = '\0';
+            //printf("There it is new version : %s\n", pszVersion);
+            psummary->m_strDistroRelease.truncate(4);
 
          }
 
