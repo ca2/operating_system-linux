@@ -4,6 +4,7 @@
 #include "acme/filesystem/filesystem/acme_file.h"
 #include "acme/filesystem/filesystem/acme_path.h"
 #include "acme/filesystem/filesystem/link.h"
+#include "acme/operating_system/summary.h"
 #include "acme/platform/application.h"
 #include "node.h"
 #include "acme/exception/not_implemented.h"
@@ -230,7 +231,20 @@ namespace apex_linux
    void node::shutdown(bool bIfPowerOff)
    {
 
-      unix_shell_command("shutdown -h now");
+      auto psummary = this->operating_system_summary();
+
+      if(::is_set(psummary) && psummary->m_strDistro.case_insensitive_begins("opensuse"))
+      {
+
+         unix_shell_command("systemctl poweroff");
+
+      }
+      else
+      {
+
+         unix_shell_command("shutdown -h now");
+
+      }
 
    }
 
