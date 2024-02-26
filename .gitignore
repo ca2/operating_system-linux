@@ -27,10 +27,9 @@ solution.vc.db*
 *.expand_fileset.spa
 *.cmake
 Thumbs.db
-deployment.rc
 Makefile
 _packages.txt
-
+deployment.rc
 application_build_helper_input.txt
 application_build_helper_output.txt
 matter_output.txt
