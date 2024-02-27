@@ -211,6 +211,20 @@ elseif ("${DISTRO}" STREQUAL "raspbian")
 
    message(STATUS "RASPBERRYPIOS defined!!")
 
+elseif (${DISTRO} STREQUAL "manjaro")
+
+      set(MANJARO TRUE)
+
+      set(ARCH_LIKE TRUE)
+
+      message(STATUS "MANJARO has been set TRUE")
+
+      set(APPINDICATOR_PKG_MODULE "ayatana-appindicator3-0.1")
+
+      set(MPG123_PKG_MODULE "libmpg123")
+
+      set(HAS_SYSTEM_UNAC TRUE)
+
 else ()
 
    set(APPINDICATOR_PKG_MODULE "appindicator3-0.1")
