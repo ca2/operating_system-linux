@@ -130,10 +130,6 @@ namespace acme_linux
       ::pointer <::operating_system::summary > operating_system_summary() override;
 
 
-      void integration_factory() override;
-
-
-
       enum_linux_distribution get_linux_distribution() const override;
 
 
