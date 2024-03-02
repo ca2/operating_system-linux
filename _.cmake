@@ -223,7 +223,7 @@ elseif (${DISTRO} STREQUAL "manjaro")
 
       set(MPG123_PKG_MODULE "libmpg123")
 
-      set(HAS_SYSTEM_UNAC TRUE)
+      set(HAS_SYSTEM_UNAC FALSE)
 
 else ()
 
