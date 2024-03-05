@@ -801,6 +801,8 @@ namespace acme_linux
 
       }
 
+      psummary->m_strSlashedStore.trim("/");
+
       psummary->m_strUnderscoreOperatingSystem = psummary->m_strSlashedStore;
 
       psummary->m_strSlashedIntegration = psummary->m_strSlashedStore;
