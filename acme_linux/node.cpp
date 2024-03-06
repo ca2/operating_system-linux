@@ -517,10 +517,24 @@ namespace acme_linux
          if (psummary->m_strDistroFamily.case_insensitive_equals("arch"))
          {
 
-            auto setArch = acmefile()->parse_standard_configuration("/etc/os-release");
+            auto setArch = acmefile()->parse_standard_configuration("/etc/lsb-release");
 
             psummary->m_strDistroRelease = setArch["DISTRIB_RELEASE"];
             psummary->m_strDistroRelease.make_lower();
+
+            if(psummary->m_strDistro.case_insensitive_equals("manjaro"))
+            {
+
+               auto dot = psummary->m_strDistroRelease.find('.');
+
+               if(dot)
+               {
+
+                  psummary->m_strDistroRelease.truncate(dot);
+
+               }
+
+            }
 
          }
          else if(psummary->m_strDistro.case_insensitive_equals("opensuse-tumbleweed") && psummary->m_strDistroRelease.length() > 4)
@@ -645,6 +659,12 @@ namespace acme_linux
          psummary->m_strDistroFamily = "zypper";
 
       }
+//      else if (psummary->m_strDistro.case_insensitive_equals("manjaro"))
+//      {
+//
+//         psummary->m_strDistroRelease.empty();
+//
+//      }
 
       if (psummary->m_strDistro.case_insensitive_equals("fedora"))
       {
