@@ -173,6 +173,10 @@ elseif (${DISTRO} STREQUAL "debian")
 
    set(MPG123_PKG_MODULE "libmpg123")
 
+   add_compile_options(-gdwarf-4)
+
+   set(HAS_SYSTEM_UNAC TRUE)
+
 elseif (${DISTRO} STREQUAL "opensuse-leap" OR ${DISTRO} STREQUAL "opensuse-tumbleweed")
 
    set(SUSE TRUE)
