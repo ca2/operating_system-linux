@@ -26,10 +26,14 @@ list(APPEND library_references
    aura_posix
    aura_linux
    windowing_x11
-   node_gtk
    node_gnome
    )
 
+if(${HAS_GTK4})
+   list(APPEND library_references node_gtk4)
+elseif(${HAS_GTK3})
+   list(APPEND library_references node_gtk3)
+endif()
 
 
 list(APPEND static_library_references ${library_references})
@@ -54,7 +58,10 @@ if (MSVC)
    target_link_libraries(${PROJECT_NAME} PRIVATE ${library_references})
 elseif (LINUX)
 
-   if(USE_PKGCONFIG)
+
+   if(${HAS_GTK4})
+      pkg_check_modules(PKGCONFIG glib-2.0 gtk4 gdk-3.0)
+   elseif(${HAS_GTK3})
       pkg_check_modules(PKGCONFIG glib-2.0 gtk+-3.0 gdk-3.0)
    endif()
 
