@@ -869,6 +869,14 @@ namespace acme_linux
 //   }
 
 
+   ::file::path node::get_default_base_integration_folder()
+   {
+
+      return acmedirectory()->home() / "integration/_____";
+
+   }
+
+
 } // namespace acme_linux
 
 

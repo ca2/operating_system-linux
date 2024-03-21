@@ -133,6 +133,9 @@ namespace acme_linux
       enum_linux_distribution get_linux_distribution() const override;
 
 
+      virtual ::file::path get_default_base_integration_folder();
+
+
    };
 
 
