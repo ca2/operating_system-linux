@@ -233,7 +233,9 @@ namespace apex_linux
 
       auto psummary = this->operating_system_summary();
 
-      if(::is_set(psummary) && psummary->m_strDistro.case_insensitive_begins("opensuse"))
+      if(::is_set(psummary) &&
+              (psummary->m_strDistro.case_insensitive_begins("opensuse")
+              || psummary->m_strDistro.case_insensitive_begins("debian")))
       {
 
          unix_shell_command("systemctl poweroff");
@@ -242,7 +244,18 @@ namespace apex_linux
       else
       {
 
-         unix_shell_command("shutdown -h now");
+         if(bIfPowerOff)
+         {
+
+            unix_shell_command("shutdown -p now");
+
+         }
+         else
+         {
+
+            unix_shell_command("shutdown -h now");
+
+         }
 
       }
 
