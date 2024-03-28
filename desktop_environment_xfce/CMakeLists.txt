@@ -5,7 +5,7 @@ project(desktop_environment_xfce CXX)
 list(APPEND library_source
    _.cpp
    _.h
-        _desktop_environment_xfce.h
+        #_desktop_environment_xfce.h
         #appindicator.cpp
         #appindicator.h
         #application.cpp
@@ -16,7 +16,7 @@ list(APPEND library_source
         #display.cpp
         #display.h
         #enum_display_monitors.cpp
-   factory_exchange.cpp
+   _factory.cpp
    framework.cpp
    framework.h
         #gdk.cpp
