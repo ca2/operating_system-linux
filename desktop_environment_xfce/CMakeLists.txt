@@ -45,7 +45,7 @@ list(APPEND library_references
    aura_posix
    aura_linux
    windowing_x11
-   node_gtk
+   node_gtk3
    node_xfce
    )
 

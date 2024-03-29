@@ -721,6 +721,19 @@ namespace acme_linux
                psummary->m_strDesktopEnvironment = "kde";
 
             }
+            else if (strLowerCaseCurrentDesktop.equals("xfce"))
+            {
+               //      elif
+               //      contains
+               //      $__SYSTEM_LOWER_CASE_CURRENT_DESKTOP
+               //      "kde";
+               //      then
+               //
+               //# echo "lower case xdg_current_desktop contains gnome"
+
+               psummary->m_strDesktopEnvironment = "xfce";
+
+            }
             else if (strLowerCaseCurrentDesktop.equals("lxde"))
             {
                //      elif
@@ -766,6 +779,12 @@ namespace acme_linux
          {
 
             psummary->m_strSlashedStore = "kubuntu/" + psummary->m_strDistroRelease;
+
+         }
+         else if (psummary->m_strDesktopEnvironment.case_insensitive_equals("xfce"))
+         {
+
+            psummary->m_strSlashedStore = "xubuntu/" + psummary->m_strDistroRelease;
 
          }
          else
