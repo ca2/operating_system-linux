@@ -282,6 +282,10 @@ set(INTERPROCESS_COMMUNICATION_SYSTEM_5 TRUE)
 
 
 add_compile_definitions(WITH_X11)
+add_compile_definitions(WITH_XCB)
+if(${HAS_WAYLAND})
+   add_compile_definitions(HAS_WAYLAND)
+endif()
 link_libraries(pthread)
 include(FindPkgConfig)
 

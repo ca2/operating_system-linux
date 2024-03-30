@@ -27,7 +27,7 @@ namespace desktop_environment_gnome
 
       m_pNodeDesktopEnvironmentGnome = this;
 
-      defer_initialize_x11();
+//      defer_initialize_x11();
 
       ///m_pGtkSettingsDeposthemecolorsfault = nullptr;
 
