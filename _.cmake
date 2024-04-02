@@ -330,17 +330,30 @@ if (KDE_DESKTOP)
    #  Core    # QCommandLineParser, QStringLiteral
    #  Widgets # QApplication
    #  )
+
+   list(APPEND kf5_component_list
+           CoreAddons
+           Notifications
+           ConfigWidgets
+           KIO
+           IconThemes
+           Plasma
+   )
+
+   if(NOT ${DEBIAN})
+      list(APPEND kf5_component_list
+              PlasmaQuick
+
+      )
+
+      endif()
+
+
    find_package(KF5 ${KF5_MIN_VERSION} REQUIRED COMPONENTS
       # CoreAddons      # KAboutData
       #          I18n            # KLocalizedString
       #         WidgetsAddons   # KMessageBox
-      CoreAddons
-      Notifications
-      ConfigWidgets
-      KIO
-      IconThemes
-      Plasma
-      PlasmaQuick
+           ${kf5_component_list}
    )
 
    find_package(LibKWorkspace CONFIG REQUIRED)
