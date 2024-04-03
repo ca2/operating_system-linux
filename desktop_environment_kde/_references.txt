@@ -1,1 +1,1 @@
-operating_system-posix/node_kde
+default_node_kde
