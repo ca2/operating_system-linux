@@ -2,7 +2,11 @@
 
 
 #include "aura_linux/_.h"
-#include "operating_system-posix/node_kde/_.h"
+#if defined(HAS_KDE6)
+#include "operating_system-posix/node_kde6/_.h"
+#elif defined(HAS_KDE5)
+#include "operating_system-posix/node_kde5/_.h"
+#endif
 
 
 #if defined(_desktop_environment_kde_project)

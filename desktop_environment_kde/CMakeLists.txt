@@ -42,19 +42,40 @@ list(APPEND library_references
         aura_posix
         aura_linux
         windowing_xcb
-        node_kde
         )
+
+if(${HAS_KDE6})
+
+    list(APPEND library_references
+            node_kde6)
+
+elseif(${HAS_KDE5})
+
+    list(APPEND library_references
+            node_kde5)
+
+endif()
 
 
 list(APPEND static_library_references ${library_references})
 list(TRANSFORM static_library_references PREPEND static_)
 
 
+if(${HAS_KDE6})
 
 list(APPEND system_libraries
-        Qt5::Core
-        Qt5::Widgets
+        Qt6::Core
+        Qt6::Widgets
         )
+
+elseif(${HAS_KDE5})
+
+    list(APPEND system_libraries
+            Qt5::Core
+            Qt5::Widgets
+    )
+
+endif()
 
 #set_source_files_properties(q_node_impl.cpp PROPERTIES SKIP_PRECOMPILE_HEADERS ON)
 

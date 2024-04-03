@@ -15,7 +15,11 @@
 
 #include "node_impl.h"
 #include "aura_linux/node.h"
-#include "node_kde/node.h"
+#if defined(HAS_KDE6)
+#include "node_kde6/node.h"
+#elif defined(HAS_KDE5)
+#include "node_kde5/node.h"
+#endif
 
 
 namespace desktop_environment_kde
@@ -23,8 +27,12 @@ namespace desktop_environment_kde
 
 
    class CLASS_DECL_ACME node :
-      virtual public ::aura_linux::node,
-      virtual public ::node_kde::node
+      virtual public ::aura_linux::node
+#if defined(HAS_KDE6)
+           ,virtual public ::node_kde6::node
+#elif defined(HAS_KDE5)
+         ,virtual public ::node_kde5::node
+#endif
    {
    public:
 

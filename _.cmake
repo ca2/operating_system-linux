@@ -11,6 +11,8 @@
 #IF(PKG_CONFIG_FOUND)
 # use pkg_check_modules()
 #ENDIF(PKG_CONFIG_FOUND)
+set(FREEBSD FALSE)
+set(DEBIAN FALSE)
 set(USE_PKGCONFIG TRUE)
 set(CURL_NANO_HTTP TRUE)
 set(HAS_WAYLAND TRUE)
@@ -107,6 +109,32 @@ if(${GNOME_DESKTOP})
       message(STATUS "HAS_GTK3 is ${HAS_GTK3}")
       add_compile_definitions(HAS_GTK3)
    endif()
+elseif(${KDE_DESKTOP})
+   execute_process(COMMAND plasmashell --version OUTPUT_VARIABLE PLASMA_SHELL_VERSION_RAW OUTPUT_STRIP_TRAILING_WHITESPACE)
+   message(STATUS "PLASMA_SHELL_VERSION_RAW is ${PLASMA_SHELL_VERSION_RAW}")
+   string(TOLOWER ${PLASMA_SHELL_VERSION_RAW} PLASMA_RELEASE)
+   #message(STATUS "PLASMA_RELEASE now is ${PLASMA_RELEASE}")
+   string(REPLACE "plasma" "" PLASMA_RELEASE ${PLASMA_RELEASE})
+   string(REPLACE "shell" "" PLASMA_RELEASE ${PLASMA_RELEASE})
+   string(STRIP ${PLASMA_RELEASE} PLASMA_RELEASE)
+   message(STATUS "PLASMA_RELEASE is ${PLASMA_RELEASE}")
+   string(FIND ${PLASMA_RELEASE} "." PLASMA_RELEASE_FIRST_DOT)
+   string(SUBSTRING ${PLASMA_RELEASE} 0 ${PLASMA_RELEASE_FIRST_DOT} PLASMA_RELEASE_MAJOR)
+   message(STATUS "PLASMA_RELEASE_MAJOR is ${PLASMA_RELEASE_MAJOR}")
+   if(${PLASMA_RELEASE_MAJOR} GREATER_EQUAL "6")
+      set(PLASMA_RELEASE_MAJOR "6")
+      set(HAS_KDE6 TRUE)
+      set(HAS_KDE5 FALSE)
+      add_compile_definitions(HAS_KDE6)
+   endif()
+   if(${PLASMA_RELEASE_MAJOR} EQUAL "5")
+      set(PLASMA_RELEASE_MAJOR "5")
+      set(HAS_KDE6 FALSE)
+      set(HAS_KDE5 TRUE)
+      add_compile_definitions(HAS_KDE5)
+   endif()
+   message(STATUS "HAS_KDE6 is ${HAS_KDE6}")
+   message(STATUS "HAS_KDE5 is ${HAS_KDE5}")
 endif()
 
 
@@ -300,8 +328,111 @@ endif ()
 
 if (KDE_DESKTOP)
 
+
+   if(${HAS_KDE6})
+      set(WITH_XCB TRUE)
+      add_compile_definitions(WITH_XCB=1)
+
+
+
+      set(KF_MIN_VERSION "5.240")
+      set(QT_MIN_VERSION "6.6.0")
+
+      find_package(ECM ${KF_MIN_VERSION} REQUIRED NO_MODULE)
+      set(CMAKE_MODULE_PATH ${ECM_MODULE_PATH} ${CMAKE_SOURCE_DIR}/cmake)
+
+
+      #if(UNIX AND NOT APPLE)
+         find_package(KF6Package REQUIRED)
+#         if (WITH_PULSEAUDIO)
+#            find_package(KF6PulseAudioQt REQUIRED)
+#         endif()
+#         find_package(QtWaylandScanner REQUIRED)
+#         find_package(Wayland 1.9 REQUIRED Client)
+#         find_package(Qt6 REQUIRED COMPONENTS WaylandClient)
+#         find_package(WaylandProtocols REQUIRED)
+#         pkg_check_modules(XkbCommon IMPORTED_TARGET xkbcommon)
+#         find_package(PkgConfig QUIET REQUIRED)
+#         pkg_check_modules(DBus REQUIRED IMPORTED_TARGET dbus-1)
+      ##endif()
+      # apt install libkf5notifications-dev
+      # dnf install kf5-knotifications-devel
+
+      #include(KDEInstallDirs)
+      #include(KDECMakeSettings)
+      #include(KDECompilerSettings NO_POLICY_SCOPE)
+      #    find_package(KF5 ${KF5_MIN_VERSION} REQUIRED COMPONENTS
+      # CoreAddons      # KAboutData
+      #          I18n            # KLocalizedString
+      #         WidgetsAddons   # KMessageBox
+      #      Notifications
+      #     )
+      #include(FeatureSummary)
+
+      # Find Qt modules
+      #find_package(Qt5 ${QT_MIN_VERSION} CONFIG REQUIRED COMPONENTS
+      #  Core    # QCommandLineParser, QStringLiteral
+      #  Widgets # QApplication
+      #  )
+
+      list(APPEND kf6_component_list
+              CoreAddons
+              Notifications
+              ConfigWidgets
+              KIO
+              IconThemes
+              StatusNotifierItem
+              #Plasma
+      )
+
+      if(NOT ${DEBIAN} AND NOT ${SUSE})
+         list(APPEND kf6_component_list
+                 PlasmaQuick
+
+         )
+
+      endif()
+
+
+      find_package(KF6 ${KF_MIN_VERSION} REQUIRED COMPONENTS
+              # CoreAddons      # KAboutData
+              #          I18n            # KLocalizedString
+              #         WidgetsAddons   # KMessageBox
+              ${kf6_component_list}
+      )
+
+      find_package(LibKWorkspace CONFIG REQUIRED)
+
+      find_package(Qt6 ${QT_MIN_VERSION} REQUIRED COMPONENTS
+              Core
+              DBus
+              UiTools
+              #X11Extras
+              Gui
+      )
+
+      find_package(Qt6Gui ${QT_MIN_VERSION} CONFIG REQUIRED Private)
+
+      # Find KDE modules
+
+      #feature_summary(WHAT ALL INCLUDE_QUIET_PACKAGES FATAL_ON_MISSING_REQUIRED_PACKAGES)
+      #        find_package(KDE5 REQUIRED)
+      message(STATUS "Adding KDE/xcb dependency.")
+      #        file (STRINGS $ENV{HOME}/__config/knotifications/cflags.txt knotifications_cflags)
+      #        file (STRINGS $ENV{HOME}/__config/knotifications/libs.txt knotifications_libs)
+      #        if(knotifications_cflags STREQUAL "")
+      #            set(knotifications_cflags -I/usr/include/KF5/KNotifications)
+      #        endif()
+      #        if(knotifications_libs STREQUAL "")
+      #            set(knotifications_cflags -I/usr/include/KF5/KNotifications)
+      #        endif()
+
+   elseif(${HAS_KDE5})
+
    set(WITH_XCB TRUE)
    add_compile_definitions(WITH_XCB=1)
+
+
 
    set(QT_MIN_VERSION "5.3.0")
    set(KF5_MIN_VERSION "5.2.0")
@@ -381,6 +512,8 @@ if (KDE_DESKTOP)
    #        if(knotifications_libs STREQUAL "")
    #            set(knotifications_cflags -I/usr/include/KF5/KNotifications)
    #        endif()
+
+      endif()
 endif ()
 
 set(default_draw2d "draw2d_cairo")

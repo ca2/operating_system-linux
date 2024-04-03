@@ -107,9 +107,11 @@ namespace desktop_environment_kde
    int node::node_init_check(int *pi, char ***ppz)
    {
 
-      auto iResult = ::node_kde::node::node_init_check(pi, ppz);
-
-
+#if defined(HAS_KDE6)
+      auto iResult = ::node_kde6::node::node_init_check(pi, ppz);
+#elif defined(HAS_KDE5)
+      auto iResult = ::node_kde5::node::node_init_check(pi, ppz);
+#endif
 
 //      m_pnodeimpl = new_node_impl(*pi, *ppz);
 //
@@ -170,7 +172,11 @@ namespace desktop_environment_kde
    void node::system_main()
    {
 
-      ::node_kde::node::system_main();
+#if defined(HAS_KDE6)
+      ::node_kde6::node::system_main();
+#elif defined(HAS_KDE5)
+      ::node_kde5::node::system_main();
+#endif
 
    }
 
@@ -180,7 +186,11 @@ namespace desktop_environment_kde
 
       information() << "desktop_environment_kde::node initialize";
 
-      ::node_kde::node::initialize(pparticle);
+#if defined(HAS_KDE6)
+      ::node_kde6::node::initialize(pparticle);
+#elif defined(HAS_KDE5)
+      ::node_kde5::node::initialize(pparticle);
+#endif
 
    }
 
@@ -188,8 +198,11 @@ namespace desktop_environment_kde
    void node::reboot()
    {
 
-      ::node_kde::node::reboot();
-
+#if defined(HAS_KDE6)
+      ::node_kde6::node::reboot();
+#elif defined(HAS_KDE5)
+      ::node_kde5::node::reboot();
+#endif
    }
 
 //
