@@ -25,7 +25,6 @@ solution.vc.db*
 *.pch
 *.expand_fileset
 *.expand_fileset.spa
-*.cmake
 Thumbs.db
 Makefile
 _packages.txt
