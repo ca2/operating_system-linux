@@ -87,7 +87,7 @@ set(DISTRO $ENV{__SYSTEM_DISTRO})
 set(DISTRO_RELEASE $ENV{__SYSTEM_DISTRO_RELEASE})
 
 
-include(${WORKSPACE_FOLDER}/operating_system-posix/_desktop.cmake)
+include(${WORKSPACE_FOLDER}/operating_system/operating_system-posix/_desktop.cmake)
 
 
 string(TOLOWER ${CMAKE_BUILD_TYPE} tolower_cmake_build_type)
