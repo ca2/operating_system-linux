@@ -224,7 +224,7 @@ namespace acme_linux
 
       path = "/";
 
-      path.m_iDir = 1;
+      path.set_existent_folder();
 
       listing.defer_add(path);
 
