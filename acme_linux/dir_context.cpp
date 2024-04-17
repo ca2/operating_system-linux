@@ -6,6 +6,7 @@
 #include "acme/filesystem/filesystem/acme_file.h"
 #include "acme/filesystem/filesystem/acme_directory.h"
 #include "acme/filesystem/filesystem/listing.h"
+#include "acme/operating_system/shared_posix/c_error_number.h"
 #include "acme/parallelization/task_flag.h"
 #include "acme/primitive/string/international.h"
 #include "acme/platform/system.h"
@@ -374,28 +375,30 @@ namespace acme_linux
    }
 
 
-   bool dir_context::is(const ::file::path & path)
-   {
-
-      if(acmedirectory()->is(path))
-      {
-
-         return true;
-
-      }
-
-      bool bIsDir = false;
-
-      if(!acmedirectory()->_is(bIsDir, path))
-      {
-
-         return false;
-
-      }
-
-      return bIsDir;
-
-   }
+//   ::file::e_type dir_context::file_type(const ::file::path & path)
+//   {
+//
+//      auto etype = acmedirectory()->file_type(path);
+//
+//      if(etype != ::file::e_type_unknown)
+//      {
+//
+//         return etype;
+//
+//      }
+//
+//      bool bIsDir = false;
+//
+//      if(!acmedirectory()->_is(bIsDir, path))
+//      {
+//
+//         return false;
+//
+//      }
+//
+//      return bIsDir;
+//
+//   }
 
 
    bool dir_context::name_is(const ::file::path & str)

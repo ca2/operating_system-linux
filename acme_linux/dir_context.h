@@ -36,7 +36,7 @@ namespace acme_linux
       bool enumerate(::file::listing & listing) override;
 
 
-      virtual bool  is(const ::file::path & path) override;
+      //virtual ::file::e_type file_type(const ::file::path & path) override;
       virtual bool  is_inside(const ::file::path & pathDir, const ::file::path & lpcszPath) override;
 
       virtual bool  is_inside_time(const ::file::path & path) override;
