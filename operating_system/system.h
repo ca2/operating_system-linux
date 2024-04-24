@@ -8,7 +8,7 @@
 #define _MAX_PATH MAX_PATH
 
 
-
+#define LINUX
 
 
 // platform text char
