@@ -308,7 +308,7 @@
 //         return NULL;
 //      }
 
-//      ::pointer<::audio_mixer::user_control>control::GetControlByIndex(::index iIndex)
+//      ::pointer<::audio_mixer::user_control>control::GetControlByIndex(::raw::index iIndex)
 //      {
 //         //return this->element_at(iIndex);
 //
@@ -824,7 +824,7 @@
 //                        m_mixercontroldetails.cChannels = 1;
 //
 //
-//                     ::index iSel = pmutecontrol->get_data().m_iIndex;
+//                     ::raw::index iSel = pmutecontrol->get_data().m_iIndex;
 //
 //                     //m_mixercontroldetails.cChannels      = cChannels;
 //                     m_mixercontroldetails.cMultipleItems = m_mixercontrol.cMultipleItems;

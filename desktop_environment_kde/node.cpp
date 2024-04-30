@@ -299,7 +299,7 @@ namespace desktop_environment_kde
 //   }
 //
 //
-//   bool node::set_wallpaper(index iScreen, string strLocalImagePath)
+//   bool node::set_wallpaper(::raw::index iScreen, string strLocalImagePath)
 //   {
 //
 //      // wall-changer sourceforge.net contribution
@@ -419,7 +419,7 @@ namespace desktop_environment_kde
 //   }
 //
 
-//   string node::get_wallpaper(index iScreen)
+//   string node::get_wallpaper(::raw::index iScreen)
 //   {
 //
 //      return "";
@@ -482,13 +482,13 @@ namespace desktop_environment_kde
 //
 //                             synchronous_lock slSession(psession->synchronization());
 //
-//                             ::count iMonitorCount = gdk_display_get_n_monitors(pdisplay);
+//                             ::raw::count iMonitorCount = gdk_display_get_n_monitors(pdisplay);
 //
 //                             psession->m_rectaWorkspace.set_size(iMonitorCount);
 //
 //                             psession->m_rectaMonitor.set_size(iMonitorCount);
 //
-//                             for (index iMonitor = 0; iMonitor < iMonitorCount; iMonitor++)
+//                             for (::raw::index iMonitor = 0; iMonitor < iMonitorCount; iMonitor++)
 //                             {
 //
 //                                GdkMonitor *pmonitor = gdk_display_get_monitor(pdisplay, iMonitor);

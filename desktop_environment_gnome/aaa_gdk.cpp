@@ -421,7 +421,7 @@
 //   }
 //
 //
-//   string aaa_get_wallpaper(::acme::system * psystem, ::index iIndex)
+//   string aaa_get_wallpaper(::acme::system * psystem, ::raw::index iIndex)
 //   {
 //
 //      // wall-changer sourceforge.net contribution

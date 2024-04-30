@@ -71,9 +71,9 @@ namespace desktop_environment_kde
 
       //virtual string get_file_content_type(const char * pszPath) override;
 
-      //virtual bool set_wallpaper(index iScreen, string strLocalImagePath) override;
+      //virtual bool set_wallpaper(::raw::index iScreen, string strLocalImagePath) override;
 
-      //virtual string get_wallpaper(index iScreen) override;
+      //virtual string get_wallpaper(::raw::index iScreen) override;
 
       //using ::aura::node::node_fork;
 

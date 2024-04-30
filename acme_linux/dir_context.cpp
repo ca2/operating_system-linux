@@ -303,7 +303,7 @@ namespace acme_linux
 //
 //         }
 //
-//         for(index i = iStart; i < listing.get_size(); i++)
+//         for(::raw::index i = iStart; i < listing.get_size(); i++)
 //         {
 //
 //            listing[i].m_iRelative = listing.m_pathFinal.get_length() + 1;

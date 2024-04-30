@@ -42,7 +42,7 @@ namespace apex_linux
    }
 
 
-   /*   ::count ip_enum::enumerate(ip_array & ipa)
+   /*   ::raw::count ip_enum::enumerate(ip_array & ipa)
    {
    //get this machines host name
    char szHostname[256];
@@ -87,7 +87,7 @@ namespace apex_linux
    return true;
    }
    */
-   ::count ip_enum::enumerate(pointer_array < ::networking::address > & ipa)
+   ::raw::count ip_enum::enumerate(pointer_array < ::networking::address > & ipa)
    {
 
 //      //get this machines host name

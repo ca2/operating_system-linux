@@ -135,13 +135,13 @@ namespace node_gnome
 //
 //                              synchronous_lock slSession(psession->synchronization());
 //
-//                              ::count iMonitorCount = gdk_display_get_n_monitors(pdisplay);
+//                              ::raw::count iMonitorCount = gdk_display_get_n_monitors(pdisplay);
 //
 //                              psession->m_rectaWorkspace.set_size(iMonitorCount);
 //
 //                              psession->m_rectaMonitor.set_size(iMonitorCount);
 //
-//                              for (index iMonitor = 0; iMonitor < iMonitorCount; iMonitor++)
+//                              for (::raw::index iMonitor = 0; iMonitor < iMonitorCount; iMonitor++)
 //                              {
 //
 //                                 GdkMonitor *pmonitor = gdk_display_get_monitor(pdisplay, iMonitor);
