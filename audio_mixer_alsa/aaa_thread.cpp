@@ -139,7 +139,7 @@ namespace multimedia
 
       void thread::OnVmsmException(::signal_details * pobj)
       {
-         UNREFERENCED_PARAMETER(pobj);
+         __UNREFERENCED_PARAMETER(pobj);
          //sp(base_application) pApp = (sp(base_application)) &System;
          //pApp->post_thread_message(VMSM_EXCEPTION, wParam, lParam);
       }

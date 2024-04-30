@@ -53,8 +53,8 @@
 
       bool control::CreateWindows(::user::interaction * pParent, int32_t iStyle)
       {
-         //UNREFERENCED_PARAMETER(pParent);
-         //UNREFERENCED_PARAMETER(iStyle);
+         //__UNREFERENCED_PARAMETER(pParent);
+         //__UNREFERENCED_PARAMETER(iStyle);
          return true;
       }
 
@@ -483,7 +483,7 @@
 
       /*bool control::OnNotify(::u32 nID, LPNMHDR lpnmhdr)
       {
-      UNREFERENCED_PARAMETER(nID);
+      __UNREFERENCED_PARAMETER(nID);
       if(lpnmhdr->code == TB_BOTTOM ||
       lpnmhdr->code == TB_ENDTRACK ||
       lpnmhdr->code == TB_LINEDOWN ||
@@ -652,7 +652,7 @@
 
       void control::OnVHScroll(::u32 nSBCode, ::u32 nPos, ::user::interaction * pScrollBar)
       {
-//         UNREFERENCED_PARAMETER(nPos);
+//         __UNREFERENCED_PARAMETER(nPos);
 //         sp(::user::interaction) pParamWnd = pScrollBar;
 //         if(nSBCode == SB_LEFT ||
 //            nSBCode == SB_ENDSCROLL ||
@@ -796,7 +796,7 @@
 
 //      bool control::OnCommand(WPARAM wParam, LPARAM lParam)
 //      {
-//         UNREFERENCED_PARAMETER(lParam);
+//         __UNREFERENCED_PARAMETER(lParam);
 //         ::u16 wNotifyCode = HIWORD(wParam);
 //         ::u16 wID = LOWORD(wParam);
 //

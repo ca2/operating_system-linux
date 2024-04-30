@@ -611,7 +611,7 @@ namespace aura_linux
    void interaction_impl::_001OnDestroy(::message::message * pmessage)
    {
 
-//      UNREFERENCED_PARAMETER(pmessage);
+//      __UNREFERENCED_PARAMETER(pmessage);
 //
 //      {
 //
@@ -848,7 +848,7 @@ namespace aura_linux
    */
    void interaction_impl::pre_translate_message(::message::message * pmessage)
    {
-      UNREFERENCED_PARAMETER(pmessage);
+      __UNREFERENCED_PARAMETER(pmessage);
       // no default processing
    }
 
@@ -944,8 +944,8 @@ namespace aura_linux
 
 //   bool interaction_impl::_EnableToolTips(bool bEnable, ::u32 nFlag)
 //   {
-//      UNREFERENCED_PARAMETER(bEnable);
-//      UNREFERENCED_PARAMETER(nFlag);
+//      __UNREFERENCED_PARAMETER(bEnable);
+//      __UNREFERENCED_PARAMETER(nFlag);
 //      return false;
 //   }
 
@@ -972,7 +972,7 @@ namespace aura_linux
 //   void interaction_impl::on_control_event(::user::control_event * pevent)
 //   {
 //
-//      UNREFERENCED_PARAMETER(pevent);
+//      __UNREFERENCED_PARAMETER(pevent);
 //
 //   }
 
@@ -1525,8 +1525,8 @@ namespace aura_linux
 //   bool interaction_impl::OnCommand(wparam wparam, lparam lparam)
 //   {
 //
-//      UNREFERENCED_PARAMETER(wparam);
-//      UNREFERENCED_PARAMETER(lparam);
+//      __UNREFERENCED_PARAMETER(wparam);
+//      __UNREFERENCED_PARAMETER(lparam);
 //
 //      return false;
 //
@@ -1755,7 +1755,7 @@ namespace aura_linux
       bool interaction_impl::GetScrollInfo(i32 nBar, LPSCROLLINFO pScrollInfo, ::u32 nMask)
 
       {
-         UNREFERENCED_PARAMETER(nMask);
+         __UNREFERENCED_PARAMETER(nMask);
          ASSERT(pScrollInfo != nullptr);
 
 
@@ -1882,7 +1882,7 @@ namespace aura_linux
    void interaction_impl::on_message_create(::message::message * pmessage)
    {
 
-      UNREFERENCED_PARAMETER(pmessage);
+      __UNREFERENCED_PARAMETER(pmessage);
 
 //      Default();
 
@@ -2012,7 +2012,7 @@ namespace aura_linux
 //
 //   void interaction_impl::_001OnProdevianSynch(::message::message * pmessage)
 //   {
-//      UNREFERENCED_PARAMETER(pmessage);
+//      __UNREFERENCED_PARAMETER(pmessage);
 //   }
 
 
@@ -2374,7 +2374,7 @@ namespace aura_linux
    void interaction_impl::SetFont(::write_text::font* pfont, bool bRedraw)
    {
 
-      UNREFERENCED_PARAMETER(bRedraw);
+      __UNREFERENCED_PARAMETER(bRedraw);
 
       //ASSERT(::is_window((oswindow) get_handle())); m_pfont = __new< ::write_text::font >(*pfont);
 
@@ -2450,8 +2450,8 @@ namespace aura_linux
 //   i32 interaction_impl::SetWindowRgn(HRGN hRgn, bool bRedraw)
 //   {
 //
-//      UNREFERENCED_PARAMETER(hRgn);
-//      UNREFERENCED_PARAMETER(bRedraw);
+//      __UNREFERENCED_PARAMETER(hRgn);
+//      __UNREFERENCED_PARAMETER(bRedraw);
 //
 //      //throw ::not_implemented();
 //
@@ -2836,7 +2836,7 @@ namespace aura_linux
 //      return ::user::interaction_impl::SetTimer(uEvent, nElapse, pfnTimer);
 //
 //
-////        UNREFERENCED_PARAMETER(pfnTimer);
+////        __UNREFERENCED_PARAMETER(pfnTimer);
 //
 ////
 ////        m_puserinteraction->get_app()->set_timer(m_puserinteraction, uEvent, nElapse);
@@ -3842,7 +3842,7 @@ namespace aura_linux
 //
 //   void interaction_impl::on_delete(::object * pinteraction)
 //   {
-//      UNREFERENCED_PARAMETER(pinteraction);
+//      __UNREFERENCED_PARAMETER(pinteraction);
 //   }
 //
 //
