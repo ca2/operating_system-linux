@@ -57,7 +57,7 @@
 
    The model is:
      F0 .. F7 are the 8 registers.  FTOP[2:0] contains the 
-     ::raw::index of the current 'stack top' -- pretty meaningless, but
+     ::collection::index of the current 'stack top' -- pretty meaningless, but
      still.  FTOP is a 32-bit value.  FTOP[31:3] can be anything
      (not guaranteed to be zero).
 

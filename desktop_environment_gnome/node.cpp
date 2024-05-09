@@ -215,7 +215,7 @@ namespace desktop_environment_gnome
 //   }
 
 
-//   bool node::set_wallpaper(::raw::index iScreen, string strLocalImagePath)
+//   bool node::set_wallpaper(::collection::index iScreen, string strLocalImagePath)
 //   {
 //
 //      // wall-changer sourceforge.net contribution
@@ -293,7 +293,7 @@ namespace desktop_environment_gnome
 //   }
 //
 //
-//   string node::get_wallpaper(::raw::index iScreen)
+//   string node::get_wallpaper(::collection::index iScreen)
 //   {
 //
 //      return "";

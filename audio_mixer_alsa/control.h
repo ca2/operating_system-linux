@@ -53,7 +53,7 @@ namespace audio_mixer_alsa
 
       //::pointer<::audio_mixer_user::control> GetControl(int32_t iType);
 
-      //::pointer<::audio_mixer_user::control> GetControlByIndex(::raw::index iIndex);
+      //::pointer<::audio_mixer_user::control> GetControlByIndex(::collection::index iIndex);
 
       void Prepare();
 

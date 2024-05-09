@@ -64,7 +64,7 @@ int scan2)
          y = h_ratio * i;
          w_diff = x - (int)x;
          h_diff = y - (int)y;
-         ::raw::index = (int) ((y)*wscan2 + (x));
+         ::collection::index = (int) ((y)*wscan2 + (x));
          A = line[index];
          B = line[index + 1];
          C = line[index + wscan2];
@@ -558,7 +558,7 @@ namespace draw2d_gdiplus
    }
 
 
-  void graphics::DPtoLP(::point_f64 * pPoints, ::raw::count nCount)
+  void graphics::DPtoLP(::point_f64 * pPoints, ::collection::count nCount)
   {
 
      //::DPtoLP(get_handle2(), pPoints, (int) nCount);
@@ -1140,7 +1140,7 @@ namespace draw2d_gdiplus
 
       pa.set_size(nCount);
 
-      for (::raw::index i = 0; i < nCount; i++)
+      for (::collection::index i = 0; i < nCount; i++)
       {
 
          pa[i].X = (FLOAT) ppointParam[i].x;
@@ -1203,7 +1203,7 @@ namespace draw2d_gdiplus
    //}
 
 
-   bool graphics::draw_polygon(const ::point_f64 * ppointParam, ::raw::count nCount)
+   bool graphics::draw_polygon(const ::point_f64 * ppointParam, ::collection::count nCount)
    {
 
       if (nCount <= 0)
@@ -1245,7 +1245,7 @@ namespace draw2d_gdiplus
    }
 
 
-   //bool graphics::draw_polygon(const ::point_f64 * ppointParam, ::raw::count nCount)
+   //bool graphics::draw_polygon(const ::point_f64 * ppointParam, ::collection::count nCount)
    //{
 
    //   if (nCount <= 0)
@@ -1594,7 +1594,7 @@ namespace draw2d_gdiplus
                int cxFound;
                int cyFound;
 
-               for (::raw::index i = 0; i < pgraphicsSrc->m_pimage->get_image_count(); i++)
+               for (::collection::index i = 0; i < pgraphicsSrc->m_pimage->get_image_count(); i++)
                {
 
                   int x1 = 0;
@@ -1854,7 +1854,7 @@ namespace draw2d_gdiplus
    //            int cxFound;
    //            int cyFound;
 
-   //            for (::raw::index i = 0; i < pgraphicsSrc->m_pimage->get_image_count(); i++)
+   //            for (::collection::index i = 0; i < pgraphicsSrc->m_pimage->get_image_count(); i++)
    //            {
 
    //               int x1 = 0;
@@ -2176,7 +2176,7 @@ namespace draw2d_gdiplus
    }
 
 
-   size_f64 graphics::TabbedTextOut(double x, double y, const char * pszString, strsize nCount, ::raw::count nTabPositions, LPINT lpnTabStopPositions, i32 nTabOrigin)
+   size_f64 graphics::TabbedTextOut(double x, double y, const char * pszString, strsize nCount, ::collection::count nTabPositions, LPINT lpnTabStopPositions, i32 nTabOrigin)
    {
 
       //ASSERT(get_handle1() != nullptr);
@@ -2190,7 +2190,7 @@ namespace draw2d_gdiplus
    }
 
 
-   size_f64 graphics::TabbedTextOut(double x, double y, const string & str, ::raw::count nTabPositions, LPINT pnTabStopPositions, i32 nTabOrigin)
+   size_f64 graphics::TabbedTextOut(double x, double y, const string & str, ::collection::count nTabPositions, LPINT pnTabStopPositions, i32 nTabOrigin)
    {
 
       //ASSERT(get_handle1() != nullptr);
@@ -2204,7 +2204,7 @@ namespace draw2d_gdiplus
    }
 
 
-   size_f64 graphics::GetTabbedTextExtent(const char * pszString, strsize nCount, ::raw::count nTabPositions, LPINT lpnTabStopPositions)
+   size_f64 graphics::GetTabbedTextExtent(const char * pszString, strsize nCount, ::collection::count nTabPositions, LPINT lpnTabStopPositions)
    {
 
       //ASSERT(get_handle2() != nullptr);
@@ -2218,7 +2218,7 @@ namespace draw2d_gdiplus
    }
 
 
-   size_f64 graphics::GetTabbedTextExtent(const string & str, ::raw::count nTabPositions, LPINT pnTabStopPositions)
+   size_f64 graphics::GetTabbedTextExtent(const string & str, ::collection::count nTabPositions, LPINT pnTabStopPositions)
    {
 
       //ASSERT(get_handle2() != nullptr);
@@ -2232,7 +2232,7 @@ namespace draw2d_gdiplus
    }
 
 
-   size_f64 graphics::GetOutputTabbedTextExtent(const char * pszString, strsize nCount, ::raw::count nTabPositions, LPINT lpnTabStopPositions)
+   size_f64 graphics::GetOutputTabbedTextExtent(const char * pszString, strsize nCount, ::collection::count nTabPositions, LPINT lpnTabStopPositions)
    {
 
       //ASSERT(get_handle1() != nullptr);
@@ -2246,7 +2246,7 @@ namespace draw2d_gdiplus
    }
 
 
-   size_f64 graphics::GetOutputTabbedTextExtent(const string & str, ::raw::count nTabPositions, LPINT pnTabStopPositions)
+   size_f64 graphics::GetOutputTabbedTextExtent(const string & str, ::collection::count nTabPositions, LPINT pnTabStopPositions)
    {
 
       //ASSERT(get_handle1() != nullptr);
@@ -2790,7 +2790,7 @@ namespace draw2d_gdiplus
    //}
 
 
-   bool graphics::poly_polyline(const ::point_f64 * pPoints, const INT * lpPolyPoints, ::raw::count nCount)
+   bool graphics::poly_polyline(const ::point_f64 * pPoints, const INT * lpPolyPoints, ::collection::count nCount)
    {
 
       //ASSERT(get_handle1() != nullptr);
@@ -2816,7 +2816,7 @@ namespace draw2d_gdiplus
    //}
 
 
-   bool graphics::poly_bezier(const ::point_f64 * pPoints, ::raw::count nCount)
+   bool graphics::poly_bezier(const ::point_f64 * pPoints, ::collection::count nCount)
    {
 
       //ASSERT(get_handle1() != nullptr);
@@ -2975,7 +2975,7 @@ namespace draw2d_gdiplus
    }
 
 
-   i32 graphics::GetPath(::point_f64 * pPoints, ::u8 * lpTypes, ::raw::count nCount)
+   i32 graphics::GetPath(::point_f64 * pPoints, ::u8 * lpTypes, ::collection::count nCount)
 
    {
 
@@ -4943,7 +4943,7 @@ namespace draw2d_gdiplus
    //}
 
 
-   bool graphics::polydraw(const ::point_f64 * pPoints, const BYTE* lpTypes, ::raw::count nCount)
+   bool graphics::polydraw(const ::point_f64 * pPoints, const BYTE* lpTypes, ::collection::count nCount)
    {
 
       if (::is_null(m_pgraphics))
@@ -4971,7 +4971,7 @@ namespace draw2d_gdiplus
    }
 
 
-   bool graphics::polyline_to(const ::point_f64 * pPoints, ::raw::count nCount)
+   bool graphics::polyline_to(const ::point_f64 * pPoints, ::collection::count nCount)
    {
 
       if (::is_null(m_pgraphics))
@@ -5023,7 +5023,7 @@ namespace draw2d_gdiplus
    //}
 
    
-   bool graphics::poly_bezier_to(const ::point_f64 * ppoints, ::raw::count nCount)
+   bool graphics::poly_bezier_to(const ::point_f64 * ppoints, ::collection::count nCount)
    {
 
       if (::is_null(m_pgraphics))
@@ -5430,7 +5430,7 @@ namespace draw2d_gdiplus
    //}
 
 
-   //::raw::count graphics::GetEachCharTextExtent(array < ::size_f64 > & sizea, const string & str)
+   //::collection::count graphics::GetEachCharTextExtent(array < ::size_f64 > & sizea, const string & str)
    //{
    //   sizea.erase_all();
    //   strsize_array iaLen;
@@ -5469,7 +5469,7 @@ namespace draw2d_gdiplus
 
    // return Extents per UTF8 Char Boundaries, so there can be lesser
    // "extents" than bytes
-   ::raw::count graphics::get_character_extent(::f64_array & daLeft, ::f64_array& daRight, const string & str, strsize iStartParam, strsize iCountParam)
+   ::collection::count graphics::get_character_extent(::f64_array & daLeft, ::f64_array& daRight, const string & str, strsize iStartParam, strsize iCountParam)
    {
 
       if (str.is_empty())
@@ -5505,11 +5505,11 @@ namespace draw2d_gdiplus
 
       }
 
-      ::raw::count cLength = text.m_wstr.get_length();
+      ::collection::count cLength = text.m_wstr.get_length();
 
-      ::raw::count cBeg = wstrBefore.get_length();
+      ::collection::count cBeg = wstrBefore.get_length();
 
-      ::raw::index cEnd = cBeg + wstrMiddle.get_length();
+      ::collection::index cEnd = cBeg + wstrMiddle.get_length();
 
       int iCount = 0;
 
@@ -5545,7 +5545,7 @@ namespace draw2d_gdiplus
          iCount = minimum((int) cMaxMeasureCharacterRanges, (int) (cEnd - iStart));
 
 
-         for (::raw::index j = 0; j < iCount; j++)
+         for (::collection::index j = 0; j < iCount; j++)
          {
 
             charRanges[j].First = (int) (iStart + j);
@@ -5580,7 +5580,7 @@ namespace draw2d_gdiplus
 
             int iUtf8Length = ::unicode_ch().ansichar_uni_len(wch);
 
-            for (::raw::index iAnsiChar = 0; iAnsiChar < iUtf8Length; iAnsiChar++)
+            for (::collection::index iAnsiChar = 0; iAnsiChar < iUtf8Length; iAnsiChar++)
             {
 
                daLeft.add(rectBound.GetLeft());
@@ -5667,7 +5667,7 @@ namespace draw2d_gdiplus
 
       m_pgraphics->MeasureCharacterRanges(wstr, (INT) wstr.get_length(), m_pfont->get_os_data < Gdiplus::Font * >(this), box, &strFormat, (INT) count, pCharRangeRegions);
 
-      for(::raw::index i = 1; i < count; i++)
+      for(::collection::index i = 1; i < count; i++)
       {
 
          pCharRangeRegions[0].Union(&pCharRangeRegions[i]);
@@ -5746,7 +5746,7 @@ namespace draw2d_gdiplus
 
       m_pgraphics->MeasureCharacterRanges(wstr, (INT)wstr.get_length(), m_pfont->get_os_data < Gdiplus::Font * >(this), box, &strFormat, (INT)count, pCharRangeRegions);
 
-      for (::raw::index i = 1; i < count; i++)
+      for (::collection::index i = 1; i < count; i++)
       {
 
          pCharRangeRegions[0].Union(&pCharRangeRegions[i]);

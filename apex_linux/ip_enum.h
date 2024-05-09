@@ -34,8 +34,8 @@ namespace apex_linux
       virtual ~ip_enum();
 
 
-      //      virtual ::raw::count enumerate(ip_array & ipa);
-      virtual ::raw::count enumerate(pointer_array < ::networking::address > & ipa) override;
+      //      virtual ::collection::count enumerate(ip_array & ipa);
+      virtual ::collection::count enumerate(pointer_array < ::networking::address > & ipa) override;
 
    };
 

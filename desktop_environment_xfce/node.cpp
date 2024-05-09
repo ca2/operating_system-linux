@@ -243,7 +243,7 @@ namespace desktop_environment_xfce
 //   }
 
 //
-//   bool node::set_wallpaper(::raw::index iScreen, string strLocalImagePath)
+//   bool node::set_wallpaper(::collection::index iScreen, string strLocalImagePath)
 //   {
 //
 //      // wall-changer sourceforge.net contribution
@@ -374,7 +374,7 @@ namespace desktop_environment_xfce
 //   }
 //
 //
-//   string node::get_wallpaper(::raw::index iScreen)
+//   string node::get_wallpaper(::collection::index iScreen)
 //   {
 //
 //      return "";
@@ -453,13 +453,13 @@ namespace desktop_environment_xfce
 //
 //                              synchronous_lock slSession(psession->synchronization());
 //
-//                              ::raw::count iMonitorCount = gdk_display_get_n_monitors(pdisplay);
+//                              ::collection::count iMonitorCount = gdk_display_get_n_monitors(pdisplay);
 //
 //                              psession->m_rectaWorkspace.set_size(iMonitorCount);
 //
 //                              psession->m_rectaMonitor.set_size(iMonitorCount);
 //
-//                              for (::raw::index iMonitor = 0; iMonitor < iMonitorCount; iMonitor++)
+//                              for (::collection::index iMonitor = 0; iMonitor < iMonitorCount; iMonitor++)
 //                              {
 //
 //                                 GdkMonitor *pmonitor = gdk_display_get_monitor(pdisplay, iMonitor);
