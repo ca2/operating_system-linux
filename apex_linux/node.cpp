@@ -238,7 +238,7 @@ namespace apex_linux
               || psummary->m_strDistro.case_insensitive_begins("debian")))
       {
 
-         unix_shell_command("systemctl poweroff");
+         posix_shell_command("systemctl poweroff");
 
       }
       else
@@ -247,13 +247,13 @@ namespace apex_linux
          if(bIfPowerOff)
          {
 
-            unix_shell_command("shutdown -p now");
+            posix_shell_command("shutdown -p now");
 
          }
          else
          {
 
-            unix_shell_command("shutdown -h now");
+            posix_shell_command("shutdown -h now");
 
          }
 

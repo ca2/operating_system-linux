@@ -23,7 +23,7 @@ namespace desktop_environment_xfce
 
       m_pNodeDesktopEnvironmentXfce = this;
 
-      defer_initialize_x11();
+      //defer_initialize_x11();
 
       m_pGtkSettingsDefault = nullptr;
 

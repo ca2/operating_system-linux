@@ -549,7 +549,7 @@ namespace acme_linux
          }
 
       }
-      else if (this->has_unix_shell_command("lsb_release"))
+      else if (this->has_posix_shell_command("lsb_release"))
       {
 
          //         }
@@ -560,8 +560,8 @@ namespace acme_linux
 
          //# linuxbase.org
 
-         strOs = this->unix_shell_command_string("lsb_release -si");
-         strVer = this->unix_shell_command_string("lsb_release -sr");
+         strOs = this->get_posix_shell_command_output("lsb_release -si");
+         strVer = this->get_posix_shell_command_output("lsb_release -sr");
 
          strOs.make_lower();
          strVer.make_lower();
@@ -623,8 +623,8 @@ namespace acme_linux
 
          // # Fall back to uname, e.g. "Linux <version>", also works for BSD, etc.
 
-         strOs = this->unix_shell_command_string("uname -s");
-         strVer = this->unix_shell_command_string("uname -r");
+         strOs = this->get_posix_shell_command_output("uname -s");
+         strVer = this->get_posix_shell_command_output("uname -r");
 
       }
 
