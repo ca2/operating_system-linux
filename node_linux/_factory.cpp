@@ -4,14 +4,19 @@
 #include "acme/platform/system.h"
 #include <sys/utsname.h>
 
-
-::user::enum_desktop get_edesktop();
+namespace nano
+{
+   namespace user
+   {
+      ::user::enum_desktop get_edesktop();
+   } // namespace user
+}// namespace nano
 
 
 __FACTORY_EXPORT void node_linux_factory(::factory::factory * pfactory)
 {
 
-   auto edesktop = ::get_edesktop();
+   auto edesktop = ::nano::user::get_edesktop();
 
    if (edesktop & ::user::e_desktop_kde)
    {
