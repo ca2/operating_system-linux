@@ -15,7 +15,7 @@ list(APPEND library_source
         acme_path.h
         console.cpp
         console.h
-        console_ncurses.cpp
+        #console_ncurses.cpp
         dir_context.cpp
         dir_context.h
         dir_system.cpp
