@@ -968,11 +968,13 @@ namespace acme_linux
 
 #ifdef LINUX
 
-         if(system()->m_ewindowing == e_windowing_wayland)
+         auto ewindowing = system()->m_ewindowing;
+
+         if(ewindowing == e_windowing_wayland)
          {
             return "wayland";
          }
-         else if(system()->m_ewindowing == e_windowing_xcb)
+         else if(ewindowing == e_windowing_xcb)
          {
             return "xcb";
          }
@@ -996,7 +998,6 @@ namespace acme_linux
 #endif
 
    }
-
 
 
 } // namespace acme_linux
