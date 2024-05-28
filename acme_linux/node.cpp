@@ -502,11 +502,49 @@ namespace acme_linux
 
          auto set = acmefile()->parse_standard_configuration("/etc/os-release");
 
-         psummary->m_strDistro = set["ID"];
-         psummary->m_strDistroBranch = set["VARIANT_ID"];
-         psummary->m_strDesktopEnvironment = psummary->m_strDistroBranch;
-         psummary->m_strDistroRelease = set["VERSION_ID"];
-         psummary->m_strDistroFamily = set["ID_LIKE"];
+         psummary->m_strDistroName = set["ID"];
+         psummary->m_strDistroBranchName = set["VARIANT_ID"];
+         psummary->m_strDesktopEnvironmentName = psummary->m_strDistroBranch;
+         psummary->m_strDistroReleaseName = set["VERSION_ID"];
+         psummary->m_strDistroFamilyName = set["ID_LIKE"];
+
+         psummary->m_strDistro = psummary->m_strDistroName;
+         psummary->m_strDistroBranch = psummary->m_strDistroBranchName;
+         psummary->m_strDesktopEnvironment = psummary->m_strDesktopEnvironmentName;
+         psummary->m_strDistroRelease = psummary->m_strDistroReleaseName;
+         psummary->m_strDistroFamily = psummary->m_strDistroFamilyName;
+
+         psummary->m_strName = set["PRETTY_NAME"];
+         psummary->m_strDistroName = set["NAME"];
+         psummary->m_strDistroReleaseName = set["VERSION"];
+
+         if(psummary->m_strDistroName.is_empty())
+         {
+
+            psummary->m_strDistroName = psummary->m_strDistro;
+
+         }
+
+         if(psummary->m_strDistroReleaseName.is_empty())
+         {
+
+            psummary->m_strDistroReleaseName = psummary->m_strDistroRelease;
+
+         }
+
+         if(psummary->m_strName.is_empty())
+         {
+
+            psummary->m_strName = psummary->m_strDistroName;
+
+            if(psummary->m_strDistroReleaseName.has_char())
+            {
+
+               psummary->m_strName += " " + psummary->m_strDistroReleaseName;
+
+            }
+
+         }
 
          psummary->m_strDistro.make_lower();
          psummary->m_strDistroBranch.make_lower();
@@ -894,6 +932,71 @@ namespace acme_linux
       return acmedirectory()->home() / "integration/_____";
 
    }
+
+
+   ::string node::default_component_implementation(const ::scoped_string & scopedstrComponentName)
+   {
+
+#if defined(CUBE)
+
+      return "command_line";
+
+#else
+
+      if(scopedstrComponentName == "nano_archive")
+      {
+
+         return "libarchive";
+
+      }
+      else if(scopedstrComponentName == "nano_http")
+      {
+
+#ifdef LINUX
+
+         return "libcurl";
+
+#elif defined(WINDOWS_DESKTOP)
+
+         return "wininet";
+
+#endif
+
+      }
+      else if(scopedstrComponentName == "nano_user")
+      {
+
+#ifdef LINUX
+
+         if(system()->m_ewindowing == e_windowing_wayland)
+         {
+            return "wayland";
+         }
+         else if(system()->m_ewindowing == e_windowing_xcb)
+         {
+            return "xcb";
+         }
+         else
+         {
+
+            return "x11";
+
+         }
+
+#elif defined(WINDOWS_DESKTOP)
+
+         return "win32";
+
+#endif
+
+      }
+
+      return {};
+
+#endif
+
+   }
+
 
 
 } // namespace acme_linux

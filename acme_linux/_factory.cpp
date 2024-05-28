@@ -3,7 +3,7 @@
 #include "acme_directory.h"
 #include "acme_file.h"
 #include "acme_path.h"
-#include "console.h"
+//#include "console.h"
 #include "dir_system.h"
 #include "dir_context.h"
 #include "file_context.h"
@@ -33,7 +33,7 @@ __FACTORY_EXPORT void acme_linux_factory(::factory::factory * pfactory)
    pfactory->add_factory_item < ::acme_linux::file_context, ::file_context >();
 
 
-   pfactory->add_factory_item < ::acme_linux::console, ::console::console >();
+   //pfactory->add_factory_item < ::acme_linux::console, ::console::console >();
    //pfactory->add_factory_item < ::acme_linux::file, ::file::file >();
    //pfactory->add_factory_item < ::linux::stdio_file, ::file::file >();
    //pfactory->add_factory_item < ::linux::stdio_file, ::file::text_file >();

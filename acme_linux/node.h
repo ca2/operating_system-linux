@@ -136,6 +136,9 @@ namespace acme_linux
       virtual ::file::path get_default_base_integration_folder();
 
 
+      ::string default_component_implementation(const ::scoped_string & scopedstrComponentName) override;
+
+
    };
 
 
