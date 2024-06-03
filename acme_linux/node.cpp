@@ -992,6 +992,12 @@ namespace acme_linux
 #endif
 
       }
+      else if(scopedstrComponentName == "nano_idn")
+      {
+
+         return "libidn";
+
+      }
 
       return {};
 
