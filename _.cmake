@@ -189,7 +189,7 @@ elseif (${DISTRO} STREQUAL "debian")
 
    set(MPG123_PKG_MODULE "libmpg123")
 
-   add_compile_options(-gdwarf-4)
+   add_compile_options("$<$<CONFIG:Debug>:-gdwarf-4>")
 
    set(HAS_SYSTEM_UNAC TRUE)
 
