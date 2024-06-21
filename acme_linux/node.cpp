@@ -934,6 +934,39 @@ namespace acme_linux
    }
 
 
+   ::file::path node::___fonts_folder()
+   {
+
+      ::file::path path___fontsFolder;
+
+      auto psummary = this->operating_system_summary();
+
+      if(psummary->m_strDistroFamily.case_insensitive_equals("debian"))
+      {
+
+         path___fontsFolder = "/usr/share/fonts/truetype/___fonts";
+
+      }
+      else if(psummary->m_strDistro.case_insensitive_equals("fedora"))
+      {
+
+         path___fontsFolder = "/usr/share/fonts/___fonts";
+
+      }
+      else
+      {
+
+         path___fontsFolder = "/usr/share/fonts/truetype/___fonts";
+
+      }
+
+      return path___fontsFolder;
+
+   }
+
+
+
+
    ::string node::default_component_implementation(const ::scoped_string & scopedstrComponentName)
    {
 

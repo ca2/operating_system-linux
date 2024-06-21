@@ -133,7 +133,10 @@ namespace acme_linux
       enum_linux_distribution get_linux_distribution() const override;
 
 
-      virtual ::file::path get_default_base_integration_folder();
+      ::file::path get_default_base_integration_folder() override;
+
+
+      ::file::path ___fonts_folder() override;
 
 
       ::string default_component_implementation(const ::scoped_string & scopedstrComponentName) override;
