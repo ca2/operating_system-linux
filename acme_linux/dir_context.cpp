@@ -44,7 +44,7 @@ inline bool linux_dir_myspace(char ch)
 //
 //   string strPrefix = str + "=";
 //
-//   straLines.filter_begins_ci(strPrefix);
+//   straLines.case_insensitive_filter_begins(strPrefix);
 //
 //   if(straLines.get_size() != 1)
 //   {
@@ -434,7 +434,7 @@ namespace acme_linux
          return true; // assume empty string is root_ones directory
       }
 
-      if(task_flag().is_set(e_task_flag_compress_is_dir) && iLast >= 3  && !ansi_count_compare_ci(&((const char *) str)[iLast - 3], ".zip", 4))
+      if(task_flag().is_set(e_task_flag_compress_is_dir) && iLast >= 3  && !case_insensitive_ansi_count_compare(&((const char *) str)[iLast - 3], ".zip", 4))
       {
 
          return true;

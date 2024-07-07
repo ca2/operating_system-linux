@@ -150,7 +150,7 @@ namespace acme_linux
 
       ::string strId;
 
-      if(lines.find_first_begins_eat_ci(strId, "id="))
+      if(lines.case_insensitive_find_first_begins_eat(strId, "id="))
       {
 
          strId.make_lower();

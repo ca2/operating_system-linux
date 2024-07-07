@@ -68,7 +68,7 @@ i32 CLASS_DECL_APEX_LINUX __linux_main(::apex::system * psystem, ::create * pmai
 //                           pszRight,
 //                           -1) - CSTR_EQUAL;
 //#else
-//   return ansi_compare_ci(pszLeft,pszRight);
+//   return case_insensitive_ansi_compare(pszLeft,pszRight);
 //#endif
 //}
 //
