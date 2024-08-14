@@ -5,6 +5,7 @@ default_windowing_kde3=operating_system-linux/windowing_wayland
 default_desktop_environment=operating_system-linux/desktop_environment_gnome
 default_imaging=app/imaging_freeimage
 default_draw2d=app/draw2d_cairo
+default_nano_idn=app/nano_idn_libidn
 default_write_text=operating_system-posix/write_text_pango
 default_audio=operating_system-posix/audio_alsa
 default_music_midi=operating_system-linux/music_midi_alsa
