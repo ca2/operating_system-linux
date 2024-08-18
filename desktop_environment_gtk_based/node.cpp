@@ -15,7 +15,7 @@
 void gdk_branch(const ::procedure & procedure);
 CLASS_DECL_ACME void set_main_user_itask(itask_t itask);
 
-namespace desktop_environment_gnome
+namespace desktop_environment_gtk_based
 {
 
 
@@ -25,7 +25,7 @@ namespace desktop_environment_gnome
    node::node()
    {
 
-      m_pNodeDesktopEnvironmentGnome = this;
+      m_pNodeDesktopEnvironmentGtkBased = this;
 
 //      defer_initialize_x11();
 
@@ -61,7 +61,7 @@ namespace desktop_environment_gnome
 
       ::aura_linux::node::initialize(pparticle);
 
-      ::node_gnome::node::initialize(pparticle);
+      ::node_gtk_based::node::initialize(pparticle);
 
    }
 
@@ -348,7 +348,7 @@ namespace desktop_environment_gnome
 //   }
 
 
-} // namespace desktop_environment_gnome
+} // namespace desktop_environment_gtk_based
 
 
 

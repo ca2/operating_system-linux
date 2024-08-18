@@ -1,5 +1,5 @@
 cmake_minimum_required(VERSION 3.16)
-project(desktop_environment_gnome CXX)
+project(desktop_environment_gtk_based CXX)
 
 
 list(APPEND library_source
@@ -27,7 +27,7 @@ list(APPEND library_references
    aura_linux
    windowing_x11
         node_gdk
-   node_gnome
+   node_gtk_based
    )
 
 if(${HAS_GTK4})
@@ -97,7 +97,7 @@ target_include_directories(static_${PROJECT_NAME} PRIVATE ${library_include_dire
 
 
 
-target_compile_definitions(${PROJECT_NAME} PRIVATE _desktop_environment_gnome_LIBRARY)
+target_compile_definitions(${PROJECT_NAME} PRIVATE _${PROJECT_NAME}_project)
 target_compile_definitions(${PROJECT_NAME} PRIVATE UNICODE)
 target_compile_definitions(${PROJECT_NAME} PRIVATE _UNICODE)
 
