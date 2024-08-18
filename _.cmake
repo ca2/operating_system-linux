@@ -202,6 +202,10 @@ if (${DISTRO} STREQUAL "ubuntu")
 
    set(DEBIAN_LIKE TRUE)
 
+   add_compile_definitions(UBUNTU_LINUX)
+
+   add_compile_definitions(DEBIAN_LIKE_LINUX)
+
    message(STATUS "UBUNTU has been set TRUE")
 
    set(APPINDICATOR_PKG_MODULE "ayatana-appindicator3-0.1")
@@ -215,6 +219,8 @@ elseif (${DISTRO} STREQUAL "debian")
    set(DEBIAN TRUE)
 
    add_compile_definitions(DEBIAN_LINUX)
+
+   add_compile_definitions(DEBIAN_LIKE_LINUX)
 
    message(STATUS "DEBIAN has been set TRUE")
 
@@ -254,9 +260,11 @@ elseif ("${DISTRO}" STREQUAL "raspbian")
 
    set(DEBIAN_LIKE TRUE)
 
-   set(DONT_USE_PKG_CONFIG FALSE)
-
    add_compile_definitions(RASPBERRYPIOS)
+
+   add_compile_definitions(DEBIAN_LIKE_LINUX)
+
+   set(DONT_USE_PKG_CONFIG FALSE)
 
    set(HAS_SYSTEM_UNAC TRUE)
 
@@ -269,6 +277,8 @@ elseif (${DISTRO} STREQUAL "manjaro")
       set(MANJARO TRUE)
 
       set(ARCH_LIKE TRUE)
+
+      add_compile_definitions(ARCH_LIKE_LINUX)
 
       message(STATUS "MANJARO has been set TRUE")
 
