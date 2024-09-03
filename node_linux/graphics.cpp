@@ -829,7 +829,7 @@ namespace draw2d_gdiplus
       //   {0,   0,  0,  1, 0},
       //   {1,   1,  1,  0, 1}};
 
-      //ColorMatrix * colorMatrix = __new< ColorMatrix >(colorMatrixElements);
+      //ColorMatrix * colorMatrix = new ColorMatrix(colorMatrixElements);
 
       //imageAttributes.SetColorMatrix(
       //   colorMatrix,

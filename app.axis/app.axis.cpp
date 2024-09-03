@@ -52,13 +52,13 @@ int32_t __lnx_main(int32_t argc, char * argv[])
   // if(!defer_core_init())
     //  return -1;
 
-   ::axis::system * psystem = __new< ::axis::system >(NULL);
+   ::axis::system * psystem = new ::axis::system(NULL);
 
     psystem->::exception::translator::attach();
 
    int32_t nReturnCode = 0;
 
-   ::create * pinitmaindata  = __new< ::create >();
+   ::create * pinitmaindata  = new ::create();
 
    pinitmaindata->m_hInstance             = NULL;
 
@@ -203,7 +203,7 @@ int32_t ca2_main(HINSTANCE hInstance, HINSTANCE hPrevInstance, const char * lpCm
 
 //      _set_purecall_handler(_ca2_purecall);
 
-      ::axis::system * psystem = __new< ::axis::system >(NULL);
+      ::axis::system * psystem = new ::axis::system(NULL);
 
 
       //Sleep(30 * 1000);
@@ -213,7 +213,7 @@ int32_t ca2_main(HINSTANCE hInstance, HINSTANCE hPrevInstance, const char * lpCm
 
       int32_t nReturnCode = 0;
 
-      ::create * pinitmaindata  = __new< ::create >();
+      ::create * pinitmaindata  = new ::create();
 
       pinitmaindata->m_hInstance             = hInstance;
       pinitmaindata->m_hPrevInstance         = hPrevInstance;
