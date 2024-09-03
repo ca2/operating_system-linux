@@ -87,7 +87,7 @@
 ////      if(iNew == INVALID_FILE)
 ////         return nullptr;
 ////
-////      auto pFile  = __allocate< file >(get_app(), iNew);
+////      auto pFile  = ::place(new file(get_app(), iNew));
 ////      pFile->m_iFile = (::u32)iNew;
 ////      ASSERT(pFile->m_iFile != INVALID_FILE);
 ////      return pFile;
