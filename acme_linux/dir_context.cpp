@@ -129,7 +129,7 @@ namespace acme_linux
 
 //      auto pdocument = create_xml_document();
 //
-//      pdocument->load(pcontext->m_papexcontext->file()->as_string(appdata() /"configuration\\directory.xml"));
+//      pdocument->load(file()->as_string(appdata() /"configuration\\directory.xml"));
 //
 //      if(pdocument->root() && pdocument->root()->get_name() == "directory_configuration")
 //      {
