@@ -747,7 +747,7 @@ namespace acme_linux
 //   }
 //
 //
-//   ::file::path dir_context::image()
+//   ::file::path dir_context::image::image()
 //   {
 //
 //      if(m_pathImage.has_char())

@@ -5,7 +5,7 @@ namespace draw2d_gdiplus
 {
 
 
-   image::image()
+   image::image::image()
    {
 
       m_sizeWnd.cx = 0;
@@ -297,7 +297,7 @@ namespace draw2d_gdiplus
    bool image::destroy()
    {
 
-      ::image::destroy();
+      ::image::image::destroy();
 
       m_pgraphics.release();
 
@@ -354,7 +354,7 @@ namespace draw2d_gdiplus
    }
 
 
-   //bool image::draw(const ::point_i32 & pointDest, ::image * pimage, const ::rectangle_i32 & rectSrc)
+   //bool image::draw(const ::point_i32 & pointDest, ::image::image *pimage, const ::rectangle_i32 & rectSrc)
    //{
 
    //   return m_pgraphics->draw(pointDest, pimage, rectSrc) != false;
@@ -362,7 +362,7 @@ namespace draw2d_gdiplus
    //}
 
 
-   bool image::draw(const ::rectangle_i32 & rectDstParam, ::image * pimageSrc, const ::point_i32 & pointSrcParam)
+   bool image::draw(const ::rectangle_i32 & rectDstParam, ::image::image *pimageSrc, const ::point_i32 & pointSrcParam)
    {
 
       ::rectangle_i32 rectDst(rectDstParam);
@@ -371,7 +371,7 @@ namespace draw2d_gdiplus
 
       ::size_i32 size(rectDst.size());
 
-      ::image * pimageDst = this;
+      ::image::image *pimageDst = this;
 
       if (pimageDst->m_bMapped && pimageSrc->m_bMapped)
       {
@@ -486,15 +486,15 @@ namespace draw2d_gdiplus
    }
 
 
- /*  bool image::draw(const ::rectangle_i32 & rectDst, ::image * pimage, const ::point_i32 & pointSrc)
+ /*  bool image::draw(const ::rectangle_i32 & rectDst, ::image::image *pimage, const ::point_i32 & pointSrc)
    {
 
-      return ::image::draw(rectDst, pimage, pointSrc);
+      return ::image::image::draw(rectDst, pimage, pointSrc);
 
    }*/
 
 
-   ::e_status image::SetIconMask(::draw2d::icon * picon, i32 cx, i32 cy)
+   ::e_status image::SetIconMask(::image::icon * picon, i32 cx, i32 cy)
    {
 
       if (cx <= 0 || cy <= 0)
@@ -514,7 +514,7 @@ namespace draw2d_gdiplus
       }
 
       // White blend image
-      ::image_pointer pimage1;
+      ::image::image_pointer pimage1;
 
       estatus = __construct(pimage1);
 
@@ -541,7 +541,7 @@ namespace draw2d_gdiplus
       pimage1->g()->draw(::rect_dim(0, 0, cx, cy), picon);
 
       // Black blend image
-      ::image_pointer pimage2;
+      ::image::image_pointer pimage2;
 
       estatus = __construct(pimage2);
       
@@ -570,7 +570,7 @@ namespace draw2d_gdiplus
       //DI_IMAGE | DI_MASK);
 
       // Mask image
-      ::image_pointer pimageM;
+      ::image::image_pointer pimageM;
 
       estatus = __construct(pimageM);
 
@@ -675,7 +675,7 @@ namespace draw2d_gdiplus
    bool image::on_exif_orientation()
    {
 
-      return ::image::on_exif_orientation();
+      return ::image::image::on_exif_orientation();
 
    }
 

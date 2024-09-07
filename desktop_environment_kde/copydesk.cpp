@@ -237,7 +237,7 @@ namespace node_kde{
    }
 
 
-   bool copydesk::_desk_to_image(::image * pimage)
+   bool copydesk::_desk_to_image(::image::image *pimage)
    {
 
       ::pointer<clipboard_data>pdata = ::place(new clipboard_data(get_context_application(), e_clipboard_get_image));
@@ -266,7 +266,7 @@ namespace node_kde{
    }
 
 
-   bool copydesk::_image_to_desk(const ::image * pimage)
+   bool copydesk::_image_to_desk(const ::image::image *pimage)
    {
 
 

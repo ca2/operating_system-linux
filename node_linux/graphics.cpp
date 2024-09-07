@@ -1663,7 +1663,7 @@ namespace draw2d_gdiplus
                if (::is_set(pFind))
                {
 
-                  ::image_pointer pimage = pgraphicsSrc->m_pimage->get_image(iFind);
+                  ::image::image_pointer pimage = pgraphicsSrc->m_pimage->get_image(iFind);
 
                   auto emode = m_pgraphics->GetInterpolationMode();
 
@@ -1828,9 +1828,9 @@ namespace draw2d_gdiplus
    //               y2 = 0;
    //            }*/
 
-   //            //::image_pointer pimage = m_pimage;
+   //            //::image::image_pointer pimage = m_pimage;
    //            //int iScan = pimage->m_iScan;
-   //            //::image_pointer pimageMipmap = pgraphicsSrc->m_pimage;
+   //            //::image::image_pointer pimageMipmap = pgraphicsSrc->m_pimage;
    //            //color32_t * pcrMipmap = imageMipmap.m_pcolorref;
    //            //int iMimapScan = imageMipmap.m_iScan;
    //            //::size_f64 sizeMipmap = imageMipmap.m_size;
@@ -1923,7 +1923,7 @@ namespace draw2d_gdiplus
    //            if (::is_set(pFind))
    //            {
 
-   //               ::image_pointer pimage = pgraphicsSrc->m_pimage->get_image(iFind);
+   //               ::image::image_pointer pimage = pgraphicsSrc->m_pimage->get_image(iFind);
 
    //               auto emode = m_pgraphics->GetInterpolationMode();
 
@@ -7127,7 +7127,7 @@ namespace draw2d_gdiplus
          if (rectIntersect.intersect(rectIntersect, rectText))
          {
 
-            ::image_pointer pimage1;
+            ::image::image_pointer pimage1;
             //#ifdef UNIVERSAL_WINDOWS
             //            g_pimagea.add(pimage1);
             //#endif
@@ -7227,7 +7227,7 @@ namespace draw2d_gdiplus
    //         //else
    //         {
 
-   //            ::image_pointer pimage1;
+   //            ::image::image_pointer pimage1;
    //            
    //            auto estatus = __construct(pimage1);
 

@@ -977,7 +977,7 @@ namespace aura_linux
 //   }
 
 
-//   void interaction_impl::_002OnDraw(::image * pimage)
+//   void interaction_impl::_002OnDraw(::image::image *pimage)
 //   {
 //
 //   }
@@ -1922,7 +1922,7 @@ namespace aura_linux
 ////      EnumWindows(GetAppsEnumWindowsProc, (LPARAM) &wnda);
 //   }
 
-//   void interaction_impl::_001OnDeferPaintLayeredWindowBackground(::image * pimage)
+//   void interaction_impl::_001OnDeferPaintLayeredWindowBackground(::image::image *pimage)
 //   {
 //
 //      _001DeferPaintLayeredWindowBackground(pgraphics);
@@ -2559,7 +2559,7 @@ namespace aura_linux
 //      return nullptr;
 //   }
 //
-//   bool interaction_impl::ReleaseDC(::image * pimage)
+//   bool interaction_impl::ReleaseDC(::image::image *pimage)
 //   {
 //
 //      if(pimage->is_null())
