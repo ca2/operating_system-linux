@@ -32,15 +32,15 @@ namespace desktop_environment_kde
 } // namespace node_kde
 
 
-namespace user
-{
-
-
-   char * gsettings_get_malloc(const char * pszSchema, const char * pszKey);
-
-
-} // namespace user
-
+// namespace user
+// {
+//
+//
+//    char * gsettings_get_malloc(const char * pszSchema, const char * pszKey);
+//
+//
+// } // namespace user
+//
 
 //#include "node.h"
 
