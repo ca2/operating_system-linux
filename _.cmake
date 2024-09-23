@@ -121,6 +121,8 @@ set(CMAKE_INSTALL_RPATH $ORIGIN)
 
 set(CURRENT_DESKTOP_ENVIRONMENT $ENV{XDG_CURRENT_DESKTOP})
 
+if(NOT ${CONSOLE_BUILD_TOOLS})
+# CONSOLE_BUILD_TOOLS are dependant just on linux kernel version and glib version?
 if(${DISTRO} STREQUAL "linuxmint")
    set(DISTRO "ubuntu")
    set(LINUX_MINT TRUE)
@@ -131,6 +133,8 @@ if(${DISTRO} STREQUAL "linuxmint")
    else()
       set(DISTRO_RELEASE "24.04")
    endif()
+endif()
+
 endif()
 
 
@@ -195,6 +199,8 @@ message(STATUS "DISTRO is ${DISTRO}")
 
 message(STATUS "DESKTOP_ENVIRONMENT_NAME is ${DESKTOP_ENVIRONMENT_NAME}")
 
+if(NOT ${CONSOLE_BUILD_TOOLS})
+   # CONSOLE_BUILD_TOOLS are dependant just on linux kernel version and glib version?
 
 
 if (${DISTRO} STREQUAL "ubuntu")
@@ -300,6 +306,8 @@ endif ()
 
 message(STATUS "DISTRO_RELEASE is ${DISTRO_RELEASE}")
 
+endif()
+
 set(MIDI TRUE)
 set(ALSA_MIDI TRUE)
 set(INTERPROCESS_COMMUNICATION_SYSTEM_5 TRUE)
@@ -342,6 +350,11 @@ set(default_networking "networking_bsd")
 
 
 set(LINUX TRUE)
+
+
+if(NOT ${CONSOLE_BUILD_TOOLS})
+   # CONSOLE_BUILD_TOOLS are dependant just on linux kernel version and glib version?
+
 
 if (${KDE_DESKTOP})
 
@@ -609,7 +622,7 @@ elseif (${GTK_BASED_DESKTOP})
 
 endif ()
 
-
+endif()
 
 #set(static_acme_extra_pkgconfig cairo xcb x11 xkbcommon xcb-render xcb-aux x11-xcb)
 #set(static_aura_posix_pkgconfig libstartup-notification-1.0)
