@@ -1001,7 +1001,7 @@
 //}
 //
 //
-//CLASS_DECL_ACME bool posix_resolve_shortcut(string & strTarget, const char * pszSource, ::pointer<::user::primitive>puiMessageParentOptional)
+//CLASS_DECL_ACME bool posix_resolve_shortcut(string & strTarget, const char * pszSource, ::pointer<::user::prototype>puiMessageParentOptional)
 //{
 //
 //   char realname[_POSIX_PATH_MAX * 4];

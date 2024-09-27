@@ -15,7 +15,7 @@ void copy(::file::path & path, const ::string & str)
 }
 
 
-#include "acme/primitive/collection/_generic_array.h"
+#include "acme/prototype/collection/_generic_array.h"
 
 
 #include  "acme/operating_system/ansi/binreloc.h"
@@ -951,6 +951,12 @@ namespace acme_linux
       {
 
          return "libarchive";
+
+      }
+      else if(scopedstrComponentName == "nano_graphics")
+      {
+
+         return "cairo";
 
       }
       else if(scopedstrComponentName == "nano_http")

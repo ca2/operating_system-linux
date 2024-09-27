@@ -2269,7 +2269,7 @@ namespace aura_linux
 //   }
 //
 //
-//   ::user::primitive * interaction_impl::set_owner(::user::primitive * pprimitiveOwner)
+//   ::user::prototype * interaction_impl::set_owner(::user::prototype * pprimitiveOwner)
 //   {
 //
 //      auto puserinteraction = m_puserinteraction;
