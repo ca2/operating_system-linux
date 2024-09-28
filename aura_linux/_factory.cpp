@@ -3,7 +3,7 @@
 #include "interaction_impl.h"
 #include "hardware/device_group.h"
 #include "hardware/devices.h"
-#include "acme/primitive/primitive/factory.h"
+#include "acme/prototype/prototype/factory.h"
 
 
 __FACTORY_EXPORT void apex_linux_factory(::factory::factory * pfactory);

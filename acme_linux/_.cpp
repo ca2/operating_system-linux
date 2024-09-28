@@ -1,5 +1,5 @@
 #include "framework.h"
-// #include "acme/primitive/string/string.h"
+// #include "acme/prototype/string/string.h"
 #include "acme/_library.h"
 #include <unistd.h>
 

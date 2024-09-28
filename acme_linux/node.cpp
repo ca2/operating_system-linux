@@ -15,7 +15,7 @@ void copy(::file::path & path, const ::string & str)
 }
 
 
-#include "acme/primitive/collection/_generic_array.h"
+#include "acme/prototype/collection/_generic_array.h"
 
 
 #include  "acme/operating_system/ansi/binreloc.h"
@@ -953,6 +953,12 @@ namespace acme_linux
          return "libarchive";
 
       }
+      else if(scopedstrComponentName == "nano_graphics")
+      {
+
+         return "cairo";
+
+      }
       else if(scopedstrComponentName == "nano_http")
       {
 
@@ -972,22 +978,45 @@ namespace acme_linux
 
 #ifdef LINUX
 
-         auto ewindowing = system()->m_ewindowing;
+         auto edesktop = this->get_edesktop();
 
-         if(ewindowing == e_windowing_wayland)
+         if(edesktop & user::e_desktop_kde)
          {
-            return "wayland";
-         }
-         else if(ewindowing == e_windowing_xcb)
-         {
-            return "xcb";
+
+            return "kde5";
+
          }
          else
          {
 
-            return "x11";
+#if HAS_GTK4
+
+            return "gtk4";
+
+#else
+
+            return "gtk3";
+
+#endif
 
          }
+
+         // auto ewindowing = system()->m_ewindowing;
+         //
+         // if(ewindowing == e_windowing_wayland)
+         // {
+         //    return "wayland";
+         // }
+         // else if(ewindowing == e_windowing_xcb)
+         // {
+         //    return "xcb";
+         // }
+         // else
+         // {
+         //
+         //    return "x11";
+         //
+         // }
 
 #elif defined(WINDOWS_DESKTOP)
 

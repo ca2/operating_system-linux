@@ -8,7 +8,7 @@
 #include "acme/filesystem/filesystem/listing.h"
 #include "acme/operating_system/shared_posix/c_error_number.h"
 #include "acme/parallelization/task_flag.h"
-#include "acme/primitive/string/international.h"
+#include "acme/prototype/string/international.h"
 #include "acme/platform/system.h"
 #undef USE_MISC
 
