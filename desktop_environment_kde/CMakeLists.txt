@@ -41,7 +41,7 @@ list(APPEND library_references
         aura
         aura_posix
         aura_linux
-        windowing_xcb
+        #windowing_xcb
         )
 
 if(${HAS_KDE6})
