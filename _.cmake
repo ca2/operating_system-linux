@@ -542,7 +542,7 @@ if (${KDE_DESKTOP})
       #        if(knotifications_libs STREQUAL "")
       #            set(knotifications_cflags -I/usr/include/KF5/KNotifications)
       #        endif()
-
+      list(APPEND app_common_dependencies nano_graphics_cairo nano_user_kde5)
    endif()
 
    list(APPEND app_common_dependencies desktop_environment_kde)
