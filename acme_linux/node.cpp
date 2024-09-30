@@ -976,30 +976,34 @@ namespace acme_linux
       else if(scopedstrComponentName == "nano_user")
       {
 
-#ifdef LINUX
+         ::string strToolkit = get_user_toolkit_id();
 
-         auto edesktop = this->get_edesktop();
+         return strToolkit;
 
-         if(edesktop & user::e_desktop_kde)
-         {
+// #ifdef LINUX
+//
+//          auto edesktop = this->get_edesktop();
+//
+//          if(edesktop & user::e_desktop_kde)
+//          {
+//
+//             return "kde5";
+//
+//          }
+//          else
+//          {
+//
+// #if HAS_GTK4
+//
+//             return "gtk4";
+//
+// #else
+//
+//             return "gtk3";
+//
+// #endif
 
-            return "kde5";
-
-         }
-         else
-         {
-
-#if HAS_GTK4
-
-            return "gtk4";
-
-#else
-
-            return "gtk3";
-
-#endif
-
-         }
+//         }
 
          // auto ewindowing = system()->m_ewindowing;
          //
@@ -1018,11 +1022,11 @@ namespace acme_linux
          //
          // }
 
-#elif defined(WINDOWS_DESKTOP)
-
-         return "win32";
-
-#endif
+// #elif defined(WINDOWS_DESKTOP)
+//
+//          return "win32";
+//
+// #endif
 
       }
       else if(scopedstrComponentName == "nano_idn")
