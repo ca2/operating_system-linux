@@ -37,15 +37,19 @@ list(APPEND library_references
         acme
         acme_posix
         acme_linux
+        windowing_system_gtk3
+        nano_user_gtk3
         apex
         apex_posix
         apex_linux
+        innate_ui_gtk3
         aqua
         aura
         aura_posix
         aura_linux
-        windowing_x11
-        node_gdk
+        windowing_gtk3
+        #windowing_x11
+        #node_gdk
         node_gtk3
         node_xfce
 )

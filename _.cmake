@@ -592,13 +592,13 @@ elseif (${XFCE_DESKTOP})
 
    list(APPEND static_app_common_dependencies static_desktop_environment_xfce)
 
-   set(default_windowing "windowing_x11")
+   set(default_windowing "windowing_gtk3")
 
    set(default_desktop_environment desktop_environment_xfce)
 
    add_compile_definitions(DESKTOP_ENVIRONMENT_XFCE)
 
-   add_compile_definitions(default_windowing=windowing_x11)
+   add_compile_definitions(default_windowing=windowing_gtk3)
 
 elseif (${GTK_BASED_DESKTOP})
 
