@@ -6,7 +6,7 @@
 #include "xfce_shared.h"
 #include "apex/platform/system.h"
 #include "windowing_x11/windowing_x11.h"
-#include "acme/windowing_system/windowing_system.h"
+#include "acme/windowing/windowing_base.h"
 
 
 void gdk_branch(const ::procedure & procedure);
@@ -386,7 +386,7 @@ namespace desktop_environment_xfce
    ::e_status node::node_post(const ::procedure & procedure)
    {
 
-      system()->windowing_system()->async(procedure);
+      system()->windowing_base()->async(procedure);
 
       return ::success;
 
