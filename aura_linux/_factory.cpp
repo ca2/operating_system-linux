@@ -23,7 +23,7 @@ __FACTORY_EXPORT void aura_linux_factory(::factory::factory * pfactory)
 
 
    pfactory->add_factory_item < ::aura_linux::node, ::acme::node >();
-   pfactory->add_factory_item < ::aura_linux::interaction_impl, ::user::interaction_impl >();
+   pfactory->add_factory_item < ::aura_linux::interaction_impl, ::windowing::window >();
 
 
    pfactory->add_factory_item < ::aura_linux::hardware::device_group, ::hardware::device_group >();

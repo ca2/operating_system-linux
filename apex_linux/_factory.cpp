@@ -52,7 +52,7 @@ __FACTORY_EXPORT void apex_linux_factory(::factory::factory * pfactory)
 
 
    //create_factory < ::linux::buffer, ::graphics::graphics >();
-   //create_factory < ::linux::interaction_impl, ::user::interaction_impl >();
+   //create_factory < ::linux::interaction_impl, ::windowing::window >();
 
    //pfactory->add_factory_item < ::file::os_watcher, ::file::watcher >();
    //pfactory->add_factory_item < ::file::os_watch, ::file::watch >();
