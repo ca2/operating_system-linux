@@ -24,7 +24,7 @@ namespace aura_linux
 
 
       string                           m_strWindowText;
-      ::user::prototype *              m_pbasewnd;
+      ::user::interaction_base *              m_pbasewnd;
       bool                             m_bExposing;
       //::pointer<x11data>            m_px11data;
       i32                              m_iDepth;
@@ -68,7 +68,7 @@ namespace aura_linux
       //virtual ::e_status set_tool_window(bool bSet = true) override;
 
       //virtual ::user::interaction * get_owner();
-      //virtual ::user::prototype * set_owner(::user::prototype * pprimitiveOwner) override;
+      //virtual ::user::interaction_base * set_owner(::user::interaction_base * pprimitiveOwner) override;
 
       //virtual oswindow get_handle() const override;
 
