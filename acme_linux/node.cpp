@@ -1005,13 +1005,13 @@ namespace acme_linux
 
 //         }
 
-         // auto ewindowing = system()->m_ewindowing;
+         // auto ewindowing = ::windowing::get_ewindowing();
          //
-         // if(ewindowing == e_windowing_wayland)
+         // if(ewindowing == ::windowing::e_windowing_wayland)
          // {
          //    return "wayland";
          // }
-         // else if(ewindowing == e_windowing_xcb)
+         // else if(ewindowing == ::windowing::e_windowing_xcb)
          // {
          //    return "xcb";
          // }
