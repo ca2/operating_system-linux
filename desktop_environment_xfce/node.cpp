@@ -386,7 +386,7 @@ namespace desktop_environment_xfce
    ::e_status node::node_post(const ::procedure & procedure)
    {
 
-      nano()->user()->async(procedure);
+      system()->acme_windowing()->async(procedure);
 
       return ::success;
 

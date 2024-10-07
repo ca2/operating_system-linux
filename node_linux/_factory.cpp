@@ -16,7 +16,7 @@ namespace nano
 __FACTORY_EXPORT void node_linux_factory(::factory::factory * pfactory)
 {
 
-   auto edesktop = ::nano::user::get_edesktop();
+   auto edesktop = ::micro::get_edesktop();
 
    if (edesktop == ::user::e_desktop_kde)
    {
