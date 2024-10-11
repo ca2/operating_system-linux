@@ -114,7 +114,7 @@ extern void  VG_(OSetWord_Destroy) ( OSet* os );
 //
 // * Contains: Determines if the value is in the set.
 //
-// * Insert: Inserts a new element into the set.  Duplicates are forbidden,
+// * Insert: Inserts a __new element into the set.  Duplicates are forbidden,
 //   and will cause assertion failures.
 //
 // * Remove: Removes the value from the set, if present.  Returns a Bool
@@ -236,10 +236,10 @@ extern void* VG_(OSetGen_AllocNode) ( const OSet* os, SizeT elemSize );
 extern void  VG_(OSetGen_FreeNode)  ( const OSet* os, void* elem );
 
 extern OSet* VG_(OSetGen_EmptyClone) (const OSet* os);
-// Creates a new empty OSet.
-// The new OSet will have the same characteristics as os.
+// Creates a __new empty OSet.
+// The __new OSet will have the same characteristics as os.
 // If os uses a pool allocator, this pool allocator will be shared with
-// the __new< OSet. A shared pool allocator is only deleted  >(and its memory is
+// the __allocate< OSet. A shared pool allocator is only deleted  >(and its memory is
 // released) when the last OSet using the shared pool is destroyed.
 
 /*-------------------------------------------------------------------*/
@@ -252,7 +252,7 @@ extern OSet* VG_(OSetGen_EmptyClone) (const OSet* os);
 //
 // * Size: The number of elements in the set.
 //
-// * Insert: Inserts a new element into the set.  Note that 'elem' must
+// * Insert: Inserts a __new element into the set.  Note that 'elem' must
 //   have been allocated using VG_(OSetGen_AllocNode)(), otherwise you will
 //   get assertion failures about "bad magic".  Duplicates are forbidden,
 //   and will also cause assertion failures.

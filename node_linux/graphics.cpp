@@ -10,7 +10,7 @@ count g_cForkBlend = 0;
 
 /**
 *
-* Trilinear scale two images, pixels and pixels2, to get a new
+* Trilinear scale two images, pixels and pixels2, to get a __new
 * interpolated image with ::size_f64 width * height.
 * pixels is the larger image with ::size_f64 w * h.
 * pixels2 is the smaller image with ::size_f64 w2 * h2.
@@ -829,7 +829,7 @@ namespace draw2d_gdiplus
       //   {0,   0,  0,  1, 0},
       //   {1,   1,  1,  0, 1}};
 
-      //ColorMatrix * colorMatrix = new ColorMatrix(colorMatrixElements);
+      //ColorMatrix * colorMatrix = __new ColorMatrix(colorMatrixElements);
 
       //imageAttributes.SetColorMatrix(
       //   colorMatrix,
@@ -840,7 +840,7 @@ namespace draw2d_gdiplus
 
       //e.Graphics.DrawImage(
       //   image,
-      //   __new< Rectangle >(150, 10, width, height),  // destination rectangle_i32
+      //   __allocate< Rectangle >(150, 10, width, height),  // destination rectangle_i32
       //   0, 0,        // upper-left corner of source rectangle_i32
       //   width,       // width of source rectangle_i32
       //   height,      // height of source rectangle_i32
@@ -3481,7 +3481,7 @@ namespace draw2d_gdiplus
    //         if (pRectLast != nullptr)
 
    //         {
-   //            // find difference between new region and old region
+   //            // find difference between __new region and old region
    //            rgnLast.create_rect(0, 0, 0, 0);
    //            rgnOutside.SetRectRgn(pRectLast);
 
@@ -3512,7 +3512,7 @@ namespace draw2d_gdiplus
    //            pBrushOld = nullptr;
    //         }
 
-   //         // draw into the update/new region
+   //         // draw into the update/__new region
    //         SelectClipRgn(rgnUpdate.get_os_data() != nullptr ? &rgnUpdate : &rgnNew);
    //         get_clip_box(&rectangle);
    //         pBrushOld = set(pBrush);

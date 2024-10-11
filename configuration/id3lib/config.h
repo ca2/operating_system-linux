@@ -197,10 +197,10 @@
 
 
 
-//#undef new
+//#undef __new
 
 
-//void* operator new(const size_t, void* p) noexcept;
+//void* operator __new(const size_t, void* p) noexcept;
 
 
 #define HAVE_UNISTD_H 1

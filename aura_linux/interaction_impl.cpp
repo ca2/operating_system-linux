@@ -203,7 +203,7 @@ namespace aura_linux
 ////      else
 ////      {
 ////
-////         pusersystem = __new ::user::system();
+////         pusersystem = __allocate ::user::system();
 ////
 ////      }
 ////
@@ -2376,7 +2376,7 @@ namespace aura_linux
 
       __UNREFERENCED_PARAMETER(bRedraw);
 
-      //ASSERT(::is_window((oswindow) get_handle())); m_pfont = new ::write_text::font(*pfont);
+      //ASSERT(::is_window((oswindow) get_handle())); m_pfont = __new ::write_text::font(*pfont);
 
    }
 

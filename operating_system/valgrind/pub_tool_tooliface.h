@@ -366,7 +366,7 @@ extern void VG_(needs_tool_errors) (
    may have to be discarded when translations are unloaded (eg. due to
    .so unloading, or otherwise at the discretion of m_transtab, eg
    when the table becomes too full) to avoid stale information being
-   reused for new translations. */
+   reused for __new translations. */
 extern void VG_(needs_superblock_discards) (
    // Discard any information that pertains to specific translations
    // or instructions within the address range given.  There are two
@@ -529,7 +529,7 @@ typedef
    These ones occur at startup, upon some signals, and upon some syscalls.
 
    For new_mem_brk and new_mem_stack_signal, the supplied ThreadId
-   indicates the thread for whom the new memory is being allocated.
+   indicates the thread for whom the __new memory is being allocated.
 
    For new_mem_startup and new_mem_mmap, the di_handle argument is a
    handle which can be used to retrieve debug info associated with the
@@ -667,9 +667,9 @@ void VG_(track_stop_client_code)(
 
 /* Thread events (not exhaustive)
 
-   ll_create: low level thread creation.  Called before the new thread
+   ll_create: low level thread creation.  Called before the __new thread
    has run any instructions (or touched any memory).  In fact, called
-   immediately before the new thread has come into existence; the new
+   immediately before the __new thread has come into existence; the __new
    thread can be assumed to exist when notified by this call.
 
    ll_exit: low level thread exit.  Called after the exiting thread

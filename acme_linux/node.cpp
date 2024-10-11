@@ -581,7 +581,7 @@ namespace acme_linux
             //printf("This is a openSUSE Tumbleweed System...\n");
             //printf("Gonna tweak a bit the version :-)...\n");
             //pszVersion[4] = '\0';
-            //printf("There it is new version : %s\n", pszVersion);
+            //printf("There it is __new version : %s\n", pszVersion);
             psummary->m_strDistroRelease.truncate(4);
 
          }

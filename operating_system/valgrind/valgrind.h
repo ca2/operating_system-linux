@@ -1603,12 +1603,12 @@ typedef
    CFI annotation to say what the register is.  We choose %rbp for
    this (perhaps perversely), because:
 
-   (1) %rbp is already subject to unwinding.  If a new register was
+   (1) %rbp is already subject to unwinding.  If a __new register was
        chosen then the unwinder would have to unwind it in all stack
        traces, which is expensive, and
 
    (2) %rbp is already subject to precise exception updates in the
-       JIT.  If a new register was chosen, we'd have to have precise
+       JIT.  If a __new register was chosen, we'd have to have precise
        exceptions for it too, which reduces performance of the
        generated code.
 
@@ -6118,7 +6118,7 @@ typedef
 /* !! ABIWARNING !! ABIWARNING !! ABIWARNING !! ABIWARNING !! 
    This enum comprises an ABI exported by Valgrind to programs
    which use client requests.  DO NOT CHANGE THE NUMERIC VALUES OF THESE
-   ENTRIES, NOR DELETE ANY -- add new ones at the end of the most
+   ENTRIES, NOR DELETE ANY -- add __new ones at the end of the most
    relevant group. */
 typedef
    enum { VG_USERREQ__RUNNING_ON_VALGRIND  = 0x1001,
@@ -6373,7 +6373,7 @@ VALGRIND_PRINTF_BACKTRACE(const char *format, ...)
 /* Several Valgrind tools (Memcheck, Massif, Helgrind, DRD) rely on knowing
    when heap blocks are allocated in order to give accurate results.  This
    happens automatically for the standard allocator functions such as
-   malloc(), calloc(), realloc(), memalign(), __new< , __new_array<  >(), free >(), delete,
+   malloc(), calloc(), realloc(), memalign(), __allocate< , __allocate_array<  >(), free >(), delete,
    delete[], etc.
 
    But if your program uses a custom allocator, this doesn't automatically
@@ -6419,7 +6419,7 @@ VALGRIND_PRINTF_BACKTRACE(const char *format, ...)
 
    For Memcheck users: if you use VALGRIND_MALLOCLIKE_BLOCK to carve out
    custom blocks from within a heap block, B, that has been allocated with
-   malloc/calloc/new/etc, then block B will be *ignored* during leak-checking
+   malloc/calloc/__new/etc, then block B will be *ignored* during leak-checking
    -- the custom blocks will take precedence.
 
    VALGRIND_FREELIKE_BLOCK is the partner to VALGRIND_MALLOCLIKE_BLOCK.  For
@@ -6443,12 +6443,12 @@ VALGRIND_PRINTF_BACKTRACE(const char *format, ...)
 
    - If the block shrunk, it marks the freed memory as being unaddressable.
 
-   - If the block grew, it marks the new area as undefined and defines a red
-     zone past the end of the new block.
+   - If the block grew, it marks the __new area as undefined and defines a red
+     zone past the end of the __new block.
 
-   - The V-bits of the overlap between the old and the new block are preserved.
+   - The V-bits of the overlap between the old and the __new block are preserved.
 
-   VALGRIND_RESIZEINPLACE_BLOCK should be put after allocation of the new block
+   VALGRIND_RESIZEINPLACE_BLOCK should be put after allocation of the __new block
    and before deallocation of the old block.
 
    In many cases, these three client requests will not be enough to get your
@@ -6577,7 +6577,7 @@ VALGRIND_PRINTF_BACKTRACE(const char *format, ...)
                                     id, 0, 0, 0, 0)
 
 /* Change the start and end address of the stack id.
-   start is the new lowest addressable stack ::u8, end is the new highest
+   start is the __new lowest addressable stack ::u8, end is the __new highest
    addressable stack ::u8. */
 #define VALGRIND_STACK_CHANGE(id, start, end)                     \
     VALGRIND_DO_CLIENT_REQUEST_STMT(VG_USERREQ__STACK_CHANGE,     \
