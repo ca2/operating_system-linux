@@ -52,6 +52,7 @@
 
 #include <climits>
 
+
 //#define sync unistd_sync
 //#include <unistd.h>
 //#undef sync
@@ -152,7 +153,8 @@ typedef struct gdi_object * HGDIOBJ;
 
 #ifdef __cplusplus
 
-
+#include <concepts>
+#include <tuple>
 void debug_break();
 
 

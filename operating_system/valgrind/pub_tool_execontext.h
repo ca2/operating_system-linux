@@ -45,7 +45,7 @@ typedef
 
 // Take a snapshot of the client's stack.  Search our collection of
 // ExeContexts to see if we already have it, and if not, allocate a
-// __new one.  Either way, return a pointer to the context.  Context size
+// ___new one.  Either way, return a pointer to the context.  Context size
 // controlled by --num-callers option.
 //
 // This should only be used for long-lived stack traces.  If you want a

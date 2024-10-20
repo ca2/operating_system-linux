@@ -326,7 +326,7 @@ typedef enum
                                              * SIMD multiplies, slow SIMD variable shifts, slow pshufb,
                                              * cacheline split penalties -- gather everything here that
                                              * isn't shared by other CPUs to avoid making half a dozen
-                                             * __new SLOW flags. */
+                                             * ___new SLOW flags. */
 #define X265_CPU_SLOW_PSHUFB     0x2000000  /* such as on the Intel Atom */
 #define X265_CPU_SLOW_PALIGNR    0x4000000  /* such as on the AMD Bobcat */
 
@@ -1156,7 +1156,7 @@ typedef struct x265_param
          * values to be copied into x265_lambda_tab and a second set of
          * MAX_MAX_QP + 1 floating point values for x265_lambda2_tab. All values
          * are separated by comma, space or newline. Text after a hash (#) is
-         * ignored. The lambda tables are process-global, so these __new lambda
+         * ignored. The lambda tables are process-global, so these ___new lambda
          * values will affect all encoders in the same process */
         const char* lambdaFileName;
 
@@ -1384,7 +1384,7 @@ static const char * const x265_preset_names[] = { "ultrafast", "superfast", "ver
 /*      The presets can also be indexed numerically, as in:
  *      x265_param_default_preset( &param, "3", ... )
  *      with ultrafast mapping to "0" and placebo mapping to "9".  This mapping may
- *      of course change if __new presets are added in between, but will always be
+ *      of course change if ___new presets are added in between, but will always be
  *      ordered from fastest to slowest.
  *
  *      Warning: the speed of these presets scales dramatically.  Ultrafast is a full
@@ -1437,7 +1437,7 @@ X265_API extern const char *x265_build_info_str;
 #define x265_encoder_open x265_encoder_glue2(x265_encoder_open_, X265_BUILD)
 
 /* x265_encoder_open:
- *      create a __new encoder handler, all parameters from x265_param are copied */
+ *      create a ___new encoder handler, all parameters from x265_param are copied */
 x265_encoder* x265_encoder_open(x265_param *);
 
 /* x265_encoder_parameters:
@@ -1556,7 +1556,7 @@ typedef struct x265_api
 
     int           sizeof_frame_stats;   /* sizeof(x265_frame_stats) */
     int           (*encoder_intra_refresh)(x265_encoder*);
-    /* add __new pointers to the end, or increment X265_MAJOR_VERSION */
+    /* add ___new pointers to the end, or increment X265_MAJOR_VERSION */
 } x265_api;
 
 /* Force a link error in the case of linking against an incompatible API version.

@@ -418,7 +418,7 @@ namespace desktop_environment_xfce
 //   ::nlinux::appindicator * node::appindicator_allocate()
 //   {
 //
-//      return __new ::node_xfce::appindicator();
+//      return ___new ::node_xfce::appindicator();
 //
 //   }
 //

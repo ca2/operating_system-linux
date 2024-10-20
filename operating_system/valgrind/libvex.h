@@ -476,7 +476,7 @@ typedef
          that this is the default value.  The VEX client can override
          this on a per-IRSB basis if it wants.  bb_to_IR() will query
          the client to ask if it wants a different setting for the
-         block under construction, and that __new setting is transported
+         block under construction, and that ___new setting is transported
          back to LibVEX_Translate, which feeds it to iropt via the
          various do_iropt_BB calls. */
       VexRegisterUpdates iropt_register_updates_default;
@@ -807,7 +807,7 @@ IRSB* LibVEX_FrontEnd ( /*MOD*/ VexTranslateArgs*,
    to BB #2 (fine); but if you wanted checking for #2 and not #1, that
    would not be the result.  Therefore chase_into_ok should disallow
    following into #2.  That will force the caller to eventually
-   request a __new translation starting at #2, at which point Vex will
+   request a ___new translation starting at #2, at which point Vex will
    correctly observe the make-a-self-check flag.
 
    FIXME: is this still up to date? */

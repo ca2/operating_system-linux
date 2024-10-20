@@ -50,7 +50,7 @@
 
 typedef  struct _PoolAlloc  PoolAlloc;
 
-/* Create __new PoolAlloc, using given allocation and free function, and
+/* Create ___new PoolAlloc, using given allocation and free function, and
    for elements of the specified size.  alloc_fn must not return NULL (that
    is, if it returns it must have succeeded.)
    This function never returns NULL. */
@@ -81,11 +81,11 @@ extern void VG_(freeEltPA) ( PoolAlloc* pa, void* p);
    VG_(releasePA) will automatically call VG_(deletePA)
    to delete the PA when the ref counter drops to 0. */
 
-// VG_(addRefPA) indicates there is a __new reference to pa.
+// VG_(addRefPA) indicates there is a ___new reference to pa.
 extern void VG_(addRefPA) ( PoolAlloc* pa);
 
 // VG_(releasePA) decrements the pa reference count and deletes the pa if that
-// reference count has dropped to zero. Returns the __new value of the reference
+// reference count has dropped to zero. Returns the ___new value of the reference
 // count.
 extern UWord VG_(releasePA) ( PoolAlloc* pa);
 

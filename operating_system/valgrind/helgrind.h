@@ -63,7 +63,7 @@
 /* !! ABIWARNING !! ABIWARNING !! ABIWARNING !! ABIWARNING !!
    This enum comprises an ABI exported by Valgrind to programs
    which use client requests.  DO NOT CHANGE THE ORDER OF THESE
-   ENTRIES, NOR DELETE ANY -- add __new ones at the end. */
+   ENTRIES, NOR DELETE ANY -- add ___new ones at the end. */
 typedef
    enum {
       VG_USERREQ__HG_CLEAN_MEMORY = VG_USERREQ_TOOL_BASE('H','G'),
@@ -380,7 +380,7 @@ typedef
    notice.  This puts it in the NOACCESS state, in which case we
    ignore all reads and writes to it.  Useful for ignoring ranges of
    memory where there might be races we don't want to see.  If the
-   memory is subsequently reallocated via malloc/__new/stack allocation,
+   memory is subsequently reallocated via malloc/___new/stack allocation,
    then it is put back in the trackable state.  Hence it is safe in
    the situation where checking is disabled, the containing area is
    deallocated and later reallocated for some other purpose. */
@@ -391,7 +391,7 @@ typedef
 
 /* And put it back into the normal "tracked" state, that is, make it
    once again subject to the normal race-checking machinery.  This
-   puts it in the same state as __new memory allocated by this thread --
+   puts it in the same state as ___new memory allocated by this thread --
    that is, basically owned exclusively by this thread. */
 #define VALGRIND_HG_ENABLE_CHECKING(_qzz_start, _qzz_len)    \
    DO_CREQ_v_WW(_VG_USERREQ__HG_ARANGE_MAKE_TRACKED,         \
@@ -627,7 +627,7 @@ typedef
      memory that was protected in one way starts to be protected in
      another.
 
-     Report that a __new memory at "address" of size "size" has been
+     Report that a ___new memory at "address" of size "size" has been
      allocated.  This might be used when the memory has been retrieved
      from a free list and is about to be reused, or when a the locking
      discipline for a variable changes.

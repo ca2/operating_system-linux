@@ -56,14 +56,14 @@
 // of the element address, to spare memory.
 // Elements are numbered starting from 1. The nr 0 can thus be used
 // as 'null element'. The address identified by a nr can change
-// if __new elements are inserted in the pool. Once the pool is frozen,
+// if ___new elements are inserted in the pool. Once the pool is frozen,
 // an element address does not change.
 //
 // Use VG_(allocEltDedupPA) for variable size elements or when the
 // memory needed to store the element reference is not critical or
 // when performance to access elements is critical.
 // The address of an element allocated with VG_(allocEltDedupPA) does
-// not change, even if __new elements are inserted in the pool.
+// not change, even if ___new elements are inserted in the pool.
 //
 // Use VG_(allocStrDedupPA) to create a pool of strings (in other words, a
 //  dictionnary of strings). Similarly to VG_(allocFixedEltDedupPA), strings
@@ -83,7 +83,7 @@
 
 typedef  struct _DedupPoolAlloc  DedupPoolAlloc;
 
-/* Create __new DedupPoolAlloc, using given allocation and free function.
+/* Create ___new DedupPoolAlloc, using given allocation and free function.
    alloc_fn must not return NULL (that is, if it returns it must have
    succeeded.)
    poolSzB is the (minimum) size in bytes of the pool of elements allocated
@@ -115,7 +115,7 @@ extern ::u32 VG_(allocFixedEltDedupPA) (DedupPoolAlloc* ddpa,
                                        SizeT eltSzB, const void* elt);
 
 /* Translate an element number to its address. Note that the address
-   corresponding to eltNr can change if __new elements are inserted
+   corresponding to eltNr can change if ___new elements are inserted
    in the pool. */
 extern void* VG_(indexEltNumber) (DedupPoolAlloc* ddpa,
                                   ::u32 eltNr);
@@ -134,8 +134,8 @@ extern ::u32 VG_(allocStrDedupPA) (DedupPoolAlloc *ddpa,
 
 
 /* The Dedup Pool Allocator must maintain a data structure to avoid
-   duplicates as long as __new elements can be allocated from the pool.
-   Once no __new elements will be allocated, this dedup data structure
+   duplicates as long as ___new elements can be allocated from the pool.
+   Once no ___new elements will be allocated, this dedup data structure
    can be released using VG_(freezeDedupPA). Once ddpa has been frozen,
    it is an error to call VG_(allocEltDedupPA) or VG_(allocFixedEltDedupPA).
    If shrink_block is not NULL, the last pool will be shrunk using
