@@ -381,14 +381,6 @@ namespace acme_linux
    }
 
 
-//   ::user::enum_desktop node::_calculate_edesktop()
-//   {
-//
-//      return ::_calculate_edesktop();
-//
-//   }
-
-
    void node::shell_open(const ::file::path & path, const ::string & strParams, const ::file::path & pathFolder)
    {
 

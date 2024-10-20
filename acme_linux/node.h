@@ -79,16 +79,6 @@ namespace acme_linux
       void calculate_linux_distribution() override;
 
 
-//      ::user::enum_desktop get_edesktop() override;
-//
-//
-//      ::user::enum_desktop calculate_edesktop() override;
-//
-//
-//      static ::user::enum_desktop get_edesktop();
-//      static ::user::enum_desktop _calculate_edesktop();
-
-
       ::file::path_array process_identifier_modules_paths(::process_identifier processidentifier) override;
 
       bool load_modules_diff(string_array& straOld, string_array& straNew, const ::string & strExceptDir) override;
