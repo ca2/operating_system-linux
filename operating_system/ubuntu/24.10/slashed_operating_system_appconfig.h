@@ -1,0 +1,2 @@
+#define default_desktop_environment desktop_environment_gtk_based
+
