@@ -40,7 +40,7 @@ namespace acme_linux
    node::node()
    {
 
-      m_edesktop = ::user::e_desktop_none;
+      //m_edesktop = ::user::e_desktop_none;
 
       m_pAcmePlatform = this;
 
@@ -965,62 +965,62 @@ namespace acme_linux
 #endif
 
       }
-      else if(scopedstrComponentName == "nano_user")
-      {
-
-         ::string strToolkit = get_user_toolkit_id();
-
-         return strToolkit;
-
-// #ifdef LINUX
+//       else if(scopedstrComponentName == "nano_user")
+//       {
 //
-//          auto edesktop = this->get_edesktop();
+//          ::string strToolkit = ::windowing::get_user_toolkit_id();
 //
-//          if(edesktop & user::e_desktop_kde)
-//          {
+//          return strToolkit;
 //
-//             return "kde5";
+// // #ifdef LINUX
+// //
+// //          auto edesktop = this->get_edesktop();
+// //
+// //          if(edesktop & user::e_desktop_kde)
+// //          {
+// //
+// //             return "kde5";
+// //
+// //          }
+// //          else
+// //          {
+// //
+// // #if HAS_GTK4
+// //
+// //             return "gtk4";
+// //
+// // #else
+// //
+// //             return "gtk3";
+// //
+// // #endif
 //
-//          }
-//          else
-//          {
+// //         }
 //
-// #if HAS_GTK4
+//          // auto ewindowing = ::windowing::get_ewindowing();
+//          //
+//          // if(ewindowing == ::windowing::e_windowing_wayland)
+//          // {
+//          //    return "wayland";
+//          // }
+//          // else if(ewindowing == ::windowing::e_windowing_xcb)
+//          // {
+//          //    return "xcb";
+//          // }
+//          // else
+//          // {
+//          //
+//          //    return "x11";
+//          //
+//          // }
 //
-//             return "gtk4";
+// // #elif defined(WINDOWS_DESKTOP)
+// //
+// //          return "win32";
+// //
+// // #endif
 //
-// #else
-//
-//             return "gtk3";
-//
-// #endif
-
-//         }
-
-         // auto ewindowing = ::windowing::get_ewindowing();
-         //
-         // if(ewindowing == ::windowing::e_windowing_wayland)
-         // {
-         //    return "wayland";
-         // }
-         // else if(ewindowing == ::windowing::e_windowing_xcb)
-         // {
-         //    return "xcb";
-         // }
-         // else
-         // {
-         //
-         //    return "x11";
-         //
-         // }
-
-// #elif defined(WINDOWS_DESKTOP)
-//
-//          return "win32";
-//
-// #endif
-
-      }
+//       }
       else if(scopedstrComponentName == "nano_idn")
       {
 

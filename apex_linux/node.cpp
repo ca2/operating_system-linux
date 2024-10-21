@@ -1204,7 +1204,7 @@ namespace apex_linux
    void node::list_process(::file::path_array & patha, ::process_identifier_array & uaPid)
    {
 
-      ::acme::get()->platform()->informationf("linux::node::list_process");
+      informationf("linux::node::list_process");
 
       string_array stra;
 

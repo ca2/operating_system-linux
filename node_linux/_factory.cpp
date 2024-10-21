@@ -8,7 +8,7 @@ namespace nano
 {
    namespace user
    {
-      ::user::enum_desktop get_edesktop();
+      ::windowing::enum_desktop get_edesktop();
    } // namespace user
 }// namespace nano
 
@@ -16,9 +16,9 @@ namespace nano
 __FACTORY_EXPORT void node_linux_factory(::factory::factory * pfactory)
 {
 
-   auto edesktop = ::micro::get_edesktop();
+   auto edesktop = ::windowing::get_edesktop();
 
-   if (edesktop == ::user::e_desktop_kde)
+   if (edesktop == ::windowing::e_desktop_kde)
    {
 
       auto & pfactoryKde = pfactory->system()->factory("desktop_environment", "kde");
@@ -39,7 +39,7 @@ __FACTORY_EXPORT void node_linux_factory(::factory::factory * pfactory)
       printf("desktop_environment_kde merge_to_global_factory\n");
 
    }
-   else if ((edesktop == ::user::e_desktop_gnome) || (edesktop == ::user::e_desktop_lxde))
+   else if ((edesktop == ::windowing::e_desktop_gnome) || (edesktop == ::windowing::e_desktop_lxde))
    {
 
       auto psystem = pfactory->system();
@@ -64,7 +64,7 @@ __FACTORY_EXPORT void node_linux_factory(::factory::factory * pfactory)
       printf("desktop_environment_gtk_based merge_to_global_factory\n");
 
    }
-   else if (edesktop == ::user::e_desktop_xfce)
+   else if (edesktop == ::windowing::e_desktop_xfce)
    {
 
       auto & pfactoryXfce = pfactory->system()->factory("desktop_environment", "xfce");
