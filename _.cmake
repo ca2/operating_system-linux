@@ -604,24 +604,65 @@ elseif (${XFCE_DESKTOP})
 
 elseif (${GTK_BASED_DESKTOP})
 
-   message(STATUS "Adding GNOME/X11 dependency.")
+   if(${HAS_GTK4})
 
-   list(APPEND app_common_dependencies desktop_environment_gtk_based)
+      message(STATUS "Adding GTK4 dependency.")
 
-   list(APPEND static_app_common_dependencies
-      static_desktop_environment_gnome
-      static_node_gnome
-      static_node_gtk
-      static_node_linux
-      static_windowing_x11)
+      list(APPEND app_common_dependencies nano_graphics_cairo desktop_environment_gtk_based)
 
-   set(default_windowing "windowing_x11")
+      list(APPEND static_app_common_dependencies
+         static_desktop_environment_gtk_based
+         static_node_gtk_based
+         static_node_gtk4
+         static_node_linux)
 
-   set(default_desktop_environment desktop_environment_gtk_based)
+      set(default_windowing "windowing_gtk4")
 
-   add_compile_definitions(DESKTOP_ENVIRONMENT_GTK_BASED)
+      set(default_desktop_environment desktop_environment_gtk_based)
 
-endif ()
+      add_compile_definitions(DESKTOP_ENVIRONMENT_GTK_BASED)
+
+   elseif (${HAS_GTK3})
+
+      message(STATUS "Adding GTK3 dependency.")
+
+      list(APPEND app_common_dependencies nano_graphics_cairo desktop_environment_gtk_based)
+
+      list(APPEND static_app_common_dependencies
+              static_desktop_environment_gtk_based
+              static_node_gtk_base
+              static_node_gtk3
+              static_node_linux)
+
+      set(default_windowing "windowing_gtk3")
+
+      set(default_desktop_environment desktop_environment_gtk_based)
+
+      add_compile_definitions(DESKTOP_ENVIRONMENT_GTK_BASED)
+
+
+   else()
+
+      message(STATUS "Adding GNOME/X11 dependency.")
+
+      list(APPEND app_common_dependencies nano_graphics_cairo desktop_environment_gtk_based)
+
+      list(APPEND static_app_common_dependencies
+              static_desktop_environment_gnome
+              static_node_gnome
+              static_node_gtk
+              static_node_linux
+              static_windowing_x11)
+
+      set(default_windowing "windowing_x11")
+
+      set(default_desktop_environment desktop_environment_gtk_based)
+
+      add_compile_definitions(DESKTOP_ENVIRONMENT_GTK_BASED)
+
+   endif()
+
+   endif ()
 
 endif()
 
