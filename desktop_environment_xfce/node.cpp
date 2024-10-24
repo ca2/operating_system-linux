@@ -48,7 +48,7 @@ namespace desktop_environment_xfce
 //   void node::defer_notify_startup_complete()
 //   {
 //
-//      auto psystem = system()->m_papexsystem;
+//      auto psystem = system();
 //
 //      string strApplicationServerName = psystem->get_application_server_name();
 //
@@ -166,7 +166,7 @@ namespace desktop_environment_xfce
 //
 //      // indirect wall-changer sourceforge.net contribution
 //
-//      auto psystem = system()->m_papexsystem;
+//      auto psystem = system();
 //
 //      auto pnode = psystem->node();
 //
@@ -249,7 +249,7 @@ namespace desktop_environment_xfce
 //
 //      // wall-changer sourceforge.net contribution
 //
-//      auto psystem = system()->m_papexsystem;
+//      auto psystem = system();
 //
 //      auto pnode =  psystem->node();
 //
@@ -301,7 +301,7 @@ namespace desktop_environment_xfce
 //   void node::enable_wallpaper_change_notification()
 //   {
 //
-//      auto psystem = system()->m_papexsystem;
+//      auto psystem = system();
 //
 //      auto pnode = psystem->node();
 //

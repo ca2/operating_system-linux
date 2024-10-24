@@ -137,7 +137,7 @@ namespace desktop_environment_gtk_based
 //
 //      // indirect wall-changer sourceforge.net contribution
 //
-//      auto psystem = system()->m_papexsystem;
+//      auto psystem = system();
 //
 //      auto pnode = psystem->node();
 //
@@ -220,7 +220,7 @@ namespace desktop_environment_gtk_based
 //
 //      // wall-changer sourceforge.net contribution
 //
-//      auto psystem = system()->m_papexsystem;
+//      auto psystem = system();
 //
 //      auto pnode =  psystem->node();
 //

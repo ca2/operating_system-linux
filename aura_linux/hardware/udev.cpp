@@ -65,7 +65,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 //    return UDEV_ACTION_UNKNOWN;
 // }
 
-// CLASS_DECL_ACME ::acme::system * system();
+// CLASS_DECL_ACME ::platform::system * system();
 
 ///**
 // * Event listener thread
@@ -314,7 +314,7 @@ namespace aura_linux
 
          //          // auto psystem = this->platform()->system();
 
-         //          // psystem->m_papexsystem->route(&topic, nullptr);
+         //          // psystem->route(&topic, nullptr);
 
          //       }
          //          break;
@@ -327,7 +327,7 @@ namespace aura_linux
 
          //          // auto psystem = this->platform()->system();
 
-         //          // psystem->m_papexsystem->route(&topic, nullptr);
+         //          // psystem->route(&topic, nullptr);
 
          //       }
          //          break;

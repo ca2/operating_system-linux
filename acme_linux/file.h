@@ -118,7 +118,7 @@
 //////      ::e_status PASCAL ErrnoToException(i32 nErrno);
 ////      void throw_os_error(::i32 lOsError, const char * pszFileName = nullptr);
 //
-////      //void PASCAL ThrowErrno(::pointer<::acme::application>papp, i32 nErrno, const char * pszFileName = nullptr);
+////      //void PASCAL ThrowErrno(::pointer<::platform::application>papp, i32 nErrno, const char * pszFileName = nullptr);
 //
 ////
 ////

@@ -116,7 +116,7 @@ void apex_application_activate(GApplication * application)
 
       __throw(todo);
 
-//   auto psystem = system()->m_papexsystem;
+//   auto psystem = system();
 //
 //   auto pnode = psystem->node();
 //

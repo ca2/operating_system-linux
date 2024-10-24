@@ -841,7 +841,7 @@ namespace apex_linux
    void os_context::get_default_browser(string & strId, ::file::path & path, string & strParam)
    {
 
-      string str = system()->m_papexsystem->operating_system().get_output("/bin/sh -c \"xdg-settings get default-web-browser\"");
+      string str = system()->operating_system().get_output("/bin/sh -c \"xdg-settings get default-web-browser\"");
 
       str.trim();
 

@@ -64,7 +64,7 @@ namespace video_input_video_for_linux
 //    void video_input::v4l2_init_udev(void)
 //    {
 
-//       system()->m_papexsystem->add_handler(this);
+//       system()->add_handler(this);
 
 //       fork([]()
 //            {

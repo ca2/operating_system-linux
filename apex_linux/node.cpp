@@ -137,7 +137,7 @@ namespace apex_linux
    }
 
 
-   void node::on_create_app_shortcut(::acme::application * papplication)
+   void node::on_create_app_shortcut(::platform::application * papplication)
    {
 
       defer_create_app_shortcut(papplication);
@@ -202,7 +202,7 @@ namespace apex_linux
    }
 
 
-   ::file::path node::app_shortcut_path(::acme::application* papplication)
+   ::file::path node::app_shortcut_path(::platform::application* papplication)
    {
 
       ::file::path pathShortcut;
@@ -1032,7 +1032,7 @@ namespace apex_linux
    void node::get_default_browser(string & strId, ::file::path & path, string & strParam)
    {
 
-      string str = system()->m_papexsystem->operating_system().get_output("/bin/sh -c \"xdg-settings get default-web-browser\"");
+      string str = system()->operating_system().get_output("/bin/sh -c \"xdg-settings get default-web-browser\"");
 
       str.trim();
 

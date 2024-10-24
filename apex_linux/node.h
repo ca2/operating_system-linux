@@ -39,10 +39,10 @@ namespace apex_linux
 
       //void shell_open(const ::file::path & path, const ::string& strParams, const ::file::path & pathFolder) override;
 
-      void on_create_app_shortcut(::acme::application * papplication) override;
+      void on_create_app_shortcut(::platform::application * papplication) override;
 
 
-      ::file::path app_shortcut_path(::acme::application* papplication) override;
+      ::file::path app_shortcut_path(::platform::application* papplication) override;
 
       virtual string get_command_line() override;
 

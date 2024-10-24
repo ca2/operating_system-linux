@@ -159,7 +159,7 @@ namespace node_gnome
 
          ::file::path path = pathFolder / ("notify_icon_128.png);
 
-         auto pcontext = m_pcontext->m_papexcontext;
+         auto pcontext = m_papplication->m_papexcontext;
 
          path = pcontext->defer_process_path(path);
 

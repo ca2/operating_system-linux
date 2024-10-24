@@ -2,7 +2,7 @@
 #include "../framework.h"
 #include "device_group.h"
 #include "devices.h"
-#include "acme/platform/context.h"
+#include "acme/platform/application.h"
 
 
 namespace aura_linux
@@ -49,7 +49,7 @@ namespace aura_linux
    
          }
 
-         m_ptaskUdevListener = m_pcontext->fork([this, pszDevType]()
+         m_ptaskUdevListener = m_papplication->fork([this, pszDevType]()
          {
 
             __udev_listener_task(pszDevType);

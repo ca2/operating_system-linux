@@ -231,7 +231,7 @@
 //
 //      ::node_gnome::node * pnode = (::node_gnome::node *) data;
 //
-//      pnode->system()->m_papexsystem->signal(id_wallpaper_change);
+//      pnode->system()->signal(id_wallpaper_change);
 //
 //   }
 //
@@ -354,7 +354,7 @@
 //
 //         g_bInitializedUserTheme = true;
 //
-////         auto psystem = system()->m_papexsystem;
+////         auto psystem = system();
 ////
 ////         psystem->start_subject_handling(id_os_user_theme);
 //
@@ -369,7 +369,7 @@
 //
 //      bool bOk = false;
 //
-//      auto psystem = system()->m_papexsystem;
+//      auto psystem = system();
 //
 //      auto edesktop = get_edesktop();
 //
@@ -421,7 +421,7 @@
 //   }
 //
 //
-//   string aaa_get_wallpaper(::acme::system * psystem, ::collection::index iIndex)
+//   string aaa_get_wallpaper(::platform::system * psystem, ::collection::index iIndex)
 //   {
 //
 //      // wall-changer sourceforge.net contribution
@@ -430,7 +430,7 @@
 //
 //      string strWallpaper;
 //
-//      auto papexsystem = psystem->m_papexsystem;
+//      auto papexsystem = psystem;
 //
 //      auto pnode = papexsystem->node();
 //
