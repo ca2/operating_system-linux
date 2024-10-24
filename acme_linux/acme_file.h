@@ -2,24 +2,24 @@
 #pragma once
 
 
-#include "acme_posix/acme_file.h"
+#include "acme_posix/file_system.h"
 
 
 namespace acme_linux
 {
 
 
-   class CLASS_DECL_ACME_LINUX acme_file :
-      virtual public ::acme_posix::acme_file
+   class CLASS_DECL_ACME_LINUX file_system :
+      virtual public ::acme_posix::file_system
    {
    public:
 
 
-      //__creatable_from_library(acme_file, ::acme_file, "acme_linux");
+      //__creatable_from_library(file_system, ::file_system, "acme_linux");
 
 
-      acme_file();
-      ~acme_file() override;
+      file_system();
+      ~file_system() override;
 
 
       ::file::path module() override;

@@ -2,9 +2,9 @@
 #include "os_context.h"
 #include "node.h"
 #include "acme/exception/not_implemented.h"
-#include "acme/filesystem/filesystem/acme_directory.h"
-#include "acme/filesystem/filesystem/acme_file.h"
-#include "acme/filesystem/filesystem/acme_path.h"
+#include "acme/filesystem/filesystem/directory_system.h"
+#include "acme/filesystem/filesystem/file_system.h"
+#include "acme/filesystem/filesystem/path_system.h"
 #include "acme/filesystem/filesystem/link.h"
 #include "apex/filesystem/file/set.h"
 //#include "acme/filesystem/filesystem/link.h"
@@ -352,7 +352,7 @@ namespace apex_linux
                   keyPlugin.SetValue("Path", ::apexacmesystem()->m_strCa2Module("npca2.dll"));
                   keyPlugin.SetValue("ProductName", "ca2 plugin for NPAPI");
                   keyPlugin.SetValue("Vendor", "ca2 Desenvolvimento de Software Ltda.");
-                  keyPlugin.SetValue("Version", get_app()->file_as_string(dir()->ca2("appdata/x86/ca2_build.txt")));
+                  keyPlugin.SetValue("Version", get_app()->file_as_string(directory()->ca2("appdata/x86/ca2_build.txt")));
 
                   registry::Key keyApplicationca2;
 
@@ -829,7 +829,7 @@ namespace apex_linux
    //
    //#elif defined(MACos_context)
    //   //string strDir;
-   //   //strDir = dir()->path(getenv("HOME"), "Pictures");
+   //   //strDir = directory()->path(getenv("HOME"), "Pictures");
    //   //imagefileset.add_search(strDir);
    //   string strDir;
    //   strDir = "/Library/Desktop Pictures";
@@ -855,7 +855,7 @@ namespace apex_linux
          if(file_exists(pathDesktop))
          {
 
-            auto plink = acmepath()->resolve_link(pathDesktop, ::file::e_link_target);
+            auto plink = path_system()->resolve_link(pathDesktop, ::file::e_link_target);
 
             if(plink && plink->m_elink & ::file::e_link_target)
             {
@@ -1017,7 +1017,7 @@ namespace apex_linux
 
       string_array stra;
 
-      acmedirectory()->list(stra, "/proc/", ::file::e_flag_folder);
+      directory_system()->list(stra, "/proc/", ::file::e_flag_folder);
 
       auto psystem = system();
 

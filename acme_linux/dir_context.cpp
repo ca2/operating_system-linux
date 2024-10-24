@@ -1,10 +1,10 @@
 #include "framework.h"
-#include "dir_context.h"
-#include "dir_system.h"
+#include "directory_context.h"
+#include "directory_system.h"
 #include "file_system.h"
 #include "acme/constant/id.h"
-#include "acme/filesystem/filesystem/acme_file.h"
-#include "acme/filesystem/filesystem/acme_directory.h"
+#include "acme/filesystem/filesystem/file_system.h"
+#include "acme/filesystem/filesystem/directory_system.h"
 #include "acme/filesystem/filesystem/listing.h"
 #include "acme/operating_system/shared_posix/c_error_number.h"
 #include "acme/parallelization/task_flag.h"
@@ -40,7 +40,7 @@ inline bool linux_dir_myspace(char ch)
 //
 //   path = pathHome / ".config/user-dirs.dirs";
 //
-//   auto straLines = pmatter->acmefile()->lines(path);
+//   auto straLines = pmatter->file_system()->lines(path);
 //
 //   string strPrefix = str + "=";
 //
@@ -70,21 +70,21 @@ namespace acme_linux
 {
 
 
-   dir_context::dir_context()
+   directory_context::directory_context()
    {
 
 
    }
 
 
-   dir_context::~dir_context()
+   directory_context::~directory_context()
    {
 
 
    }
 
 
-   void dir_context::initialize(::particle * pparticle)
+   void directory_context::initialize(::particle * pparticle)
    {
 
       //auto estatus =
@@ -109,12 +109,12 @@ namespace acme_linux
    }
 
 
-   void dir_context::init_system()
+   void directory_context::init_system()
    {
 
-      ::acme_posix::dir_context::init_system();
+      ::acme_posix::directory_context::init_system();
 
-//      if(!::dir_context::init_system())
+//      if(!::directory_context::init_system())
 //      {
 //
 //         return false;
@@ -199,12 +199,12 @@ namespace acme_linux
    }
 
 
-   void dir_context::init_context()
+   void directory_context::init_context()
    {
 
       //auto estatus =
 
-         ::acme_posix::dir_context::init_context();
+         ::acme_posix::directory_context::init_context();
 
 //      if(!estatus)
 //      {
@@ -218,7 +218,7 @@ namespace acme_linux
    }
 
 
-   ::file::listing & dir_context::root_ones(::file::listing & listing)
+   ::file::listing & directory_context::root_ones(::file::listing & listing)
    {
 
       ::file::path path;
@@ -236,10 +236,10 @@ namespace acme_linux
    }
 
 
-   bool dir_context::enumerate(::file::listing & listing)
+   bool directory_context::enumerate(::file::listing & listing)
    {
 
-      if(::dir_context::enumerate(listing))
+      if(::directory_context::enumerate(listing))
       {
 
          return true;
@@ -286,7 +286,7 @@ namespace acme_linux
 //
 //               }
 //
-//               get_app()->m_papexapplication->dir()->ls(listing, strDir);
+//               get_app()->directory()->ls(listing, strDir);
 //
 //            }
 //
@@ -299,7 +299,7 @@ namespace acme_linux
 //
 //            listing.m_bRecursive = false;
 //
-//            get_app()->m_papexapplication->dir()->ls_file(listing, listing.m_pathFinal);
+//            get_app()->directory()->ls_file(listing, listing.m_pathFinal);
 //
 //         }
 //
@@ -316,7 +316,7 @@ namespace acme_linux
 
          //::file::path_array stra;
 
-         acmedirectory()->enumerate(listing);
+         directory_system()->enumerate(listing);
 
 //         for(i32 i = 0; i < stra.get_count(); i++)
 //         {
@@ -337,7 +337,7 @@ namespace acme_linux
 //            else
 //            {
 //
-//               bIsDir = ::dir_context::is(strPath);
+//               bIsDir = ::directory_context::is(strPath);
 //
 //            }
 //
@@ -360,7 +360,7 @@ namespace acme_linux
 //            else
 //            {
 //
-//               path.m_iSize = acmefile()->get_size(strPath);
+//               path.m_iSize = file_system()->get_size(strPath);
 //
 //            }
 //
@@ -375,10 +375,10 @@ namespace acme_linux
    }
 
 
-//   ::file::e_type dir_context::file_type(const ::file::path & path)
+//   ::file::e_type directory_context::file_type(const ::file::path & path)
 //   {
 //
-//      auto etype = acmedirectory()->file_type(path);
+//      auto etype = directory_system()->file_type(path);
 //
 //      if(etype != ::file::e_type_unknown)
 //      {
@@ -389,7 +389,7 @@ namespace acme_linux
 //
 //      bool bIsDir = false;
 //
-//      if(!acmedirectory()->_is(bIsDir, path))
+//      if(!directory_system()->_is(bIsDir, path))
 //      {
 //
 //         return false;
@@ -401,7 +401,7 @@ namespace acme_linux
 //   }
 
 
-   bool dir_context::name_is(const ::file::path & str)
+   bool directory_context::name_is(const ::file::path & str)
    {
       //information(str);
       strsize iLast = str.length() - 1;
@@ -443,14 +443,14 @@ namespace acme_linux
 
       ::string strDir(str.begin(), iLast + 1);
 
-      bool bIsDir = ::dir_context::is(strDir);
+      bool bIsDir = ::directory_context::is(strDir);
 
       return bIsDir;
 
    }
 
 
-   ::file::path dir_context::time()
+   ::file::path directory_context::time()
    {
 
       return m_pdirsystem->m_pathTimeFolder;
@@ -458,7 +458,7 @@ namespace acme_linux
    }
 
 
-   ::file::path dir_context::element_commonappdata(const string & strElement)
+   ::file::path directory_context::element_commonappdata(const string & strElement)
    {
 
       return ::file::path(strElement) / "commonappdata";
@@ -466,7 +466,7 @@ namespace acme_linux
    }
 
 
-   ::file::path dir_context::stage()
+   ::file::path directory_context::stage()
    {
 
       return install() / "stage";
@@ -474,7 +474,7 @@ namespace acme_linux
    }
 
 
-   ::file::path dir_context::stageapp()
+   ::file::path directory_context::stageapp()
    {
 
       return stage() / "basis";
@@ -482,7 +482,7 @@ namespace acme_linux
    }
 
 
-   ::file::path dir_context::netseed()
+   ::file::path directory_context::netseed()
    {
 
       return m_pdirsystem->m_pathNetSeedFolder;
@@ -490,7 +490,7 @@ namespace acme_linux
    }
 
 
-   ::file::path dir_context::time_square()
+   ::file::path directory_context::time_square()
    {
 
       return time() / "time";
@@ -498,7 +498,7 @@ namespace acme_linux
    }
 
 
-   ::file::path dir_context::time_log(const string & pszId)
+   ::file::path directory_context::time_log(const string & pszId)
    {
 
       ::file::path strLogBaseDir;
@@ -510,15 +510,15 @@ namespace acme_linux
    }
 
 
-   void dir_context::create(const ::file::path & path)
+   void directory_context::create(const ::file::path & path)
    {
 
-      acmedirectory()->create(path);
+      directory_system()->create(path);
 
    }
 
 
-   void dir_context::erase(const ::file::path & path, bool bRecursive)
+   void directory_context::erase(const ::file::path & path, bool bRecursive)
    {
 
       if(bRecursive)
@@ -564,7 +564,7 @@ namespace acme_linux
    }
 
 
-   ::file::path dir_context::trash_that_is_not_trash(const ::file::path & psz)
+   ::file::path directory_context::trash_that_is_not_trash(const ::file::path & psz)
    {
 
       if(psz[1] == ':')
@@ -595,15 +595,15 @@ namespace acme_linux
    }
 
 
-//   ::file::path dir_context::appdata()
+//   ::file::path directory_context::appdata()
 //   {
 //
-//      return ::dir_context::appdata();
+//      return ::directory_context::appdata();
 //
 //   }
 
 
-   ::file::path dir_context::commonappdata()
+   ::file::path directory_context::commonappdata()
    {
 
       ::file::path path;
@@ -619,7 +619,7 @@ namespace acme_linux
    }
 
 
-   ::file::path dir_context::userquicklaunch(::particle * pparticle)
+   ::file::path directory_context::userquicklaunch(::particle * pparticle)
    {
 
       ::file::path path;
@@ -631,7 +631,7 @@ namespace acme_linux
    }
 
 
-   ::file::path dir_context::userprograms(::particle * pparticle)
+   ::file::path directory_context::userprograms(::particle * pparticle)
    {
 
       ::file::path path;
@@ -643,7 +643,7 @@ namespace acme_linux
    }
 
 
-   ::file::path dir_context::commonprograms()
+   ::file::path directory_context::commonprograms()
    {
 
       ::file::path path;
@@ -655,7 +655,7 @@ namespace acme_linux
    }
 
 
-   bool dir_context::is_inside_time(const ::file::path & pszPath)
+   bool directory_context::is_inside_time(const ::file::path & pszPath)
    {
 
       return is_inside(time(), pszPath);
@@ -663,7 +663,7 @@ namespace acme_linux
    }
 
 
-   bool dir_context::is_inside(const ::file::path & pszDir, const ::file::path & pszPath)
+   bool directory_context::is_inside(const ::file::path & pszDir, const ::file::path & pszPath)
    {
 
       return pszDir.case_insensitive_begins(pszPath);
@@ -671,7 +671,7 @@ namespace acme_linux
    }
 
 
-   bool dir_context::has_subdir(const ::file::path & path)
+   bool directory_context::has_subdir(const ::file::path & path)
    {
 
       ::file::listing listing;
@@ -683,7 +683,7 @@ namespace acme_linux
    }
 
 
-//   ::file::path dir_context::music()
+//   ::file::path directory_context::music()
 //   {
 //
 //      if(m_pathMusic.has_char())
@@ -715,7 +715,7 @@ namespace acme_linux
 //   }
 //
 //
-//   ::file::path dir_context::video()
+//   ::file::path directory_context::video()
 //   {
 //
 //      if(m_pathVideo.has_char())
@@ -747,7 +747,7 @@ namespace acme_linux
 //   }
 //
 //
-//   ::file::path dir_context::image::image()
+//   ::file::path directory_context::image::image()
 //   {
 //
 //      if(m_pathImage.has_char())
@@ -779,7 +779,7 @@ namespace acme_linux
 //   }
 //
 //
-//   ::file::path dir_context::document()
+//   ::file::path directory_context::document()
 //   {
 //
 //      if(m_pathDocument)
@@ -811,7 +811,7 @@ namespace acme_linux
 //   }
 //
 //
-//   ::file::path dir_context::download()
+//   ::file::path directory_context::download()
 //   {
 //
 //      if(m_pathDownload.has_char())

@@ -4,8 +4,8 @@
 #include <sys/types.h>
 #include <sys/stat.h>
 #include "acme/operating_system/ansi/file_raw.h"
-#include "acme/filesystem/filesystem/acme_directory.h"
-#include "acme/filesystem/filesystem/acme_file.h"
+#include "acme/filesystem/filesystem/directory_system.h"
+#include "acme/filesystem/filesystem/file_system.h"
 #include "acme/platform/system.h"
 
 
@@ -100,7 +100,7 @@ namespace acme_linux
 //   bool file_context::is_link(string strPath)
 //   {
 //
-//      return acmepath()->is_link(strPath);
+//      return path_system()->is_link(strPath);
 //
 //   }
 
@@ -124,7 +124,7 @@ namespace acme_linux
    void file_context::erase(const ::file::path & path)
    {
 
-      acmefile()->erase(path);
+      file_system()->erase(path);
 
    }
 

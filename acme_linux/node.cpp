@@ -1,7 +1,7 @@
 #include "framework.h"
 #include "node.h"
-#include "acme_file.h"
-#include "acme/filesystem/filesystem/acme_directory.h"
+#include "file_system.h"
+#include "acme/filesystem/filesystem/directory_system.h"
 #include "acme/filesystem/filesystem/listing.h"
 #include "acme/operating_system/summary.h"
 #include "acme/platform/system.h"
@@ -146,7 +146,7 @@ namespace acme_linux
    void node::calculate_linux_distribution()
    {
 
-      auto lines = acmefile()->lines("/etc/os-release");
+      auto lines = file_system()->lines("/etc/os-release");
 
       ::string strId;
 
@@ -225,7 +225,7 @@ namespace acme_linux
 
       strProcPidMaps.formatf("/proc/%d/maps", (int) processidentifier);
 
-      auto stra = ::transfer(acmedirectory()->enumerate_content(strProcPidMaps));
+      auto stra = ::transfer(directory_system()->enumerate_content(strProcPidMaps));
 
       ::generic::array::copy(patha, stra);
 
@@ -249,7 +249,7 @@ namespace acme_linux
 
       listing.set_folder_listing("/proc");
 
-      acmedirectory()->enumerate(listing);
+      directory_system()->enumerate(listing);
 
       process_identifier_array processidentifiera;
 
@@ -489,10 +489,10 @@ namespace acme_linux
       ::string strVer;
 
       // freedesktop.org and systemd
-      if (acmefile()->exists("/etc/os-release"))
+      if (file_system()->exists("/etc/os-release"))
       {
 
-         auto set = acmefile()->parse_standard_configuration("/etc/os-release");
+         auto set = file_system()->parse_standard_configuration("/etc/os-release");
 
          psummary->m_strDistroName = set["ID"];
          psummary->m_strDistroBranchName = set["VARIANT_ID"];
@@ -547,7 +547,7 @@ namespace acme_linux
          if (psummary->m_strDistroFamily.case_insensitive_equals("arch"))
          {
 
-            auto setArch = acmefile()->parse_standard_configuration("/etc/lsb-release");
+            auto setArch = file_system()->parse_standard_configuration("/etc/lsb-release");
 
             psummary->m_strDistroRelease = setArch["DISTRIB_RELEASE"];
             psummary->m_strDistroRelease.make_lower();
@@ -597,11 +597,11 @@ namespace acme_linux
          strVer.make_lower();
 
       }
-      else if (acmefile()->exists("/etc/lsb-release"))
+      else if (file_system()->exists("/etc/lsb-release"))
       {
 
          //# For some versions of Debian/Ubuntu without lsb_release command
-         auto set = acmefile()->parse_standard_configuration("/etc/lsb-release");
+         auto set = file_system()->parse_standard_configuration("/etc/lsb-release");
          //./ etc / lsb - release
 
          strOs = set["DISTRIB_ID"];
@@ -611,7 +611,7 @@ namespace acme_linux
 
 
       }
-      else if (acmefile()->exists("/etc/debian_version"))
+      else if (file_system()->exists("/etc/debian_version"))
       {
 
          //      elif[-f / etc / debian_version];
@@ -620,13 +620,13 @@ namespace acme_linux
          //# Older Debian/Ubuntu/etc.
 
          strOs = "Debian";
-         strVer = acmefile()->as_string("/etc/debian_version");
+         strVer = file_system()->as_string("/etc/debian_version");
          strOs.make_lower();
          strVer.make_lower();
 
 
       }
-      else if (acmefile()->exists("/etc/SuSe-release"))
+      else if (file_system()->exists("/etc/SuSe-release"))
       {
          //      elif[-f / etc / SuSe - release];
          //      then
@@ -636,7 +636,7 @@ namespace acme_linux
          //              ...
       }
 
-      else if (acmefile()->exists("/etc/redhat-release"))
+      else if (file_system()->exists("/etc/redhat-release"))
       {
 
 
@@ -921,7 +921,7 @@ namespace acme_linux
    ::file::path node::get_default_base_integration_folder()
    {
 
-      return acmedirectory()->home() / "integration/_____";
+      return directory_system()->home() / "integration/_____";
 
    }
 

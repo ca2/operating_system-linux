@@ -235,7 +235,7 @@ namespace node_xfce
 //
 //      string strUrl = "https://server.ca2.cc/matter/" + strFolder + strFile;
 //
-//      strFile = Context.dir()->appdata() / strFolder / strFile;
+//      strFile = Context.directory()->appdata() / strFolder / strFile;
 //
 //      int iRetry = 3;
 //

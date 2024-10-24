@@ -2,24 +2,24 @@
 #pragma once
 
 
-#include "acme_posix/acme_directory.h"
+#include "acme_posix/directory_system.h"
 
 
 namespace acme_linux
 {
 
 
-   class CLASS_DECL_ACME_LINUX acme_directory :
-      virtual public ::acme_posix::acme_directory
+   class CLASS_DECL_ACME_LINUX directory_system :
+      virtual public ::acme_posix::directory_system
    {
    public:
 
 
-      //__creatable_from_library(acme_directory, ::acme_directory, "acme_linux");
+      //__creatable_from_library(directory_system, ::directory_system, "acme_linux");
 
 
-      acme_directory();
-      ~acme_directory() override;
+      directory_system();
+      ~directory_system() override;
 
 
       ::file::path install() override;

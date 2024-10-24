@@ -20,8 +20,8 @@ namespace acme_linux
    class file_system;
 
 
-   class dir_context;
-   class dir_system;
+   class directory_context;
+   class directory_system;
 
 
 } // namespace acme_linux

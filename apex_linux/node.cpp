@@ -1,8 +1,8 @@
 #include "framework.h"
 //#include "node/platform/node.h"
-#include "acme/filesystem/filesystem/acme_directory.h"
-#include "acme/filesystem/filesystem/acme_file.h"
-#include "acme/filesystem/filesystem/acme_path.h"
+#include "acme/filesystem/filesystem/directory_system.h"
+#include "acme/filesystem/filesystem/file_system.h"
+#include "acme/filesystem/filesystem/path_system.h"
 #include "acme/filesystem/filesystem/link.h"
 #include "acme/operating_system/summary.h"
 #include "acme/platform/application.h"
@@ -165,13 +165,13 @@ namespace apex_linux
 //
 //      string strRoot = papplication->m_strAppId.left(papplication->m_strAppId.find('/'));
 //
-//      //auto pathCreatedShortcut = acmedirectory()->roaming() / m_strAppId / "created_shortcut.txt";
+//      //auto pathCreatedShortcut = directory_system()->roaming() / m_strAppId / "created_shortcut.txt";
 //
 //      ::file::path pathShortcut;
 //
-//      pathShortcut = acmedirectory()->roaming() / "Microsoft/Windows/Start Menu/Programs" / strRoot / (strAppName + ".lnk");
+//      pathShortcut = directory_system()->roaming() / "Microsoft/Windows/Start Menu/Programs" / strRoot / (strAppName + ".lnk");
 //
-//      auto path = acmefile()->module();
+//      auto path = file_system()->module();
 //
 //      ::file::path pathTarget;
 //      ::file::path pathIcon;
@@ -182,11 +182,11 @@ namespace apex_linux
 //      // Enough condition to create shortcut
 //      bool bEnoughCondition1 = !plink;
 //      bool bEnoughCondition2 = !(plink->m_elink &::file::e_link_target);
-//      bool bEnoughCondition3 = !acmepath()->final_is_same(plink->m_pathTarget, path);
+//      bool bEnoughCondition3 = !path_system()->final_is_same(plink->m_pathTarget, path);
 //      bool bEnoughCondition4 = !(plink->m_elink & ::file::e_link_icon);
-//      bool bEnoughCondition5 = plink->m_pathIcon.trimmed().is_empty() || !acmefile()->exists(plink->m_pathIcon);
+//      bool bEnoughCondition5 = plink->m_pathIcon.trimmed().is_empty() || !file_system()->exists(plink->m_pathIcon);
 //
-//      //if (!acmefile()->exists(pathCreatedShortcut)
+//      //if (!file_system()->exists(pathCreatedShortcut)
 //      if (bEnoughCondition1
 //         || bEnoughCondition2
 //         || bEnoughCondition3
@@ -213,7 +213,7 @@ namespace apex_linux
 
       strDesktopFileName.find_replace("/", ".");
 
-      pathShortcut = acmedirectory()->home() / ".local/share/applications" / (strDesktopFileName + ".desktop");
+      pathShortcut = directory_system()->home() / ".local/share/applications" / (strDesktopFileName + ".desktop");
 
       return pathShortcut;
 
@@ -543,7 +543,7 @@ namespace apex_linux
                   keyPlugin.SetValue("Path", ::apexacmesystem()->m_strCa2Module("npca2.dll"));
                   keyPlugin.SetValue("ProductName", "ca2 plugin for NPAPI");
                   keyPlugin.SetValue("Vendor", "ca2 Desenvolvimento de Software Ltda.");
-                  keyPlugin.SetValue("Version", get_app()->file_as_string(dir()->ca2("appdata/x86/ca2_build.txt")));
+                  keyPlugin.SetValue("Version", get_app()->file_as_string(directory()->ca2("appdata/x86/ca2_build.txt")));
 
                   registry::Key keyApplicationca2;
 
@@ -1020,7 +1020,7 @@ namespace apex_linux
    //
    //#elif defined(MACnode)
    //   //string strDir;
-   //   //strDir = dir()->path(getenv("HOME"), "Pictures");
+   //   //strDir = directory()->path(getenv("HOME"), "Pictures");
    //   //imagefileset.add_search(strDir);
    //   string strDir;
    //   strDir = "/Library/Desktop Pictures";
@@ -1046,7 +1046,7 @@ namespace apex_linux
          if(file_exists(pathDesktop))
          {
 
-            auto plink = acmepath()->resolve_link(pathDesktop, ::file::e_link_target);
+            auto plink = path_system()->resolve_link(pathDesktop, ::file::e_link_target);
 
             if(plink && plink->m_elink & ::file::e_link_target)
             {
@@ -1208,7 +1208,7 @@ namespace apex_linux
 
       string_array stra;
 
-      acmedirectory()->list(stra, "/proc/", ::file::e_flag_folder);
+      directory_system()->list(stra, "/proc/", ::file::e_flag_folder);
 
       auto psystem = system();
 

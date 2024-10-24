@@ -1,7 +1,7 @@
 #include "framework.h"
 #include "file_system.h"
-#include "acme/filesystem/filesystem/acme_path.h"
-#include "acme/filesystem/filesystem/acme_directory.h"
+#include "acme/filesystem/filesystem/path_system.h"
+#include "acme/filesystem/filesystem/directory_system.h"
 
 
 namespace acme_linux
@@ -66,7 +66,7 @@ namespace acme_linux
 //
 //      }
 //
-//      ::file::path pathAppModule = acmefile()->module();
+//      ::file::path pathAppModule = file_system()->module();
 //
 //      m_pathModule = pathAppModule;
 //

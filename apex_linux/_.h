@@ -17,8 +17,8 @@ namespace apex_linux
 {
 
 
-   class dir_context;
-   class dir_system;
+   class directory_context;
+   class directory_system;
    class file_context;
    class file_system;
 
@@ -125,7 +125,7 @@ namespace apex_linux
 //} // namespace linux
 
 
-//#include "dir_system.h"
+//#include "directory_system.h"
 //#include "file_context.h"
 //#include "inteprocess_channel.h"
 

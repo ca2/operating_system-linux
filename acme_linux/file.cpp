@@ -1,6 +1,6 @@
 #include "framework.h"
 #include "file.h"
-#include "acme_directory.h"
+#include "directory_system.h"
 #include "acme/exception/dump_context.h"
 #include "acme/exception/io.h"
 #include "acme/filesystem/file/exception.h"
@@ -113,7 +113,7 @@
 //      if ((eopen & ::file::e_open_defer_create_directory) && (eopen & ::file::e_open_write))
 //      {
 //
-//         acmedirectory()->create(pszFileName.folder());
+//         directory_system()->create(pszFileName.folder());
 //
 //      }
 //
@@ -183,12 +183,12 @@
 //      dwPermission |= S_IRGRP | S_IWGRP | S_IXGRP;
 //      dwPermission |= S_IROTH | S_IROTH;
 //
-//      //auto path = acmepath()->final(m_path);
+//      //auto path = path_system()->final(m_path);
 //
 //      if(eopen & ::file::e_open_file)
 //      {
 //
-//         if(acmedirectory()->is(m_path))
+//         if(directory_system()->is(m_path))
 //         {
 //
 //            if(eopen & ::file::e_open_no_exception_on_open)

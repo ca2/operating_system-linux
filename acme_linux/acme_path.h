@@ -2,24 +2,24 @@
 #pragma once
 
 
-#include "acme_posix/acme_path.h"
+#include "acme_posix/path_system.h"
 
 
 namespace acme_linux
 {
 
 
-   class CLASS_DECL_ACME_LINUX acme_path :
-      virtual public ::acme_posix::acme_path
+   class CLASS_DECL_ACME_LINUX path_system :
+      virtual public ::acme_posix::path_system
    {
    public:
 
 
-      //__creatable_from_library(acme_path, ::acme_path, "acme_linux");
+      //__creatable_from_library(path_system, ::path_system, "acme_linux");
 
 
-      acme_path();
-      ~acme_path() override;
+      path_system();
+      ~path_system() override;
 
 
    };

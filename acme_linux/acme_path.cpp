@@ -1,13 +1,13 @@
 // Create on 2021-03-22 09:12 <3ThomasBS_
 #include "framework.h"
-#include "acme_path.h"
+#include "path_system.h"
 
 
 namespace acme_linux
 {
 
    
-   acme_path::acme_path()
+   path_system::path_system()
    {
 
       m_pplatformpath = this;
@@ -15,7 +15,7 @@ namespace acme_linux
    }
 
 
-   acme_path::~acme_path()
+   path_system::~path_system()
    {
 
 
