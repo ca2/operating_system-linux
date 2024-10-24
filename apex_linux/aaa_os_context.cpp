@@ -901,7 +901,7 @@ namespace apex_linux
    void os_context::file_open(const ::file::path & pathTarget, const ::string & strParams, const ::file::path & pathFolder)
    {
 
-      auto path = get_context()->m_papexcontext->defer_process_path(pathTarget);
+      auto path = get_context()->defer_process_path(pathTarget);
 
       if(linux_can_exec(path))
       {

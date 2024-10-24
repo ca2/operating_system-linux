@@ -15,7 +15,7 @@ __FACTORY_EXPORT void desktop_environment_xfce_factory(::factory::factory * pfac
 
    node_xfce_factory(pfactory);
 
-   pfactory->add_factory_item < ::desktop_environment_xfce::node, ::acme::node > ();
+   pfactory->add_factory_item < ::desktop_environment_xfce::node, ::platform::node > ();
 
 
 }

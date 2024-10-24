@@ -60,7 +60,7 @@ __FACTORY_EXPORT void apex_linux_factory(::factory::factory * pfactory)
    //pfactory->add_factory_item < ::apex_linux::file_context, ::file_context >();
    pfactory->add_factory_item < ::apex_linux::service_handler, ::service_handler >();
 
-   pfactory->add_factory_item < ::apex_linux::node, ::acme::node >();
+   pfactory->add_factory_item < ::apex_linux::node, ::platform::node >();
 
    pfactory->add_factory_item < ::apex_linux::app_launcher, ::apex::app_launcher >();
 

@@ -20,7 +20,7 @@ namespace acme_linux
    public:
 
 
-      //__creatable_from_library(node, ::acme::node, "acme_linux");
+      //__creatable_from_library(node, ::platform::node, "acme_linux");
 
       //::user::enum_desktop             m_edesktop;
 

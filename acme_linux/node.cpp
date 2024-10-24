@@ -185,7 +185,7 @@ namespace acme_linux
 //   ::user::enum_desktop node::get_edesktop()
 //   {
 //
-//      return ::acme::node::get_edesktop();
+//      return ::platform::node::get_edesktop();
 //
 //   }
 

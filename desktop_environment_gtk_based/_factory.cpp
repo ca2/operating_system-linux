@@ -15,7 +15,7 @@ __FACTORY_EXPORT void desktop_environment_gtk_based_factory(::factory::factory *
 
    node_gtk_based_factory(pfactory);
 
-   pfactory->add_factory_item < ::desktop_environment_gtk_based::node, ::acme::node > ();
+   pfactory->add_factory_item < ::desktop_environment_gtk_based::node, ::platform::node > ();
 
 
 }
