@@ -72,7 +72,7 @@ namespace acme_linux
 //
 //      auto psystem = system();
 //
-//      auto pacmefile = psystem->m_pacmefile;
+//      auto pacmefile = psystem->m_pfilesystem;
 //
 //      ::file::path pathCa2AppModule = pacmefile->module();
 //

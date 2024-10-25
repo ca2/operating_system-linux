@@ -112,7 +112,7 @@ namespace acme_linux
 
       auto psystem = system();
 
-      auto pacmedir = psystem->m_pacmedirectory;
+      auto pacmedir = psystem->m_pdirectorysystem;
 
       pathNetworkPayload = pacmedir->home() / ".dropbox/info.json";
 

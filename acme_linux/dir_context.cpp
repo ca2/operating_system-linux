@@ -102,7 +102,7 @@ namespace acme_linux
 
       m_pfilesystem = psystem->m_pfilesystem.get();
 
-      m_pdirsystem = psystem->m_pdirsystem.get();
+      m_pdirectorysystem = psystem->m_pdirectorysystem.get();
 
       //return ::success;
 
@@ -125,7 +125,7 @@ namespace acme_linux
 //
 //      pathCa2.go_up(3);
 //
-//      m_pdirsystem->m_pathCa2 = pathCa2;
+//      m_pdirectorysystem->m_pathCa2 = pathCa2;
 
 //      auto pdocument = create_xml_document();
 //
@@ -134,44 +134,44 @@ namespace acme_linux
 //      if(pdocument->root() && pdocument->root()->get_name() == "directory_configuration")
 //      {
 //
-//         m_pdirsystem->m_pathTimeFolder = pdocument->root()->get_child_value("time");
+//         m_pdirectorysystem->m_pathTimeFolder = pdocument->root()->get_child_value("time");
 //
-//         m_pdirsystem->m_pathNetSeedFolder = pdocument->root()->get_child_value("netseed");
+//         m_pdirectorysystem->m_pathNetSeedFolder = pdocument->root()->get_child_value("netseed");
 //
 //      }
 
 #ifdef LINUX
 
-      m_pdirsystem->m_pathTimeFolder = "/var/tmp/ca2/time";
+      m_pdirectorysystem->m_pathTimeFolder = "/var/tmp/ca2/time";
 
 #else
 
-      if(m_pdirsystem->m_pathTimeFolder.is_empty())
+      if(m_pdirectorysystem->m_pathTimeFolder.is_empty())
       {
 
-         m_pdirsystem->m_pathTimeFolder = appdata() / "time";
+         m_pdirectorysystem->m_pathTimeFolder = appdata() / "time";
 
       }
 
 #endif
 
-      if(m_pdirsystem->m_pathNetSeedFolder.is_empty())
+      if(m_pdirectorysystem->m_pathNetSeedFolder.is_empty())
       {
 
-         m_pdirsystem->m_pathNetSeedFolder = install() / "netd";
+         m_pdirectorysystem->m_pathNetSeedFolder = install() / "netd";
 
       }
 
-      create(m_pdirsystem->m_pathTimeFolder);
+      create(m_pdirectorysystem->m_pathTimeFolder);
 
-      if(!is(m_pdirsystem->m_pathTimeFolder))
+      if(!is(m_pdirectorysystem->m_pathTimeFolder))
       {
 
          throw ::exception(error_failed);
 
       }
 
-      create(m_pdirsystem->m_pathTimeFolder / "time");
+      create(m_pdirectorysystem->m_pathTimeFolder / "time");
 
       ::file::path pathHome = getenv("HOME");
 
@@ -453,7 +453,7 @@ namespace acme_linux
    ::file::path directory_context::time()
    {
 
-      return m_pdirsystem->m_pathTimeFolder;
+      return m_pdirectorysystem->m_pathTimeFolder;
 
    }
 
@@ -485,7 +485,7 @@ namespace acme_linux
    ::file::path directory_context::netseed()
    {
 
-      return m_pdirsystem->m_pathNetSeedFolder;
+      return m_pdirectorysystem->m_pathNetSeedFolder;
 
    }
 

@@ -20,7 +20,7 @@ namespace acme_linux
       //::file::path                  m_pathMusic;
       //::file::path                  m_pathDocument;
       ::pointer<file_system>     m_pfilesystem;
-      ::pointer<directory_system>      m_pdirsystem;
+      ::pointer<directory_system>      m_pdirectorysystem;
 
 
       directory_context();

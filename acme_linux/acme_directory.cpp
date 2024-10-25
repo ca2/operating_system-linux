@@ -135,7 +135,7 @@ namespace acme_linux
 
       ::file::path pathSystemShortName = localconfig() / "system_short_name.txt";
 
-      return m_pacmefile->as_string(pathSystemShortName).trimmed();
+      return m_pfilesystem->as_string(pathSystemShortName).trimmed();
 
    #endif
 
@@ -430,7 +430,7 @@ namespace acme_linux
 //
 //      auto psystem = system();
 //
-//      auto pacmedir = psystem->m_pacmedirectory;
+//      auto pacmedir = psystem->m_pdirectorysystem;
 //
 //      return pacmedir->localconfig() / "bookmark";
 //
@@ -602,7 +602,7 @@ namespace acme_linux
          strCandidate = stra[i] / pszTopic;
 
          //if (file()->exists(strCandidate))
-         if (m_pacmefile->exists(strCandidate))
+         if (m_pfilesystem->exists(strCandidate))
          {
 
             return strCandidate;
