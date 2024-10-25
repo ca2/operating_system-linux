@@ -326,7 +326,7 @@
 //
 //       m_puserinteraction->install_message_routing(pchannel);
 //
-//       MESSAGE_LINK(MESSAGE_CREATE, pchannel, this,&interaction_impl::on_message_create);
+//       MESSAGE_LINK(e_message_create, pchannel, this,&interaction_impl::on_message_create);
 //
 //       if(!m_puserinteraction->m_bMessageWindow)
 //       {
@@ -351,7 +351,7 @@
 //
 //       }
 //
-//       MESSAGE_LINK(MESSAGE_DESTROY, pchannel, this,&interaction_impl::_001OnDestroy);
+//       MESSAGE_LINK(e_message_destroy, pchannel, this,&interaction_impl::_001OnDestroy);
 //
 //    }
 //
