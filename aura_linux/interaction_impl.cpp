@@ -247,7 +247,7 @@
 // ////
 // ////         auto puser = psession->user();
 // ////
-// ////         auto pwindowing = puser->windowing();
+// ////         auto pwindowing = system()->windowing();
 // ////
 // ////         pwindowing->windowing_send([&]()
 // ////         {
@@ -256,7 +256,7 @@
 // ////
 // ////            auto puser = psession->user();
 // ////
-// ////            auto pwindowing = puser->windowing();
+// ////            auto pwindowing = system()->windowing();
 // ////
 // ////            m_pwindow = pwindowing->new_window(this);
 // ////
@@ -1133,7 +1133,7 @@
 // ////
 // ////         auto puser = psession->user();
 // ////
-// ////         auto pwindowing = puser->windowing();
+// ////         auto pwindowing = system()->windowing();
 // ////
 // ////         ::pointer<::message::key>pkey = pmessage;
 // ////
@@ -1252,7 +1252,7 @@
 // ////
 // ////               auto puser = psession->user();
 // ////
-// ////               auto pwindowing = puser->windowing();
+// ////               auto pwindowing = system()->windowing();
 // ////
 // ////               auto pdisplay = pwindowing->display();
 // ////
@@ -1303,7 +1303,7 @@
 // //
 // //         auto puser = psession->user();
 // //
-// //         auto pwindowing = puser->windowing();
+// //         auto pwindowing = system()->windowing();
 // //
 // //         pwindowing->set(pmouse, oswindow(), m_pwindow, pmouse->m_atom, pmouse->m_wparam, pmouse->m_lparam);
 // //
@@ -2071,7 +2071,7 @@
 // //
 // //      auto puser = psession->user();
 // //
-// //      auto pwindowing = puser->windowing();
+// //      auto pwindowing = system()->windowing();
 // //
 // //      if(pwindowing)
 // //      {
@@ -2102,7 +2102,7 @@
 // //
 // //      auto puser = psession->user();
 // //
-// //      auto pwindowing = puser->windowing();
+// //      auto pwindowing = system()->windowing();
 // //
 // //      if(pwindowing)
 // //      {
@@ -2133,7 +2133,7 @@
 // //
 // //      auto puser = psession->user();
 // //
-// //      auto pwindowing = puser->windowing();
+// //      auto pwindowing = system()->windowing();
 // //
 // //      if(pwindowing)
 // //      {
@@ -4045,7 +4045,7 @@
 // //
 // //      auto puser = psession->user();
 // //
-// //      auto pwindowing = puser->windowing();
+// //      auto pwindowing = system()->windowing();
 // //
 // //      pwindowing->upper_window_rects(get_oswindow(), recta);
 //

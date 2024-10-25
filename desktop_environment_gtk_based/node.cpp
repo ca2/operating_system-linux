@@ -87,7 +87,7 @@ namespace desktop_environment_gtk_based
 //
 //      }
 //
-//      auto paurasession = psession->m_paurasession;
+//      auto paurasession = psession;
 //
 //      if(::is_null(paurasession))
 //      {
@@ -105,7 +105,7 @@ namespace desktop_environment_gtk_based
 //
 //      }
 //
-//      auto pwindowing = puser->windowing();
+//      auto pwindowing = system()->windowing();
 //
 //      if(::is_null(pwindowing))
 //      {
