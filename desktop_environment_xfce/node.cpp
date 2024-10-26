@@ -107,7 +107,7 @@ namespace desktop_environment_xfce
 //   bool node::windowing_message_loop_step()
 //   {
 //
-//      auto psession = get_session();
+//      
 //
 //      if(::is_null(psession))
 //      {

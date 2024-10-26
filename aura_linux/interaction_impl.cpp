@@ -243,7 +243,7 @@
 // ////
 // ////         m_puserinteraction->m_bMessageWindow = false;
 // ////
-// ////         auto psession = get_session();
+// ////         
 // ////
 // ////         auto puser = psession->user();
 // ////
@@ -252,7 +252,7 @@
 // ////         pwindowing->windowing_send([&]()
 // ////         {
 // ////
-// ////            auto psession = get_session();
+// ////            
 // ////
 // ////            auto puser = psession->user();
 // ////
@@ -1129,7 +1129,7 @@
 // ////      if(bKeyMessage)
 // ////      {
 // ////
-// ////         auto psession = get_session();
+// ////         
 // ////
 // ////         auto puser = psession->user();
 // ////
@@ -1203,7 +1203,7 @@
 // //
 // //         ::pointer<::message::mouse>pmouse = pmessage;
 // //
-// //         auto psession = get_session();
+// //         
 // //
 // //         //if(pmouse)
 // //         //{
@@ -2067,7 +2067,7 @@
 //
 //       }
 //
-// //      auto psession = get_session();
+// //      
 // //
 // //      auto puser = psession->user();
 // //
@@ -2098,7 +2098,7 @@
 //
 //       }
 //
-// //      auto psession = get_session();
+// //      
 // //
 // //      auto puser = psession->user();
 // //
@@ -2129,7 +2129,7 @@
 // //
 // //      }
 // //
-// //      auto psession = get_session();
+// //      
 // //
 // //      auto puser = psession->user();
 // //
@@ -3506,7 +3506,7 @@
 //
 // //      ::pointer<::user::message>pmessage(pmessage);
 // //
-// //      auto psession = get_session();
+// //      
 // //
 // //      if(psession->get_cursor() != nullptr
 // //            && psession->get_cursor()->m_ecursor != cursor_system)
@@ -4041,7 +4041,7 @@
 //    void interaction_impl::non_top_most_upper_window_rects(::rectangle_i32_array& recta)
 //    {
 //
-// //      auto psession = get_session();
+// //      
 // //
 // //      auto puser = psession->user();
 // //
