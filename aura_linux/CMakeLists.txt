@@ -97,4 +97,4 @@ list(APPEND library_include_directories ${CMAKE_CURRENT_SOURCE_DIR}/../..)
 
 
 
-target_compile_definitions(aura_linux PRIVATE _AURA_LINUX_LIBRARY)
+target_compile_definitions(${PROJECT_NAME} PRIVATE _${PROJECT_NAME}_project)
