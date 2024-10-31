@@ -245,7 +245,7 @@
 // ////
 // ////         
 // ////
-// ////         auto puser = psession->user();
+// ////         auto puser = user();
 // ////
 // ////         auto pwindowing = system()->windowing();
 // ////
@@ -254,7 +254,7 @@
 // ////
 // ////            
 // ////
-// ////            auto puser = psession->user();
+// ////            auto puser = user();
 // ////
 // ////            auto pwindowing = system()->windowing();
 // ////
@@ -1131,7 +1131,7 @@
 // ////
 // ////         
 // ////
-// ////         auto puser = psession->user();
+// ////         auto puser = user();
 // ////
 // ////         auto pwindowing = system()->windowing();
 // ////
@@ -1250,7 +1250,7 @@
 // ////                  m_puserinteraction->window_rectangle(rectWindow);
 // ////               }
 // ////
-// ////               auto puser = psession->user();
+// ////               auto puser = user();
 // ////
 // ////               auto pwindowing = system()->windowing();
 // ////
@@ -1301,7 +1301,7 @@
 // //
 // //         //}
 // //
-// //         auto puser = psession->user();
+// //         auto puser = user();
 // //
 // //         auto pwindowing = system()->windowing();
 // //
@@ -2069,7 +2069,7 @@
 //
 // //      
 // //
-// //      auto puser = psession->user();
+// //      auto puser = user();
 // //
 // //      auto pwindowing = system()->windowing();
 // //
@@ -2100,7 +2100,7 @@
 //
 // //      
 // //
-// //      auto puser = psession->user();
+// //      auto puser = user();
 // //
 // //      auto pwindowing = system()->windowing();
 // //
@@ -2131,7 +2131,7 @@
 // //
 // //      
 // //
-// //      auto puser = psession->user();
+// //      auto puser = user();
 // //
 // //      auto pwindowing = system()->windowing();
 // //
@@ -4043,7 +4043,7 @@
 //
 // //      
 // //
-// //      auto puser = psession->user();
+// //      auto puser = user();
 // //
 // //      auto pwindowing = system()->windowing();
 // //
