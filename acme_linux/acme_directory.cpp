@@ -194,7 +194,7 @@ namespace acme_linux
 
       string strFolder;
 
-      strsize iFind = strAppId.find('/');
+      character_count iFind = strAppId.find('/');
 
       if (strPlatform.case_insensitive_order("win32") == 0 || strPlatform.case_insensitive_order("x86") == 0)
       {
@@ -251,7 +251,7 @@ namespace acme_linux
 
       string strFolder;
 
-      strsize iFind = strAppId.find('/');
+      character_count iFind = strAppId.find('/');
 
       path = ca2roaming();
 

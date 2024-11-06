@@ -415,7 +415,7 @@ static inline Bool sr_EQ ( unsigned int sysno, SysRes sr1, SysRes sr2 ) {
       amd64, ppc32, ppc64) a bigger alignment for long double (16 bytes
       instead of 8).
       On some platforms (e.g. x86), vg_alignof gives a smaller alignment
-      than __alignof__ for long long and double (4 bytes instead of 8). 
+      than __alignof__ for huge_integer and double (4 bytes instead of 8). 
       If we want to have the "preferred" alignment for the basic types,
       then either we need to depend on gcc __alignof__, or on a (too)
       recent standard and compiler (implementing <stdalign.h>).

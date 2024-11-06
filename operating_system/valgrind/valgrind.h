@@ -6455,8 +6455,8 @@ VALGRIND_PRINTF_BACKTRACE(const char *format, ...)
    allocator working well with Memcheck.  More specifically, if your allocator
    writes to freed blocks in any way then a VALGRIND_MAKE_MEM_UNDEFINED call
    will be necessary to mark the memory as addressable just before the zeroing
-   occurs, otherwise you'll get a lot of invalid write errors.  For example,
-   you'll need to do this if your allocator recycles freed blocks, but it
+   occurs, otherwise you'hi get a lot of invalid write errors.  For example,
+   you'hi need to do this if your allocator recycles freed blocks, but it
    zeroes them before handing them back out (via VALGRIND_MALLOCLIKE_BLOCK).
    Alternatively, if your allocator reuses freed blocks for allocator-internal
    data structures, VALGRIND_MAKE_MEM_UNDEFINED calls will also be necessary.

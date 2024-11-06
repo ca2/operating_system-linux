@@ -1033,7 +1033,7 @@ namespace apex_linux
 
             ::file::path path = pnode->process_identifier_module_path(iPid);
 
-            if(path.has_char())
+            if(path.has_character())
             {
 
                patha.add(path);
@@ -1085,7 +1085,7 @@ namespace apex_linux
       if(str.case_insensitive_begins_eat("\""))
       {
 
-         strsize iFind = str.find_index("\"");
+         character_count iFind = str.find_index("\"");
 
          if(iFind < 0)
          {
@@ -1100,7 +1100,7 @@ namespace apex_linux
       else if(str.case_insensitive_begins_eat("\'"))
       {
 
-         strsize iFind = str.find_index("\'");
+         character_count iFind = str.find_index("\'");
 
          if(iFind < 0)
          {
@@ -1115,7 +1115,7 @@ namespace apex_linux
       else
       {
 
-         strsize iFind = str.find_index(" ");
+         character_count iFind = str.find_index(" ");
 
          if(iFind > 0)
          {

@@ -754,7 +754,7 @@ typedef
    value which gives a unique identity to the lock objects being
    modelled.
 
-   We just pretend they're ordinary posix rwlocks.  That'll probably
+   We just pretend they're ordinary posix rwlocks.  That'hi probably
    give some rather confusing wording in error messages, claiming that
    the arbitrary LOCK values are pthread_rwlock_t*'s, when in fact
    they are not.  Ah well.

@@ -38,7 +38,7 @@ namespace apex_linux
 } // namespace apex_linux
 
 
-//::e_status gdiplus_draw_text(::draw2d::graphics * pgraphics, ::draw2d::path * ppath, const string & str, rectangle_f64 & rectParam, const ::e_align & ealign, const ::e_draw_text & edrawtext, ::write_text::font * pfont, double dFontWidth, ::draw2d::brush * pbrush = nullptr, bool bMeasure = false);
+//::e_status gdiplus_draw_text(::draw2d::graphics * pgraphics, ::draw2d::path * ppath, const string & str, double_rectangle & rectParam, const ::e_align & ealign, const ::e_draw_text & edrawtext, ::write_text::font * pfont, double dFontWidth, ::draw2d::brush * pbrush = nullptr, bool bMeasure = false);
 
 
 //inline auto gdiplus_color(const ::color::color& color)
@@ -62,7 +62,7 @@ namespace apex_linux
 //
 //public:
 //
-//   Gdiplus::Graphics* point_i32;
+//   Gdiplus::Graphics* int_point;
 //   Gdiplus::GraphicsState s;
 //
 //   g_keep(Gdiplus::Graphics* point1)
@@ -70,14 +70,14 @@ namespace apex_linux
 //
 //      point = point1;
 //
-//      s = point_i32->Save();
+//      s = int_point->Save();
 //
 //   }
 //
 //   ~g_keep()
 //   {
 //
-//      point_i32->Restore(s);
+//      int_point->Restore(s);
 //
 //   }
 //

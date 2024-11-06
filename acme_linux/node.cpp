@@ -529,7 +529,7 @@ namespace acme_linux
 
             psummary->m_strName = psummary->m_strDistroName;
 
-            if(psummary->m_strDistroReleaseName.has_char())
+            if(psummary->m_strDistroReleaseName.has_character())
             {
 
                psummary->m_strName += " " + psummary->m_strDistroReleaseName;

@@ -1277,7 +1277,7 @@ typedef struct x265_param
 
     /* SMPTE ST 2086 mastering display color volume SEI info, specified as a
      * string which is parsed when the stream header SEI are emitted. The string
-     * format is "G(%hu,%hu)B(%hu,%hu)R(%hu,%hu)WP(%hu,%hu)L(%u,%u)" where %hu
+     * format is "G(%hn,%hn)B(%hn,%hn)R(%hn,%hn)WP(%hn,%hn)L(%u,%u)" where %hn
      * are unsigned 16bit integers and %u are unsigned 32bit integers. The SEI
      * includes X,Y display primaries for RGB channels, white point X,Y and
      * max,min luminance values. */

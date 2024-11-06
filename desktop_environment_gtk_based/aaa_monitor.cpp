@@ -48,7 +48,7 @@ namespace node_gnome
 
 
    /// ??should be run in user thread?? (for monitor/screen api maybe not needed)
-   bool monitor::get_monitor_rectangle(::rectangle_i32 * prectangle)
+   bool monitor::get_monitor_rectangle(::int_rectangle * prectangle)
    {
 
       synchronous_lock sl(user_synchronization());
@@ -83,7 +83,7 @@ namespace node_gnome
 
 
    /// ??should be run in user thread?? (for monitor/screen api maybe not needed)
-   bool monitor::get_workspace_rectangle(::rectangle_i32 *prectangle)
+   bool monitor::get_workspace_rectangle(::int_rectangle *prectangle)
    {
 
       synchronous_lock sl(user_synchronization());
