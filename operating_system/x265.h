@@ -84,8 +84,8 @@ typedef enum
  * calling x265_encoder_encode again. */
 typedef struct x265_nal
 {
-    ::u32 type;        /* NalUnitType */
-    ::u32 sizeBytes;   /* size in bytes */
+    unsigned int type;        /* NalUnitType */
+    unsigned int sizeBytes;   /* size in bytes */
     ::u328_t* payload;
 } x265_nal;
 
@@ -93,11 +93,11 @@ typedef struct x265_nal
 typedef struct x265_analysis_data
 {
     int64_t          satdCost;
-    ::u32         frameRecordSize;
-    ::u32         poc;
-    ::u32         sliceType;
-    ::u32         numCUsInFrame;
-    ::u32         numPartitions;
+    unsigned int         frameRecordSize;
+    unsigned int         poc;
+    unsigned int         sliceType;
+    unsigned int         numCUsInFrame;
+    unsigned int         numPartitions;
     int              bScenecut;
     void*            interData;
     void*            intraData;
@@ -435,7 +435,7 @@ typedef struct x265_sliceType_stats
     double        psnrU;
     double        psnrV;
     double        ssim;
-    ::u32      numPics;
+    unsigned int      numPics;
 } x265_sliceType_stats;
 
 /* Output statistics from encoder */
@@ -450,8 +450,8 @@ typedef struct x265_stats
     double                elapsedVideoTime;     /* encoded picture count / frame rate */
     double                bitrate;              /* accBits / elapsed video time */
     ::u3264_t              accBits;              /* total bits output thus far */
-    ::u32              encodedPictureCount;  /* number of output pictures thus far */
-    ::u32              totalWPFrames;        /* number of uni-directional weighted frames used */
+    unsigned int              encodedPictureCount;  /* number of output pictures thus far */
+    unsigned int              totalWPFrames;        /* number of uni-directional weighted frames used */
     x265_sliceType_stats  statsI;               /* statistics of I slice */
     x265_sliceType_stats  statsP;               /* statistics of P slice */
     x265_sliceType_stats  statsB;               /* statistics of B slice */
@@ -608,8 +608,8 @@ typedef struct x265_param
     int       internalCsp;
 
     /* Numerator and denominator of frame rate */
-    ::u32  fpsNum;
-    ::u32  fpsDenom;
+    unsigned int  fpsNum;
+    unsigned int  fpsDenom;
 
     /* Width (in pixels) of the source pictures. If this width is not an even
      * multiple of 4, the encoder will pad the pictures internally to meet this
@@ -789,12 +789,12 @@ typedef struct x265_param
      * frame parallelism will become because of the increase in rows. default 64
      * All encoders within the same process must use the same maxCUSize, until
      * all encoders are closed and x265_cleanup() is called to reset the value. */
-    ::u32  maxCUSize;
+    unsigned int  maxCUSize;
 
     /* Minimum CU width and height in pixels.  The size must be 64, 32, 16, or
      * 8. Default 8. All encoders within the same process must use the same
      * minCUSize. */
-    ::u32  minCUSize;
+    unsigned int  minCUSize;
 
     /* Enable rectangular motion prediction partitions (vertical and
      * horizontal), available at all CU depths from 64x64 to 8x8. Default is
@@ -813,23 +813,23 @@ typedef struct x265_param
     /* Maximum TU width and height in pixels.  The size must be 32, 16, 8 or 4.
      * The larger the size the more efficiently the residual can be compressed
      * by the DCT transforms, at the expense of more computation */
-    ::u32  maxTUSize;
+    unsigned int  maxTUSize;
 
     /* The additional depth the residual quad-tree is allowed to recurse beyond
      * the coding quad-tree, for inter coded blocks. This must be between 1 and
      * 4. The higher the value the more efficiently the residual can be
      * compressed by the DCT transforms, at the expense of much more compute */
-    ::u32  tuQTMaxInterDepth;
+    unsigned int  tuQTMaxInterDepth;
 
     /* The additional depth the residual quad-tree is allowed to recurse beyond
      * the coding quad-tree, for intra coded blocks. This must be between 1 and
      * 4. The higher the value the more efficiently the residual can be
      * compressed by the DCT transforms, at the expense of much more compute */
-    ::u32  tuQTMaxIntraDepth;
+    unsigned int  tuQTMaxIntraDepth;
 
     /* Enable early exit decisions for inter coded blocks to avoid recursing to
      * higher TU depths. Default: 0 */
-    ::u32  limitTU;
+    unsigned int  limitTU;
 
     /* Set the amount of rate-distortion analysis to use within quant. 0 implies
      * no rate-distortion optimization. At level 1 rate-distortion cost is used to
@@ -892,7 +892,7 @@ typedef struct x265_param
      * headers and determines the number of bits required to signal a merge so
      * it can have significant trade-offs. The smaller this number the higher
      * the performance but the less compression efficiency. Default is 3 */
-    ::u32  maxNumMergeCand;
+    unsigned int  maxNumMergeCand;
 
     /* Limit the motion references used for each search based on the results of
      * previous motion searches already performed for the same CU: If 0 all
@@ -901,10 +901,10 @@ typedef struct x265_param
      * at the same depth. If X265_REF_LIMIT_DEPTH the 2Nx2N motion search will
      * only use references that were selected by the best motion searches of the
      * 4 split CUs at the next lower CU depth.  The two flags may be combined */
-    ::u32  limitReferences;
+    unsigned int  limitReferences;
 
     /* Limit modes analyzed for each CU using cost metrics from the 4 sub-CUs */
-    ::u32 limitModes;
+    unsigned int limitModes;
 
     /* ME search method (DIA, HEX, UMH, STAR, FULL). The search patterns
      * (methods) are sorted in increasing complexity, with diamond being the
@@ -1168,7 +1168,7 @@ typedef struct x265_param
          * the minimum CU size at which QP can be adjusted, i.e. Quantization Group
          * (QG) size. Allowed values are 64, 32, 16, 8 provided it falls within the
          * inclusuve range [maxCUSize, minCUSize]. Experimental, default: maxCUSize */
-        ::u32 qgSize;
+        unsigned int qgSize;
 
         /* internally enable if tune grain is set */
         int      bEnableGrain;
@@ -1451,9 +1451,9 @@ void x265_encoder_parameters(x265_encoder *, x265_param *);
 /* x265_encoder_headers:
  *      return the SPS and PPS that will be used for the whole stream.
  *      *pi_nal is the number of NAL units outputted in pp_nal.
- *      returns negative on error, total ::u8 size of payload data on success
+ *      returns negative on error, total unsigned char size of payload data on success
  *      the payloads of all output NALs are guaranteed to be sequential in memory. */
-int x265_encoder_headers(x265_encoder *, x265_nal **pp_nal, ::u32 *pi_nal);
+int x265_encoder_headers(x265_encoder *, x265_nal **pp_nal, unsigned int *pi_nal);
 
 /* x265_encoder_encode:
  *      encode one picture.
@@ -1463,7 +1463,7 @@ int x265_encoder_headers(x265_encoder *, x265_nal **pp_nal, ::u32 *pi_nal);
  *      the payloads of all output NALs are guaranteed to be sequential in memory.
  *      To flush the encoder and retrieve delayed output pictures, pass pic_in as NULL.
  *      Once flushing has begun, all subsequent calls must pass pic_in as NULL. */
-int x265_encoder_encode(x265_encoder *encoder, x265_nal **pp_nal, ::u32 *pi_nal, x265_picture *pic_in, x265_picture *pic_out);
+int x265_encoder_encode(x265_encoder *encoder, x265_nal **pp_nal, unsigned int *pi_nal, x265_picture *pic_in, x265_picture *pic_out);
 
 /* x265_encoder_reconfig:
  *      various parameters from x265_param are copied.
@@ -1482,7 +1482,7 @@ int x265_encoder_reconfig(x265_encoder *, x265_param *);
 
 /* x265_encoder_get_stats:
  *       returns encoder statistics */
-void x265_encoder_get_stats(x265_encoder *encoder, x265_stats *, ::u32 statsSizeBytes);
+void x265_encoder_get_stats(x265_encoder *encoder, x265_stats *, unsigned int statsSizeBytes);
 
 /* x265_encoder_log:
  *       This function is deprecated */
@@ -1547,9 +1547,9 @@ typedef struct x265_api
     x265_encoder* (*encoder_open)(x265_param*);
     void          (*encoder_parameters)(x265_encoder*, x265_param*);
     int           (*encoder_reconfig)(x265_encoder*, x265_param*);
-    int           (*encoder_headers)(x265_encoder*, x265_nal**, ::u32*);
-    int           (*encoder_encode)(x265_encoder*, x265_nal**, ::u32*, x265_picture*, x265_picture*);
-    void          (*encoder_get_stats)(x265_encoder*, x265_stats*, ::u32);
+    int           (*encoder_headers)(x265_encoder*, x265_nal**, unsigned int*);
+    int           (*encoder_encode)(x265_encoder*, x265_nal**, unsigned int*, x265_picture*, x265_picture*);
+    void          (*encoder_get_stats)(x265_encoder*, x265_stats*, unsigned int);
     void          (*encoder_log)(x265_encoder*, int, char**);
     void          (*encoder_close)(x265_encoder*);
     void          (*cleanup)(void);

@@ -39,7 +39,7 @@
 // Writes the number of addresses required into *n_acquired.
 // Only those segments are considered whose kind matches any of the kinds
 // given in KIND_MASK.
-extern Addr* VG_(get_segment_starts)( ::u32 kind_mask, /*OUT*/Int* n_acquired );
+extern Addr* VG_(get_segment_starts)( unsigned int kind_mask, /*OUT*/Int* n_acquired );
 
 #endif   // __PUB_TOOL_ASPACEHL_H
 

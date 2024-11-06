@@ -25,7 +25,7 @@
          ~destination() override;
 
 
-         ::u32 get_component_type();
+         unsigned int get_component_type();
          void update_all_controls();
          void initialize_all_controls();
          void initialize_source_info();
@@ -39,7 +39,7 @@
          void set_device(::audio_mixer::device * pdevice);
 
 
-         virtual ::u32 get_mixer_line_id();
+         virtual unsigned int get_mixer_line_id();
 
       };
 

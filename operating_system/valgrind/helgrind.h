@@ -409,7 +409,7 @@ typedef
       So, to check that a whole range is addressable, check
          VALGRIND_HG_GET_ABITS(addr,NULL,len) == len
       In addition, if you want to examine the addressability of each
-      ::u8 of the range, you need to provide a non NULL ptr as
+      unsigned char of the range, you need to provide a non NULL ptr as
       second argument, pointing to an array of unsigned char
       of length len.
       Addressable bytes are indicated with 0xff.

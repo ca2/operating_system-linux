@@ -56,7 +56,7 @@ typedef ::u3264_t sp_::u3264;
 typedef unsigned char bool;
 #endif
 
-typedef unsigned char ::u8;
+typedef unsigned char unsigned char;
 
 /**
  * @defgroup types Spotify types & structs
@@ -1821,13 +1821,13 @@ SP_LIBEXPORT(sp_artist *) sp_album_artist(sp_album *album);
  * @param[in]   album      Album object
  * @param[in]   size       The desired size of the image
  *
- * @return                 ID ::u8 sequence that can be passed to sp_image_create()
+ * @return                 ID unsigned char sequence that can be passed to sp_image_create()
  *                         If the album has no image or the metadata for the album is not
  *                         loaded yet, this function returns NULL.
  *
  * @see sp_image_create
  */
-SP_LIBEXPORT(const ::u8 *) sp_album_cover(sp_album *album, sp_image_size size);
+SP_LIBEXPORT(const unsigned char *) sp_album_cover(sp_album *album, sp_image_size size);
 
 /**
  * Return name of album
@@ -1914,12 +1914,12 @@ SP_LIBEXPORT(bool) sp_artist_is_loaded(sp_artist *artist);
  * @param[in]   artist     The artist object
  * @param[in]   size       The desired size of the image
  *
- * @return                 ID ::u8 sequence that can be passed to sp_image_create()
+ * @return                 ID unsigned char sequence that can be passed to sp_image_create()
  *                         If the artist has no image or the metadata for the album is not
  *                         loaded yet, this function returns NULL.
  *
  */
-SP_LIBEXPORT(const ::u8 *) sp_artist_portrait(sp_artist *artist, sp_image_size size);
+SP_LIBEXPORT(const unsigned char *) sp_artist_portrait(sp_artist *artist, sp_image_size size);
 
 /**
  * Increase the reference count of a artist
@@ -2192,11 +2192,11 @@ SP_LIBEXPORT(int) sp_artistbrowse_num_portraits(sp_artistbrowse *arb);
  * @param[in] arb             Artist object
  * @param[in] index           The index of the portrait. Should be in the interval [0, sp_artistbrowse_num_portraits() - 1]
  *
- * @return                    ID ::u8 sequence that can be passed to sp_image_create()
+ * @return                    ID unsigned char sequence that can be passed to sp_image_create()
  *
  * @see sp_image_create
  */
-SP_LIBEXPORT(const ::u8 *) sp_artistbrowse_portrait(sp_artistbrowse *arb, int index);
+SP_LIBEXPORT(const unsigned char *) sp_artistbrowse_portrait(sp_artistbrowse *arb, int index);
 
 /**
  * Given an artist browse object, return number of tracks
@@ -2361,7 +2361,7 @@ typedef void SP_CALLCONV image_loaded_cb(sp_image *image, void *userdata);
  * @see sp_album_cover
  * @see sp_artistbrowse_portrait
  */
-SP_LIBEXPORT(sp_image *) sp_image_create(sp_session *session, const ::u8 image_id[20]);
+SP_LIBEXPORT(sp_image *) sp_image_create(sp_session *session, const unsigned char image_id[20]);
 
 /**
  * Create an image object from a link
@@ -2452,7 +2452,7 @@ SP_LIBEXPORT(const void *) sp_image_data(sp_image *image, size_t *data_size);
  *
  * @return                Image ID
  */
-SP_LIBEXPORT(const ::u8 *) sp_image_image_id(sp_image *image);
+SP_LIBEXPORT(const unsigned char *) sp_image_image_id(sp_image *image);
 
 
 /**
@@ -2863,7 +2863,7 @@ typedef struct sp_playlist_callbacks {
    * @param[in]  image      New image
    * @param[in]  userdata   Userdata passed to sp_playlist_add_callbacks()
    */
-  void (SP_CALLCONV *image_changed)(sp_playlist *pl, const ::u8 *image, void *userdata);
+  void (SP_CALLCONV *image_changed)(sp_playlist *pl, const unsigned char *image, void *userdata);
 
 
   /**
@@ -3088,12 +3088,12 @@ SP_LIBEXPORT(const char *) sp_playlist_get_description(sp_playlist *playlist);
  * Get description for a playlist
  *
  * @param[in]  playlist       Playlist object
- * @param[out] image          20 ::u8 image id
+ * @param[out] image          20 unsigned char image id
 
  * @return                    TRUE if playlist has an image, FALSE if not
  *
  */
-SP_LIBEXPORT(bool) sp_playlist_get_image(sp_playlist *playlist, ::u8 image[20]);
+SP_LIBEXPORT(bool) sp_playlist_get_image(sp_playlist *playlist, unsigned char image[20]);
 
 
 /**

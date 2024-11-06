@@ -42,24 +42,24 @@ typedef
    struct {
       /* 0 */
       /* Event check fail addr and counter. */
-      ::u32 host_EvC_FAILADDR; /* 0 */
-      ::u32 host_EvC_COUNTER;  /* 4 */
-      ::u32 guest_R0;
-      ::u32 guest_R1;
-      ::u32 guest_R2;
-      ::u32 guest_R3;
-      ::u32 guest_R4;
-      ::u32 guest_R5;
-      ::u32 guest_R6;
-      ::u32 guest_R7;
-      ::u32 guest_R8;
-      ::u32 guest_R9;
-      ::u32 guest_R10;
-      ::u32 guest_R11;
-      ::u32 guest_R12;
-      ::u32 guest_R13;     /* stack pointer */
-      ::u32 guest_R14;     /* link register */
-      ::u32 guest_R15T;
+      unsigned int host_EvC_FAILADDR; /* 0 */
+      unsigned int host_EvC_COUNTER;  /* 4 */
+      unsigned int guest_R0;
+      unsigned int guest_R1;
+      unsigned int guest_R2;
+      unsigned int guest_R3;
+      unsigned int guest_R4;
+      unsigned int guest_R5;
+      unsigned int guest_R6;
+      unsigned int guest_R7;
+      unsigned int guest_R8;
+      unsigned int guest_R9;
+      unsigned int guest_R10;
+      unsigned int guest_R11;
+      unsigned int guest_R12;
+      unsigned int guest_R13;     /* stack pointer */
+      unsigned int guest_R14;     /* link register */
+      unsigned int guest_R15T;
       /* program counter[31:1] ++ [T], encoding both the current
          instruction address and the ARM vs Thumb state of the
          machine.  T==1 is Thumb, T==0 is ARM.  Hence values of the
@@ -72,31 +72,31 @@ typedef
       /* 4-word thunk used to calculate N(sign) Z(zero) C(carry,
          unsigned overflow) and V(signed overflow) flags. */
       /* 72 */
-      ::u32 guest_CC_OP;
-      ::u32 guest_CC_DEP1;
-      ::u32 guest_CC_DEP2;
-      ::u32 guest_CC_NDEP;
+      unsigned int guest_CC_OP;
+      unsigned int guest_CC_DEP1;
+      unsigned int guest_CC_DEP2;
+      unsigned int guest_CC_NDEP;
 
       /* A 32-bit value which is used to compute the APSR.Q (sticky
          saturation) flag, when necessary.  If the value stored here
          is zero, APSR.Q is currently zero.  If it is any other value,
          APSR.Q is currently one. */
-      ::u32 guest_QFLAG32;
+      unsigned int guest_QFLAG32;
 
       /* 32-bit values to represent APSR.GE0 .. GE3.  Same
          zero-vs-nonzero scheme as for QFLAG32. */
-      ::u32 guest_GEFLAG0;
-      ::u32 guest_GEFLAG1;
-      ::u32 guest_GEFLAG2;
-      ::u32 guest_GEFLAG3;
+      unsigned int guest_GEFLAG0;
+      unsigned int guest_GEFLAG1;
+      unsigned int guest_GEFLAG2;
+      unsigned int guest_GEFLAG3;
 
       /* Various pseudo-regs mandated by Vex or Valgrind. */
       /* Emulation notes */
-      ::u32 guest_EMNOTE;
+      unsigned int guest_EMNOTE;
 
       /* For clinval/clflush: record start and length of area */
-      ::u32 guest_CMSTART;
-      ::u32 guest_CMLEN;
+      unsigned int guest_CMSTART;
+      unsigned int guest_CMLEN;
 
       /* Used to record the unredirected guest address at the start of
          a translation whose start has been redirected.  By reading
@@ -104,14 +104,14 @@ typedef
          find out what the corresponding no-redirection address was.
          Note, this is only set for wrap-style redirects, not for
          replace-style ones. */
-      ::u32 guest_NRADDR;
+      unsigned int guest_NRADDR;
 
       /* Needed for Darwin (but mandated for all guest architectures):
          program counter at the last syscall insn (int 0x80/81/82,
          sysenter, syscall, svc).  Used when backing up to restart a
          syscall that has been interrupted by a signal. */
       /* 124 */
-      ::u32 guest_IP_AT_SYSCALL;
+      unsigned int guest_IP_AT_SYSCALL;
 
       /* VFP state.  D0 .. D15 must be 8-aligned. */
       /* 128 */
@@ -147,7 +147,7 @@ typedef
       ULong guest_D29;
       ULong guest_D30;
       ULong guest_D31;
-      ::u32  guest_FPSCR;
+      unsigned int  guest_FPSCR;
 
       /* Not a town in Cornwall, but instead the TPIDRURO, on of the
          Thread ID registers present in CP15 (the system control
@@ -156,17 +156,17 @@ typedef
          to hold the TLS pointer for the thread.  It's read-only in
          user space.  On Linux it is set in user space by various
          thread-related syscalls. */
-      ::u32 guest_TPIDRURO;
+      unsigned int guest_TPIDRURO;
 
       /* Representation of the Thumb IT state.  ITSTATE is a 32-bit
          value with 4 8-bit lanes.  [7:0] pertain to the next insn to
          execute, [15:8] for the one after that, etc.  The per-insn
          update to ITSTATE is to unsignedly shift it right 8 bits,
-         hence introducing a zero ::u8 for the furthest ahead
-         instruction.  As per the next para, a zero ::u8 denotes the
+         hence introducing a zero unsigned char for the furthest ahead
+         instruction.  As per the next para, a zero unsigned char denotes the
          condition ALWAYS.
 
-         Each ::u8 lane has one of the two following formats:
+         Each unsigned char lane has one of the two following formats:
 
          cccc 0001  for an insn which is part of an IT block.  cccc is
                     the guarding condition (standard ARM condition
@@ -177,7 +177,7 @@ typedef
 
          If the bottom 4 bits are zero then the top 4 must be too.
 
-         Given the ::u8 lane for an instruction, the guarding
+         Given the unsigned char lane for an instruction, the guarding
          condition for the instruction is (((lane >> 4) & 0xF) ^ 0xE).
          This is not as stupid as it sounds, because the front end
          elides the shift.  And the am-I-in-an-IT-block check is
@@ -191,10 +191,10 @@ typedef
          The condition "is outside or last in IT block" corresponds
          to the top 24 bits of ITSTATE being zero.
       */
-      ::u32 guest_ITSTATE;
+      unsigned int guest_ITSTATE;
 
       /* Padding to make it have an 16-aligned size */
-      ::u32 padding1;
+      unsigned int padding1;
    }
    VexGuestARMState;
 
@@ -213,7 +213,7 @@ void LibVEX_GuestARM_initialise ( /*OUT*/VexGuestARMState* vex_state );
 /* Calculate the ARM flag state from the saved data. */
 
 extern
-::u32 LibVEX_GuestARM_get_cpsr ( /*IN*/const VexGuestARMState* vex_state );
+unsigned int LibVEX_GuestARM_get_cpsr ( /*IN*/const VexGuestARMState* vex_state );
 
 
 #endif /* ndef __LIBVEX_PUB_GUEST_ARM_H */

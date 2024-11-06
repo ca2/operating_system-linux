@@ -44,7 +44,7 @@ namespace acme_linux
 
    // maximum mumber of lines the output console should have
 
-   static const ::u16 MAX_CONSOLE_LINES = 500;
+   static const unsigned short MAX_CONSOLE_LINES = 500;
 
    void console::redirect_io()
    {
@@ -188,7 +188,7 @@ namespace acme_linux
    {
 
 //      COORD coord ={0,iLineStart};
-//      ::u32 dwWritten;
+//      unsigned int dwWritten;
 //      if(iLineCount < 0)
 //         iLineCount = m_iH + iLineCount + 1;
 //      if(iLineCount > m_iH - iLineStart)

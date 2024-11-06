@@ -110,7 +110,7 @@ extern Bool VG_(parse_Addr) ( const HChar** ppc, Addr* result );
 
 /* Parse an unsigned 32 bit number, written using decimals only.
    Calling conventions are the same as for VG_(parse_Addr). */
-extern Bool VG_(parse_::u32) ( const HChar** ppc, ::u32* result );
+extern Bool VG_(parse_unsigned int) ( const HChar** ppc, unsigned int* result );
 
 /* Parse an "enum set" made of one or more words comma separated.
    The allowed word values are given in 'tokens', separated by comma.
@@ -130,7 +130,7 @@ extern Bool VG_(parse_::u32) ( const HChar** ppc, ::u32* result );
 extern Bool VG_(parse_enum_set) ( const HChar *tokens,
                                   Bool  allow_all,
                                   const HChar *input,
-                                  ::u32 *enum_set);
+                                  unsigned int *enum_set);
 
 /* ---------------------------------------------------------------------
    mem* functions
@@ -214,21 +214,21 @@ extern void VG_(ssort)( void* base, SizeT nmemb, SizeT size,
 
 /* Returns the base-2 logarithm of a 32 bit unsigned number.  Returns
  -1 if it is not a power of two.  Nb: VG_(log2)(1) == 0. */
-extern Int VG_(log2) ( ::u32 x );
+extern Int VG_(log2) ( unsigned int x );
 
 /* Ditto for 64 bit unsigned numbers. */
 extern Int VG_(log2_64)( ULong x );
 
-// A pseudo-random number generator returning a random ::u32.  If pSeed
+// A pseudo-random number generator returning a random unsigned int.  If pSeed
 // is NULL, it uses its own seed, which starts at zero.  If pSeed is
 // non-NULL, it uses and updates whatever pSeed points at.
-extern ::u32 VG_(random) ( /*MOD*/::u32* pSeed );
+extern unsigned int VG_(random) ( /*MOD*/unsigned int* pSeed );
 
 /* Update a running Adler-32 checksum with the bytes buf[0..len-1] and
    return the updated checksum. If buf is NULL, this function returns
    the required initial value for the checksum. An Adler-32 checksum is
    almost as reliable as a CRC32 but can be computed much faster. */
-extern ::u32 VG_(adler32)( ::u32 adler, const UChar* buf, ::u32 len);
+extern unsigned int VG_(adler32)( unsigned int adler, const UChar* buf, unsigned int len);
 
 #endif   // __PUB_TOOL_LIBCBASE_H
 

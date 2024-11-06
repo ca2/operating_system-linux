@@ -113,7 +113,7 @@
       }
 
 
-      ::u32 destination::get_component_type()
+      unsigned int destination::get_component_type()
       {
 
          //return m_mixerline.dwComponentType;
@@ -148,7 +148,7 @@
 
       }
 
-      ::u32 destination::get_mixer_line_id()
+      unsigned int destination::get_mixer_line_id()
       {
          //return m_mixerline.dwLineID;
 

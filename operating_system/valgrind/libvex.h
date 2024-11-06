@@ -258,7 +258,7 @@ typedef
 
 extern const HChar* LibVEX_ppVexArch    ( VexArch );
 extern const HChar* LibVEX_ppVexEndness ( VexEndness endness );
-extern const HChar* LibVEX_ppVexHwCaps  ( VexArch, ::u32 );
+extern const HChar* LibVEX_ppVexHwCaps  ( VexArch, unsigned int );
 
 
 /* The various kinds of caches */
@@ -271,10 +271,10 @@ typedef enum {
 /* Information about a particular cache */
 typedef struct {
    VexCacheKind kind;
-   ::u32 level;         /* level this cache is at, e.g. 1 for L1 cache */
-   ::u32 sizeB;         /* size of this cache in bytes */
-   ::u32 line_sizeB;    /* cache line size in bytes */
-   ::u32 assoc;         /* set associativity */
+   unsigned int level;         /* level this cache is at, e.g. 1 for L1 cache */
+   unsigned int sizeB;         /* size of this cache in bytes */
+   unsigned int line_sizeB;    /* cache line size in bytes */
+   unsigned int assoc;         /* set associativity */
    Bool is_trace_cache;  /* False, except for certain Pentium 4 models */
 } VexCache;
 
@@ -286,8 +286,8 @@ typedef struct {
 
 /* Information about the cache system as a whole */
 typedef struct {
-   ::u32 num_levels;
-   ::u32 num_caches;
+   unsigned int num_levels;
+   unsigned int num_caches;
    /* Unordered array of caches for this host. NULL if there are
       no caches. The following can always be assumed:
       (1) There is at most one cache of a given kind per cache level.
@@ -309,20 +309,20 @@ typedef struct {
 typedef
    struct {
       /* The following three fields are mandatory. */
-      ::u32         hwcaps;
+      unsigned int         hwcaps;
       VexEndness   endness;
       VexCacheInfo hwcache_info;
       /* PPC32/PPC64 only: size of instruction cache line */
       Int ppc_icache_line_szB;
       /* PPC32/PPC64 only: sizes zeroed by the dcbz/dcbzl instructions
          (bug#135264) */
-      ::u32 ppc_dcbz_szB;
-      ::u32 ppc_dcbzl_szB; /* 0 means unsupported (SIGILL) */
+      unsigned int ppc_dcbz_szB;
+      unsigned int ppc_dcbzl_szB; /* 0 means unsupported (SIGILL) */
       /* ARM64: I- and D- minimum line sizes in log2(bytes), as
          obtained from ctr_el0.DminLine and .IminLine.  For example, a
          line size of 64 bytes would be encoded here as 6. */
-      ::u32 arm64_dMinLine_lg2_szB;
-      ::u32 arm64_iMinLine_lg2_szB;
+      unsigned int arm64_dMinLine_lg2_szB;
+      unsigned int arm64_iMinLine_lg2_szB;
       /* ARM64: does the host require us to use the fallback LLSC
          implementation? */
       Bool arm64_requires_fallback_LLSC;
@@ -618,13 +618,13 @@ typedef
       enum { VexTransOK=0x800,
              VexTransAccessFail, VexTransOutputFull } status;
       /* The number of extents that have a self-check (0 to 3) */
-      ::u32 n_sc_extents;
+      unsigned int n_sc_extents;
       /* Offset in generated code of the profile inc, or -1 if
          none.  Needed for later patching. */
       Int offs_profInc;
       /* Stats only: the number of guest insns included in the
          translation.  It may be zero (!). */
-      ::u32 n_guest_instrs;
+      unsigned int n_guest_instrs;
    }
    VexTranslateResult;
 
@@ -718,7 +718,7 @@ typedef
          this callback) can if it wants, inspect the value and change
          it to something different, and that value will be used for
          subsequent IR optimisation of the block. */
-      ::u32 (*needs_self_check)( /*callback_opaque*/void*,
+      unsigned int (*needs_self_check)( /*callback_opaque*/void*,
                                 /*MAYBE_MOD*/VexRegisterUpdates* pxControl,
                                 const VexGuestExtents* );
 
@@ -892,16 +892,16 @@ typedef
       IRType t_opnd2;  // type of 2nd operand
       IRType t_opnd3;  // type of 3rd operand
       IRType t_opnd4;  // type of 4th operand
-      ::u32  rounding_mode;
-      ::u32  num_operands; // excluding rounding mode, if any
+      unsigned int  rounding_mode;
+      unsigned int  num_operands; // excluding rounding mode, if any
       /* The following two members describe if this operand has immediate
        *  operands. There are a few restrictions:
        *    (1) An operator can have at most one immediate operand.
        * (2) If there is an immediate operand, it is the right-most operand
        *  An immediate_index of 0 means there is no immediate operand.
        */
-      ::u32 immediate_type;  // size of immediate Ity_I8, Ity_16
-      ::u32 immediate_index; // operand number: 1, 2
+      unsigned int immediate_type;  // size of immediate Ity_I8, Ity_16
+      unsigned int immediate_index; // operand number: 1, 2
    }
    IRICB;
 

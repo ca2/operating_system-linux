@@ -40,46 +40,46 @@
 
 typedef
    struct {
-      /*    0 */ ::u32 host_EvC_FAILADDR;
-      /*    4 */ ::u32 host_EvC_COUNTER;
+      /*    0 */ unsigned int host_EvC_FAILADDR;
+      /*    4 */ unsigned int host_EvC_COUNTER;
 
       /* CPU Registers */
-      /*    8 */ ::u32 guest_r0;   /* Hardwired to 0. */
-      /*   12 */ ::u32 guest_r1;   /* Assembler temporary */
-      /*   16 */ ::u32 guest_r2;   /* Values for function returns ...*/
-      /*   20 */ ::u32 guest_r3;   /* ... and expression evaluation */
-      /*   24 */ ::u32 guest_r4;   /* Function arguments */
-      /*   28 */ ::u32 guest_r5;
-      /*   32 */ ::u32 guest_r6;
-      /*   36 */ ::u32 guest_r7;
-      /*   40 */ ::u32 guest_r8;   /* Temporaries */
-      /*   44 */ ::u32 guest_r9;
-      /*   48 */ ::u32 guest_r10;
-      /*   52 */ ::u32 guest_r11;
-      /*   56 */ ::u32 guest_r12;
-      /*   60 */ ::u32 guest_r13;
-      /*   64 */ ::u32 guest_r14;
-      /*   68 */ ::u32 guest_r15;
-      /*   72 */ ::u32 guest_r16;  /* Saved temporaries */
-      /*   76 */ ::u32 guest_r17;
-      /*   80 */ ::u32 guest_r18;
-      /*   84 */ ::u32 guest_r19;
-      /*   88 */ ::u32 guest_r20;
-      /*   92 */ ::u32 guest_r21;
-      /*   96 */ ::u32 guest_r22;
-      /*  100 */ ::u32 guest_r23;
-      /*  104 */ ::u32 guest_r24;  /* Temporaries */
-      /*  108 */ ::u32 guest_r25;
-      /*  112 */ ::u32 guest_r26;  /* Reserved for OS kernel */
-      /*  116 */ ::u32 guest_r27;
-      /*  120 */ ::u32 guest_r28;  /* Global pointer */
-      /*  124 */ ::u32 guest_r29;  /* Stack pointer */
-      /*  128 */ ::u32 guest_r30;  /* Frame pointer */
-      /*  132 */ ::u32 guest_r31;  /* Return address */
-      /*  136 */ ::u32 guest_PC;   /* Program counter */
-      /*  140 */ ::u32 guest_HI;   /* Multiply and divide reg higher result */
-      /*  144 */ ::u32 guest_LO;   /* Multiply and divide reg lower result */
-      /*  148 */ ::u32 _padding1;
+      /*    8 */ unsigned int guest_r0;   /* Hardwired to 0. */
+      /*   12 */ unsigned int guest_r1;   /* Assembler temporary */
+      /*   16 */ unsigned int guest_r2;   /* Values for function returns ...*/
+      /*   20 */ unsigned int guest_r3;   /* ... and expression evaluation */
+      /*   24 */ unsigned int guest_r4;   /* Function arguments */
+      /*   28 */ unsigned int guest_r5;
+      /*   32 */ unsigned int guest_r6;
+      /*   36 */ unsigned int guest_r7;
+      /*   40 */ unsigned int guest_r8;   /* Temporaries */
+      /*   44 */ unsigned int guest_r9;
+      /*   48 */ unsigned int guest_r10;
+      /*   52 */ unsigned int guest_r11;
+      /*   56 */ unsigned int guest_r12;
+      /*   60 */ unsigned int guest_r13;
+      /*   64 */ unsigned int guest_r14;
+      /*   68 */ unsigned int guest_r15;
+      /*   72 */ unsigned int guest_r16;  /* Saved temporaries */
+      /*   76 */ unsigned int guest_r17;
+      /*   80 */ unsigned int guest_r18;
+      /*   84 */ unsigned int guest_r19;
+      /*   88 */ unsigned int guest_r20;
+      /*   92 */ unsigned int guest_r21;
+      /*   96 */ unsigned int guest_r22;
+      /*  100 */ unsigned int guest_r23;
+      /*  104 */ unsigned int guest_r24;  /* Temporaries */
+      /*  108 */ unsigned int guest_r25;
+      /*  112 */ unsigned int guest_r26;  /* Reserved for OS kernel */
+      /*  116 */ unsigned int guest_r27;
+      /*  120 */ unsigned int guest_r28;  /* Global pointer */
+      /*  124 */ unsigned int guest_r29;  /* Stack pointer */
+      /*  128 */ unsigned int guest_r30;  /* Frame pointer */
+      /*  132 */ unsigned int guest_r31;  /* Return address */
+      /*  136 */ unsigned int guest_PC;   /* Program counter */
+      /*  140 */ unsigned int guest_HI;   /* Multiply and divide reg higher result */
+      /*  144 */ unsigned int guest_LO;   /* Multiply and divide reg lower result */
+      /*  148 */ unsigned int _padding1;
 
       /* FPU Registers */
       /*  152 */ ULong guest_f0;  /* Floating point general purpose registers */
@@ -115,11 +115,11 @@ typedef
       /*  392 */ ULong guest_f30;
       /*  400 */ ULong guest_f31;
 
-      /*  408 */ ::u32 guest_FIR;
-      /*  412 */ ::u32 guest_FCCR;
-      /*  416 */ ::u32 guest_FEXR;
-      /*  420 */ ::u32 guest_FENR;
-      /*  424 */ ::u32 guest_FCSR;
+      /*  408 */ unsigned int guest_FIR;
+      /*  412 */ unsigned int guest_FCCR;
+      /*  416 */ unsigned int guest_FEXR;
+      /*  420 */ unsigned int guest_FENR;
+      /*  424 */ unsigned int guest_FCSR;
 
       /* TLS pointer for the thread. It's read-only in user space.
          On Linux it is set in user space by various thread-related
@@ -130,31 +130,31 @@ typedef
          environments, the UserLocal register is a pointer to a
          thread-specific storage block.
       */
-      /*  428 */ ::u32 guest_ULR;
+      /*  428 */ unsigned int guest_ULR;
 
       /* Emulation notes */
-      /*  432 */ ::u32 guest_EMNOTE;
+      /*  432 */ unsigned int guest_EMNOTE;
 
       /* For clflush: record start and length of area to invalidate. */
-      /*  436 */ ::u32 guest_CMSTART;
-      /*  440 */ ::u32 guest_CMLEN;
-      /*  444 */ ::u32 guest_NRADDR;
+      /*  436 */ unsigned int guest_CMSTART;
+      /*  440 */ unsigned int guest_CMLEN;
+      /*  444 */ unsigned int guest_NRADDR;
 
-      /*  448 */ ::u32 guest_COND;
+      /*  448 */ unsigned int guest_COND;
 
       /* MIPS32 DSP ASE(r2) specific registers. */
-      /*  452 */ ::u32 guest_DSPControl;
+      /*  452 */ unsigned int guest_DSPControl;
       /*  456 */ ULong guest_ac0;
       /*  464 */ ULong guest_ac1;
       /*  472 */ ULong guest_ac2;
       /*  480 */ ULong guest_ac3;
 
-      /*  488 */ ::u32 guest_CP0_status;
+      /*  488 */ unsigned int guest_CP0_status;
 
-      /*  492 */ ::u32 guest_LLaddr;
-      /*  496 */ ::u32 guest_LLdata;
+      /*  492 */ unsigned int guest_LLaddr;
+      /*  496 */ unsigned int guest_LLdata;
 
-      /*  500 */ ::u32 _padding2[3];
+      /*  500 */ unsigned int _padding2[3];
 } VexGuestMIPS32State;
 /*---------------------------------------------------------------*/
 /*--- Utility functions for MIPS32 guest stuff.               ---*/

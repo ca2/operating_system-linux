@@ -40,7 +40,7 @@
       }
 
 
-      void device::open(::u32 uiMixerId, ::u32 dwCallback, ::u32 dwInstance, ::u32 fdwOpen)
+      void device::open(unsigned int uiMixerId, unsigned int dwCallback, unsigned int dwInstance, unsigned int fdwOpen)
       {
 
 //         ::multimedia::result            mmrc;
@@ -102,7 +102,7 @@
 
 //         ::multimedia::result mmrc;
 //
-//         mmrc = mixerGetDevCaps((::u32) m_hMixer, &m_mixercaps, sizeof(MIXERCAPS));
+//         mmrc = mixerGetDevCaps((unsigned int) m_hMixer, &m_mixercaps, sizeof(MIXERCAPS));
 //
 //         if (MMSYSERR_NOERROR != mmrc)
 //         {
@@ -125,7 +125,7 @@
 //
 //         m_mixerdestinationa.set_size_create(m_mixercaps.cDestinations);
 //
-//         for (int32_t i = 0; (::u32) i < m_mixercaps.cDestinations; i++)
+//         for (int32_t i = 0; (unsigned int) i < m_mixercaps.cDestinations; i++)
 //         {
 //            lpDestination = m_mixerdestinationa(i);
 //            lpDestination->set_device(this);
@@ -168,7 +168,7 @@
       void device::get_destination(::audio_mixer::e_destination edestination, ::audio_mixer::destination **ppDestination)
       {
          
-//         ::u32 dwComponentType;
+//         unsigned int dwComponentType;
 //
 //         switch(edestination)
 //         {
@@ -187,7 +187,7 @@
 //         for(int32_t i = 0; i < m_mixerdestinationa.get_size(); i++)
 //         {
 //            sp(::audio_mixer_alsa::destination) destination = m_mixerdestinationa(i);
-//            ::u32 dw = destination->m_mixerline.dwComponentType;
+//            unsigned int dw = destination->m_mixerline.dwComponentType;
 //            if(dw == dwComponentType)
 //            {
 //               *ppDestination = m_mixerdestinationa(i);
@@ -245,7 +245,7 @@
       }
 
 
-      void device::OnMixerLineChange(::u32 dwLineID)
+      void device::OnMixerLineChange(unsigned int dwLineID)
       {
 //         ::audio_mixer::source * pSource;
 //         if(m_mapIDToLine.Lookup(dwLineID, pSource))
@@ -255,7 +255,7 @@
       }
 
 
-      void device::OnMixerControlChange(::u32 dwControlID)
+      void device::OnMixerControlChange(unsigned int dwControlID)
       {
 //         ::audio_mixer::control * pControl;
 //         if(m_mapIDToControl.Lookup(dwControlID, pControl))
@@ -344,7 +344,7 @@
 //      bool device::OnCommand(WPARAM wparam, LPARAM lparam)
 //      {
 //
-//         ::u32 uiID = LOWORD(wparam);
+//         unsigned int uiID = LOWORD(wparam);
 //
 //         ::audio_mixer::control * pcontrol;
 //

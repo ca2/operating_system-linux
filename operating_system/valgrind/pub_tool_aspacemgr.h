@@ -103,7 +103,7 @@ typedef
       ULong   dev;
       ULong   ino;
       Off64T  offset;
-      ::u32    mode;
+      unsigned int    mode;
       Int     fnIdx;    // file name table index, if name is known
       /* Permissions (SkAnon{C,V}, SkFile{C,V} only) */
       Bool    hasR;
@@ -130,7 +130,7 @@ typedef
 
    Correct use of this function may mean calling it multiple times in
    order to establish a suitably-sized buffer. */
-extern Int VG_(am_get_segment_starts)( ::u32 kind_mask, Addr* starts,
+extern Int VG_(am_get_segment_starts)( unsigned int kind_mask, Addr* starts,
                                        Int nStarts );
 
 /* Finds the segment containing 'a'.  Only returns file/anon/resvn
@@ -149,7 +149,7 @@ extern const HChar* VG_(am_get_filename)( NSegment const * );
    area does not belong to the client or does not have at least
    the stated permissions. */
 extern Bool VG_(am_is_valid_for_client) ( Addr start, SizeT len, 
-                                          ::u32 prot );
+                                          unsigned int prot );
 
 /* Really just a wrapper around VG_(am_mmap_anon_float_valgrind). */
 extern void* VG_(am_shadow_alloc)(SizeT size);

@@ -70,7 +70,7 @@
 ////      virtual bool start_service(::particle * pparticle);
 ////      virtual bool stop_service(::particle * pparticle);
 ////
-////      void raise_exception( ::u32 dwExceptionCode, ::u32 dwExceptionFlags);
+////      void raise_exception( unsigned int dwExceptionCode, unsigned int dwExceptionFlags);
 ////
 ////      bool is_remote_session() override;
 ////

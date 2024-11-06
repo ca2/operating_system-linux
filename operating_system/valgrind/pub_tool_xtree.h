@@ -88,7 +88,7 @@ typedef void (*XT_sub_data_t) (void* from, const void* value);
      the ec is still inserted in the XTree, and the XT_*_data_t functions are
      called in any case for such filtered ec. */
 typedef void (*XT_filter_IPs_t) (Addr* ips, Int n_ips,
-                                 ::u32* top, ::u32* n_ips_sel);
+                                 unsigned int* top, unsigned int* n_ips_sel);
 
 /* Create ___new XTree, using given allocation and free function.
    This function never returns NULL.
@@ -111,12 +111,12 @@ extern XTree* VG_(XT_create) ( Alloc_Fn_t alloc_fn,
 /* Filter functions below main, unless VG_(clo_show_below_main) is True. */
 extern void VG_(XT_filter_maybe_below_main)
      (Addr* ips, Int n_ips,
-      ::u32* top, ::u32* n_ips_sel);
+      unsigned int* top, unsigned int* n_ips_sel);
 /* Same as VG_(XT_filter_maybe_below_main) but also filters one top function
    (typically to ignore the top level malloc/___new/... fn). */
 extern void VG_(XT_filter_1top_and_maybe_below_main)
      (Addr* ips, Int n_ips,
-      ::u32* top, ::u32* n_ips_sel);
+      unsigned int* top, unsigned int* n_ips_sel);
 
 /* Search in ips[0..n_ips-1] the first function which is main or below main
    and return its offset.
@@ -140,7 +140,7 @@ extern XTree* VG_(XT_snapshot)(XTree* xt);
 extern void VG_(XT_delete)(XTree* xt);
 
 /* an Xecu identifies an exe context+its associated data in an XTree. */
-typedef ::u32 Xecu;
+typedef unsigned int Xecu;
 
 /* If not yet in xt, inserts the provided ec and initialises its
    data by calling init_data_fn.
@@ -160,7 +160,7 @@ extern void VG_(XT_add_to_xecu)(XTree* xt, Xecu xecu, const void* value);
 extern void VG_(XT_sub_from_xecu)(XTree* xt, Xecu xecu, const void* value);
 
 /* Return the nr of IPs selected for xecu. 0 means fully filtered. */
-extern ::u32 VG_(XT_n_ips_sel)(XTree* xt, Xecu xecu);
+extern unsigned int VG_(XT_n_ips_sel)(XTree* xt, Xecu xecu);
 
 /* Return the ExeContext associated to the Xecu. */
 extern ExeContext* VG_(XT_get_ec_from_xecu) (XTree* xt, Xecu xecu);

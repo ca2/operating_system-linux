@@ -470,7 +470,7 @@ enum {
    /* Tell DRD that a user-defined semaphore synchronization object
     * is about to be created. */
    VG_USERREQ__DRD_ANNOTATE_SEM_INIT_PRE,
-   /* args: Addr, ::u32 value. */
+   /* args: Addr, unsigned int value. */
    /* Tell DRD that a user-defined semaphore synchronization object
     * has been destroyed. */
    VG_USERREQ__DRD_ANNOTATE_SEM_DESTROY_POST,

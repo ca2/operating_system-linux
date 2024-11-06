@@ -450,13 +450,13 @@ namespace draw2d_gdiplus
 
          }
 
-         i32 scanDst = pimageDst->scan_size();
+         int scanDst = pimageDst->scan_size();
 
-         i32 scanSrc = pimageSrc->scan_size();
+         int scanSrc = pimageSrc->scan_size();
 
-         u8 * pdst = &((u8 *)pimageDst->colorref())[scanDst * rectDst.top() + rectDst.left() * sizeof(color32_t)];
+         unsigned char * pdst = &((unsigned char *)pimageDst->colorref())[scanDst * rectDst.top() + rectDst.left() * sizeof(color32_t)];
 
-         u8 * psrc = &((u8 *)pimageSrc->colorref())[scanSrc * pointSrc.y + pointSrc.x * sizeof(color32_t)];
+         unsigned char * psrc = &((unsigned char *)pimageSrc->colorref())[scanSrc * pointSrc.y + pointSrc.x * sizeof(color32_t)];
 
          color32_t * pdst2;
 
@@ -494,7 +494,7 @@ namespace draw2d_gdiplus
    }*/
 
 
-   ::e_status image::SetIconMask(::image::icon * picon, i32 cx, i32 cy)
+   ::e_status image::SetIconMask(::image::icon * picon, int cx, int cy)
    {
 
       if (cx <= 0 || cy <= 0)
@@ -593,14 +593,14 @@ namespace draw2d_gdiplus
 
       pimageM->g()->draw(::rect_dim(0, 0, cx, cy), picon);
 
-      u8 * r1 = (u8 *)pimage1->colorref();
-      u8 * r2 = (u8 *)pimage2->colorref();
-      u8 * srcM = (u8 *)pimageM->colorref();
-      u8 * dest = (u8 *)colorref();
-      i32 iSize = cx*cy;
+      unsigned char * r1 = (unsigned char *)pimage1->colorref();
+      unsigned char * r2 = (unsigned char *)pimage2->colorref();
+      unsigned char * srcM = (unsigned char *)pimageM->colorref();
+      unsigned char * dest = (unsigned char *)colorref();
+      int iSize = cx*cy;
 
-      ::u8 b;
-      ::u8 bMax;
+      unsigned char b;
+      unsigned char bMax;
       while (iSize-- > 0)
       {
          if (srcM[0] == 255)
@@ -610,11 +610,11 @@ namespace draw2d_gdiplus
          else
          {
             bMax = 0;
-            b = (::u8)(r1[0] - r2[0]);
+            b = (unsigned char)(r1[0] - r2[0]);
             bMax = maximum(b, bMax);
-            b = (::u8)(r1[1] - r2[1]);
+            b = (unsigned char)(r1[1] - r2[1]);
             bMax = maximum(b, bMax);
-            b = (::u8)(r1[2] - r2[2]);
+            b = (unsigned char)(r1[2] - r2[2]);
             bMax = maximum(b, bMax);
             bMax = 255 - bMax;
          }

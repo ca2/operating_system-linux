@@ -47,8 +47,8 @@
 /* The integer parts should be pretty straightforward. */
 
 /* Hmm, subregisters.  The simulated state is stored in memory in the
-   host's ::u8 ordering, so we can't say here what the offsets of %ax,
-   %al, %ah etc are since that depends on the host's ::u8 ordering,
+   host's unsigned char ordering, so we can't say here what the offsets of %ax,
+   %al, %ah etc are since that depends on the host's unsigned char ordering,
    which we don't know. */
 
 /* FPU.  For now, just simulate 8 64-bit registers, their tags, and
@@ -70,7 +70,7 @@
      In general, a reference to a register ST(i) actually references
      F[ (ftop+i) & 7 ].
 
-   FTAG0 .. FTAG0+7 are the tags.  Each is a ::u8, zero means empty,
+   FTAG0 .. FTAG0+7 are the tags.  Each is a unsigned char, zero means empty,
    non-zero means non-empty.
 
    The general rule appears to be that a read or modify of a register
@@ -142,41 +142,41 @@
 typedef
    struct {
       /* Event check fail addr and counter. */
-      ::u32  host_EvC_FAILADDR; /* 0 */
-      ::u32  host_EvC_COUNTER;  /* 4 */
-      ::u32  guest_EAX;         /* 8 */
-      ::u32  guest_ECX;
-      ::u32  guest_EDX;
-      ::u32  guest_EBX;
-      ::u32  guest_ESP;
-      ::u32  guest_EBP;
-      ::u32  guest_ESI;
-      ::u32  guest_EDI;         /* 36 */
+      unsigned int  host_EvC_FAILADDR; /* 0 */
+      unsigned int  host_EvC_COUNTER;  /* 4 */
+      unsigned int  guest_EAX;         /* 8 */
+      unsigned int  guest_ECX;
+      unsigned int  guest_EDX;
+      unsigned int  guest_EBX;
+      unsigned int  guest_ESP;
+      unsigned int  guest_EBP;
+      unsigned int  guest_ESI;
+      unsigned int  guest_EDI;         /* 36 */
 
       /* 4-word thunk used to calculate O S Z A C P flags. */
-      ::u32  guest_CC_OP;       /* 40 */
-      ::u32  guest_CC_DEP1;
-      ::u32  guest_CC_DEP2;
-      ::u32  guest_CC_NDEP;     /* 52 */
+      unsigned int  guest_CC_OP;       /* 40 */
+      unsigned int  guest_CC_DEP1;
+      unsigned int  guest_CC_DEP2;
+      unsigned int  guest_CC_NDEP;     /* 52 */
       /* The D flag is stored here, encoded as either -1 or +1 */
-      ::u32  guest_DFLAG;       /* 56 */
+      unsigned int  guest_DFLAG;       /* 56 */
       /* Bit 21 (ID) of eflags stored here, as either 0 or 1. */
-      ::u32  guest_IDFLAG;      /* 60 */
+      unsigned int  guest_IDFLAG;      /* 60 */
       /* Bit 18 (AC) of eflags stored here, as either 0 or 1. */
-      ::u32  guest_ACFLAG;      /* 64 */
+      unsigned int  guest_ACFLAG;      /* 64 */
 
       /* EIP */
-      ::u32  guest_EIP;         /* 68 */
+      unsigned int  guest_EIP;         /* 68 */
 
       /* FPU */
       ULong guest_FPREG[8];    /* 72 */
       UChar guest_FPTAG[8];   /* 136 */
-      ::u32  guest_FPROUND;    /* 144 */
-      ::u32  guest_FC3210;     /* 148 */
-      ::u32  guest_FTOP;       /* 152 */
+      unsigned int  guest_FPROUND;    /* 144 */
+      unsigned int  guest_FC3210;     /* 148 */
+      unsigned int  guest_FTOP;       /* 152 */
 
       /* SSE */
-      ::u32  guest_SSEROUND;   /* 156 */
+      unsigned int  guest_SSEROUND;   /* 156 */
       U128  guest_XMM0;       /* 160 */
       U128  guest_XMM1;
       U128  guest_XMM2;
@@ -198,11 +198,11 @@ typedef
       ULong  guest_GDT; /* host addr, a VexGuestX86SegDescr* */
 
       /* Emulation notes */
-      ::u32   guest_EMNOTE;
+      unsigned int   guest_EMNOTE;
 
       /* For clflush/clinval: record start and length of area */
-      ::u32 guest_CMSTART;
-      ::u32 guest_CMLEN;
+      unsigned int guest_CMSTART;
+      unsigned int guest_CMLEN;
 
       /* Used to record the unredirected guest address at the start of
          a translation whose start has been redirected.  By reading
@@ -210,21 +210,21 @@ typedef
          find out what the corresponding no-redirection address was.
          Note, this is only set for wrap-style redirects, not for
          replace-style ones. */
-      ::u32 guest_NRADDR;
+      unsigned int guest_NRADDR;
 
       /* Used for Darwin syscall dispatching. */
-      ::u32 guest_SC_CLASS;
+      unsigned int guest_SC_CLASS;
 
       /* Needed for Darwin (but mandated for all guest architectures):
          EIP at the last syscall insn (int 0x80/81/82, sysenter,
          syscall).  Used when backing up to restart a syscall that has
          been interrupted by a signal. */
-      ::u32 guest_IP_AT_SYSCALL;
+      unsigned int guest_IP_AT_SYSCALL;
 
       /* Padding to make it have an 16-aligned size */
-      ::u32 padding1;
-      ::u32 padding2;
-      ::u32 padding3;
+      unsigned int padding1;
+      unsigned int padding2;
+      unsigned int padding3;
    }
    VexGuestX86State;
 
@@ -246,20 +246,20 @@ typedef struct {
        struct {
           UShort  LimitLow;
           UShort  BaseLow;
-          ::u32    BaseMid         : 8;
-          ::u32    Type            : 5;
-          ::u32    Dpl             : 2;
-          ::u32    Pres            : 1;
-          ::u32    LimitHi         : 4;
-          ::u32    Sys             : 1;
-          ::u32    Reserved_0      : 1;
-          ::u32    Default_Big     : 1;
-          ::u32    Granularity     : 1;
-          ::u32    BaseHi          : 8;
+          unsigned int    BaseMid         : 8;
+          unsigned int    Type            : 5;
+          unsigned int    Dpl             : 2;
+          unsigned int    Pres            : 1;
+          unsigned int    LimitHi         : 4;
+          unsigned int    Sys             : 1;
+          unsigned int    Reserved_0      : 1;
+          unsigned int    Default_Big     : 1;
+          unsigned int    Granularity     : 1;
+          unsigned int    BaseHi          : 8;
        } Bits;
        struct {
-          ::u32 word1;
-          ::u32 word2;
+          unsigned int word1;
+          unsigned int word2;
        } Words;
     }
     LdtEnt;
@@ -280,18 +280,18 @@ void LibVEX_GuestX86_initialise ( /*OUT*/VexGuestX86State* vex_state );
 /* Extract from the supplied VexGuestX86State structure the
    corresponding native %eflags value. */
 extern 
-::u32 LibVEX_GuestX86_get_eflags ( /*IN*/const VexGuestX86State* vex_state );
+unsigned int LibVEX_GuestX86_get_eflags ( /*IN*/const VexGuestX86State* vex_state );
 
 /* Put eflags into the given state. */
 extern
-void LibVEX_GuestX86_put_eflags ( ::u32 eflags,
+void LibVEX_GuestX86_put_eflags ( unsigned int eflags,
                                   /*MOD*/VexGuestX86State* vex_state );
 
 /* Set the carry flag in the given state to 'new_carry_flag', which
    should be zero or one. */
 extern
 void
-LibVEX_GuestX86_put_eflag_c ( ::u32 new_carry_flag,
+LibVEX_GuestX86_put_eflag_c ( unsigned int new_carry_flag,
                               /*MOD*/VexGuestX86State* vex_state );
 
 /* Do x87 save from the supplied VexGuestX86State structure and store the
@@ -309,12 +309,12 @@ VexEmNote LibVEX_GuestX86_put_x87 ( /*IN*/UChar* x87_state,
 
 /* Return mxcsr from the supplied VexGuestX86State structure. */
 extern
-::u32 LibVEX_GuestX86_get_mxcsr ( /*IN*/VexGuestX86State* vex_state );
+unsigned int LibVEX_GuestX86_get_mxcsr ( /*IN*/VexGuestX86State* vex_state );
 
 /* Modify the given VexGuestX86State structure according to the passed mxcsr
    value. */
 extern
-VexEmNote LibVEX_GuestX86_put_mxcsr ( /*IN*/::u32 mxcsr,
+VexEmNote LibVEX_GuestX86_put_mxcsr ( /*IN*/unsigned int mxcsr,
                                       /*MOD*/VexGuestX86State* vex_state);
 
 #endif /* ndef __LIBVEX_PUB_GUEST_X86_H */

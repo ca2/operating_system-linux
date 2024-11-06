@@ -88,8 +88,8 @@ typedef
      /* Event check fail addr, counter, and padding to make GPR0 16
         aligned. */
       /*   0 */ ULong  host_EvC_FAILADDR;
-      /*   8 */ ::u32   host_EvC_COUNTER;
-      /*  12 */ ::u32   pad0;
+      /*   8 */ unsigned int   host_EvC_COUNTER;
+      /*  12 */ unsigned int   pad0;
       /* Add 16 to all of the offsets below .. */
       /* General Purpose Registers */
       /*   0 */ ULong guest_GPR0;
@@ -247,16 +247,16 @@ typedef
       /* 1331 */ UChar pad4;
 
       /* Vector Save/Restore Register */
-      /* 1332 */ ::u32 guest_VRSAVE;
+      /* 1332 */ unsigned int guest_VRSAVE;
 
       /* Vector Status and Control Register */
-      /* 1336 */ ::u32 guest_VSCR;
+      /* 1336 */ unsigned int guest_VSCR;
 
       /* Emulation notes */
-      /* 1340 */ ::u32 guest_EMNOTE;
+      /* 1340 */ unsigned int guest_EMNOTE;
 
       /* gcc adds 4 bytes padding here: pre-empt it. */
-      /* 1344 */ ::u32  padding;
+      /* 1344 */ unsigned int  padding;
 
       /* For icbi: record start and length of area to invalidate */
       /* 1348 */ ULong guest_CMSTART;
@@ -290,14 +290,14 @@ typedef
       /* 1670 */ ULong guest_TEXASR;    // Transaction EXception And Summary Register
       /* 1678 */ ULong guest_TFIAR;     // Transaction Failure Instruction Address Register
       /* 1686 */ ULong guest_PPR;       // Program Priority register
-      /* 1694 */ ::u32  guest_TEXASRU;   // Transaction EXception And Summary Register Upper
-      /* 1698 */ ::u32  guest_PSPB;      // Problem State Priority Boost register
+      /* 1694 */ unsigned int  guest_TEXASRU;   // Transaction EXception And Summary Register Upper
+      /* 1698 */ unsigned int  guest_PSPB;      // Problem State Priority Boost register
       /* 1702 */ ULong guest_DSCR;      // Data Stream Control register
 
       /* Padding to make it have an 16-aligned size */
-      /* 1710 */   ::u32  padding1;
-      /* 1714 */   ::u32  padding2;
-      /* 1718 */   ::u32  padding3;
+      /* 1710 */   unsigned int  padding1;
+      /* 1714 */   unsigned int  padding2;
+      /* 1718 */   unsigned int  padding3;
 
    }
    VexGuestPPC64State;
@@ -317,28 +317,28 @@ void LibVEX_GuestPPC64_initialise ( /*OUT*/VexGuestPPC64State* vex_state );
 /* Write the given native %CR value to the supplied VexGuestPPC64State
    structure.  Note, %CR is 32-bits even for ppc64. */
 extern
-void LibVEX_GuestPPC64_put_CR ( ::u32 cr_native,
+void LibVEX_GuestPPC64_put_CR ( unsigned int cr_native,
                                 /*OUT*/VexGuestPPC64State* vex_state );
 
 /* Extract from the supplied VexGuestPPC64State structure the
    corresponding native %CR value.  Note, %CR is 32-bits even for
    ppc64. */
 extern
-::u32 LibVEX_GuestPPC64_get_CR ( /*IN*/const VexGuestPPC64State* vex_state );
+unsigned int LibVEX_GuestPPC64_get_CR ( /*IN*/const VexGuestPPC64State* vex_state );
 
 
 /* Write the given native %XER value to the supplied
    VexGuestPPC64State structure.  Note, %XER is 32-bits even for
    ppc64. */
 extern
-void LibVEX_GuestPPC64_put_XER ( ::u32 xer_native,
+void LibVEX_GuestPPC64_put_XER ( unsigned int xer_native,
                                  /*OUT*/VexGuestPPC64State* vex_state );
 
 /* Extract from the supplied VexGuestPPC64State structure the
    corresponding native %XER value.  Note, %CR is 32-bits even for
    ppc64. */
 extern
-::u32 LibVEX_GuestPPC64_get_XER ( /*IN*/const VexGuestPPC64State* vex_state );
+unsigned int LibVEX_GuestPPC64_get_XER ( /*IN*/const VexGuestPPC64State* vex_state );
 
 #endif /* ndef __LIBVEX_PUB_GUEST_PPC64_H */
 

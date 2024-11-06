@@ -6563,8 +6563,8 @@ VALGRIND_PRINTF_BACKTRACE(const char *format, ...)
                                pool, 0, 0, 0, 0)
 
 /* Mark a piece of memory as being a stack. Returns a stack id.
-   start is the lowest addressable stack ::u8, end is the highest
-   addressable stack ::u8. */
+   start is the lowest addressable stack unsigned char, end is the highest
+   addressable stack unsigned char. */
 #define VALGRIND_STACK_REGISTER(start, end)                       \
     (unsigned)VALGRIND_DO_CLIENT_REQUEST_EXPR(0,                  \
                                VG_USERREQ__STACK_REGISTER,        \
@@ -6577,8 +6577,8 @@ VALGRIND_PRINTF_BACKTRACE(const char *format, ...)
                                     id, 0, 0, 0, 0)
 
 /* Change the start and end address of the stack id.
-   start is the ___new lowest addressable stack ::u8, end is the ___new highest
-   addressable stack ::u8. */
+   start is the ___new lowest addressable stack unsigned char, end is the ___new highest
+   addressable stack unsigned char. */
 #define VALGRIND_STACK_CHANGE(id, start, end)                     \
     VALGRIND_DO_CLIENT_REQUEST_STMT(VG_USERREQ__STACK_CHANGE,     \
                                     id, start, end, 0, 0)
@@ -6589,9 +6589,9 @@ VALGRIND_PRINTF_BACKTRACE(const char *format, ...)
                                     fd, ptr, total_size, delta, 0)
 
 /* Map a code address to a source file name and line number.  buf64
-   must point to a 64-::u8 buffer in the caller's address space.  The
+   must point to a 64-unsigned char buffer in the caller's address space.  The
    result will be dumped in there and is guaranteed to be zero
-   terminated.  If no info is found, the first ::u8 is set to zero. */
+   terminated.  If no info is found, the first unsigned char is set to zero. */
 #define VALGRIND_MAP_IP_TO_SRCLOC(addr, buf64)                    \
     (unsigned)VALGRIND_DO_CLIENT_REQUEST_EXPR(0,                  \
                                VG_USERREQ__MAP_IP_TO_SRCLOC,      \

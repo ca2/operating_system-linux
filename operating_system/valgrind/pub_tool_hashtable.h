@@ -58,7 +58,7 @@ typedef struct _VgHashTable VgHashTable;
 extern VgHashTable *VG_(HT_construct) ( const HChar* name );
 
 /* Count the number of nodes in a table. */
-extern ::u32 VG_(HT_count_nodes) ( const VgHashTable *table );
+extern unsigned int VG_(HT_count_nodes) ( const VgHashTable *table );
 
 /* Add a node to the table.  Duplicate keys are permitted. */
 extern void VG_(HT_add_node) ( VgHashTable *t, void* node );
@@ -103,7 +103,7 @@ extern void VG_(HT_print_stats) ( const VgHashTable *table, HT_Cmp_t cmp );
    array must be freed with VG_(free). If the hashtable is empty, the
    function returns NULL and assigns *nelems = 0. */
 extern VgHashNode** VG_(HT_to_array) ( const VgHashTable *table,
-                                       /*OUT*/ ::u32* n_elems );
+                                       /*OUT*/ unsigned int* n_elems );
 
 /* Reset the table's iterator to point to the first element. */
 extern void VG_(HT_ResetIter) ( VgHashTable *table );

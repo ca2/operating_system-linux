@@ -27,7 +27,7 @@ namespace linux
    //}
 
 
-   //bool CLASS_DECL_APEX_LINUX shell_get_special_folder_path(HWND hwnd, ::file::path& str, i32 csidl, bool fCreate)
+   //bool CLASS_DECL_APEX_LINUX shell_get_special_folder_path(HWND hwnd, ::file::path& str, int csidl, bool fCreate)
    //{
 
    //   return ::SHGetSpecialFolderPathW(hwnd, wstring_adaptor(str, MAX_PATH * 8), csidl, fCreate) != false;
@@ -35,7 +35,7 @@ namespace linux
    //}
 
 
-   //::file::path CLASS_DECL_APEX_LINUX shell_get_special_folder_path(i32 csidl, bool fCreate, ::windowing::window* pwindow)
+   //::file::path CLASS_DECL_APEX_LINUX shell_get_special_folder_path(int csidl, bool fCreate, ::windowing::window* pwindow)
    //{
 
    //   ::file::path path;
@@ -54,7 +54,7 @@ namespace linux
 
 
 
-   //::u32 get_current_directory(string& str)
+   //unsigned int get_current_directory(string& str)
    //{
 
    //   return ::GetCurrentDirectoryW(MAX_PATH * 8, wstring_adaptor(str, MAX_PATH * 8));
@@ -62,7 +62,7 @@ namespace linux
    //}
 
 
-   //::u32 get_temp_path(string& str)
+   //unsigned int get_temp_path(string& str)
    //{
 
    //   return ::GetTempPathW(MAX_PATH * 8, wstring_adaptor(str, MAX_PATH * 8));
@@ -70,12 +70,12 @@ namespace linux
    //}
 
 
-   //::i32 reg_query_value(HKEY hkey, const char* pszSubKey, string& str)
+   //int reg_query_value(HKEY hkey, const char* pszSubKey, string& str)
    //{
 
    //   DWORD dwType = 0;
    //   DWORD dwSize = 0;
-   //   ::i32 lResult = RegQueryValueExW(hkey, wstring(pszSubKey), nullptr, &dwType, nullptr, &dwSize);
+   //   int lResult = RegQueryValueExW(hkey, wstring(pszSubKey), nullptr, &dwType, nullptr, &dwSize);
 
    //   if (lResult != ERROR_SUCCESS)
    //      return lResult;
@@ -85,7 +85,7 @@ namespace linux
 
    //      natural_wstring pwsz(byte_count, dwSize);
 
-   //      lResult = RegQueryValueExW(hkey, wstring(pszSubKey), nullptr, &dwType, (::u8*)(unichar*)pwsz, &dwSize);
+   //      lResult = RegQueryValueExW(hkey, wstring(pszSubKey), nullptr, &dwType, (unsigned char*)(unichar*)pwsz, &dwSize);
 
    //      str = pwsz;
 
@@ -104,7 +104,7 @@ namespace linux
    //}
 
 
-   //HICON extract_icon(HINSTANCE hInst, const char* pszExeFileName, ::u32 nIconIndex)
+   //HICON extract_icon(HINSTANCE hInst, const char* pszExeFileName, unsigned int nIconIndex)
 
    //{
 
@@ -130,12 +130,12 @@ namespace linux
 
    //   SYSTEMTIME sysTime;
 
-   //   sysTime.wYear = (::u16)time.GetYear();
-   //   sysTime.wMonth = (::u16)time.GetMonth();
-   //   sysTime.wDay = (::u16)time.GetDay();
-   //   sysTime.wHour = (::u16)time.GetHour();
-   //   sysTime.wMinute = (::u16)time.GetMinute();
-   //   sysTime.wSecond = (::u16)time.GetSecond();
+   //   sysTime.wYear = (unsigned short)time.GetYear();
+   //   sysTime.wMonth = (unsigned short)time.GetMonth();
+   //   sysTime.wDay = (unsigned short)time.GetDay();
+   //   sysTime.wHour = (unsigned short)time.GetHour();
+   //   sysTime.wMinute = (unsigned short)time.GetMinute();
+   //   sysTime.wSecond = (unsigned short)time.GetSecond();
    //   sysTime.wMilliseconds = 0;
 
    //   // convert system time to local file time

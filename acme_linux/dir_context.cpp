@@ -263,7 +263,7 @@ namespace acme_linux
 //
 //            ls_dir(straDir, listing.m_pathFinal);
 //
-//            for(i32 i = 0; i < straDir.get_count(); i++)
+//            for(int i = 0; i < straDir.get_count(); i++)
 //            {
 //
 //               string strDir = straDir[i];
@@ -318,7 +318,7 @@ namespace acme_linux
 
          directory_system()->enumerate(listing);
 
-//         for(i32 i = 0; i < stra.get_count(); i++)
+//         for(int i = 0; i < stra.get_count(); i++)
 //         {
 //
 //            auto & strPath = stra[i];

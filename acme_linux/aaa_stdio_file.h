@@ -36,7 +36,7 @@ namespace acme_linux
 
       void write_string(const char * psz) override;
 
-      virtual char * read_string(char * psz, ::u32 nMax);
+      virtual char * read_string(char * psz, unsigned int nMax);
 
       bool read_string(string & rString) override;
 

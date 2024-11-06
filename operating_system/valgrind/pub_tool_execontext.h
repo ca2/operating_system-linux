@@ -74,8 +74,8 @@ ExeContext* VG_(record_depth_1_ExeContext)(ThreadId tid, Word first_ip_delta);
 // Apply a function to every element in the ExeContext.  The parameter 'n'
 // gives the index of the passed ip.  Doesn't go below main() unless
 // --show-below-main=yes is set.
-extern void VG_(apply_ExeContext)( void(*action)(::u32 n, Addr ip),
-                                   ExeContext* ec, ::u32 n_ips );
+extern void VG_(apply_ExeContext)( void(*action)(unsigned int n, Addr ip),
+                                   ExeContext* ec, unsigned int n_ips );
 
 // Compare two ExeContexts.  Number of callers considered depends on `res':
 //   Vg_LowRes:  2
@@ -91,14 +91,14 @@ extern void VG_(pp_ExeContext) ( ExeContext* ec );
 // (the "ExeContext Unique").  Guaranteed to be nonzero and to be a
 // multiple of four (iow, the lowest two bits are guaranteed to
 // be zero, so that callers can store other information there.
-extern ::u32 VG_(get_ECU_from_ExeContext)( const ExeContext* e );
+extern unsigned int VG_(get_ECU_from_ExeContext)( const ExeContext* e );
 
 // How many entries (frames) in this ExeContext?
 extern Int VG_(get_ExeContext_n_ips)( const ExeContext* e );
 
 // Find the ExeContext that has the given ECU, if any.
 // NOTE: very slow.  Do not call often.
-extern ExeContext* VG_(get_ExeContext_from_ECU)( ::u32 uniq );
+extern ExeContext* VG_(get_ExeContext_from_ECU)( unsigned int uniq );
 
 // Make an ExeContext containing just 'a', and nothing else
 ExeContext* VG_(make_depth_1_ExeContext_from_Addr)( Addr a );
@@ -106,12 +106,12 @@ ExeContext* VG_(make_depth_1_ExeContext_from_Addr)( Addr a );
 // Is this a plausible-looking ECU ?  Catches some obvious stupid
 // cases, but does not guarantee that the ECU is really valid, that
 // is, has an associated ExeContext.
-static inline Bool VG_(is_plausible_ECU)( ::u32 ecu ) {
+static inline Bool VG_(is_plausible_ECU)( unsigned int ecu ) {
    return (ecu > 0) && ((ecu & 3) == 0);
 }
 
 // Make an ExeContext containing exactly the specified stack frames.
-ExeContext* VG_(make_ExeContext_from_StackTrace)( const Addr* ips, ::u32 n_ips );
+ExeContext* VG_(make_ExeContext_from_StackTrace)( const Addr* ips, unsigned int n_ips );
 
 // Returns the "null" exe context. The null execontext is an artificial
 // exe context, with a stack trace made of one Addr (the NULL address).

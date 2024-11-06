@@ -102,9 +102,9 @@
 //
 //      virtual bool IsOpened();
 //
-//      virtual u64 GetBufferPtr(::u32 nCommand, u64 nCount = 0, void ** ppBufStart = nullptr, void ** ppBufMax = nullptr);
+//      virtual u64 GetBufferPtr(unsigned int nCommand, u64 nCount = 0, void ** ppBufStart = nullptr, void ** ppBufMax = nullptr);
 //
-//      //void put_byte_back(::u8 u8) override;
+//      //void put_byte_back(unsigned char unsigned char) override;
 //
 //
 //   };
@@ -114,11 +114,11 @@
 ////   {
 ////
 ////
-////      ::e_status os_error_to_exception(::i32 lOsError);
-//////      ::e_status PASCAL ErrnoToException(i32 nErrno);
-////      void throw_os_error(::i32 lOsError, const char * pszFileName = nullptr);
+////      ::e_status os_error_to_exception(int lOsError);
+//////      ::e_status PASCAL ErrnoToException(int nErrno);
+////      void throw_os_error(int lOsError, const char * pszFileName = nullptr);
 //
-////      //void PASCAL ThrowErrno(::pointer<::platform::application>papp, i32 nErrno, const char * pszFileName = nullptr);
+////      //void PASCAL ThrowErrno(::pointer<::platform::application>papp, int nErrno, const char * pszFileName = nullptr);
 //
 ////
 ////

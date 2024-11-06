@@ -79,7 +79,7 @@
 //         {
 //            //        char       ach[128];
 //            //      char       szControlType[64];
-//            //        ::u32        u;
+//            //        unsigned int        u;
 //            //    int32_t         nIndex;
 //            PMIXERCONTROL       pamxctrl;
 //            //        LPMIXERCONTROLDETAILS lpmcd;
@@ -88,7 +88,7 @@
 //            //        if (0 != (APP_OPTF_DEBUGLOG & gfuAppOptions))
 //            //          MixAppDebugLog(NULL);
 //
-//            for (int32_t i = 0; (::u32) i < m_mixerlinecontrols.cControls; i++)
+//            for (int32_t i = 0; (unsigned int) i < m_mixerlinecontrols.cControls; i++)
 //            {
 //               lpMixerControl = m_mixercontrola(i);
 //               lpMixerControl->m_pmixersource = this;
@@ -150,7 +150,7 @@
 
       }
 
-      /*::multimedia::result source::GetControl(::u32 dwControlType, ::u32 dwControlFlags,  ::audio_mixer::control ** ppControl)
+      /*::multimedia::result source::GetControl(unsigned int dwControlType, unsigned int dwControlFlags,  ::audio_mixer::control ** ppControl)
       {
       ::audio_mixer::control_array & controla = m_mixercontrola;
       if(controla.get_size() <= 0)
@@ -227,7 +227,7 @@
       }
 
 
-      void source::mixerGetLineInfo(::u32 dwSource, ::u32 dwDestination, ::u32 fdwInfo)
+      void source::mixerGetLineInfo(unsigned int dwSource, unsigned int dwDestination, unsigned int fdwInfo)
       {
          
 //         m_mixerline.cbStruct       = sizeof(MIXERLINE);
@@ -251,7 +251,7 @@
       }
 
 
-      void source::mixerGetLineInfo(::u32 dwSource, ::audio_mixer::destination * pdestination)
+      void source::mixerGetLineInfo(unsigned int dwSource, ::audio_mixer::destination * pdestination)
       {
          
 //         sp(::audio_mixer_alsa::destination) destination = pdestination;

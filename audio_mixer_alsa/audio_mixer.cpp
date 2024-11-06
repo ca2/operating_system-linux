@@ -42,12 +42,12 @@
       }
 
 
-      void audio_mixer::set_new_device(::u32 uiMixerId)
+      void audio_mixer::set_new_device(unsigned int uiMixerId)
       {
 
 //         ::multimedia::result            mmrc;
 //
-//         if(MMSYSERR_NOERROR != (mmrc = m_pdevice->open(uiMixerId, (::u32) m_window.get_handle(), 0,  CALLBACK_WINDOW)))
+//         if(MMSYSERR_NOERROR != (mmrc = m_pdevice->open(uiMixerId, (unsigned int) m_window.get_handle(), 0,  CALLBACK_WINDOW)))
 //         {
 //            return mmrc;
 //         }
@@ -300,7 +300,7 @@
 //
 //      }
 
-//      void audio_mixer::OnMixerLineChange(HMIXER hMixer, ::u32 dwLineID)
+//      void audio_mixer::OnMixerLineChange(HMIXER hMixer, unsigned int dwLineID)
 //      {
 //
 //         sp(::audio_mixer_alsa::device) device = m_pdevice;
@@ -321,7 +321,7 @@
 //      }
 //
 //
-//      void audio_mixer::OnMixerControlChange(HMIXER hMixer, ::u32 dwControlID)
+//      void audio_mixer::OnMixerControlChange(HMIXER hMixer, unsigned int dwControlID)
 //      {
 //
 //         sp(::audio_mixer_alsa::device) device = m_pdevice;

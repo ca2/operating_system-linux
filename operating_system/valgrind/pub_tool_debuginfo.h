@@ -71,14 +71,14 @@
 
 /* Get the file/function/line number of the instruction at address
    'a'.  For these four, if debug info for the address is found, it
-   copies the info into the buffer/::u32 and returns True.  If not, it
+   copies the info into the buffer/unsigned int and returns True.  If not, it
    returns False.  VG_(get_fnname) always
    demangles C++ function names.  VG_(get_fnname_w_offset) is the
    same, except it appends "+N" to symbol names to indicate offsets.
    NOTE: See IMPORTANT COMMENT above about persistence and ownership. */
 extern Bool VG_(get_filename) ( Addr a, const HChar** filename );
 extern Bool VG_(get_fnname)   ( Addr a, const HChar** fnname );
-extern Bool VG_(get_linenum)  ( Addr a, ::u32* linenum );
+extern Bool VG_(get_linenum)  ( Addr a, unsigned int* linenum );
 extern Bool VG_(get_fnname_w_offset)
                               ( Addr a, const HChar** fnname );
 
@@ -88,7 +88,7 @@ extern Bool VG_(get_fnname_w_offset)
    directory name info.
    If dirname is non-null, directory info is written to *dirname, if
    it is available; if not available, '\0' is written to the first
-   ::u8.
+   unsigned char.
 
    NOTE: See IMPORTANT COMMENT above about persistence and ownership.
 
@@ -98,7 +98,7 @@ extern Bool VG_(get_filename_linenum)
                               ( Addr a, 
                                 /*OUT*/const HChar** filename,
                                 /*OUT*/const HChar** dirname,
-                                /*OUT*/::u32* linenum );
+                                /*OUT*/unsigned int* linenum );
 
 /* Succeeds only if we find from debug info that 'a' is the address of the
    first instruction in a function -- as opposed to VG_(get_fnname) which

@@ -30,12 +30,12 @@
          void set_callback(::audio_mixer::callback * pcallback);
 
 
-         void set_new_device(::u32 uiMixerId);
+         void set_new_device(unsigned int uiMixerId);
 
 
          //bool OnCommand(WPARAM wparam, LPARAM lparam);
-         //void OnMixerControlChange(HMIXER hMixer, ::u32 dwControlID);
-         //void OnMixerLineChange(HMIXER hMixer, ::u32 dwLineID);
+         //void OnMixerControlChange(HMIXER hMixer, unsigned int dwControlID);
+         //void OnMixerLineChange(HMIXER hMixer, unsigned int dwLineID);
 
 
          //static bool get_component_name(LPMIXERLINE pmxl, string & strComponent);

@@ -77,11 +77,11 @@ namespace acme_linux
 //      {
 //         ::file::path str = system()->m_pnodedir->system() / "CrashDumps" / strModuleNameWithTheExeExtension;
 //         wstring wstr = str;
-//         RegSetValueExW(k.m_hkey, L"DumpFolder", 0, REG_EXPAND_SZ, (::u8*)wstr.c_str(), ::u32((wcslen(wstr) + 1) * sizeof(wchar_t)));
-//         ::u32 dw = 10;
-//         RegSetValueExW(k.m_hkey, L"DumpCount", 0, REG_DWORD, (::u8*)&dw, sizeof(dw));
+//         RegSetValueExW(k.m_hkey, L"DumpFolder", 0, REG_EXPAND_SZ, (unsigned char*)wstr.c_str(), unsigned int((wcslen(wstr) + 1) * sizeof(wchar_t)));
+//         unsigned int dw = 10;
+//         RegSetValueExW(k.m_hkey, L"DumpCount", 0, REG_DWORD, (unsigned char*)&dw, sizeof(dw));
 //         dw = 2;
-//         RegSetValueExW(k.m_hkey, L"DumpType", 0, REG_DWORD, (::u8*)&dw, sizeof(dw));
+//         RegSetValueExW(k.m_hkey, L"DumpType", 0, REG_DWORD, (unsigned char*)&dw, sizeof(dw));
 //
 //      }
 //
@@ -284,7 +284,7 @@ namespace acme_linux
 //         for(auto & iCurrentPid : pids)
 //         {
 //
-//            strPath = module_path_from_pid(iCurrentPid.i32());
+//            strPath = module_path_from_pid(iCurrentPid.int());
 //
 //            if(strPath.case_insensitive_order(pszModulePath) == 0 )
 //            {
@@ -464,7 +464,7 @@ namespace acme_linux
    bool node::set_process_priority(::enum_priority epriority)
    {
 
-      i32 iPolicy = SCHED_OTHER;
+      int iPolicy = SCHED_OTHER;
 
       sched_param schedparam;
 

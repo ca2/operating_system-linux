@@ -83,7 +83,7 @@
    state into a temporary value.  Afterwards, one can write ("Put")
    them back into the guest state.
 
-   Get and Put are characterised by a ::u8 offset into the guest
+   Get and Put are characterised by a unsigned char offset into the guest
    state, a small integer which effectively gives the identity of the
    referenced guest register, and a type, which indicates the size of
    the value to be transferred.
@@ -278,9 +278,9 @@ typedef
       Ico_F64i,  /* 64-bit unsigned int to be interpreted literally
                     as a IEEE754 double value. */
       Ico_V128,  /* 128-bit restricted vector constant, with 1 bit
-                    (repeated 8 times) for each of the 16 x 1-::u8 lanes */
+                    (repeated 8 times) for each of the 16 x 1-unsigned char lanes */
       Ico_V256   /* 256-bit restricted vector constant, with 1 bit
-                    (repeated 8 times) for each of the 32 x 1-::u8 lanes */
+                    (repeated 8 times) for each of the 32 x 1-unsigned char lanes */
    }
    IRConstTag;
 
@@ -295,14 +295,14 @@ typedef
          Bool   U1;
          UChar  U8;
          UShort U16;
-         ::u32   U32;
+         unsigned int   U32;
          ULong  U64;
          Float  F32;
-         ::u32   F32i;
+         unsigned int   F32i;
          Double F64;
          ULong  F64i;
          UShort V128;   /* 16-bit value; see Ico_V128 comment above */
-         ::u32   V256;   /* 32-bit value; see Ico_V256 comment above */
+         unsigned int   V256;   /* 32-bit value; see Ico_V256 comment above */
       } Ico;
    }
    IRConst;
@@ -311,14 +311,14 @@ typedef
 extern IRConst* IRConst_U1   ( Bool );
 extern IRConst* IRConst_U8   ( UChar );
 extern IRConst* IRConst_U16  ( UShort );
-extern IRConst* IRConst_U32  ( ::u32 );
+extern IRConst* IRConst_U32  ( unsigned int );
 extern IRConst* IRConst_U64  ( ULong );
 extern IRConst* IRConst_F32  ( Float );
-extern IRConst* IRConst_F32i ( ::u32 );
+extern IRConst* IRConst_F32i ( unsigned int );
 extern IRConst* IRConst_F64  ( Double );
 extern IRConst* IRConst_F64i ( ULong );
 extern IRConst* IRConst_V128 ( UShort );
-extern IRConst* IRConst_V256 ( ::u32 );
+extern IRConst* IRConst_V256 ( unsigned int );
 
 /* Deep-copy an IRConst */
 extern IRConst* deepCopyIRConst ( const IRConst* );
@@ -352,7 +352,7 @@ typedef
       Int          regparms;
       const HChar* name;
       void*        addr;
-      ::u32         mcx_mask;
+      unsigned int         mcx_mask;
    }
    IRCallee;
 
@@ -392,7 +392,7 @@ extern Bool eqIRRegArray ( const IRRegArray*, const IRRegArray* );
 /* This represents a temporary, eg. t1.  The IR optimiser relies on the
    fact that IRTemps are 32-bit ints.  Do not change them to be ints of
    any other size. */
-typedef ::u32 IRTemp;
+typedef unsigned int IRTemp;
 
 /* Pretty-print an IRTemp. */
 extern void ppIRTemp ( IRTemp );
@@ -1045,7 +1045,7 @@ typedef
          is undefined. */
       Iop_Perm8x8,
 
-      /* MISC CONVERSION -- get high bits of each ::u8 lane, a la
+      /* MISC CONVERSION -- get high bits of each unsigned char lane, a la
          x86/amd64 pmovmskb */
       Iop_GetMSBs8x8, /* I64 -> I8 */
 
@@ -1519,8 +1519,8 @@ typedef
         Example for polynomial multiply add for vector of bytes
         do i = 0 to 15
             prod[i].bit[0:14] <- 0
-            srcA <- VR[argL].::u8[i]
-            srcB <- VR[argR].::u8[i]
+            srcA <- VR[argL].unsigned char[i]
+            srcB <- VR[argR].unsigned char[i]
             do j = 0 to 7
                 do k = 0 to j
                     gbit <- srcA.bit[k] & srcB.bit[j-k]
@@ -1784,7 +1784,7 @@ typedef
       Iop_Reverse8sIn16_x8,
       Iop_Reverse8sIn32_x4, Iop_Reverse16sIn32_x4,
       Iop_Reverse8sIn64_x2, Iop_Reverse16sIn64_x2, Iop_Reverse32sIn64_x2,
-      Iop_Reverse1sIn8_x16, /* Reverse bits in each ::u8 lane. */
+      Iop_Reverse1sIn8_x16, /* Reverse bits in each unsigned char lane. */
 
       /* PERMUTING -- copy src bytes to dst,
          as indexed by control vector bytes:
@@ -1794,7 +1794,7 @@ typedef
       Iop_Perm8x16,
       Iop_Perm32x4, /* ditto, except argR values are restricted to 0 .. 3 */
 
-      /* MISC CONVERSION -- get high bits of each ::u8 lane, a la
+      /* MISC CONVERSION -- get high bits of each unsigned char lane, a la
          x86/amd64 pmovmskb */
       Iop_GetMSBs8x16, /* V128 -> I16 */
 
@@ -2764,7 +2764,7 @@ typedef
          */
          struct {
             Addr   addr;   /* instruction address */
-            ::u32   len;    /* instruction length */
+            unsigned int   len;    /* instruction length */
             UChar  delta;  /* addr = program counter as encoded in guest state
                                      - delta */
          } IMark;
@@ -2962,7 +2962,7 @@ typedef
 
 /* Statement constructors. */
 extern IRStmt* IRStmt_NoOp    ( void );
-extern IRStmt* IRStmt_IMark   ( Addr addr, ::u32 len, UChar delta );
+extern IRStmt* IRStmt_IMark   ( Addr addr, unsigned int len, UChar delta );
 extern IRStmt* IRStmt_AbiHint ( IRExpr* base, Int len, IRExpr* nia );
 extern IRStmt* IRStmt_Put     ( Int off, IRExpr* data );
 extern IRStmt* IRStmt_PutI    ( IRPutI* details );

@@ -42,12 +42,12 @@ namespace multimedia
 
 
 
-      /*::multimedia::result departament::CreateNewDevice(::u32 uiMixerID)
+      /*::multimedia::result departament::CreateNewDevice(unsigned int uiMixerID)
       {
       ::multimedia::result mmrc;
       if(MMSYSERR_NOERROR != (mmrc = m_pmixer->set_new_device(
       uiMixerID,
-      (::u32) m_oswindow_,
+      (unsigned int) m_oswindow_,
       0,
       CALLBACK_WINDOW)))
       {
@@ -59,7 +59,7 @@ namespace multimedia
       return mmrc;
       }
 
-      ::multimedia::result departament::CreateNewDestination(::u32 dwComponentType)
+      ::multimedia::result departament::CreateNewDestination(unsigned int dwComponentType)
       {
       ::multimedia::result mmrc;
       ::audio_mixer::destination * pdestination = NULL;

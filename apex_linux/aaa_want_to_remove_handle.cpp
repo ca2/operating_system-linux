@@ -33,7 +33,7 @@ namespace linux
 
       //}
 
-      //for(i32 i = 0; i < wndptraRemove.get_count(); i++)
+      //for(int i = 0; i < wndptraRemove.get_count(); i++)
       //{
       //   wndptraRemove[i]->m_handlea[0] = nullptr;
       //   wndptraRemove[i]->m_handlea[1] = nullptr;
@@ -41,7 +41,7 @@ namespace linux
       //   (*pMap->m_pfnDestructObject)(wndptraRemove[i]);   // destruct the object
       //}
 
-      //for(i32 i = 0; i < oswindowaRemove.get_count(); i++)
+      //for(int i = 0; i < oswindowaRemove.get_count(); i++)
       //{
       //   pMap->m_temporaryMap.erase_key(oswindowaRemove[i]);
       //}

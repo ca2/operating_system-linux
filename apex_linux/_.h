@@ -100,24 +100,24 @@ namespace apex_linux
 //
 //   //class linux
 //   //{
-//   //   i32 function();
+//   //   int function();
 //   //};
 //
 //   //CLASS_DECL_APEX_LINUX HINSTANCE   load_library(const char* psz);
 //
-//   //CLASS_DECL_APEX_LINUX bool        shell_get_special_folder_path(HWND hwnd, ::file::path& str, i32 csidl, bool fCreate);
-//   //CLASS_DECL_APEX_LINUX::file::path  shell_get_special_folder_path(i32 csidl, bool fCreate = true, ::windowing::window* pwindow = nullptr);
-//   //CLASS_DECL_APEX_LINUX::u32       get_file_attributes(const char* pFileName);
+//   //CLASS_DECL_APEX_LINUX bool        shell_get_special_folder_path(HWND hwnd, ::file::path& str, int csidl, bool fCreate);
+//   //CLASS_DECL_APEX_LINUX::file::path  shell_get_special_folder_path(int csidl, bool fCreate = true, ::windowing::window* pwindow = nullptr);
+//   //CLASS_DECL_APEX_LINUXunsigned int       get_file_attributes(const char* pFileName);
 //
-//   //CLASS_DECL_APEX_LINUX::u32       get_current_directory(string& str);
-//   //CLASS_DECL_APEX_LINUX::u32       get_temp_path(string& str);
-//   //CLASS_DECL_APEX_LINUX::i32        reg_query_value(HKEY hkey, const char* pszSubKey, string& str);
+//   //CLASS_DECL_APEX_LINUXunsigned int       get_current_directory(string& str);
+//   //CLASS_DECL_APEX_LINUXunsigned int       get_temp_path(string& str);
+//   //CLASS_DECL_APEX_LINUXint        reg_query_value(HKEY hkey, const char* pszSubKey, string& str);
 //
-//   //CLASS_DECL_APEX_LINUX HICON       extract_icon(HINSTANCE hInst, const char* pszExeFileName, ::u32 nIconIndex);
+//   //CLASS_DECL_APEX_LINUX HICON       extract_icon(HINSTANCE hInst, const char* pszExeFileName, unsigned int nIconIndex);
 //
 //   //CLASS_DECL_APEX_LINUX bool        delete_file(const char* pFileName);
 //
-//   //CLASS_DECL_APEX_LINUX i32     get_menu_string(HMENU hMenu, ::u32 uDItem, string& str, ::u32 flags);
+//   //CLASS_DECL_APEX_LINUX int     get_menu_string(HMENU hMenu, unsigned int uDItem, string& str, unsigned int flags);
 //   //CLASS_DECL_APEX_LINUX void        time_to_file_time(::particle * pparticle, const ::earth::time& time, LPFILETIME pFileTime);
 //
 //   ////CLASS_DECL_APEX_LINUX ::file::path get_known_folder(REFKNOWNFOLDERID kfid);

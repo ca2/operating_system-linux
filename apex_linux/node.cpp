@@ -14,7 +14,7 @@
 #include "apex/platform/system.h"
 
 
-i32 daemonize_process(const ::string & _cmd_line, i32 * pprocessId);
+int daemonize_process(const ::string & _cmd_line, int * pprocessId);
 
 #undef USERNAME_LENGTH // mysql one
 
@@ -284,13 +284,13 @@ namespace apex_linux
 
       return;
 
-      /*      ::u32 dwPid;
+      /*      unsigned int dwPid;
             while(get_pid_by_title(lpszName, dwPid))
             {
                HANDLE hProcess = OpenProcess( PROCESS_QUERY_INFORMATION |
                   PROCESS_VM_READ,
                   false, dwPid );
-               TerminateProcess(hProcess, (::u32) -1);
+               TerminateProcess(hProcess, (unsigned int) -1);
                ClnodeeHandle(hProcess);
                ::EnumWindows((WNDENUMPROC)
                CKillProcessHelper::TerminateAppEnum,
@@ -318,7 +318,7 @@ namespace apex_linux
 
       auto dwa = processes_identifiers();
 
-      for(i32 i = 0; i < dwa.get_count(); i++)
+      for(int i = 0; i < dwa.get_count(); i++)
       {
 
          if(process_identifier_module_path(dwa[i]).case_insensitive_equals(scopedstrName))
@@ -342,7 +342,7 @@ namespace apex_linux
 
       auto dwa = processes_identifiers();
 
-      for(i32 i = 0; i < dwa.get_count(); i++)
+      for(int i = 0; i < dwa.get_count(); i++)
       {
 
          if(process_identifier_module_path(dwa[i]).title().case_insensitive_equals(scopedstrName))
@@ -378,18 +378,18 @@ namespace apex_linux
 
       /*
             dwa.set_size(0);
-            ::u32 cbNeeded = 0;
+            unsigned int cbNeeded = 0;
             while(cbNeeded == natural(dwa.get_count()))
             {
                dwa.set_size(dwa.get_count() + 1024);
                if(!EnumProcesses(
                   dwa.get_data(),
-                  (::u32) (dwa.get_count() * sizeof(::u32)),
+                  (unsigned int) (dwa.get_count() * sizeof(unsigned int)),
                   &cbNeeded))
                {
                   return;
                }
-               dwa.set_size(cbNeeded / sizeof(::u32));
+               dwa.set_size(cbNeeded / sizeof(unsigned int));
             }*/
    }
 
@@ -400,7 +400,7 @@ namespace apex_linux
 //      return "";
 //      /*
 //      string strPath;
-//      ::u32 dwSize = 1;
+//      unsigned int dwSize = 1;
 //      while(natural(strPath.get_length() + 1) == dwSize)
 //      {
 //         dwSize = ::GetModuleFileName(
@@ -427,7 +427,7 @@ namespace apex_linux
 
             key1.QueryValue("DefaultConnectionSettings", mem);
 
-            bool bAutoDetect = (((::u8 *) mem.get_data())[8] & 0x08) != 0;
+            bool bAutoDetect = (((unsigned char *) mem.get_data())[8] & 0x08) != 0;
 
             return bAutoDetect;
       */
@@ -958,7 +958,7 @@ namespace apex_linux
    }
 
 
-   void node::raise_exception( ::u32 dwExceptionCode, ::u32 dwExceptionFlags)
+   void node::raise_exception( unsigned int dwExceptionCode, unsigned int dwExceptionFlags)
    {
 
       throw ::not_implemented();
@@ -1103,7 +1103,7 @@ namespace apex_linux
 
          //::system("cd /; setsid \"" + strTarget + "\" </dev/null &>/dev/null");
 
-         //i32 daemonize_process(const ::string & _cmd_line, i32 * pprocessId)
+         //int daemonize_process(const ::string & _cmd_line, int * pprocessId)
 
          // 2018-01-29 call_async("/bin/bash", "-c \"" + strTarget + "\"", strFolder, SW_SHOWDEFAULT, false);
 

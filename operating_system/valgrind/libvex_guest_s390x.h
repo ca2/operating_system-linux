@@ -43,22 +43,22 @@ typedef struct {
 /*--- ar registers                                         ---*/
 /*------------------------------------------------------------*/
 
-   /*    0 */  ::u32 guest_a0;
-   /*    4 */  ::u32 guest_a1;
-   /*    8 */  ::u32 guest_a2;
-   /*   12 */  ::u32 guest_a3;
-   /*   16 */  ::u32 guest_a4;
-   /*   20 */  ::u32 guest_a5;
-   /*   24 */  ::u32 guest_a6;
-   /*   28 */  ::u32 guest_a7;
-   /*   32 */  ::u32 guest_a8;
-   /*   36 */  ::u32 guest_a9;
-   /*   40 */  ::u32 guest_a10;
-   /*   44 */  ::u32 guest_a11;
-   /*   48 */  ::u32 guest_a12;
-   /*   52 */  ::u32 guest_a13;
-   /*   56 */  ::u32 guest_a14;
-   /*   60 */  ::u32 guest_a15;
+   /*    0 */  unsigned int guest_a0;
+   /*    4 */  unsigned int guest_a1;
+   /*    8 */  unsigned int guest_a2;
+   /*   12 */  unsigned int guest_a3;
+   /*   16 */  unsigned int guest_a4;
+   /*   20 */  unsigned int guest_a5;
+   /*   24 */  unsigned int guest_a6;
+   /*   28 */  unsigned int guest_a7;
+   /*   32 */  unsigned int guest_a8;
+   /*   36 */  unsigned int guest_a9;
+   /*   40 */  unsigned int guest_a10;
+   /*   44 */  unsigned int guest_a11;
+   /*   48 */  unsigned int guest_a12;
+   /*   52 */  unsigned int guest_a13;
+   /*   56 */  unsigned int guest_a14;
+   /*   60 */  unsigned int guest_a15;
 
 /*------------------------------------------------------------*/
 /*--- fpr registers                                        ---*/
@@ -107,8 +107,8 @@ typedef struct {
 /*------------------------------------------------------------*/
 
    /*  320 */  ULong guest_counter;
-   /*  328 */  ::u32 guest_fpc;
-   /*  332 */  UChar unused[4]; /* 4-::u8 hole to get 8-::u8 alignment */
+   /*  328 */  unsigned int guest_fpc;
+   /*  332 */  UChar unused[4]; /* 4-unsigned char hole to get 8-unsigned char alignment */
    /*  336 */  ULong guest_IA;
 
 /*------------------------------------------------------------*/
@@ -141,10 +141,10 @@ typedef struct {
    /*  408 */  ULong guest_IP_AT_SYSCALL;
 
    /* Emulation notes; see comments in libvex_emnote.h */
-   /*  416 */  ::u32 guest_EMNOTE;
+   /*  416 */  unsigned int guest_EMNOTE;
 
    /* For translation chaining */
-   /*  420 */  ::u32  host_EvC_COUNTER;
+   /*  420 */  unsigned int  host_EvC_COUNTER;
    /*  424 */  ULong host_EvC_FAILADDR;
 
 /*------------------------------------------------------------*/

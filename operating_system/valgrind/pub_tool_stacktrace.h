@@ -46,20 +46,20 @@ typedef Addr* StackTrace;
 // The specific meaning of the returned addresses is:
 //
 // [0] is the IP of thread 'tid'
-// [1] points to the last ::u8 of the call instruction that called [0].
-// [2] points to the last ::u8 of the call instruction that called [1].
+// [1] points to the last unsigned char of the call instruction that called [0].
+// [2] points to the last unsigned char of the call instruction that called [1].
 // etc etc
 //
 // Hence ips[0 .. return_value-1] should all point to currently
 // 'active' (in the sense of a stack of unfinished function calls)
 // instructions.  [0] points to the start of an arbitrary instruction.#
-// [1 ..] point to the last ::u8 of a chain of call instructions.
+// [1 ..] point to the last unsigned char of a chain of call instructions.
 //
 // If sps and fps are non-NULL, the corresponding frame-pointer and
 // stack-pointer values for each frame are stored there.
 
-extern ::u32 VG_(get_StackTrace) ( ThreadId tid,
-                                  /*OUT*/StackTrace ips, ::u32 n_ips,
+extern unsigned int VG_(get_StackTrace) ( ThreadId tid,
+                                  /*OUT*/StackTrace ips, unsigned int n_ips,
                                   /*OUT*/StackTrace sps,
                                   /*OUT*/StackTrace fps,
                                   Word first_ip_delta );
@@ -70,17 +70,17 @@ extern ::u32 VG_(get_StackTrace) ( ThreadId tid,
 // closure).  Doesn't go below main() unless --show-below-main=yes is
 // set.
 extern void VG_(apply_StackTrace)(
-               void(*action)(::u32 n, Addr ip, void* opaque),
+               void(*action)(unsigned int n, Addr ip, void* opaque),
                void* opaque,
-               StackTrace ips, ::u32 n_ips
+               StackTrace ips, unsigned int n_ips
             );
 
 // Print a StackTrace.
-extern void VG_(pp_StackTrace) ( StackTrace ips, ::u32 n_ips );
+extern void VG_(pp_StackTrace) ( StackTrace ips, unsigned int n_ips );
 
 // Gets and immediately prints a StackTrace.  Just a bit simpler than
 // calling VG_(get_StackTrace)() then VG_(pp_StackTrace)().
-extern void VG_(get_and_pp_StackTrace) ( ThreadId tid, ::u32 n_ips );
+extern void VG_(get_and_pp_StackTrace) ( ThreadId tid, unsigned int n_ips );
 
 #endif   // __PUB_TOOL_STACKTRACE_H
 

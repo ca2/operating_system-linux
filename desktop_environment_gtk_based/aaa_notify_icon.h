@@ -30,7 +30,7 @@ namespace node_gnome
       };
 
 
-      ::u32                                             m_uiId;
+      unsigned int                                             m_uiId;
       bool                                              m_bCreated;
       string                                            m_strId;
 //#ifdef WINDOWS_DESKTOP
@@ -68,7 +68,7 @@ namespace node_gnome
 
       bool modify_icon(::windowing::icon * picon);
 
-      virtual bool create_notify_icon(::u32 id, ::user::notify_icon_listener * plistener, ::windowing::icon * picon) override;
+      virtual bool create_notify_icon(unsigned int id, ::user::notify_icon_listener * plistener, ::windowing::icon * picon) override;
 
       //DECL_GEN_SIGNAL(_001OnNotifyIconMessage);
       //DECL_GEN_SIGNAL(_001OnDestroy);

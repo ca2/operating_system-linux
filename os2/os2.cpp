@@ -3,7 +3,7 @@
 
 
 extern "C" int32_t APIENTRY
-DllMain(HINSTANCE hInstance, ::u32 dwReason, LPVOID lpReserved)
+DllMain(HINSTANCE hInstance, unsigned int dwReason, LPVOID lpReserved)
 {
 
 

@@ -74,7 +74,7 @@ extern Word VG_(addToXA) ( XArray*, const void* elem );
 
 /* Add a sequence of bytes to an XArray of bytes.  Asserts if nbytes
    is negative or the array's element size is not 1.  Returns the
-   ::collection::index at which the first ::u8 was added. */
+   ::collection::index at which the first unsigned char was added. */
 extern Word VG_(addBytesToXA) ( XArray* xao, const void* bytesV, Word nbytes );
 
 /* Sort an XArray using its comparison function, if set; else bomb.

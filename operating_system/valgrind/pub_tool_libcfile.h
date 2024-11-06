@@ -56,9 +56,9 @@ struct vg_stat {
    ULong   dev;
    ULong   ino;
    ULong   nlink;
-   ::u32    mode;
-   ::u32    uid;
-   ::u32    gid;
+   unsigned int    mode;
+   unsigned int    uid;
+   unsigned int    gid;
    ULong   rdev;
    Long    size;
    ULong   blksize;
@@ -94,7 +94,7 @@ extern SysRes VG_(poll) (struct vki_pollfd *fds, Int nfds, Int timeout);
 extern SSizeT VG_(readlink)( const HChar* path, HChar* buf, SizeT bufsiz);
 
 #if defined(VGO_linux) || defined(VGO_solaris)
-extern Int    VG_(getdents64)( Int fd, struct vki_dirent64 *dirp, ::u32 count );
+extern Int    VG_(getdents64)( Int fd, struct vki_dirent64 *dirp, unsigned int count );
 #endif
 
 extern const HChar* VG_(basename)( const HChar* path );

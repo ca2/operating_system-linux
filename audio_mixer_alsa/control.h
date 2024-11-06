@@ -40,12 +40,12 @@ namespace audio_mixer_alsa
       bool control_type(::audio_mixer::e_control econtrol) const;
 
       //bool OnCommand(WPARAM wParam, LPARAM lParam);
-      ::pointer<::audio_mixer::control_data> GetWindowDataByDlgCtrlID(::u32 nID);
+      ::pointer<::audio_mixer::control_data> GetWindowDataByDlgCtrlID(unsigned int nID);
 
-      //::pointer<::audio_mixer_user::control> GetControlByDlgCtrlID(::u32 nID);
+      //::pointer<::audio_mixer_user::control> GetControlByDlgCtrlID(unsigned int nID);
 
-      //   bool OnNotify(::u32 nID, LPNMHDR lpnmhdr);
-      void OnVHScroll(::u32 nSBCode, ::u32 nPos, ::user::interaction *pscrollbar);
+      //   bool OnNotify(unsigned int nID, LPNMHDR lpnmhdr);
+      void OnVHScroll(unsigned int nSBCode, unsigned int nPos, ::user::interaction *pscrollbar);
 
       ::pointer<::audio_mixer::control_data> GetWindowData(int32_t iType);
 
@@ -57,10 +57,10 @@ namespace audio_mixer_alsa
 
       void Prepare();
 
-      bool CreateWindowsVolumeV001(::user::interaction *puserinteractionParent, ::u32 nStartID, ::u32 *nNextID);
+      bool CreateWindowsVolumeV001(::user::interaction *puserinteractionParent, unsigned int nStartID, unsigned int *nNextID);
 
-      //  bool _001CreateMuteControl(sp(::user::interaction) pParent, CRuntimeClass * pruntimeclassMuteControl, ::u32 nStartID, ::u32 * nNextID);
-      bool _001CreateMuteControl(::user::interaction *puserinteractionParent, ::u32 nStartID, ::u32 *nNextID);
+      //  bool _001CreateMuteControl(sp(::user::interaction) pParent, CRuntimeClass * pruntimeclassMuteControl, unsigned int nStartID, unsigned int * nNextID);
+      bool _001CreateMuteControl(::user::interaction *puserinteractionParent, unsigned int nStartID, unsigned int *nNextID);
 
       bool CreateWindows(::user::interaction *puserinteractionParent, int32_t iStyle);
 

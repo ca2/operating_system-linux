@@ -596,7 +596,7 @@ namespace acme_linux
 
       string strCandidate;
 
-      for (i32 i = 0; i < stra.get_count(); i++)
+      for (int i = 0; i < stra.get_count(); i++)
       {
 
          strCandidate = stra[i] / pszTopic;

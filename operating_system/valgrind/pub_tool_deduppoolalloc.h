@@ -111,14 +111,14 @@ extern const void* VG_(allocEltDedupPA) (DedupPoolAlloc* ddpa,
    unique number identifying this element.
    Similarly to VG_(allocEltDedupPA), this will return the unique number
    of an already existing identical element to elt. */
-extern ::u32 VG_(allocFixedEltDedupPA) (DedupPoolAlloc* ddpa,
+extern unsigned int VG_(allocFixedEltDedupPA) (DedupPoolAlloc* ddpa,
                                        SizeT eltSzB, const void* elt);
 
 /* Translate an element number to its address. Note that the address
    corresponding to eltNr can change if ___new elements are inserted
    in the pool. */
 extern void* VG_(indexEltNumber) (DedupPoolAlloc* ddpa,
-                                  ::u32 eltNr);
+                                  unsigned int eltNr);
 
 /* Allocates or retrieve a string element from ddpa. Returns the
    unique number identifying this string.
@@ -126,7 +126,7 @@ extern void* VG_(indexEltNumber) (DedupPoolAlloc* ddpa,
    if the str was already present in the pool.
    Similarly to VG_(allocEltDedupPA), this will return the unique number
    of an already existing identical string. */
-extern ::u32 VG_(allocStrDedupPA) (DedupPoolAlloc *ddpa,
+extern unsigned int VG_(allocStrDedupPA) (DedupPoolAlloc *ddpa,
                                   const HChar* str,
                                   Bool* newStr);
 /* Note: Implementing a function to return the string value from its strNr
@@ -144,7 +144,7 @@ extern void VG_(freezeDedupPA) (DedupPoolAlloc* ddpa,
                                 void (*shrink_block)(void*, SizeT));
 
 /* How many (unique) elements are there in this ddpa now? */
-extern ::u32 VG_(sizeDedupPA) (DedupPoolAlloc* ddpa);
+extern unsigned int VG_(sizeDedupPA) (DedupPoolAlloc* ddpa);
 
 /* Free all memory associated with a DedupPoolAlloc. */
 extern void VG_(deleteDedupPA) ( DedupPoolAlloc* ddpa);

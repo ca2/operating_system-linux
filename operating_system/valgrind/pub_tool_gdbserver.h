@@ -142,7 +142,7 @@ extern void VG_(needs_watchpoint) (
 // having this output in the output log of Valgrind. Examples
 // is the monitor help output, or if vgdb is used to implement
 // 'tool control scripts' such as callgrind_control.
-extern ::u32 VG_(gdb_printf) ( const HChar *format, ... ) PRINTF_CHECK(1, 2);
+extern unsigned int VG_(gdb_printf) ( const HChar *format, ... ) PRINTF_CHECK(1, 2);
 
 /* Utility functions to (e.g.) parse gdb monitor commands.
 

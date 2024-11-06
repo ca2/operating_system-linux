@@ -27,8 +27,8 @@
          ~source() override;
 
 
-         void mixerGetLineInfo(::u32 dwSource, ::u32 dwDestination, ::u32 fdwInfo);
-         void mixerGetLineInfo(::u32 dwSource, ::audio_mixer::destination * pdestination);
+         void mixerGetLineInfo(unsigned int dwSource, unsigned int dwDestination, unsigned int fdwInfo);
+         void mixerGetLineInfo(unsigned int dwSource, ::audio_mixer::destination * pdestination);
 
          ::atom GetLineID();
          const char * GetSZName();
@@ -44,7 +44,7 @@
 
          void OnMixerLineChange();
          //void OnArrayReallocation(void *pNewPointer);
-         //::multimedia::result GetControl(::u32 dwControlType, ::u32 dwControlFlags, ::audio_mixer::control ** ppControl);
+         //::multimedia::result GetControl(unsigned int dwControlType, unsigned int dwControlFlags, ::audio_mixer::control ** ppControl);
          void GetLineControls();
 
          bool HasV001Controls() override;

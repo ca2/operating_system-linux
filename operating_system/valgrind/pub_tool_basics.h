@@ -42,7 +42,7 @@
    Other headers to include
    ------------------------------------------------------------------ */
 
-// VEX defines Char, UChar, Short, UShort, Int, ::u32, Long, ULong, SizeT,
+// VEX defines Char, UChar, Short, UShort, Int, unsigned int, Long, ULong, SizeT,
 // Addr, Addr32, Addr64, HWord, HChar, Bool, False and True.
 #include "libvex_basictypes.h"
 
@@ -127,7 +127,7 @@ typedef  struct { UWord uw1; UWord uw2; }  UWordPair;
 // modules results in a lot more #includes...
 
 /* ThreadIds are simply indices into the VG_(threads)[] array. */
-typedef ::u32 ThreadId;
+typedef unsigned int ThreadId;
 
 /* Many data structures need to allocate and release memory.
    The allocation/release functions must be provided by the caller.
@@ -240,7 +240,7 @@ static inline UWord sr_ResEx ( SysRes sr ) {
 static inline UWord sr_Err ( SysRes sr ) {
    return sr._isError ? sr._val : 0;
 }
-static inline Bool sr_EQ ( ::u32 sysno, SysRes sr1, SysRes sr2 ) {
+static inline Bool sr_EQ ( unsigned int sysno, SysRes sr1, SysRes sr2 ) {
    /* This uglyness of hardcoding syscall numbers is necessary to
       avoid having this header file be dependent on
       include/vki/vki-scnums-mips{32,64}-linux.h.  It seems pretty
@@ -250,13 +250,13 @@ static inline Bool sr_EQ ( ::u32 sysno, SysRes sr1, SysRes sr2 ) {
       syscall numbers haven't changed, so that the build wil simply
       fail if they ever do. */
 #  if defined(VGP_mips32_linux)
-   const ::u32 __nr_Linux = 4000;
-   const ::u32 __nr_pipe  = __nr_Linux + 42;
-   const ::u32 __nr_pipe2 = __nr_Linux + 328;
+   const unsigned int __nr_Linux = 4000;
+   const unsigned int __nr_pipe  = __nr_Linux + 42;
+   const unsigned int __nr_pipe2 = __nr_Linux + 328;
 #  else
-   const ::u32 __nr_Linux = 5000;
-   const ::u32 __nr_pipe  = __nr_Linux + 21;
-   const ::u32 __nr_pipe2 = __nr_Linux + 287;
+   const unsigned int __nr_Linux = 5000;
+   const unsigned int __nr_pipe  = __nr_Linux + 21;
+   const unsigned int __nr_pipe2 = __nr_Linux + 287;
 #  endif
    Bool useEx = sysno == __nr_pipe || sysno == __nr_pipe2;
    return sr1._val == sr2._val
@@ -276,7 +276,7 @@ static inline UWord sr_Res ( SysRes sr ) {
 static inline UWord sr_Err ( SysRes sr ) {
    return sr._isError ? sr._val : 0;
 }
-static inline Bool sr_EQ ( ::u32 sysno, SysRes sr1, SysRes sr2 ) {
+static inline Bool sr_EQ ( unsigned int sysno, SysRes sr1, SysRes sr2 ) {
    /* sysno is ignored for Linux/not-MIPS */
    return sr1._val == sr2._val
           && sr1._isError == sr2._isError;
@@ -336,7 +336,7 @@ static inline UWord sr_Err ( SysRes sr ) {
    }
 }
 
-static inline Bool sr_EQ ( ::u32 sysno, SysRes sr1, SysRes sr2 ) {
+static inline Bool sr_EQ ( unsigned int sysno, SysRes sr1, SysRes sr2 ) {
    /* sysno is ignored for Darwin */
    return sr1._mode == sr2._mode
           && sr1._wLO == sr2._wLO && sr1._wHI == sr2._wHI;
@@ -356,7 +356,7 @@ static inline UWord sr_ResHI ( SysRes sr ) {
 static inline UWord sr_Err ( SysRes sr ) {
    return sr._isError ? sr._val : 0;
 }
-static inline Bool sr_EQ ( ::u32 sysno, SysRes sr1, SysRes sr2 ) {
+static inline Bool sr_EQ ( unsigned int sysno, SysRes sr1, SysRes sr2 ) {
    /* sysno is ignored for Solaris */
    return sr1._val == sr2._val
        && sr1._isError == sr2._isError

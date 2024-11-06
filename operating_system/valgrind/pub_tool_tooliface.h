@@ -123,7 +123,7 @@ extern void VG_(basic_tool_funcs)(
    // Memcheck uses this.
    //
    // VexGuestExtents* vge points to a structure which states the
-   // precise ::u8 ranges of original code from which this translation
+   // precise unsigned char ranges of original code from which this translation
    // was made (there may be up to three different ranges involved).
    // Note again that these are the real addresses from which the code
    // came.  And so it should be the case that closure->readdr is the
@@ -251,7 +251,7 @@ extern void VG_(details_copyright_author)      ( const HChar* copyright_author )
 /* Average size of a translation, in bytes, so that the translation
    storage machinery can allocate memory appropriately.  Not critical,
    setting is optional. */
-extern void VG_(details_avg_translation_sizeB) ( ::u32 size );
+extern void VG_(details_avg_translation_sizeB) ( unsigned int size );
 
 /* String printed if an `tl_assert' assertion fails or VG_(tool_panic)
    is called.  Should probably be an email address. */
@@ -312,7 +312,7 @@ extern void VG_(needs_tool_errors) (
    // Yuk.
    // Return value: must be the size of the `extra' part in bytes -- used by
    // the aura to make a copy.
-   ::u32 (*update_extra)(const Error* err),
+   unsigned int (*update_extra)(const Error* err),
 
    // Return value indicates recognition.  If recognised, must set skind using
    // VG_(set_supp_kind)().
@@ -437,10 +437,10 @@ extern void VG_(needs_client_requests) (
 // to be defined and to contain all the args for this syscall,
 // possibly including some trailing zeroes.
 extern void VG_(needs_syscall_wrapper) (
-               void (* pre_syscall)(ThreadId tid, ::u32 syscallno,
-                                    UWord* args, ::u32 nArgs),
-               void (*post_syscall)(ThreadId tid, ::u32 syscallno,
-                                    UWord* args, ::u32 nArgs, SysRes res)
+               void (* pre_syscall)(ThreadId tid, unsigned int syscallno,
+                                    UWord* args, unsigned int nArgs),
+               void (*post_syscall)(ThreadId tid, unsigned int syscallno,
+                                    UWord* args, unsigned int nArgs, SysRes res)
 );
 
 /* Are tool-state sanity checks performed? */
@@ -574,17 +574,17 @@ void VG_(track_die_mem_munmap)      (void(*f)(Addr a, SizeT len));
    associated depth-1 ExeContext for the location.  All this
    complexity is provided to support origin tracking in Memcheck.
 */
-void VG_(track_new_mem_stack_4_w_ECU)  (VG_REGPARM(2) void(*f)(Addr new_ESP, ::u32 ecu));
-void VG_(track_new_mem_stack_8_w_ECU)  (VG_REGPARM(2) void(*f)(Addr new_ESP, ::u32 ecu));
-void VG_(track_new_mem_stack_12_w_ECU) (VG_REGPARM(2) void(*f)(Addr new_ESP, ::u32 ecu));
-void VG_(track_new_mem_stack_16_w_ECU) (VG_REGPARM(2) void(*f)(Addr new_ESP, ::u32 ecu));
-void VG_(track_new_mem_stack_32_w_ECU) (VG_REGPARM(2) void(*f)(Addr new_ESP, ::u32 ecu));
-void VG_(track_new_mem_stack_112_w_ECU)(VG_REGPARM(2) void(*f)(Addr new_ESP, ::u32 ecu));
-void VG_(track_new_mem_stack_128_w_ECU)(VG_REGPARM(2) void(*f)(Addr new_ESP, ::u32 ecu));
-void VG_(track_new_mem_stack_144_w_ECU)(VG_REGPARM(2) void(*f)(Addr new_ESP, ::u32 ecu));
-void VG_(track_new_mem_stack_160_w_ECU)(VG_REGPARM(2) void(*f)(Addr new_ESP, ::u32 ecu));
+void VG_(track_new_mem_stack_4_w_ECU)  (VG_REGPARM(2) void(*f)(Addr new_ESP, unsigned int ecu));
+void VG_(track_new_mem_stack_8_w_ECU)  (VG_REGPARM(2) void(*f)(Addr new_ESP, unsigned int ecu));
+void VG_(track_new_mem_stack_12_w_ECU) (VG_REGPARM(2) void(*f)(Addr new_ESP, unsigned int ecu));
+void VG_(track_new_mem_stack_16_w_ECU) (VG_REGPARM(2) void(*f)(Addr new_ESP, unsigned int ecu));
+void VG_(track_new_mem_stack_32_w_ECU) (VG_REGPARM(2) void(*f)(Addr new_ESP, unsigned int ecu));
+void VG_(track_new_mem_stack_112_w_ECU)(VG_REGPARM(2) void(*f)(Addr new_ESP, unsigned int ecu));
+void VG_(track_new_mem_stack_128_w_ECU)(VG_REGPARM(2) void(*f)(Addr new_ESP, unsigned int ecu));
+void VG_(track_new_mem_stack_144_w_ECU)(VG_REGPARM(2) void(*f)(Addr new_ESP, unsigned int ecu));
+void VG_(track_new_mem_stack_160_w_ECU)(VG_REGPARM(2) void(*f)(Addr new_ESP, unsigned int ecu));
 void VG_(track_new_mem_stack_w_ECU)                  (void(*f)(Addr a, SizeT len,
-                                                                       ::u32 ecu));
+                                                                       unsigned int ecu));
 
 void VG_(track_new_mem_stack_4)  (VG_REGPARM(1) void(*f)(Addr new_ESP));
 void VG_(track_new_mem_stack_8)  (VG_REGPARM(1) void(*f)(Addr new_ESP));

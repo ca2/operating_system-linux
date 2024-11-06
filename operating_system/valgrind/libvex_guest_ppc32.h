@@ -48,44 +48,44 @@
 typedef
    struct {
       /* Event check fail addr and counter. */
-      /*   0 */ ::u32 host_EvC_FAILADDR;
-      /*   4 */ ::u32 host_EvC_COUNTER;
-      /*   8 */ ::u32 pad3;
-      /*  12 */ ::u32 pad4;
+      /*   0 */ unsigned int host_EvC_FAILADDR;
+      /*   4 */ unsigned int host_EvC_COUNTER;
+      /*   8 */ unsigned int pad3;
+      /*  12 */ unsigned int pad4;
       /* Add 16 to all the numbers below.  Sigh. */
       /* General Purpose Registers */
-      /*   0 */ ::u32 guest_GPR0;
-      /*   4 */ ::u32 guest_GPR1;
-      /*   8 */ ::u32 guest_GPR2;
-      /*  12 */ ::u32 guest_GPR3;
-      /*  16 */ ::u32 guest_GPR4;
-      /*  20 */ ::u32 guest_GPR5;
-      /*  24 */ ::u32 guest_GPR6;
-      /*  28 */ ::u32 guest_GPR7;
-      /*  32 */ ::u32 guest_GPR8;
-      /*  36 */ ::u32 guest_GPR9;
-      /*  40 */ ::u32 guest_GPR10;
-      /*  44 */ ::u32 guest_GPR11;
-      /*  48 */ ::u32 guest_GPR12;
-      /*  52 */ ::u32 guest_GPR13;
-      /*  56 */ ::u32 guest_GPR14;
-      /*  60 */ ::u32 guest_GPR15;
-      /*  64 */ ::u32 guest_GPR16;
-      /*  68 */ ::u32 guest_GPR17;
-      /*  72 */ ::u32 guest_GPR18;
-      /*  76 */ ::u32 guest_GPR19;
-      /*  80 */ ::u32 guest_GPR20;
-      /*  84 */ ::u32 guest_GPR21;
-      /*  88 */ ::u32 guest_GPR22;
-      /*  92 */ ::u32 guest_GPR23;
-      /*  96 */ ::u32 guest_GPR24;
-      /* 100 */ ::u32 guest_GPR25;
-      /* 104 */ ::u32 guest_GPR26;
-      /* 108 */ ::u32 guest_GPR27;
-      /* 112 */ ::u32 guest_GPR28;
-      /* 116 */ ::u32 guest_GPR29;
-      /* 120 */ ::u32 guest_GPR30;
-      /* 124 */ ::u32 guest_GPR31;
+      /*   0 */ unsigned int guest_GPR0;
+      /*   4 */ unsigned int guest_GPR1;
+      /*   8 */ unsigned int guest_GPR2;
+      /*  12 */ unsigned int guest_GPR3;
+      /*  16 */ unsigned int guest_GPR4;
+      /*  20 */ unsigned int guest_GPR5;
+      /*  24 */ unsigned int guest_GPR6;
+      /*  28 */ unsigned int guest_GPR7;
+      /*  32 */ unsigned int guest_GPR8;
+      /*  36 */ unsigned int guest_GPR9;
+      /*  40 */ unsigned int guest_GPR10;
+      /*  44 */ unsigned int guest_GPR11;
+      /*  48 */ unsigned int guest_GPR12;
+      /*  52 */ unsigned int guest_GPR13;
+      /*  56 */ unsigned int guest_GPR14;
+      /*  60 */ unsigned int guest_GPR15;
+      /*  64 */ unsigned int guest_GPR16;
+      /*  68 */ unsigned int guest_GPR17;
+      /*  72 */ unsigned int guest_GPR18;
+      /*  76 */ unsigned int guest_GPR19;
+      /*  80 */ unsigned int guest_GPR20;
+      /*  84 */ unsigned int guest_GPR21;
+      /*  88 */ unsigned int guest_GPR22;
+      /*  92 */ unsigned int guest_GPR23;
+      /*  96 */ unsigned int guest_GPR24;
+      /* 100 */ unsigned int guest_GPR25;
+      /* 104 */ unsigned int guest_GPR26;
+      /* 108 */ unsigned int guest_GPR27;
+      /* 112 */ unsigned int guest_GPR28;
+      /* 116 */ unsigned int guest_GPR29;
+      /* 120 */ unsigned int guest_GPR30;
+      /* 124 */ unsigned int guest_GPR31;
 
       // Vector Registers, Floating Point Registers, and VSX Registers
       // With ISA 2.06, the "Vector-Scalar Floating-point" category
@@ -166,9 +166,9 @@ typedef
       /* 1120 */ U128 guest_VSR62;
       /* 1136 */ U128 guest_VSR63;
 
-      /* 1152 */ ::u32 guest_CIA;    // IP (no arch visible register)
-      /* 1156 */ ::u32 guest_LR;     // Link Register
-      /* 1160 */ ::u32 guest_CTR;    // Count Register
+      /* 1152 */ unsigned int guest_CIA;    // IP (no arch visible register)
+      /* 1156 */ unsigned int guest_LR;     // Link Register
+      /* 1160 */ unsigned int guest_CTR;    // Count Register
 
       /* XER pieces */
       /* 1164 */ UChar guest_XER_SO; /* in lsb */
@@ -209,17 +209,17 @@ typedef
       /* 1191 */ UChar pad2;
 
       /* Vector Save/Restore Register */
-      /* 1192 */ ::u32 guest_VRSAVE;
+      /* 1192 */ unsigned int guest_VRSAVE;
 
       /* Vector Status and Control Register */
-      /* 1196 */ ::u32 guest_VSCR;
+      /* 1196 */ unsigned int guest_VSCR;
 
       /* Emulation notes */
-      /* 1200 */ ::u32 guest_EMNOTE;
+      /* 1200 */ unsigned int guest_EMNOTE;
 
       /* For icbi: record start and length of area to invalidate */
-      /* 1204 */ ::u32 guest_CMSTART;
-      /* 1208 */ ::u32 guest_CMLEN;
+      /* 1204 */ unsigned int guest_CMSTART;
+      /* 1208 */ unsigned int guest_CMLEN;
 
       /* Used to record the unredirected guest address at the start of
          a translation whose start has been redirected.  By reading
@@ -227,35 +227,35 @@ typedef
          find out what the corresponding no-redirection address was.
          Note, this is only set for wrap-style redirects, not for
          replace-style ones. */
-      /* 1212 */ ::u32 guest_NRADDR;
-      /* 1216 */ ::u32 guest_NRADDR_GPR2; /* needed by aix */
+      /* 1212 */ unsigned int guest_NRADDR;
+      /* 1216 */ unsigned int guest_NRADDR_GPR2; /* needed by aix */
 
      /* A grows-upwards stack for hidden saves/restores of LR and R2
         needed for function interception and wrapping on ppc32-aix5.
         A horrible hack.  REDIR_SP points to the highest live entry,
         and so starts at -1. */
-      /* 1220 */ ::u32 guest_REDIR_SP;
-      /* 1224 */ ::u32 guest_REDIR_STACK[VEX_GUEST_PPC32_REDIR_STACK_SIZE];
+      /* 1220 */ unsigned int guest_REDIR_SP;
+      /* 1224 */ unsigned int guest_REDIR_STACK[VEX_GUEST_PPC32_REDIR_STACK_SIZE];
 
       /* Needed for Darwin (but mandated for all guest architectures):
          CIA at the last SC insn.  Used when backing up to restart a
          syscall that has been interrupted by a signal. */
-      /* 134C */ ::u32 guest_IP_AT_SYSCALL;
+      /* 134C */ unsigned int guest_IP_AT_SYSCALL;
 
       /* SPRG3, which AIUI is readonly in user space.  Needed for
          threading on AIX. */
-      /* 1356 */ ::u32 guest_SPRG3_RO;
-      /* 1360 */ ::u32  padding1;
+      /* 1356 */ unsigned int guest_SPRG3_RO;
+      /* 1360 */ unsigned int  padding1;
       /* 1364 */ ULong guest_TFHAR;     // Transaction Failure Handler Address Register
       /* 1372 */ ULong guest_TEXASR;    // Transaction EXception And Summary Register
       /* 1380 */ ULong guest_TFIAR;     // Transaction Failure Instruction Address Register
       /* 1388 */ ULong guest_PPR;       // Program Priority register
-      /* 1396 */ ::u32  guest_TEXASRU;   // Transaction EXception And Summary Register Upper
-      /* 1400 */ ::u32  guest_PSPB;      // Problem State Priority Boost register
+      /* 1396 */ unsigned int  guest_TEXASRU;   // Transaction EXception And Summary Register Upper
+      /* 1400 */ unsigned int  guest_PSPB;      // Problem State Priority Boost register
       /* 1404 */ ULong guest_DSCR;      // Data Stream Control register
       /* Padding to make it have an 16-aligned size */
-      /* 1408 */ ::u32  padding3;
-      /* 1412 */ ::u32  padding4;
+      /* 1408 */ unsigned int  padding3;
+      /* 1412 */ unsigned int  padding4;
    }
    VexGuestPPC32State;
 
@@ -275,25 +275,25 @@ void LibVEX_GuestPPC32_initialise ( /*OUT*/VexGuestPPC32State* vex_state );
 /* Write the given native %CR value to the supplied VexGuestPPC32State
    structure. */
 extern
-void LibVEX_GuestPPC32_put_CR ( ::u32 cr_native,
+void LibVEX_GuestPPC32_put_CR ( unsigned int cr_native,
                                 /*OUT*/VexGuestPPC32State* vex_state );
 
 /* Extract from the supplied VexGuestPPC32State structure the
    corresponding native %CR value. */
 extern
-::u32 LibVEX_GuestPPC32_get_CR ( /*IN*/const VexGuestPPC32State* vex_state );
+unsigned int LibVEX_GuestPPC32_get_CR ( /*IN*/const VexGuestPPC32State* vex_state );
 
 
 /* Write the given native %XER value to the supplied VexGuestPPC32State
    structure. */
 extern
-void LibVEX_GuestPPC32_put_XER ( ::u32 xer_native,
+void LibVEX_GuestPPC32_put_XER ( unsigned int xer_native,
                                  /*OUT*/VexGuestPPC32State* vex_state );
 
 /* Extract from the supplied VexGuestPPC32State structure the
    corresponding native %XER value. */
 extern
-::u32 LibVEX_GuestPPC32_get_XER ( /*IN*/const VexGuestPPC32State* vex_state );
+unsigned int LibVEX_GuestPPC32_get_XER ( /*IN*/const VexGuestPPC32State* vex_state );
 
 #endif /* ndef __LIBVEX_PUB_GUEST_PPC32_H */
 
