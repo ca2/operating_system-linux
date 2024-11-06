@@ -143,7 +143,7 @@ typedef wd32_character           wide_character;
 
 
 
-//typedef ::u328_t unsigned char;
+//typedef ::u328_t uch;
 
 
 typedef void * PVOID;
