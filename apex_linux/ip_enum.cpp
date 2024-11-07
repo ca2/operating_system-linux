@@ -26,7 +26,7 @@ namespace apex_linux
       m_bWinsockInitialized = true;
 
 //      //Code requires at least Winsock 1.1
-//      if ((LOBYTE(wsaData.wVersion) != 1) || (HIBYTE(wsaData.wVersion) != 1))
+//      if ((LOBYTE(wsaData.wVersion) != 1) || (higher_byte(wsaData.wVersion) != 1))
 //      {
 //         informationf("Failed to find a usable winsock stack which supports Winsock 1.1");
 //         __throw(error_not_supported);

@@ -32,7 +32,7 @@
 //       bool                             m_bEnabled;
 //
 //       //::pointer<::thread>           m_pthreadDraw;
-//       ::i64_rectangle                  m_rectLastPos;
+//       ::huge_integer_rectangle                  m_rectLastPos;
 //       class ::time                       m_timeLastPos;
 //
 //       ::int_point                      m_pointLastMove;
@@ -219,12 +219,12 @@
 //       //virtual bool set_window_position(iptr z, int x, int y, int cx, int cy, unsigned int nFlags);
 // //      virtual unsigned int ArrangeIconicWindows();
 //       //virtual bool BringWindowToTop();
-// //      virtual bool window_rectangle(::i64_rectangle * prectangle);
+// //      virtual bool window_rectangle(::huge_integer_rectangle * prectangle);
 //
-//   //    virtual bool _001GetWindowRect(::i64_rectangle * prectangle);
+//   //    virtual bool _001GetWindowRect(::huge_integer_rectangle * prectangle);
 //
 //       //using ::windowing::window::this->rectangle;
-//       //virtual bool this->rectangle(::i64_rectangle * prectangle);
+//       //virtual bool this->rectangle(::huge_integer_rectangle * prectangle);
 //
 //
 //       //virtual bool has_keyboard_focus() override;
@@ -236,7 +236,7 @@
 //
 // //      virtual bool client_to_screen(::int_point * ppoint);
 //
-// //      virtual bool client_to_screen(::i64_rectangle * prectangle);
+// //      virtual bool client_to_screen(::huge_integer_rectangle * prectangle);
 //
 // //      virtual bool client_to_screen(::huge_integer_point * ppoint);
 //
@@ -244,7 +244,7 @@
 //
 // //      virtual bool screen_to_client(::int_point * ppoint);
 //
-// //      virtual bool screen_to_client(::i64_rectangle * prectangle);
+// //      virtual bool screen_to_client(::huge_integer_rectangle * prectangle);
 //
 // //      virtual bool screen_to_client(::huge_integer_point * ppoint);
 //
