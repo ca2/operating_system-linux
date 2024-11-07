@@ -284,7 +284,7 @@ namespace acme_linux
 //         for(auto & iCurrentPid : pids)
 //         {
 //
-//            strPath = module_path_from_pid(iCurrentPid.int());
+//            strPath = module_path_from_pid(iCurrentPid.as_int());
 //
 //            if(strPath.case_insensitive_order(pszModulePath) == 0 )
 //            {
