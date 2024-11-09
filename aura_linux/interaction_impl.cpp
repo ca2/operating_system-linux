@@ -1938,21 +1938,21 @@
 // //
 // //
 // //
-// //      manual_reset_event m_event;
+// //      manual_reset_happening m_happening;
 // //      oswindow m_hwnd;
 // //      HDC m_hdc;
 // //
 // //      print_window(::particle * pparticle, oswindow hwnd, HDC hdc, unsigned int tickTimeout) :
 // //         ::object(pparticle)
 // //      {
-// //         m_event.ResetEvent();
+// //         m_happening.ResetEvent();
 // //         m_hwnd = hwnd;
 // //         m_hdc = hdc;
 // //
 // //         fork();
 // //#undef timeout
 // //
-// //         if(m_event.wait(millis(tickTimeout)).timeout())
+// //         if(m_happening.wait(millis(tickTimeout)).timeout())
 // //         {
 // //            informationf("print_window::time_out");
 // //         }
@@ -1964,7 +1964,7 @@
 // //
 // //         try
 // //         {
-// ////            HANDLE hevent = (HANDLE) pprintwindow->m_event.get_os_data();
+// ////            HANDLE hevent = (HANDLE) pprintwindow->m_happening.get_os_data();
 // //            //          throw ::not_implemented();
 // //            /*            ::PrintWindow(pprintwindow->m_hwnd, pprintwindow->m_hdc, 0);
 // //                        ::SetEvent(hevent);*/
