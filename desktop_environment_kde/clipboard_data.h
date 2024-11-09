@@ -32,7 +32,7 @@ public:
 
       m_eclipboard = eclipboard;
 
-      m_happening.ResetEvent();
+      m_happening.reset_happening();
 
    }
 

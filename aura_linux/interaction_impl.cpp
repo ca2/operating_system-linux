@@ -1945,7 +1945,7 @@
 // //      print_window(::particle * pparticle, oswindow hwnd, HDC hdc, unsigned int tickTimeout) :
 // //         ::object(pparticle)
 // //      {
-// //         m_happening.ResetEvent();
+// //         m_happening.reset_happening();
 // //         m_hwnd = hwnd;
 // //         m_hdc = hdc;
 // //
