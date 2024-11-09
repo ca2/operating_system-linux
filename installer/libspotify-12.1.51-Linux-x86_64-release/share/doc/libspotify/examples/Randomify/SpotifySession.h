@@ -46,7 +46,7 @@
 -(void)play;
 
 
-// Stops processing events. If you only release this object,
+// Stops processing happenings. If you only release this object,
 // the runtime will still own it.
 -(void)shutdown;
 @end

@@ -2027,7 +2027,7 @@ struct _IRExpr {
          It is important to get the array size/type exactly correct
          since IR optimisation looks closely at such info in order to
          establish aliasing/non-aliasing between seperate GetI and
-         PutI events, which is used to establish when they can be
+         PutI happenings, which is used to establish when they can be
          reordered, etc.  Putting incorrect info in will lead to
          obscure IR optimisation bugs.
 
@@ -2933,14 +2933,14 @@ typedef
             IRDirty* details;
          } Dirty;
 
-         /* A memory bus event - a fence, or acquisition/release of the
+         /* A memory bus happening - a fence, or acquisition/release of the
             hardware bus lock.  IR optimisation treats all these as fences
             across which no memory references may be moved.
             ppIRStmt output: MBusEvent-Fence,
                              MBusEvent-BusLock, MBusEvent-BusUnlock.
          */
          struct {
-            IRMBusEvent event;
+            IRMBusEvent happening;
          } MBE;
 
          /* Conditional exit from the middle of an IRSB.
@@ -2976,7 +2976,7 @@ extern IRStmt* IRStmt_CAS     ( IRCAS* details );
 extern IRStmt* IRStmt_LLSC    ( IREndness end, IRTemp result,
                                 IRExpr* addr, IRExpr* storedata );
 extern IRStmt* IRStmt_Dirty   ( IRDirty* details );
-extern IRStmt* IRStmt_MBE     ( IRMBusEvent event );
+extern IRStmt* IRStmt_MBE     ( IRMBusEvent happening );
 extern IRStmt* IRStmt_Exit    ( IRExpr* guard, IRJumpKind jk, IRConst* dst,
                                 Int offsIP );
 

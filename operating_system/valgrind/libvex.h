@@ -848,7 +848,7 @@ VexInvalRange LibVEX_UnChain ( VexArch     arch_host,
                                const void* place_to_jump_to_EXPECTED,
                                const void* disp_cp_chain_me );
 
-/* Returns a constant -- the size of the event check that is put at
+/* Returns a constant -- the size of the happening check that is put at
    the start of every translation.  This makes it possible to
    calculate the fast entry point address if the slow entry point
    address is known (the usual case), or vice versa. */

@@ -244,9 +244,9 @@ namespace aura_linux
 
 
       /**
-    * Call all registered callbacks with the event
+    * Call all registered callbacks with the happening
     *
-    * @param dev udev device that had an event occuring
+    * @param dev udev device that had an happening occuring
     */
       void device_group::__udev_signal_event(::udev_device * pudevdevice)
       {

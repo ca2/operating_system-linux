@@ -540,13 +540,13 @@ typedef
    arbitrary, and denotes the identity of some synchronisation object
    you're modelling.
 
-   You must do the _BEFORE call just before the real sync event on the
-   signaller's side, and _AFTER just after the real sync event on the
+   You must do the _BEFORE call just before the real sync happening on the
+   signaller's side, and _AFTER just after the real sync happening on the
    waiter's side.
 
    If none of the rest of these macros make sense to you, at least
    take the time to understand these two.  They form the very essence
-   of describing arbitrary inter-thread synchronisation events to
+   of describing arbitrary inter-thread synchronisation happenings to
    Helgrind.  You can get a long way just with them alone.
 
    See also, extensive discussion on semantics of this in 

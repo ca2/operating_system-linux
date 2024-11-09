@@ -191,7 +191,7 @@
 
 /**
  * Tell DRD to consider the memory operations that happened before a mutex
- * unlock event and after the subsequent mutex lock event on the same mutex as
+ * unlock happening and after the subsequent mutex lock happening on the same mutex as
  * ordered. This is how DRD always behaves, so this macro has been defined
  * such that it has no effect.
  */

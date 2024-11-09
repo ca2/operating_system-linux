@@ -167,13 +167,13 @@ extern ExeContext* VG_(XT_get_ec_from_xecu) (XTree* xt, Xecu xecu);
 
 /* -------------------- CALLGRIND/KCACHEGRIND OUTPUT FORMAT --------------*/
 /* Prints xt in outfilename in callgrind/kcachegrind format.
-   events is a comma separated list of events, used by 
+   happenings is a comma separated list of happenings, used by 
    kcachegrind/callgrind_annotate/... to name the value various components.
-   An event can optionally have a longer description, separated from the
-   event name by " : ", e.g.
+   An happening can optionally have a longer description, separated from the
+   happening name by " : ", e.g.
    "curB : currently allocated Bytes,curBk : Currently allocated Blocks"
    img_value returns an image of the value. The image must be a space
-   separated set of integers, matching the corresponding event in events.
+   separated set of integers, matching the corresponding happening in happenings.
    Note that the returned pointer can be static data. 
    img_value can return NULL if value (and its associated ExeContext) should
    not be printed.
@@ -181,7 +181,7 @@ extern ExeContext* VG_(XT_get_ec_from_xecu) (XTree* xt, Xecu xecu);
 extern void VG_(XT_callgrind_print) 
      (XTree* xt,
       const HChar* outfilename,
-      const HChar* events,
+      const HChar* happenings,
       const HChar* (*img_value) (const void* value));
 
 

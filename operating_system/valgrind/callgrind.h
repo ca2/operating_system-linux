@@ -100,7 +100,7 @@ typedef
                                   0, 0, 0, 0, 0)
 
 /* Toggles collection state.
-   The collection state specifies whether the happening of events
+   The collection state specifies whether the happening of happenings
    should be noted or if they are to be ignored. Events are noted
    by increment of counters in a cost center */
 #define CALLGRIND_TOGGLE_COLLECT                                \

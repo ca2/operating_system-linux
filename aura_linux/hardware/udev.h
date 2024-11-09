@@ -22,6 +22,6 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 // /**
 //  * Get signal handler
 //  *
-//  * @return signal handler for udev events
+//  * @return signal handler for udev happenings
 //  */
 // signal_handler_t *v4l2_get_udev_signalhandler(void);

@@ -499,7 +499,7 @@ extern void VG_(needs_final_IR_tidy_pass) ( IRSB*(*final_tidy)(IRSB*) );
 
 
 /* ------------------------------------------------------------------ */
-/* Core events to track */
+/* Core happenings to track */
 
 /* Part of the aura from which this call was made.  Useful for determining
    what kind of error message should be emitted. */
@@ -515,15 +515,15 @@ typedef
    } CorePart;
 
 /* Events happening in aura to track.  To be notified, pass a callback
-   function to the appropriate function.  To ignore an event, don't do
-   anything (the default is for events to be ignored).
+   function to the appropriate function.  To ignore an happening, don't do
+   anything (the default is for happenings to be ignored).
 
-   Note that most events aren't passed a ThreadId.  If the event is one called
+   Note that most happenings aren't passed a ThreadId.  If the happening is one called
    from generated code (eg. new_mem_stack_*), you can use
    VG_(get_running_tid)() to find it.  Otherwise, it has to be passed in,
-   as in pre_mem_read, and so the event signature will require changing.
+   as in pre_mem_read, and so the happening signature will require changing.
 
-   Memory events (Nb: to track heap allocation/freeing, a tool must replace
+   Memory happenings (Nb: to track heap allocation/freeing, a tool must replace
    malloc() et al.  See above how to do this.)
 
    These ones occur at startup, upon some signals, and upon some syscalls.
@@ -621,8 +621,8 @@ void VG_(track_pre_mem_write)      (void(*f)(CorePart part, ThreadId tid,
 void VG_(track_post_mem_write)     (void(*f)(CorePart part, ThreadId tid,
                                              Addr a, SizeT size));
 
-/* Register events.  Use VG_(set_shadow_state_area)() to set the shadow regs
-   for these events.  */
+/* Register happenings.  Use VG_(set_shadow_state_area)() to set the shadow regs
+   for these happenings.  */
 void VG_(track_pre_reg_read)  (void(*f)(CorePart part, ThreadId tid,
                                         const HChar* s, PtrdiffT guest_state_offset,
                                         SizeT size));
@@ -645,10 +645,10 @@ void VG_(track_copy_reg_to_mem)(void(*f)(CorePart part, ThreadId tid,
                                          Addr a, SizeT size));
 
 
-/* Scheduler events (not exhaustive) */
+/* Scheduler happenings (not exhaustive) */
 
 /* Called when 'tid' starts or stops running client code blocks.
-   Gives the total dispatched block count at that event.  Note, this
+   Gives the total dispatched block count at that happening.  Note, this
    is not the same as 'tid' holding the BigLock (the lock that ensures
    that only one thread runs at a time): a thread can hold the lock
    for other purposes (making translations, etc) yet not be running
@@ -665,7 +665,7 @@ void VG_(track_stop_client_code)(
      );
 
 
-/* Thread events (not exhaustive)
+/* Thread happenings (not exhaustive)
 
    ll_create: low level thread creation.  Called before the ___new thread
    has run any instructions (or touched any memory).  In fact, called
@@ -675,7 +675,7 @@ void VG_(track_stop_client_code)(
    ll_exit: low level thread exit.  Called after the exiting thread
    has run its last instruction.
 
-   The _ll_ part makes it clear these events are not to do with
+   The _ll_ part makes it clear these happenings are not to do with
    pthread_create or pthread_exit/pthread_join (etc), which are a
    higher level abstraction synthesised by libpthread.  What you can
    be sure of from _ll_create/_ll_exit is the absolute limits of each
@@ -686,7 +686,7 @@ void VG_(track_stop_client_code)(
 
    pthread_create/join/exit do not give this property.  Calls/returns
    to/from them happen arbitrarily far away from the relevant
-   low-level thread create/quit event.  In general a few hundred
+   low-level thread create/quit happening.  In general a few hundred
    instructions; hence a few hundred(ish) memory references could get
    misclassified each time.
 
@@ -706,7 +706,7 @@ void VG_(track_pre_thread_first_insn)(void(*f)(ThreadId tid));
 void VG_(track_pre_thread_ll_exit)   (void(*f)(ThreadId tid));
 
 
-/* Signal events (not exhaustive)
+/* Signal happenings (not exhaustive)
 
    ... pre_send_signal, post_send_signal ...
 
