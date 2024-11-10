@@ -19,8 +19,8 @@ namespace acme_linux
       //::file::path                  m_pathDownload;
       //::file::path                  m_pathMusic;
       //::file::path                  m_pathDocument;
-      ::pointer<file_system>     m_pfilesystem;
-      ::pointer<directory_system>      m_pdirectorysystem;
+      ::pointer<::acme_linux::file_system>     m_pfilesystem;
+      ::pointer<::acme_linux::directory_system>      m_pdirectorysystem;
 
 
       directory_context();

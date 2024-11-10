@@ -15,11 +15,23 @@ namespace acme_linux
    public:
 
 
+      ::file::path            m_pathTimeFolder;
+      ::file::path            m_pathNetSeedFolder;
+
+      //::file::path            m_pathCa2;
+      ::file::path            m_pathCommonAppData;
+      ::file::path            m_pathCommonPrograms;
+      ::file::path            m_pathProfile;
+      ::file::path            m_pathPrograms;
+
       //__creatable_from_library(directory_system, ::directory_system, "acme_linux");
 
 
       directory_system();
       ~directory_system() override;
+
+
+      void initialize(::particle * pparticle) override;
 
 
       ::file::path install() override;
@@ -31,8 +43,8 @@ namespace acme_linux
       ::file::path appdata() override; // appdata
       ::file::path archive() override;
       ::file::path tool() override;
-      ::file::path public_system() override;
-      ::file::path system() override;
+      //::file::path public_system() override;
+      ::file::path userconfig() override;
       ::file::path config() override;
       ::file::path local() override;
       ::file::path sensitive() override;

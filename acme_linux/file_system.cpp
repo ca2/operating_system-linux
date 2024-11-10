@@ -1,15 +1,22 @@
+// Create on 2021-03-22 09:12 <3ThomasBS_
 #include "framework.h"
 #include "file_system.h"
-#include "acme/filesystem/filesystem/path_system.h"
-#include "acme/filesystem/filesystem/directory_system.h"
+
+
+#include "acme/operating_system/ansi/binreloc.h"
+
+
+#include <unistd.h>
 
 
 namespace acme_linux
 {
 
-
+   
    file_system::file_system()
    {
+
+      m_pplatformfile = this;
 
    }
 
@@ -17,70 +24,54 @@ namespace acme_linux
    file_system::~file_system()
    {
 
+
    }
 
 
-   void file_system::initialize(::particle * pparticle)
+   ::file::path file_system::module()
    {
 
-      //auto estatus =
+      ::file::path path;
 
-         ::file_system::initialize(pparticle);
+      char * pszModule = nullptr;
 
-//      if(!estatus)
-//      {
-//
-//         return estatus;
-//
-//      }
-//
-//      return estatus;
+      if((pszModule = br_find_exe(nullptr)) == nullptr)
+      {
+
+         if (!br_init_lib(nullptr))
+         {
+
+            char path[PATH_MAX * 4];
+
+            char dest[PATH_MAX * 4];
+
+            pid_t pid = getpid();
+
+            sprintf(path, "/proc/%d/exe", pid);
+
+            auto iSize = readlink(path, dest, PATH_MAX);
+
+            if (iSize > 0)
+            {
+
+               dest[iSize] = '\0';
+
+               pszModule = strdup(dest);
+
+
+            }
+
+         }
+
+      }
+
+      path = pszModule;
+
+      ::free(pszModule);
+
+      return path;
 
    }
-
-
-   void file_system::init_system()
-   {
-
-//      if(!update_module_path())
-//      {
-//
-//         return ::error_failed;
-//
-//      }
-
-//      return ::success;
-
-   }
-
-
-//   ::e_status file_system::update_module_path()
-//   {
-//
-//      auto estatus = ::file_system::update_module_path();
-//
-//      if(!estatus)
-//      {
-//
-//         return estatus;
-//
-//      }
-//
-//      ::file::path pathAppModule = file_system()->module();
-//
-//      m_pathModule = pathAppModule;
-//
-//      auto psystem = system();
-//
-//      auto pacmefile = psystem->m_pfilesystem;
-//
-//      ::file::path pathCa2AppModule = pacmefile->module();
-//
-//      m_pathCa2Module = pathCa2AppModule;
-//
-//      return estatus;
-//
-//   }
 
 
 } // namespace acme_linux

@@ -1,28 +1,28 @@
+// Create on 2021-03-22 09:12 <3ThomasBS_
 #pragma once
 
 
-#include "acme/filesystem/filesystem/file_system.h"
+#include "acme_posix/file_system.h"
 
 
 namespace acme_linux
 {
 
 
-   class CLASS_DECL_ACME_LINUX file_system:
-      virtual public ::file_system
+   class CLASS_DECL_ACME_LINUX file_system :
+      virtual public ::acme_posix::file_system
    {
    public:
+
+
+      //__creatable_from_library(file_system, ::file_system, "acme_linux");
 
 
       file_system();
       ~file_system() override;
 
 
-      void initialize(::particle * pparticle) override;
-
-      void init_system() override;
-
-      //virtual ::e_status update_module_path() override;
+      ::file::path module() override;
 
 
    };

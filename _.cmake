@@ -329,6 +329,8 @@ if (EXISTS $ENV{HOME}/__config/xfce.txt)
 endif ()
 
 
+set(copy_libraries_dependency "")
+
 
 set(default_draw2d "draw2d_cairo")
 set(default_imaging "imaging_freeimage")
@@ -342,6 +344,7 @@ set(default_gpu "gpu_opengl")
 set(default_networking "networking_bsd")
 set(default_acme "acme_linux")
 set(default_apex "apex_linux")
+set(default_nano_graphics "nano_graphics_cairo")
 #add_compile_definitions(default_draw2d=draw2d_cairo)
 #add_compile_definitions(default_imaging=imaging_freeimage)
 #add_compile_definitions(default_write_text=write_text_pango)

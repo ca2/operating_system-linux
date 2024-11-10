@@ -1032,7 +1032,7 @@ namespace apex_linux
    void node::get_default_browser(string & strId, ::file::path & path, string & strParam)
    {
 
-      string str = system()->operating_system().get_output("/bin/sh -c \"xdg-settings get default-web-browser\"");
+      string str = system()->operating_system()->get_output("/bin/sh -c \"xdg-settings get default-web-browser\"");
 
       str.trim();
 
@@ -1092,7 +1092,7 @@ namespace apex_linux
    void node::file_open(const ::file::path & pathTarget, const ::string & strParams, const ::file::path & pathFolder)
    {
 
-      auto path = get_context()->defer_process_path(pathTarget);
+      auto path = application()->defer_process_path(pathTarget);
 
       if(linux_can_exec(path))
       {

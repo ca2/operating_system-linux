@@ -28,6 +28,29 @@ namespace acme_linux
    }
 
 
+   void directory_system::initialize(::particle * pparticle)
+   {
+
+      //auto estatus =
+
+      ::directory_system::initialize(pparticle);
+
+      //      if(!estatus)
+      //      {
+      //
+      //         return estatus;
+      //
+      //      }
+
+      m_pathHome = getenv("HOME");
+
+      m_pathCa2Config = m_pathHome / ".config/ca2";
+
+      //return estatus;
+
+   }
+
+
    string directory_system::dir_root()
    {
 
@@ -76,15 +99,15 @@ namespace acme_linux
    }
 
 
-   ::file::path directory_system::public_system()
-   {
+//   ::file::path directory_system::public_system()
+//   {
+//
+//      return public_root() / "system";
+//
+//   }
 
-      return public_root() / "system";
 
-   }
-
-
-   ::file::path directory_system::system()
+   ::file::path directory_system::userconfig()
    {
 
       return ca2roaming() / "system";
