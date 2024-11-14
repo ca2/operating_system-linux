@@ -37,8 +37,8 @@ list(APPEND library_references
         acme
         acme_posix
         acme_linux
-        windowing_system_gtk3
-        nano_user_gtk3
+   nano_graphics_cairo
+        acme_windowing_gtk3
         apex
         apex_posix
         apex_linux
