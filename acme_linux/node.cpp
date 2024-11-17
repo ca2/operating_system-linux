@@ -40,7 +40,7 @@ namespace acme_linux
    node::node()
    {
 
-      //m_edesktop = ::user::e_desktop_none;
+      //m_edesktop = ::user::e_operating_ambient_none;
 
       m_pAcmePlatform = this;
 
@@ -976,7 +976,7 @@ namespace acme_linux
 // //
 // //          auto edesktop = this->get_edesktop();
 // //
-// //          if(edesktop & user::e_desktop_kde)
+// //          if(edesktop & user::e_operating_ambient_kde)
 // //          {
 // //
 // //             return "kde5";

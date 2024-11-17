@@ -24,7 +24,7 @@ __FACTORY_EXPORT void node_linux_factory(::factory::factory * pfactory)
 
 //   auto edesktop = ::windowing::get_edesktop();
 //
-//   if (edesktop == ::windowing::e_desktop_kde)
+//   if (edesktop == ::windowing::e_operating_ambient_kde)
 //   {
 //
 //      auto & pfactoryKde = pfactory->system()->factory("desktop_environment", "kde");
@@ -45,7 +45,7 @@ __FACTORY_EXPORT void node_linux_factory(::factory::factory * pfactory)
 //      printf("desktop_environment_kde merge_to_global_factory\n");
 //
 //   }
-//   else if ((edesktop == ::windowing::e_desktop_gnome) || (edesktop == ::windowing::e_desktop_lxde))
+//   else if ((edesktop == ::windowing::e_operating_ambient_gnome) || (edesktop == ::windowing::e_operating_ambient_lxde))
 //   {
 //
 //      auto psystem = pfactory->system();
@@ -70,7 +70,7 @@ __FACTORY_EXPORT void node_linux_factory(::factory::factory * pfactory)
 //      printf("desktop_environment_gtk_based merge_to_global_factory\n");
 //
 //   }
-//   else if (edesktop == ::windowing::e_desktop_xfce)
+//   else if (edesktop == ::windowing::e_operating_ambient_xfce)
 //   {
 //
 //      auto & pfactoryXfce = pfactory->system()->factory("desktop_environment", "xfce");

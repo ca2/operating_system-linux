@@ -146,9 +146,9 @@ namespace desktop_environment_gtk_based
 //      switch (edesktop)
 //      {
 //
-//      case ::user::e_desktop_gnome:
-//      case ::user::e_desktop_ubuntu_gnome:
-//      case ::user::e_desktop_unity_gnome:
+//      case ::user::e_operating_ambient_gnome:
+//      case ::user::e_operating_ambient_ubuntu_gnome:
+//      case ::user::e_operating_ambient_unity_gnome:
 //      {
 //
 //      bool bOk1 = ::node_gnome::aaa_gsettings_set("org.gnome.desktop.interface", "gtk-theme", strUserTheme);
@@ -173,17 +173,17 @@ namespace desktop_environment_gtk_based
 //
 //      }
 //
-//      case ::user::e_desktop_mate:
+//      case ::user::e_operating_ambient_mate:
 //
 //      //return ::user::aaa_gsettings_set("org.mate.background", "picture-filename", strLocalImagePath);
 //
-//      case ::user::e_desktop_lxde:
+//      case ::user::e_operating_ambient_lxde:
 //
 //      //call_async("pcmanfm", "-w " + strLocalImagePath, nullptr, e_display_none, false);
 //
 //      break;
 //
-//      case ::user::e_desktop_xfce:
+//      case ::user::e_operating_ambient_xfce:
 //      {
 //      //        Q_FOREACH(QString entry, Global::getOutputOfCommand("xfconf-query", QStringList() << "-c" << "xfce4-desktop" << "-point" << "/backdrop" << "-l").split("\n")){
 //      //          if(entry.contains("image-path") || entry.contains("last-image")){
@@ -229,23 +229,23 @@ namespace desktop_environment_gtk_based
 //      switch (edesktop)
 //      {
 //
-//         case ::user::e_desktop_gnome:
-//         case ::user::e_desktop_ubuntu_gnome:
-//         case ::user::e_desktop_unity_gnome:
+//         case ::user::e_operating_ambient_gnome:
+//         case ::user::e_operating_ambient_ubuntu_gnome:
+//         case ::user::e_operating_ambient_unity_gnome:
 //
 //            return ::node_gnome::aaa_gsettings_set("org.gnome.desktop.background", "picture-uri", "file://" + strLocalImagePath);
 //
-//         case ::user::e_desktop_mate:
+//         case ::user::e_operating_ambient_mate:
 //
 //            return ::node_gnome::aaa_gsettings_set("org.mate.background", "picture-filename", strLocalImagePath);
 //
-//         case ::user::e_desktop_lxde:
+//         case ::user::e_operating_ambient_lxde:
 //
 //            call_async("pcmanfm", "-w " + strLocalImagePath, nullptr, e_display_none, false);
 //
 //            break;
 //
-//         case ::user::e_desktop_xfce:
+//         case ::user::e_operating_ambient_xfce:
 //         {
 //            //        Q_FOREACH(QString entry, Global::getOutputOfCommand("xfconf-query", QStringList() << "-c" << "xfce4-desktop" << "-point" << "/backdrop" << "-l").split("\n")){
 //            //          if(entry.contains("image-path") || entry.contains("last-image")){
