@@ -581,6 +581,8 @@ if (${KDE_DESKTOP})
 
 elseif (${LXDE_DESKTOP})
 
+   message(STATUS "LXDE Desktop (2)")
+
    list(APPEND app_common_dependencies desktop_environment_gtk_based)
 
    #    list(APPEND static_app_common_dependencies
