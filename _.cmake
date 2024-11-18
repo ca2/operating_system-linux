@@ -573,7 +573,7 @@ if (${KDE_DESKTOP})
 
    set(default_windowing "windowing_xcb")
 
-   set(default_desktop_environment desktop_environment_kde)
+   set(default_operating_ambient desktop_environment_kde)
 
    add_compile_definitions(DESKTOP_ENVIRONMENT_KDE)
 
@@ -583,7 +583,7 @@ elseif (${LXDE_DESKTOP})
 
    message(STATUS "LXDE Desktop (2)")
 
-   list(APPEND app_common_dependencies desktop_environment_gtk_based)
+   list(APPEND app_common_dependencies operating_ambient_gtk_based)
 
    #    list(APPEND static_app_common_dependencies
    #            static_desktop_environment_gnome
@@ -593,7 +593,7 @@ elseif (${LXDE_DESKTOP})
 
    set(default_windowing "windowing_x11")
 
-   set(default_desktop_environment desktop_environment_gtk_based)
+   set(default_operating_ambient operating_ambient_gtk_based)
 
    add_compile_definitions(DESKTOP_ENVIRONMENT_GTK_BASED)
 
@@ -607,7 +607,7 @@ elseif (${XFCE_DESKTOP})
 
    set(default_windowing "windowing_gtk3")
 
-   set(default_desktop_environment desktop_environment_xfce)
+   set(default_operating_ambient desktop_environment_xfce)
 
    add_compile_definitions(DESKTOP_ENVIRONMENT_XFCE)
 
@@ -619,17 +619,17 @@ elseif (${GTK_BASED_DESKTOP})
 
       message(STATUS "Adding GTK4 dependency.")
 
-      list(APPEND app_common_dependencies nano_graphics_cairo desktop_environment_gtk_based)
+      list(APPEND app_common_dependencies nano_graphics_cairo operating_ambient_gtk_based)
 
       list(APPEND static_app_common_dependencies
-         static_desktop_environment_gtk_based
+         static_operating_ambient_gtk_based
          static_node_gtk_based
          static_node_gtk4
          static_node_linux)
 
       set(default_windowing "windowing_gtk4")
 
-      set(default_desktop_environment desktop_environment_gtk_based)
+      set(default_operating_ambient operating_ambient_gtk_based)
 
       add_compile_definitions(DESKTOP_ENVIRONMENT_GTK_BASED)
 
@@ -637,17 +637,17 @@ elseif (${GTK_BASED_DESKTOP})
 
       message(STATUS "Adding GTK3 dependency.")
 
-      list(APPEND app_common_dependencies nano_graphics_cairo desktop_environment_gtk_based)
+      list(APPEND app_common_dependencies nano_graphics_cairo operating_ambient_gtk_based)
 
       list(APPEND static_app_common_dependencies
-              static_desktop_environment_gtk_based
+              static_operating_ambient_gtk_based
               static_node_gtk_base
               static_node_gtk3
               static_node_linux)
 
       set(default_windowing "windowing_gtk3")
 
-      set(default_desktop_environment desktop_environment_gtk_based)
+      set(default_operating_ambient operating_ambient_gtk_based)
 
       add_compile_definitions(DESKTOP_ENVIRONMENT_GTK_BASED)
 
@@ -656,7 +656,7 @@ elseif (${GTK_BASED_DESKTOP})
 
       message(STATUS "Adding GNOME/X11 dependency.")
 
-      list(APPEND app_common_dependencies nano_graphics_cairo desktop_environment_gtk_based)
+      list(APPEND app_common_dependencies nano_graphics_cairo operating_ambient_gtk_based)
 
       list(APPEND static_app_common_dependencies
               static_desktop_environment_gnome
@@ -667,7 +667,7 @@ elseif (${GTK_BASED_DESKTOP})
 
       set(default_windowing "windowing_x11")
 
-      set(default_desktop_environment desktop_environment_gtk_based)
+      set(default_operating_ambient operating_ambient_gtk_based)
 
       add_compile_definitions(DESKTOP_ENVIRONMENT_GTK_BASED)
 

@@ -50,24 +50,24 @@ __FACTORY_EXPORT void node_linux_factory(::factory::factory * pfactory)
 //
 //      auto psystem = pfactory->system();
 //
-//      printf("Going to open desktop_environment_gtk_based\n");
+//      printf("Going to open operating_ambient_gtk_based\n");
 //
 //      auto & pfactoryGtkBased = psystem->factory("desktop_environment", "gtk_based");
 //
 //      if(!pfactoryGtkBased)
 //      {
 //
-//         printf("desktop_environment_gtk_based library failed to load\n");
+//         printf("operating_ambient_gtk_based library failed to load\n");
 //
 //         throw resource_exception();
 //
 //      }
 //
-//      printf("desktop_environment_gtk_based loaded\n");
+//      printf("operating_ambient_gtk_based loaded\n");
 //
 //      pfactoryGtkBased->merge_to_global_factory();
 //
-//      printf("desktop_environment_gtk_based merge_to_global_factory\n");
+//      printf("operating_ambient_gtk_based merge_to_global_factory\n");
 //
 //   }
 //   else if (edesktop == ::windowing::e_operating_ambient_xfce)
@@ -99,7 +99,7 @@ __FACTORY_EXPORT void node_linux_factory(::factory::factory * pfactory)
 //      if (!pfactoryGtkBased)
 //      {
 //
-//         printf("desktop_environment_gtk_based library failed to load (2)\n");
+//         printf("operating_ambient_gtk_based library failed to load (2)\n");
 //
 //         auto & pfactoryKde = pfactory->system()->factory("desktop_environment", "kde");
 //
@@ -122,11 +122,11 @@ __FACTORY_EXPORT void node_linux_factory(::factory::factory * pfactory)
 //      else
 //      {
 //
-//         printf("desktop_environment_gtk_based loaded (2)\n");
+//         printf("operating_ambient_gtk_based loaded (2)\n");
 //
 //         pfactoryGtkBased->merge_to_global_factory();
 //
-//         printf("desktop_environment_gtk_based merge_to_global_factory (2)\n");
+//         printf("operating_ambient_gtk_based merge_to_global_factory (2)\n");
 //
 //      }
 //

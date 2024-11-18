@@ -15,7 +15,7 @@
 void gdk_branch(const ::procedure & procedure);
 //CLASS_DECL_ACME void set_main_user_itask(itask_t itask);
 
-namespace desktop_environment_gtk_based
+namespace operating_ambient_gtk_based
 {
 
 
@@ -348,7 +348,7 @@ namespace desktop_environment_gtk_based
 //   }
 
 
-} // namespace desktop_environment_gtk_based
+} // namespace operating_ambient_gtk_based
 
 
 

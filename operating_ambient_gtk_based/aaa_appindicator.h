@@ -4,7 +4,7 @@
 #pragma once
 
 
-namespace desktop_environment_gtk_based
+namespace operating_ambient_gtk_based
 {
 
 
@@ -25,7 +25,7 @@ namespace desktop_environment_gtk_based
    };
 
 
-} // namespace desktop_environment_gtk_based
+} // namespace operating_ambient_gtk_based
 
 
 

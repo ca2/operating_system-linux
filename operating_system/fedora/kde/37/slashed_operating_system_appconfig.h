@@ -1,2 +1,2 @@
-#define default_desktop_environment desktop_environment_kde
+#define default_operating_ambient desktop_environment_kde
 

@@ -1,6 +1,6 @@
 default_node=operating_system-linux/node_linux
 default_windowing=platform-posix/windowing_x11
-default_desktop_environment=operating_system-linux/desktop_environment_gtk_based
+default_desktop_environment=operating_system-linux/operating_ambient_gtk_based
 default_imaging=app/imaging_freeimage
 default_draw2d=app/draw2d_cairo
 default_write_text=platform-posix/write_text_pango

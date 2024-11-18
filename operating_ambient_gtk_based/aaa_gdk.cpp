@@ -44,7 +44,7 @@
 //}
 //
 //
-//namespace desktop_environment_gtk_based
+//namespace operating_ambient_gtk_based
 //{
 //
 //

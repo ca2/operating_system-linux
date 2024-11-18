@@ -75,7 +75,7 @@ elseif(LINUX)
 endif()
 
 
-add_dependencies(${PROJECT_NAME} ${default_desktop_environment})
+add_dependencies(${PROJECT_NAME} ${default_operating_ambient})
 
 
 
