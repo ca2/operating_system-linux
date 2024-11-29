@@ -425,7 +425,7 @@ if (${KDE_DESKTOP})
          #Plasma
       )
 
-      if(NOT ${DEBIAN} AND NOT ${SUSE})
+      if(NOT ${DEBIAN} AND NOT ${SUSE} AND NOT ${DEBIAN_LIKE})
          list(APPEND kf6_component_list
             PlasmaQuick
 
