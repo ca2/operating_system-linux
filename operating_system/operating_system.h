@@ -38,7 +38,7 @@ namespace windowing
 typedef uptr                     WPARAM;
 typedef iptr                     LPARAM;
 typedef iptr                     LRESULT;
-typedef ::windowing::window *    oswindow;
+typedef ::acme::windowing::window *    oswindow;
 
 //#include <pthread.h>
 
