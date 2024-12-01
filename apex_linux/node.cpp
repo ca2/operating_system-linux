@@ -1151,9 +1151,9 @@ namespace apex_linux
 
          //::system("nohup xdg-open \"" + strTarget + "\" > /dev/null 2>&1&");
 
-         auto psystem = system();
+         //auto psystem = system();
 
-         auto pnode = psystem->node()->m_papexnode->m_pApexPlatform;
+         auto pnode = this;
 
          pnode->shell_open(path, strParams, pathFolder);
 
