@@ -51,7 +51,7 @@ list(APPEND library_references
         #windowing_x11
         #node_gdk
         node_gtk3
-        node_xfce
+        #node_xfce
 )
 
 
