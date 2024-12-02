@@ -16,7 +16,7 @@ namespace operating_ambient_gtk4
 {
 
 
-   class CLASS_DECL_DESKTOP_ENVIRONMENT_GTK4 node :
+   class CLASS_DECL_OPERATING_AMBIENT_GTK4 node :
       virtual public ::aura_linux::node,
       virtual public ::node_gtk4::node
    {
