@@ -30,6 +30,7 @@ list(APPEND library_references
    node_gtk_based
    )
 
+
 if(${HAS_GTK4})
    list(APPEND library_references node_gtk4)
 elseif(${HAS_GTK3})
@@ -45,9 +46,9 @@ add_library(${PROJECT_NAME} SHARED ${library_source})
 add_library(static_${PROJECT_NAME} STATIC ${library_source})
 
 
-
 target_precompile_headers(${PROJECT_NAME} PRIVATE framework.h)
 target_precompile_headers(static_${PROJECT_NAME} PRIVATE framework.h)
+
 
 set_target_properties(${PROJECT_NAME} PROPERTIES LINKER_LANGUAGE CXX)
 

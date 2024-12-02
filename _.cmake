@@ -634,17 +634,17 @@ elseif (${GTK_BASED_DESKTOP})
 
       message(STATUS "Adding GTK4 dependency.")
 
-      list(APPEND app_common_dependencies nano_graphics_cairo operating_ambient_gtk_based)
+      list(APPEND app_common_dependencies nano_graphics_cairo operating_ambient_gtk4)
 
       list(APPEND static_app_common_dependencies
-         static_operating_ambient_gtk_based
+         static_operating_ambient_gtk4
          static_node_gtk_based
          static_node_gtk4
          static_node_linux)
 
       set(default_windowing "windowing_gtk4")
 
-      set(default_operating_ambient operating_ambient_gtk_based)
+      set(default_operating_ambient operating_ambient_gtk4)
 
       add_compile_definitions(DESKTOP_ENVIRONMENT_GTK_BASED)
 
