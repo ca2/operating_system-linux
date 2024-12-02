@@ -159,157 +159,172 @@ set(PLATFORM_NAME "linux")
 
 
 if (${CURRENT_DESKTOP_ENVIRONMENT} STREQUAL "KDE")
+
    set(KDE_DESKTOP TRUE)
    message(STATUS "System is KDE")
    set(DESKTOP_ENVIRONMENT_NAME "kde")
-   include(${WORKSPACE_FOLDER}/operating_system/operating_system-posix/_kde_desktop.cmake)
+
 elseif (${CURRENT_DESKTOP_ENVIRONMENT} STREQUAL "ubuntu:GNOME")
+
    set(GNOME_DESKTOP TRUE)
    set(GTK_BASED_DESKTOP TRUE)
    message(STATUS "System is GNOME")
    set(DESKTOP_ENVIRONMENT_NAME "gnome")
-   include(${WORKSPACE_FOLDER}/operating_system/operating_system-posix/_gtk_based_desktop.cmake)
+
 elseif (${CURRENT_DESKTOP_ENVIRONMENT} STREQUAL "GNOME")
+
    set(GNOME_DESKTOP TRUE)
    set(GTK_BASED_DESKTOP TRUE)
    message(STATUS "System is GNOME")
    set(DESKTOP_ENVIRONMENT_NAME "gnome")
-   include(${WORKSPACE_FOLDER}/operating_system/operating_system-posix/_gtk_based_desktop.cmake)
+
 elseif (${CURRENT_DESKTOP_ENVIRONMENT} STREQUAL "LXDE")
+
    set(LXDE_DESKTOP TRUE)
    message(STATUS "System is LXDE")
    set(DESKTOP_ENVIRONMENT_NAME "lxde")
+
 elseif (${CURRENT_DESKTOP_ENVIRONMENT} STREQUAL "XFCE")
+
    set(XFCE_DESKTOP TRUE)
    set(GTK_BASED_DESKTOP TRUE)
    set(HAS_WAYLAND FALSE)
    message(STATUS "System is XFCE")
    set(DESKTOP_ENVIRONMENT_NAME "xfce")
-   include(${WORKSPACE_FOLDER}/operating_system/operating_system-posix/_gtk_based_desktop.cmake)
+
 elseif (${CURRENT_DESKTOP_ENVIRONMENT} STREQUAL "X-Cinnamon")
+
    set(XCINNAMON_DESKTOP TRUE)
    set(GTK_BASED_DESKTOP TRUE)
    set(HAS_WAYLAND FALSE)
    message(STATUS "System is X-Cinnamon")
    set(DESKTOP_ENVIRONMENT_NAME "xcinnamon")
-   set(HAS_GTK3 TRUE)
-   message(STATUS "HAS_GTK3 is ${HAS_GTK3}")
-   add_compile_definitions(HAS_GTK3)
+
 endif ()
 
 
-message(STATUS "DISTRO is ${DISTRO}")
+if(${KDE_DESKTOP})
+
+   include(${WORKSPACE_FOLDER}/operating_system/operating_system-posix/_kde_desktop.cmake)
+
+elseif(${GTK_BASED_DESKTOP})
+
+   include(${WORKSPACE_FOLDER}/operating_system/operating_system-posix/_gtk_based_desktop.cmake)
+
+endif()
 
 
-
+   message(STATUS "DISTRO is ${DISTRO}")
 message(STATUS "DESKTOP_ENVIRONMENT_NAME is ${DESKTOP_ENVIRONMENT_NAME}")
 
+
+
+
 if(NOT ${CONSOLE_BUILD_TOOLS})
+
    # CONSOLE_BUILD_TOOLS are dependant just on linux kernel version and glib version?
 
+   if (${DISTRO} STREQUAL "ubuntu")
 
-if (${DISTRO} STREQUAL "ubuntu")
+      set(UBUNTU TRUE)
 
-   set(UBUNTU TRUE)
+      set(DEBIAN_LIKE TRUE)
 
-   set(DEBIAN_LIKE TRUE)
+      add_compile_definitions(UBUNTU_LINUX)
 
-   add_compile_definitions(UBUNTU_LINUX)
+      add_compile_definitions(DEBIAN_LIKE_LINUX)
 
-   add_compile_definitions(DEBIAN_LIKE_LINUX)
-
-   message(STATUS "UBUNTU has been set TRUE")
-
-   set(APPINDICATOR_PKG_MODULE "ayatana-appindicator3-0.1")
-
-   set(MPG123_PKG_MODULE "libmpg123")
-
-   set(HAS_SYSTEM_UNAC TRUE)
-
-elseif (${DISTRO} STREQUAL "debian")
-
-   set(DEBIAN TRUE)
-
-   add_compile_definitions(DEBIAN_LINUX)
-
-   add_compile_definitions(DEBIAN_LIKE_LINUX)
-
-   message(STATUS "DEBIAN has been set TRUE")
-
-   set(APPINDICATOR_PKG_MODULE "ayatana-appindicator3-0.1")
-
-   set(MPG123_PKG_MODULE "libmpg123")
-
-   add_compile_options("$<$<CONFIG:Debug>:-gdwarf-4>")
-
-   set(HAS_SYSTEM_UNAC TRUE)
-
-elseif (${DISTRO} STREQUAL "opensuse-leap" OR ${DISTRO} STREQUAL "opensuse-tumbleweed")
-
-   set(SUSE TRUE)
-
-   add_compile_definitions(SUSE_LINUX)
-
-   message(STATUS "SUSE has been set TRUE")
-
-   set(APPINDICATOR_PKG_MODULE "appindicator3-0.1")
-
-   set(MPG123_PKG_MODULE "libmpg123")
-
-elseif (${DISTRO} STREQUAL "fedora")
-
-   set(FEDORA TRUE)
-
-   add_compile_definitions(FEDORA_LINUX)
-
-   set(APPINDICATOR_PKG_MODULE "appindicator3-0.1")
-
-   message(STATUS "FEDORA has been set TRUE")
-
-elseif ("${DISTRO}" STREQUAL "raspbian")
-
-   set(RASPBIAN TRUE)
-
-   set(DEBIAN_LIKE TRUE)
-
-   add_compile_definitions(RASPBERRYPIOS)
-
-   add_compile_definitions(DEBIAN_LIKE_LINUX)
-
-   set(DONT_USE_PKG_CONFIG FALSE)
-
-   set(HAS_SYSTEM_UNAC TRUE)
-
-   set(HAS_WAYLAND FALSE)
-
-   message(STATUS "RASPBERRYPIOS defined!!")
-
-elseif (${DISTRO} STREQUAL "manjaro")
-
-      set(MANJARO TRUE)
-
-      set(ARCH_LIKE TRUE)
-
-      add_compile_definitions(ARCH_LIKE_LINUX)
-
-      message(STATUS "MANJARO has been set TRUE")
+      message(STATUS "UBUNTU has been set TRUE")
 
       set(APPINDICATOR_PKG_MODULE "ayatana-appindicator3-0.1")
 
       set(MPG123_PKG_MODULE "libmpg123")
 
-      set(HAS_SYSTEM_UNAC FALSE)
+      set(HAS_SYSTEM_UNAC TRUE)
 
-else ()
+   elseif (${DISTRO} STREQUAL "debian")
 
-   set(APPINDICATOR_PKG_MODULE "appindicator3-0.1")
+      set(DEBIAN TRUE)
 
-   set(MPG123_PKG_MODULE "mpg123")
+      add_compile_definitions(DEBIAN_LINUX)
 
-endif ()
+      add_compile_definitions(DEBIAN_LIKE_LINUX)
 
+      message(STATUS "DEBIAN has been set TRUE")
 
-message(STATUS "DISTRO_RELEASE is ${DISTRO_RELEASE}")
+      set(APPINDICATOR_PKG_MODULE "ayatana-appindicator3-0.1")
+
+      set(MPG123_PKG_MODULE "libmpg123")
+
+      add_compile_options("$<$<CONFIG:Debug>:-gdwarf-4>")
+
+      set(HAS_SYSTEM_UNAC TRUE)
+
+   elseif (${DISTRO} STREQUAL "opensuse-leap" OR ${DISTRO} STREQUAL "opensuse-tumbleweed")
+
+      set(SUSE TRUE)
+
+      add_compile_definitions(SUSE_LINUX)
+
+      message(STATUS "SUSE has been set TRUE")
+
+      set(APPINDICATOR_PKG_MODULE "appindicator3-0.1")
+
+      set(MPG123_PKG_MODULE "libmpg123")
+
+   elseif (${DISTRO} STREQUAL "fedora")
+
+      set(FEDORA TRUE)
+
+      add_compile_definitions(FEDORA_LINUX)
+
+      set(APPINDICATOR_PKG_MODULE "appindicator3-0.1")
+
+      message(STATUS "FEDORA has been set TRUE")
+
+   elseif ("${DISTRO}" STREQUAL "raspbian")
+
+      set(RASPBIAN TRUE)
+
+      set(DEBIAN_LIKE TRUE)
+
+      add_compile_definitions(RASPBERRYPIOS)
+
+      add_compile_definitions(DEBIAN_LIKE_LINUX)
+
+      set(DONT_USE_PKG_CONFIG FALSE)
+
+      set(HAS_SYSTEM_UNAC TRUE)
+
+      set(HAS_WAYLAND FALSE)
+
+      message(STATUS "RASPBERRYPIOS defined!!")
+
+   elseif (${DISTRO} STREQUAL "manjaro")
+
+         set(MANJARO TRUE)
+
+         set(ARCH_LIKE TRUE)
+
+         add_compile_definitions(ARCH_LIKE_LINUX)
+
+         message(STATUS "MANJARO has been set TRUE")
+
+         set(APPINDICATOR_PKG_MODULE "ayatana-appindicator3-0.1")
+
+         set(MPG123_PKG_MODULE "libmpg123")
+
+         set(HAS_SYSTEM_UNAC FALSE)
+
+   else ()
+
+      set(APPINDICATOR_PKG_MODULE "appindicator3-0.1")
+
+      set(MPG123_PKG_MODULE "mpg123")
+
+   endif ()
+
+   message(STATUS "DISTRO_RELEASE is ${DISTRO_RELEASE}")
 
 endif()
 
@@ -601,13 +616,13 @@ elseif (${LXDE_DESKTOP})
 
 elseif (${XFCE_DESKTOP})
 
-   list(APPEND app_common_dependencies desktop_environment_xfce)
+   list(APPEND app_common_dependencies operating_ambient_gtk3)
 
-   list(APPEND static_app_common_dependencies static_desktop_environment_xfce)
+   list(APPEND static_app_common_dependencies static_operating_ambient_gtk3)
 
    set(default_windowing "windowing_gtk3")
 
-   set(default_operating_ambient desktop_environment_xfce)
+   set(default_operating_ambient operating_ambient_gtk3)
 
    add_compile_definitions(DESKTOP_ENVIRONMENT_XFCE)
 
@@ -758,4 +773,31 @@ set(STORE_FOLDER $ENV{HOME}/store/${SLASHED_OPERATING_SYSTEM})
 if(${HAS_GTK4})
 message(STATUS "HAS_GTK4 is true, deactivating APPINDICATOR_PKG_MODULE")
 set(APPINDICATOR_PKG_MODULE "")
+endif()
+
+
+
+
+add_compile_definitions(HAS_GTK3)
+
+
+if(${HAS_GTK4})
+
+   unset(HAS_GTK3)
+   message(STATUS "HAS_GTK4 is TRUE")
+   add_compile_definitions(HAS_GTK4)
+   set(default_acme_windowing acme_windowing_gtk4)
+   set(default_innate_ui innate_ui_gtk4)
+
+endif()
+
+
+if(${HAS_GTK3})
+
+   unset(HAS_GTK4)
+   message(STATUS "HAS_GTK3 is TRUE")
+   add_compile_definitions(HAS_GTK3)
+   set(default_acme_windowing acme_windowing_gtk3)
+   set(default_innate_ui innate_ui_gtk3)
+
 endif()

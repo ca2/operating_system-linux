@@ -12,7 +12,7 @@
 void gdk_branch(const ::procedure & procedure);
 
 
-namespace desktop_environment_xfce
+namespace operating_ambient_gtk3
 {
 
 
@@ -22,7 +22,7 @@ namespace desktop_environment_xfce
    node::node()
    {
 
-      m_pNodeDesktopEnvironmentXfce = this;
+      //m_pNodeDesktopEnvironmentXfce = this;
 
       //defer_initialize_x11();
 
@@ -82,7 +82,7 @@ namespace desktop_environment_xfce
 //
 //      }
 
-      ::node_xfce::node::initialize(pparticle);
+      ::node_gtk3::node::initialize(pparticle);
 
 //      if(!estatus)
 //      {
@@ -552,7 +552,8 @@ namespace desktop_environment_xfce
 //   }
 //
 
-} // namespace desktop_environment_xfce
+
+} // namespace operating_ambient_gtk3
 
 
 

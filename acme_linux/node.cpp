@@ -42,7 +42,7 @@ namespace acme_linux
 
       //m_edesktop = ::user::e_operating_ambient_none;
 
-      m_pAcmePlatform = this;
+      //m_pAcmePlatform = this;
 
       m_elinuxdistribution = e_linux_distribution_not_initialized;
 

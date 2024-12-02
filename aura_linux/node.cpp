@@ -11,7 +11,7 @@ namespace aura_linux
 
       //m_pnodenode = this;
 
-      m_pAuraPlatform = this;
+      //m_pAuraPlatform = this;
 
    }
 

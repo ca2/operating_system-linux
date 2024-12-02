@@ -76,7 +76,11 @@ endif()
 
 
 add_dependencies(${PROJECT_NAME} ${default_operating_ambient})
-
+if(${HAS_GTK4})
+    add_dependencies(${PROJECT_NAME} node_gtk4)
+else (${HAS_GTK3})
+    add_dependencies(${PROJECT_NAME} node_gtk3)
+endif()
 
 
 list(APPEND library_include_directories ${CMAKE_CURRENT_SOURCE_DIR})

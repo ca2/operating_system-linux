@@ -9,16 +9,16 @@
 
 
 #include "aura_linux/node.h"
-#include "node_xfce/node.h"
+#include "node_gtk3/node.h"
 
 
-namespace desktop_environment_xfce
+namespace operating_ambient_gtk3
 {
 
 
-   class CLASS_DECL_DESKTOP_ENVIRONMENT_XFCE node :
+   class CLASS_DECL_OPERATING_AMBIENT_GTK3 node :
       virtual public ::aura_linux::node,
-      virtual public ::node_xfce::node
+      virtual public ::node_gtk3::node
    {
    public:
 
@@ -91,7 +91,7 @@ namespace desktop_environment_xfce
    };
 
 
-} // namespace desktop_environment_xfce
+} // namespace operating_ambient_gtk3
 
 
 

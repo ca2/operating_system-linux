@@ -1,5 +1,5 @@
 cmake_minimum_required(VERSION 3.16)
-project(operating_ambient_gtk_based CXX)
+project(operating_ambient_gtk4 CXX)
 
 
 list(APPEND library_source

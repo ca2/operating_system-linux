@@ -9,16 +9,16 @@
 
 
 #include "aura_linux/node.h"
-#include "node_gtk_based/node.h"
+#include "node_gtk4/node.h"
 
 
-namespace operating_ambient_gtk_based
+namespace operating_ambient_gtk4
 {
 
 
-   class CLASS_DECL_DESKTOP_ENVIRONMENT_GTK_BASED node :
+   class CLASS_DECL_DESKTOP_ENVIRONMENT_GTK4 node :
       virtual public ::aura_linux::node,
-      virtual public ::node_gtk_based::node
+      virtual public ::node_gtk4::node
    {
    public:
 
@@ -45,7 +45,7 @@ namespace operating_ambient_gtk_based
    };
 
 
-} // namespace operating_ambient_gtk_based
+} // namespace operating_ambient_gtk4
 
 
 
