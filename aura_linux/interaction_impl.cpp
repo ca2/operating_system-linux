@@ -3881,16 +3881,16 @@
 //    }
 //
 //
-// //   void interaction_impl::_window_show_change_visibility_unlocked(::e_display edisplay, ::e_activation eactivation)
+// //   void interaction_impl::_window_show_change_visibility_unlocked(::e_display edisplay, const ::user::activation & useractivation)
 // //   {
 // //
 // //      __keep_flag_on(m_puserinteraction->layout().m_eflag, ::user::interaction_layout::flag_show_window);
 // //
 // ////      //auto edisplay = m_puserinteraction->layout().design().display();
 // ////
-// ////      //auto eactivation = m_puserinteraction->layout().design().activation();
+// ////      //auto useractivation = m_puserinteraction->layout().design().activation();
 // ////
-// ////      //if(eactivation &)
+// ////      //if(useractivation &)
 // //////      {
 // //////
 // //////         wm_add_erase_state(m_oswindow, net_wm_state_hidden, false);
@@ -3898,7 +3898,7 @@
 // //////      }
 // //////
 // ////
-// ////      m_pwindow->show_window(edisplay, eactivation);
+// ////      m_pwindow->show_window(edisplay, useractivation);
 // ////
 // //////      if (edisplay == e_display_full_screen)
 // //////      {
@@ -3922,7 +3922,7 @@
 // //////
 // ////
 // //
-// //        ::windowing::window::_window_show_change_visibility_unlocked(edisplay, eactivation);
+// //        ::windowing::window::_window_show_change_visibility_unlocked(edisplay, useractivation);
 // ////
 // ////      }
 // //

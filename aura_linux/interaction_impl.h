@@ -82,7 +82,7 @@
 //       DECLARE_MESSAGE_HANDLER(_001OnShowWindow);
 //
 //
-//       //void _window_show_change_visibility_unlocked(::e_display edisplay, ::e_activation eactivation) override;
+//       //void _window_show_change_visibility_unlocked(::e_display edisplay, const ::user::activation & useractivation) override;
 //
 //
 //       virtual ::windowing::window * from_os_data(void * pdata) override;
