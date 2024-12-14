@@ -27,7 +27,7 @@ list(APPEND library_references
    aura_linux
    #windowing_x11
     #    node_gdk
-   node_gtk_based
+   #node_gtk_based
    )
 
 
