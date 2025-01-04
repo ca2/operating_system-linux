@@ -182,6 +182,7 @@ elseif (${CURRENT_DESKTOP_ENVIRONMENT} STREQUAL "GNOME")
 elseif (${CURRENT_DESKTOP_ENVIRONMENT} STREQUAL "LXDE")
 
    set(LXDE_DESKTOP TRUE)
+   set(GTK_BASED_DESKTOP TRUE)
    message(STATUS "System is LXDE")
    set(DESKTOP_ENVIRONMENT_NAME "lxde")
 
@@ -215,7 +216,7 @@ elseif(${GTK_BASED_DESKTOP})
 endif()
 
 
-   message(STATUS "DISTRO is ${DISTRO}")
+message(STATUS "DISTRO is ${DISTRO}")
 message(STATUS "DESKTOP_ENVIRONMENT_NAME is ${DESKTOP_ENVIRONMENT_NAME}")
 
 
@@ -599,7 +600,11 @@ elseif (${LXDE_DESKTOP})
 
    message(STATUS "LXDE Desktop (2)")
 
-   list(APPEND app_common_dependencies operating_ambient_gtk_based)
+   #list(APPEND app_common_dependencies operating_ambient_gtk_based)
+
+   list(APPEND app_common_dependencies operating_ambient_gtk3)
+
+   list(APPEND static_app_common_dependencies static_operating_ambient_gtk3)
 
    #    list(APPEND static_app_common_dependencies
    #            static_desktop_environment_gnome
@@ -607,13 +612,21 @@ elseif (${LXDE_DESKTOP})
    #            static_node_gtk
    #            static_windowing_x11)
 
-   set(default_windowing "windowing_x11")
+   #set(default_windowing "windowing_x11")
 
-   set(default_operating_ambient operating_ambient_gtk_based)
+   set(default_windowing "windowing_gtk3")
 
-   add_compile_definitions(DESKTOP_ENVIRONMENT_GTK_BASED)
+   #set(default_operating_ambient operating_ambient_gtk_based)
 
-   add_compile_definitions(default_windowing=windowing_x11)
+   set(default_operating_ambient operating_ambient_gtk3)
+
+   #add_compile_definitions(DESKTOP_ENVIRONMENT_GTK_BASED)
+
+   add_compile_definitions(DESKTOP_ENVIRONMENT_LXDE)
+
+   #add_compile_definitions(default_windowing=windowing_x11)
+
+   add_compile_definitions(default_windowing=windowing_gtk3)
 
 elseif (${XFCE_DESKTOP})
 
