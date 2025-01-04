@@ -496,7 +496,7 @@ namespace acme_linux
 
          psummary->m_strDistroName = set["ID"];
          psummary->m_strDistroBranchName = set["VARIANT_ID"];
-         psummary->m_strDesktopEnvironmentName = psummary->m_strDistroBranch;
+         psummary->m_strDesktopEnvironmentName = psummary->m_strDistroBranchName;
          psummary->m_strDistroReleaseName = set["VERSION_ID"];
          psummary->m_strDistroFamilyName = set["ID_LIKE"];
 
