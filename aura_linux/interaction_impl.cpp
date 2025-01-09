@@ -1449,7 +1449,7 @@
 // //      else if(bKeyMessage)
 // //      {
 // //
-// //         ::pointer<::user::interaction>puiFocus =  m_puserinteractionKeyboardFocus;
+// //         ::pointer<::user::interaction>puiFocus =  aaa_m_pacmeuserinteractionKeyboardFocus;
 // //
 // //         if(puiFocus)
 // //         {
