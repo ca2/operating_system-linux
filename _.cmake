@@ -665,7 +665,6 @@ elseif (${GTK_BASED_DESKTOP})
 
       list(APPEND static_app_common_dependencies
          static_operating_ambient_gtk4
-         static_node_gtk_based
          static_node_gtk4
          static_node_linux)
 
@@ -673,25 +672,24 @@ elseif (${GTK_BASED_DESKTOP})
 
       set(default_operating_ambient operating_ambient_gtk4)
 
-      add_compile_definitions(DESKTOP_ENVIRONMENT_GTK_BASED)
+      add_compile_definitions(DESKTOP_ENVIRONMENT_GTK4)
 
    elseif (${HAS_GTK3})
 
       message(STATUS "Adding GTK3 dependency.")
 
-      list(APPEND app_common_dependencies nano_graphics_cairo operating_ambient_gtk_based)
+      list(APPEND app_common_dependencies nano_graphics_cairo operating_ambient_gtk3)
 
       list(APPEND static_app_common_dependencies
-              static_operating_ambient_gtk_based
-              static_node_gtk_base
+              static_operating_ambient_gt3
               static_node_gtk3
               static_node_linux)
 
       set(default_windowing "windowing_gtk3")
 
-      set(default_operating_ambient operating_ambient_gtk_based)
+      set(default_operating_ambient operating_ambient_gtk3)
 
-      add_compile_definitions(DESKTOP_ENVIRONMENT_GTK_BASED)
+      add_compile_definitions(DESKTOP_ENVIRONMENT_GTK3)
 
 
    else()
