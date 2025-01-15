@@ -2,13 +2,13 @@
 
 
 #include "aura_linux/_.h"
-#include "node_gtk_based/_.h"
+#include "node_kde6/_.h"
 
 
-#if defined(_operating_ambient_gtk4_project)
-   #define CLASS_DECL_OPERATING_AMBIENT_GTK4  CLASS_DECL_EXPORT
+#if defined(_operating_ambient_kde6_project)
+   #define CLASS_DECL_OPERATING_AMBIENT_KDE6  CLASS_DECL_EXPORT
 #else
-   #define CLASS_DECL_OPERATING_AMBIENT_GTK4  CLASS_DECL_IMPORT
+   #define CLASS_DECL_OPERATING_AMBIENT_KDE6  CLASS_DECL_IMPORT
 #endif
 
 

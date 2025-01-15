@@ -5,7 +5,7 @@
 __FACTORY_EXPORT void aura_linux_factory(::factory::factory * pfactory);
 
 
-__FACTORY_EXPORT void node_kde6_factory(::factory::factory * pfactory);
+__FACTORY_EXPORT void node_kde5_factory(::factory::factory * pfactory);
 
 
 __FACTORY_EXPORT void operating_ambient_gtk4_factory(::factory::factory * pfactory)
@@ -13,9 +13,9 @@ __FACTORY_EXPORT void operating_ambient_gtk4_factory(::factory::factory * pfacto
 
    aura_linux_factory(pfactory);
 
-   node_kde6_factory(pfactory);
+   node_kde5_factory(pfactory);
 
-   pfactory->add_factory_item < ::operating_ambient_kde6::node, ::platform::node > ();
+   pfactory->add_factory_item < ::operating_ambient_kde5::node, ::platform::node > ();
 
 
 }

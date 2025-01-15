@@ -570,7 +570,7 @@ if (${KDE_DESKTOP})
       #        if(knotifications_libs STREQUAL "")
       #            set(knotifications_cflags -I/usr/include/KF5/KNotifications)
       #        endif()
-      list(APPEND app_common_dependencies nano_graphics_cairo nano_user_kde5)
+      #list(APPEND app_common_dependencies nano_graphics_cairo nano_user_kde5)
    endif()
 
 
@@ -826,6 +826,18 @@ if(${HAS_GTK3})
    set(default_innate_ui innate_ui_gtk3)
 
 endif()
+
+
+
+if(${HAS_KDE5})
+
+   message(STATUS "HAS_KDE5 had been set")
+   add_compile_definitions(HAS_KDE5)
+   set(default_acme_windowing acme_windowing_kde5)
+   set(default_innate_ui innate_ui_kde5)
+
+endif()
+
 
 
 if(${HAS_KDE6})
