@@ -393,7 +393,7 @@ if (${KDE_DESKTOP})
 
 
 
-      set(KF_MIN_VERSION "5.240")
+      set(KF_MIN_VERSION "6.6.0")
       set(QT_MIN_VERSION "6.6.0")
 
       find_package(ECM ${KF_MIN_VERSION} REQUIRED NO_MODULE)
@@ -439,7 +439,7 @@ if (${KDE_DESKTOP})
          ConfigWidgets
          KIO
          IconThemes
-         StatusNotifierItem
+         #StatusNotifierItem
          #Plasma
       )
 

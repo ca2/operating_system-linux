@@ -12,14 +12,14 @@
 #endif
 
 
-namespace operating_ambient_gtk_based
+namespace operating_ambient_kde6
 {
 
 
    class node;
 
 
-} // namespace operating_ambient_gtk_based
+} // namespace operating_ambient_kde6
 
 
 
