@@ -439,7 +439,7 @@ if (${KDE_DESKTOP})
          ConfigWidgets
          KIO
          IconThemes
-         #StatusNotifierItem
+         StatusNotifierItem
          #Plasma
       )
 
@@ -836,6 +836,9 @@ if(${HAS_KDE5})
    set(default_acme_windowing acme_windowing_kde5)
    set(default_innate_ui innate_ui_kde5)
 
+   message(STATUS "HAS_KDE5 is true, deactivating APPINDICATOR_PKG_MODULE")
+   set(APPINDICATOR_PKG_MODULE "")
+
 endif()
 
 
@@ -846,6 +849,10 @@ if(${HAS_KDE6})
    add_compile_definitions(HAS_KDE6)
    set(default_acme_windowing acme_windowing_kde6)
    set(default_innate_ui innate_ui_kde6)
+
+   message(STATUS "HAS_KDE6 is true, deactivating APPINDICATOR_PKG_MODULE")
+   set(APPINDICATOR_PKG_MODULE "")
+
 
 endif()
 

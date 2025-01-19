@@ -28,15 +28,54 @@ list(APPEND library_references
    #windowing_x11
     #    node_gdk
    #node_gtk_based
+   node_kde6
    )
 
 
-if(${HAS_GTK4})
-   list(APPEND library_references node_gtk4)
-elseif(${HAS_GTK3})
-   list(APPEND library_references node_gtk3)
-endif()
 
+
+list(APPEND this_system_libraries
+   KF6::ConfigWidgets
+   KF6::IconThemes
+   KF6::KIOCore
+   KF6::KIOGui
+   KF6::KIOWidgets
+   KF6::Notifications
+   KF6::StatusNotifierItem
+   PW::KWorkspace
+   Qt6::Core
+   Qt6::Widgets
+   #Qt6::X11Extras
+   Qt6::Gui
+   Qt6::GuiPrivate
+)
+
+if (${FREEBSD} OR ${DEBIAN} OR ${SUSE} OR ${FEDORA} OR ${UBUNTU})
+   list(APPEND this_system_libraries
+      KF6Package
+   )
+   #elseif (${UBUNTU})
+   #    list(APPEND this_system_libraries
+   #  KF6::Plasma
+   #)
+else()
+   list(APPEND this_system_libraries
+      KF6::Plasma
+      KF6::PlasmaQuick
+   )
+endif ()
+
+#Qt5::Core
+#Qt5::UiTools
+#Qt5::X11Extras
+#KF5::Notifications
+#KF5::ConfigWidgets
+#KF5::IconThemes
+#KF5::KIOCore
+#KF5::KIOFileWidgets
+#KF5::KIOWidgets
+#KF5::KIONTLM
+#PW::KWorkspace
 
 list(APPEND static_library_references ${library_references})
 list(TRANSFORM static_library_references PREPEND static_)
@@ -58,16 +97,16 @@ if (MSVC)
    target_link_options(${PROJECT_NAME} PRIVATE "/DEFAULTLIB:msvcrt$<$<CONFIG:Debug>:d>")
    target_link_options(${PROJECT_NAME} PRIVATE "/SUBSYSTEM:WINDOWS")
    target_link_libraries(${PROJECT_NAME} PRIVATE ${library_references})
-elseif (LINUX)
+elseif (${LINUX} OR ${__BSD__})
 
 
-   if(${HAS_GTK4})
-      #pkg_check_modules(PKGCONFIG glib-2.0 gtk4)
-      pkg_check_modules(PKGCONFIG gtk4)
-   elseif(${HAS_GTK3})
-      pkg_check_modules(PKGCONFIG glib-2.0 gtk+-3.0 gdk-3.0)
-   endif()
-
+#   if(${HAS_GTK4})
+#      #pkg_check_modules(PKGCONFIG glib-2.0 gtk4)
+#      pkg_check_modules(PKGCONFIG gtk4)
+#   elseif(${HAS_GTK3})
+#      pkg_check_modules(PKGCONFIG glib-2.0 gtk+-3.0 gdk-3.0)
+#   endif()
+#
 
    target_compile_options(${PROJECT_NAME} PRIVATE $<$<COMPILE_LANGUAGE:CXX>:-fpermissive  ${EXTRA_CXX_TARGET_COMPILER_OPTIONS}>)
    target_compile_options(static_${PROJECT_NAME} PRIVATE $<$<COMPILE_LANGUAGE:CXX>:-fpermissive  ${EXTRA_CXX_TARGET_COMPILER_OPTIONS}>)
@@ -78,7 +117,7 @@ elseif (LINUX)
    target_compile_options(static_${PROJECT_NAME} PRIVATE ${PKGCONFIG_CFLAGS})
 
    #target_link_options(${PROJECT_NAME} PRIVATE -Wl,-rpath=$ORIGIN)
-   target_link_libraries(${PROJECT_NAME} PRIVATE ${library_references} ${PKGCONFIG_LIBRARIES})
+   target_link_libraries(${PROJECT_NAME} PRIVATE ${this_system_libraries} ${library_references} ${PKGCONFIG_LIBRARIES})
    target_link_libraries(static_${PROJECT_NAME} PRIVATE ${static_library_references} ${PKGCONFIG_LIBRARIES})
 
    target_link_options(${PROJECT_NAME} PRIVATE -Wl,-z,defs)

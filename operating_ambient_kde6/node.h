@@ -9,16 +9,16 @@
 
 
 #include "aura_linux/node.h"
-#include "node_gtk4/node.h"
+#include "node_kde6/node.h"
 
 
-namespace operating_ambient_gtk4
+namespace operating_ambient_kde6
 {
 
 
-   class CLASS_DECL_OPERATING_AMBIENT_GTK4 node :
+   class CLASS_DECL_OPERATING_AMBIENT_KDE6 node :
       virtual public ::aura_linux::node,
-      virtual public ::node_gtk4::node
+      virtual public ::node_kde6::node
    {
    public:
 
@@ -42,10 +42,13 @@ namespace operating_ambient_gtk4
 //      bool launch_on_node(::topic * ptopic) override;
 //
 
+      void reboot() override;
+
+
    };
 
 
-} // namespace operating_ambient_gtk4
+} // namespace operating_ambient_kde6
 
 
 

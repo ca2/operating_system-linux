@@ -16,7 +16,7 @@ void gdk_branch(const ::procedure & procedure);
 //CLASS_DECL_ACME void set_main_user_itask(itask itask);
 
 
-namespace operating_ambient_gtk4
+namespace operating_ambient_kde6
 {
 
 
@@ -62,7 +62,7 @@ namespace operating_ambient_gtk4
 
       ::aura_linux::node::initialize(pparticle);
 
-      ::node_gtk4::node::initialize(pparticle);
+      ::node_kde6::node::initialize(pparticle);
 
    }
 
@@ -349,7 +349,17 @@ namespace operating_ambient_gtk4
 //   }
 
 
-} // namespace operating_ambient_gtk4
+
+void node::reboot()
+   {
+
+
+      ::node_kde6::node::reboot();
+
+   }
+
+
+} // namespace operating_ambient_kde6
 
 
 
