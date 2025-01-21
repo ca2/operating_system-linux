@@ -8,7 +8,7 @@ __FACTORY_EXPORT void aura_linux_factory(::factory::factory * pfactory);
 __FACTORY_EXPORT void node_kde6_factory(::factory::factory * pfactory);
 
 
-__FACTORY_EXPORT void operating_ambient_gtk4_factory(::factory::factory * pfactory)
+__FACTORY_EXPORT void operating_ambient_kde6_factory(::factory::factory * pfactory)
 {
 
    aura_linux_factory(pfactory);
