@@ -380,6 +380,33 @@ set(default_nano_graphics "nano_graphics_cairo")
 set(LINUX TRUE)
 
 
+
+
+list(APPEND acme_libraries
+   acme
+   acme_posix
+   acme_linux)
+
+
+list(APPEND apex_libraries
+   ${acme_libraries}
+   apex
+   apex_posix
+   apex_linux
+)
+
+list(APPEND aura_libraries
+   ${apex_libraries}
+   aura
+   aura_posix
+   aura_linux
+   node_linux
+)
+
+set(default_nano_graphics nano_graphics_cairo)
+
+
+
 if(NOT ${CONSOLE_BUILD_TOOLS})
    # CONSOLE_BUILD_TOOLS are dependant just on linux kernel version and glib version?
 
@@ -657,39 +684,46 @@ elseif (${XFCE_DESKTOP})
 
 elseif (${GTK_BASED_DESKTOP})
 
+
+   list(APPEND static_app_common_dependencies
+      static_operating_ambient_gtk4
+      static_node_gnome
+      static_node_gtk
+      static_node_linux)
+
+   set(default_common_windowing common_gtk)
+
    if(${HAS_GTK4})
 
-      message(STATUS "Adding GTK4 dependency.")
+      message(STATUS "Setting up GTK4 dependencies.")
 
-      list(APPEND app_common_dependencies nano_graphics_cairo operating_ambient_gtk4)
+      set(default_acme_windowing acme_windowing_gtk4)
 
-      list(APPEND static_app_common_dependencies
-         static_operating_ambient_gtk4
-         static_node_gtk4
-         static_node_linux)
+      set(default_innate_ui innate_ui_gtk4)
 
-      set(default_windowing "windowing_gtk4")
+      set(default_windowing_common windowing_posix)
+
+      set(default_windowing windowing_gtk4)
 
       set(default_operating_ambient operating_ambient_gtk4)
 
-      add_compile_definitions(DESKTOP_ENVIRONMENT_GTK4)
+      set(default_node node_gtk4)
 
    elseif (${HAS_GTK3})
 
-      message(STATUS "Adding GTK3 dependency.")
+      message(STATUS "Setting up GTK3 dependencies.")
 
-      list(APPEND app_common_dependencies nano_graphics_cairo operating_ambient_gtk3)
+      set(default_acme_windowing acme_windowing_gtk3)
 
-      list(APPEND static_app_common_dependencies
-              static_operating_ambient_gt3
-              static_node_gtk3
-              static_node_linux)
+      set(default_innate_ui innate_ui_gtk3)
 
-      set(default_windowing "windowing_gtk3")
+      set(default_windowing_common windowing_posix)
+
+      set(default_windowing windowing_gtk3)
 
       set(default_operating_ambient operating_ambient_gtk3)
 
-      add_compile_definitions(DESKTOP_ENVIRONMENT_GTK3)
+      set(default_node node_gtk3)
 
 
    else()
@@ -699,11 +733,11 @@ elseif (${GTK_BASED_DESKTOP})
       list(APPEND app_common_dependencies nano_graphics_cairo operating_ambient_gtk_based)
 
       list(APPEND static_app_common_dependencies
-              static_desktop_environment_gnome
-              static_node_gnome
-              static_node_gtk
-              static_node_linux
-              static_windowing_x11)
+         static_desktop_environment_gnome
+         static_node_gnome
+         static_node_gtk
+         static_node_linux
+         static_windowing_x11)
 
       set(default_windowing "windowing_x11")
 
@@ -713,11 +747,44 @@ elseif (${GTK_BASED_DESKTOP})
 
    endif()
 
-   endif ()
+   add_compile_definitions(DESKTOP_ENVIRONMENT_GNOME)
 
 endif()
 
-#set(static_acme_extra_pkgconfig cairo xcb x11 xkbcommon xcb-render xcb-aux x11-xcb)
+
+
+
+   list(APPEND acme_windowing_libraries
+      ${default_nano_graphics}
+      ${default_acme_windowing}
+   )
+
+
+   list(APPEND innate_ui_libraries
+      ${acme_windowing_libraries}
+      ${default_innate_ui}
+   )
+
+
+   list(APPEND operating_ambient_libraries
+      ${innate_ui_libraries}
+      ${default_common_windowing}
+      ${default_windowing_common}
+      ${default_windowing}
+      ${default_node}
+      ${default_operating_ambient}
+   )
+
+
+   list(APPEND app_common_dependencies
+      ${aura_libraries}
+      ${operating_ambient_libraries}
+   )
+
+
+endif()
+
+   #set(static_acme_extra_pkgconfig cairo xcb x11 xkbcommon xcb-render xcb-aux x11-xcb)
 #set(static_aura_posix_pkgconfig libstartup-notification-1.0)
 #
 #set(static_acme_pkgconfig freetype2 libidn ${static_acme_extra_pkgconfig} ncurses dbus-glib-1)
@@ -736,6 +803,8 @@ endif()
 #    set(static_desktop_environment_pkgconfig ${static_desktop_environment_gnome_pkgconfig})
 #endif()
 #
+
+
 
 
 set(LIBCXX_TARGETING_MSVC OFF)
