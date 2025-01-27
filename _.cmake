@@ -21,8 +21,14 @@ set(HAS_X11 TRUE)
 set(MAIN_STORE_SLASHED_OPERATING_SYSTEM "linux")
 set(OPERATING_SYSTEM_TOOL_FOLDER "tool-linux")
 
+
 execute_process(COMMAND uname -m OUTPUT_VARIABLE __SYSTEM_ARCHITECTURE)
 string(STRIP ${__SYSTEM_ARCHITECTURE} __SYSTEM_ARCHITECTURE)
+
+
+execute_process(COMMAND lsb_release -is OUTPUT_VARIABLE __OPERATING_SYSTEM)
+string(STRIP ${__OPERATING_SYSTEM} __OPERATING_SYSTEM)
+string(TOLOWER ${__OPERATING_SYSTEM} __OPERATING_SYSTEM)
 
 
 message(STATUS "__SYSTEM_ARCHITECTURE is ${__SYSTEM_ARCHITECTURE}")
@@ -130,21 +136,21 @@ set(CMAKE_INSTALL_RPATH $ORIGIN)
 
 set(CURRENT_DESKTOP_ENVIRONMENT $ENV{XDG_CURRENT_DESKTOP})
 
-if(NOT ${CONSOLE_BUILD_TOOLS})
-# CONSOLE_BUILD_TOOLS are dependant just on linux kernel version and glib version?
-if(${DISTRO} STREQUAL "linuxmint")
-   set(DISTRO "ubuntu")
-   set(LINUX_MINT TRUE)
-   if(${DISTRO_RELEASE} LESS_EQUAL 20)
-      set(DISTRO_RELEASE "20.04")
-   elseif(${DISTRO_RELEASE} LESS_EQUAL 21)
-      set(DISTRO_RELEASE "22.04")
-   else()
-      set(DISTRO_RELEASE "24.04")
-   endif()
-endif()
-
-endif()
+#if(NOT ${CONSOLE_BUILD_TOOLS})
+## CONSOLE_BUILD_TOOLS are dependant just on linux kernel version and glib version?
+#if(${DISTRO} STREQUAL "linuxmint")
+#   set(DISTRO "ubuntu")
+#   set(LINUX_MINT TRUE)
+#   if(${DISTRO_RELEASE} LESS_EQUAL 20)
+#      set(DISTRO_RELEASE "20.04")
+#   elseif(${DISTRO_RELEASE} LESS_EQUAL 21)
+#      set(DISTRO_RELEASE "22.04")
+#   else()
+#      set(DISTRO_RELEASE "24.04")
+#   endif()
+#endif()
+#
+#endif()
 
 
 set(LINUX TRUE)
@@ -217,7 +223,7 @@ elseif(${GTK_BASED_DESKTOP})
 endif()
 
 
-message(STATUS "DISTRO is ${DISTRO}")
+message(STATUS "__OPERATING_SYSTEM is ${__OPERATING_SYSTEMs}")
 message(STATUS "DESKTOP_ENVIRONMENT_NAME is ${DESKTOP_ENVIRONMENT_NAME}")
 
 
@@ -227,7 +233,7 @@ if(NOT ${CONSOLE_BUILD_TOOLS})
 
    # CONSOLE_BUILD_TOOLS are dependant just on linux kernel version and glib version?
 
-   if (${DISTRO} STREQUAL "ubuntu")
+   if (${__OPERATING_SYSTEM} STREQUAL "ubuntu")
 
       set(UBUNTU TRUE)
 
@@ -245,7 +251,7 @@ if(NOT ${CONSOLE_BUILD_TOOLS})
 
       set(HAS_SYSTEM_UNAC TRUE)
 
-   elseif (${DISTRO} STREQUAL "debian")
+   elseif (${__OPERATING_SYSTEM} STREQUAL "debian")
 
       set(DEBIAN TRUE)
 
@@ -263,7 +269,7 @@ if(NOT ${CONSOLE_BUILD_TOOLS})
 
       set(HAS_SYSTEM_UNAC TRUE)
 
-   elseif (${DISTRO} STREQUAL "opensuse-leap" OR ${DISTRO} STREQUAL "opensuse-tumbleweed")
+   elseif (${__OPERATING_SYSTEM} STREQUAL "opensuse-leap" OR ${DISTRO} STREQUAL "opensuse-tumbleweed")
 
       set(SUSE TRUE)
 
@@ -275,7 +281,7 @@ if(NOT ${CONSOLE_BUILD_TOOLS})
 
       set(MPG123_PKG_MODULE "libmpg123")
 
-   elseif (${DISTRO} STREQUAL "fedora")
+   elseif (${__OPERATING_SYSTEM} STREQUAL "fedora")
 
       set(FEDORA TRUE)
 
@@ -285,7 +291,19 @@ if(NOT ${CONSOLE_BUILD_TOOLS})
 
       message(STATUS "FEDORA has been set TRUE")
 
-   elseif ("${DISTRO}" STREQUAL "raspbian")
+   elseif (${__OPERATING_SYSTEM} STREQUAL "linuxmint")
+
+      set(LINUXMINT TRUE)
+
+      add_compile_definitions(MINT_LINUX)
+
+      set(APPINDICATOR_PKG_MODULE "appindicator3-0.1")
+
+      message(STATUS "LINUX_MINT has been set TRUE")
+
+      message(STATUS "MINT_LINUX compile definition")
+
+   elseif ("${__OPERATING_SYSTEM}" STREQUAL "raspbian")
 
       set(RASPBIAN TRUE)
 
@@ -303,7 +321,7 @@ if(NOT ${CONSOLE_BUILD_TOOLS})
 
       message(STATUS "RASPBERRYPIOS defined!!")
 
-   elseif (${DISTRO} STREQUAL "manjaro")
+   elseif (${__OPERATING_SYSTEM} STREQUAL "manjaro")
 
          set(MANJARO TRUE)
 
