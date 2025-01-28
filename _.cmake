@@ -298,7 +298,7 @@ if(NOT ${CONSOLE_BUILD_TOOLS})
 
       add_compile_definitions(MINT_LINUX)
 
-      set(APPINDICATOR_PKG_MODULE "appindicator3-0.1")
+      set(APPINDICATOR_PKG_MODULE "ayatana-appindicator3-0.1")
 
       message(STATUS "LINUX_MINT has been set TRUE")
 
