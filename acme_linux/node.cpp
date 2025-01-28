@@ -26,6 +26,7 @@ void copy(::file::path & path, const ::string & str)
 #include <sys/utsname.h>
 
 
+#include <sys/utsname.h>
 
 //
 //
@@ -651,10 +652,16 @@ namespace acme_linux
       else
       {
 
-         // # Fall back to uname, e.g. "Linux <version>", also works for BSD, etc.
+         struct utsname utsname;
 
-         strOs = this->get_posix_shell_command_output("uname -s");
-         strVer = this->get_posix_shell_command_output("uname -r");
+         if (!uname(&utsname))
+         {
+            // # Fall back to uname, e.g. "Linux <version>", also works for BSD, etc.
+            strOs = utsname.sysname;
+            strVer = utsname.release;
+         }
+         //strOs = this->get_posix_shell_command_output("uname -s");
+         //strVer = this->get_posix_shell_command_output("uname -r");
 
       }
 
@@ -672,6 +679,12 @@ namespace acme_linux
 
       }
       else if (psummary->m_strDistro.case_insensitive_equals("debian"))
+      {
+
+         psummary->m_strDistroFamily = "debian";
+
+      }
+      else if (psummary->m_strDistro.case_insensitive_equals("linuxmint"))
       {
 
          psummary->m_strDistroFamily = "debian";
@@ -775,6 +788,19 @@ namespace acme_linux
                //# echo "lower case xdg_current_desktop contains lxde"
 
                psummary->m_strDesktopEnvironment = "lxde";
+
+            }
+            else if (strLowerCaseCurrentDesktop.equals("x-cinnamon"))
+            {
+               //      elif
+               //      contains
+               //      $__SYSTEM_LOWER_CASE_CURRENT_DESKTOP
+               //      "lxde";
+               //      then
+               //
+               //# echo "lower case xdg_current_desktop contains lxde"
+
+               psummary->m_strDesktopEnvironment = "x-cinnamon";
 
             }
 
