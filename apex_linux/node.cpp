@@ -234,8 +234,8 @@ namespace apex_linux
       auto psummary = this->operating_system_summary();
 
       if(::is_set(psummary) &&
-              (psummary->m_strDistro.case_insensitive_begins("opensuse")
-              || psummary->m_strDistro.case_insensitive_begins("debian")))
+              (psummary->m_strOperatingSystem.case_insensitive_begins("opensuse")
+              || psummary->m_strOperatingSystem.case_insensitive_begins("debian")))
       {
 
          posix_shell_command("systemctl poweroff");
