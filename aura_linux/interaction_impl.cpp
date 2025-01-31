@@ -1026,25 +1026,25 @@
 // //
 // //      }
 // //
-// //      if(pmessage->m_atom == e_message_timer)
+// //      if(pmessage->m_emessage == e_message_timer)
 // //      {
 // //
 // //         //m_pthread->step_timer();
 // //
 // //      }
-// //      else if(pmessage->m_atom == e_message_left_button_down)
+// //      else if(pmessage->m_emessage == e_message_left_button_down)
 // //      {
 // //
 // //         informationf("linux::interaction_impl::e_message_left_button_down");
 // //
 // //      }
-// //      else if(pmessage->m_atom == e_message_left_button_up)
+// //      else if(pmessage->m_emessage == e_message_left_button_up)
 // //      {
 // //
 // //         informationf("linux::interaction_impl::e_message_left_button_up");
 // //
 // //      }
-// //      else if(pmessage->m_atom == e_message_mouse_move)
+// //      else if(pmessage->m_emessage == e_message_mouse_move)
 // //      {
 // //
 // //         g_iMouseMove++;
@@ -1053,11 +1053,11 @@
 // //         //printf("g_iMouseMove = %d\n", g_iMouseMove);
 // //
 // //      }
-// //      else if(pmessage->m_atom == e_message_paint)
+// //      else if(pmessage->m_emessage == e_message_paint)
 // //      {
 // //
 // //      }
-// //      else if(pmessage->m_atom == e_message_left_button_up)
+// //      else if(pmessage->m_emessage == e_message_left_button_up)
 // //      {
 // //
 // //         informationf("e_message_left_button_up (0)");
@@ -1137,9 +1137,9 @@
 // ////
 // ////         ::pointer<::message::key>pkey = pmessage;
 // ////
-// ////         //pwindowing->set(pkey, get_oswindow(), m_pwindow, pkey->m_atom, pkey->m_wparam, pkey->m_lparam);
+// ////         //pwindowing->set(pkey, get_oswindow(), m_pwindow, pkey->m_emessage, pkey->m_wparam, pkey->m_lparam);
 // ////
-// //////         if(pmessage->m_atom == e_message_key_down)
+// //////         if(pmessage->m_emessage == e_message_key_down)
 // //////         {
 // //////
 // //////            try
@@ -1154,7 +1154,7 @@
 // //////            }
 // //////
 // //////         }
-// //////         else if(pmessage->m_atom == e_message_key_up)
+// //////         else if(pmessage->m_emessage == e_message_key_up)
 // //////         {
 // //////
 // //////            try
@@ -1174,7 +1174,7 @@
 // //
 // //      pmessage->m_lresult = 0;
 // //
-// //      if(pmessage->m_atom == e_message_mouse_leave)
+// //      if(pmessage->m_emessage == e_message_mouse_leave)
 // //      {
 // //
 // //         _000OnMouseLeave(pmessage);
@@ -1183,15 +1183,15 @@
 // //
 // //      }
 // //
-// //      if(pmessage->m_atom == e_message_left_button_down ||
-// //            pmessage->m_atom == e_message_left_button_up ||
-// //            pmessage->m_atom == e_message_middle_button_down ||
-// //            pmessage->m_atom == e_message_middle_button_up ||
-// //            pmessage->m_atom == e_message_right_button_down ||
-// //            pmessage->m_atom == e_message_right_button_up ||
-// //            pmessage->m_atom == e_message_mouse_move ||
-// //            pmessage->m_atom == e_message_mouse_move ||
-// //         pmessage->m_atom == e_message_mouse_wheel)
+// //      if(pmessage->m_emessage == e_message_left_button_down ||
+// //            pmessage->m_emessage == e_message_left_button_up ||
+// //            pmessage->m_emessage == e_message_middle_button_down ||
+// //            pmessage->m_emessage == e_message_middle_button_up ||
+// //            pmessage->m_emessage == e_message_right_button_down ||
+// //            pmessage->m_emessage == e_message_right_button_up ||
+// //            pmessage->m_emessage == e_message_mouse_move ||
+// //            pmessage->m_emessage == e_message_mouse_move ||
+// //         pmessage->m_emessage == e_message_mouse_wheel)
 // //      {
 // //
 // //         if(::is_set(m_puserinteraction) && !m_puserinteraction->m_bUserElementOk)
@@ -1305,9 +1305,9 @@
 // //
 // //         auto pwindowing = system()->windowing();
 // //
-// //         pwindowing->set(pmouse, oswindow(), m_pwindow, pmouse->m_atom, pmouse->m_wparam, pmouse->m_lparam);
+// //         pwindowing->set(pmouse, oswindow(), m_pwindow, pmouse->m_emessage, pmouse->m_wparam, pmouse->m_lparam);
 // //
-// //         if(pmessage->m_atom == e_message_mouse_move)
+// //         if(pmessage->m_emessage == e_message_mouse_move)
 // //         {
 // //
 // //            // We are at the message handler routine.
@@ -1362,7 +1362,7 @@
 // ////
 // ////         }
 // //
-// //         if(pmouse->m_atom == e_message_left_button_down)
+// //         if(pmouse->m_emessage == e_message_left_button_down)
 // //         {
 // //
 // //
@@ -1377,14 +1377,14 @@
 // //
 // //         }
 // //
-// //         if(pmouse->m_atom == e_message_left_button_down)
+// //         if(pmouse->m_emessage == e_message_left_button_down)
 // //         {
 // //
 // //
 // //            informationf("left_button_down");
 // //
 // //         }
-// //         else if(pmouse->m_atom == e_message_left_button_up)
+// //         else if(pmouse->m_emessage == e_message_left_button_up)
 // //         {
 // //
 // //
@@ -1394,7 +1394,7 @@
 // //
 // ////         string strUserInteractionType(::is_null(puserinteractionMouse) ? "(null)" : ::type(puserinteractionMouse).name());
 // ////
-// ////         if(pmouse->m_atom == e_message_mouse_move)
+// ////         if(pmouse->m_emessage == e_message_mouse_move)
 // ////         {
 // ////
 // ////            static int s_iMotionNotify = 0;
@@ -1443,9 +1443,9 @@
 // //         return;
 // //
 // //      }
-// ///*      else if(pmessage->m_atom == e_message_key_down ||
-// //              pmessage->m_atom == e_message_key_up ||
-// //              pmessage->m_atom == e_message_char)*/
+// ///*      else if(pmessage->m_emessage == e_message_key_down ||
+// //              pmessage->m_emessage == e_message_key_up ||
+// //              pmessage->m_emessage == e_message_char)*/
 // //      else if(bKeyMessage)
 // //      {
 // //
@@ -1477,7 +1477,7 @@
 // //
 // //      }
 // //
-// //      if(pmessage->m_atom == e_message_subject)
+// //      if(pmessage->m_emessage == e_message_subject)
 // //      {
 // //
 // //         if(m_puserinteraction != nullptr)
