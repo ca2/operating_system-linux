@@ -1,5 +1,8 @@
 #include "framework.h"
 #include "node.h"
+
+#include <acme/filesystem/filesystem/path_system.h>
+
 #include "file_system.h"
 #include "acme/filesystem/filesystem/directory_system.h"
 #include "acme/filesystem/filesystem/listing.h"
@@ -923,6 +926,71 @@ namespace acme_linux
             psummary->m_iMinor = ::as_int(straRelease[1]);
 
          }
+
+      }
+
+      ::string strShellPriorityPathPatch;
+
+      ::string_array straShellPriorityPathPatch;
+
+      ::file::path pathToolFolderBin;
+
+      ::file::path pathToolFolder = path_system()->tool_folder_path();
+
+      if (pathToolFolder.has_character())
+      {
+
+         pathToolFolderBin = path_system()->tool_folder_path() / "bin";
+
+      }
+
+      ::file::path pathHomeBin;
+
+      ::file::path pathHome = path_system()->tool_folder_path();
+
+      if (pathHome.has_character())
+      {
+
+         pathHomeBin = pathHome / "bin";
+
+      }
+
+      ::string strPath = get_environment_variable("PATH");
+
+      ::string straPath;
+
+      straPath.explode(":", strPath);
+
+      if (pathToolFolderBin.has_character())
+      {
+
+         if (!straPath.contains(pathToolFolderBin))
+         {
+
+            straShellPriorityPathPatch.add(pathToolFolderBin);
+
+         }
+
+      }
+
+      if (pathHomeBin.has_character())
+      {
+
+         if (!straPath.contains(pathHomeBin))
+         {
+
+            straShellPriorityPathPatch.add(pathHomeBin);
+
+         }
+
+      }
+
+      if (straShellPriorityPathPatch.has_element())
+      {
+
+         strShellPriorityPathPatch = straShellPriorityPathPatch.implode(":");
+
+         psummary->m_strShellPriorityPathPatch = strShellPriorityPathPatch;
 
       }
 
