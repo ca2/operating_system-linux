@@ -18,6 +18,7 @@ set(USE_PKGCONFIG TRUE)
 set(CURL_NANO_HTTP TRUE)
 set(HAS_WAYLAND TRUE)
 set(HAS_X11 TRUE)
+set(TOOL_RELEASE_NAME "linux")
 set(MAIN_STORE_SLASHED_OPERATING_SYSTEM "linux")
 set(OPERATING_SYSTEM_TOOL_FOLDER "tool-linux")
 
@@ -405,6 +406,12 @@ list(APPEND acme_libraries
    acme
    acme_posix
    acme_linux)
+
+
+list(APPEND static_acme_libraries
+   static_acme
+   static_acme_posix
+   static_acme_linux)
 
 
 list(APPEND apex_libraries
