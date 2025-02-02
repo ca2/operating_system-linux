@@ -305,7 +305,7 @@ namespace operating_ambient_kde6
 //   void node::handle(::topic * ptopic, ::context * pcontext)
 //   {
 //
-////      if(ptopic->m_atom == ::id_operating_system_user_theme_change)
+////      if(ptopic->id() == ::id_operating_system_user_theme_change)
 ////      {
 ////
 ////         //_os_process_user_theme_color(m_strTheme);
@@ -327,7 +327,7 @@ namespace operating_ambient_kde6
 //
 //      }
 //
-//      if(ptopic->m_atom == id_operating_system_user_color_change)
+//      if(ptopic->id() == id_operating_system_user_color_change)
 //      {
 //
 //         return false;

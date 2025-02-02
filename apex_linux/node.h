@@ -99,7 +99,7 @@ namespace apex_linux
 
       bool is_remote_session() override;
 
-      virtual void post_to_all_threads(const ::atom & atom, wparam wparam, lparam lparam);
+      virtual void post_to_all_threads(::enum_message emessage, ::wparam wparam, ::lparam lparam);
 
 
       void initialize_wallpaper_fileset(::file::set * pfileset, bool bAddSearch) override;

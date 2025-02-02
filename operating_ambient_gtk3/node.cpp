@@ -404,7 +404,7 @@ namespace operating_ambient_gtk3
 //   void node::on_subject(::promise::topic * ptopic, ::subject::context * pcontext)
 //   {
 //
-//      if(ptopic->m_atom == ::id_os_user_theme)
+//      if(ptopic->id() == ::id_os_user_theme)
 //      {
 //
 //         _on_change_os_user_theme();
@@ -530,7 +530,7 @@ namespace operating_ambient_gtk3
 //
 //      }
 //
-//      if(ptopic->m_atom == id_os_dark_mode)
+//      if(ptopic->id() == id_os_dark_mode)
 //      {
 //
 //         return false;
