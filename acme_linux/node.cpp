@@ -929,9 +929,7 @@ namespace acme_linux
 
       }
 
-      ::string strShellPriorityPathPatch;
-
-      ::string_array straShellPriorityPathPatch;
+      ::string_array straPrefixPaths;
 
       ::file::path pathToolFolderBin;
 
@@ -967,7 +965,7 @@ namespace acme_linux
          if (!straPath.contains(pathToolFolderBin))
          {
 
-            straShellPriorityPathPatch.add(pathToolFolderBin);
+            straPrefixPaths.add(pathToolFolderBin);
 
          }
 
@@ -979,18 +977,18 @@ namespace acme_linux
          if (!straPath.contains(pathHomeBin))
          {
 
-            straShellPriorityPathPatch.add(pathHomeBin);
+            straPrefixPaths.add(pathHomeBin);
 
          }
 
       }
 
-      if (straShellPriorityPathPatch.has_element())
+      if (straPrefixPaths.has_element())
       {
 
-         strShellPriorityPathPatch = straShellPriorityPathPatch.implode(":");
+         auto strPathPrefix = straPrefixPaths.implode(":");
 
-         psummary->m_strShellPriorityPathPatch = strShellPriorityPathPatch;
+         psummary->m_strPathPrefix = strPathPrefix;
 
       }
 
