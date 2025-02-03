@@ -946,7 +946,7 @@ namespace acme_linux
 
       ::file::path pathHomeBin;
 
-      ::file::path pathHome = path_system()->tool_folder_path();
+      ::file::path pathHome = directory_system()->home();
 
       if (pathHome.has_character())
       {
