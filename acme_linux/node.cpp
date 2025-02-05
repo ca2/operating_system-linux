@@ -1,7 +1,7 @@
 #include "framework.h"
 #include "node.h"
 
-#include <acme/filesystem/filesystem/path_system.h>
+#include "acme/filesystem/filesystem/path_system.h"
 
 #include "file_system.h"
 #include "acme/filesystem/filesystem/directory_system.h"
@@ -21,15 +21,10 @@ void copy(::file::path & path, const ::string & str)
 #include "acme/prototype/collection/_generic_array.h"
 
 
-#include  "acme/operating_system/ansi/binreloc.h"
 #include  "acme/operating_system/ansi/_pthread.h"
 
 
-#include <unistd.h>
-#include <sys/utsname.h>
-
-
-#include <sys/utsname.h>
+//#include <sys/utsname.h>
 
 //
 //
@@ -102,49 +97,6 @@ namespace acme_linux
    }
 
 
-   ::file::path node::_module_path()
-   {
-
-      ::file::path path;
-
-      char * pszModule = nullptr;
-
-      if((pszModule = br_find_exe(nullptr)) == nullptr)
-      {
-
-         if (!br_init_lib(nullptr))
-         {
-
-            char path[PATH_MAX * 4];
-
-            char dest[PATH_MAX * 4];
-
-            pid_t pid = getpid();
-
-            sprintf(path, "/proc/%d/exe", pid);
-
-            auto iSize = readlink(path, dest, PATH_MAX);
-
-            if (iSize > 0)
-            {
-
-               dest[iSize] = '\0';
-
-               pszModule = strdup(dest);
-
-            }
-
-         }
-
-      }
-
-      path = pszModule;
-
-      ::free(pszModule);
-
-      return path;
-
-   }
 
 
    void node::calculate_linux_distribution()
@@ -657,13 +609,15 @@ namespace acme_linux
       else
       {
 
-         struct utsname utsname;
+         //struct utsname utsname;
 
-         if (!uname(&utsname))
+         //if (!uname(&utsname))
          {
             // # Fall back to uname, e.g. "Linux <version>", also works for BSD, etc.
-            strOs = utsname.sysname;
-            strVer = utsname.release;
+           // strOs = utsname.sysname;
+            strOs = _uname_system();
+            //strVer = utsname.release;
+            strVer = _uname_release();
          }
          //strOs = this->get_posix_shell_command_output("uname -s");
          //strVer = this->get_posix_shell_command_output("uname -r");
