@@ -607,7 +607,7 @@
 //
 //
 //   // file does not support direct buffering (CMemFile does)
-//   huge_natural file::GetBufferPtr(unsigned int /*nCommand*/, huge_natural /*nCount*/, void ** /*ppBufStart*/, void ** /*ppBufMax*/)
+//   unsigned long long file::GetBufferPtr(unsigned int /*nCommand*/, unsigned long long /*nCount*/, void ** /*ppBufStart*/, void ** /*ppBufMax*/)
 //   {
 //
 //      //ASSERT(nCommand == bufferCheck);
@@ -930,7 +930,7 @@
 //
 //   }
 //
-//   huge_natural file::ReadHuge(void * pBuffer, huge_natural dwCount)
+//   unsigned long long file::ReadHuge(void * pBuffer, unsigned long long dwCount)
 //
 //   {
 //
@@ -939,7 +939,7 @@
 //
 //   }
 //
-//   void file::WriteHuge(const void * pBuffer, huge_natural dwCount)
+//   void file::WriteHuge(const void * pBuffer, unsigned long long dwCount)
 //
 //   {
 //

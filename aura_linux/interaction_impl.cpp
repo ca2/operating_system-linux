@@ -18,7 +18,7 @@
 // {
 //
 //
-//    huge_integer g_iMouseMove = 0;
+//    long long g_iMouseMove = 0;
 //
 // //   class x11data :
 // //      virtual public object

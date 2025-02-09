@@ -77,9 +77,9 @@
 //
 //      //virtual bool PASCAL GetStatus(const char * pszFileName, ::file::file_status& rStatus);
 //
-//      huge_natural ReadHuge(void * pBuffer, huge_natural dwCount);
+//      unsigned long long ReadHuge(void * pBuffer, unsigned long long dwCount);
 //
-//      void WriteHuge(const void * pBuffer, huge_natural dwCount);
+//      void WriteHuge(const void * pBuffer, unsigned long long dwCount);
 //
 //
 ////      virtual ::pointer<::file::file>Duplicate() const;
@@ -102,7 +102,7 @@
 //
 //      virtual bool IsOpened();
 //
-//      virtual huge_natural GetBufferPtr(unsigned int nCommand, huge_natural nCount = 0, void ** ppBufStart = nullptr, void ** ppBufMax = nullptr);
+//      virtual unsigned long long GetBufferPtr(unsigned int nCommand, unsigned long long nCount = 0, void ** ppBufStart = nullptr, void ** ppBufMax = nullptr);
 //
 //      //void put_byte_back(unsigned char unsigned char) override;
 //
