@@ -28,7 +28,7 @@ list(APPEND library_references
    #windowing_x11
     #    node_gdk
    #node_gtk_based
-   node_kde6
+   node_lxq2
    )
 
 

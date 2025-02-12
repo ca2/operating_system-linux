@@ -2,24 +2,24 @@
 
 
 #include "aura_linux/_.h"
-#include "node_kde6/_.h"
+#include "node_lxq2/_.h"
 
 
-#if defined(_operating_ambient_kde6_project)
-   #define CLASS_DECL_OPERATING_AMBIENT_KDE6  CLASS_DECL_EXPORT
+#if defined(_operating_ambient_lxq2_project)
+   #define CLASS_DECL_OPERATING_AMBIENT_LXQ2  CLASS_DECL_EXPORT
 #else
-   #define CLASS_DECL_OPERATING_AMBIENT_KDE6  CLASS_DECL_IMPORT
+   #define CLASS_DECL_OPERATING_AMBIENT_LXQ2  CLASS_DECL_IMPORT
 #endif
 
 
-namespace operating_ambient_kde6
+namespace operating_ambient_lxq2
 {
 
 
    class node;
 
 
-} // namespace operating_ambient_kde6
+} // namespace operating_ambient_lxq2
 
 
 

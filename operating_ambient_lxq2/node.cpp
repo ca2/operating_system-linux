@@ -16,7 +16,7 @@ void gdk_branch(const ::procedure & procedure);
 //CLASS_DECL_ACME void set_main_user_itask(itask itask);
 
 
-namespace operating_ambient_kde6
+namespace operating_ambient_lxq2
 {
 
 
@@ -62,7 +62,7 @@ namespace operating_ambient_kde6
 
       ::aura_linux::node::initialize(pparticle);
 
-      ::node_kde6::node::initialize(pparticle);
+      ::node_lxq2::node::initialize(pparticle);
 
    }
 
@@ -354,12 +354,12 @@ void node::reboot()
    {
 
 
-      ::node_kde6::node::reboot();
+      ::node_lxq2::node::reboot();
 
    }
 
 
-} // namespace operating_ambient_kde6
+} // namespace operating_ambient_lxq2
 
 
 

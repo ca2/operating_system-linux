@@ -9,16 +9,16 @@
 
 
 #include "aura_linux/node.h"
-#include "node_kde6/node.h"
+#include "node_lxq2/node.h"
 
 
-namespace operating_ambient_kde6
+namespace operating_ambient_lxq2
 {
 
 
-   class CLASS_DECL_OPERATING_AMBIENT_KDE6 node :
+   class CLASS_DECL_OPERATING_AMBIENT_LXQ2 node :
       virtual public ::aura_linux::node,
-      virtual public ::node_kde6::node
+      virtual public ::node_lxq2::node
    {
    public:
 
@@ -48,7 +48,7 @@ namespace operating_ambient_kde6
    };
 
 
-} // namespace operating_ambient_kde6
+} // namespace operating_ambient_lxq2
 
 
 
