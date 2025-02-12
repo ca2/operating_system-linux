@@ -1,5 +1,10 @@
 
 
+if (NOT ${CMAKE_SYSTEM_NAME} STREQUAL "Linux")
+
+   error("This file is designed to be used only for linux systems...")
+
+endif ()
 
 
 #message(STATUS "CMAKE_SYSTEM_NAME is ${CMAKE_SYSTEM_NAME}")
@@ -46,12 +51,7 @@ if ("${CMAKE_BUILD_TYPE}" STREQUAL "")
 endif ()
 
 
-if (NOT ${CMAKE_SYSTEM_NAME} STREQUAL "Linux")
-
-   error("This file is designed to be used only for linux systems...")
-
-endif ()
-
+find_package(PkgConfig REQUIRED)
 
 #if (CMAKE_CXX_COMPILER_ID STREQUAL "GNU")
 #
