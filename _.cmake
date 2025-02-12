@@ -171,7 +171,13 @@ set(PTHREAD TRUE)
 set(PLATFORM_NAME "linux")
 
 
-if (${CURRENT_DESKTOP_ENVIRONMENT} STREQUAL "KDE")
+if (${CURRENT_DESKTOP_ENVIRONMENT} STREQUAL "LXQt")
+
+   set(LXQT_DESKTOP TRUE)
+   message(STATUS "System is LXQt")
+   set(DESKTOP_ENVIRONMENT_NAME "lxqt")
+
+elseif (${CURRENT_DESKTOP_ENVIRONMENT} STREQUAL "KDE")
 
    set(KDE_DESKTOP TRUE)
    message(STATUS "System is KDE")
@@ -217,7 +223,11 @@ elseif (${CURRENT_DESKTOP_ENVIRONMENT} STREQUAL "X-Cinnamon")
 endif ()
 
 
-if(${KDE_DESKTOP})
+if(${LXQT_DESKTOP})
+
+   include(${WORKSPACE_FOLDER}/operating_system/operating_system-posix/_lxqt_desktop.cmake)
+
+elseif(${KDE_DESKTOP})
 
    include(${WORKSPACE_FOLDER}/operating_system/operating_system-posix/_kde_desktop.cmake)
 
