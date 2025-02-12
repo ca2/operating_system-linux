@@ -291,9 +291,9 @@ if(${DESKTOP_AMBIENT})
 
    if (${CURRENT_DESKTOP_ENVIRONMENT} STREQUAL "LXQt")
 
-      set(LXQT_DESKTOP TRUE)
-      message(STATUS "System is LXQt")
-      set(DESKTOP_ENVIRONMENT_NAME "lxqt")
+      set(LXQ_DESKTOP TRUE)
+      message(STATUS "System is LXQ")
+      set(DESKTOP_ENVIRONMENT_NAME "lxq")
 
    elseif (${CURRENT_DESKTOP_ENVIRONMENT} STREQUAL "KDE")
 
@@ -341,13 +341,17 @@ if(${DESKTOP_AMBIENT})
    endif ()
 
 
-   if(${KDE_DESKTOP})
+   if(${LXQ_DESKTOP})
+
+      include(${WORKSPACE_FOLDER}/operating_system/operating_system-posix/_lxq_desktop.cmake)
+
+   elseif(${KDE_DESKTOP})
 
       include(${WORKSPACE_FOLDER}/operating_system/operating_system-posix/_kde_desktop.cmake)
 
    elseif(${GTK_BASED_DESKTOP})
 
-      include(${WORKSPACE_FOLDER}/operating_system/operating_system-posix/_gtk_based_desktop.cmake)
+      include(${WORKSPACE_FOLDER}/operating_system/operating_system-posix/_gtk_desktop.cmake)
 
    endif()
 
@@ -436,8 +440,8 @@ list(APPEND aura_libraries
    node_linux
 )
 
-set(default_nano_graphics nano_graphics_cairo)
 
+set(default_nano_graphics nano_graphics_cairo)
 
 
 if(${DESKTOP_AMBIENT})
@@ -445,11 +449,69 @@ if(${DESKTOP_AMBIENT})
 
    # DESKTOP_AMBIENT are dependant just on linux kernel version and glib version?
 
+   if (${LXQ_DESKTOP})
 
-   if (${KDE_DESKTOP})
+
+      if(${HAS_LXQ2})
+
+
+         set(KF_MIN_VERSION "6.6.0")
+         set(QT_MIN_VERSION "6.6.0")
+         #set(LXQT_MIN_VERSION "2.1.0")
+
+
+         find_package(PkgConfig REQUIRED)
+         find_package(Qt6 REQUIRED COMPONENTS Core Widgets)
+         #find_package(LXQt REQUIRED)
+         #find_package(LXQtGlobalKeys REQUIRED)
+
+
+#         target_link_libraries(myapp
+#            Qt6::Core
+#            Qt6::Widgets
+#            LXQt::Core
+#            LXQt::GlobalKeys
+#         )
+
+
+         set(default_operating_ambient operating_ambient_lxq2)
+         list(APPEND app_common_dependencies operating_ambient_lxq2)
+         add_compile_definitions(OPERATING_AMBIENT_LXQ=2)
+         add_compile_definitions(default_windowing=windowing_lxq2)
+         set(default_windowing "windowing_lxq2")
+
+
+      elseif(${HAS_LXQ1})
+
+         set(KF_MIN_VERSION "5.0.0")
+         set(QT_MIN_VERSION "5.0.0")
+
+         find_package(PkgConfig REQUIRED)
+         find_package(Qt5 REQUIRED COMPONENTS Core Widgets)
+         #find_package(LXQt REQUIRED)
+         #find_package(LXQtGlobalKeys REQUIRED)
+
+         #         target_link_libraries(myapp
+         #            Qt5::Core
+         #            Qt5::Widgets
+         #            LXQt::Core
+         #            LXQt::GlobalKeys
+         #         )
+
+         set(default_operating_ambient operating_ambient_lxq1)
+         list(APPEND app_common_dependencies operating_ambient_lxq1)
+         add_compile_definitions(OPERATING_AMBIENT_LXQ=1)
+         add_compile_definitions(default_windowing=windowing_lxq1)
+         set(default_windowing "windowing_lxq1")
+
+      endif()
+
+
+   elseif (${KDE_DESKTOP})
 
 
       if(${HAS_KDE6})
+
          set(WITH_XCB TRUE)
          add_compile_definitions(WITH_XCB=1)
 

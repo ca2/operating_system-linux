@@ -52,8 +52,6 @@ if (MSVC)
 elseif(LINUX)
 
 
-
-
     target_compile_options(${PROJECT_NAME} PRIVATE $<$<COMPILE_LANGUAGE:CXX>:-fpermissive  ${EXTRA_CXX_TARGET_COMPILER_OPTIONS}>)
     target_compile_options(static_${PROJECT_NAME} PRIVATE $<$<COMPILE_LANGUAGE:CXX>:-fpermissive  ${EXTRA_CXX_TARGET_COMPILER_OPTIONS}>)
     target_compile_definitions(static_${PROJECT_NAME} PRIVATE CUBE)
@@ -76,6 +74,8 @@ endif()
 
 
 add_dependencies(${PROJECT_NAME} ${default_operating_ambient})
+
+
 if(${HAS_GTK4})
     add_dependencies(${PROJECT_NAME} node_gtk4)
 elseif (${HAS_GTK3})
@@ -84,6 +84,8 @@ elseif (${HAS_KDE5})
     add_dependencies(${PROJECT_NAME} node_kde5)
 elseif (${HAS_KDE6})
     add_dependencies(${PROJECT_NAME} node_kde6)
+elseif (${HAS_LXQ2})
+    add_dependencies(${PROJECT_NAME} node_lxq2)
 endif()
 
 
