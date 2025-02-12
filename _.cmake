@@ -168,27 +168,134 @@ set(PTHREAD TRUE)
 set(PLATFORM_NAME "linux")
 
 
+if (${__OPERATING_SYSTEM} STREQUAL "ubuntu")
+
+   set(UBUNTU TRUE)
+
+   set(DEBIAN_LIKE TRUE)
+
+   add_compile_definitions(UBUNTU_LINUX)
+
+   add_compile_definitions(DEBIAN_LIKE_LINUX)
+
+   message(STATUS "UBUNTU has been set TRUE")
+
+   set(APPINDICATOR_PKG_MODULE "ayatana-appindicator3-0.1")
+
+   set(MPG123_PKG_MODULE "libmpg123")
+
+   set(HAS_SYSTEM_UNAC TRUE)
+
+elseif (${__OPERATING_SYSTEM} STREQUAL "debian")
+
+   set(DEBIAN TRUE)
+
+   add_compile_definitions(DEBIAN_LINUX)
+
+   add_compile_definitions(DEBIAN_LIKE_LINUX)
+
+   message(STATUS "DEBIAN has been set TRUE")
+
+   set(APPINDICATOR_PKG_MODULE "ayatana-appindicator3-0.1")
+
+   set(MPG123_PKG_MODULE "libmpg123")
+
+   add_compile_options("$<$<CONFIG:Debug>:-gdwarf-4>")
+
+   set(HAS_SYSTEM_UNAC TRUE)
+
+elseif (${__OPERATING_SYSTEM} STREQUAL "opensuse-leap" OR ${__OPERATING_SYSTEM} STREQUAL "opensuse-tumbleweed")
+
+   set(SUSE TRUE)
+
+   add_compile_definitions(SUSE_LINUX)
+
+   message(STATUS "SUSE has been set TRUE")
+
+   set(APPINDICATOR_PKG_MODULE "appindicator3-0.1")
+
+   set(MPG123_PKG_MODULE "libmpg123")
+
+elseif (${__OPERATING_SYSTEM} STREQUAL "fedora")
+
+   set(FEDORA TRUE)
+
+   add_compile_definitions(FEDORA_LINUX)
+
+   set(APPINDICATOR_PKG_MODULE "appindicator3-0.1")
+
+   message(STATUS "FEDORA has been set TRUE")
+
+elseif (${__OPERATING_SYSTEM} STREQUAL "linuxmint")
+
+   set(LINUXMINT TRUE)
+
+   add_compile_definitions(MINT_LINUX)
+
+   set(APPINDICATOR_PKG_MODULE "ayatana-appindicator3-0.1")
+
+   message(STATUS "LINUX_MINT has been set TRUE")
+
+   message(STATUS "MINT_LINUX compile definition")
+
+elseif ("${__OPERATING_SYSTEM}" STREQUAL "raspbian")
+
+   set(RASPBIAN TRUE)
+
+   set(DEBIAN_LIKE TRUE)
+
+   add_compile_definitions(RASPBERRYPIOS)
+
+   add_compile_definitions(DEBIAN_LIKE_LINUX)
+
+   set(DONT_USE_PKG_CONFIG FALSE)
+
+   set(HAS_SYSTEM_UNAC TRUE)
+
+   set(HAS_WAYLAND FALSE)
+
+   message(STATUS "RASPBERRYPIOS defined!!")
+
+elseif (${__OPERATING_SYSTEM} STREQUAL "manjaro")
+
+   set(MANJARO TRUE)
+
+   set(ARCH_LIKE TRUE)
+
+   add_compile_definitions(ARCH_LIKE_LINUX)
+
+   message(STATUS "MANJARO has been set TRUE")
+
+   set(APPINDICATOR_PKG_MODULE "ayatana-appindicator3-0.1")
+
+   set(MPG123_PKG_MODULE "libmpg123")
+
+   set(HAS_SYSTEM_UNAC FALSE)
+
+else ()
+
+   set(APPINDICATOR_PKG_MODULE "appindicator3-0.1")
+
+   set(MPG123_PKG_MODULE "mpg123")
+
+endif ()
+
+
+message(STATUS "DISTRO_RELEASE is ${DISTRO_RELEASE}")
+
+
 if(${DESKTOP_AMBIENT})
 
 
    set(CURRENT_DESKTOP_ENVIRONMENT $ENV{XDG_CURRENT_DESKTOP})
-if (${CURRENT_DESKTOP_ENVIRONMENT} STREQUAL "LXQt")
 
-   set(LXQT_DESKTOP TRUE)
-   message(STATUS "System is LXQt")
-   set(DESKTOP_ENVIRONMENT_NAME "lxqt")
+   if (${CURRENT_DESKTOP_ENVIRONMENT} STREQUAL "LXQt")
 
-elseif (${CURRENT_DESKTOP_ENVIRONMENT} STREQUAL "KDE")
+      set(LXQT_DESKTOP TRUE)
+      message(STATUS "System is LXQt")
+      set(DESKTOP_ENVIRONMENT_NAME "lxqt")
 
-   set(KDE_DESKTOP TRUE)
-   message(STATUS "System is KDE")
-   set(DESKTOP_ENVIRONMENT_NAME "kde")
-
-elseif (${CURRENT_DESKTOP_ENVIRONMENT} STREQUAL "ubuntu:GNOME")
-
-
-
-   if (${CURRENT_DESKTOP_ENVIRONMENT} STREQUAL "KDE")
+   elseif (${CURRENT_DESKTOP_ENVIRONMENT} STREQUAL "KDE")
 
       set(KDE_DESKTOP TRUE)
       message(STATUS "System is KDE")
@@ -248,120 +355,6 @@ elseif (${CURRENT_DESKTOP_ENVIRONMENT} STREQUAL "ubuntu:GNOME")
    message(STATUS "DESKTOP_ENVIRONMENT_NAME is ${DESKTOP_ENVIRONMENT_NAME}")
 
    # DESKTOP_AMBIENT are dependant just on linux kernel version and glib version?
-
-   if (${__OPERATING_SYSTEM} STREQUAL "ubuntu")
-
-      set(UBUNTU TRUE)
-
-      set(DEBIAN_LIKE TRUE)
-
-      add_compile_definitions(UBUNTU_LINUX)
-
-      add_compile_definitions(DEBIAN_LIKE_LINUX)
-
-      message(STATUS "UBUNTU has been set TRUE")
-
-      set(APPINDICATOR_PKG_MODULE "ayatana-appindicator3-0.1")
-
-      set(MPG123_PKG_MODULE "libmpg123")
-
-      set(HAS_SYSTEM_UNAC TRUE)
-
-   elseif (${__OPERATING_SYSTEM} STREQUAL "debian")
-
-      set(DEBIAN TRUE)
-
-      add_compile_definitions(DEBIAN_LINUX)
-
-      add_compile_definitions(DEBIAN_LIKE_LINUX)
-
-      message(STATUS "DEBIAN has been set TRUE")
-
-      set(APPINDICATOR_PKG_MODULE "ayatana-appindicator3-0.1")
-
-      set(MPG123_PKG_MODULE "libmpg123")
-
-      add_compile_options("$<$<CONFIG:Debug>:-gdwarf-4>")
-
-      set(HAS_SYSTEM_UNAC TRUE)
-
-   elseif (${__OPERATING_SYSTEM} STREQUAL "opensuse-leap" OR ${__OPERATING_SYSTEM} STREQUAL "opensuse-tumbleweed")
-
-      set(SUSE TRUE)
-
-      add_compile_definitions(SUSE_LINUX)
-
-      message(STATUS "SUSE has been set TRUE")
-
-      set(APPINDICATOR_PKG_MODULE "appindicator3-0.1")
-
-      set(MPG123_PKG_MODULE "libmpg123")
-
-   elseif (${__OPERATING_SYSTEM} STREQUAL "fedora")
-
-      set(FEDORA TRUE)
-
-      add_compile_definitions(FEDORA_LINUX)
-
-      set(APPINDICATOR_PKG_MODULE "appindicator3-0.1")
-
-      message(STATUS "FEDORA has been set TRUE")
-
-   elseif (${__OPERATING_SYSTEM} STREQUAL "linuxmint")
-
-      set(LINUXMINT TRUE)
-
-      add_compile_definitions(MINT_LINUX)
-
-      set(APPINDICATOR_PKG_MODULE "ayatana-appindicator3-0.1")
-
-      message(STATUS "LINUX_MINT has been set TRUE")
-
-      message(STATUS "MINT_LINUX compile definition")
-
-   elseif ("${__OPERATING_SYSTEM}" STREQUAL "raspbian")
-
-      set(RASPBIAN TRUE)
-
-      set(DEBIAN_LIKE TRUE)
-
-      add_compile_definitions(RASPBERRYPIOS)
-
-      add_compile_definitions(DEBIAN_LIKE_LINUX)
-
-      set(DONT_USE_PKG_CONFIG FALSE)
-
-      set(HAS_SYSTEM_UNAC TRUE)
-
-      set(HAS_WAYLAND FALSE)
-
-      message(STATUS "RASPBERRYPIOS defined!!")
-
-   elseif (${__OPERATING_SYSTEM} STREQUAL "manjaro")
-
-         set(MANJARO TRUE)
-
-         set(ARCH_LIKE TRUE)
-
-         add_compile_definitions(ARCH_LIKE_LINUX)
-
-         message(STATUS "MANJARO has been set TRUE")
-
-         set(APPINDICATOR_PKG_MODULE "ayatana-appindicator3-0.1")
-
-         set(MPG123_PKG_MODULE "libmpg123")
-
-         set(HAS_SYSTEM_UNAC FALSE)
-
-   else ()
-
-      set(APPINDICATOR_PKG_MODULE "appindicator3-0.1")
-
-      set(MPG123_PKG_MODULE "mpg123")
-
-   endif ()
-
-   message(STATUS "DISTRO_RELEASE is ${DISTRO_RELEASE}")
 
 endif()
 
