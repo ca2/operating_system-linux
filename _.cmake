@@ -138,11 +138,8 @@ SET(CMAKE_BUILD_WITH_INSTALL_RPATH TRUE)
 set(CMAKE_INSTALL_RPATH $ORIGIN)
 #set(CMAKE_INSTALL_RPATH_USE_LINK_PATH TRUE)
 
-
-set(CURRENT_DESKTOP_ENVIRONMENT $ENV{XDG_CURRENT_DESKTOP})
-
-#if(NOT ${CONSOLE_BUILD_TOOLS})
-## CONSOLE_BUILD_TOOLS are dependant just on linux kernel version and glib version?
+#if(${DESKTOP_AMBIENT})
+## DESKTOP_AMBIENT are dependant just on linux kernel version and glib version?
 #if(${DISTRO} STREQUAL "linuxmint")
 #   set(DISTRO "ubuntu")
 #   set(LINUX_MINT TRUE)
@@ -171,6 +168,10 @@ set(PTHREAD TRUE)
 set(PLATFORM_NAME "linux")
 
 
+if(${DESKTOP_AMBIENT})
+
+
+   set(CURRENT_DESKTOP_ENVIRONMENT $ENV{XDG_CURRENT_DESKTOP})
 if (${CURRENT_DESKTOP_ENVIRONMENT} STREQUAL "LXQt")
 
    set(LXQT_DESKTOP TRUE)
@@ -185,68 +186,68 @@ elseif (${CURRENT_DESKTOP_ENVIRONMENT} STREQUAL "KDE")
 
 elseif (${CURRENT_DESKTOP_ENVIRONMENT} STREQUAL "ubuntu:GNOME")
 
-   set(GNOME_DESKTOP TRUE)
-   set(GTK_BASED_DESKTOP TRUE)
-   message(STATUS "System is GNOME")
-   set(DESKTOP_ENVIRONMENT_NAME "gnome")
-
-elseif (${CURRENT_DESKTOP_ENVIRONMENT} STREQUAL "GNOME")
-
-   set(GNOME_DESKTOP TRUE)
-   set(GTK_BASED_DESKTOP TRUE)
-   message(STATUS "System is GNOME")
-   set(DESKTOP_ENVIRONMENT_NAME "gnome")
-
-elseif (${CURRENT_DESKTOP_ENVIRONMENT} STREQUAL "LXDE")
-
-   set(LXDE_DESKTOP TRUE)
-   set(GTK_BASED_DESKTOP TRUE)
-   message(STATUS "System is LXDE")
-   set(DESKTOP_ENVIRONMENT_NAME "lxde")
-
-elseif (${CURRENT_DESKTOP_ENVIRONMENT} STREQUAL "XFCE")
-
-   set(XFCE_DESKTOP TRUE)
-   set(GTK_BASED_DESKTOP TRUE)
-   set(HAS_WAYLAND FALSE)
-   message(STATUS "System is XFCE")
-   set(DESKTOP_ENVIRONMENT_NAME "xfce")
-
-elseif (${CURRENT_DESKTOP_ENVIRONMENT} STREQUAL "X-Cinnamon")
-
-   set(XCINNAMON_DESKTOP TRUE)
-   set(GTK_BASED_DESKTOP TRUE)
-   set(HAS_WAYLAND FALSE)
-   message(STATUS "System is X-Cinnamon")
-   set(DESKTOP_ENVIRONMENT_NAME "xcinnamon")
-
-endif ()
 
 
-if(${LXQT_DESKTOP})
+   if (${CURRENT_DESKTOP_ENVIRONMENT} STREQUAL "KDE")
 
-   include(${WORKSPACE_FOLDER}/operating_system/operating_system-posix/_lxqt_desktop.cmake)
+      set(KDE_DESKTOP TRUE)
+      message(STATUS "System is KDE")
+      set(DESKTOP_ENVIRONMENT_NAME "kde")
 
-elseif(${KDE_DESKTOP})
+   elseif (${CURRENT_DESKTOP_ENVIRONMENT} STREQUAL "ubuntu:GNOME")
 
-   include(${WORKSPACE_FOLDER}/operating_system/operating_system-posix/_kde_desktop.cmake)
+      set(GNOME_DESKTOP TRUE)
+      set(GTK_BASED_DESKTOP TRUE)
+      message(STATUS "System is GNOME")
+      set(DESKTOP_ENVIRONMENT_NAME "gnome")
 
-elseif(${GTK_BASED_DESKTOP})
+   elseif (${CURRENT_DESKTOP_ENVIRONMENT} STREQUAL "GNOME")
 
-   include(${WORKSPACE_FOLDER}/operating_system/operating_system-posix/_gtk_based_desktop.cmake)
+      set(GNOME_DESKTOP TRUE)
+      set(GTK_BASED_DESKTOP TRUE)
+      message(STATUS "System is GNOME")
+      set(DESKTOP_ENVIRONMENT_NAME "gnome")
 
-endif()
+   elseif (${CURRENT_DESKTOP_ENVIRONMENT} STREQUAL "LXDE")
+
+      set(LXDE_DESKTOP TRUE)
+      set(GTK_BASED_DESKTOP TRUE)
+      message(STATUS "System is LXDE")
+      set(DESKTOP_ENVIRONMENT_NAME "lxde")
+
+   elseif (${CURRENT_DESKTOP_ENVIRONMENT} STREQUAL "XFCE")
+
+      set(XFCE_DESKTOP TRUE)
+      set(GTK_BASED_DESKTOP TRUE)
+      set(HAS_WAYLAND FALSE)
+      message(STATUS "System is XFCE")
+      set(DESKTOP_ENVIRONMENT_NAME "xfce")
+
+   elseif (${CURRENT_DESKTOP_ENVIRONMENT} STREQUAL "X-Cinnamon")
+
+      set(XCINNAMON_DESKTOP TRUE)
+      set(GTK_BASED_DESKTOP TRUE)
+      set(HAS_WAYLAND FALSE)
+      message(STATUS "System is X-Cinnamon")
+      set(DESKTOP_ENVIRONMENT_NAME "xcinnamon")
+
+   endif ()
 
 
+   if(${KDE_DESKTOP})
 
-message(STATUS "DESKTOP_ENVIRONMENT_NAME is ${DESKTOP_ENVIRONMENT_NAME}")
+      include(${WORKSPACE_FOLDER}/operating_system/operating_system-posix/_kde_desktop.cmake)
+
+   elseif(${GTK_BASED_DESKTOP})
+
+      include(${WORKSPACE_FOLDER}/operating_system/operating_system-posix/_gtk_based_desktop.cmake)
+
+   endif()
 
 
+   message(STATUS "DESKTOP_ENVIRONMENT_NAME is ${DESKTOP_ENVIRONMENT_NAME}")
 
-
-if(NOT ${CONSOLE_BUILD_TOOLS})
-
-   # CONSOLE_BUILD_TOOLS are dependant just on linux kernel version and glib version?
+   # DESKTOP_AMBIENT are dependant just on linux kernel version and glib version?
 
    if (${__OPERATING_SYSTEM} STREQUAL "ubuntu")
 
@@ -446,351 +447,351 @@ set(default_nano_graphics nano_graphics_cairo)
 
 
 
-if(NOT ${CONSOLE_BUILD_TOOLS})
-   # CONSOLE_BUILD_TOOLS are dependant just on linux kernel version and glib version?
+if(${DESKTOP_AMBIENT})
 
 
-if (${KDE_DESKTOP})
+   # DESKTOP_AMBIENT are dependant just on linux kernel version and glib version?
 
 
-   if(${HAS_KDE6})
-      set(WITH_XCB TRUE)
-      add_compile_definitions(WITH_XCB=1)
+   if (${KDE_DESKTOP})
+
+
+      if(${HAS_KDE6})
+         set(WITH_XCB TRUE)
+         add_compile_definitions(WITH_XCB=1)
 
 
 
-      set(KF_MIN_VERSION "6.6.0")
-      set(QT_MIN_VERSION "6.6.0")
+         set(KF_MIN_VERSION "6.6.0")
+         set(QT_MIN_VERSION "6.6.0")
 
-      find_package(ECM ${KF_MIN_VERSION} REQUIRED NO_MODULE)
-      set(CMAKE_MODULE_PATH ${ECM_MODULE_PATH} ${CMAKE_SOURCE_DIR}/cmake)
+         find_package(ECM ${KF_MIN_VERSION} REQUIRED NO_MODULE)
+         set(CMAKE_MODULE_PATH ${ECM_MODULE_PATH} ${CMAKE_SOURCE_DIR}/cmake)
 
 
-      #if(UNIX AND NOT APPLE)
-      find_package(KF6Package REQUIRED)
-      #         if (WITH_PULSEAUDIO)
-      #            find_package(KF6PulseAudioQt REQUIRED)
-      #         endif()
-      #         find_package(QtWaylandScanner REQUIRED)
-      #         find_package(Wayland 1.9 REQUIRED Client)
-      #         find_package(Qt6 REQUIRED COMPONENTS WaylandClient)
-      #         find_package(WaylandProtocols REQUIRED)
-      #         pkg_check_modules(XkbCommon IMPORTED_TARGET xkbcommon)
-      #         find_package(PkgConfig QUIET REQUIRED)
-      #         pkg_check_modules(DBus REQUIRED IMPORTED_TARGET dbus-1)
-      ##endif()
-      # apt install libkf5notifications-dev
-      # dnf install kf5-knotifications-devel
+         #if(UNIX AND NOT APPLE)
+         find_package(KF6Package REQUIRED)
+         #         if (WITH_PULSEAUDIO)
+         #            find_package(KF6PulseAudioQt REQUIRED)
+         #         endif()
+         #         find_package(QtWaylandScanner REQUIRED)
+         #         find_package(Wayland 1.9 REQUIRED Client)
+         #         find_package(Qt6 REQUIRED COMPONENTS WaylandClient)
+         #         find_package(WaylandProtocols REQUIRED)
+         #         pkg_check_modules(XkbCommon IMPORTED_TARGET xkbcommon)
+         #         find_package(PkgConfig QUIET REQUIRED)
+         #         pkg_check_modules(DBus REQUIRED IMPORTED_TARGET dbus-1)
+         ##endif()
+         # apt install libkf5notifications-dev
+         # dnf install kf5-knotifications-devel
 
-      #include(KDEInstallDirs)
-      #include(KDECMakeSettings)
-      #include(KDECompilerSettings NO_POLICY_SCOPE)
-      #    find_package(KF5 ${KF5_MIN_VERSION} REQUIRED COMPONENTS
-      # CoreAddons      # KAboutData
-      #          I18n            # KLocalizedString
-      #         WidgetsAddons   # KMessageBox
-      #      Notifications
-      #     )
-      #include(FeatureSummary)
+         #include(KDEInstallDirs)
+         #include(KDECMakeSettings)
+         #include(KDECompilerSettings NO_POLICY_SCOPE)
+         #    find_package(KF5 ${KF5_MIN_VERSION} REQUIRED COMPONENTS
+         # CoreAddons      # KAboutData
+         #          I18n            # KLocalizedString
+         #         WidgetsAddons   # KMessageBox
+         #      Notifications
+         #     )
+         #include(FeatureSummary)
 
-      # Find Qt modules
-      #find_package(Qt5 ${QT_MIN_VERSION} CONFIG REQUIRED COMPONENTS
-      #  Core    # QCommandLineParser, QStringLiteral
-      #  Widgets # QApplication
-      #  )
+         # Find Qt modules
+         #find_package(Qt5 ${QT_MIN_VERSION} CONFIG REQUIRED COMPONENTS
+         #  Core    # QCommandLineParser, QStringLiteral
+         #  Widgets # QApplication
+         #  )
 
-      list(APPEND kf6_component_list
-         CoreAddons
-         Notifications
-         ConfigWidgets
-         KIO
-         IconThemes
-         StatusNotifierItem
-         #Plasma
-      )
-
-      if(NOT ${DEBIAN} AND NOT ${SUSE} AND NOT ${DEBIAN_LIKE})
          list(APPEND kf6_component_list
-            PlasmaQuick
-
+            CoreAddons
+            Notifications
+            ConfigWidgets
+            KIO
+            IconThemes
+            StatusNotifierItem
+            #Plasma
          )
 
-      endif()
+         if(NOT ${DEBIAN} AND NOT ${SUSE} AND NOT ${DEBIAN_LIKE})
+            list(APPEND kf6_component_list
+               PlasmaQuick
+
+            )
+
+         endif()
 
 
-      find_package(KF6 ${KF_MIN_VERSION} REQUIRED COMPONENTS
+         find_package(KF6 ${KF_MIN_VERSION} REQUIRED COMPONENTS
+            # CoreAddons      # KAboutData
+            #          I18n            # KLocalizedString
+            #         WidgetsAddons   # KMessageBox
+            ${kf6_component_list}
+         )
+
+         find_package(LibKWorkspace CONFIG REQUIRED)
+
+         find_package(Qt6 ${QT_MIN_VERSION} REQUIRED COMPONENTS
+            Core
+            DBus
+            UiTools
+            #X11Extras
+            Gui
+         )
+
+         find_package(Qt6Gui ${QT_MIN_VERSION} CONFIG REQUIRED Private)
+
+         # Find KDE modules
+
+         #feature_summary(WHAT ALL INCLUDE_QUIET_PACKAGES FATAL_ON_MISSING_REQUIRED_PACKAGES)
+         #        find_package(KDE5 REQUIRED)
+         message(STATUS "Adding KDE/xcb dependency.")
+         #        file (STRINGS $ENV{HOME}/__config/knotifications/cflags.txt knotifications_cflags)
+         #        file (STRINGS $ENV{HOME}/__config/knotifications/libs.txt knotifications_libs)
+         #        if(knotifications_cflags STREQUAL "")
+         #            set(knotifications_cflags -I/usr/include/KF5/KNotifications)
+         #        endif()
+         #        if(knotifications_libs STREQUAL "")
+         #            set(knotifications_cflags -I/usr/include/KF5/KNotifications)
+         #        endif()
+
+      elseif(${HAS_KDE5})
+
+         set(WITH_XCB TRUE)
+         add_compile_definitions(WITH_XCB=1)
+
+
+
+         set(QT_MIN_VERSION "5.3.0")
+         set(KF5_MIN_VERSION "5.2.0")
+
+         # apt install extra-cmake-modules
+         # dnf install extra-cmake-modules
+         find_package(ECM 1.0.0 REQUIRED NO_MODULE)
+         set(CMAKE_MODULE_PATH ${ECM_MODULE_PATH} ${ECM_KDE_MODULE_DIR} ${CMAKE_CURRENT_SOURCE_DIR}/cmake)
+
+         # apt install libkf5notifications-dev
+         # dnf install kf5-knotifications-devel
+
+         #include(KDEInstallDirs)
+         #include(KDECMakeSettings)
+         #include(KDECompilerSettings NO_POLICY_SCOPE)
+         #    find_package(KF5 ${KF5_MIN_VERSION} REQUIRED COMPONENTS
          # CoreAddons      # KAboutData
          #          I18n            # KLocalizedString
          #         WidgetsAddons   # KMessageBox
-         ${kf6_component_list}
-      )
+         #      Notifications
+         #     )
+         #include(FeatureSummary)
 
-      find_package(LibKWorkspace CONFIG REQUIRED)
+         # Find Qt modules
+         #find_package(Qt5 ${QT_MIN_VERSION} CONFIG REQUIRED COMPONENTS
+         #  Core    # QCommandLineParser, QStringLiteral
+         #  Widgets # QApplication
+         #  )
 
-      find_package(Qt6 ${QT_MIN_VERSION} REQUIRED COMPONENTS
-         Core
-         DBus
-         UiTools
-         #X11Extras
-         Gui
-      )
-
-      find_package(Qt6Gui ${QT_MIN_VERSION} CONFIG REQUIRED Private)
-
-      # Find KDE modules
-
-      #feature_summary(WHAT ALL INCLUDE_QUIET_PACKAGES FATAL_ON_MISSING_REQUIRED_PACKAGES)
-      #        find_package(KDE5 REQUIRED)
-      message(STATUS "Adding KDE/xcb dependency.")
-      #        file (STRINGS $ENV{HOME}/__config/knotifications/cflags.txt knotifications_cflags)
-      #        file (STRINGS $ENV{HOME}/__config/knotifications/libs.txt knotifications_libs)
-      #        if(knotifications_cflags STREQUAL "")
-      #            set(knotifications_cflags -I/usr/include/KF5/KNotifications)
-      #        endif()
-      #        if(knotifications_libs STREQUAL "")
-      #            set(knotifications_cflags -I/usr/include/KF5/KNotifications)
-      #        endif()
-
-   elseif(${HAS_KDE5})
-
-      set(WITH_XCB TRUE)
-      add_compile_definitions(WITH_XCB=1)
-
-
-
-      set(QT_MIN_VERSION "5.3.0")
-      set(KF5_MIN_VERSION "5.2.0")
-
-      # apt install extra-cmake-modules
-      # dnf install extra-cmake-modules
-      find_package(ECM 1.0.0 REQUIRED NO_MODULE)
-      set(CMAKE_MODULE_PATH ${ECM_MODULE_PATH} ${ECM_KDE_MODULE_DIR} ${CMAKE_CURRENT_SOURCE_DIR}/cmake)
-
-      # apt install libkf5notifications-dev
-      # dnf install kf5-knotifications-devel
-
-      #include(KDEInstallDirs)
-      #include(KDECMakeSettings)
-      #include(KDECompilerSettings NO_POLICY_SCOPE)
-      #    find_package(KF5 ${KF5_MIN_VERSION} REQUIRED COMPONENTS
-      # CoreAddons      # KAboutData
-      #          I18n            # KLocalizedString
-      #         WidgetsAddons   # KMessageBox
-      #      Notifications
-      #     )
-      #include(FeatureSummary)
-
-      # Find Qt modules
-      #find_package(Qt5 ${QT_MIN_VERSION} CONFIG REQUIRED COMPONENTS
-      #  Core    # QCommandLineParser, QStringLiteral
-      #  Widgets # QApplication
-      #  )
-
-      list(APPEND kf5_component_list
-         CoreAddons
-         Notifications
-         ConfigWidgets
-         KIO
-         IconThemes
-         Plasma
-      )
-
-      if(NOT ${DEBIAN})
          list(APPEND kf5_component_list
-            PlasmaQuick
-
+            CoreAddons
+            Notifications
+            ConfigWidgets
+            KIO
+            IconThemes
+            Plasma
          )
 
+         if(NOT ${DEBIAN})
+            list(APPEND kf5_component_list
+               PlasmaQuick
+
+            )
+
+         endif()
+
+
+         find_package(KF5 ${KF5_MIN_VERSION} REQUIRED COMPONENTS
+            # CoreAddons      # KAboutData
+            #          I18n            # KLocalizedString
+            #         WidgetsAddons   # KMessageBox
+            ${kf5_component_list}
+         )
+
+         find_package(LibKWorkspace CONFIG REQUIRED)
+
+         find_package(Qt5 ${QT_MIN_VERSION} REQUIRED COMPONENTS
+            Core
+            DBus
+            UiTools
+            X11Extras
+            Gui
+         )
+
+         find_package(Qt5Gui ${QT_MIN_VERSION} CONFIG REQUIRED Private)
+
+         # Find KDE modules
+
+         #feature_summary(WHAT ALL INCLUDE_QUIET_PACKAGES FATAL_ON_MISSING_REQUIRED_PACKAGES)
+         #        find_package(KDE5 REQUIRED)
+         message(STATUS "Adding KDE/xcb dependency.")
+         #        file (STRINGS $ENV{HOME}/__config/knotifications/cflags.txt knotifications_cflags)
+         #        file (STRINGS $ENV{HOME}/__config/knotifications/libs.txt knotifications_libs)
+         #        if(knotifications_cflags STREQUAL "")
+         #            set(knotifications_cflags -I/usr/include/KF5/KNotifications)
+         #        endif()
+         #        if(knotifications_libs STREQUAL "")
+         #            set(knotifications_cflags -I/usr/include/KF5/KNotifications)
+         #        endif()
+         #list(APPEND app_common_dependencies nano_graphics_cairo nano_user_kde5)
       endif()
 
 
-      find_package(KF5 ${KF5_MIN_VERSION} REQUIRED COMPONENTS
-         # CoreAddons      # KAboutData
-         #          I18n            # KLocalizedString
-         #         WidgetsAddons   # KMessageBox
-         ${kf5_component_list}
-      )
-
-      find_package(LibKWorkspace CONFIG REQUIRED)
-
-      find_package(Qt5 ${QT_MIN_VERSION} REQUIRED COMPONENTS
-         Core
-         DBus
-         UiTools
-         X11Extras
-         Gui
-      )
-
-      find_package(Qt5Gui ${QT_MIN_VERSION} CONFIG REQUIRED Private)
-
-      # Find KDE modules
-
-      #feature_summary(WHAT ALL INCLUDE_QUIET_PACKAGES FATAL_ON_MISSING_REQUIRED_PACKAGES)
-      #        find_package(KDE5 REQUIRED)
-      message(STATUS "Adding KDE/xcb dependency.")
-      #        file (STRINGS $ENV{HOME}/__config/knotifications/cflags.txt knotifications_cflags)
-      #        file (STRINGS $ENV{HOME}/__config/knotifications/libs.txt knotifications_libs)
-      #        if(knotifications_cflags STREQUAL "")
-      #            set(knotifications_cflags -I/usr/include/KF5/KNotifications)
-      #        endif()
-      #        if(knotifications_libs STREQUAL "")
-      #            set(knotifications_cflags -I/usr/include/KF5/KNotifications)
-      #        endif()
-      #list(APPEND app_common_dependencies nano_graphics_cairo nano_user_kde5)
-   endif()
+      #    list(APPEND static_app_common_dependencies
+      #            static_desktop_environment_kde
+      #            static_node_kde
+      #            static_windowing_xcb
+      #            KF5::Notifications
+      #            KF5::ConfigWidgets
+      #            KF5::IconThemes
+      #            KF5::KIOCore
+      #            KF5::KIOFileWidgets
+      #            KF5::KIOWidgets
+      #            KF5::KIONTLM
+      #            PW::KWorkspace
+      #            )
 
 
-   #    list(APPEND static_app_common_dependencies
-   #            static_desktop_environment_kde
-   #            static_node_kde
-   #            static_windowing_xcb
-   #            KF5::Notifications
-   #            KF5::ConfigWidgets
-   #            KF5::IconThemes
-   #            KF5::KIOCore
-   #            KF5::KIOFileWidgets
-   #            KF5::KIOWidgets
-   #            KF5::KIONTLM
-   #            PW::KWorkspace
-   #            )
+      if(${HAS_KDE5})
 
+      set(default_operating_ambient operating_ambient_kde5)
+      list(APPEND app_common_dependencies operating_ambient_kde5)
+      add_compile_definitions(DESKTOP_ENVIRONMENT_KDE=5)
+      add_compile_definitions(default_windowing=windowing_kde5)
+      set(default_windowing "windowing_kde5")
+      elseif(${HAS_KDE6})
 
-   if(${HAS_KDE5})
-
-   set(default_operating_ambient operating_ambient_kde5)
-   list(APPEND app_common_dependencies operating_ambient_kde5)
-   add_compile_definitions(DESKTOP_ENVIRONMENT_KDE=5)
-   add_compile_definitions(default_windowing=windowing_kde5)
-   set(default_windowing "windowing_kde5")
-   elseif(${HAS_KDE6})
-
-   set(default_operating_ambient operating_ambient_kde6)
-   list(APPEND app_common_dependencies operating_ambient_kde6)
-   add_compile_definitions(DESKTOP_ENVIRONMENT_KDE=6)
-   add_compile_definitions(default_windowing=windowing_kde6)
-   set(default_windowing "windowing_kde6")
-   endif()
+      set(default_operating_ambient operating_ambient_kde6)
+      list(APPEND app_common_dependencies operating_ambient_kde6)
+      add_compile_definitions(DESKTOP_ENVIRONMENT_KDE=6)
+      add_compile_definitions(default_windowing=windowing_kde6)
+      set(default_windowing "windowing_kde6")
+      endif()
 
 
 
 
 
-elseif (${LXDE_DESKTOP})
+   elseif (${LXDE_DESKTOP})
 
-   message(STATUS "LXDE Desktop (2)")
+      message(STATUS "LXDE Desktop (2)")
 
-   #list(APPEND app_common_dependencies operating_ambient_gtk_based)
+      #list(APPEND app_common_dependencies operating_ambient_gtk_based)
 
-   list(APPEND app_common_dependencies operating_ambient_gtk3)
+      list(APPEND app_common_dependencies operating_ambient_gtk3)
 
-   list(APPEND static_app_common_dependencies static_operating_ambient_gtk3)
+      list(APPEND static_app_common_dependencies static_operating_ambient_gtk3)
 
-   #    list(APPEND static_app_common_dependencies
-   #            static_desktop_environment_gnome
-   #            static_node_gnome
-   #            static_node_gtk
-   #            static_windowing_x11)
+      #    list(APPEND static_app_common_dependencies
+      #            static_desktop_environment_gnome
+      #            static_node_gnome
+      #            static_node_gtk
+      #            static_windowing_x11)
 
-   #set(default_windowing "windowing_x11")
+      #set(default_windowing "windowing_x11")
 
-   set(default_windowing "windowing_gtk3")
+      set(default_windowing "windowing_gtk3")
 
-   #set(default_operating_ambient operating_ambient_gtk_based)
-
-   set(default_operating_ambient operating_ambient_gtk3)
-
-   #add_compile_definitions(DESKTOP_ENVIRONMENT_GTK_BASED)
-
-   add_compile_definitions(DESKTOP_ENVIRONMENT_LXDE)
-
-   #add_compile_definitions(default_windowing=windowing_x11)
-
-   add_compile_definitions(default_windowing=windowing_gtk3)
-
-elseif (${XFCE_DESKTOP})
-
-   list(APPEND app_common_dependencies operating_ambient_gtk3)
-
-   list(APPEND static_app_common_dependencies static_operating_ambient_gtk3)
-
-   set(default_windowing "windowing_gtk3")
-
-   set(default_operating_ambient operating_ambient_gtk3)
-
-   add_compile_definitions(DESKTOP_ENVIRONMENT_XFCE)
-
-   add_compile_definitions(default_windowing=windowing_gtk3)
-
-elseif (${GTK_BASED_DESKTOP})
-
-
-   list(APPEND static_app_common_dependencies
-      static_operating_ambient_gtk4
-      static_node_gnome
-      static_node_gtk
-      static_node_linux)
-
-   set(default_common_windowing common_gtk)
-
-   if(${HAS_GTK4})
-
-      message(STATUS "Setting up GTK4 dependencies.")
-
-      set(default_acme_windowing acme_windowing_gtk4)
-
-      set(default_innate_ui innate_ui_gtk4)
-
-      set(default_windowing_common windowing_posix)
-
-      set(default_windowing windowing_gtk4)
-
-      set(default_operating_ambient operating_ambient_gtk4)
-
-      set(default_node node_gtk4)
-
-   elseif (${HAS_GTK3})
-
-      message(STATUS "Setting up GTK3 dependencies.")
-
-      set(default_acme_windowing acme_windowing_gtk3)
-
-      set(default_innate_ui innate_ui_gtk3)
-
-      set(default_windowing_common windowing_posix)
-
-      set(default_windowing windowing_gtk3)
+      #set(default_operating_ambient operating_ambient_gtk_based)
 
       set(default_operating_ambient operating_ambient_gtk3)
 
-      set(default_node node_gtk3)
+      #add_compile_definitions(DESKTOP_ENVIRONMENT_GTK_BASED)
 
+      add_compile_definitions(DESKTOP_ENVIRONMENT_LXDE)
 
-   else()
+      #add_compile_definitions(default_windowing=windowing_x11)
 
-      message(STATUS "Adding GNOME/X11 dependency.")
+      add_compile_definitions(default_windowing=windowing_gtk3)
 
-      list(APPEND app_common_dependencies nano_graphics_cairo operating_ambient_gtk_based)
+   elseif (${XFCE_DESKTOP})
+
+      list(APPEND app_common_dependencies operating_ambient_gtk3)
+
+      list(APPEND static_app_common_dependencies static_operating_ambient_gtk3)
+
+      set(default_windowing "windowing_gtk3")
+
+      set(default_operating_ambient operating_ambient_gtk3)
+
+      add_compile_definitions(DESKTOP_ENVIRONMENT_XFCE)
+
+      add_compile_definitions(default_windowing=windowing_gtk3)
+
+   elseif (${GTK_BASED_DESKTOP})
+
 
       list(APPEND static_app_common_dependencies
-         static_desktop_environment_gnome
+         static_operating_ambient_gtk4
          static_node_gnome
          static_node_gtk
-         static_node_linux
-         static_windowing_x11)
+         static_node_linux)
 
-      set(default_windowing "windowing_x11")
+      set(default_common_windowing common_gtk)
 
-      set(default_operating_ambient operating_ambient_gtk_based)
+      if(${HAS_GTK4})
 
-      add_compile_definitions(DESKTOP_ENVIRONMENT_GTK_BASED)
+         message(STATUS "Setting up GTK4 dependencies.")
+
+         set(default_acme_windowing acme_windowing_gtk4)
+
+         set(default_innate_ui innate_ui_gtk4)
+
+         set(default_windowing_common windowing_posix)
+
+         set(default_windowing windowing_gtk4)
+
+         set(default_operating_ambient operating_ambient_gtk4)
+
+         set(default_node node_gtk4)
+
+      elseif (${HAS_GTK3})
+
+         message(STATUS "Setting up GTK3 dependencies.")
+
+         set(default_acme_windowing acme_windowing_gtk3)
+
+         set(default_innate_ui innate_ui_gtk3)
+
+         set(default_windowing_common windowing_posix)
+
+         set(default_windowing windowing_gtk3)
+
+         set(default_operating_ambient operating_ambient_gtk3)
+
+         set(default_node node_gtk3)
+
+
+      else()
+
+         message(STATUS "Adding GNOME/X11 dependency.")
+
+         list(APPEND app_common_dependencies nano_graphics_cairo operating_ambient_gtk_based)
+
+         list(APPEND static_app_common_dependencies
+            static_desktop_environment_gnome
+            static_node_gnome
+            static_node_gtk
+            static_node_linux
+            static_windowing_x11)
+
+         set(default_windowing "windowing_x11")
+
+         set(default_operating_ambient operating_ambient_gtk_based)
+
+         add_compile_definitions(DESKTOP_ENVIRONMENT_GTK_BASED)
+
+      endif()
+
+      add_compile_definitions(DESKTOP_ENVIRONMENT_GNOME)
 
    endif()
-
-   add_compile_definitions(DESKTOP_ENVIRONMENT_GNOME)
-
-endif()
-
-
 
 
    list(APPEND acme_windowing_libraries
@@ -822,6 +823,7 @@ endif()
 
 
 endif()
+
 
    #set(static_acme_extra_pkgconfig cairo xcb x11 xkbcommon xcb-render xcb-aux x11-xcb)
 #set(static_aura_posix_pkgconfig libstartup-notification-1.0)
