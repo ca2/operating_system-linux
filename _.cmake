@@ -981,9 +981,6 @@ endif()
 
 
 
-add_compile_definitions(HAS_GTK3)
-
-
 if(${HAS_GTK4})
 
    unset(HAS_GTK3)
