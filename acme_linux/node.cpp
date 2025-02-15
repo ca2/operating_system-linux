@@ -749,6 +749,19 @@ namespace acme_linux
                psummary->m_strAmbient = "lxde";
 
             }
+            else if (strLowerCaseCurrentDesktop.equals("lxqt"))
+            {
+               //      elif
+               //      contains
+               //      $__SYSTEM_LOWER_CASE_CURRENT_DESKTOP
+               //      "lxde";
+               //      then
+               //
+               //# echo "lower case xdg_current_desktop contains lxde"
+
+               psummary->m_strAmbient = "lxqt";
+
+            }
             else if (strLowerCaseCurrentDesktop.equals("x-cinnamon"))
             {
                //      elif
@@ -800,6 +813,13 @@ namespace acme_linux
          {
 
             psummary->m_strSystemAmbientRelease = "xubuntu/" + psummary->m_strSystemRelease;
+
+         }
+         else if (psummary->m_strAmbient.case_insensitive_equals("lxde")
+            || psummary->m_strAmbient.case_insensitive_equals("lxqt"))
+         {
+
+            psummary->m_strSystemAmbientRelease = "lubuntu/" + psummary->m_strSystemRelease;
 
          }
          else
