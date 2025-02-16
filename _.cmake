@@ -205,7 +205,9 @@ elseif (${__OPERATING_SYSTEM} STREQUAL "debian")
 
    set(HAS_SYSTEM_UNAC TRUE)
 
-elseif (${__OPERATING_SYSTEM} STREQUAL "opensuse-leap" OR ${__OPERATING_SYSTEM} STREQUAL "opensuse-tumbleweed")
+elseif (${__OPERATING_SYSTEM} STREQUAL "opensuse-leap"
+   OR ${__OPERATING_SYSTEM} STREQUAL "opensuse-tumbleweed"
+   OR ${__OPERATING_SYSTEM} STREQUAL "opensuse")
 
    set(SUSE TRUE)
 
