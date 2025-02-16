@@ -259,17 +259,22 @@ elseif ("${__OPERATING_SYSTEM}" STREQUAL "raspbian")
 
    message(STATUS "RASPBERRYPIOS defined!!")
 
-elseif (${__OPERATING_SYSTEM} STREQUAL "manjaro")
+elseif (${__OPERATING_SYSTEM} STREQUAL "manjaro"
+   OR ${__OPERATING_SYSTEM} STREQUAL "manjarolinux")
 
    set(MANJARO TRUE)
 
    set(ARCH_LIKE TRUE)
 
-   add_compile_definitions(ARCH_LIKE_LINUX)
+   add_compile_definitions(MANJARO_LINUX)
+
+   add_compile_definitions(__ARCH_LINUX__)
 
    message(STATUS "MANJARO has been set TRUE")
 
-   set(APPINDICATOR_PKG_MODULE "ayatana-appindicator3-0.1")
+   #set(APPINDICATOR_PKG_MODULE "ayatana-appindicator3-0.1")
+
+   set(APPINDICATOR_PKG_MODULE "appindicator3-0.1")
 
    set(MPG123_PKG_MODULE "libmpg123")
 
