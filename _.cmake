@@ -469,6 +469,8 @@ if(${DESKTOP_AMBIENT})
 
          set(HAS_Q6 TRUE)
 
+         message(STATUS "LXQ2 HAS_Q6")
+
          find_package(PkgConfig REQUIRED)
          find_package(Qt6 REQUIRED COMPONENTS Core Widgets)
 #         project(LXQtIconFinder)
@@ -605,15 +607,15 @@ if(${DESKTOP_AMBIENT})
 
          find_package(LibKWorkspace CONFIG REQUIRED)
 
-         find_package(Qt6 ${QT_MIN_VERSION} REQUIRED COMPONENTS
-            Core
-            DBus
-            UiTools
-            #X11Extras
-            Gui
-         )
-
-         find_package(Qt6Gui ${QT_MIN_VERSION} CONFIG REQUIRED Private)
+#         find_package(Qt6 ${QT_MIN_VERSION} REQUIRED COMPONENTS
+#            Core
+#            DBus
+#            UiTools
+#            #X11Extras
+#            Gui
+#         )
+#
+#         find_package(Qt6Gui ${QT_MIN_VERSION} CONFIG REQUIRED Private)
 
          # Find KDE modules
 
@@ -865,6 +867,23 @@ if(${DESKTOP_AMBIENT})
       endif()
 
       add_compile_definitions(DESKTOP_ENVIRONMENT_GNOME)
+
+   endif()
+
+
+   if(${HAS_Q6})
+
+      message(STATUS "HAS_Q6")
+
+      find_package(Qt6 ${QT_MIN_VERSION} REQUIRED COMPONENTS
+         Core
+         DBus
+         UiTools
+         #X11Extras
+         Gui
+      )
+
+      find_package(Qt6Gui ${QT_MIN_VERSION} CONFIG REQUIRED Private)
 
    endif()
 
