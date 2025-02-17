@@ -117,7 +117,7 @@ namespace acme_linux
             m_elinuxdistribution = e_linux_distribution_ubuntu;
 
          }
-         else if (strId == "manjaro")
+         else if (strId == "manjaro" || strId == "manjarolinux")
          {
 
             m_elinuxdistribution = e_linux_distribution_manjaro;
@@ -661,12 +661,6 @@ namespace acme_linux
          psummary->m_strSystemFamily = "zypper";
 
       }
-//      else if (psummary->m_strSystem.case_insensitive_equals("manjaro"))
-//      {
-//
-//         psummary->m_strSystemRelease.empty();
-//
-//      }
 
       if (psummary->m_strSystem.case_insensitive_equals("fedora"))
       {
@@ -858,6 +852,14 @@ namespace acme_linux
 
          psummary->m_strSudoInstall = "sudo zypper --non-interactive install";
          psummary->m_strStandardPackageFileExtension = "rpm";
+         psummary->m_strPackagePlatform = "x86_64";
+
+      }
+      else if (psummary->m_strSystemFamily == "arch")
+      {
+
+         psummary->m_strSudoInstall = "sudo pacman -S";
+         //psummary->m_strStandardPackageFileExtension = "rpm";
          psummary->m_strPackagePlatform = "x86_64";
 
       }
