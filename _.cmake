@@ -491,12 +491,13 @@ if(${DESKTOP_AMBIENT})
 #            LXQt::GlobalKeys
 #         )
 
-
+         list(APPEND default_acme_windowing common_q acme_windowing_q6 acme_windowing_lxq2)
+         list(APPEND default_innate_ui innate_ui_q innate_ui_q6 innate_ui_lxq2)
          set(default_operating_ambient operating_ambient_lxq2)
          list(APPEND app_common_dependencies operating_ambient_lxq2)
          add_compile_definitions(OPERATING_AMBIENT_LXQ=2)
          add_compile_definitions(default_windowing=windowing_lxq2)
-         set(default_windowing "windowing_lxq2")
+         list(APPEND default_windowing windowing_q windowing_q6 windowing_lxq2)
 
 
       elseif(${HAS_LXQ1})
@@ -1012,7 +1013,7 @@ if(${HAS_GTK4})
    unset(HAS_GTK3)
    message(STATUS "HAS_GTK4 is TRUE")
    add_compile_definitions(HAS_GTK4)
-   set(default_acme_windowing acme_windowing_gtk4)
+   list(APPEND default_acme_windowing acme_windowing_gtk4)
    set(default_innate_ui innate_ui_gtk4)
 
 endif()
