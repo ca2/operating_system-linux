@@ -6,6 +6,7 @@ if (NOT ${CMAKE_SYSTEM_NAME} STREQUAL "Linux")
 
 endif ()
 
+#list(APPEND CMAKE_PREFIX_PATH "/usr/lib/x86_64-linux-gnu/cmake")
 
 #message(STATUS "CMAKE_SYSTEM_NAME is ${CMAKE_SYSTEM_NAME}")
 
@@ -463,7 +464,7 @@ if(${DESKTOP_AMBIENT})
       if(${HAS_LXQ2})
 
 
-         set(KF_MIN_VERSION "6.6.0")
+         set(KF_MIN_VERSION "6.0.0")
          set(QT_MIN_VERSION "6.6.0")
          #set(LXQT_MIN_VERSION "2.1.0")
 
@@ -540,7 +541,7 @@ if(${DESKTOP_AMBIENT})
          set(HAS_Q6 TRUE)
 
 
-         set(KF_MIN_VERSION "6.6.0")
+         set(KF_MIN_VERSION "6.0.0")
          set(QT_MIN_VERSION "6.6.0")
 
          find_package(ECM ${KF_MIN_VERSION} REQUIRED NO_MODULE)
@@ -584,6 +585,7 @@ if(${DESKTOP_AMBIENT})
             CoreAddons
             Notifications
             ConfigWidgets
+            Config
             KIO
             IconThemes
             StatusNotifierItem
