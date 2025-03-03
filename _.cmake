@@ -20,6 +20,7 @@ endif ()
 set(FREEBSD FALSE)
 set(DEBIAN FALSE)
 set(FEDORA FALSE)
+set(UBUNTU FALSE)
 set(USE_PKGCONFIG TRUE)
 set(CURL_NANO_HTTP TRUE)
 set(HAS_WAYLAND TRUE)
@@ -509,7 +510,16 @@ if(${DESKTOP_AMBIENT})
          set(HAS_Q5 TRUE)
 
          find_package(PkgConfig REQUIRED)
-         find_package(Qt5 REQUIRED COMPONENTS Core Widgets)
+         #find_package(Qt5 REQUIRED COMPONENTS Core Widgets)
+
+         find_package(Qt5 ${QT_MIN_VERSION} REQUIRED COMPONENTS
+            Core
+            DBus
+            UiTools
+            X11Extras
+            Gui
+         )
+
          #find_package(LXQt REQUIRED)
          #find_package(LXQtGlobalKeys REQUIRED)
 
