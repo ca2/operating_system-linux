@@ -901,6 +901,68 @@ if(${DESKTOP_AMBIENT})
    endif()
 
 
+
+
+   if(${HAS_GTK4})
+      message(STATUS "HAS_GTK4 is true, deactivating APPINDICATOR_PKG_MODULE")
+      set(APPINDICATOR_PKG_MODULE "")
+   endif()
+
+
+
+
+   if(${HAS_GTK4})
+
+      unset(HAS_GTK3)
+      message(STATUS "HAS_GTK4 is TRUE")
+      add_compile_definitions(HAS_GTK4)
+      list(APPEND default_acme_windowing acme_windowing_g acme_windowing_gtk4)
+      set(default_innate_ui innate_ui_gtk4)
+
+   endif()
+
+
+   if(${HAS_GTK3})
+
+      unset(HAS_GTK4)
+      message(STATUS "HAS_GTK3 is TRUE")
+      add_compile_definitions(HAS_GTK3)
+      list(APPEND default_acme_windowing acme_windowing_g cme_windowing_gtk3)
+      set(default_innate_ui innate_ui_gtk3)
+
+   endif()
+
+
+
+   if(${HAS_KDE5})
+
+      message(STATUS "HAS_KDE5 had been set")
+      add_compile_definitions(HAS_KDE5)
+      list(APPEND default_acme_windowing acme_windowing_q acme_windowing_kde5)
+      set(default_innate_ui innate_ui_kde5)
+
+      message(STATUS "HAS_KDE5 is true, deactivating APPINDICATOR_PKG_MODULE")
+      set(APPINDICATOR_PKG_MODULE "")
+
+   endif()
+
+
+
+   if(${HAS_KDE6})
+
+      message(STATUS "HAS_KDE6 had been set")
+      add_compile_definitions(HAS_KDE6)
+      list(APPEND default_acme_windowing acme_windowing_q acme_windowing_kde6)
+      set(default_innate_ui innate_ui_kde6)
+
+      message(STATUS "HAS_KDE6 is true, deactivating APPINDICATOR_PKG_MODULE")
+      set(APPINDICATOR_PKG_MODULE "")
+
+   endif()
+
+
+
+
    list(APPEND acme_windowing_libraries
       ${default_nano_graphics}
       ${default_acme_windowing}
@@ -1007,66 +1069,6 @@ set(INCLUDE_IMAGING_FREEIMAGE TRUE)
 
 set(STORE_FOLDER $ENV{HOME}/store/${SLASHED_OPERATING_SYSTEM})
 
-
-
-
-
-if(${HAS_GTK4})
-message(STATUS "HAS_GTK4 is true, deactivating APPINDICATOR_PKG_MODULE")
-set(APPINDICATOR_PKG_MODULE "")
-endif()
-
-
-
-
-if(${HAS_GTK4})
-
-   unset(HAS_GTK3)
-   message(STATUS "HAS_GTK4 is TRUE")
-   add_compile_definitions(HAS_GTK4)
-   list(APPEND default_acme_windowing acme_windowing_g acme_windowing_gtk4)
-   set(default_innate_ui innate_ui_gtk4)
-
-endif()
-
-
-if(${HAS_GTK3})
-
-   unset(HAS_GTK4)
-   message(STATUS "HAS_GTK3 is TRUE")
-   add_compile_definitions(HAS_GTK3)
-   list(APPEND default_acme_windowing acme_windowing_g cme_windowing_gtk3)
-   set(default_innate_ui innate_ui_gtk3)
-
-endif()
-
-
-
-if(${HAS_KDE5})
-
-   message(STATUS "HAS_KDE5 had been set")
-   add_compile_definitions(HAS_KDE5)
-   list(APPEND default_acme_windowing acme_windowing_q acme_windowing_kde5)
-   set(default_innate_ui innate_ui_kde5)
-
-   message(STATUS "HAS_KDE5 is true, deactivating APPINDICATOR_PKG_MODULE")
-   set(APPINDICATOR_PKG_MODULE "")
-
-endif()
-
-
-
-if(${HAS_KDE6})
-
-   message(STATUS "HAS_KDE6 had been set")
-   add_compile_definitions(HAS_KDE6)
-   list(APPEND default_acme_windowing acme_windowing_q acme_windowing_kde6)
-   set(default_innate_ui innate_ui_kde6)
-
-   message(STATUS "HAS_KDE6 is true, deactivating APPINDICATOR_PKG_MODULE")
-   set(APPINDICATOR_PKG_MODULE "")
-
-endif()
 
 
 
