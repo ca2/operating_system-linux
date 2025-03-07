@@ -476,7 +476,7 @@ if(${DESKTOP_AMBIENT})
          find_package(PkgConfig REQUIRED)
          find_package(Qt6 REQUIRED COMPONENTS Core Widgets)
 #         project(LXQtIconFinder)
-         find_package(LXQt REQUIRED)
+#         find_package(LXQt REQUIRED)
 #
 #         # Find required Qt5 components
 #         find_package(Qt5 REQUIRED COMPONENTS Core Widgets Gui)
