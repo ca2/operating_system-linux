@@ -678,11 +678,12 @@ namespace acme_linux
 
       if (psummary->m_strAmbient.is_empty())
       {
+
          ///# echo "DESKTOP_ENVIRONMENT is empty here"
 
-         if (psummary->m_strSystemFamily.case_insensitive_equals("debian")
-             || psummary->m_strSystemFamily.case_insensitive_equals("zypper")
-             || psummary->m_strSystemFamily.case_insensitive_equals("arch"))
+         //if (psummary->m_strSystemFamily.case_insensitive_equals("debian")
+         //    || psummary->m_strSystemFamily.case_insensitive_equals("zypper")
+         //    || psummary->m_strSystemFamily.case_insensitive_equals("arch"))
          {
             //      if [ "$__OPERATING_SYSTEM_FAMILY" = "debian" ] || [ "$__OPERATING_SYSTEM_FAMILY" = "zypper" ] || [ "$__OPERATING_SYSTEM_FAMILY" = "arch" ];
             //      then
@@ -774,25 +775,31 @@ namespace acme_linux
 
       }
 
-      if (psummary->m_strSystemFamily.case_insensitive_equals("debian"))
+      if (psummary->m_strSystemBranch.is_empty())
       {
+
+         // if (psummary->m_strSystemFamily.case_insensitive_equals("debian"))
+         // {
+         //
+         //    psummary->m_strSystemBranch = psummary->m_strAmbient;
+         //
+         // }
+         // else if (psummary->m_strSystemFamily.case_insensitive_equals("zypper"))
+         // {
+         //
+         //    psummary->m_strSystemBranch = psummary->m_strAmbient;
+         //
+         // }
+         // else if (psummary->m_strSystemFamily.case_insensitive_equals("arch"))
+         // {
+         //
+         //    psummary->m_strSystemBranch = psummary->m_strAmbient;
+         //
+         // }
 
          psummary->m_strSystemBranch = psummary->m_strAmbient;
 
       }
-      else if (psummary->m_strSystemFamily.case_insensitive_equals("zypper"))
-      {
-
-         psummary->m_strSystemBranch = psummary->m_strAmbient;
-
-      }
-      else if (psummary->m_strSystemFamily.case_insensitive_equals("arch"))
-      {
-
-         psummary->m_strSystemBranch = psummary->m_strAmbient;
-
-      }
-
 
       if (psummary->m_strSystem.case_insensitive_equals("ubuntu"))
       {
