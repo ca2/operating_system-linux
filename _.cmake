@@ -927,7 +927,7 @@ if(${DESKTOP_AMBIENT})
       unset(HAS_GTK4)
       message(STATUS "HAS_GTK3 is TRUE")
       add_compile_definitions(HAS_GTK3)
-      list(APPEND default_acme_windowing acme_windowing_g cme_windowing_gtk3)
+      list(APPEND default_acme_windowing acme_windowing_g acme_windowing_gtk3)
       set(default_innate_ui innate_ui_gtk3)
 
    endif()
