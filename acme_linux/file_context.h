@@ -37,7 +37,7 @@ namespace acme_linux
       //virtual ::file::path _
 
 
-      virtual ::file::path dropbox_info_network_payload() override;
+      //virtual ::file::path dropbox_info_network_payload() override;
 
       void erase(const ::file::path & path) override;
 

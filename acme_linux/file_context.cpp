@@ -105,20 +105,20 @@ namespace acme_linux
 //   }
 
 
-   ::file::path file_context::dropbox_info_network_payload()
-   {
-
-      ::file::path pathNetworkPayload;
-
-      auto psystem = system();
-
-      auto pacmedir = psystem->m_pdirectorysystem;
-
-      pathNetworkPayload = pacmedir->home() / ".dropbox/info.json";
-
-      return pathNetworkPayload;
-
-   }
+   // ::file::path file_context::dropbox_info_network_payload()
+   // {
+   //
+   //    ::file::path pathNetworkPayload;
+   //
+   //    auto psystem = system();
+   //
+   //    auto pacmedir = psystem->m_pdirectorysystem;
+   //
+   //    pathNetworkPayload = pacmedir->home() / ".dropbox/info.json";
+   //
+   //    return pathNetworkPayload;
+   //
+   // }
 
 
    void file_context::erase(const ::file::path & path)
