@@ -649,7 +649,7 @@ if(${DESKTOP_AMBIENT})
          set(WITH_XCB TRUE)
          add_compile_definitions(WITH_XCB=1)
 
-         set(HAS_Q6 TRUE)
+         set(HAS_Q5 TRUE)
 
          set(QT_MIN_VERSION "5.3.0")
          set(KF5_MIN_VERSION "5.2.0")
