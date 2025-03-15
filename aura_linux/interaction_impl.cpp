@@ -2830,10 +2830,10 @@
 // //   }
 // //
 // //
-// //   bool interaction_impl::SetTimer(uptr uEvent, unsigned int nElapse, PFN_TIMER pfnTimer)
+// //   bool interaction_impl::set_timer(uptr uEvent, unsigned int nElapse, PFN_TIMER pfnTimer)
 // //   {
 // //
-// //      return ::windowing::window::SetTimer(uEvent, nElapse, pfnTimer);
+// //      return ::windowing::window::set_timer(uEvent, nElapse, pfnTimer);
 // //
 // //
 // ////        __UNREFERENCED_PARAMETER(pfnTimer);
@@ -2845,16 +2845,16 @@
 // //
 // //      //throw ::not_implemented();
 // //      //ASSERT(::is_window((oswindow) get_handle()));
-// //      //return ::SetTimer(get_handle(), uEvent, nElapse, pfnTimer);
+// //      //return ::set_timer(get_handle(), uEvent, nElapse, pfnTimer);
 // //
 // //
 // //   }
 // //
 // //
-// //   bool interaction_impl::KillTimer(uptr uEvent)
+// //   bool interaction_impl::kill_timer(uptr uEvent)
 // //   {
 // //
-// //      return ::windowing::window::KillTimer(uEvent);
+// //      return ::windowing::window::kill_timer(uEvent);
 // //
 // ////       m_puserinteraction->get_app()->unset_timer(m_puserinteraction, uEvent);
 // //
@@ -2863,7 +2863,7 @@
 // //      //return ::user::int
 // //
 // //      //ASSERT(::is_window((oswindow) get_handle()));
-// //      //return ::KillTimer(get_handle(), uEvent)  != false;
+// //      //return ::kill_timer(get_handle(), uEvent)  != false;
 // //
 // //   }
 //
