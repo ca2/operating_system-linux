@@ -17,6 +17,7 @@ default_apex_platform2=operating_system-posix/apex_posix
 default_aura_platform1=operating_system-linux/aura_linux
 default_aura_platform2=operating_system-posix/aura_posix
 default_nano_idn=app/nano_idn_libidn
+port/idn=none
 port/libcrypto=none
 port/libssl=none
 port/zlib=none
