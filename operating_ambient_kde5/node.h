@@ -35,7 +35,7 @@ namespace operating_ambient_kde5
 
       //virtual bool aaa_windowing_message_loop_step();
 
-//      void handle(::topic * ptopic, ::context * pcontext) override;
+//      void handle(::topic * ptopic, ::handler_context * phandlercontext) override;
 //
 //      bool should_launch_on_node(::topic * ptopic) override;
 //

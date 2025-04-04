@@ -302,7 +302,7 @@ namespace operating_ambient_kde5
 //   }
 
 
-//   void node::handle(::topic * ptopic, ::context * pcontext)
+//   void node::handle(::topic * ptopic, ::handler_context * phandlercontext)
 //   {
 //
 ////      if(ptopic->id() == ::id_operating_system_user_theme_change)
@@ -312,7 +312,7 @@ namespace operating_ambient_kde5
 ////
 ////      }
 //
-//      ::node_gnome::node::handle(ptopic, pcontext);
+//      ::node_gnome::node::handle(ptopic, phandlercontext);
 //
 //   }
 
