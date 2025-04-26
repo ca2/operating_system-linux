@@ -1,8 +1,7 @@
 #include "framework.h"
 #include "node.h"
-
 #include "acme/filesystem/filesystem/path_system.h"
-
+#include "acme/filesystem/filesystem/file_context.h"
 #include "file_system.h"
 #include "acme/filesystem/filesystem/directory_system.h"
 #include "acme/filesystem/filesystem/listing.h"
@@ -129,7 +128,7 @@ namespace acme_linux
       if(m_elinuxdistribution <= 0)
       {
 
-         informationf("warning: Unknown linux distribution with id \"" + strId + "\".");
+         information("warning: Unknown linux distribution with id \"" + strId + "\".");
 
          m_elinuxdistribution = e_linux_distribution_unknown;
 
@@ -345,7 +344,7 @@ namespace acme_linux
       fork([this, str]()
            {
 
-               int iError = ::system("xdg-open \"" + str + "\" & ");
+               int iError = ::system(::string("xdg-open \"" + str + "\" & "));
 
                if(iError != 0)
                {
@@ -448,7 +447,7 @@ namespace acme_linux
       if (file_system()->exists("/etc/os-release"))
       {
 
-         auto set = file_system()->parse_standard_configuration("/etc/os-release");
+         auto set = file()->get_standard_configuration("/etc/os-release");
 
          psummary->m_strName = set["PRETTY_NAME"];
          psummary->m_strSystemName = set["NAME"];
@@ -505,7 +504,7 @@ namespace acme_linux
          if (psummary->m_strSystemFamily.case_insensitive_equals("arch"))
          {
 
-            auto setArch = file_system()->parse_standard_configuration("/etc/lsb-release");
+            auto setArch = file()->get_standard_configuration("/etc/lsb-release");
 
             psummary->m_strSystemRelease = setArch["DISTRIB_RELEASE"];
             psummary->m_strSystemRelease.make_lower();
@@ -559,7 +558,7 @@ namespace acme_linux
       {
 
          //# For some versions of Debian/Ubuntu without lsb_release command
-         auto set = file_system()->parse_standard_configuration("/etc/lsb-release");
+         auto set = file()->get_standard_configuration("/etc/lsb-release");
          //./ etc / lsb - release
 
          strOs = set["DISTRIB_ID"];
