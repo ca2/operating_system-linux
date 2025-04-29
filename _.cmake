@@ -1,5 +1,11 @@
 
 
+if(CMAKE_BUILD_TYPE STREQUAL "Release")
+   set(CMAKE_CXX_FLAGS_RELEASE "${CMAKE_CXX_FLAGS_RELEASE} -g")
+   set(CMAKE_C_FLAGS_RELEASE "${CMAKE_C_FLAGS_RELEASE} -g")
+endif()
+
+
 if (NOT ${CMAKE_SYSTEM_NAME} STREQUAL "Linux")
 
    error("This file is designed to be used only for linux systems...")
