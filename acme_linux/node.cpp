@@ -457,7 +457,8 @@ namespace acme_linux
 
          psummary->m_strAmbientName = psummary->m_strSystemBranchName;
 
-         psummary->m_strSystem = set["ID"];
+         ::string strId = set["ID"];
+         psummary->m_strSystem = strId;
          psummary->m_strSystemBranch = set["VARIANT_ID"];
          psummary->m_strSystemRelease = set["VERSION_ID"];
          psummary->m_strSystemFamily = set["ID_LIKE"];
