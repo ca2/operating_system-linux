@@ -676,6 +676,8 @@ namespace acme_linux
 
       ::file::listing listing;
 
+      listing.set_folder_listing(path);
+
       enumerate(listing);
 
       return listing.get_size() > 0;
