@@ -770,7 +770,7 @@ namespace apex_linux
 
       auto pnode = psystem->node();
 
-      pnode->open_url_link_at_system_browser(strUrl);
+      pnode->open_internet_link_in_system_browser(strUrl);
 
    }
 
