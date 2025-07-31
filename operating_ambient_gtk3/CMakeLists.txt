@@ -71,7 +71,7 @@ if (MSVC)
     target_link_libraries(${PROJECT_NAME} PRIVATE ${library_references})
 elseif (LINUX)
 
-    if (USE_PKGCONFIG)
+    if (${USE_PKGCONFIG})
         pkg_check_modules(PKGCONFIG glib-2.0 gtk+-3.0 gdk-3.0 ${APPINDICATOR_PKG_MODULE})
     endif ()
 
