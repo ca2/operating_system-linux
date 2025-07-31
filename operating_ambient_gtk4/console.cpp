@@ -198,7 +198,7 @@ namespace acme_linux
    }
 
 
-   void console::write(const ::string & str)
+   void console::write(const ::scoped_string & scopedstr)
    {
 
       __console_write(m_pscreen, str);

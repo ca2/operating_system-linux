@@ -189,7 +189,7 @@
 //
 //
 //       // oswindow Text Functions
-//       //void set_window_text(const ::string & strString) override;
+//       //void set_window_text(const ::scoped_string & scopedstrString) override;
 //
 //       //character_count GetWindowText(char * pszStringBuf, character_count nMaxCount);
 //

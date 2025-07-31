@@ -657,7 +657,7 @@ namespace draw2d_gdiplus
 
       ::Gdiplus::Graphics * pgraphics = (::Gdiplus::Graphics *)get_graphics()->get_os_data();
 
-      wstring wstr(psz);
+      wstring wstr(scopedstr);
 
       // Create an image and a thumbnail of the pimage->
       ::Gdiplus::Image image(wstr);

@@ -37,7 +37,7 @@ namespace apex_linux
 
       void _001InitializeShellOpen() override;
 
-      //void shell_open(const ::file::path & path, const ::string& strParams, const ::file::path & pathFolder) override;
+      //void shell_open(const ::file::path & path, const ::scoped_string & scopedstrParams, const ::file::path & pathFolder) override;
 
       void on_create_app_shortcut(::platform::application * papplication) override;
 
@@ -69,24 +69,24 @@ namespace apex_linux
       ::payload connection_settings_get_auto_config_url() override;
 
 
-      virtual bool local_machine_set_run(const ::string & pszKey, const ::string & pszCommand);
-      virtual bool local_machine_set_run_once(const ::string & pszKey, const ::string & pszCommand);
-      virtual bool current_user_set_run(const ::string & pszKey, const ::string & pszCommand);
-      virtual bool current_user_set_run_once(const ::string & pszKey, const ::string & pszCommand);
+      virtual bool local_machine_set_run(const ::scoped_string & scopedstrKey, const ::scoped_string & scopedstrCommand);
+      virtual bool local_machine_set_run_once(const ::scoped_string & scopedstrKey, const ::scoped_string & scopedstrCommand);
+      virtual bool current_user_set_run(const ::scoped_string & scopedstrKey, const ::scoped_string & scopedstrCommand);
+      virtual bool current_user_set_run_once(const ::scoped_string & scopedstrKey, const ::scoped_string & scopedstrCommand);
       void defer_register_ca2_plugin_for_mozilla() override;
 
-      void file_extension_get_open_with_list_keys(string_array & straKey, const ::string & pszExtension) override;
-      void file_extension_get_open_with_list_commands(string_array & straCommand, const ::string & pszExtension) override;
+      void file_extension_get_open_with_list_keys(string_array & straKey, const ::scoped_string & scopedstrExtension) override;
+      void file_extension_get_open_with_list_commands(string_array & straCommand, const ::scoped_string & scopedstrExtension) override;
 
-      void file_association_set_default_icon(const ::string & pszExtension, const ::string & pszExtensionNamingClass, const ::string & pszIconPath) override;
-      void file_association_set_shell_open_command(const ::string & pszExtension, const ::string & pszExtensionNamingClass,  const ::string & pszCommand, const ::string & pszParam) override;
-      void file_association_get_shell_open_command(const ::string & pszExtension, string & strExtensionNamingClass, string & strCommand, string & strParam) override;
+      void file_association_set_default_icon(const ::scoped_string & scopedstrExtension, const ::scoped_string & scopedstrExtensionNamingClass, const ::scoped_string & scopedstrIconPath) override;
+      void file_association_set_shell_open_command(const ::scoped_string & scopedstrExtension, const ::scoped_string & scopedstrExtensionNamingClass,  const ::scoped_string & scopedstrCommand, const ::scoped_string & scopedstrParam) override;
+      void file_association_get_shell_open_command(const ::scoped_string & scopedstrExtension, string & strExtensionNamingClass, string & strCommand, string & strParam) override;
 
 
       virtual bool open_in_ie(const ::string & pcsz);
 
 
-      void link_open(const ::string & strUrl, const ::string & strProfile);
+      void link_open(const ::scoped_string & scopedstrUrl, const ::scoped_string & scopedstrProfile);
 
 
       virtual bool create_service(::particle * pparticle);
@@ -106,7 +106,7 @@ namespace apex_linux
 
       void get_default_browser(string & strId, ::file::path & path, string & strParam) override;
 
-      void file_open(const ::file::path & pathTarget, const ::string & strParams = "", const ::file::path & pathFolder = "") override;
+      void file_open(const ::file::path & pathTarget, const ::scoped_string & scopedstrParams = "", const ::file::path & pathFolder = "") override;
 
       void list_process(::file::path_array & patha, ::process_identifier_array & processidentifierarray) override;
 

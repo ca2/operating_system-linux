@@ -204,7 +204,7 @@ namespace draw2d_gdiplus
    bool graphics::CreateDC(const char * pszDriverName, const char * pszDeviceName, const char * pszOutput, const void * lpInitData)
    {
 
-      return attach_hdc(::CreateDCW(wstring(pszDriverName), wstring(pszDeviceName), wstring(pszOutput), (const DEVMODEW*)lpInitData));
+      return attach_hdc(::CreateDCW(wstring(scopedstrDriverName), wstring(scopedstrDeviceName), wstring(scopedstrOutput), (const DEVMODEW*)lpInitData));
 
    }
 
@@ -212,7 +212,7 @@ namespace draw2d_gdiplus
    bool graphics::CreateIC(const char * pszDriverName, const char * pszDeviceName, const char * pszOutput, const void * lpInitData)
    {
 
-      return attach_hdc(::CreateICW(wstring(pszDriverName), wstring(pszDeviceName), wstring(pszOutput), (const DEVMODEW*) lpInitData));
+      return attach_hdc(::CreateICW(wstring(scopedstrDriverName), wstring(scopedstrDeviceName), wstring(scopedstrOutput), (const DEVMODEW*) lpInitData));
 
    }
 
@@ -2162,7 +2162,7 @@ namespace draw2d_gdiplus
    }
 
 
-   bool graphics::ExtTextOut(double x, double y,UINT nOptions,const double_rectangle &  rectParam, const string & str, LPINT pDxWidths)
+   bool graphics::ExtTextOut(double x, double y,UINT nOptions,const double_rectangle &  rectParam, const ::scoped_string & scopedstr, LPINT pDxWidths)
    {
 
       //ASSERT(get_handle1() != nullptr);
@@ -2190,7 +2190,7 @@ namespace draw2d_gdiplus
    }
 
 
-   double_size graphics::TabbedTextOut(double x, double y, const string & str, ::collection::count nTabPositions, LPINT pnTabStopPositions, int nTabOrigin)
+   double_size graphics::TabbedTextOut(double x, double y, const ::scoped_string & scopedstr, ::collection::count nTabPositions, LPINT pnTabStopPositions, int nTabOrigin)
    {
 
       //ASSERT(get_handle1() != nullptr);
@@ -2218,7 +2218,7 @@ namespace draw2d_gdiplus
    }
 
 
-   double_size graphics::GetTabbedTextExtent(const string & str, ::collection::count nTabPositions, LPINT pnTabStopPositions)
+   double_size graphics::GetTabbedTextExtent(const ::scoped_string & scopedstr, ::collection::count nTabPositions, LPINT pnTabStopPositions)
    {
 
       //ASSERT(get_handle2() != nullptr);
@@ -2246,7 +2246,7 @@ namespace draw2d_gdiplus
    }
 
 
-   double_size graphics::GetOutputTabbedTextExtent(const string & str, ::collection::count nTabPositions, LPINT pnTabStopPositions)
+   double_size graphics::GetOutputTabbedTextExtent(const ::scoped_string & scopedstr, ::collection::count nTabPositions, LPINT pnTabStopPositions)
    {
 
       //ASSERT(get_handle1() != nullptr);
@@ -4238,7 +4238,7 @@ namespace draw2d_gdiplus
 
       di.cbSize = sizeof(DOCINFOW);
 
-      di.lpszDocName = wstring(pszDocName);
+      di.lpszDocName = wstring(scopedstrDocName);
 
 
       return StartDoc(&di);
@@ -5310,7 +5310,7 @@ namespace draw2d_gdiplus
    }
 
 
-   bool graphics::_001DrawText(const string & str, double_rectangle & rectParam, const ::e_align & ealign, const ::e_draw_text & edrawtext, bool bMeasure)
+   bool graphics::_001DrawText(const ::scoped_string & scopedstr, double_rectangle & rectParam, const ::e_align & ealign, const ::e_draw_text & edrawtext, bool bMeasure)
    {
 
       if (::is_null(m_pgraphics))
@@ -5366,7 +5366,7 @@ namespace draw2d_gdiplus
    //   // these flags would modify the string
    //   //ASSERT((nFormat & (DT_END_ELLIPSIS | DT_MODIFYSTRING)) != (DT_END_ELLIPSIS | DT_MODIFYSTRING));
    //   //ASSERT((nFormat & (DT_PATH_ELLIPSIS | DT_MODIFYSTRING)) != (DT_PATH_ELLIPSIS | DT_MODIFYSTRING));
-   //   //wstring text.m_wstr = utf8_to_unicode(string(pszString, nCount));
+   //   //wstring text.m_wstr = utf8_to_unicode(string(scopedstrString, nCount));
 
    //   //return ::DrawTextExW(get_handle1(),const_cast<wchar_t *>((const wchar_t *)text.m_wstr),(int)wcslen(text.m_wstr),(RECT *) &rectParam,nFormat,pDTParams);
 
@@ -5377,7 +5377,7 @@ namespace draw2d_gdiplus
    //}
 
 
-   bool graphics::draw_text_ex(const string & str,const double_rectangle & rectParam, const ::e_align & ealign, const ::e_draw_text & edrawtext)
+   bool graphics::draw_text_ex(const ::scoped_string & scopedstr,const double_rectangle & rectParam, const ::e_align & ealign, const ::e_draw_text & edrawtext)
    {
 
       if (::is_null(m_pgraphics))
@@ -5409,12 +5409,12 @@ namespace draw2d_gdiplus
 
    //   }
 
-   //   return ::draw2d::graphics::draw_text_ex(pszString,nCount,rectParam,nFormat,lpDTParams);
+   //   return ::draw2d::graphics::draw_text_ex(scopedstrString,nCount,rectParam,nFormat,lpDTParams);
 
    //}
 
 
-   //bool graphics::draw_text_ex(const string& str, const ::double_rectangle &rectParam, const ::e_align & ealign, const ::e_draw_text & edrawtext)
+   //bool graphics::draw_text_ex(const ::scoped_string & scopedstr, const ::double_rectangle &rectParam, const ::e_align & ealign, const ::e_draw_text & edrawtext)
    //{
 
    //   if (::is_null(m_pgraphics))
@@ -5429,7 +5429,7 @@ namespace draw2d_gdiplus
    //}
 
 
-   //::collection::count graphics::GetEachCharTextExtent(array < ::double_size > & sizea, const string & str)
+   //::collection::count graphics::GetEachCharTextExtent(array < ::double_size > & sizea, const ::scoped_string & scopedstr)
    //{
    //   sizea.erase_all();
    //   strsize_array iaLen;
@@ -5440,8 +5440,8 @@ namespace draw2d_gdiplus
    //   const char * psz = pszStart;
    //   while (*psz)
    //   {
-   //      const char * pszNext = ::unicode_utf8_inc(psz);
-   //      if (pszNext == nullptr)
+   //      const char * pszNext = ::unicode_utf8_inc(scopedstr);
+   //      if (scopedstrNext == nullptr)
    //         break;
    //      iLen = pszNext - psz;
    //      iRange++;
@@ -5468,7 +5468,7 @@ namespace draw2d_gdiplus
 
    // return Extents per UTF8 Char Boundaries, so there can be lesser
    // "extents" than bytes
-   ::collection::count graphics::get_character_extent(::double_array & daLeft, ::double_array& daRight, const string & str, character_count iStartParam, character_count iCountParam)
+   ::collection::count graphics::get_character_extent(::double_array & daLeft, ::double_array& daRight, const ::scoped_string & scopedstr, character_count iStartParam, character_count iCountParam)
    {
 
       if (str.is_empty())
@@ -5609,14 +5609,14 @@ namespace draw2d_gdiplus
 
        }
 
-      if(pszString == nullptr || *pszString == '\0')
+      if(scopedstrString == nullptr || *pszString == '\0')
 
          return double_size(0, 0);
 
 
 
       if(nCount < 0)
-         nCount = strlen(pszString);
+         nCount = strlen(scopedstrString);
 
 
       if(iIndex > nCount)
@@ -5625,11 +5625,11 @@ namespace draw2d_gdiplus
       if(iIndex < 0)
          return double_size(0, 0);
 
-      string str(pszString, nCount);
+      string str(scopedstrString, nCount);
 
       wstring wstr(str);
 
-      wstring wstrRange = utf8_to_unicode(pszString, iIndex);
+      wstring wstrRange = utf8_to_unicode(scopedstrString, iIndex);
 
       Gdiplus::CharacterRange charRanges[1] = { Gdiplus::CharacterRange(0, (INT)wstrRange.get_length()) };
 
@@ -5650,7 +5650,7 @@ namespace draw2d_gdiplus
 
          Gdiplus::RectF box(0.0f, 0.0f, 0.0f, 0.0f);
 
-         wstring wstrRange = utf8_to_unicode(pszString, iIndex);
+         wstring wstrRange = utf8_to_unicode(scopedstrString, iIndex);
 
          m_pgraphics->MeasureString(wstrRange, (int)wstrRange.get_length(), m_pfont->get_os_data < Gdiplus::Font * >(this), origin, Gdiplus::StringFormat::GenericTypographic(), &box);
 
@@ -5693,12 +5693,12 @@ namespace draw2d_gdiplus
 
    {
 
-      if (pszString == nullptr || *pszString == '\0')
+      if (scopedstrString == nullptr || *pszString == '\0')
 
          return ::double_size(0, 0);
 
       if (nCount < 0)
-         nCount = strlen(pszString);
+         nCount = strlen(scopedstrString);
 
 
       if (iIndex > nCount)
@@ -5707,9 +5707,9 @@ namespace draw2d_gdiplus
       if (iIndex < 0)
          return ::double_size(0, 0);
 
-      wstring wstr = utf8_to_unicode(pszString, nCount);
+      wstring wstr = utf8_to_unicode(scopedstrString, nCount);
 
-      wstring wstrRange = utf8_to_unicode(pszString, iIndex);
+      wstring wstrRange = utf8_to_unicode(scopedstrString, iIndex);
 
       Gdiplus::CharacterRange charRanges[1] = { Gdiplus::CharacterRange(INT(wstrRange.get_length()), INT(wstr.get_length() - wstrRange.get_length())) };
 
@@ -5730,7 +5730,7 @@ namespace draw2d_gdiplus
 
          Gdiplus::RectF box(0.0f, 0.0f, 0.0f, 0.0f);
 
-         wstrRange = utf8_to_unicode(pszString, iIndex);
+         wstrRange = utf8_to_unicode(scopedstrString, iIndex);
 
          m_pgraphics->MeasureString(wstrRange, (int)wstrRange.get_length(), m_pfont->get_os_data < Gdiplus::Font *  >(this), origin, Gdiplus::StringFormat::GenericTypographic(), &box);
 
@@ -5765,7 +5765,7 @@ namespace draw2d_gdiplus
 
    }
 
-   double_size graphics::GetTextExtent(const string & str)
+   double_size graphics::GetTextExtent(const ::scoped_string & scopedstr)
    {
 
       if (!m_pfont || str.is_empty())
@@ -5824,7 +5824,7 @@ namespace draw2d_gdiplus
       /*if(get_handle2() == nullptr)
          return ::double_size(0, 0);
       ::double_size ::double_size;
-      string str(pszString, nCount);
+      string str(scopedstrString, nCount);
 
       wstring text.m_wstr = utf8_to_unicode(str);
       if(!::GetTextExtentPoint32W(get_handle2(), text.m_wstr, (int)text.m_wstr.get_length(), &::double_size))
@@ -5834,7 +5834,7 @@ namespace draw2d_gdiplus
       return ::double_size;*/
    }
 
-   //double_size graphics::GetTextExtent(const string & str)
+   //double_size graphics::GetTextExtent(const ::scoped_string & scopedstr)
    //{
    //   /*      if(get_handle2() == nullptr)
    //            return ::double_size(0, 0);
@@ -5889,7 +5889,7 @@ namespace draw2d_gdiplus
 
       //ASSERT(get_handle1() != nullptr);
       //::double_size ::double_size;
-      //string str(pszString, nCount);
+      //string str(scopedstrString, nCount);
 
       //wstring text.m_wstr = utf8_to_unicode(str);
       //VERIFY(::GetTextExtentPoint32W(get_handle1(), text.m_wstr, (int)text.m_wstr.get_length(), &::double_size));
@@ -5903,7 +5903,7 @@ namespace draw2d_gdiplus
    }
 
 
-   ::double_size graphics::GetOutputTextExtent(const string & str)
+   ::double_size graphics::GetOutputTextExtent(const ::scoped_string & scopedstr)
    {
 
       //ASSERT(get_handle1() != nullptr);
@@ -5934,12 +5934,12 @@ namespace draw2d_gdiplus
       if (m_pfont.is_null())
          return false;
 
-      if(pszString == nullptr || *pszString == '\0')
+      if(scopedstrString == nullptr || *pszString == '\0')
 
          return false;
 
       if(nCount < 0)
-         nCount = strlen(pszString);
+         nCount = strlen(scopedstrString);
 
 
       if(iIndex > nCount)
@@ -5950,7 +5950,7 @@ namespace draw2d_gdiplus
 
       m_pfont->defer_update(this, 0);
 
-      wstring wstr = utf8_to_unicode(pszString, nCount);
+      wstring wstr = utf8_to_unicode(scopedstrString, nCount);
 
       character_count iRange = 0;
       character_count i = 0;
@@ -5961,7 +5961,7 @@ namespace draw2d_gdiplus
       {
          try
          {
-            iLen = ::unicode_get_utf8_char_length(psz);
+            iLen = ::unicode_get_utf8_char_length(scopedstr);
          }
          catch(...)
          {
@@ -5981,7 +5981,7 @@ namespace draw2d_gdiplus
          {
             break;
          }
-         if(psz == nullptr)
+         if(scopedstr == nullptr)
             break;
          if(*psz == '\0')
             break;
@@ -6073,7 +6073,7 @@ namespace draw2d_gdiplus
 
       }
 
-      wstring wstr = utf8_to_unicode(pszString, nCount);
+      wstring wstr = utf8_to_unicode(scopedstrString, nCount);
 
 
       Gdiplus::RectF box;
@@ -6115,7 +6115,7 @@ namespace draw2d_gdiplus
    }
 
 
-   bool graphics::GetTextExtent(::double_size & size, const string & str)
+   bool graphics::GetTextExtent(::double_size & size, const ::scoped_string & scopedstr)
    {
 
       if (::is_null(m_pgraphics) && is_null(m_pfont))

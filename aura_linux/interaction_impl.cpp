@@ -1676,7 +1676,7 @@
 // //
 // //      string strCaption;
 // //
-// //      if (pszcaption == nullptr)
+// //      if (scopedstrcaption == nullptr)
 // //      {
 // //
 // //         strCaption = get_app()->m_strAppName;
@@ -2330,7 +2330,7 @@
 // //
 //
 //
-// //   void interaction_impl::set_window_text(const ::string & strText)
+// //   void interaction_impl::set_window_text(const ::scoped_string & scopedstrText)
 // //   {
 // //
 // //      m_strWindowText = strText;
@@ -2352,7 +2352,7 @@
 //
 // //   {
 // //
-// //      ansi_count_copy(pszString, m_strWindowText, nMaxCount);
+// //      ansi_count_copy(scopedstrString, m_strWindowText, nMaxCount);
 //
 // //
 // //      return minimum(nMaxCount, m_strWindowText.length());

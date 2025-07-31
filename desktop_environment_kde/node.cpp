@@ -406,7 +406,7 @@ namespace desktop_environment_kde
 //   string node::get_file_icon_path(const char *pszPath, int iSize)
 //   {
 //
-//      return ::linux_g_direct_get_file_icon_path(pszPath, iSize);
+//      return ::linux_g_direct_get_file_icon_path(scopedstrPath, iSize);
 //
 //   }
 
@@ -414,7 +414,7 @@ namespace desktop_environment_kde
 //   string node::get_file_content_type(const char *pszPath)
 //   {
 //
-//      return ::linux_g_direct_get_file_content_type(pszPath);
+//      return ::linux_g_direct_get_file_content_type(scopedstrPath);
 //
 //   }
 //

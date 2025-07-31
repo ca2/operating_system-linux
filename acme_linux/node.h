@@ -60,7 +60,7 @@ namespace acme_linux
       //virtual ::file::path roaming() override;
 
 
-      void install_crash_dump_reporting(const string & strModuleNameWithTheExeExtension) override;
+      void install_crash_dump_reporting(const ::scoped_string & scopedstrModuleNameWithTheExeExtension) override;
 
 
       //virtual bool memcnts();
@@ -81,11 +81,11 @@ namespace acme_linux
 
       ::file::path_array process_identifier_modules_paths(::process_identifier processidentifier) override;
 
-      bool load_modules_diff(string_array& straOld, string_array& straNew, const ::string & strExceptDir) override;
+      bool load_modules_diff(string_array& straOld, string_array& straNew, const ::scoped_string & scopedstrExceptDir) override;
 
       ::process_identifier_array processes_identifiers() override;
 
-      ::process_identifier_array module_path_processes_identifiers(const ::string & strModulePath, bool bModuleNameIsPropertyFormatted) override;
+      ::process_identifier_array module_path_processes_identifiers(const ::scoped_string & scopedstrModulePath, bool bModuleNameIsPropertyFormatted) override;
 
       ::file::path process_identifier_module_path(::process_identifier pid) override;
 
@@ -95,9 +95,9 @@ namespace acme_linux
 
       //bool is_shared_library_busy(const string_array& stra) override;
 
-      bool process_contains_module(string& strImage, ::process_identifier processID, const ::string & strLibrary) override;
+      bool process_contains_module(string& strImage, ::process_identifier processID, const ::scoped_string & scopedstrLibrary) override;
 
-      ::process_identifier_array shared_library_process(string_array& straProcesses, const ::string & strLibrary) override;
+      ::process_identifier_array shared_library_process(string_array& straProcesses, const ::scoped_string & scopedstrLibrary) override;
 
       bool is_process_running(::process_identifier pid) override;
 
@@ -109,7 +109,7 @@ namespace acme_linux
       array <::serial::port_info> list_serial_ports() override;
 
 
-      void shell_open(const ::file::path & path, const ::string & strParams = "", const ::file::path & pathFolder = "") override;
+      void shell_open(const ::file::path & path, const ::scoped_string & scopedstrParams = "", const ::file::path & pathFolder = "") override;
 
       //void shell_execute_async(const char *psz, const char * pszParams) override;
 

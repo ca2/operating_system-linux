@@ -258,7 +258,7 @@ namespace aura_linux
 
          //auto node = udev_device_get_devnode(dev);
          auto pszAction = udev_device_get_action(pudevdevice);
-         //action = udev_action_to_enum(pszAction);
+         //action = udev_action_to_enum(scopedstrAction);
 
          if (!strncmp("add", pszAction, 3))
          {

@@ -541,7 +541,7 @@ namespace node_gnome
    void notify_icon::call_notification_area_action(const char * pszId)
    {
 
-      m_plistener->call_notification_area_action(pszId);
+      m_plistener->call_notification_area_action(scopedstrId);
 
    }
 

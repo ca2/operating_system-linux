@@ -51,12 +51,12 @@
 //      DATA_BLOB DataIn;
 //      DATA_BLOB DataOut;
 //
-//      if (pszSalt == nullptr)
+//      if (scopedstrSalt == nullptr)
 //         pszSalt = "";
 //
 //      DATA_BLOB DataSalt;
 //      memory memorySalt;
-//      memorySalt.from_string(pszSalt);
+//      memorySalt.from_string(scopedstrSalt);
 //      DataSalt.pbData = memorySalt.get_data();
 //      DataSalt.cbData = (unsigned int)memorySalt.get_size();
 //
@@ -110,7 +110,7 @@
 //
 //      memory memSalt;
 //
-//      memSalt.append(pszSalt, strlen(pszSalt));
+//      memSalt.append(scopedstrSalt, strlen(scopedstrSalt));
 //
 //      if (!::crypto_decrypt(memOut, memIn, memSalt))
 //      {
@@ -136,12 +136,12 @@
 //      DATA_BLOB DataIn;
 //      DATA_BLOB DataOut;
 //
-//      if (pszSalt == nullptr)
+//      if (scopedstrSalt == nullptr)
 //         pszSalt = "";
 //
 //      DATA_BLOB DataSalt;
 //      memory memorySalt;
-//      memorySalt.from_string(pszSalt);
+//      memorySalt.from_string(scopedstrSalt);
 //      DataSalt.pbData = memorySalt.get_data();
 //      DataSalt.cbData = (unsigned int)memorySalt.get_size();
 //
@@ -192,7 +192,7 @@
 //
 //      memory memSalt;
 //
-//      memSalt.append(pszSalt, strlen(pszSalt));
+//      memSalt.append(scopedstrSalt, strlen(scopedstrSalt));
 //
 //      if (!::crypto_encrypt(memOut, memIn, memSalt))
 //         return false;

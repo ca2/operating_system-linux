@@ -162,11 +162,11 @@ namespace acme_linux
    void stdio_file::write_string(const char * psz)
    {
 
-      ASSERT(psz != nullptr);
+      ASSERT(scopedstr != nullptr);
 
       ASSERT(m_pStream != nullptr);
 
-      if (fputs(psz, m_pStream) == EOF)
+      if (fputs(scopedstr, m_pStream) == EOF)
       {
 
          throw ::file::exception(error_disk_full, errno, m_path);
@@ -179,13 +179,13 @@ namespace acme_linux
    char * stdio_file::read_string(char * psz, unsigned int nMax)
    {
 
-      ASSERT(psz != nullptr);
+      ASSERT(scopedstr != nullptr);
 
       ASSERT(m_pStream != nullptr);
 
-      char * pszResult = fgets(psz, nMax, m_pStream);
+      char * pszResult = fgets(scopedstr, nMax, m_pStream);
 
-      if (pszResult == nullptr && !feof(m_pStream))
+      if (scopedstrResult == nullptr && !feof(m_pStream))
 
       {
          clearerr(m_pStream);
@@ -210,12 +210,12 @@ namespace acme_linux
       int nLen = 0;
       for (;;)
       {
-         pszResult = fgets(psz, nMaxSize+1, m_pStream);
+         pszResult = fgets(scopedstr, nMaxSize+1, m_pStream);
 
          rString.release_buffer();
 
          // handle error/eof case
-         if (pszResult == nullptr && !feof(m_pStream))
+         if (scopedstrResult == nullptr && !feof(m_pStream))
 
          {
             clearerr(m_pStream);
@@ -223,9 +223,9 @@ namespace acme_linux
          }
 
          // if string is read completely or EOF
-         if (pszResult == nullptr ||
+         if (scopedstrResult == nullptr ||
 
-               (nLen = strlen(psz)) < nMaxSize ||
+               (nLen = strlen(scopedstr)) < nMaxSize ||
 
                psz[nLen-1] == '\n')
 

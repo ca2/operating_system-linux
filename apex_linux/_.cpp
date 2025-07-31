@@ -21,7 +21,7 @@ namespace linux
 
    //{
 
-   //   return ::LoadLibraryW(utf8_to_unicode(psz));
+   //   return ::LoadLibraryW(utf8_to_unicode(scopedstr));
 
 
    //}
@@ -75,7 +75,7 @@ namespace linux
 
    //   DWORD dwType = 0;
    //   DWORD dwSize = 0;
-   //   int lResult = RegQueryValueExW(hkey, wstring(pszSubKey), nullptr, &dwType, nullptr, &dwSize);
+   //   int lResult = RegQueryValueExW(hkey, wstring(scopedstrSubKey), nullptr, &dwType, nullptr, &dwSize);
 
    //   if (lResult != ERROR_SUCCESS)
    //      return lResult;
@@ -85,7 +85,7 @@ namespace linux
 
    //      natural_wstring pwsz(byte_count, dwSize);
 
-   //      lResult = RegQueryValueExW(hkey, wstring(pszSubKey), nullptr, &dwType, (unsigned char*)(unichar*)pwsz, &dwSize);
+   //      lResult = RegQueryValueExW(hkey, wstring(scopedstrSubKey), nullptr, &dwType, (unsigned char*)(unichar*)pwsz, &dwSize);
 
    //      str = pwsz;
 
@@ -108,7 +108,7 @@ namespace linux
 
    //{
 
-   //   return ::ExtractIconW(hInst, utf8_to_unicode(pszExeFileName), nIconIndex);
+   //   return ::ExtractIconW(hInst, utf8_to_unicode(scopedstrExeFileName), nIconIndex);
 
 
    //}

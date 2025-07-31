@@ -144,7 +144,7 @@
 //                  &uSize))
 //               {
 //
-//                  string strVersion(psz, uSize);
+//                  string strVersion(scopedstr, uSize);
 //
 //                  return strVersion;
 //

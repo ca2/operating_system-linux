@@ -59,7 +59,7 @@
 ////
 ////      m_iFile = INVALID_FILE;
 ////
-////      if(!open(pszFileName, eopen))
+////      if(!open(scopedstrFileName, eopen))
 ////      {
 ////
 ////         __throw(::file::exception(::error_file, -1, pszFileName));
@@ -105,7 +105,7 @@
 //
 //      }
 //
-//      ASSERT(is_string_ok(pszFileName));
+//      ASSERT(is_string_ok(scopedstrFileName));
 //
 //      // file objects are always binary and CreateFile does not need flag
 //      eopen -= ::file::e_open_binary;
@@ -113,7 +113,7 @@
 //      if ((eopen & ::file::e_open_defer_create_directory) && (eopen & ::file::e_open_write))
 //      {
 //
-//         directory_system()->create(pszFileName.folder());
+//         directory_system()->create(scopedstrFileName.folder());
 //
 //      }
 //
@@ -1008,7 +1008,7 @@
 //
 //   int rc = 0;
 //
-//   if(realpath(pszSource, realname) == 0)
+//   if(realpath(scopedstrSource, realname) == 0)
 //   {
 //
 //      return false;

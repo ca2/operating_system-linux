@@ -45,7 +45,7 @@ namespace operating_ambient_gtk3
 
       //virtual string _os_get_user_theme();
 
-      //virtual bool os_set_user_theme(const string & strUserTheme) override;
+      //virtual bool os_set_user_theme(const ::scoped_string & scopedstrUserTheme) override;
 
       //virtual void os_process_user_theme(string strTheme) override;
 

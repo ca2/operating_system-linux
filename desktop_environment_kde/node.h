@@ -61,7 +61,7 @@ namespace desktop_environment_kde
 
       //virtual string os_get_user_theme() override;
 
-      //virtual bool os_set_user_theme(const string & strUserTheme) override;
+      //virtual bool os_set_user_theme(const ::scoped_string & scopedstrUserTheme) override;
 
       //virtual void os_process_user_theme(string strTheme) override;
 

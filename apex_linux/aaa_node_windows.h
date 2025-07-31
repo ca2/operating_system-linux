@@ -68,7 +68,7 @@ int CLASS_DECL_APEX_LINUX __linux_main(::apex::system * psystem, ::create * pmai
 //                           pszRight,
 //                           -1) - CSTR_EQUAL;
 //#else
-//   return case_insensitive_ansi_compare(pszLeft,pszRight);
+//   return case_insensitive_ansi_compare(scopedstrLeft,pszRight);
 //#endif
 //}
 //
@@ -142,7 +142,7 @@ int CLASS_DECL_APEX_LINUX __linux_main(::apex::system * psystem, ::create * pmai
 //
 //
 //
-//CLASS_DECL_APEX_LINUX int delete_registry_tree_helper(HKEY hParentKey,const string & strKeyName);
+//CLASS_DECL_APEX_LINUX int delete_registry_tree_helper(HKEY hParentKey,const ::scoped_string & scopedstrKeyName);
 //
 //
 //CLASS_DECL_APEX_LINUX HINSTANCE __get_resource_handle();

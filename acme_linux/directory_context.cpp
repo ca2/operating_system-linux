@@ -458,7 +458,7 @@ namespace acme_linux
    }
 
 
-   ::file::path directory_context::element_commonappdata(const string & strElement)
+   ::file::path directory_context::element_commonappdata(const ::scoped_string & scopedstrElement)
    {
 
       return ::file::path(strElement) / "commonappdata";
@@ -498,7 +498,7 @@ namespace acme_linux
    }
 
 
-   ::file::path directory_context::time_log(const string & pszId)
+   ::file::path directory_context::time_log(const ::scoped_string & scopedstrId)
    {
 
       ::file::path strLogBaseDir;
@@ -567,7 +567,7 @@ namespace acme_linux
    ::file::path directory_context::trash_that_is_not_trash(const ::file::path & psz)
    {
 
-      if(psz[1] == ':')
+      if(scopedstr[1] == ':')
       {
 
          string strDir = psz.name();
@@ -666,7 +666,7 @@ namespace acme_linux
    bool directory_context::is_inside(const ::file::path & pszDir, const ::file::path & pszPath)
    {
 
-      return pszDir.case_insensitive_begins(pszPath);
+      return pszDir.case_insensitive_begins(scopedstrPath);
 
    }
 

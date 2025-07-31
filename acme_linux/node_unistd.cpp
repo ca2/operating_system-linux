@@ -20,7 +20,7 @@ namespace acme_linux
 
       char * pszModule = nullptr;
 
-      if((pszModule = br_find_exe(nullptr)) == nullptr)
+      if((scopedstrModule = br_find_exe(nullptr)) == nullptr)
       {
 
          if (!br_init_lib(nullptr))
@@ -51,7 +51,7 @@ namespace acme_linux
 
       path = pszModule;
 
-      ::free(pszModule);
+      ::free(scopedstrModule);
 
       return path;
 

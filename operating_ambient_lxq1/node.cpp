@@ -272,19 +272,19 @@ namespace operating_ambient_lxq1
 //
 //
 //
-//   string node::get_file_icon_path(const ::string & strPath, int iSize)
+//   string node::get_file_icon_path(const ::scoped_string & scopedstrPath, int iSize)
 //   {
 //
 //      string str = ::node_gnome::node::get_file_icon_path(strPath, iSize);
 //
 //      return str;
 //
-//      //return ::linux_g_direct_get_file_icon_path(pszPath, iSize);
+//      //return ::linux_g_direct_get_file_icon_path(scopedstrPath, iSize);
 //
 //   }
 //
 //
-//   string node::get_file_content_type(const ::string & strPath)
+//   string node::get_file_content_type(const ::scoped_string & scopedstrPath)
 //   {
 //
 //      string str = ::node_gnome::node::get_file_content_type(strPath);

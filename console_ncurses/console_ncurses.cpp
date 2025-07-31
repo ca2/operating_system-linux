@@ -144,14 +144,14 @@ int __console_init(void ** ppscreen, void ** ppwindow, FILE * pfileOut, FILE * p
 
       const char * pszTermName = getenv("TERM");
 
-      if (pszTermName == nullptr)
+      if (scopedstrTermName == nullptr)
       {
 
          pszTermName = "vt100";
 
       }
 
-      auto pscreen = newterm(pszTermName, pfileOut, pfileIn);
+      auto pscreen = newterm(scopedstrTermName, pfileOut, pfileIn);
 
       set_term((SCREEN *) pscreen);
 

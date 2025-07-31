@@ -479,7 +479,7 @@ namespace acme_linux
 
 
 
-   void directory_system::set_path_install_folder(const ::string & pszPath)
+   void directory_system::set_path_install_folder(const ::scoped_string & scopedstrPath)
    {
 
       m_pathInstallFolder = pszPath;
@@ -615,7 +615,7 @@ namespace acme_linux
 
       ::file::path_array stra;
 
-      stra.add_tokens(pszEnv, ":", false);
+      stra.add_tokens(scopedstrEnv, ":", false);
 
       string strCandidate;
 

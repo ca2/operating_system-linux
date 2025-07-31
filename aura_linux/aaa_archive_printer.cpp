@@ -52,7 +52,7 @@ namespace draw2d_gdiplus
       if (is_opened())
          close();
 
-      if(!OpenPrinterW((LPWSTR)(LPWSTR)wstring(pszDeviceName),&m_hPrinter,nullptr))
+      if(!OpenPrinterW((LPWSTR)(LPWSTR)wstring(scopedstrDeviceName),&m_hPrinter,nullptr))
          return false;
 
       if(m_hPrinter == nullptr)

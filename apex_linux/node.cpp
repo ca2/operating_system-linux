@@ -120,7 +120,7 @@ namespace apex_linux
    }
 
 
-//      void node::file_open(const ::file::path & path, const ::string& strParams, const ::file::path & pathFolder)
+//      void node::file_open(const ::file::path & path, const ::scoped_string & scopedstrParams, const ::file::path & pathFolder)
 //      {
 //
 //         ::apex::node::file_open(path, strParams, pathFolder);
@@ -454,7 +454,7 @@ namespace apex_linux
    }
 
 
-   bool node::local_machine_set_run(const ::string & pszKey, const ::string & pszCommand)
+   bool node::local_machine_set_run(const ::scoped_string & scopedstrKey, const ::scoped_string & scopedstrCommand)
    {
 
 //      throw ::not_implemented();
@@ -464,7 +464,7 @@ namespace apex_linux
             registry::Key keyKar(HKEY_LOcaL_MACHINE, "SOFTWARE\\Micrnodeoft\\Windows\\CurrentVersion\\Run", true);
 
 
-            keyKar.SetValue(pszKey, pszCommand);
+            keyKar.SetValue(scopedstrKey, pszCommand);
 
 
             return true;
@@ -472,7 +472,7 @@ namespace apex_linux
    }
 
 
-   bool node::local_machine_set_run_once(const ::string & pszKey, const ::string & pszCommand)
+   bool node::local_machine_set_run_once(const ::scoped_string & scopedstrKey, const ::scoped_string & scopedstrCommand)
    {
 
 
@@ -481,14 +481,14 @@ namespace apex_linux
       /*    registry::Key keyKar(HKEY_LOcaL_MACHINE, "SOFTWARE\\Micrnodeoft\\Windows\\CurrentVersion\\RunOnce", true);
 
 
-            keyKar.SetValue(pszKey, pszCommand);
+            keyKar.SetValue(scopedstrKey, pszCommand);
       */
 
       return false;
 
    }
 
-   bool node::current_user_set_run(const ::string & pszKey, const ::string & pszCommand)
+   bool node::current_user_set_run(const ::scoped_string & scopedstrKey, const ::scoped_string & scopedstrCommand)
    {
 
       throw ::not_implemented();
@@ -498,14 +498,14 @@ namespace apex_linux
             registry::Key keyKar(HKEY_CURRENT_USER, "SOFTWARE\\Micrnodeoft\\Windows\\CurrentVersion\\Run", true);
 
 
-            keyKar.SetValue(pszKey, pszCommand);
+            keyKar.SetValue(scopedstrKey, pszCommand);
       */
 
       return false;
 
    }
 
-   bool node::current_user_set_run_once(const ::string & pszKey, const ::string & pszCommand)
+   bool node::current_user_set_run_once(const ::scoped_string & scopedstrKey, const ::scoped_string & scopedstrCommand)
    {
 
       throw ::not_implemented();
@@ -515,7 +515,7 @@ namespace apex_linux
             registry::Key keyKar(HKEY_CURRENT_USER, "SOFTWARE\\Micrnodeoft\\Windows\\CurrentVersion\\RunOnce", true);
 
 
-            keyKar.SetValue(pszKey, pszCommand);
+            keyKar.SetValue(scopedstrKey, pszCommand);
 
       */
       //return false;
@@ -563,7 +563,7 @@ namespace apex_linux
    }
 
 
-   void node::file_extension_get_open_with_list_keys(string_array & straKey, const ::string & pszExtension)
+   void node::file_extension_get_open_with_list_keys(string_array & straKey, const ::scoped_string & scopedstrExtension)
    {
 
 
@@ -591,7 +591,7 @@ namespace apex_linux
    }
 
 
-   void node::file_extension_get_open_with_list_commands(string_array & straCommand, const ::string & pszExtension)
+   void node::file_extension_get_open_with_list_commands(string_array & straCommand, const ::scoped_string & scopedstrExtension)
    {
 
       string_array straKey;
@@ -607,14 +607,14 @@ namespace apex_linux
    }
 
 
-   void node::file_association_set_default_icon(const ::string & pszExtension, const ::string & pszExtensionNamingClass, const ::string & pszIconPath)
+   void node::file_association_set_default_icon(const ::scoped_string & scopedstrExtension, const ::scoped_string & scopedstrExtensionNamingClass, const ::scoped_string & scopedstrIconPath)
    {
 
       throw ::not_implemented();
       //return false;
 
       /*
-            string strExtensionNamingClass(pszExtensionNamingClass);
+            string strExtensionNamingClass(scopedstrExtensionNamingClass);
 
             registry::Key keyLink3(HKEY_CLASSES_ROOT, strExtensionNamingClass, true);
             keyLink3.SetValue("DefaultIcon", pszIconPath);
@@ -625,7 +625,7 @@ namespace apex_linux
    }
 
 
-   void node::file_association_set_shell_open_command(const ::string & pszExtension, const ::string & pszExtensionNamingClass,  const ::string & pszCommand, const ::string & pszParam)
+   void node::file_association_set_shell_open_command(const ::scoped_string & scopedstrExtension, const ::scoped_string & scopedstrExtensionNamingClass,  const ::scoped_string & scopedstrCommand, const ::scoped_string & scopedstrParam)
    {
 
       throw ::not_implemented();
@@ -642,7 +642,7 @@ namespace apex_linux
             strExt = ".";
             strExt += pszExtension;
 
-            string strExtensionNamingClass(pszExtensionNamingClass);
+            string strExtensionNamingClass(scopedstrExtensionNamingClass);
 
             registry::Key key(HKEY_CLASSES_ROOT, strExt, true);
             key.SetValue(nullptr, strExtensionNamingClass);
@@ -664,7 +664,7 @@ namespace apex_linux
    }
 
 
-   void node::file_association_get_shell_open_command(const ::string & pszExtension, string & strExtensionNamingClass, string & strCommand, string & strParam)
+   void node::file_association_get_shell_open_command(const ::scoped_string & scopedstrExtension, string & strExtensionNamingClass, string & strCommand, string & strParam)
    {
 
       throw ::not_implemented();
@@ -687,14 +687,14 @@ namespace apex_linux
             if(keyLink.QueryValue(nullptr, strFormat))
             {
 
-               const ::string & psz = strFormat;
+               const ::scoped_string & scopedstr = strFormat;
 
                try
                {
 
-                  strCommand = ::unicode_consume_quoted_value(psz);
-                  ::unicode_consume_spaces(psz);
-                  ::unicode_consume(psz, "\"%L\"");
+                  strCommand = ::unicode_consume_quoted_value(scopedstr);
+                  ::unicode_consume_spaces(scopedstr);
+                  ::unicode_consume(scopedstr, "\"%L\"");
                   strParam = psz;
 
                }
@@ -763,7 +763,7 @@ namespace apex_linux
    }
 
 
-   void node::link_open(const string & strUrl, const string & strProfile)
+   void node::link_open(const ::scoped_string & scopedstrUrl, const ::scoped_string & scopedstrProfile)
    {
 
       auto psystem = system();
@@ -1089,7 +1089,7 @@ namespace apex_linux
    }
 
 
-   void node::file_open(const ::file::path & pathTarget, const ::string & strParams, const ::file::path & pathFolder)
+   void node::file_open(const ::file::path & pathTarget, const ::scoped_string & scopedstrParams, const ::file::path & pathFolder)
    {
 
       auto path = application()->defer_process_path(pathTarget);
@@ -1121,9 +1121,9 @@ namespace apex_linux
 //         if(pid == 0)
 //         {
 //
-//            int iExitCode = ::system(pszCommandLine);
+//            int iExitCode = ::system(scopedstrCommandLine);
 //
-//            free(pszCommandLine);
+//            free(scopedstrCommandLine);
 //
 //            exit(iExitCode);
 //
@@ -1131,7 +1131,7 @@ namespace apex_linux
 //         else if(pid < 0)
 //         {
 //
-//            free(pszCommandLine);
+//            free(scopedstrCommandLine);
 //
 //            return false;
 //

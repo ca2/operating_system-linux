@@ -42,7 +42,7 @@ namespace aura_linux
    
          }
 
-         if(::is_null(pszDevType))
+         if(::is_null(scopedstrDevType))
          {
 
             throw ::exception(error_wrong_state);
@@ -52,7 +52,7 @@ namespace aura_linux
          m_ptaskUdevListener = m_papplication->fork([this, pszDevType]()
          {
 
-            __udev_listener_task(pszDevType);
+            __udev_listener_task(scopedstrDevType);
 
          });
 

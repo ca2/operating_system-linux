@@ -9,7 +9,7 @@
 #include "acme/platform/system.h"
 
 
-void copy(::file::path & path, const ::string & str)
+void copy(::file::path & path, const ::scoped_string & scopedstr)
 {
 
    path = str;
@@ -64,7 +64,7 @@ namespace acme_linux
 // enzymes: Liveedu.tv, Twitch.tv and Mixer.com streamers and viewers
 // Mummi and bilbo!!
 // create call to :
-   void node::install_crash_dump_reporting(const string & strModuleNameWithTheExeExtension)
+   void node::install_crash_dump_reporting(const ::scoped_string & scopedstrModuleNameWithTheExeExtension)
    {
 
 //      ::linux::registry::key k;
@@ -189,7 +189,7 @@ namespace acme_linux
    }
 
 
-   bool node::load_modules_diff(string_array& straOld, string_array& straNew, const ::string & strExceptDir)
+   bool node::load_modules_diff(string_array& straOld, string_array& straNew, const ::scoped_string & scopedstrExceptDir)
    {
 
       return ::acme_posix::node::load_modules_diff(straOld, straNew, strExceptDir);
@@ -228,7 +228,7 @@ namespace acme_linux
                                                       bool bModuleNameIsPropertyFormatted)
    {
 
-      return ::acme_posix::node::module_path_processes_identifiers(pszModulePath, bModuleNameIsPropertyFormatted);
+      return ::acme_posix::node::module_path_processes_identifiers(scopedstrModulePath, bModuleNameIsPropertyFormatted);
 
 //         atom_array iaPid;
 //
@@ -241,7 +241,7 @@ namespace acme_linux
 //
 //            strPath = module_path_from_pid(iCurrentPid.as_int());
 //
-//            if(strPath.case_insensitive_order(pszModulePath) == 0 )
+//            if(strPath.case_insensitive_order(scopedstrModulePath) == 0 )
 //            {
 //
 //               iaPid.add(iCurrentPid);
@@ -288,7 +288,7 @@ namespace acme_linux
 //   }
 
 
-   bool node::process_contains_module(string& strImage, ::process_identifier processID, const ::string & strLibrary)
+   bool node::process_contains_module(string& strImage, ::process_identifier processID, const ::scoped_string & scopedstrLibrary)
    {
 
       return ::acme_posix::node::process_contains_module(strImage, processID, strLibrary);
@@ -296,7 +296,7 @@ namespace acme_linux
    }
 
 
-   ::process_identifier_array node::shared_library_process(string_array& straProcesses, const ::string & strLibrary)
+   ::process_identifier_array node::shared_library_process(string_array& straProcesses, const ::scoped_string & scopedstrLibrary)
    {
 
       return ::acme_posix::node::shared_library_process(straProcesses, strLibrary);
@@ -336,7 +336,7 @@ namespace acme_linux
    }
 
 
-   void node::shell_open(const ::file::path & path, const ::string & strParams, const ::file::path & pathFolder)
+   void node::shell_open(const ::file::path & path, const ::scoped_string & scopedstrParams, const ::file::path & pathFolder)
    {
 
       string str(path);
@@ -362,7 +362,7 @@ namespace acme_linux
 //      void node::shell_execute_async(const char * psz, const char * pszParams)
 //      {
 //
-//         string str(psz);
+//         string str(scopedstr);
 //
 //         fork([this, str]()
 //              {
@@ -371,7 +371,7 @@ namespace acme_linux
 //
 //              });
 //
-////         string strTarget(psz);
+////         string strTarget(scopedstr);
 ////
 ////         auto psystem = system();
 ////
