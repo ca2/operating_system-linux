@@ -64,7 +64,7 @@ elseif(LINUX)
 
 
     if(USE_PKGCONFIG)
-        pkg_check_modules(PKGCONFIG libudev)
+        pkg_check_modules(${PROJECT_NAME}_PKGCONFIG libudev)
     endif()
 
 

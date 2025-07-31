@@ -97,7 +97,7 @@ elseif (LINUX)
 
     #
     #   if(USE_PKGCONFIG)
-    #      pkg_check_modules(PKGCONFIG Qt5X11Extras Qt5Core Qt5UiTools)
+    #      pkg_check_modules(${PROJECT_NAME}_PKGCONFIG Qt5X11Extras Qt5Core Qt5UiTools)
     #   endif()
 
 

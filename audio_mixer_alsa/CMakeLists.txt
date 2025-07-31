@@ -64,7 +64,7 @@ elseif (LINUX OR FREEBSD)
 
 
     if (${USE_PKGCONFIG})
-        pkg_check_modules(PKGCONFIG alsa)
+        pkg_check_modules(${PROJECT_NAME}_PKGCONFIG alsa)
     endif ()
     target_compile_options(audio_mixer_alsa PRIVATE $<$<COMPILE_LANGUAGE:CXX>:-fpermissive  ${EXTRA_CXX_TARGET_COMPILER_OPTIONS}>)
     target_compile_options(${PROJECT_NAME} PRIVATE ${PKGCONFIG_CFLAGS})

@@ -62,10 +62,10 @@ elseif (LINUX)
 
 
    if(${HAS_GTK4})
-      #pkg_check_modules(PKGCONFIG glib-2.0 gtk4)
-      pkg_check_modules(PKGCONFIG gtk4)
+      #pkg_check_modules(${PROJECT_NAME}_PKGCONFIG glib-2.0 gtk4)
+      pkg_check_modules(${PROJECT_NAME}_PKGCONFIG gtk4)
    elseif(${HAS_GTK3})
-      pkg_check_modules(PKGCONFIG glib-2.0 gtk+-3.0 gdk-3.0)
+      pkg_check_modules(${PROJECT_NAME}_PKGCONFIG glib-2.0 gtk+-3.0 gdk-3.0)
    endif()
 
 
