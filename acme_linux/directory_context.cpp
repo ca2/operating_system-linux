@@ -564,7 +564,7 @@ namespace acme_linux
    }
 
 
-   ::file::path directory_context::trash_that_is_not_trash(const ::file::path & psz)
+   ::file::path directory_context::trash_that_is_not_trash(const ::file::path & path)
    {
 
       if(scopedstr[1] == ':')
@@ -655,7 +655,7 @@ namespace acme_linux
    }
 
 
-   bool directory_context::is_inside_time(const ::file::path & pszPath)
+   bool directory_context::is_inside_time(const ::file::path & path)
    {
 
       return is_inside(time(), pszPath);
@@ -663,7 +663,7 @@ namespace acme_linux
    }
 
 
-   bool directory_context::is_inside(const ::file::path & pszDir, const ::file::path & pszPath)
+   bool directory_context::is_inside(const ::file::path & pathDir, const ::file::path & path)
    {
 
       return pszDir.case_insensitive_begins(scopedstrPath);

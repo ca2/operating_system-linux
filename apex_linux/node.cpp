@@ -277,7 +277,7 @@ namespace apex_linux
    }
 
 
-   void node::terminate_processes_by_title(const ::string & lpszName)
+   void node::terminate_processes_by_title(const ::scoped_string & scopedstrName)
    {
 
       throw ::not_implemented();

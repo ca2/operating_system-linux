@@ -48,7 +48,7 @@ namespace acme_linux
       virtual ::file::listing & root_ones(::file::listing & listing) override;
       virtual void create(const ::file::path & path) override;
 
-      virtual void erase(const ::file::path & psz, bool bRecursive = true) override;
+      virtual void erase(const ::file::path & path, bool bRecursive = true) override;
 
 
       //virtual ::file::path name(const ::file::path & path);
@@ -76,7 +76,7 @@ namespace acme_linux
       virtual ::file::path time_log(const ::scoped_string & scopedstrId) override;
 
 
-      virtual ::file::path trash_that_is_not_trash(const ::file::path & psz) override;
+      virtual ::file::path trash_that_is_not_trash(const ::file::path & path) override;
 
       //virtual ::file::path appdata(const ::scoped_string & scopedstrAppId = "") override;
       virtual ::file::path commonappdata() override;

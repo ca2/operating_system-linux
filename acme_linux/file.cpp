@@ -53,7 +53,7 @@
 ////   }
 ////
 ////
-////   file::file(::particle * pparticle, const ::file::path & pszFileName, const enumeration < ::file::e_open > & eopen) :
+////   file::file(::particle * pparticle, const ::file::path & pathFileName, const enumeration < ::file::e_open > & eopen) :
 ////      ::matter(pparticle)
 ////   {
 ////
@@ -95,7 +95,7 @@
 ////   }
 ////
 //
-//   void file::open(const ::file::path & pszFileName, ::file::e_open eopen, ::pointer < ::file::exception> * ppfileexception)
+//   void file::open(const ::file::path & pathFileName, ::file::e_open eopen, ::pointer < ::file::exception> * ppfileexception)
 //   {
 //
 //      if (m_iFile != INVALID_FILE)

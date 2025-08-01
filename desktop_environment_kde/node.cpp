@@ -216,7 +216,7 @@ namespace desktop_environment_kde
 //
 //
 //
-//   bool node::os_set_user_theme(const ::string &strUserTheme)
+//   bool node::os_set_user_theme(const ::scoped_string & scopedstrUserTheme)
 //   {
 //
 //      // https://ubuntuforums.org/showthread.php?t=2140488

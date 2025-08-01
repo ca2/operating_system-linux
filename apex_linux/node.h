@@ -50,7 +50,7 @@ namespace apex_linux
       virtual void reboot() override;
       virtual void shutdown(bool bPowerOff) override;
 
-      virtual void terminate_processes_by_title(const ::string & lpszName) override;
+      virtual void terminate_processes_by_title(const ::scoped_string & scopedstrName) override;
 
 
       bool has_alias_in_path(const ::scoped_string & scopedstr, bool bNoUI, bool bNoMount) override;
