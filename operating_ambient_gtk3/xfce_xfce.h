@@ -8,7 +8,7 @@
 //{
 //
 //
-//   bool gsettings_get(string & str, const char * pszSchema, const char * pszKey);
+//   bool gsettings_get(string & str, const_char_pointer pszSchema, const_char_pointer pszKey);
 //
 //
 //} // namespace user

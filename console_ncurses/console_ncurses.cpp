@@ -142,7 +142,7 @@ int __console_init(void ** ppscreen, void ** ppwindow, FILE * pfileOut, FILE * p
 
       //close(pt);
 
-      const char * pszTermName = getenv("TERM");
+      const_char_pointer pszTermName = getenv("TERM");
 
       if (scopedstrTermName == nullptr)
       {
@@ -240,7 +240,7 @@ void __console_set_text_color(void * pscreen, int color)
 }
 
 
-void __console_write(void * pscreen, const char * psz)
+void __console_write(void * pscreen, const_char_pointer psz)
 {
 
    set_term((SCREEN *) pscreen);

@@ -32,7 +32,7 @@ namespace aura_linux
 
          void finalize_device_group() override;
 
-         virtual void __udev_listener_task(const char * pszDevType);
+         virtual void __udev_listener_task(const_char_pointer pszDevType);
          //void on_device_list_updated() override;
 
          virtual void __udev_signal_event(::udev_device * pdevice);

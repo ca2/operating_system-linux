@@ -37,7 +37,7 @@ namespace acme_linux
 
 
       //virtual ::file::e_type file_type(const ::file::path & path) override;
-      virtual bool  is_inside(const ::file::path & pathDir, const ::file::path & lpcszPath) override;
+      virtual bool  is_inside(const ::file::path & pathFolder, const ::file::path & lpcszPath) override;
 
       virtual bool  is_inside_time(const ::file::path & path) override;
 
@@ -60,7 +60,7 @@ namespace acme_linux
       virtual ::file::path netseed() override;
 
       // stage in ca2os spalib
-      //  virtual string matter(const ::scoped_string & scopedstr, const char * lpcsz2 = nullptr);
+      //  virtual string matter(const ::scoped_string & scopedstr, const_char_pointer lpcsz2 = nullptr);
 
       //virtual ::file::path install();
 //      virtual string matter(const ::scoped_string & scopedstr);

@@ -30,10 +30,10 @@
 //}
 
 
-//const char * linux_g_direct_get_file_icon_path(const char * pszPath, int iSize);
+//const_char_pointer linux_g_direct_get_file_icon_path(const_char_pointer pszPath, int iSize);
 //
 //
-//const char * linux_g_direct_get_file_content_type(const char * pszPath);
+//const_char_pointer linux_g_direct_get_file_content_type(const_char_pointer pszPath);
 //
 //
 //void aaa_x11_add_idle_source();
@@ -63,7 +63,7 @@
 //
 //void os_post_quit();
 //
-//void apex_application_run(const char * pszAppName, const char * pszProgName);
+//void apex_application_run(const_char_pointer pszAppName, const_char_pointer pszProgName);
 
 namespace desktop_environment_kde
 {
@@ -403,7 +403,7 @@ namespace desktop_environment_kde
 //   }
 
 //
-//   string node::get_file_icon_path(const char *pszPath, int iSize)
+//   string node::get_file_icon_path(const_char_pointer pszPath, int iSize)
 //   {
 //
 //      return ::linux_g_direct_get_file_icon_path(scopedstrPath, iSize);
@@ -411,7 +411,7 @@ namespace desktop_environment_kde
 //   }
 
 
-//   string node::get_file_content_type(const char *pszPath)
+//   string node::get_file_content_type(const_char_pointer pszPath)
 //   {
 //
 //      return ::linux_g_direct_get_file_content_type(scopedstrPath);

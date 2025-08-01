@@ -111,7 +111,7 @@ namespace acme_linux
 
       void shell_open(const ::file::path & path, const ::scoped_string & scopedstrParams = "", const ::file::path & pathFolder = "") override;
 
-      //void shell_execute_async(const char *psz, const char * pszParams) override;
+      //void shell_execute_async(const_char_pointer psz, const_char_pointer pszParams) override;
 
 
       bool set_process_priority(::enum_priority epriority) override;

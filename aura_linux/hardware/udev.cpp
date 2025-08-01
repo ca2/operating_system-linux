@@ -36,7 +36,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 //    UDEV_ACTION_UNKNOWN
 // };
 
-//static const char *udev_signals[] = {"void device_added(string device)",
+//static const_char_pointer udev_signals[] = {"void device_added(string device)",
 //                                     "void device_removed(string device)",
 //                                     NULL};
 
@@ -52,7 +52,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 // // * @param action the udev action as string
 // // * @return the udev action as enum value
 // // */
-// static enum udev_action udev_action_to_enum(const char *action)
+// static enum udev_action udev_action_to_enum(const_char_pointer action)
 // {
 //    if (!action)
 //       return UDEV_ACTION_UNKNOWN;
@@ -103,7 +103,7 @@ namespace aura_linux
 //
 //	obs_source_update_properties(m_pdevice->m_iSource);
 //
-//	const char *dev;
+//	const_char_pointer dev;
 //	calldata_get_string(calldata, "device", &dev);
 //
 //	if (strcmp(data->device_id, dev))
@@ -124,7 +124,7 @@ namespace aura_linux
 //
 //	obs_source_update_properties(m_pdevice->m_iSource);
 //
-//	const char *dev;
+//	const_char_pointer dev;
 //	calldata_get_string(calldata, "device", &dev);
 //
 //	if (strcmp(data->device_id, dev))
@@ -138,7 +138,7 @@ namespace aura_linux
 //#endif
 
 
-   void device_group::__udev_listener_task(const char * pszDevType)
+   void device_group::__udev_listener_task(const_char_pointer pszDevType)
    {
 
       /* set up udev monitoring */
@@ -250,7 +250,7 @@ namespace aura_linux
     */
       void device_group::__udev_signal_event(::udev_device * pudevdevice)
       {
-         //const char *node;
+         //const_char_pointer node;
          //enum udev_action action;
          //struct calldata data;
 

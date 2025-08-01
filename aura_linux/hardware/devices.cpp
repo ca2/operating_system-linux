@@ -26,7 +26,7 @@ namespace video_input_video_for_linux
 //
 //	obs_source_update_properties(m_pdevice->m_iSource);
 //
-//	const char *dev;
+//	const_char_pointer dev;
 //	calldata_get_string(calldata, "device", &dev);
 //
 //	if (strcmp(data->device_id, dev))
@@ -47,7 +47,7 @@ namespace video_input_video_for_linux
 //
 //	obs_source_update_properties(m_pdevice->m_iSource);
 //
-//	const char *dev;
+//	const_char_pointer dev;
 //	calldata_get_string(calldata, "device", &dev);
 //
 //	if (strcmp(data->device_id, dev))

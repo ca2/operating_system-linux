@@ -103,19 +103,19 @@ namespace apex_linux
 //   //   int function();
 //   //};
 //
-//   //CLASS_DECL_APEX_LINUX HINSTANCE   load_library(const char* psz);
+//   //CLASS_DECL_APEX_LINUX HINSTANCE   load_library(const_char_pointer psz);
 //
 //   //CLASS_DECL_APEX_LINUX bool        shell_get_special_folder_path(HWND hwnd, ::file::path& str, int csidl, bool fCreate);
 //   //CLASS_DECL_APEX_LINUX::file::path  shell_get_special_folder_path(int csidl, bool fCreate = true, ::windowing::window* pwindow = nullptr);
-//   //CLASS_DECL_APEX_LINUXunsigned int       get_file_attributes(const char* pFileName);
+//   //CLASS_DECL_APEX_LINUXunsigned int       get_file_attributes(const_char_pointer pFileName);
 //
 //   //CLASS_DECL_APEX_LINUXunsigned int       get_current_directory(string& str);
 //   //CLASS_DECL_APEX_LINUXunsigned int       get_temp_path(string& str);
-//   //CLASS_DECL_APEX_LINUXint        reg_query_value(HKEY hkey, const char* pszSubKey, string& str);
+//   //CLASS_DECL_APEX_LINUXint        reg_query_value(HKEY hkey, const_char_pointer pszSubKey, string& str);
 //
-//   //CLASS_DECL_APEX_LINUX HICON       extract_icon(HINSTANCE hInst, const char* pszExeFileName, unsigned int nIconIndex);
+//   //CLASS_DECL_APEX_LINUX HICON       extract_icon(HINSTANCE hInst, const_char_pointer pszExeFileName, unsigned int nIconIndex);
 //
-//   //CLASS_DECL_APEX_LINUX bool        delete_file(const char* pFileName);
+//   //CLASS_DECL_APEX_LINUX bool        delete_file(const_char_pointer pFileName);
 //
 //   //CLASS_DECL_APEX_LINUX int     get_menu_string(HMENU hMenu, unsigned int uDItem, string& str, unsigned int flags);
 //   //CLASS_DECL_APEX_LINUX void        time_to_file_time(::particle * pparticle, const ::earth::time& time, LPFILETIME pFileTime);

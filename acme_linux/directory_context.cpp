@@ -434,7 +434,7 @@ namespace acme_linux
          return true; // assume empty string is root_ones directory
       }
 
-      if(task_flag().is_set(e_task_flag_compress_is_dir) && iLast >= 3  && !case_insensitive_ansi_count_compare(&((const char *) str)[iLast - 3], ".zip", 4))
+      if(task_flag().is_set(e_task_flag_compress_is_dir) && iLast >= 3  && !case_insensitive_ansi_count_compare(&((const_char_pointer ) str)[iLast - 3], ".zip", 4))
       {
 
          return true;
@@ -663,7 +663,7 @@ namespace acme_linux
    }
 
 
-   bool directory_context::is_inside(const ::file::path & pathDir, const ::file::path & path)
+   bool directory_context::is_inside(const ::file::path & pathFolder, const ::file::path & path)
    {
 
       return pszDir.case_insensitive_begins(scopedstrPath);

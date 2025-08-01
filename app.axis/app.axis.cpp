@@ -2,7 +2,7 @@
 #include "aura/node/linux/linux.h"
 
 
-const char * g_psz_br_init_symbol_app = "";
+const_char_pointer g_psz_br_init_symbol_app = "";
 
 
 int32_t __lnx_main(int32_t argc, char * argv[]);
@@ -195,7 +195,7 @@ int32_t __lnx_main(int32_t argc, char * argv[])
 
 
 
-int32_t ca2_main(HINSTANCE hInstance, HINSTANCE hPrevInstance, const char * lpCmdLine, int32_t nCmdShow)
+int32_t ca2_main(HINSTANCE hInstance, HINSTANCE hPrevInstance, const_char_pointer lpCmdLine, int32_t nCmdShow)
 {
 
    try

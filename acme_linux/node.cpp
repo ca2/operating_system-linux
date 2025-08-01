@@ -359,7 +359,7 @@ namespace acme_linux
    }
 
 
-//      void node::shell_execute_async(const char * psz, const char * pszParams)
+//      void node::shell_execute_async(const_char_pointer psz, const_char_pointer pszParams)
 //      {
 //
 //         string str(scopedstr);

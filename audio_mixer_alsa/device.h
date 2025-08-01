@@ -28,7 +28,7 @@
          virtual bool initialize(::audio_mixer::audio_mixer * pmixer);
 
          ::audio_mixer::audio_mixer * get_mixer();
-         const char * GetSZPName();
+         const_char_pointer GetSZPName();
          //bool OnCommand(WPARAM wparam, LPARAM lparam);
          void close();
          void MapDlgCtrlIDToLineControls(::audio_mixer::source * pSource);

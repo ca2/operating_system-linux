@@ -67,9 +67,9 @@ namespace desktop_environment_kde
 
       //virtual void enable_wallpaper_change_notification() override;
 
-      //virtual string get_file_icon_path(const char * pszPath, int iSize) override;
+      //virtual string get_file_icon_path(const_char_pointer pszPath, int iSize) override;
 
-      //virtual string get_file_content_type(const char * pszPath) override;
+      //virtual string get_file_content_type(const_char_pointer pszPath) override;
 
       //virtual bool set_wallpaper(::collection::index iScreen, string strLocalImagePath) override;
 
