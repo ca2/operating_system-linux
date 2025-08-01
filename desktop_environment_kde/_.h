@@ -36,7 +36,7 @@ namespace desktop_environment_kde
 // {
 //
 //
-//    char * gsettings_get_malloc(const_char_pointer  pszSchema, const_char_pointer  pszKey);
+//    char * gsettings_get_malloc(const_char_pointer pszSchema, const_char_pointer pszKey);
 //
 //
 // } // namespace user

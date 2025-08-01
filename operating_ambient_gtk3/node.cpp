@@ -16,7 +16,7 @@ namespace operating_ambient_gtk3
 {
 
 
-   CLASS_DECL_ACME void _os_process_user_theme(string strTheme);
+   CLASS_DECL_ACME void _os_process_user_theme(const ::scoped_string & scopedstrTheme);
 
 
    node::node()
@@ -236,7 +236,7 @@ namespace operating_ambient_gtk3
 //   }
 
 
-//   void node::os_process_user_theme(string strTheme)
+//   void node::os_process_user_theme(const ::scoped_string & scopedstrTheme)
 //   {
 //
 //      _os_process_user_theme(strTheme);
@@ -244,7 +244,7 @@ namespace operating_ambient_gtk3
 //   }
 
 //
-//   bool node::set_wallpaper(::collection::index iScreen, string strLocalImagePath)
+//   bool node::set_wallpaper(::collection::index iScreen, const ::scoped_string & scopedstrLocalImagePath)
 //   {
 //
 //      // wall-changer sourceforge.net contribution
@@ -351,7 +351,7 @@ namespace operating_ambient_gtk3
 //   }
 //
 //
-//   string node::get_file_icon_path(const_char_pointer  pszPath, int iSize)
+//   string node::get_file_icon_path(const_char_pointer pszPath, int iSize)
 //   {
 //
 //      string str = ::node_xfce::node::get_file_icon_path(scopedstrPath, iSize);
@@ -363,7 +363,7 @@ namespace operating_ambient_gtk3
 //   }
 //
 //
-//   string node::get_file_content_type(const_char_pointer  pszPath)
+//   string node::get_file_content_type(const_char_pointer pszPath)
 //   {
 //
 //      string str = ::node_xfce::node::get_file_content_type(scopedstrPath);

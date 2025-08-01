@@ -63,15 +63,15 @@ namespace desktop_environment_kde
 
       //virtual bool os_set_user_theme(const ::scoped_string & scopedstrUserTheme) override;
 
-      //virtual void os_process_user_theme(string strTheme) override;
+      //virtual void os_process_user_theme(const ::scoped_string & scopedstrTheme) override;
 
       //virtual void enable_wallpaper_change_notification() override;
 
-      //virtual string get_file_icon_path(const_char_pointer  pszPath, int iSize) override;
+      //virtual string get_file_icon_path(const_char_pointer pszPath, int iSize) override;
 
-      //virtual string get_file_content_type(const_char_pointer  pszPath) override;
+      //virtual string get_file_content_type(const_char_pointer pszPath) override;
 
-      //virtual bool set_wallpaper(::collection::index iScreen, string strLocalImagePath) override;
+      //virtual bool set_wallpaper(::collection::index iScreen, const ::scoped_string & scopedstrLocalImagePath) override;
 
       //virtual string get_wallpaper(::collection::index iScreen) override;
 

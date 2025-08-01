@@ -8,7 +8,7 @@ void __console_init(void ** ppscreen, void ** ppwindow, FILE * pfileOut, FILE * 
 void __console_term(void * pscreen);
 void __console_set_cursor_position(void * pscreen, int line, int column);
 void __console_set_text_color(void * pscreen, int color);
-void __console_write(void * pscreen, const_char_pointer  psz);
+void __console_write(void * pscreen, const_char_pointer psz);
 
 
 namespace acme_linux

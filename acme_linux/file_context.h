@@ -32,7 +32,7 @@ namespace acme_linux
       file_pointer get_file(const ::payload & varFile, ::file::e_open eopen, ::pointer < ::file::exception > * ppfileexception) override;
 
 
-      //virtual bool is_link(string strPath) override;
+      //virtual bool is_link(const ::scoped_string & scopedstrPath) override;
 
       //virtual ::file::path _
 

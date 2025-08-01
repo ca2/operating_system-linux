@@ -14,7 +14,7 @@ namespace win2
       application(::ca::application * papp);
       virtual ~application();
 
-      virtual ::user::printer * get_printer(const_char_pointer  pszDeviceName);
+      virtual ::user::printer * get_printer(const_char_pointer pszDeviceName);
 
    };
 

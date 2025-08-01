@@ -201,7 +201,7 @@ namespace draw2d_gdiplus
    }
 
 
-   bool graphics::CreateDC(const_char_pointer  pszDriverName, const_char_pointer  pszDeviceName, const_char_pointer  pszOutput, const void * lpInitData)
+   bool graphics::CreateDC(const_char_pointer pszDriverName, const_char_pointer pszDeviceName, const_char_pointer pszOutput, const void * lpInitData)
    {
 
       return attach_hdc(::CreateDCW(wstring(scopedstrDriverName), wstring(scopedstrDeviceName), wstring(scopedstrOutput), (const DEVMODEW*)lpInitData));
@@ -209,7 +209,7 @@ namespace draw2d_gdiplus
    }
 
 
-   bool graphics::CreateIC(const_char_pointer  pszDriverName, const_char_pointer  pszDeviceName, const_char_pointer  pszOutput, const void * lpInitData)
+   bool graphics::CreateIC(const_char_pointer pszDriverName, const_char_pointer pszDeviceName, const_char_pointer pszOutput, const void * lpInitData)
    {
 
       return attach_hdc(::CreateICW(wstring(scopedstrDriverName), wstring(scopedstrDeviceName), wstring(scopedstrOutput), (const DEVMODEW*) lpInitData));
@@ -2148,7 +2148,7 @@ namespace draw2d_gdiplus
    //// COLOR_DEST = SRC_ALPHA * BLEND_ALPHA * COLOR_SRC  + (1 - SRC_ALPHA * BLEND_ALPHA) * COLOR_DST
 
 
-   bool graphics::ExtTextOut(double x, double y,UINT nOptions,const double_rectangle &  rectParam,const_char_pointer  pszString,character_count nCount,LPINT lpDxWidths)
+   bool graphics::ExtTextOut(double x, double y,UINT nOptions,const double_rectangle &  rectParam,const_char_pointer pszString,character_count nCount,LPINT lpDxWidths)
    {
 
       //ASSERT(get_handle1() != nullptr);
@@ -2176,7 +2176,7 @@ namespace draw2d_gdiplus
    }
 
 
-   double_size graphics::TabbedTextOut(double x, double y, const_char_pointer  pszString, character_count nCount, ::collection::count nTabPositions, LPINT lpnTabStopPositions, int nTabOrigin)
+   double_size graphics::TabbedTextOut(double x, double y, const_char_pointer pszString, character_count nCount, ::collection::count nTabPositions, LPINT lpnTabStopPositions, int nTabOrigin)
    {
 
       //ASSERT(get_handle1() != nullptr);
@@ -2204,7 +2204,7 @@ namespace draw2d_gdiplus
    }
 
 
-   double_size graphics::GetTabbedTextExtent(const_char_pointer  pszString, character_count nCount, ::collection::count nTabPositions, LPINT lpnTabStopPositions)
+   double_size graphics::GetTabbedTextExtent(const_char_pointer pszString, character_count nCount, ::collection::count nTabPositions, LPINT lpnTabStopPositions)
    {
 
       //ASSERT(get_handle2() != nullptr);
@@ -2232,7 +2232,7 @@ namespace draw2d_gdiplus
    }
 
 
-   double_size graphics::GetOutputTabbedTextExtent(const_char_pointer  pszString, character_count nCount, ::collection::count nTabPositions, LPINT lpnTabStopPositions)
+   double_size graphics::GetOutputTabbedTextExtent(const_char_pointer pszString, character_count nCount, ::collection::count nTabPositions, LPINT lpnTabStopPositions)
    {
 
       //ASSERT(get_handle1() != nullptr);
@@ -2423,7 +2423,7 @@ namespace draw2d_gdiplus
    //}
 
 
-   //unsigned int graphics::GetCharacterPlacement(const_char_pointer  pString, character_count nCount, character_count nMaxExtent, LPGCP_RESULTS lpResults, unsigned int dwFlags)
+   //unsigned int graphics::GetCharacterPlacement(const_char_pointer pString, character_count nCount, character_count nMaxExtent, LPGCP_RESULTS lpResults, unsigned int dwFlags)
 
    //{
 
@@ -2443,7 +2443,7 @@ namespace draw2d_gdiplus
 
    //   //ASSERT(get_handle1() != nullptr);
 
-   //   //return ::GetCharacterPlacement(get_handle1(), (const_char_pointer  )str, (int) str.length(), (int) nMaxExtent, pResults, dwFlags);
+   //   //return ::GetCharacterPlacement(get_handle1(), (const_char_pointer )str, (int) str.length(), (int) nMaxExtent, pResults, dwFlags);
    //   throw ::not_implemented();
 
    //   return -1;
@@ -2477,7 +2477,7 @@ namespace draw2d_gdiplus
    //}
 
    //// Printer Escape Functions
-   //int graphics::Escape(int nEscape, int nCount, const_char_pointer  pszInData, LPVOID lpOutData)
+   //int graphics::Escape(int nEscape, int nCount, const_char_pointer pszInData, LPVOID lpOutData)
 
    //{
    //   //ASSERT(get_handle1() != nullptr);
@@ -2830,7 +2830,7 @@ namespace draw2d_gdiplus
    }
 
 
-   //int graphics::DrawEscape(int nEscape, int nInputSize, const_char_pointer  pszInputData)
+   //int graphics::DrawEscape(int nEscape, int nInputSize, const_char_pointer pszInputData)
 
    //{
 
@@ -2845,7 +2845,7 @@ namespace draw2d_gdiplus
    //}
 
 
-   //int graphics::Escape(int nEscape, int nInputSize, const_char_pointer  pszInputData,  int nOutputSize, char * pszOutputData)
+   //int graphics::Escape(int nEscape, int nInputSize, const_char_pointer pszInputData,  int nOutputSize, char * pszOutputData)
 
    //{
 
@@ -4229,7 +4229,7 @@ namespace draw2d_gdiplus
    }
 
 
-   int graphics::StartDoc(const_char_pointer  pszDocName)
+   int graphics::StartDoc(const_char_pointer pszDocName)
 
    {
 
@@ -5351,7 +5351,7 @@ namespace draw2d_gdiplus
    }
 
 
-   //bool graphics::draw_text_ex(const_char_pointer  pszString,character_count nCount,const int_rectangle & rectParam, const ::e_align & ealign, const ::e_draw_text & edrawtext,LPDRAWTEXTPARAMS lpDTParams)
+   //bool graphics::draw_text_ex(const_char_pointer pszString,character_count nCount,const int_rectangle & rectParam, const ::e_align & ealign, const ::e_draw_text & edrawtext,LPDRAWTEXTPARAMS lpDTParams)
    //{
 
    //   if (::is_null(m_pgraphics))
@@ -5400,7 +5400,7 @@ namespace draw2d_gdiplus
    }
 
 
-   //bool graphics::draw_text_ex(const_char_pointer  pszString,character_count nCount,const ::double_rectangle & rectParam, const ::e_align & ealign, const ::e_draw_text & edrawtext,LPDRAWTEXTPARAMS lpDTParams)
+   //bool graphics::draw_text_ex(const_char_pointer pszString,character_count nCount,const ::double_rectangle & rectParam, const ::e_align & ealign, const ::e_draw_text & edrawtext,LPDRAWTEXTPARAMS lpDTParams)
    //{
 
    //   if (::is_null(m_pgraphics))
@@ -5437,11 +5437,11 @@ namespace draw2d_gdiplus
    //   character_count iRange = 0;
    //   character_count i = 0;
    //   character_count iLen;
-   //   const_char_pointer  pszStart = str;
-   //   const_char_pointer  psz = pszStart;
+   //   const_char_pointer pszStart = str;
+   //   const_char_pointer psz = pszStart;
    //   while (*psz)
    //   {
-   //      const_char_pointer  pszNext = ::unicode_utf8_inc(scopedstr);
+   //      const_char_pointer pszNext = ::unicode_utf8_inc(scopedstr);
    //      if (scopedstrNext == nullptr)
    //         break;
    //      iLen = pszNext - psz;
@@ -5599,7 +5599,7 @@ namespace draw2d_gdiplus
 
 
 
-   double_size graphics::GetTextExtent(const_char_pointer  pszString, character_count nCount, character_count iIndex)
+   double_size graphics::GetTextExtent(const_char_pointer pszString, character_count nCount, character_count iIndex)
    {
 
        if (::is_null(m_pgraphics))
@@ -5688,7 +5688,7 @@ namespace draw2d_gdiplus
 
    }
 
-   double_size graphics::GetTextBegin(const_char_pointer  pszString, character_count nCount, character_count iIndex)
+   double_size graphics::GetTextBegin(const_char_pointer pszString, character_count nCount, character_count iIndex)
 
    {
 
@@ -5882,7 +5882,7 @@ namespace draw2d_gdiplus
    //}
 
 
-   ::double_size graphics::GetOutputTextExtent(const_char_pointer  pszString, character_count nCount)
+   ::double_size graphics::GetOutputTextExtent(const_char_pointer pszString, character_count nCount)
    {
 
       //ASSERT(get_handle1() != nullptr);
@@ -5919,7 +5919,7 @@ namespace draw2d_gdiplus
    }
 
 
-   bool graphics::GetTextExtent(::double_size & size, const_char_pointer  pszString, character_count nCount, character_count iIndex)
+   bool graphics::GetTextExtent(::double_size & size, const_char_pointer pszString, character_count nCount, character_count iIndex)
    {
 
       if (::is_null(m_pgraphics))
@@ -5953,7 +5953,7 @@ namespace draw2d_gdiplus
       character_count iRange = 0;
       character_count i = 0;
       character_count iLen;
-      const_char_pointer  psz = pszString;
+      const_char_pointer psz = pszString;
 
       while(i < iIndex)
       {
@@ -6060,7 +6060,7 @@ namespace draw2d_gdiplus
    }
 
    
-   bool graphics::GetTextExtent(::double_size & size, const_char_pointer  pszString, character_count nCount)
+   bool graphics::GetTextExtent(::double_size & size, const_char_pointer pszString, character_count nCount)
    {
 
       if (::is_null(m_pgraphics))

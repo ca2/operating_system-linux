@@ -19,13 +19,13 @@ namespace aaa_user
 //   };
 //
 
-   bool aaa_gsettings_set(const_char_pointer  pszSchema, const_char_pointer  pszKey, const_char_pointer  pszValue);
+   bool aaa_gsettings_set(const_char_pointer pszSchema, const_char_pointer pszKey, const_char_pointer pszValue);
 
    bool aaa_gsettings_sync();
 
-   char * aaa_gsettings_get_malloc(const_char_pointer  pszSchema, const_char_pointer  pszKey);
+   char * aaa_gsettings_get_malloc(const_char_pointer pszSchema, const_char_pointer pszKey);
 
-   bool aaa_g_enable_wallpaper_change_notification(const_char_pointer  pszSchema, const_char_pointer  pszKey);
+   bool aaa_g_enable_wallpaper_change_notification(const_char_pointer pszSchema, const_char_pointer pszKey);
 
    void aaa_g_defer_init();
 

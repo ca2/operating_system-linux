@@ -208,7 +208,7 @@ namespace acme_linux
    #endif
 
 
-   ::file::path directory_system::inplace_install(string strAppId, string strPlatform, string strConfiguration)
+   ::file::path directory_system::inplace_install(const ::scoped_string & scopedstrAppId, const ::scoped_string & scopedstrPlatform, const ::scoped_string & scopedstrConfiguration)
    {
 
    #ifdef LINUX_DESKTOP
@@ -265,7 +265,7 @@ namespace acme_linux
    }
 
 
-   ::file::path directory_system::inplace_matter_install(string strAppId, string strPlatform, string strConfiguration)
+   ::file::path directory_system::inplace_matter_install(const ::scoped_string & scopedstrAppId, const ::scoped_string & scopedstrPlatform, const ::scoped_string & scopedstrConfiguration)
    {
 
    #ifdef LINUX_DESKTOP
@@ -423,7 +423,7 @@ namespace acme_linux
    #endif
 
 
-   ::file::path directory_system::stage(string strAppId, string strPlatform, string strConfiguration)
+   ::file::path directory_system::stage(const ::scoped_string & scopedstrAppId, const ::scoped_string & scopedstrPlatform, const ::scoped_string & scopedstrConfiguration)
    {
 
       return inplace_install(strAppId, strPlatform, strConfiguration) / "time" / node()->time_binary_platform(strPlatform) / strConfiguration;

@@ -22,7 +22,7 @@ typedef struct
 extern ApexApplication * g_papexapplication;
 
 
-void apex_application_run(const_char_pointer  pszAppName, const_char_pointer  pszProgName);
+void apex_application_run(const_char_pointer pszAppName, const_char_pointer pszProgName);
 
 
 

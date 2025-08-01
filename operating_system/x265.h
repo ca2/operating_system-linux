@@ -460,20 +460,20 @@ typedef struct x265_stats
 } x265_stats;
 
 /* String values accepted by x265_param_parse() (and CLI) for various parameters */
-static const_char_pointer  const x265_motion_est_names[] = { "dia", "hex", "umh", "star", "full", 0 };
-static const_char_pointer  const x265_source_csp_names[] = { "i400", "i420", "i422", "i444", "nv12", "nv16", 0 };
-static const_char_pointer  const x265_video_format_names[] = { "component", "pal", "ntsc", "secam", "mac", "undef", 0 };
-static const_char_pointer  const x265_fullrange_names[] = { "limited", "full", 0 };
-static const_char_pointer  const x265_colorprim_names[] = { "", "bt709", "undef", "", "bt470m", "bt470bg", "smpte170m", "smpte240m", "film", "bt2020", 0 };
-static const_char_pointer  const x265_transfer_names[] = { "", "bt709", "undef", "", "bt470m", "bt470bg", "smpte170m", "smpte240m", "linear", "log100",
+static const_char_pointer const x265_motion_est_names[] = { "dia", "hex", "umh", "star", "full", 0 };
+static const_char_pointer const x265_source_csp_names[] = { "i400", "i420", "i422", "i444", "nv12", "nv16", 0 };
+static const_char_pointer const x265_video_format_names[] = { "component", "pal", "ntsc", "secam", "mac", "undef", 0 };
+static const_char_pointer const x265_fullrange_names[] = { "limited", "full", 0 };
+static const_char_pointer const x265_colorprim_names[] = { "", "bt709", "undef", "", "bt470m", "bt470bg", "smpte170m", "smpte240m", "film", "bt2020", 0 };
+static const_char_pointer const x265_transfer_names[] = { "", "bt709", "undef", "", "bt470m", "bt470bg", "smpte170m", "smpte240m", "linear", "log100",
                                                     "log316", "iec61966-2-4", "bt1361e", "iec61966-2-1", "bt2020-10", "bt2020-12",
                                                     "smpte-st-2084", "smpte-st-428", "arib-std-b67", 0 };
-static const_char_pointer  const x265_colmatrix_names[] = { "GBR", "bt709", "undef", "", "fcc", "bt470bg", "smpte170m", "smpte240m",
+static const_char_pointer const x265_colmatrix_names[] = { "GBR", "bt709", "undef", "", "fcc", "bt470bg", "smpte170m", "smpte240m",
                                                      "YCgCo", "bt2020nc", "bt2020c", 0 };
-static const_char_pointer  const x265_sar_names[] = { "undef", "1:1", "12:11", "10:11", "16:11", "40:33", "24:11", "20:11",
+static const_char_pointer const x265_sar_names[] = { "undef", "1:1", "12:11", "10:11", "16:11", "40:33", "24:11", "20:11",
                                                "32:11", "80:33", "18:11", "15:11", "64:33", "160:99", "4:3", "3:2", "2:1", 0 };
-static const_char_pointer  const x265_interlace_names[] = { "prog", "tff", "bff", 0 };
-static const_char_pointer  const x265_analysis_names[] = { "off", "save", "load", 0 };
+static const_char_pointer const x265_interlace_names[] = { "prog", "tff", "bff", 0 };
+static const_char_pointer const x265_analysis_names[] = { "off", "save", "load", 0 };
 
 /* Zones: override ratecontrol for specific sections of the video.
  * If zones overlap, whichever comes later in the list takes precedence. */
@@ -557,7 +557,7 @@ typedef struct x265_param
      *
      * Frame encoders are distributed between the available thread pools, and
      * the encoder will never generate more thread pools than frameNumThreads */
-    const_char_pointer  numaPools;
+    const_char_pointer numaPools;
 
     /* Enable wavefront parallel processing, greatly increases parallelism for
      * less than 1% compression efficiency loss. Requires a thread pool, enabled
@@ -594,7 +594,7 @@ typedef struct x265_param
     int       logLevel;
 
     /* Filename of CSV log. Now deprecated */
-    const_char_pointer  csvfn;
+    const_char_pointer csvfn;
 
     /*== Internal Picture Specification ==*/
 
@@ -870,7 +870,7 @@ typedef struct x265_param
      * - all other strings indicate a filename containing custom scaling lists
      *   in the HM format. The encode will fail if the file is not parsed
      *   correctly. Custom lists must be signaled in the SPS. */
-    const_char_pointer  scalingLists;
+    const_char_pointer scalingLists;
 
     /*== Intra Coding Tools ==*/
 
@@ -1044,7 +1044,7 @@ typedef struct x265_param
     int       analysisMode;
 
     /* Filename for analysisMode save/load. Default name is "x265_analysis.dat" */
-    const_char_pointer  analysisFileName;
+    const_char_pointer analysisFileName;
 
     /*== Rate Control ==*/
 
@@ -1137,7 +1137,7 @@ typedef struct x265_param
 
         /* Filename of the 2pass output/input stats file, if unspecified the
          * encoder will default to using x265_2pass.log */
-        const_char_pointer  statFileName;
+        const_char_pointer statFileName;
 
         /* temporally blur quants */
         double    qblur;
@@ -1158,7 +1158,7 @@ typedef struct x265_param
          * are separated by comma, space or newline. Text after a hash (#) is
          * ignored. The lambda tables are process-global, so these ___new lambda
          * values will affect all encoders in the same process */
-        const_char_pointer  lambdaFileName;
+        const_char_pointer lambdaFileName;
 
         /* Enable stricter conditions to check bitrate deviations in CBR mode. May compromise
          * quality to maintain bitrate adherence */
@@ -1281,7 +1281,7 @@ typedef struct x265_param
      * are unsigned 16bit integers and %u are unsigned 32bit integers. The SEI
      * includes X,Y display primaries for RGB channels, white point X,Y and
      * max,min luminance values. */
-    const_char_pointer  masteringDisplayColorVolume;
+    const_char_pointer masteringDisplayColorVolume;
 
     /* Maximum Content light level(MaxCLL), specified as integer that indicates the
      * maximum pixel intensity level in units of 1 candela per square metre of the
@@ -1343,9 +1343,9 @@ void x265_param_default(x265_param *param);
  *  value=NULL means "true" for boolean options, but is a BAD_VALUE for non-booleans. */
 #define X265_PARAM_BAD_NAME  (-1)
 #define X265_PARAM_BAD_VALUE (-2)
-int x265_param_parse(x265_param *p, const_char_pointer  name, const_char_pointer  value);
+int x265_param_parse(x265_param *p, const_char_pointer name, const_char_pointer value);
 
-static const_char_pointer  const x265_profile_names[] = {
+static const_char_pointer const x265_profile_names[] = {
     /* HEVC v1 */
     "main", "main10", "mainstillpicture", /* alias */ "msp",
 
@@ -1371,7 +1371,7 @@ static const_char_pointer  const x265_profile_names[] = {
  *      function. This function will force the encoder parameters to fit within
  *      the specified profile, or fail if that is impossible.
  *      returns 0 on success, negative on failure (e.g. invalid profile name). */
-int x265_param_apply_profile(x265_param *, const_char_pointer  profile);
+int x265_param_apply_profile(x265_param *, const_char_pointer profile);
 
 /* x265_param_default_preset:
  *      The same as x265_param_default, but also use the passed preset and tune
@@ -1379,7 +1379,7 @@ int x265_param_apply_profile(x265_param *, const_char_pointer  profile);
  *      (either can be NULL, which implies no preset or no tune, respectively)
  *
  *      Currently available presets are, ordered from fastest to slowest: */
-static const_char_pointer  const x265_preset_names[] = { "ultrafast", "superfast", "veryfast", "faster", "fast", "medium", "slow", "slower", "veryslow", "placebo", 0 };
+static const_char_pointer const x265_preset_names[] = { "ultrafast", "superfast", "veryfast", "faster", "fast", "medium", "slow", "slower", "veryslow", "placebo", 0 };
 
 /*      The presets can also be indexed numerically, as in:
  *      x265_param_default_preset( &param, "3", ... )
@@ -1391,10 +1391,10 @@ static const_char_pointer  const x265_preset_names[] = { "ultrafast", "superfast
  *      100 times faster than placebo!
  *
  *      Currently available tunings are: */
-static const_char_pointer  const x265_tune_names[] = { "psnr", "ssim", "grain", "zerolatency", "fastdecode", 0 };
+static const_char_pointer const x265_tune_names[] = { "psnr", "ssim", "grain", "zerolatency", "fastdecode", 0 };
 
 /*      returns 0 on success, negative on failure (e.g. invalid preset/tune name). */
-int x265_param_default_preset(x265_param *, const_char_pointer  preset, const_char_pointer  tune);
+int x265_param_default_preset(x265_param *, const_char_pointer preset, const_char_pointer tune);
 
 /* x265_picture_alloc:
  *  Allocates an x265_picture instance. The returned picture structure is not
@@ -1423,11 +1423,11 @@ X265_API extern const int x265_max_bit_depth;
 
 /* x265_version_str:
  *      A static string containing the version of this compiled x265 library */
-X265_API extern const_char_pointer  x265_version_str;
+X265_API extern const_char_pointer x265_version_str;
 
 /* x265_build_info:
  *      A static string describing the compiler and target architecture */
-X265_API extern const_char_pointer  x265_build_info_str;
+X265_API extern const_char_pointer x265_build_info_str;
 
 /* Force a link error in the case of linking against an incompatible API version.
  * Glue #defines exist to force correct macro expansion; the final output of the macro
@@ -1538,9 +1538,9 @@ typedef struct x265_api
     x265_param*   (*param_alloc)(void);
     void          (*param_free)(x265_param*);
     void          (*param_default)(x265_param*);
-    int           (*param_parse)(x265_param*, const_char_pointer  , const_char_pointer  );
-    int           (*param_apply_profile)(x265_param*, const_char_pointer  );
-    int           (*param_default_preset)(x265_param*, const_char_pointer  , const_char_pointer  );
+    int           (*param_parse)(x265_param*, const_char_pointer ,const_char_pointer );
+    int           (*param_apply_profile)(x265_param*, const_char_pointer );
+    int           (*param_default_preset)(x265_param*, const_char_pointer ,const_char_pointer );
     x265_picture* (*picture_alloc)(void);
     void          (*picture_free)(x265_picture*);
     void          (*picture_init)(x265_param*, x265_picture*);
@@ -1609,7 +1609,7 @@ const x265_api* x265_api_query(int bitDepth, int apiVersion, int* err);
 #define X265_API_QUERY_ERR_FUNC_NOT_FOUND 3 /* unable to bind x265_api_query    */
 #define X265_API_QUERY_ERR_WRONG_BITDEPTH 4 /* libx265_main10 not 10bit, for ex */
 
-static const_char_pointer  const x265_api_query_errnames[] = {
+static const_char_pointer const x265_api_query_errnames[] = {
     "api queried from libx265",
     "libx265 version is not compatible with this application",
     "unable to bind a libx265 with requested bit depth",

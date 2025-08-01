@@ -30,10 +30,10 @@
 //}
 
 
-//const_char_pointer  linux_g_direct_get_file_icon_path(const_char_pointer  pszPath, int iSize);
+//const_char_pointer linux_g_direct_get_file_icon_path(const_char_pointer pszPath, int iSize);
 //
 //
-//const_char_pointer  linux_g_direct_get_file_content_type(const_char_pointer  pszPath);
+//const_char_pointer linux_g_direct_get_file_content_type(const_char_pointer pszPath);
 //
 //
 //void aaa_x11_add_idle_source();
@@ -63,13 +63,13 @@
 //
 //void os_post_quit();
 //
-//void apex_application_run(const_char_pointer  pszAppName, const_char_pointer  pszProgName);
+//void apex_application_run(const_char_pointer pszAppName, const_char_pointer pszProgName);
 
 namespace desktop_environment_kde
 {
 
 
-   CLASS_DECL_ACME void _os_process_user_theme(string strTheme);
+   CLASS_DECL_ACME void _os_process_user_theme(const ::scoped_string & scopedstrTheme);
 
 
    node::node()
@@ -291,7 +291,7 @@ namespace desktop_environment_kde
 //   }
 
 
-//   void node::os_process_user_theme(string strTheme)
+//   void node::os_process_user_theme(const ::scoped_string & scopedstrTheme)
 //   {
 //
 //      _os_process_user_theme(strTheme);
@@ -299,7 +299,7 @@ namespace desktop_environment_kde
 //   }
 //
 //
-//   bool node::set_wallpaper(::collection::index iScreen, string strLocalImagePath)
+//   bool node::set_wallpaper(::collection::index iScreen, const ::scoped_string & scopedstrLocalImagePath)
 //   {
 //
 //      // wall-changer sourceforge.net contribution
@@ -403,7 +403,7 @@ namespace desktop_environment_kde
 //   }
 
 //
-//   string node::get_file_icon_path(const_char_pointer  pszPath, int iSize)
+//   string node::get_file_icon_path(const_char_pointer pszPath, int iSize)
 //   {
 //
 //      return ::linux_g_direct_get_file_icon_path(scopedstrPath, iSize);
@@ -411,7 +411,7 @@ namespace desktop_environment_kde
 //   }
 
 
-//   string node::get_file_content_type(const_char_pointer  pszPath)
+//   string node::get_file_content_type(const_char_pointer pszPath)
 //   {
 //
 //      return ::linux_g_direct_get_file_content_type(scopedstrPath);

@@ -76,7 +76,7 @@
 //}
 
 
-//::user::os_theme_colors * new_os_theme_colors(string strTheme)
+//::user::os_theme_colors * new_os_theme_colors(const ::scoped_string & scopedstrTheme)
 //{
 //
 //   auto pthemecolors = ___new ::user::os_theme_colors();

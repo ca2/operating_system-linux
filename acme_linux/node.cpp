@@ -224,7 +224,7 @@ namespace acme_linux
    }
 
 
-   ::process_identifier_array node::module_path_processes_identifiers(const ::string &pszModulePath,
+   ::process_identifier_array node::module_path_processes_identifiers(const ::scoped_string & scopedstrModulePath,
                                                       bool bModuleNameIsPropertyFormatted)
    {
 
@@ -359,7 +359,7 @@ namespace acme_linux
    }
 
 
-//      void node::shell_execute_async(const_char_pointer  psz, const_char_pointer  pszParams)
+//      void node::shell_execute_async(const_char_pointer psz, const_char_pointer pszParams)
 //      {
 //
 //         string str(scopedstr);

@@ -41,7 +41,7 @@ namespace win2
       virtual ~printer();
 
 
-      virtual bool open(const_char_pointer  pszDeviceName);
+      virtual bool open(const_char_pointer pszDeviceName);
       virtual ::ca::graphics * create_graphics();
       virtual bool is_opened();
       virtual bool close();

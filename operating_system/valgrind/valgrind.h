@@ -6234,14 +6234,14 @@ typedef
 #if defined(__GNUC__) || defined(__INTEL_COMPILER) && !defined(_MSC_VER)
 /* Modern GCC will optimize the static routine out if unused,
    and unused attribute will shut down warnings about it.  */
-static int VALGRIND_PRINTF(const_char_pointer  format, ...)
+static int VALGRIND_PRINTF(const_char_pointer format, ...)
    __attribute__((format(__printf__, 1, 2), __unused__));
 #endif
 static int
 #if defined(_MSC_VER)
 __inline
 #endif
-VALGRIND_PRINTF(const_char_pointer  format, ...)
+VALGRIND_PRINTF(const_char_pointer format, ...)
 {
 #if defined(NVALGRIND)
    (void)format;
@@ -6273,14 +6273,14 @@ VALGRIND_PRINTF(const_char_pointer  format, ...)
 }
 
 #if defined(__GNUC__) || defined(__INTEL_COMPILER) && !defined(_MSC_VER)
-static int VALGRIND_PRINTF_BACKTRACE(const_char_pointer  format, ...)
+static int VALGRIND_PRINTF_BACKTRACE(const_char_pointer format, ...)
    __attribute__((format(__printf__, 1, 2), __unused__));
 #endif
 static int
 #if defined(_MSC_VER)
 __inline
 #endif
-VALGRIND_PRINTF_BACKTRACE(const_char_pointer  format, ...)
+VALGRIND_PRINTF_BACKTRACE(const_char_pointer format, ...)
 {
 #if defined(NVALGRIND)
    (void)format;

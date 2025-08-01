@@ -17,7 +17,7 @@ namespace draw2d_gdiplus
    {
    }
 
-   bool printer::open(const_char_pointer  pszDeviceName)
+   bool printer::open(const_char_pointer pszDeviceName)
    {
 
       if (is_opened())

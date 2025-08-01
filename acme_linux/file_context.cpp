@@ -97,7 +97,7 @@ namespace acme_linux
    }
 
 
-//   bool file_context::is_link(string strPath)
+//   bool file_context::is_link(const ::scoped_string & scopedstrPath)
 //   {
 //
 //      return path_system()->is_link(strPath);

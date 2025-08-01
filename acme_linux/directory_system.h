@@ -60,7 +60,7 @@ namespace acme_linux
       ::file::path program_files_x86() override;
       ::file::path program_files() override;
       //::file::path program_data() override;
-      ::file::path stage(string strAppId, string strPlatform, string strConfiguration) override;
+      ::file::path stage(const ::scoped_string & scopedstrAppId, const ::scoped_string & scopedstrPlatform, const ::scoped_string & scopedstrConfiguration) override;
       ::file::path sys_temp() override;
       ::string dir_root() override;
       //virtual ::file::path home() override;
@@ -73,10 +73,10 @@ namespace acme_linux
       string system_short_name() override;
 
 
-      //::file::path inplace_install(string strAppId, string strPlatform, string strConfiguration) override;
-      //virtual ::file::path inplace_install(string strAppId, string strPlatform, string strConfiguration) override;
-      ::file::path inplace_install(string strAppId, string strPlatform, string strConfiguration) override;
-      ::file::path inplace_matter_install(string strAppId, string strPlatform, string strConfiguration) override;
+      //::file::path inplace_install(const ::scoped_string & scopedstrAppId, const ::scoped_string & scopedstrPlatform, const ::scoped_string & scopedstrConfiguration) override;
+      //virtual ::file::path inplace_install(const ::scoped_string & scopedstrAppId, const ::scoped_string & scopedstrPlatform, const ::scoped_string & scopedstrConfiguration) override;
+      ::file::path inplace_install(const ::scoped_string & scopedstrAppId, const ::scoped_string & scopedstrPlatform, const ::scoped_string & scopedstrConfiguration) override;
+      ::file::path inplace_matter_install(const ::scoped_string & scopedstrAppId, const ::scoped_string & scopedstrPlatform, const ::scoped_string & scopedstrConfiguration) override;
 
 
       void set_path_install_folder(const ::scoped_string & scopedstrPath) override;

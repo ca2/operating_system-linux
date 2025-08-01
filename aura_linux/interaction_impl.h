@@ -101,20 +101,20 @@
 // //      oswindow UnsubclassWindow();
 //
 //       // handling of RT_DLGINIT resource (extension to RT_DIALOG)
-// //      bool ExecuteDlgInit(const_char_pointer  pszResourceName);
+// //      bool ExecuteDlgInit(const_char_pointer pszResourceName);
 // //
 // //      bool ExecuteDlgInit(LPVOID pResource);
 //
-//       //virtual bool create_message_queue(::user::interaction * pinteraction, const_char_pointer  lpszName) override;
+//       //virtual bool create_message_queue(::user::interaction * pinteraction, const_char_pointer lpszName) override;
 //
 // //      using ::windowing::window::create_window;
 //
 //       // for child windows, views, panes etc
 // //      virtual bool create_window(
 // //      ::user::interaction * pinteraction,
-// //      const_char_pointer  pszClassName,
+// //      const_char_pointer pszClassName,
 //
-// //      const_char_pointer  pszWindowName,
+// //      const_char_pointer pszWindowName,
 //
 // //      unsigned int dwStyle,
 // //      const ::int_rectangle & rectangle,

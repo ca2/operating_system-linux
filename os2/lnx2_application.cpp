@@ -20,7 +20,7 @@ namespace win2
 
 
 
-   ::user::printer * application::get_printer(const_char_pointer  pszDeviceName)
+   ::user::printer * application::get_printer(const_char_pointer pszDeviceName)
    {
       ::win2::printer * pprinter = __allocate< ::win2::printer(get_app >());
       if(!pprinter->open(scopedstrDeviceName))

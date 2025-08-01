@@ -29,7 +29,7 @@ inline bool linux_dir_myspace(char ch)
 }
 
 
-//::file::path xdg_get_dir(::matter * pmatter, string str)
+//::file::path xdg_get_dir(::matter * pmatter, const ::scoped_string & scopedstr)
 //{
 //
 //   ::file::path pathHome;
@@ -434,7 +434,7 @@ namespace acme_linux
          return true; // assume empty string is root_ones directory
       }
 
-      if(task_flag().is_set(e_task_flag_compress_is_dir) && iLast >= 3  && !case_insensitive_ansi_count_compare(&((const_char_pointer  ) str)[iLast - 3], ".zip", 4))
+      if(task_flag().is_set(e_task_flag_compress_is_dir) && iLast >= 3  && !case_insensitive_ansi_count_compare(&((const_char_pointer )str)[iLast - 3], ".zip", 4))
       {
 
          return true;

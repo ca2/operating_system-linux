@@ -47,15 +47,15 @@ namespace operating_ambient_gtk3
 
       //virtual bool os_set_user_theme(const ::scoped_string & scopedstrUserTheme) override;
 
-      //virtual void os_process_user_theme(string strTheme) override;
+      //virtual void os_process_user_theme(const ::scoped_string & scopedstrTheme) override;
 
       //virtual void enable_wallpaper_change_notification() override;
 
-      //virtual string get_file_icon_path(const_char_pointer  pszPath, int iSize) override;
+      //virtual string get_file_icon_path(const_char_pointer pszPath, int iSize) override;
 
-      //virtual string get_file_content_type(const_char_pointer  pszPath) override;
+      //virtual string get_file_content_type(const_char_pointer pszPath) override;
 
-      //virtual bool set_wallpaper(::collection::index iScreen, string strLocalImagePath) override;
+      //virtual bool set_wallpaper(::collection::index iScreen, const ::scoped_string & scopedstrLocalImagePath) override;
 
       ///virtual string get_wallpaper(::collection::index iScreen) override;
 
@@ -69,9 +69,9 @@ namespace operating_ambient_gtk3
 
       //virtual void on_subject(::promise::topic * ptopic, ::subject::context * pcontext) override;
 
-      //virtual void _on_change_os_user_theme(string strTheme);
+      //virtual void _on_change_os_user_theme(const ::scoped_string & scopedstrTheme);
 
-      //virtual void _os_process_user_theme_color(string strTheme);
+      //virtual void _os_process_user_theme_color(const ::scoped_string & scopedstrTheme);
 
       //virtual ::node_linux::appindicator * appindicator_allocate() override;
 

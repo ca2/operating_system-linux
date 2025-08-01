@@ -356,7 +356,7 @@
 //
 //      }
 
-      const_char_pointer  device::GetSZPName()
+      const_char_pointer device::GetSZPName()
       {
 
          //return m_mixercaps.szPname;

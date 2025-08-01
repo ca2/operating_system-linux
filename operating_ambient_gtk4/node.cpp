@@ -20,7 +20,7 @@ namespace operating_ambient_gtk4
 {
 
 
-   //CLASS_DECL_ACME void _os_process_user_theme_color(string strTheme);
+   //CLASS_DECL_ACME void _os_process_user_theme_color(const ::scoped_string & scopedstrTheme);
 
 
    node::node()
@@ -208,7 +208,7 @@ namespace operating_ambient_gtk4
 //   }
 
 
-//   void node::os_process_user_theme(string strTheme)
+//   void node::os_process_user_theme(const ::scoped_string & scopedstrTheme)
 //   {
 //
 //      _os_process_user_theme(strTheme);
@@ -216,7 +216,7 @@ namespace operating_ambient_gtk4
 //   }
 
 
-//   bool node::set_wallpaper(::collection::index iScreen, string strLocalImagePath)
+//   bool node::set_wallpaper(::collection::index iScreen, const ::scoped_string & scopedstrLocalImagePath)
 //   {
 //
 //      // wall-changer sourceforge.net contribution

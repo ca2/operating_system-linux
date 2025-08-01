@@ -44,7 +44,7 @@
 //
 //#endif
 
-//bool linux_g_direct_app_indicator_new(const_char_pointer  pszId, const_char_pointer  pszIcon, const_char_pointer  pszFolder, user_notify_icon_bridge * pbridge);
+//bool linux_g_direct_app_indicator_new(const_char_pointer pszId, const_char_pointer pszIcon, const_char_pointer pszFolder, user_notify_icon_bridge * pbridge);
 // /void linux_g_direct_app_indicator_term(AppIndicator * pindicator);
 //void linux_g_direct_app_indicator_step(void * pvoidInd);
 
@@ -133,7 +133,7 @@ void g_safe_free(void * pfree)
 
 
 
-const_char_pointer  linux_g_direct_get_file_icon_path(const_char_pointer  pszPath, int iSize)
+const_char_pointer linux_g_direct_get_file_icon_path(const_char_pointer pszPath, int iSize)
 {
 
    GFile * pfile = g_file_new_for_path (scopedstrPath);
@@ -215,7 +215,7 @@ const_char_pointer  linux_g_direct_get_file_icon_path(const_char_pointer  pszPat
 
       }
 
-      const_char_pointer  point = gtk_icon_info_get_filename(pGtkIconInfo);
+      const_char_pointer point = gtk_icon_info_get_filename(pGtkIconInfo);
 
       char * psz = nullptr;
 
@@ -235,7 +235,7 @@ const_char_pointer  linux_g_direct_get_file_icon_path(const_char_pointer  pszPat
 }
 
 
-const_char_pointer  linux_g_direct_get_file_content_type(const_char_pointer  pszPath)
+const_char_pointer linux_g_direct_get_file_content_type(const_char_pointer pszPath)
 {
 
    GFile * pfile = g_file_new_for_path (scopedstrPath);
@@ -258,9 +258,9 @@ const_char_pointer  linux_g_direct_get_file_content_type(const_char_pointer  psz
 
    }
 
-   const_char_pointer  pszContentType = g_file_info_get_content_type (pfileinfo);
+   const_char_pointer pszContentType = g_file_info_get_content_type (pfileinfo);
 
-   const_char_pointer  point = nullptr;
+   const_char_pointer point = nullptr;
 
    if(scopedstrContentType != nullptr)
    {
@@ -274,7 +274,7 @@ const_char_pointer  linux_g_direct_get_file_content_type(const_char_pointer  psz
 }
 
 
-int aaa_gdk_launch_uri(const_char_pointer  pszUri, char * pszError, int iBufferSize)
+int aaa_gdk_launch_uri(const_char_pointer pszUri, char * pszError, int iBufferSize)
 {
 
    gboolean ret;
