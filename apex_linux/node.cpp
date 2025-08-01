@@ -710,7 +710,7 @@ namespace apex_linux
    }
 
 
-   bool node::open_in_ie(const ::string & pcsz)
+   bool node::open_in_ie(const ::scoped_string & scopedstr)
    {
 
       throw ::not_implemented();

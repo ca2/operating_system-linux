@@ -83,7 +83,7 @@ namespace apex_linux
       void file_association_get_shell_open_command(const ::scoped_string & scopedstrExtension, string & strExtensionNamingClass, string & strCommand, string & strParam) override;
 
 
-      virtual bool open_in_ie(const ::string & pcsz);
+      virtual bool open_in_ie(const ::scoped_string & scopedstr);
 
 
       void link_open(const ::scoped_string & scopedstrUrl, const ::scoped_string & scopedstrProfile);
