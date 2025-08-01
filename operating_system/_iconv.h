@@ -72,7 +72,7 @@ extern "C" {
 #ifndef LIBICONV_PLUG
 #define iconv_open libiconv_open
 #endif
-extern iconv_t iconv_open (const_char_pointer tocode, const_char_pointer fromcode);
+extern iconv_t iconv_open (const_char_pointer  tocode, const_char_pointer  fromcode);
 
 /* Converts, using conversion descriptor 'cd', at most '*inbytesleft' bytes
    starting at '*inbuf', writing at most '*outbytesleft' bytes starting at
@@ -130,7 +130,7 @@ typedef struct {
    encoding 'tocode' into preallocated memory. Returns an error indicator
    (0 or -1 with errno set). */
 #define iconv_open_into libiconv_open_into
-extern int iconv_open_into (const_char_pointer tocode, const_char_pointer fromcode,
+extern int iconv_open_into (const_char_pointer  tocode, const_char_pointer  fromcode,
                             iconv_allocation_t* resultp);
 
 /* Control of attributes. */
@@ -153,7 +153,7 @@ struct iconv_hooks {
    bytes from inbuf and may produce replacement Unicode characters by calling
    the write_replacement callback repeatedly.  */
 typedef void (*iconv_unicode_mb_to_uc_fallback)
-             (const_char_pointer inbuf, size_t inbufsize,
+             (const_char_pointer  inbuf, size_t inbufsize,
               void (*write_replacement) (const unsigned int *buf, size_t buflen,
                                          void* callback_arg),
               void* callback_arg,
@@ -164,7 +164,7 @@ typedef void (*iconv_unicode_mb_to_uc_fallback)
    write_replacement callback repeatedly.  */
 typedef void (*iconv_unicode_uc_to_mb_fallback)
              (unsigned int code,
-              void (*write_replacement) (const_char_pointer buf, size_t buflen,
+              void (*write_replacement) (const_char_pointer  buf, size_t buflen,
                                          void* callback_arg),
               void* callback_arg,
               void* data);
@@ -174,7 +174,7 @@ typedef void (*iconv_unicode_uc_to_mb_fallback)
    produce replacement wide characters by calling the write_replacement
    callback repeatedly.  */
 typedef void (*iconv_wchar_mb_to_wc_fallback)
-             (const_char_pointer inbuf, size_t inbufsize,
+             (const_char_pointer  inbuf, size_t inbufsize,
               void (*write_replacement) (const wchar_t *buf, size_t buflen,
                                          void* callback_arg),
               void* callback_arg,
@@ -185,7 +185,7 @@ typedef void (*iconv_wchar_mb_to_wc_fallback)
    write_replacement callback repeatedly.  */
 typedef void (*iconv_wchar_wc_to_mb_fallback)
              (wchar_t code,
-              void (*write_replacement) (const_char_pointer buf, size_t buflen,
+              void (*write_replacement) (const_char_pointer  buf, size_t buflen,
                                          void* callback_arg),
               void* callback_arg,
               void* data);
@@ -216,13 +216,13 @@ struct iconv_fallbacks {
 /* Listing of locale independent encodings. */
 #define iconvlist libiconvlist
 extern void iconvlist (int (*do_one) (unsigned int namescount,
-                                      const_char_pointer const * names,
+                                      const_char_pointer  const * names,
                                       void* data),
                        void* data);
 
 /* Canonicalize an encoding name.
    The result is either a canonical encoding name, or name itself. */
-extern const_char_pointer iconv_canonicalize (const_char_pointer name);
+extern const_char_pointer  iconv_canonicalize (const_char_pointer  name);
 
 /* Support for relocatable packages.  */
 
@@ -231,8 +231,8 @@ extern const_char_pointer iconv_canonicalize (const_char_pointer name);
    by the corresponding pathname with the current prefix instead.  Both
    prefixes should be directory names without trailing slash (i.e. use ""
    instead of "/").  */
-extern void libiconv_set_relocation_prefix (const_char_pointer orig_prefix,
-                                            const_char_pointer curr_prefix);
+extern void libiconv_set_relocation_prefix (const_char_pointer  orig_prefix,
+                                            const_char_pointer  curr_prefix);
 
 #ifdef __cplusplus
 }

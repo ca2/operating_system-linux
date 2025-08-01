@@ -1671,7 +1671,7 @@
 //          return ::linux::interaction_impl::from_handle(hWnd);
 //       }
 //    */
-// //   int interaction_impl::message_box(const_char_pointer pszText, const_char_pointer pszcaption, unsigned int nType)
+// //   int interaction_impl::message_box(const_char_pointer  pszText, const_char_pointer  pszcaption, unsigned int nType)
 // //   {
 // //
 // //      string strCaption;
@@ -3128,7 +3128,7 @@
 // //
 // //   }
 // //
-// //   void interaction_impl::SetDlgItemText(int nID, const_char_pointer pszString)
+// //   void interaction_impl::SetDlgItemText(int nID, const_char_pointer  pszString)
 // //
 // //   {
 // //
@@ -3716,7 +3716,7 @@
 // //
 // //   }
 // //
-// //   void interaction_impl::OnWinIniChange(const_char_pointer )
+// //   void interaction_impl::OnWinIniChange(const_char_pointer  )
 // //   { Default(); }
 // //   void interaction_impl::OnChangeUIState(unsigned int, unsigned int)
 // //   { Default(); }
@@ -3761,7 +3761,7 @@
 // //   { m_nIdleFlags |= (idleLayout | (bNotify ? idleNotify : 0)); };
 // //   bool frame_window::InModalState() const
 // //   { return m_cModalStack != 0; }
-// //   void frame_window::set_title(const_char_pointer pszTitle)
+// //   void frame_window::set_title(const_char_pointer  pszTitle)
 // //
 // //   { m_strTitle = pszTitle; }
 // //

@@ -197,7 +197,7 @@
          return *this;
       }
 
-      const_char_pointer source::GetSZName()
+      const_char_pointer  source::GetSZName()
       {
          //return m_mixerline.szName;
 

@@ -16,11 +16,11 @@ namespace win2
    {
    }
 
-   bool printer::open(const_char_pointer pszDeviceName)
+   bool printer::open(const_char_pointer  pszDeviceName)
    {
       if(is_opened())
          close();
-//      return OpenPrinter((char *) (const_char_pointer ) pszDeviceName, &m_hPrinter, NULL) != FALSE && m_hPrinter != NULL;
+//      return OpenPrinter((char *) (const_char_pointer  ) pszDeviceName, &m_hPrinter, NULL) != FALSE && m_hPrinter != NULL;
       return false;
    }
 
@@ -71,9 +71,9 @@ namespace win2
     //     return false;
       if(m_hdc != NULL)
          return false;
-//      int32_t iSize = DocumentProperties(NULL, pprinter->m_hPrinter, (char *)(const_char_pointer ) pprinter->m_strName, NULL, NULL, 0);
+//      int32_t iSize = DocumentProperties(NULL, pprinter->m_hPrinter, (char *)(const_char_pointer  ) pprinter->m_strName, NULL, NULL, 0);
   //    m_pdevmode = (DEVMODE *) malloc(iSize);
-    //  if(!DocumentProperties(NULL, pprinter->m_hPrinter, (char *) (const_char_pointer ) pprinter->m_strName, m_pdevmode, NULL, DM_OUT_BUFFER))
+    //  if(!DocumentProperties(NULL, pprinter->m_hPrinter, (char *) (const_char_pointer  ) pprinter->m_strName, m_pdevmode, NULL, DM_OUT_BUFFER))
       //{
         // throw "failed to get printer DocumentProperties";
          return false;
@@ -105,7 +105,7 @@ namespace win2
         // return NULL;
       if(m_hdc != NULL)
          return NULL;
-//      m_hdc = ::CreateDC("WINSPOOL", (const_char_pointer ) m_pdevmode->dmDeviceName, NULL, m_pdevmode);
+//      m_hdc = ::CreateDC("WINSPOOL", (const_char_pointer  ) m_pdevmode->dmDeviceName, NULL, m_pdevmode);
   //    ::ca::graphics_sp g(get_app());
     //  g->Attach(m_hdc);
 //      return g.detach();

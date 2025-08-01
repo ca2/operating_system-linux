@@ -22,7 +22,7 @@ namespace node_kde{
    }
 
 
-   bool appindicator::create(const_char_pointer pszId, const_char_pointer pszIcon, const_char_pointer pszFolder, user_notify_icon_bridge * pbridge)
+   bool appindicator::create(const_char_pointer  pszId, const_char_pointer  pszIcon, const_char_pointer  pszFolder, user_notify_icon_bridge * pbridge)
    {
 
       return true;

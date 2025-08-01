@@ -10,7 +10,7 @@ void sn_start_context();
 //
 //ApexApplication * g_papexapplication = nullptr;
 //
-//ApexApplication * apex_application_new (const_char_pointer pszAppName, const_char_pointer pszProgName)
+//ApexApplication * apex_application_new (const_char_pointer  pszAppName, const_char_pointer  pszProgName)
 //{
 //
 //   ApexApplication * apex_application;
@@ -234,7 +234,7 @@ void sn_start_context();
 //}
 //
 //
-//void apex_application_run(const_char_pointer pszAppName, const_char_pointer pszProgName)
+//void apex_application_run(const_char_pointer  pszAppName, const_char_pointer  pszProgName)
 //{
 //
 //   g_papexapplication = apex_application_new(scopedstrAppName, pszProgName);

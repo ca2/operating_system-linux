@@ -69,13 +69,13 @@
 //      virtual string GetFileName() const;
 //      virtual string GetFileTitle() const;
 //      virtual string GetFilePath() const;
-//      virtual void SetFilePath(const_char_pointer pszNewName);
+//      virtual void SetFilePath(const_char_pointer  pszNewName);
 //
 //
 //      void open(const ::file::path & pathFileName, ::file::e_open eopen, ::pointer < ::file::exception > * ppfilexception) override;
 //
 //
-//      //virtual bool PASCAL GetStatus(const_char_pointer pszFileName, ::file::file_status& rStatus);
+//      //virtual bool PASCAL GetStatus(const_char_pointer  pszFileName, ::file::file_status& rStatus);
 //
 //      unsigned long long ReadHuge(void * pBuffer, unsigned long long dwCount);
 //
@@ -116,9 +116,9 @@
 ////
 ////      ::e_status os_error_to_exception(int lOsError);
 //////      ::e_status PASCAL ErrnoToException(int nErrno);
-////      void throw_os_error(int lOsError, const_char_pointer pszFileName = nullptr);
+////      void throw_os_error(int lOsError, const_char_pointer  pszFileName = nullptr);
 //
-////      //void PASCAL ThrowErrno(::pointer<::platform::application>papp, int nErrno, const_char_pointer pszFileName = nullptr);
+////      //void PASCAL ThrowErrno(::pointer<::platform::application>papp, int nErrno, const_char_pointer  pszFileName = nullptr);
 //
 ////
 ////

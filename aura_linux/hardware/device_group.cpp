@@ -33,7 +33,7 @@ namespace aura_linux
 
          ::hardware::device_group::initialize_device_group(edevice, pdevices);
 
-         const_char_pointer pszDevType = nullptr;
+         const_char_pointer  pszDevType = nullptr;
 
          if(m_edevice == ::hardware::e_device_video_input)
          {

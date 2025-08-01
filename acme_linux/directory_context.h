@@ -60,7 +60,7 @@ namespace acme_linux
       virtual ::file::path netseed() override;
 
       // stage in ca2os spalib
-      //  virtual string matter(const ::scoped_string & scopedstr, const_char_pointer lpcsz2 = nullptr);
+      //  virtual string matter(const ::scoped_string & scopedstr, const_char_pointer  lpcsz2 = nullptr);
 
       //virtual ::file::path install();
 //      virtual string matter(const ::scoped_string & scopedstr);

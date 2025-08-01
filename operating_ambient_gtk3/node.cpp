@@ -351,7 +351,7 @@ namespace operating_ambient_gtk3
 //   }
 //
 //
-//   string node::get_file_icon_path(const_char_pointer pszPath, int iSize)
+//   string node::get_file_icon_path(const_char_pointer  pszPath, int iSize)
 //   {
 //
 //      string str = ::node_xfce::node::get_file_icon_path(scopedstrPath, iSize);
@@ -363,7 +363,7 @@ namespace operating_ambient_gtk3
 //   }
 //
 //
-//   string node::get_file_content_type(const_char_pointer pszPath)
+//   string node::get_file_content_type(const_char_pointer  pszPath)
 //   {
 //
 //      string str = ::node_xfce::node::get_file_content_type(scopedstrPath);

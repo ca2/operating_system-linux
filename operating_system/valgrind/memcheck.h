@@ -266,7 +266,7 @@ typedef
 #define VALGRIND_GET_VBITS(zza,zzvbits,zznbytes)                \
     (unsigned)VALGRIND_DO_CLIENT_REQUEST_EXPR(0,                \
                                     VG_USERREQ__GET_VBITS,      \
-                                    (const_char_pointer )(zza),         \
+                                    (const_char_pointer  )(zza),         \
                                     (char*)(zzvbits),           \
                                     (zznbytes), 0, 0)
 
@@ -282,8 +282,8 @@ typedef
 #define VALGRIND_SET_VBITS(zza,zzvbits,zznbytes)                \
     (unsigned)VALGRIND_DO_CLIENT_REQUEST_EXPR(0,                \
                                     VG_USERREQ__SET_VBITS,      \
-                                    (const_char_pointer )(zza),         \
-                                    (const_char_pointer )(zzvbits),     \
+                                    (const_char_pointer  )(zza),         \
+                                    (const_char_pointer  )(zzvbits),     \
                                     (zznbytes), 0, 0 )
 
 /* Disable and re-enable reporting of addressing errors in the

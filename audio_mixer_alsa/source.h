@@ -31,7 +31,7 @@
          void mixerGetLineInfo(unsigned int dwSource, ::audio_mixer::destination * pdestination);
 
          ::atom GetLineID();
-         const_char_pointer GetSZName();
+         const_char_pointer  GetSZName();
          void update_all_controls();
          //MIXERLINECONTROLS & get_mixer_line_controls();
          //MIXERLINE & get_mixer_line();

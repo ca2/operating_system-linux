@@ -17,7 +17,7 @@ namespace linux
 
 
 
-   //HINSTANCE load_library(const_char_pointer psz)
+   //HINSTANCE load_library(const_char_pointer  psz)
 
    //{
 
@@ -70,7 +70,7 @@ namespace linux
    //}
 
 
-   //int reg_query_value(HKEY hkey, const_char_pointer pszSubKey, string& str)
+   //int reg_query_value(HKEY hkey, const_char_pointer  pszSubKey, string& str)
    //{
 
    //   DWORD dwType = 0;
@@ -104,7 +104,7 @@ namespace linux
    //}
 
 
-   //HICON extract_icon(HINSTANCE hInst, const_char_pointer pszExeFileName, unsigned int nIconIndex)
+   //HICON extract_icon(HINSTANCE hInst, const_char_pointer  pszExeFileName, unsigned int nIconIndex)
 
    //{
 
@@ -114,7 +114,7 @@ namespace linux
    //}
 
 
-   //bool delete_file(const_char_pointer pFileName)
+   //bool delete_file(const_char_pointer  pFileName)
 
    //{
 

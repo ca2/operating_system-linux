@@ -684,7 +684,7 @@
 //
 //
 //
-////   void PASCAL file_exception::throw_os_error(int lOsError, const_char_pointer pszFileName /* = nullptr */)
+////   void PASCAL file_exception::throw_os_error(int lOsError, const_char_pointer  pszFileName /* = nullptr */)
 //
 ////   {
 ////      if (lOsError != 0)
@@ -692,7 +692,7 @@
 //
 ////   }
 //
-////   void PASCAL file_exception::ThrowErrno(int nErrno, const_char_pointer pszFileName /* = nullptr */)
+////   void PASCAL file_exception::ThrowErrno(int nErrno, const_char_pointer  pszFileName /* = nullptr */)
 //
 ////   {
 ////      if (nErrno != 0)
@@ -921,7 +921,7 @@
 //   }
 //
 //
-//   void file::SetFilePath(const_char_pointer pszNewName)
+//   void file::SetFilePath(const_char_pointer  pszNewName)
 //
 //   {
 //
@@ -1001,7 +1001,7 @@
 //}
 //
 //
-//CLASS_DECL_ACME bool posix_resolve_shortcut(string & strTarget, const_char_pointer pszSource, ::pointer<::user::interaction_base>puiMessageParentOptional)
+//CLASS_DECL_ACME bool posix_resolve_shortcut(string & strTarget, const_char_pointer  pszSource, ::pointer<::user::interaction_base>puiMessageParentOptional)
 //{
 //
 //   char realname[_POSIX_PATH_MAX * 4];

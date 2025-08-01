@@ -51,7 +51,7 @@ extern sp_session *g_session;
 
 extern void (*metadata_updated_fn)(void);
 
-extern int spshell_init(const_char_pointer username, const_char_pointer password, const_char_pointer blob, int selftest);
+extern int spshell_init(const_char_pointer  username, const_char_pointer  password, const_char_pointer  blob, int selftest);
 
 extern void SP_CALLCONV notify_main_thread(sp_session *session);
 
