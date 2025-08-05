@@ -596,7 +596,7 @@ namespace apex_linux
 
       string_array straKey;
 
-      file_extension_get_open_with_list_keys(straKey, pszExtension);
+      file_extension_get_open_with_list_keys(straKey, scopedstrExtension);
 
 //      if(!file_extension_get_open_with_list_keys(straKey, pszExtension))
 //         return false;
@@ -607,7 +607,7 @@ namespace apex_linux
    }
 
 
-   void node::file_association_set_default_icon(const ::scoped_string & scopedstrExtension, const ::scoped_string & scopedstrExtensionNamingClass, const ::scoped_string & scopedstrIconPath)
+   void node::file_association_set_default_icon(const ::scoped_string & scopedstrExtension, const ::scoped_string & scopedstrExtensionNamingClass, const ::file::path & pathIcon)
    {
 
       throw ::not_implemented();
@@ -625,7 +625,7 @@ namespace apex_linux
    }
 
 
-   void node::file_association_set_shell_open_command(const ::scoped_string & scopedstrExtension, const ::scoped_string & scopedstrExtensionNamingClass,  const ::scoped_string & scopedstrCommand, const ::scoped_string & scopedstrParam)
+   void node::file_association_set_shell_open_command(const ::scoped_string & scopedstrExtension, const ::scoped_string & scopedstrExtensionNamingClass,  const ::file::path & pathExecutable, const ::scoped_string & scopedstrParam)
    {
 
       throw ::not_implemented();
@@ -770,7 +770,7 @@ namespace apex_linux
 
       auto pnode = psystem->node();
 
-      pnode->open_internet_link_in_system_browser(strUrl);
+      pnode->open_internet_link(scopedstrUrl);
 
    }
 
@@ -1111,7 +1111,7 @@ namespace apex_linux
 
          auto pnode = psystem->node();
 
-         pnode->call_async(path, strParams, pathFolder, e_display_default, false);
+         pnode->call_async(path, scopedstrParams, pathFolder, e_display_default, false);
 
 
 //         char * pszCommandLine = strdup(strTarget + " " + strParams);
@@ -1155,7 +1155,7 @@ namespace apex_linux
 
          auto pnode = this;
 
-         pnode->shell_open(path, strParams, pathFolder);
+         pnode->shell_open(path, scopedstrParams, pathFolder);
 
 //         pnode->node_fork([this, strTarget]()
 //         {

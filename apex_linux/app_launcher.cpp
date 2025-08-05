@@ -29,7 +29,7 @@ namespace apex_linux
 
       //auto estatus = ::object::initialize(pparticle);
 
-      ::apex::app_launcher::initialize_app_launcher(pparticle, strPlatform, strApp);
+      ::apex::app_launcher::initialize_app_launcher(pparticle, scopedstrPlatform, scopedstrApp);
 
       //if (!estatus)
       //{
