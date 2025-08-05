@@ -12,7 +12,7 @@
 void copy(::file::path & path, const ::scoped_string & scopedstr)
 {
 
-   path = str;
+   path = scopedstr;
 
 }
 
@@ -192,7 +192,7 @@ namespace acme_linux
    bool node::load_modules_diff(string_array& straOld, string_array& straNew, const ::scoped_string & scopedstrExceptDir)
    {
 
-      return ::acme_posix::node::load_modules_diff(straOld, straNew, strExceptDir);
+      return ::acme_posix::node::load_modules_diff(straOld, straNew, scopedstrExceptDir);
 
    }
 
@@ -291,7 +291,7 @@ namespace acme_linux
    bool node::process_contains_module(string& strImage, ::process_identifier processID, const ::scoped_string & scopedstrLibrary)
    {
 
-      return ::acme_posix::node::process_contains_module(strImage, processID, strLibrary);
+      return ::acme_posix::node::process_contains_module(strImage, processID, scopedstrLibrary);
 
    }
 
@@ -299,7 +299,7 @@ namespace acme_linux
    ::process_identifier_array node::shared_library_process(string_array& straProcesses, const ::scoped_string & scopedstrLibrary)
    {
 
-      return ::acme_posix::node::shared_library_process(straProcesses, strLibrary);
+      return ::acme_posix::node::shared_library_process(straProcesses, scopedstrLibrary);
 
    }
 

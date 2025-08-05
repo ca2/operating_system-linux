@@ -426,7 +426,7 @@ namespace acme_linux
    ::file::path directory_system::stage(const ::scoped_string & scopedstrAppId, const ::scoped_string & scopedstrPlatform, const ::scoped_string & scopedstrConfiguration)
    {
 
-      return inplace_install(strAppId, strPlatform, strConfiguration) / "time" / node()->time_binary_platform(strPlatform) / strConfiguration;
+      return inplace_install(scopedstrAppId, scopedstrPlatform, scopedstrConfiguration) / "time" / node()->time_binary_platform(scopedstrPlatform) / scopedstrConfiguration;
 
    }
 
@@ -482,7 +482,7 @@ namespace acme_linux
    void directory_system::set_path_install_folder(const ::scoped_string & scopedstrPath)
    {
 
-      m_pathInstallFolder = pszPath;
+      m_pathInstallFolder = scopedstrPath;
 
    }
 
@@ -622,7 +622,7 @@ namespace acme_linux
       for (int i = 0; i < stra.get_count(); i++)
       {
 
-         strCandidate = stra[i] / pszTopic;
+         strCandidate = stra[i] / scopedstrTopic;
 
          //if (file()->exists(strCandidate))
          if (m_pfilesystem->exists(strCandidate))
