@@ -96,7 +96,7 @@ if (MSVC)
 elseif (LINUX)
 
     #
-    #   if(USE_PKGCONFIG)
+    #   if(${USE_PKGCONFIG})
     #      pkg_check_modules(${PROJECT_NAME}_PKGCONFIG Qt5X11Extras Qt5Core Qt5UiTools)
     #   endif()
 
@@ -106,12 +106,12 @@ elseif (LINUX)
     target_compile_definitions(static_${PROJECT_NAME} PRIVATE CUBE)
 
 
-    target_compile_options(${PROJECT_NAME} PRIVATE ${PKGCONFIG_CFLAGS})
-    target_compile_options(static_${PROJECT_NAME} PRIVATE ${PKGCONFIG_CFLAGS})
+    target_compile_options(${PROJECT_NAME} PRIVATE ${${PROJECT_NAME}_PKGCONFIG_CFLAGS})
+    target_compile_options(static_${PROJECT_NAME} PRIVATE ${${PROJECT_NAME}_PKGCONFIG_CFLAGS})
 
     #target_link_options(desktop_environment_kde PRIVATE -Wl,-rpath=$ORIGIN)
-    target_link_libraries(${PROJECT_NAME} PRIVATE ${library_references} ${system_libraries} ${PKGCONFIG_LIBRARIES})
-    target_link_libraries(static_${PROJECT_NAME} PRIVATE ${static_library_references} ${system_libraries} ${PKGCONFIG_LIBRARIES})
+    target_link_libraries(${PROJECT_NAME} PRIVATE ${library_references} ${system_libraries} ${${PROJECT_NAME}_PKGCONFIG_LIBRARIES})
+    target_link_libraries(static_${PROJECT_NAME} PRIVATE ${static_library_references} ${system_libraries} ${${PROJECT_NAME}_PKGCONFIG_LIBRARIES})
 
     target_link_options(${PROJECT_NAME} PRIVATE -Wl,-z,defs)
     target_link_options(static_${PROJECT_NAME} PRIVATE --whole-archive)

@@ -49,7 +49,7 @@ if (MSVC)
     target_link_libraries(node_linux PRIVATE ${library_references})
 
 
-elseif(LINUX)
+elseif(${LINUX})
 
 
     target_compile_options(${PROJECT_NAME} PRIVATE $<$<COMPILE_LANGUAGE:CXX>:-fpermissive  ${EXTRA_CXX_TARGET_COMPILER_OPTIONS}>)
