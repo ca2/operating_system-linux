@@ -182,7 +182,7 @@ namespace acme_linux
 
       auto stra = ::transfer(directory_system()->enumerate_content(strProcPidMaps));
 
-      ::generic::array::copy(patha, stra);
+      patha = stra;
 
       return ::transfer(patha);
 
