@@ -41,7 +41,7 @@ public:
    manual_reset_happening         m_happening;
    string                     m_str;
    ::image::image_pointer            m_pimage;
-   ::file::path_array              m_patha;
+   ::file::path_array_base              m_patha;
    int                        m_nTargets;
    //GtkImage *                 m_pgtkimage;
    void *                     m_pgtkimage;

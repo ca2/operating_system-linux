@@ -218,7 +218,7 @@ namespace acme_linux
    }
 
 
-   ::file::listing & directory_context::root_ones(::file::listing & listing)
+   ::file::listing_base & directory_context::root_ones(::file::listing_base & listing)
    {
 
       ::file::path path;
@@ -236,7 +236,7 @@ namespace acme_linux
    }
 
 
-   bool directory_context::enumerate(::file::listing & listing)
+   bool directory_context::enumerate(::file::listing_base & listing)
    {
 
       if(::directory_context::enumerate(listing))
@@ -259,7 +259,7 @@ namespace acme_linux
 //
 //            scoped_restore(listing.m_eextract);
 //
-//            ::file::listing straDir;
+//            ::file::listing_base straDir;
 //
 //            ls_dir(straDir, listing.m_pathFinal);
 //
@@ -314,7 +314,7 @@ namespace acme_linux
 //      else
 //      {
 
-         //::file::path_array stra;
+         //::file::path_array_base stra;
 
          directory_system()->enumerate(listing);
 
@@ -524,7 +524,7 @@ namespace acme_linux
       if(bRecursive)
       {
 
-         ::file::listing listing;
+         ::file::listing_base listing;
 
          listing.set_listing(path, e_depth_recursively);
 
@@ -674,7 +674,7 @@ namespace acme_linux
    bool directory_context::has_subdir(const ::file::path & path)
    {
 
-      ::file::listing listing;
+      ::file::listing_base listing;
 
       listing.set_folder_listing(path);
 

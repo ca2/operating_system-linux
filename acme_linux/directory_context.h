@@ -33,7 +33,7 @@ namespace acme_linux
       void init_context() override;
 
       //using ::directory_context::ls;
-      bool enumerate(::file::listing & listing) override;
+      bool enumerate(::file::listing_base & listing) override;
 
 
       //virtual ::file::e_type file_type(const ::file::path & path) override;
@@ -45,7 +45,7 @@ namespace acme_linux
       virtual bool  has_subdir(const ::file::path & path) override;
 
 
-      virtual ::file::listing & root_ones(::file::listing & listing) override;
+      virtual ::file::listing_base & root_ones(::file::listing_base & listing) override;
       virtual void create(const ::file::path & path) override;
 
       virtual void erase(const ::file::path & path, bool bRecursive = true) override;

@@ -108,7 +108,7 @@ namespace apex_linux
 
       void file_open(const ::file::path & pathTarget, const ::scoped_string & scopedstrParams = "", const ::file::path & pathFolder = "") override;
 
-      void list_process(::file::path_array & patha, ::process_identifier_array & processidentifierarray) override;
+      void list_process(::file::path_array_base & patha, ::process_identifier_array & processidentifierarray) override;
 
    };
 

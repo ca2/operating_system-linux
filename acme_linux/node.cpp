@@ -158,7 +158,7 @@ namespace acme_linux
 //   int __get_module_names(struct dl_phdr_info * pinfo, size_t size, void *data)
 //   {
 //
-//      auto ppatha = (::file::path_array *) data;
+//      auto ppatha = (::file::path_array_base *) data;
 //
 //      ppatha->add(pinfo->dlpi_name);
 //
@@ -171,10 +171,10 @@ namespace acme_linux
 
 
 
-   ::file::path_array node::process_identifier_modules_paths(::process_identifier processidentifier)
+   ::file::path_array_base node::process_identifier_modules_paths(::process_identifier processidentifier)
    {
 
-      ::file::path_array patha;
+      ::file::path_array_base patha;
 
       ::string strProcPidMaps;
 
@@ -200,7 +200,7 @@ namespace acme_linux
    ::process_identifier_array node::processes_identifiers()
    {
 
-      ::file::listing listing;
+      ::file::listing_base listing;
 
       listing.set_folder_listing("/proc");
 

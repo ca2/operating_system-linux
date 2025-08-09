@@ -1201,7 +1201,7 @@ namespace apex_linux
    }
 
 
-   void node::list_process(::file::path_array & patha, ::process_identifier_array & uaPid)
+   void node::list_process(::file::path_array_base & patha, ::process_identifier_array & uaPid)
    {
 
       informationf("linux::node::list_process");
@@ -1245,7 +1245,7 @@ namespace apex_linux
 
       ::file::path path(str);
 
-      ::file::path_array patha;
+      ::file::path_array_base patha;
 
       ascendants_path(path, patha);
 

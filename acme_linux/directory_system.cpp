@@ -613,7 +613,7 @@ namespace acme_linux
    ::file::path directory_system::pathfind(const ::scoped_string & scopedstrEnv, const ::scoped_string & scopedstrTopic, const ::scoped_string & scopedstrMode)
    {
 
-      ::file::path_array stra;
+      ::file::path_array_base stra;
 
       stra.add_tokens(scopedstrEnv, ":", false);
 

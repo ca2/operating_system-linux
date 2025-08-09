@@ -177,7 +177,7 @@ namespace node_kde{
    }
 
 
-   bool copydesk::_get_filea(::file::path_array & patha, e_op & eop)
+   bool copydesk::_get_filea(::file::path_array_base & patha, e_op & eop)
    {
 
       ::pointer<clipboard_data>pdata = __allocate clipboard_data(get_context_application(), e_clipboard_get_patha);
@@ -206,7 +206,7 @@ namespace node_kde{
    }
 
 
-   bool copydesk::_set_filea(const ::file::path_array & patha, e_op eop)
+   bool copydesk::_set_filea(const ::file::path_array_base & patha, e_op eop)
    {
 
       ::pointer<clipboard_data>pdata = __allocate clipboard_data(get_context_application(), e_clipboard_set_patha);

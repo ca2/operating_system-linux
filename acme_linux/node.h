@@ -79,7 +79,7 @@ namespace acme_linux
       void calculate_linux_distribution() override;
 
 
-      ::file::path_array process_identifier_modules_paths(::process_identifier processidentifier) override;
+      ::file::path_array_base process_identifier_modules_paths(::process_identifier processidentifier) override;
 
       bool load_modules_diff(string_array& straOld, string_array& straNew, const ::scoped_string & scopedstrExceptDir) override;
 
