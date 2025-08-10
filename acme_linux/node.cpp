@@ -189,7 +189,7 @@ namespace acme_linux
    }
 
 
-   bool node::load_modules_diff(string_array& straOld, string_array& straNew, const ::scoped_string & scopedstrExceptDir)
+   bool node::load_modules_diff(string_array_base& straOld, string_array_base& straNew, const ::scoped_string & scopedstrExceptDir)
    {
 
       return ::acme_posix::node::load_modules_diff(straOld, straNew, scopedstrExceptDir);
@@ -272,7 +272,7 @@ namespace acme_linux
    }
 
 
-//   bool node::is_shared_library_busy(::process_identifier processid, const string_array& stra)
+//   bool node::is_shared_library_busy(::process_identifier processid, const string_array_base& stra)
 //   {
 //
 //      return ::acme_posix::node::is_shared_library_busy(processid, stra);
@@ -280,7 +280,7 @@ namespace acme_linux
 //   }
 //
 //
-//   bool node::is_shared_library_busy(const string_array& stra)
+//   bool node::is_shared_library_busy(const string_array_base& stra)
 //   {
 //
 //      return ::acme_posix::node::is_shared_library_busy(stra);
@@ -296,7 +296,7 @@ namespace acme_linux
    }
 
 
-   ::process_identifier_array node::shared_library_process(string_array& straProcesses, const ::scoped_string & scopedstrLibrary)
+   ::process_identifier_array node::shared_library_process(string_array_base& straProcesses, const ::scoped_string & scopedstrLibrary)
    {
 
       return ::acme_posix::node::shared_library_process(straProcesses, scopedstrLibrary);
@@ -894,7 +894,7 @@ namespace acme_linux
 
       ::string strRelease = psummary->m_strSystemRelease;
 
-      ::string_array straRelease;
+      ::string_array_base straRelease;
 
       straRelease.explode(".", strRelease);
 
@@ -912,7 +912,7 @@ namespace acme_linux
 
       }
 
-      ::string_array straPrefixPaths;
+      ::string_array_base straPrefixPaths;
 
       ::file::path pathToolFolderBin;
 

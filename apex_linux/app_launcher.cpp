@@ -185,7 +185,7 @@ namespace apex_linux
 //      auto psystem = system();
 //
 //      auto pnode = psystem->node();
-//::string_array straOutput;
+//::string_array_base straOutput;
 //int iExitCod = 0;
 ::string strCommand = get_executable_path();
 //

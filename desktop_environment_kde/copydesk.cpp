@@ -395,7 +395,7 @@ namespace node_kde{
 //
 //   string str = (const_char_pointer )gtk_selection_data_get_data(selection_data);
 //
-//   string_array stra;
+//   string_array_base stra;
 //
 //   stra.add_lines(str);
 //

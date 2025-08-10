@@ -372,7 +372,7 @@ namespace apex_linux
    }
 
 
-   void os_context::file_extension_get_open_with_list_keys(string_array & straKey, const ::scoped_string & scopedstrExtension)
+   void os_context::file_extension_get_open_with_list_keys(string_array_base & straKey, const ::scoped_string & scopedstrExtension)
    {
 
 
@@ -400,10 +400,10 @@ namespace apex_linux
    }
 
 
-   void os_context::file_extension_get_open_with_list_commands(string_array & straCommand, const ::scoped_string & scopedstrExtension)
+   void os_context::file_extension_get_open_with_list_commands(string_array_base & straCommand, const ::scoped_string & scopedstrExtension)
    {
 
-      string_array straKey;
+      string_array_base straKey;
 
       file_extension_get_open_with_list_keys(straKey, pszExtension);
 
@@ -1015,7 +1015,7 @@ namespace apex_linux
 
       informationf("linux::os_context::list_process");
 
-      string_array stra;
+      string_array_base stra;
 
       directory_system()->list(stra, "/proc/", ::file::e_flag_folder);
 

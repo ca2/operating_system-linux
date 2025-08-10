@@ -81,7 +81,7 @@ namespace acme_linux
 
       ::file::path_array_base process_identifier_modules_paths(::process_identifier processidentifier) override;
 
-      bool load_modules_diff(string_array& straOld, string_array& straNew, const ::scoped_string & scopedstrExceptDir) override;
+      bool load_modules_diff(string_array_base& straOld, string_array_base& straNew, const ::scoped_string & scopedstrExceptDir) override;
 
       ::process_identifier_array processes_identifiers() override;
 
@@ -91,13 +91,13 @@ namespace acme_linux
 
       string process_identifier_command_line(::process_identifier pid) override;
 
-      //bool is_shared_library_busy(::process_identifier pid, const string_array& stra) override;
+      //bool is_shared_library_busy(::process_identifier pid, const string_array_base& stra) override;
 
-      //bool is_shared_library_busy(const string_array& stra) override;
+      //bool is_shared_library_busy(const string_array_base& stra) override;
 
       bool process_contains_module(string& strImage, ::process_identifier processID, const ::scoped_string & scopedstrLibrary) override;
 
-      ::process_identifier_array shared_library_process(string_array& straProcesses, const ::scoped_string & scopedstrLibrary) override;
+      ::process_identifier_array shared_library_process(string_array_base& straProcesses, const ::scoped_string & scopedstrLibrary) override;
 
       bool is_process_running(::process_identifier pid) override;
 
