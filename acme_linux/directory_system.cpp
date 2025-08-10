@@ -110,7 +110,8 @@ namespace acme_linux
    ::file::path directory_system::userconfig()
    {
 
-      return ca2roaming() / "system";
+      //return ca2roaming() / "system";
+      return ::acme_posix::directory_system::userconfig();
 
    }
 
