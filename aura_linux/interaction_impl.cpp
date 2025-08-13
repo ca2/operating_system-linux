@@ -1585,7 +1585,7 @@
 //          if (get_handle() == nullptr) // no oswindow attached
 //             return nullptr;
 //
-//          ASSERT_VALID(this);
+//          ASSERT_OK(this);
 //
 //    //      oswindow hWndOwner = get_handle();
 //      //    oswindow hWndT;
@@ -1601,7 +1601,7 @@
 //          if (get_handle() == nullptr) // no oswindow attached
 //             return nullptr;
 //
-//          ASSERT_VALID(this);
+//          ASSERT_OK(this);
 //
 //    //         oswindow hWndParent = get_handle();
 //    //         oswindow hWndT;
@@ -1621,7 +1621,7 @@
 // //   bool interaction_impl::IsTopParentActive()
 // //   {
 // //      ASSERT(get_handle() != nullptr);
-// //      ASSERT_VALID(this);
+// //      ASSERT_OK(this);
 // //
 // //      ::pointer<::user::interaction>WndTopLevel=EnsureTopLevel();
 // //
@@ -1646,7 +1646,7 @@
 //          if (get_handle() == nullptr) // no oswindow attached
 //             return nullptr;
 //
-//          ASSERT_VALID(this);
+//          ASSERT_OK(this);
 //
 //          ::pointer<::user::frame_window>pFrameWnd = nullptr;
 //          if(m_puserinteraction != this)
@@ -3406,7 +3406,7 @@
 // //   }
 // //
 // //
-// //   // Default message ::collection::map implementations
+// //   // Default message ::collection::map_base implementations
 // //   void interaction_impl::OnActivateApp(bool, unsigned int)
 // //   {
 // //   //Default();

@@ -348,7 +348,7 @@ extern void VG_(needs_tool_errors) (
 
    // This is similar to print_extra_suppression_info, but is used
    // to print information such as additional statistical counters
-   // as part of the used suppression list produced by -v.
+   // as part of the used suppression list_base produced by -v.
    SizeT (*print_extra_suppression_use)(const Supp* su,
                                         /*OUT*/HChar* buf, Int nBuf),
 

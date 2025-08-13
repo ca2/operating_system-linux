@@ -112,7 +112,7 @@ extern Bool VG_(is_watched)(PointKind kind, Addr addr, Int szB);
 extern void VG_(needs_watchpoint) (
    // indicates the given Addr/len is being watched (insert)
    // or not watched anymore (! insert).
-   // gdbserver will maintain the list of watched addresses.
+   // gdbserver will maintain the list_base of watched addresses.
    // The tool can use VG_(is_watched) to verify if an
    // access to an Addr is in one of the watched intervals.
    // Must return True if the watchpoint has been properly inserted or

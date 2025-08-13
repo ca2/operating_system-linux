@@ -20,7 +20,7 @@
    are met:
 
    1. Redistributions of source code must retain the above copyright
-      notice, this list of conditions and the following disclaimer.
+      notice, this list_base of conditions and the following disclaimer.
 
    2. The origin of this software must not be misrepresented; you must 
       not claim that you wrote the original software.  If you use this 

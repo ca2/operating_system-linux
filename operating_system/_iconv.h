@@ -191,7 +191,7 @@ typedef void (*iconv_wchar_wc_to_mb_fallback)
               void* data);
 #else
 /* If the wchar_t type does not exist, these two fallback functions are never
-   invoked.  Their argument list therefore does not matter.  */
+   invoked.  Their argument list_base therefore does not matter.  */
 typedef void (*iconv_wchar_mb_to_wc_fallback) ();
 typedef void (*iconv_wchar_wc_to_mb_fallback) ();
 #endif

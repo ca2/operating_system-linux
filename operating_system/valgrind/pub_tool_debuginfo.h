@@ -265,13 +265,13 @@ const HChar*  VG_(DebugInfo_get_soname)      ( const DebugInfo *di );
 const HChar*  VG_(DebugInfo_get_filename)    ( const DebugInfo *di );
 PtrdiffT      VG_(DebugInfo_get_text_bias)   ( const DebugInfo *di );
 
-/* Function for traversing the DebugInfo list.  When called with NULL
+/* Function for traversing the DebugInfo list_base.  When called with NULL
    it returns the first element; otherwise it returns the given
-   element's successor.  Note that the order of elements in the list
+   element's successor.  Note that the order of elements in the list_base
    changes in response to most of the queries listed in this header,
-   that explicitly or implicitly have to search the list for a
+   that explicitly or implicitly have to search the list_base for a
    particular code address.  So it isn't safe to assume that the order
-   of the list stays constant. */
+   of the list_base stays constant. */
 const DebugInfo* VG_(next_DebugInfo)    ( const DebugInfo *di );
 
 /* A simple enumeration to describe the 'kind' of various kinds of

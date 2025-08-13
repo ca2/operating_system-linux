@@ -126,7 +126,7 @@
 //      //ASSERT(sizeof(HANDLE) == sizeof(uptr));
 //      ASSERT(::file::e_open_share_compat == 0);
 //
-//      // ::collection::map read/write mode
+//      // ::collection::map_base read/write mode
 //      ASSERT((::file::e_open_read|::file::e_open_write|::file::e_open_read_write) == 3);
 //      unsigned int dwFlags =  0;
 //      switch (eopen & ::file::e_open_read_write)
@@ -145,9 +145,9 @@
 //         break;
 //      }
 //
-//      // ::collection::map share mode
+//      // ::collection::map_base share mode
 //      unsigned int dwShareMode = 0;
-//      switch (eopen & ::file::e_open_share_mask)    // ::collection::map compatibility mode to exclusive
+//      switch (eopen & ::file::e_open_share_mask)    // ::collection::map_base compatibility mode to exclusive
 //      {
 //      default:
 //         ASSERT(false);  // invalid share mode?

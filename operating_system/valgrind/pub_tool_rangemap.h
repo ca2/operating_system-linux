@@ -70,7 +70,7 @@ void VG_(bindRangeMap) ( RangeMap* rm,
 void VG_(lookupRangeMap) ( /*OUT*/UWord* key_min, /*OUT*/UWord* key_max,
                            /*OUT*/UWord* val, const RangeMap* rm, UWord key );
 
-/* How many elements are there in the map? */
+/* How many elements are there in the map_base? */
 unsigned int VG_(sizeRangeMap) ( const RangeMap* rm );
 
 /* Get the i'th component */

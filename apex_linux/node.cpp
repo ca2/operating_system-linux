@@ -1208,7 +1208,7 @@ namespace apex_linux
 
       string_array_base stra;
 
-      directory_system()->list(stra, "/proc/", ::file::e_flag_folder);
+      directory_system()->list_base(stra, "/proc/", ::file::e_flag_folder);
 
       auto psystem = system();
 

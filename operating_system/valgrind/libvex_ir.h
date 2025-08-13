@@ -45,7 +45,7 @@
 
 /* Vex IR is an architecture-neutral intermediate representation.
    Unlike some IRs in systems similar to Vex, it is not like assembly
-   language (ie. a list of instructions).  Rather, it is more like the
+   language (ie. a list_base of instructions).  Rather, it is more like the
    IR that might be used in a compiler.
 
    Code blocks
@@ -56,7 +56,7 @@
    Each IRSB contains three things:
    - a type environment, which indicates the type of each temporary
      value present in the IRSB
-   - a list of statements, which represent code
+   - a list_base of statements, which represent code
    - a jump that exits from the end the IRSB
    Because the blocks are multiple-exit, there can be additional
    conditional exit statements that cause control to leave the IRSB
@@ -116,7 +116,7 @@
    The "IMark" is an IR statement that doesn't represent actual code.
    Instead it indicates the address and length of the original
    instruction.  The numbers 0 and 12 are offsets into the guest state
-   for %eax and %ebx.  The full list of offsets for an architecture
+   for %eax and %ebx.  The full list_base of offsets for an architecture
    <ARCH> can be found in the type VexGuest<ARCH>State in the file
    VEX/pub/libvex_guest_<ARCH>.h.
 
@@ -2193,14 +2193,14 @@ struct _IRQop {
    (naturally aligned) V128 or V256, into which the helper is expected
    to write its result.  Use of IRExpr_VECRET() is strictly
    controlled.  If the helper returns a V128 or V256 value then
-   IRExpr_VECRET() must appear exactly once in the arg list, although
+   IRExpr_VECRET() must appear exactly once in the arg list_base, although
    it can appear anywhere, and the helper must have a C 'void' return
    type.  If the helper returns any other type, IRExpr_VECRET() may
-   not appear in the argument list. */
+   not appear in the argument list_base. */
 
 /* Denotes an void* argument which is passed to the helper, which at
    run time will point to the thread's guest state area.  This can
-   only appear at most once in an argument list, and it may not appear
+   only appear at most once in an argument list_base, and it may not appear
    at all in argument lists for clean helper calls. */
 
 static inline Bool is_IRExpr_VECRET_or_GSPTR ( const IRExpr* e ) {
@@ -2383,7 +2383,7 @@ extern void ppIRJumpKind ( IRJumpKind );
      number of times at a fixed interval, if required.
 
    Normally, code is generated to pass just the args to the helper.
-   However, if IRExpr_GSPTR() is present in the argument list (at most
+   However, if IRExpr_GSPTR() is present in the argument list_base (at most
    one instance is allowed), then the guest state pointer is passed for
    that arg, so that the callee can access the guest state.  It is
    invalid for .nFxState to be zero but IRExpr_GSPTR() to be present,
@@ -3046,8 +3046,8 @@ extern IRSB* emptyIRSB ( void );
 /* Deep-copy an IRSB */
 extern IRSB* deepCopyIRSB ( const IRSB* );
 
-/* Deep-copy an IRSB, except for the statements list, which set to be
-   a ___new, empty, list of statements. */
+/* Deep-copy an IRSB, except for the statements list_base, which set to be
+   a ___new, empty, list_base of statements. */
 extern IRSB* deepCopyIRSBExceptStmts ( const IRSB* );
 
 /* Pretty-print an IRSB */

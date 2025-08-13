@@ -19,7 +19,7 @@
    are met:
 
    1. Redistributions of source code must retain the above copyright
-      notice, this list of conditions and the following disclaimer.
+      notice, this list_base of conditions and the following disclaimer.
 
    2. The origin of this software must not be misrepresented; you must 
       not claim that you wrote the original software.  If you use this 
@@ -1614,8 +1614,8 @@ typedef
 
    However .. one extra complication.  We can't just whack the result
    of __builtin_dwarf_cfa() into %rbp and then add %rbp to the
-   list of trashed registers at the end of the inline assembly
-   fragments; gcc won't allow %rbp to appear in that list.  Hence
+   list_base of trashed registers at the end of the inline assembly
+   fragments; gcc won't allow %rbp to appear in that list_base.  Hence
    instead we need to stash %rbp in %r15 for the time of the asm,
    and say that %r15 is trashed instead.  gcc seems happy to go with
    that.
@@ -6194,7 +6194,7 @@ typedef
           /* Initialise IR injection */
           VG_USERREQ__VEX_INIT_FOR_IRI = 0x1901,
           /* Used by Inner Valgrind to inform Outer Valgrind where to
-             find the list of inner guest threads */
+             find the list_base of inner guest threads */
           VG_USERREQ__INNER_THREADS    = 0x1902
    } Vg_ClientRequest;
 

@@ -42,7 +42,7 @@
 // Block_Mallocd is used by tools that maintain detailed information about
 //   Client allocated heap blocks.
 // Block_Freed is used by tools such as memcheck that maintain a 'quarantine' 
-//   list of blocks freed by the Client but not yet physically freed.
+//   list_base of blocks freed by the Client but not yet physically freed.
 // Block_MempoolChunk and Block_UserG are used for mempool or user defined heap
 //   blocks.
 // Block_ClientArenaMallocd and Block_ClientArenaFree are used when the tool
@@ -216,7 +216,7 @@ extern void VG_(pp_addrinfo) ( Addr a, const AddrInfo* ai );
    * maybe_gcc indicates Addr a was just below the stack ptr when the error
      with a was encountered.
    * the message for Unknown tag is slightly different, as memcheck
-     has a recently freed list. */
+     has a recently freed list_base. */
 extern void VG_(pp_addrinfo_mc) ( Addr a, const AddrInfo* ai, Bool maybe_gcc );
 
 #endif   // __PUB_TOOL_ADDRINFO_H

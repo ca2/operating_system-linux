@@ -167,7 +167,7 @@ extern ExeContext* VG_(XT_get_ec_from_xecu) (XTree* xt, Xecu xecu);
 
 /* -------------------- CALLGRIND/KCACHEGRIND OUTPUT FORMAT --------------*/
 /* Prints xt in outfilename in callgrind/kcachegrind format.
-   happenings is a comma separated list of happenings, used by 
+   happenings is a comma separated list_base of happenings, used by 
    kcachegrind/callgrind_annotate/... to name the value various components.
    An happening can optionally have a longer description, separated from the
    happening name by " : ", e.g.

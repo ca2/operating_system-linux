@@ -53,7 +53,7 @@
 //   a key), or it may be only part of it (eg. if the key is a single field
 //   in a struct).  The user can provide a function that compares an element
 //   with a key;  this is very flexible, and with the right comparison
-//   function even a (non-overlapping) interval list can be created.  But
+//   function even a (non-overlapping) interval list_base can be created.  But
 //   the cost of calling a function for every comparison can be high during
 //   lookup.  If no comparison function is provided, we assume that keys are
 //   unsigned words, and that the key is the first word in each
@@ -221,7 +221,7 @@ extern OSet* VG_(OSetGen_Create_With_Pool)    ( PtrdiffT keyOff, OSetCmp_t cmp,
 // In such a case, allocating the nodes in pools reduces significantly
 // the memory overhead needed by each node.
 // When a node is freed (i.e. OSetGen_Freenode is called), the node is
-// put back in the pool allocator free list (for sub-sequent re-use by
+// put back in the pool allocator free list_base (for sub-sequent re-use by
 // OSetGen_AllocNode). Note that the pool memory is only released when
 // the pool is destroyed : calls to VG_(OSetGen_Free) do not cause
 // any calls to OSetFree_t _free function.

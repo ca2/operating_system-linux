@@ -2070,7 +2070,7 @@ namespace draw2d_gdiplus
       if (m_pimage->is_ok())
       {
 
-         m_pimage->map();
+         m_pimage->map_base();
 
          m_pimage->image32()[(int) point.x + (int) point.y * m_pimage->scan_size()] = color;
 
@@ -2093,7 +2093,7 @@ namespace draw2d_gdiplus
       if (m_pimage->is_ok())
       {
 
-         m_pimage->map();
+         m_pimage->map_base();
 
          ::color::color color = m_pimage->image32()[(int) point.x + (int) point.y * m_pimage->scan_size()];
 
@@ -3319,7 +3319,7 @@ namespace draw2d_gdiplus
       if (this != nullptr && (nMapMode = GetMapMode()) < MM_ISOTROPIC &&
             nMapMode != MM_TEXT)
       {
-         // when using a constrained map mode, map against physical inch
+         // when using a constrained map_base mode, map_base against physical inch
          ((::draw2d::graphics *)this)->SetMapMode(MM_HIMETRIC);
          DPtoLP(psize);
 
@@ -3331,7 +3331,7 @@ namespace draw2d_gdiplus
          int cxPerInch, cyPerInch;
          if (this != nullptr)
          {
-            ASSERT_VALID(this);
+            ASSERT_OK(this);
             
             cxPerInch = GetDeviceCaps(LOGPIXELSX);
             cyPerInch = GetDeviceCaps(LOGPIXELSY);
@@ -3357,7 +3357,7 @@ namespace draw2d_gdiplus
       if (this != nullptr && (nMapMode = GetMapMode()) < MM_ISOTROPIC &&
             nMapMode != MM_TEXT)
       {
-         // when using a constrained map mode, map against physical inch
+         // when using a constrained map_base mode, map_base against physical inch
          ((::draw2d::graphics *)this)->SetMapMode(MM_HIMETRIC);
          LPtoDP(psize);
 
@@ -3369,7 +3369,7 @@ namespace draw2d_gdiplus
          int cxPerInch, cyPerInch;
          if (this != nullptr)
          {
-            ASSERT_VALID(this);
+            ASSERT_OK(this);
             
             cxPerInch = GetDeviceCaps(LOGPIXELSX);
             cyPerInch = GetDeviceCaps(LOGPIXELSY);
@@ -5140,7 +5140,7 @@ namespace draw2d_gdiplus
    {
       graphics * pgraphics = (graphics *)lParam;
 
-      ASSERT_VALID(pgraphics);
+      ASSERT_OK(pgraphics);
 
       return pgraphics->meta_file_procedure(hDC, pHandleTable, pMetaRec, nHandles);
 

@@ -1,6 +1,6 @@
 
 /*--------------------------------------------------------------------*/
-/*--- An AVL tree based finite map for word keys and word values.  ---*/
+/*--- An AVL tree based finite map_base for word keys and word values.  ---*/
 /*--- Inspired by Haskell's "FiniteMap" library.                   ---*/
 /*---                                            pub_tool_wordfm.h ---*/
 /*--------------------------------------------------------------------*/
@@ -75,7 +75,7 @@ typedef  struct _WordFM  WordFM; /* opaque */
    the set are ordered according to the ordering specified by kCmp,
    which becomes obvious if you use VG_(initIterFM),
    VG_(initIterAtFM), VG_(nextIterFM), VG_(doneIterFM) to iterate over
-   sections of the map, or the whole thing.  If kCmp is NULL then the
+   sections of the map_base, or the whole thing.  If kCmp is NULL then the
    ordering used is unsigned word ordering (UWord) on the key
    values.
    The function never returns NULL. */
@@ -89,7 +89,7 @@ WordFM* VG_(newFM) ( void* (*alloc_nofail)( const HChar* cc, SizeT ),
 void VG_(deleteFM) ( WordFM*, void(*kFin)(UWord), void(*vFin)(UWord) );
 
 /* Add (k,v) to fm.  If a binding for k already exists, it is updated
-   to map to this ___new v.  In that case we should really return the
+   to map_base to this ___new v.  In that case we should really return the
    previous v so that caller can finalise it.  Oh well.  Returns
    True if a binding for k already exists. */
 Bool VG_(addToFM) ( WordFM* fm, UWord k, UWord v );
@@ -103,7 +103,7 @@ Bool VG_(lookupFM) ( const WordFM* fm,
                      /*OUT*/UWord* keyP, /*OUT*/UWord* valP, UWord key );
 
 // Find the closest key values bracketing the given key, assuming the 
-// given key is not present in the map.  minKey and maxKey are the 
+// given key is not present in the map_base.  minKey and maxKey are the 
 // minimum and maximum possible key values.  The resulting bracket
 // values are returned in *kMinP and *kMaxP.  It follows that if fm is
 // empty then the returned values are simply minKey and maxKey.
@@ -134,7 +134,7 @@ UWord VG_(sizeFM) ( const WordFM* fm );
 void VG_(initIterFM) ( WordFM* fm );
 
 // set up FM for iteration so that the first key subsequently produced
-// by VG_(nextIterFM) is the smallest key in the map >= start_at.
+// by VG_(nextIterFM) is the smallest key in the map_base >= start_at.
 // Naturally ">=" is defined by the comparison function supplied to
 // VG_(newFM), as documented above.
 void VG_(initIterAtFM) ( WordFM* fm, UWord start_at );

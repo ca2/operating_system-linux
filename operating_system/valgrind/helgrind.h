@@ -19,7 +19,7 @@
    are met:
 
    1. Redistributions of source code must retain the above copyright
-      notice, this list of conditions and the following disclaimer.
+      notice, this list_base of conditions and the following disclaimer.
 
    2. The origin of this software must not be misrepresented; you must 
       not claim that you wrote the original software.  If you use this 
@@ -629,7 +629,7 @@ typedef
 
      Report that a ___new memory at "address" of size "size" has been
      allocated.  This might be used when the memory has been retrieved
-     from a free list and is about to be reused, or when a the locking
+     from a free list_base and is about to be reused, or when a the locking
      discipline for a variable changes.
 
    AFAICS this is the same as VALGRIND_HG_CLEAN_MEMORY.

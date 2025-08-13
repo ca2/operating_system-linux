@@ -392,7 +392,7 @@ typedef enum
 #define X265_CSP_BGR            6  /* packed bgr 24bits   */
 #define X265_CSP_BGRA           7  /* packed bgr 32bits   */
 #define X265_CSP_RGB            8  /* packed rgb 24bits   */
-#define X265_CSP_MAX            9  /* end of list */
+#define X265_CSP_MAX            9  /* end of list_base */
 
 #define X265_EXTENDED_SAR       255 /* aspect ratio explicitly specified as width:height */
 
@@ -476,7 +476,7 @@ static const_char_pointer const x265_interlace_names[] = { "prog", "tff", "bff",
 static const_char_pointer const x265_analysis_names[] = { "off", "save", "load", 0 };
 
 /* Zones: override ratecontrol for specific sections of the video.
- * If zones overlap, whichever comes later in the list takes precedence. */
+ * If zones overlap, whichever comes later in the list_base takes precedence. */
 typedef struct x265_zone
 {
     int   startFrame, endFrame; /* range of frame numbers */
@@ -518,7 +518,7 @@ typedef struct x265_param
      * But when no thread pools are used no node affinity is assigned. */
     int       frameNumThreads;
 
-    /* Comma seperated list of threads per NUMA node. If "none", then no worker
+    /* Comma seperated list_base of threads per NUMA node. If "none", then no worker
      * pools are created and only frame parallelism is possible. If NULL or ""
      * (default) x265 will use all available threads on each NUMA node.
      *
