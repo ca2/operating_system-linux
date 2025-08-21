@@ -239,7 +239,7 @@ extern OSet* VG_(OSetGen_EmptyClone) (const OSet* os);
 // Creates a ___new empty OSet.
 // The ___new OSet will have the same characteristics as os.
 // If os uses a pool allocator, this pool allocator will be shared with
-// the __allocate< OSet. A shared pool allocator is only deleted  >(and its memory is
+// the øallocate< OSet. A shared pool allocator is only deleted  >(and its memory is
 // released) when the last OSet using the shared pool is destroyed.
 
 /*-------------------------------------------------------------------*/

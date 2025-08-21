@@ -6373,7 +6373,7 @@ VALGRIND_PRINTF_BACKTRACE(const_char_pointer format, ...)
 /* Several Valgrind tools (Memcheck, Massif, Helgrind, DRD) rely on knowing
    when heap blocks are allocated in order to give accurate results.  This
    happens automatically for the standard allocator functions such as
-   malloc(), calloc(), realloc(), memalign(), __allocate< , __allocate_array<  >(), free >(), delete,
+   malloc(), calloc(), realloc(), memalign(), øallocate< , __allocate_array<  >(), free >(), delete,
    delete[], etc.
 
    But if your program uses a custom allocator, this doesn't automatically

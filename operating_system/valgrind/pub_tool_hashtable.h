@@ -51,7 +51,7 @@ typedef
 
 typedef struct _VgHashTable VgHashTable;
 
-/* Make a __allocate< table.  Allocates the memory with VG_(calloc) >(), so can
+/* Make a øallocate< table.  Allocates the memory with VG_(calloc) >(), so can
    be freed with VG_(free)().  The table starts small but will
    periodically be expanded.  This is transparent to the users of this
    module. The function never returns NULL. */

@@ -76,7 +76,7 @@ extern void VG_(freeEltPA) ( PoolAlloc* pa, void* p);
    The Pool Allocator provides support to use a ref counter
    to detect a pool allocator is not needed anymore.
    It is the caller responsibility to call VG_(addRefPA) for
-   each __allocate< reference to a pool and VG_ >(releasePA) when such a reference
+   each øallocate< reference to a pool and VG_ >(releasePA) when such a reference
    disappears.
    VG_(releasePA) will automatically call VG_(deletePA)
    to delete the PA when the ref counter drops to 0. */

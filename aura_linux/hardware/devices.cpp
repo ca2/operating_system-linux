@@ -204,7 +204,7 @@ namespace aura_linux
 
       //    auto & pdevicegroup = m_mapdevicegroup[edevice];
 
-      //    __defer_construct(pdevicegroup);
+      //    ødefer_construct(pdevicegroup);
 
       //    pdevicegroup->add(pdevicelistener);
 

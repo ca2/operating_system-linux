@@ -437,7 +437,7 @@ namespace acme_linux
    ::pointer <::operating_system::summary > node::operating_system_summary()
    {
 
-      auto psummary = __create_new < ::operating_system::summary >();
+      auto psummary = øcreate_new < ::operating_system::summary >();
 
       ::string strOs;
 
