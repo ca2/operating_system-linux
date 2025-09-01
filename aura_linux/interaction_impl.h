@@ -173,9 +173,9 @@
 //
 // #endif   // WINVER >= 0x0500
 //
-//       //LRESULT send_message(::enum_message emessage, ::wparam wparam = {}, ::lparam lparam = {}) override;
+//       //LRESULT send_message(::user::enum_message eusermessage, ::wparam wparam = {}, ::lparam lparam = {}) override;
 //
-//       //bool post_message(::enum_message emessage, ::wparam wparam = {}, ::lparam lparam = {}) override;
+//       //bool post_message(::user::enum_message eusermessage, ::wparam wparam = {}, ::lparam lparam = {}) override;
 //
 //
 // //      bool SendNotifyMessage(const ::id & id, WPARAM wParam, lparam lParam);

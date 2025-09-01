@@ -979,7 +979,7 @@ namespace apex_linux
    }
 
 
-   void node::post_to_all_threads(::enum_message emessage, ::wparam wparam, ::lparam lparam)
+   void node::post_to_all_threads(::user::enum_message eusermessage, ::wparam wparam, ::lparam lparam)
 
    {
 
