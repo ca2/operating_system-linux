@@ -387,7 +387,7 @@
 //            MIXER_GETCONTROLDETAILSF_VALUE);
 //         if (MMSYSERR_NOERROR != mmrc)
 //         {
-//            //        System.simple_message_box(NULL, e_message_box_ok | e_message_box_icon_exclamation,
+//            //        System.simple_message_box(NULL, ::user::e_message_box_ok | ::user::e_message_box_icon_exclamation,
 //            //                "mixerGetControlDetails(ctrlid=%.08lXh) failed on hmx=%.04Xh, mmr=%u!",
 //            //              m_mixercontrol.dwControlID, m_pmixersource->get_device()->m_hMixer, mmrc);
 //            return;
@@ -575,7 +575,7 @@
       }
       else
       {
-      //                                System.simple_message_box(NULL, e_message_box_ok | e_message_box_icon_exclamation,
+      //                                System.simple_message_box(NULL, ::user::e_message_box_ok | ::user::e_message_box_icon_exclamation,
       //                                        "mixerGetControlDetails(ctrlid=%.08lXh) failed on hmx=%.04Xh, mmr=%u!",
       //                                      m_mixercontrol.dwControlID, m_pmixersource->get_device()->m_hMixer, mmrc);
       }
@@ -599,7 +599,7 @@
       }
       else
       {
-      //                                System.simple_message_box(NULL, e_message_box_ok | e_message_box_icon_exclamation,
+      //                                System.simple_message_box(NULL, ::user::e_message_box_ok | ::user::e_message_box_icon_exclamation,
       ///                                        "mixerGetControlDetails(ctrlid=%.08lXh) failed on hmx=%.04Xh, mmr=%u!",
       //                                     m_mixercontrol.dwControlID, m_pmixersource->get_device()->m_hMixer, mmrc);
       }
@@ -755,7 +755,7 @@
 //                           }
 //                           else
 //                           {
-//                              //                                System.simple_message_box(NULL, e_message_box_ok | e_message_box_icon_exclamation,
+//                              //                                System.simple_message_box(NULL, ::user::e_message_box_ok | ::user::e_message_box_icon_exclamation,
 //                              //                                        "mixerGetControlDetails(ctrlid=%.08lXh) failed on hmx=%.04Xh, mmr=%u!",
 //                              //                                      m_mixercontrol.dwControlID, m_pmixersource->get_device()->m_hMixer, mmrc);
 //                           }
@@ -779,7 +779,7 @@
 //                           }
 //                           else
 //                           {
-//                              System.simple_message_box(NULL, e_message_box_ok | e_message_box_icon_exclamation,
+//                              System.simple_message_box(NULL, ::user::e_message_box_ok | ::user::e_message_box_icon_exclamation,
 //                                 "mixerGetControlDetails(ctrlid=%.08lXh) failed on hmx=%.04Xh, mmr=%u!",
 //                                 m_mixercontrol.dwControlID, device->m_hMixer, mmrc);
 //                           }
@@ -845,7 +845,7 @@
 //                     }
 //                     else
 //                     {
-//                        System.simple_message_box(NULL, e_message_box_ok | e_message_box_icon_exclamation,
+//                        System.simple_message_box(NULL, ::user::e_message_box_ok | ::user::e_message_box_icon_exclamation,
 //                           "mixerGetControlDetails(ctrlid=%.08lXh) failed on hmx=%.04Xh, mmr=%u!",
 //                           m_mixercontrol.dwControlID, device->m_hMixer, mmrc);
 //                     }

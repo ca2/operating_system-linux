@@ -40,7 +40,7 @@
 //         int32_t iControlCount = m_mixerline.cControls;
 //         if (0 == iControlCount)
 //         {
-//            //        System.simple_message_box(NULL, e_message_box_ok | e_message_box_icon_exclamation,
+//            //        System.simple_message_box(NULL, ::user::e_message_box_ok | ::user::e_message_box_icon_exclamation,
 //            //"There are no controls associated with the selected line.");
 //            //        EndDialog(oswindow, FALSE);
 //            return MMSYSERR_NOERROR;
@@ -71,7 +71,7 @@
 //            MIXER_GETLINECONTROLSF_ALL);
 //         if (MMSYSERR_NOERROR != mmrc)
 //         {
-//            System.simple_message_box(NULL, e_message_box_ok | e_message_box_icon_exclamation,
+//            System.simple_message_box(NULL, ::user::e_message_box_ok | ::user::e_message_box_icon_exclamation,
 //               "mixerGetLineControls(ctrlid=%.08lXh) failed on hmx=%.04Xh, mmr=%u!",
 //               m_mixerline.dwLineID, device->m_hMixer, mmrc);
 //         }
@@ -241,7 +241,7 @@
 //
 //         if (MMSYSERR_NOERROR != mmrc)
 //         {
-//            System.simple_message_box(NULL, e_message_box_ok | e_message_box_icon_exclamation,
+//            System.simple_message_box(NULL, ::user::e_message_box_ok | ::user::e_message_box_icon_exclamation,
 //               "mixerGetLineInfo(src=%u) failed on hmx=%.04Xh, mmr=%u!",
 //               dwSource, device->m_hMixer, mmrc);
 //         }
