@@ -223,7 +223,7 @@ namespace apex_linux
    string node::get_command_line()
    {
 
-      return ::system()->m_strCommandLine;
+      return ::system()->command_line();
 
    }
 
