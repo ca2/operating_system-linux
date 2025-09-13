@@ -467,7 +467,7 @@ namespace desktop_environment_kde
 //      node_fork(__routine([psession]
 //                          {
 //
-//                             synchronous_lock sl(user_synchronization());
+//                             synchronous_lock sl(user_synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 //
 //                             xdisplay d(x11_get_display());
 //
@@ -480,7 +480,7 @@ namespace desktop_environment_kde
 //
 //                             }
 //
-//                             synchronous_lock slSession(psession->synchronization());
+//                             synchronous_lock slSession(psession->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 //
 //                             ::collection::count iMonitorCount = gdk_display_get_n_monitors(pdisplay);
 //

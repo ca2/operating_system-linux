@@ -254,7 +254,7 @@ namespace aura_linux
          //enum udev_action action;
          //struct calldata data;
 
-         _synchronous_lock synchronouslock(this->synchronization());
+         _synchronous_lock synchronouslock(this->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
          //auto node = udev_device_get_devnode(dev);
          auto pszAction = udev_device_get_action(pudevdevice);

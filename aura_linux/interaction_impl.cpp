@@ -638,7 +638,7 @@
 // //      if (m_puserinteraction->m_pthread != nullptr)
 // //      {
 // //
-// //         synchronous_lock synchronouslock(m_puserinteraction->m_pthread->synchronization());
+// //         synchronous_lock synchronouslock(m_puserinteraction->m_pthread->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 // //
 // //         if(m_puserinteraction->m_pthread->m_puiptra != nullptr)
 // //         {
@@ -4025,7 +4025,7 @@
 // //         //x11_async_runnable(__routine([&]()
 // //         //{
 // //
-// //            //synchronous_lock synchronouslock(x11_mutex());
+// //            //synchronous_lock synchronouslock(x11_mutex(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 // //
 // //            _001UpdateScreen();
 // //
