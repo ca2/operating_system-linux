@@ -327,7 +327,7 @@
 #define TIFF_UINT64_FORMAT "%" PRIu64
 
 /* Unsigned 64-bit type */
-#undef TIFF_UINT64_T
+#define TIFF_UINT64_T uint64
 
 /* Unsigned 8-bit type */
 #undef TIFF_UINT8_T
