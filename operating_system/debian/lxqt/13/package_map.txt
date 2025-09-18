@@ -1,7 +1,7 @@
-default_node=operating_system-posix/node_lxq1
-default_acme_windowing=operating_system-posix/acme_windowing_lxq1
-default_windowing=operating_system-posix/windowing_lxq1
-default_operating_ambient=operating_system-linux/operating_ambient_lxq1
+default_node=operating_system-posix/node_lxq2
+default_acme_windowing=operating_system-posix/acme_windowing_lxq2
+default_windowing=operating_system-posix/windowing_lxq2
+default_operating_ambient=operating_system-linux/operating_ambient_lxq2
 default_imaging=app/imaging_freeimage
 default_nano_graphics=app/nano_graphics_cairo
 default_draw2d=app/draw2d_cairo
