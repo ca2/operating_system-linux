@@ -44,6 +44,10 @@ set(TOOL_RELEASE_NAME "linux")
 set(MAIN_STORE_SLASHED_OPERATING_SYSTEM "linux")
 set(OPERATING_SYSTEM_TOOL_FOLDER "tool-linux")
 
+set(HAS_SYSTEM_JPEG TRUE)
+add_compile_definitions(HAS_SYSTEM_JPEG)
+
+
 
 add_compile_definitions(TOOL_FOLDER_OPERATING_SYSTEM_NAME="${TOOL_RELEASE_NAME}")
 
