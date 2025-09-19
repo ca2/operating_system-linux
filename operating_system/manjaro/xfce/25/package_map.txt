@@ -34,4 +34,5 @@ port/base/iconv=none
 app-core/text_to_speech_sapi=none
 port/graphics3d/assimp=none
 port/graphics3d/glad=none
+port/imaging/port_jpeg=none
 app-core/app_core_desk_deskband=none
