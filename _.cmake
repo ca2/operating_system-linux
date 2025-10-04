@@ -314,11 +314,11 @@ endif ()
 
 if(${ARCH_LIKE})
 
-   set(USE_PORT_JPEG TRUE)
-   set(USE_PORT_PNG TRUE)
+   set(USE_PORT_JPEG FALSE)
+   set(USE_PORT_PNG FALSE)
    set(USE_PORT_FREEIMAGE TRUE)
-   add_compile_definitions(USE_PORT_JPEG)
-   add_compile_definitions(USE_PORT_PNG)
+   #add_compile_definitions(USE_PORT_JPEG)
+   #add_compile_definitions(USE_PORT_PNG)
    add_compile_definitions(USE_PORT_FREEIMAGE)
 
 endif()
