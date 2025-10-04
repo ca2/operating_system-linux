@@ -312,6 +312,17 @@ else ()
 
 endif ()
 
+if(${ARCH_LIKE})
+
+   set(USE_PORT_JPEG TRUE)
+   set(USE_PORT_PNG TRUE)
+   set(USE_PORT_FREEIMAGE TRUE)
+   add_compile_definitions(USE_PORT_JPEG)
+   add_compile_definitions(USE_PORT_PNG)
+   add_compile_definitions(USE_PORT_FREEIMAGE)
+
+endif()
+
 
 message(STATUS "DISTRO_RELEASE is ${DISTRO_RELEASE}")
 

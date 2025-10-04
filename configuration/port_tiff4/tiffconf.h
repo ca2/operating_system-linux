@@ -1,5 +1,5 @@
 /* libtiff/tif_config.h.in.  Generated from configure.ac by autoheader.  */
-
+#include <stdint.h>
 
 /* Define if building universal (internal helper macro) */
 #undef AC_APPLE_UNIVERSAL_BUILD
@@ -172,10 +172,10 @@
 
 /* Native cpu byte order: 1 if big-endian (Motorola) or 0 if little-endian
    (Intel) */
-#undef HOST_BIGENDIAN
+#define HOST_BIGENDIAN 1
 
 /* Set the native cpu bit order (FILLORDER_LSB2MSB or FILLORDER_MSB2LSB) */
-#undef HOST_FILLORDER
+#define HOST_FILLORDER FILLORDER_LSB2MSB
 
 /* Support ISO JBIG compression (requires JBIG-KIT library) */
 #undef JBIG_SUPPORT
@@ -285,22 +285,22 @@
 #undef THUNDER_SUPPORT
 
 /* Signed 16-bit type */
-#undef TIFF_INT16_T
+#define TIFF_INT16_T int16_t
 
 /* Signed 32-bit type formatter */
 #undef TIFF_INT32_FORMAT
 
 /* Signed 32-bit type */
-#undef TIFF_INT32_T
+#define TIFF_INT32_T int32_t
 
 /* Signed 64-bit type formatter */
 #undef TIFF_INT64_FORMAT
 
 /* Signed 64-bit type */
-#undef TIFF_INT64_T
+#define TIFF_INT64_T int64_t
 
 /* Signed 8-bit type */
-#undef TIFF_INT8_T
+#define TIFF_INT8_T int8_t
 
 /* Pointer difference type formatter */
 #undef TIFF_PTRDIFF_FORMAT
@@ -312,25 +312,25 @@
 #define TIFF_SSIZE_FORMAT "%zd"
 
 /* Signed size type */
-#undef TIFF_SSIZE_T
+#define TIFF_SSIZE_T ssize_t
 
 /* Unsigned 16-bit type */
-#undef TIFF_UINT16_T
+#define TIFF_UINT16_T uint16_t
 
 /* Unsigned 32-bit type formatter */
 #undef TIFF_UINT32_FORMAT
 
 /* Unsigned 32-bit type */
-#undef TIFF_UINT32_T
+#define TIFF_UINT32_T uint32_t
 
 /* Unsigned 64-bit type formatter */
 #define TIFF_UINT64_FORMAT "%" PRIu64
 
 /* Unsigned 64-bit type */
-#define TIFF_UINT64_T uint64
+#define TIFF_UINT64_T uint64_t
 
 /* Unsigned 8-bit type */
-#undef TIFF_UINT8_T
+#define TIFF_UINT8_T uint8_t
 
 /* Define to 1 if you can safely include both <sys/time.h> and <time.h>. */
 #undef TIME_WITH_SYS_TIME
