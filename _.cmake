@@ -191,7 +191,9 @@ set(WITH_XCB TRUE)
 set(USE_OPENSSL TRUE)
 set(PTHREAD TRUE)
 set(PLATFORM_NAME "linux")
+set(BUILD_GPU_BASED_APPLICATIONS TRUE)
 
+message(STATUS "__OPERATING_SYSTEM is ${__OPERATING_SYSTEM}")
 
 if (${__OPERATING_SYSTEM} STREQUAL "ubuntu")
 
@@ -201,7 +203,7 @@ if (${__OPERATING_SYSTEM} STREQUAL "ubuntu")
 
    add_compile_definitions(UBUNTU_LINUX)
 
-   add_compile_definitions(DEBIAN_LIKE_LINUX)
+   add_compile_definitions(DEBIAN_LIKE_LIBUILD_GPU_BASED_APPLICATIONSNUX)
 
    message(STATUS "UBUNTU has been set TRUE")
 
@@ -239,7 +241,7 @@ elseif (${__OPERATING_SYSTEM} STREQUAL "opensuse-leap"
 
    message(STATUS "SUSE has been set TRUE")
 
-   set(APPINDICATOR_PKG_MODULE "appindicator3-0.1")
+   set(APPINDICATOR_PKG_MODULE "appind${__OPERATING_SYSTEM}icator3-0.1")
 
    set(MPG123_PKG_MODULE "libmpg123")
 
@@ -332,6 +334,8 @@ if(${DESKTOP_AMBIENT})
 
    set(CURRENT_DESKTOP_ENVIRONMENT $ENV{XDG_CURRENT_DESKTOP})
 
+   message(STATUS "XDG_CURRENT_DESKTOP is ${CURRENT_DESKTOP_ENVIRONMENT}")
+
    if (${CURRENT_DESKTOP_ENVIRONMENT} STREQUAL "LXQt")
 
       set(LXQ_DESKTOP TRUE)
@@ -380,6 +384,19 @@ if(${DESKTOP_AMBIENT})
       set(HAS_WAYLAND FALSE)
       message(STATUS "System is X-Cinnamon")
       set(DESKTOP_ENVIRONMENT_NAME "xcinnamon")
+
+   elseif (${CURRENT_DESKTOP_ENVIRONMENT} MATCHES "labwc"
+   AND ${CURRENT_DESKTOP_ENVIRONMENT} MATCHES "wlroots")
+
+      set(LABWC_DESKTOP TRUE)
+      # it is not gtk based, but maybe better to rely on gtk4 for 
+      # developing for it, instead of creating another stack over
+      # the labwc toolkit.
+      set(GTK_BASED_DESKTOP TRUE)
+      set(HAS_WAYLAND TRUE)
+      message(STATUS "System is labwc:wlroots. Gonna use gtk4 UI toolkit")
+      set(DESKTOP_ENVIRONMENT_NAME "gnome")
+      set(BUILD_GPU_BASED_APPLICATIONS FALSE)
 
    endif ()
 
