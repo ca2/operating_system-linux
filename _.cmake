@@ -241,7 +241,7 @@ elseif (${__OPERATING_SYSTEM} STREQUAL "opensuse-leap"
 
    message(STATUS "SUSE has been set TRUE")
 
-   set(APPINDICATOR_PKG_MODULE "appind${__OPERATING_SYSTEM}icator3-0.1")
+   set(APPINDICATOR_PKG_MODULE "appindicator3-0.1")
 
    set(MPG123_PKG_MODULE "libmpg123")
 
