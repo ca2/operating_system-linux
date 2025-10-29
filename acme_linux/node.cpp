@@ -770,6 +770,19 @@ namespace acme_linux
                psummary->m_strAmbient = "x-cinnamon";
 
             }
+            else if (strLowerCaseCurrentDesktop.contains("labwc"))
+            {
+               //      elif
+               //      contains
+               //      $__SYSTEM_LOWER_CASE_CURRENT_DESKTOP
+               //      "lxde";
+               //      then
+               //
+               //# echo "lower case xdg_current_desktop contains lxde"
+
+               psummary->m_strAmbient = "labwc";
+
+            }
 
          }
 

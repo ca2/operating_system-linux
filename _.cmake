@@ -283,6 +283,8 @@ elseif ("${__OPERATING_SYSTEM}" STREQUAL "raspbian")
 
    set(HAS_WAYLAND FALSE)
 
+   set(NO_PRECOMPILED_HEADER TRUE)
+
    message(STATUS "RASPBERRYPIOS defined!!")
 
 elseif (${__OPERATING_SYSTEM} STREQUAL "manjaro"
