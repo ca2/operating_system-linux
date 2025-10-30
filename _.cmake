@@ -191,7 +191,7 @@ set(WITH_XCB TRUE)
 set(USE_OPENSSL TRUE)
 set(PTHREAD TRUE)
 set(PLATFORM_NAME "linux")
-set(BUILD_GPU_BASED_APPLICATIONS TRUE)
+#set(BUILD_GPU_BASED_APPLICATIONS TRUE)
 
 message(STATUS "__OPERATING_SYSTEM is ${__OPERATING_SYSTEM}")
 
@@ -203,7 +203,7 @@ if (${__OPERATING_SYSTEM} STREQUAL "ubuntu")
 
    add_compile_definitions(UBUNTU_LINUX)
 
-   add_compile_definitions(DEBIAN_LIKE_LIBUILD_GPU_BASED_APPLICATIONSNUX)
+#   add_compile_definitions(DEBIAN_LIKE_LIBUILD_GPU_BASED_APPLICATIONSNUX)
 
    message(STATUS "UBUNTU has been set TRUE")
 
@@ -398,7 +398,7 @@ if(${DESKTOP_AMBIENT})
       set(HAS_WAYLAND TRUE)
       message(STATUS "System is labwc:wlroots. Gonna use gtk4 UI toolkit")
       set(DESKTOP_ENVIRONMENT_NAME "gnome")
-      set(BUILD_GPU_BASED_APPLICATIONS FALSE)
+      #set(BUILD_GPU_BASED_APPLICATIONS FALSE)
 
    endif ()
 

@@ -11,13 +11,13 @@ extern "C"
 
 }
 
-#ifdef DEBIAN_LINUX
+//#ifdef DEBIAN_LINUX
 //#error "debian check"
-#define AVIO_FILE_WRITE_TYPE uint8_t
-#elif defined(MINT_LINUX)
+//#define AVIO_FILE_WRITE_TYPE uint8_t
+//#elif defined(MINT_LINUX)
 //#error "debian check"
-#define AVIO_FILE_WRITE_TYPE uint8_t
-#else
+//#define AVIO_FILE_WRITE_TYPE uint8_t
+//#else
 //#error "non debian check"
 
 #if LIBAVFORMAT_VERSION_INT >= AV_VERSION_INT(59,0,0)
@@ -25,4 +25,4 @@ extern "C"
 #else
 #define AVIO_FILE_WRITE_TYPE uint8_t
 #endif
-#endif
+//#endif
