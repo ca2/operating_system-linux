@@ -820,33 +820,33 @@ namespace acme_linux
          if (psummary->m_strAmbient.case_insensitive_equals("kde"))
          {
 
-            psummary->m_strSystemAmbientRelease = "kubuntu/" + psummary->m_strSystemRelease;
+            psummary->m_strSystemAmbientReleaseArchitecture = "kubuntu/" + psummary->m_strSystemRelease;
 
          }
          else if (psummary->m_strAmbient.case_insensitive_equals("xfce"))
          {
 
-            psummary->m_strSystemAmbientRelease = "xubuntu/" + psummary->m_strSystemRelease;
+            psummary->m_strSystemAmbientReleaseArchitecture = "xubuntu/" + psummary->m_strSystemRelease;
 
          }
          else if (psummary->m_strAmbient.case_insensitive_equals("lxde")
             || psummary->m_strAmbient.case_insensitive_equals("lxqt"))
          {
 
-            psummary->m_strSystemAmbientRelease = "lubuntu/" + psummary->m_strSystemRelease;
+            psummary->m_strSystemAmbientReleaseArchitecture = "lubuntu/" + psummary->m_strSystemRelease;
 
          }
          else
          {
 
-            psummary->m_strSystemAmbientRelease = psummary-> m_strSystem + "/" +psummary-> m_strSystemRelease;
+            psummary->m_strSystemAmbientReleaseArchitecture = psummary-> m_strSystem + "/" +psummary-> m_strSystemRelease;
          }
 
       }
       else
       {
 
-         psummary->m_strSystemAmbientRelease = psummary->m_strSystem + "/" + psummary->m_strSystemBranch + "/" + psummary->m_strSystemRelease;
+         psummary->m_strSystemAmbientReleaseArchitecture = psummary->m_strSystem + "/" + psummary->m_strSystemBranch + "/" + psummary->m_strSystemRelease;
 
       }
 
@@ -897,7 +897,14 @@ namespace acme_linux
 
       }
 
-      psummary->m_strSystemAmbientRelease.trim("/");
+      ::string strSystemArchitecture = this->get_posix_shell_command_output("uname -m");
+
+      psummary->m_strSystemArchitecture = strSystemArchitecture;
+
+      psummary->m_strSystemAmbientReleaseArchitecture = psummary->m_strSystemAmbientReleaseArchitecture +
+         "/" + psummary->m_strSystemArchitecture;
+
+      psummary->m_strSystemAmbientReleaseArchitecture.trim("/");
 
       //psummary->m_strSystemUnderscore = psummary->m_strSystemAmbientRelease;
 
