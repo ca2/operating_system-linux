@@ -145,14 +145,28 @@ const_char_pointer linux_g_direct_get_file_icon_path(const_char_pointer pszPath,
 
    }
 
-   GError * perror = nullptr;
+   GError * pgerror = nullptr;
 
-   GFileInfo * pfileinfo = g_file_query_info (pfile, "standard::*", G_FILE_QUERY_INFO_NONE, nullptr, &perror);
+   GFileInfo * pfileinfo = g_file_query_info (pfile, "standard::*", G_FILE_QUERY_INFO_NONE, nullptr, &pgerror);
 
    if(pfileinfo == nullptr)
    {
 
+      if (pgerror)
+      {
+
+         g_clear_error(&pgerror);
+
+      }
+
       return nullptr;
+
+   }
+
+   if (pgerror)
+   {
+
+      g_clear_error(&pgerror);
 
    }
 
@@ -247,14 +261,28 @@ const_char_pointer linux_g_direct_get_file_content_type(const_char_pointer pszPa
 
    }
 
-   GError * perror = nullptr;
+   GError * pgerror = nullptr;
 
-   GFileInfo * pfileinfo = g_file_query_info (pfile, "standard::*", G_FILE_QUERY_INFO_NONE, nullptr, &perror);
+   GFileInfo * pfileinfo = g_file_query_info (pfile, "standard::*", G_FILE_QUERY_INFO_NONE, nullptr, &pgerror);
 
    if(pfileinfo == nullptr)
    {
 
+      if (pgerror)
+      {
+
+         g_clear_error(&pgerror);
+
+      }
+
       return nullptr;
+
+   }
+
+   if (pgerror)
+   {
+
+      g_clear_error(&pgerror);
 
    }
 
@@ -279,29 +307,49 @@ int aaa_gdk_launch_uri(const_char_pointer pszUri, char * pszError, int iBufferSi
 
    gboolean ret;
 
-   GError * error = NULL;
+   GError * pgerror = nullptr;
 
    g_type_init();
 
-   ret = g_app_info_launch_default_for_uri(scopedstrUri, NULL, &error);
+   ret = g_app_info_launch_default_for_uri(scopedstrUri, NULL, &pgerror);
 
    if(ret)
    {
+
+      if (pgerror)
+      {
+
+         if(pszError != nullptr)
+         {
+
+            strncpy(pszError, pgerror->message, iBufferSize);
+
+         }
+
+         g_clear_error(&pgerror);
+
+      }
 
       return true;
 
    }
 
-   if(scopedstrError != nullptr)
+   if (pgerror)
    {
 
-      strncpy(scopedstrError, error->message, iBufferSize);
+      if(pszError != nullptr)
+      {
+
+         strncpy(pszError, pgerror->message, iBufferSize);
+
+      }
+
+      g_clear_error(&pgerror);
 
    }
 
    return 0;
 
 }
-
 
 
