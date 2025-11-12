@@ -780,7 +780,7 @@ namespace acme_linux
                //
                //# echo "lower case xdg_current_desktop contains lxde"
 
-               psummary->m_strAmbient = "labwc";
+               psummary->m_strAmbient = "gnome";
 
             }
 
@@ -898,6 +898,8 @@ namespace acme_linux
       }
 
       ::string strSystemArchitecture = this->get_posix_shell_command_output("uname -m");
+
+      strSystemArchitecture.trim();
 
       psummary->m_strSystemArchitecture = strSystemArchitecture;
 
