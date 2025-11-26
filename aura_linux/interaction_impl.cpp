@@ -423,7 +423,7 @@
 //       if (bSize)
 //       {
 //
-//          informationf("linux::interaction_impl Window Manager Size (%d, %d)", m_sizeLastSize.cx(), m_sizeLastSize.cy());
+//          informationf("linux::interaction_impl Window Manager Size (%d, %d)", m_sizeLastSize.cx, m_sizeLastSize.cy);
 //
 //          m_puserinteraction->set_size(m_sizeLastSize);
 //
