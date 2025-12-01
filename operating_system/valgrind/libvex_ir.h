@@ -92,7 +92,7 @@
    fixed registers on the guest.  Selected areas of the guest state
    can be treated as a circular array of registers (type:
    'IRRegArray'), which can be indexed at run-time.  This is done with
-   the "GetI" and "PutI" primitives.  This is necessary to describe
+   the "GetI" and "PutI" prototypes.  This is necessary to describe
    rotating register files, for example the x87 FPU stack, SPARC
    register windows, and the Itanium register files.
 

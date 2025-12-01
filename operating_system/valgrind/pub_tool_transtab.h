@@ -31,7 +31,7 @@
 #ifndef __PUB_TOOL_TRANSTAB_H
 #define __PUB_TOOL_TRANSTAB_H
 
-#include "pub_tool_basics.h"   // VG_ macro and primitive types
+#include "pub_tool_basics.h"   // VG_ macro and prototype types
 
 void VG_(discard_translations_safely) ( Addr  start, SizeT len,
                                         const HChar* who );

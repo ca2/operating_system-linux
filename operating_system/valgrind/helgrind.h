@@ -235,7 +235,7 @@ typedef
 /*----------------------------------------------------------------*/
 /*---                                                          ---*/
 /*--- Helgrind-native requests.  These allow access to         ---*/
-/*--- the same set of annotation primitives that are used      ---*/
+/*--- the same set of annotation prototypes that are used      ---*/
 /*--- to build the POSIX pthread wrappers.                     ---*/
 /*---                                                          ---*/
 /*----------------------------------------------------------------*/
@@ -479,7 +479,7 @@ typedef
 
    The major use of these macros is to make visible to race detectors,
    the behaviour (effects) of user-implemented synchronisation
-   primitives, that the detectors could not otherwise deduce from the
+   prototypes, that the detectors could not otherwise deduce from the
    normal observation of pthread etc calls.
 
    Some of the macros are no-ops in Helgrind.  That's because Helgrind
@@ -749,7 +749,7 @@ typedef
 
 /* ----------------------------------------------------------------
    Annotations for describing behaviour of user-implemented lock
-   primitives.  In all cases, the LOCK argument is a completely
+   prototypes.  In all cases, the LOCK argument is a completely
    arbitrary machine word (unsigned long, or void*) and can be any
    value which gives a unique identity to the lock objects being
    modelled.

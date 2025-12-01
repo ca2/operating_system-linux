@@ -71,7 +71,7 @@ typedef  unsigned int  U128[4];
 /* Always 256 bits. */
 typedef  unsigned int  U256[8];
 
-/* A union for doing 128-bit vector primitives conveniently. */
+/* A union for doing 128-bit vector prototypes conveniently. */
 typedef
    union {
       UChar  w8[16];
@@ -81,7 +81,7 @@ typedef
    }
    V128;
 
-/* A union for doing 256-bit vector primitives conveniently. */
+/* A union for doing 256-bit vector prototypes conveniently. */
 typedef
    union {
       UChar  w8[32];
