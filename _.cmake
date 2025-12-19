@@ -19,6 +19,9 @@ if (NOT ${CMAKE_SYSTEM_NAME} STREQUAL "Linux")
 
 endif ()
 
+add_compile_options(-Wno-literal-suffix)
+
+
 #list(APPEND CMAKE_PREFIX_PATH "/usr/lib/x86_64-linux-gnu/cmake")
 
 #message(STATUS "CMAKE_SYSTEM_NAME is ${CMAKE_SYSTEM_NAME}")
