@@ -408,7 +408,7 @@
 //       if (bMove)
 //       {
 //
-//          information() << "linux::interaction_impl Window Manager Move ("<<m_pointLastMove.x()<<", "<<m_pointLastMove.y()<<")";
+//          information() << "linux::interaction_impl Window Manager Move ("<<m_pointLastMove.x<<", "<<m_pointLastMove.y<<")";
 //
 //          m_puserinteraction->set_position(m_pointLastMove);
 //
@@ -1266,14 +1266,14 @@
 // ////                  if (rectWindow.left >= rcMonitor.left)
 // ////                  {
 // ////
-// ////                     pmouse->m_point.x() += (int) rectWindow.left;
+// ////                     pmouse->m_point.x += (int) rectWindow.left;
 // ////
 // ////                  }
 // ////
 // ////                  if (rectWindow.top >= rcMonitor.top)
 // ////                  {
 // ////
-// ////                     pmouse->m_point.y() += (int) rectWindow.top;
+// ////                     pmouse->m_point.y += (int) rectWindow.top;
 // ////
 // ////                  }
 // ////
@@ -1284,14 +1284,14 @@
 // ////                  if (rectWindow.left >= 0)
 // ////                  {
 // ////
-// ////                     pmouse->m_point.x() += (int) rectWindow.left;
+// ////                     pmouse->m_point.x += (int) rectWindow.left;
 // ////
 // ////                  }
 // ////
 // ////                  if (rectWindow.top >= 0)
 // ////                  {
 // ////
-// ////                     pmouse->m_point.y() += (int) rectWindow.top;
+// ////                     pmouse->m_point.y += (int) rectWindow.top;
 // ////
 // ////                  }
 // ////
