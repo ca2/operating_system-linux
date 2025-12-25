@@ -211,7 +211,9 @@ if (${__OPERATING_SYSTEM} STREQUAL "ubuntu")
 
    message(STATUS "UBUNTU has been set TRUE")
 
-   set(APPINDICATOR_PKG_MODULE "ayatana-appindicator3-0.1")
+   #set(APPINDICATOR_PKG_MODULE "ayatana-appindicator3-0.1")
+
+   set(APPINDICATOR_PKG_MODULE "appindicator3-0.1")
 
    set(MPG123_PKG_MODULE "libmpg123")
 
@@ -962,10 +964,10 @@ if(${DESKTOP_AMBIENT})
 
 
 
-   if(${HAS_GTK4})
-      message(STATUS "HAS_GTK4 is true, deactivating APPINDICATOR_PKG_MODULE")
-      set(APPINDICATOR_PKG_MODULE "")
-   endif()
+   #if(${HAS_GTK4})
+   #   message(STATUS "HAS_GTK4 is true, deactivating APPINDICATOR_PKG_MODULE")
+   #   set(APPINDICATOR_PKG_MODULE "")
+   #endif()
 
 
 
@@ -1000,8 +1002,8 @@ if(${DESKTOP_AMBIENT})
       list(APPEND default_acme_windowing acme_windowing_q acme_windowing_kde5)
       set(default_innate_ui innate_ui_kde5)
 
-      message(STATUS "HAS_KDE5 is true, deactivating APPINDICATOR_PKG_MODULE")
-      set(APPINDICATOR_PKG_MODULE "")
+      #message(STATUS "HAS_KDE5 is true, deactivating APPINDICATOR_PKG_MODULE")
+      #set(APPINDICATOR_PKG_MODULE "")
 
    endif()
 
@@ -1014,8 +1016,8 @@ if(${DESKTOP_AMBIENT})
       list(APPEND default_acme_windowing acme_windowing_q acme_windowing_kde6)
       set(default_innate_ui innate_ui_kde6)
 
-      message(STATUS "HAS_KDE6 is true, deactivating APPINDICATOR_PKG_MODULE")
-      set(APPINDICATOR_PKG_MODULE "")
+      #message(STATUS "HAS_KDE6 is true, deactivating APPINDICATOR_PKG_MODULE")
+      #set(APPINDICATOR_PKG_MODULE "")
 
    endif()
 
@@ -1129,4 +1131,10 @@ set(STORE_FOLDER $ENV{HOME}/store/${SLASHED_OPERATING_SYSTEM})
 
 
 
-message(STATUS "APPINDICATOR_PKG_MODULE is ${__SYSTEM_ARCHITECTURE}")
+
+
+if("${APPINDICATOR_PKG_MODULE}" STREQUAL "")
+   message(STATUS "APPINDICATOR_PKG_MODULE is (Empty)")
+else ()
+   message(STATUS "APPINDICATOR_PKG_MODULE is ${APPINDICATOR_PKG_MODULE}")
+endif()
