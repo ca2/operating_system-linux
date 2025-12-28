@@ -93,7 +93,7 @@ if(${WIN32})
     target_link_options(desktop_environment_kde PRIVATE "/DEFAULTLIB:msvcrt$<$<CONFIG:Debug>:d>")
     target_link_options(desktop_environment_kde PRIVATE "/SUBSYSTEM:WINDOWS")
     target_link_libraries(desktop_environment_kde PRIVATE ${library_references})
-elseif (LINUX)
+elseif (${LINUX})
 
     #
     #   if(${USE_PKGCONFIG})

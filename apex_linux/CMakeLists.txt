@@ -69,7 +69,7 @@ if(${WIN32})
     target_link_libraries(apex_linux PRIVATE acme apex aqua aura Gdiplus)
 
 
-elseif (LINUX)
+elseif (${LINUX})
 
 
 

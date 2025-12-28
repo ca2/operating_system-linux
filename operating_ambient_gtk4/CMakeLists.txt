@@ -58,15 +58,17 @@ if(${WIN32})
    target_link_options(${PROJECT_NAME} PRIVATE "/DEFAULTLIB:msvcrt$<$<CONFIG:Debug>:d>")
    target_link_options(${PROJECT_NAME} PRIVATE "/SUBSYSTEM:WINDOWS")
    target_link_libraries(${PROJECT_NAME} PRIVATE ${library_references})
-elseif (LINUX)
+elseif (${LINUX})
 
 
-   if(${HAS_GTK4})
-      #pkg_check_modules(${PROJECT_NAME}_PKGCONFIG glib-2.0 gtk4)
-      pkg_check_modules(${PROJECT_NAME}_PKGCONFIG gtk4)
-   elseif(${HAS_GTK3})
-      pkg_check_modules(${PROJECT_NAME}_PKGCONFIG glib-2.0 gtk+-3.0 gdk-3.0)
+   if(NOT ${HAS_GTK4})
+      message(FATAL_ERROR "This is currently expected to build only at GTK4 system.")
    endif()
+   #pkg_check_modules(${PROJECT_NAME}_PKGCONFIG glib-2.0 gtk4)
+   pkg_check_modules(${PROJECT_NAME}_PKGCONFIG gtk4)
+   #elseif(${HAS_GTK3})
+   #   pkg_check_modules(${PROJECT_NAME}_PKGCONFIG glib-2.0 gtk+-3.0 gdk-3.0)
+   #endif()
 
 
    target_compile_options(${PROJECT_NAME} PRIVATE $<$<COMPILE_LANGUAGE:CXX>:-fpermissive  ${EXTRA_CXX_TARGET_COMPILER_OPTIONS}>)
