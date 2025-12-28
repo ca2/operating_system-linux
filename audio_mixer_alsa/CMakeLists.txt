@@ -51,7 +51,7 @@ target_precompile_headers(static_${PROJECT_NAME} PRIVATE framework.h)
 set_target_properties(audio_mixer_alsa PROPERTIES LINKER_LANGUAGE CXX)
 
 
-if (MSVC)
+if(${WIN32})
 
 
     target_compile_options(audio_mixer_alsa PRIVATE "/MD$<$<CONFIG:Debug>:d>")

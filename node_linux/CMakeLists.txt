@@ -39,7 +39,7 @@ target_precompile_headers(static_${PROJECT_NAME} PRIVATE framework.h)
 set_target_properties(node_linux PROPERTIES LINKER_LANGUAGE CXX)
 
 
-if (MSVC)
+if(${WIN32})
 
 
     target_compile_options(node_linux PRIVATE "/MD$<$<CONFIG:Debug>:d>")
