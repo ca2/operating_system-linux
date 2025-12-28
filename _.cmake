@@ -535,7 +535,8 @@ if(${DESKTOP_AMBIENT})
          message(STATUS "LXQ2 HAS_Q6")
 
          find_package(PkgConfig REQUIRED)
-         find_package(Qt6 REQUIRED COMPONENTS Core Widgets)
+         find_package(Qt6 REQUIRED COMPONENTS Core Widgets Gui)
+         find_package(Qt6GuiPrivate REQUIRED CONFIG)
 #         project(LXQtIconFinder)
 #         find_package(LXQt REQUIRED)
 #
@@ -690,6 +691,10 @@ if(${DESKTOP_AMBIENT})
 #         )
 #
 #         find_package(Qt6Gui ${QT_MIN_VERSION} CONFIG REQUIRED Private)
+
+
+         find_package(Qt6 REQUIRED COMPONENTS Core Widgets Gui)
+         find_package(Qt6GuiPrivate REQUIRED CONFIG)
 
          # Find KDE modules
 
