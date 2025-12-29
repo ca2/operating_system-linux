@@ -347,11 +347,14 @@ if(${DESKTOP_AMBIENT})
 
    message(STATUS "XDG_CURRENT_DESKTOP is ${CURRENT_DESKTOP_ENVIRONMENT}")
 
-   if (${CURRENT_DESKTOP_ENVIRONMENT} STREQUAL "LXQt")
+   string(TOLOWER "${CURRENT_DESKTOP_ENVIRONMENT}" LOWERCASE_CURRENT_DESKTOP_ENVIRONMENT)
 
-      set(LXQ_DESKTOP TRUE)
-      message(STATUS "System is LXQ")
-      set(DESKTOP_ENVIRONMENT_NAME "lxq")
+   if (${LOWERCASE_CURRENT_DESKTOP_ENVIRONMENT} STREQUAL "lxqt"
+   OR LOWERCASE_CURRENT_DESKTOP_ENVIRONMENT MATCHES "^(lxqt:)|(:lxqt$)|(:lxqt:)")
+
+      set(LXQT_DESKTOP TRUE)
+      message(STATUS "System is LXQt")
+      set(DESKTOP_ENVIRONMENT_NAME "lxqt")
 
    elseif (${CURRENT_DESKTOP_ENVIRONMENT} STREQUAL "KDE")
 
@@ -400,7 +403,7 @@ if(${DESKTOP_AMBIENT})
    AND ${CURRENT_DESKTOP_ENVIRONMENT} MATCHES "wlroots")
 
       set(LABWC_DESKTOP TRUE)
-      # it is not gtk based, but maybe better to rely on gtk4 for 
+      # it is not gtk based, but maybe better to rely on gtk4 for
       # developing for it, instead of creating another stack over
       # the labwc toolkit.
       set(GTK_BASED_DESKTOP TRUE)
@@ -412,7 +415,7 @@ if(${DESKTOP_AMBIENT})
    endif ()
 
 
-   if(${LXQ_DESKTOP})
+   if(${LXQT_DESKTOP})
 
       include(${WORKSPACE_FOLDER}/operating_system/operating_system-posix/_lxq_desktop.cmake)
 
@@ -520,7 +523,7 @@ if(${DESKTOP_AMBIENT})
 
    # DESKTOP_AMBIENT are dependant just on linux kernel version and glib version?
 
-   if (${LXQ_DESKTOP})
+   if (${LXQT_DESKTOP})
 
 
       if(${HAS_LXQ2})
