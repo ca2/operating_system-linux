@@ -697,7 +697,7 @@ if(${DESKTOP_AMBIENT})
 
 
          find_package(Qt6 REQUIRED COMPONENTS Core Widgets Gui)
-         find_package(Qt6GuiPrivate REQUIRED CONFIG)
+         #find_package(Qt6GuiPrivate REQUIRED CONFIG)
 
          # Find KDE modules
 
