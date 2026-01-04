@@ -947,6 +947,17 @@ namespace acme_linux
 
       }
 
+      bool bToolPosixBinFolder = true;
+
+      ::file::path pathToolPosixBinFolder;
+
+      if (bToolPosixBinFolder)
+      {
+
+         pathToolPosixBinFolder = pathToolFolder / "posix/bin";
+
+      }
+
       ::file::path pathHomeBin;
 
       ::file::path pathHome = directory_system()->home();
@@ -971,6 +982,18 @@ namespace acme_linux
          {
 
             straPrefixPaths.add(pathToolFolderBin);
+
+         }
+
+      }
+
+      if (pathToolPosixBinFolder.has_character())
+      {
+
+         if (!straPath.contains(pathToolPosixBinFolder))
+         {
+
+            straPrefixPaths.add(pathToolPosixBinFolder);
 
          }
 
