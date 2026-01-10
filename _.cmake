@@ -53,7 +53,7 @@ set(OPERATING_SYSTEM_TOOL_FOLDER "tool-linux")
 
 set(HAS_SYSTEM_JPEG TRUE)
 add_compile_definitions(HAS_SYSTEM_JPEG)
-
+add_compile_definitions(__FREEDESKTOP__)
 
 
 add_compile_definitions(TOOL_FOLDER_OPERATING_SYSTEM_NAME="${TOOL_RELEASE_NAME}")
