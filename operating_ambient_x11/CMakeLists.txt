@@ -22,7 +22,7 @@ list(APPEND library_references
     apex
     apex_posix
     apex_linux
-    innate_ui_xaw
+    innate_ui_motif
     aqua
     aura
     aura_posix
