@@ -79,7 +79,7 @@
 // //   void * interaction_impl::get_os_data() const
 // //   {
 // //
-// //      return m_oswindow;
+// //      return m_pacmewindowingwindow;
 // //
 // //   }
 //
@@ -100,7 +100,7 @@
 // //   }
 //
 //
-//    ::windowing::window * interaction_impl::from_handle(::oswindow oswindow)
+//    ::windowing::window * interaction_impl::from_handle(::::acme::windowing::window * pacmewindowingwindow)
 //    {
 //
 //       if(::is_null(oswindow))
@@ -122,7 +122,7 @@
 //    }
 //
 //
-//    ::windowing::window * interaction_impl::FromHandlePermanent(::oswindow oswindow)
+//    ::windowing::window * interaction_impl::FromHandlePermanent(::::acme::windowing::window * pacmewindowingwindow)
 //    {
 //
 //       if(oswindow->m_pwindow == nullptr)
@@ -231,7 +231,7 @@
 // //////
 // //////         auto pwindowing = m_pwindowwindowing();
 // //////
-// //////         m_oswindow = pwindowing->new_message_window(this);
+// //////         m_pacmewindowingwindow = pwindowing->new_message_window(this);
 // //////
 // //////         m_puserinteraction->m_bMessageWindow = true;
 // //////
@@ -568,7 +568,7 @@
 //
 //          m_puserinteraction->post_redraw();
 //
-//          //x11_defer_check_configuration(m_oswindow);
+//          //x11_defer_check_configuration(m_pacmewindowingwindow);
 //
 //       }
 //       else
@@ -771,7 +771,7 @@
 // //
 // //      }
 // //
-// ////      if(m_oswindow->m_bMessageOnlyWindow)
+// ////      if(m_pacmewindowingwindow->m_bMessageOnlyWindow)
 // ////      {
 // ////
 // ////         ::user::interaction * pinteraction = m_puserinteraction;
@@ -2052,7 +2052,7 @@
 // //   oswindow interaction_impl::get_handle() const
 // //   {
 // //
-// //      return m_oswindow;
+// //      return m_pacmewindowingwindow;
 // //
 // //   }
 //
@@ -2154,7 +2154,7 @@
 // //   bool interaction_impl::node_is_iconic()
 // //   {
 // //
-// //      if(!::is_window(m_oswindow))
+// //      if(!::is_window(m_pacmewindowingwindow))
 // //      {
 // //
 // //         return false;
@@ -2339,7 +2339,7 @@
 // //
 // //      //fflush(stdout);
 // //
-// ////      x11_store_name(m_oswindow, m_strWindowText);
+// ////      x11_store_name(m_pacmewindowingwindow, m_strWindowText);
 // //
 // //      //windowing_output_debug_string("\nlinux::interaction_impl::set_window_text END");
 // //
@@ -2514,9 +2514,9 @@
 // //
 // //      fflush(stdout);
 // //
-// //      xdisplay d(m_oswindow->display());
+// //      xdisplay d(m_pacmewindowingwindow->display());
 // //
-// //      oswindow oswindow;
+// //      ::acme::windowing::window * pacmewindowingwindow;
 // //
 // //      if(get_handle() == nullptr)
 // //      {
@@ -2887,7 +2887,7 @@
 // //   ::user::interaction * interaction_impl::GetActiveWindow()
 // //   {
 // //
-// //      oswindow oswindow = nullptr;
+// //      ::acme::windowing::window * pacmewindowingwindow = nullptr;
 // //
 // //      x11_sync([&]()
 // //      {
@@ -3893,7 +3893,7 @@
 // ////      //if(useractivation &)
 // //////      {
 // //////
-// //////         wm_add_erase_state(m_oswindow, net_wm_state_hidden, false);
+// //////         wm_add_erase_state(m_pacmewindowingwindow, net_wm_state_hidden, false);
 // //////
 // //////      }
 // //////
@@ -3906,13 +3906,13 @@
 // //////         if(m_puserinteraction->m_bWorkspaceFullScreen)
 // //////         {
 // //////
-// //////            ::show_window(m_oswindow, e_display_zoomed);
+// //////            ::show_window(m_pacmewindowingwindow, e_display_zoomed);
 // //////
 // //////         }
 // //////         else
 // //////         {
 // //////
-// //////            m_oswindow->full_screen();
+// //////            m_pacmewindowingwindow->full_screen();
 // //////
 // //////         }
 // //////
@@ -3982,7 +3982,7 @@
 // //   bool interaction_impl::is_active_window() const
 // //   {
 // //
-// //      if(!::is_window(m_oswindow))
+// //      if(!::is_window(m_pacmewindowingwindow))
 // //      {
 // //
 // //         return false;
@@ -3992,7 +3992,7 @@
 // //      x11_sync([this]()
 // //      {
 // //
-// //         m_puserinteraction->m_ewindowflag.set(::window_flag_active, m_oswindow == ::get_active_window());
+// //         m_puserinteraction->m_ewindowflag.set(::window_flag_active, m_pacmewindowingwindow == ::get_active_window());
 // //
 // //      });
 // //
@@ -4055,7 +4055,7 @@
 // //   ::e_status interaction_impl::set_tool_window(bool bSet)
 // //   {
 // //
-// //      wm_toolwindow(m_oswindow, bSet);
+// //      wm_toolwindow(m_pacmewindowingwindow, bSet);
 // //
 // //      return ::success;
 // //
