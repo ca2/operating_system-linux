@@ -87,7 +87,7 @@
 ////      if(iNew == INVALID_FILE)
 ////         return nullptr;
 ////
-////      auto pFile  = øallocate file(get_app(), iNew);
+////      auto pFile  = allocateø file(get_app(), iNew);
 ////      pFile->m_iFile = (unsigned int)iNew;
 ////      ASSERT(pFile->m_iFile != INVALID_FILE);
 ////      return pFile;

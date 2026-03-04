@@ -840,7 +840,7 @@ namespace draw2d_gdiplus
 
       //e.Graphics.DrawImage(
       //   image,
-      //   øallocate< Rectangle >(150, 10, width, height),  // destination int_rectangle
+      //   allocateø< Rectangle >(150, 10, width, height),  // destination int_rectangle
       //   0, 0,        // upper-left corner of source int_rectangle
       //   width,       // width of source int_rectangle
       //   height,      // height of source int_rectangle

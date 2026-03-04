@@ -22,7 +22,7 @@ namespace win2
 
    ::user::printer * application::get_printer(const_char_pointer pszDeviceName)
    {
-      ::win2::printer * pprinter = øallocate< ::win2::printer(get_app >());
+      ::win2::printer * pprinter = allocateø< ::win2::printer(get_app >());
       if(!pprinter->open(scopedstrDeviceName))
       {
          delete pprinter;
