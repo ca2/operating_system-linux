@@ -32,7 +32,7 @@ namespace draw2d_gdiplus
 
       }
 
-      estatus = __construct_new(m_pdocumentproperties);
+      estatus = construct_newø(m_pdocumentproperties);
 
       if (!estatus)
       {
