@@ -965,7 +965,7 @@ namespace acme_linux
       if (pathHome.has_character())
       {
 
-         pathHomeBin = pathHome / "bin";
+         pathHomeBin = pathHome / "code/operating_system" / "bin";
 
       }
 
