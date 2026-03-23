@@ -958,14 +958,14 @@ namespace acme_linux
 
       }
 
-      ::file::path pathHomeBin;
+      ::file::path pathHomeCodeOperatingSystemBin;
 
       ::file::path pathHome = directory_system()->home();
 
       if (pathHome.has_character())
       {
 
-         pathHomeBin = pathHome / "code/operating_system" / "bin";
+         pathHomeCodeOperatingSystemBin = pathHome / "code/operating_system" / "bin";
 
       }
 
@@ -999,13 +999,13 @@ namespace acme_linux
 
       }
 
-      if (pathHomeBin.has_character())
+      if (pathHomeCodeOperatingSystemBin.has_character())
       {
 
-         if (!straPath.contains(pathHomeBin))
+         if (!straPath.contains(pathHomeCodeOperatingSystemBin))
          {
 
-            straPrefixPaths.add(pathHomeBin);
+            straPrefixPaths.add(pathHomeCodeOperatingSystemBin);
 
          }
 
