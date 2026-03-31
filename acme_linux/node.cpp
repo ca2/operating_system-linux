@@ -17,6 +17,12 @@ void copy(::file::path & path, const ::scoped_string & scopedstr)
 }
 
 
+void get_proc_self_status_memory(
+int* currRealMem, int* peakRealMem,
+int* currVirtMem, int* peakVirtMem);
+
+
+
 #include "acme/prototype/collection/_generic_array.h"
 
 
@@ -450,6 +456,7 @@ namespace acme_linux
          auto set = file()->get_standard_configuration("/etc/os-release");
 
          psummary->m_strName = set["PRETTY_NAME"];
+         psummary->m_strFriendlyName = set["PRETTY_NAME"];
          psummary->m_strSystemName = set["NAME"];
          psummary->m_strSystemBranchName = set["VARIANT_ID"];
          psummary->m_strSystemReleaseName = set["VERSION"];
@@ -1162,6 +1169,18 @@ namespace acme_linux
       return {};
 
 #endif
+
+   }
+
+
+   memsize node::get_current_memory_usage()
+   {
+
+      int currRealMem = 0;
+
+      get_proc_self_status_memory(&currRealMem, nullptr, nullptr, nullptr);
+
+      return currRealMem;
 
    }
 
