@@ -386,7 +386,9 @@ namespace operating_ambient_gtk3
    ::e_status node::node_post(const ::procedure & procedure)
    {
 
-      system()->acme_windowing()->_user_post(procedure);
+      //system()->acme_windowing()->_user_post(procedure);
+
+      system()->acme_windowing()->post(procedure);
 
       return ::success;
 
