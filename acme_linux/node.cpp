@@ -245,7 +245,7 @@ namespace acme_linux
 //         for(auto & iCurrentPid : pids)
 //         {
 //
-//            strPath = module_path_from_pid(iCurrentPid.as_int());
+//            strPath = module_path_from_pid(iCurrentPid.as_i32());
 //
 //            if(strPath.case_insensitive_order(scopedstrModulePath) == 0 )
 //            {
@@ -930,12 +930,12 @@ namespace acme_linux
       if (straRelease.get_size() >= 1)
       {
 
-         psummary->m_iMajor = ::as_int(straRelease[0]);
+         psummary->m_iMajor = ::as_i32(straRelease[0]);
 
          if (straRelease.get_size() >= 2)
          {
 
-            psummary->m_iMinor = ::as_int(straRelease[1]);
+            psummary->m_iMinor = ::as_i32(straRelease[1]);
 
          }
 
