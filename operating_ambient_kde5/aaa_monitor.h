@@ -13,8 +13,8 @@
 //
 //
 //      //::collection::index                                               m_iIndex;
-//      //::int_rectangle                                       m_rectangle;
-//      //::int_rectangle                                       m_rectangleWorkspace;
+//      //::i32_rectangle                                       m_rectangle;
+//      //::i32_rectangle                                       m_rectangleWorkspace;
 //
 //
 //      monitor();
@@ -26,8 +26,8 @@
 //      virtual unsigned int get_monitor_color_temperature() override;
 //      virtual bool adjust_monitor( unsigned int dwTemperature, double dBrightness, double dwGamma) override;
 //
-//      virtual bool get_monitor_rectangle(::int_rectangle * prectangle) override;
-//      virtual bool get_workspace_rectangle(::int_rectangle * prectangle) override;
+//      virtual bool get_monitor_rectangle(::i32_rectangle * prectangle) override;
+//      virtual bool get_workspace_rectangle(::i32_rectangle * prectangle) override;
 //
 //
 //   };

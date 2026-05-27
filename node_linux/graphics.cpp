@@ -472,17 +472,17 @@ namespace draw2d_gdiplus
 
       m_pgraphics->GetTransform(((graphics *)this)->m_pm);
 
-      Gdiplus::REAL int_rectangle[6];
+      Gdiplus::REAL i32_rectangle[6];
 
       m_pm->GetElements(rectangle);
 
-      pXform->eM11 = int_rectangle[0];
-      pXform->eM12 = int_rectangle[1];
-      pXform->eM21 = int_rectangle[2];
-      pXform->eM22 = int_rectangle[3];
+      pXform->eM11 = i32_rectangle[0];
+      pXform->eM12 = i32_rectangle[1];
+      pXform->eM21 = i32_rectangle[2];
+      pXform->eM22 = i32_rectangle[3];
 
-      pXform->eDx = int_rectangle[4];
-      pXform->eDy = int_rectangle[5];
+      pXform->eDx = i32_rectangle[4];
+      pXform->eDy = i32_rectangle[5];
 
 
       return true;
@@ -659,7 +659,7 @@ namespace draw2d_gdiplus
    //}
 
 
-   //bool graphics::RectVisible(const int_rectangle &  prectangle)
+   //bool graphics::RectVisible(const i32_rectangle &  prectangle)
    //{
 
    //   //return ::RectVisible(get_handle1(), &prectangle) != false;
@@ -768,7 +768,7 @@ namespace draw2d_gdiplus
    //bool graphics::Arc(double x1,int y1,int w,int h, angle start, angle extends)
    //{
 
-   //   ::Gdiplus::Rect int_rectangle(x1,y1,w,h);
+   //   ::Gdiplus::Rect i32_rectangle(x1,y1,w,h);
 
    //   return m_pgraphics->DrawArc(m_ppen->get_os_data < Pen * >(this),rectangle,(Gdiplus::REAL) start.degree(),(Gdiplus::REAL) extends.degree()) == Gdiplus::Status::Ok;
 
@@ -793,7 +793,7 @@ namespace draw2d_gdiplus
    }
 
 
-   bool graphics::int_rectangle(const ::double_rectangle & rectangle)
+   bool graphics::i32_rectangle(const ::double_rectangle & rectangle)
    {
 
       bool bOk1 = fill_rectangle(rectangle);
@@ -808,7 +808,7 @@ namespace draw2d_gdiplus
    bool graphics::draw_rectangle(const ::double_rectangle & rectParam, ::draw2d::pen * ppen)
    {
 
-      Gdiplus::Rect int_rectangle;
+      Gdiplus::Rect i32_rectangle;
 
       copy(&rectangle, &rectParam);
 
@@ -840,10 +840,10 @@ namespace draw2d_gdiplus
 
       //e.Graphics.DrawImage(
       //   image,
-      //   allocateø< Rectangle >(150, 10, width, height),  // destination int_rectangle
-      //   0, 0,        // upper-left corner of source int_rectangle
-      //   width,       // width of source int_rectangle
-      //   height,      // height of source int_rectangle
+      //   allocateø< Rectangle >(150, 10, width, height),  // destination i32_rectangle
+      //   0, 0,        // upper-left corner of source i32_rectangle
+      //   width,       // width of source i32_rectangle
+      //   height,      // height of source i32_rectangle
       //   GraphicsUnit.Pixel,
       //   imageAttributes);
       //auto e = m_pgraphics->GetCompositingMode();
@@ -852,7 +852,7 @@ namespace draw2d_gdiplus
 
       //Gdiplus::SolidBrush b(Color(255, 255, 255, 255));
 
-      //Gdiplus::Rect int_rectangle;
+      //Gdiplus::Rect i32_rectangle;
 
       //__copy(rectangle, pcrect);
 
@@ -923,7 +923,7 @@ namespace draw2d_gdiplus
    //}
 
 
-   //bool graphics::DrawEllipse(const int_rectangle &  rectParam)
+   //bool graphics::DrawEllipse(const i32_rectangle &  rectParam)
    //{
 
    //   if (m_pgraphics == nullptr)
@@ -1022,7 +1022,7 @@ namespace draw2d_gdiplus
    }
 
 
-   bool graphics::FillEllipse(const int_rectangle &  rectParam)
+   bool graphics::FillEllipse(const i32_rectangle &  rectParam)
    {
 
       if (m_pgraphics == nullptr)
@@ -1286,7 +1286,7 @@ namespace draw2d_gdiplus
 
       }
 
-      Gdiplus::Rect int_rectangle;
+      Gdiplus::Rect i32_rectangle;
 
       copy(&rectangle, &rectParam);
 
@@ -1302,7 +1302,7 @@ namespace draw2d_gdiplus
    //bool graphics::fill_rectangle(const ::double_rectangle & rectParam, ::draw2d::brush * pbrush)
    //{
 
-   //   Gdiplus::RectF int_rectangle;
+   //   Gdiplus::RectF i32_rectangle;
 
    //   __copy(rectangle, rectParam);
 
@@ -1454,7 +1454,7 @@ namespace draw2d_gdiplus
 //            Gdiplus::ColorMatrixFlagsDefault,
 //               Gdiplus::ColorAdjustTypeBitmap);
 //
-//            Gdiplus::Rect int_rectangle((INT) rectDst.left, (INT) rectDst.top, (INT) rectDst.width(), (INT) rectDst.height());
+//            Gdiplus::Rect i32_rectangle((INT) rectDst.left, (INT) rectDst.top, (INT) rectDst.width(), (INT) rectDst.height());
 //
 //            ret = m_pgraphics->DrawImage(
 //                  pbitmap,
@@ -2462,7 +2462,7 @@ namespace draw2d_gdiplus
    //   return nullptr;
    //}
    //bool graphics::ScrollDC(int dx, int dy,
-   //                        const int_rectangle &  pRectScroll,const int_rectangle &  rectClip,
+   //                        const i32_rectangle &  pRectScroll,const i32_rectangle &  rectClip,
 
    //                        ::draw2d::region* pRgnUpdate, RECT * pRectUpdate)
 
@@ -3122,7 +3122,7 @@ namespace draw2d_gdiplus
    bool graphics::PlayMetaFile(HENHMETAFILE hEnhMF, const double_rectangle &  rectBounds)
    {
 
-      Gdiplus::RectF int_rectangle((Gdiplus::REAL) rectBounds.left,(Gdiplus::REAL) rectBounds.top,(Gdiplus::REAL) width(rectBounds),(Gdiplus::REAL) height(rectBounds));
+      Gdiplus::RectF i32_rectangle((Gdiplus::REAL) rectBounds.left,(Gdiplus::REAL) rectBounds.top,(Gdiplus::REAL) width(rectBounds),(Gdiplus::REAL) height(rectBounds));
 
       ap(Gdiplus::Metafile) pMeta = normal_new Gdiplus::Metafile(hEnhMF, false);
 
@@ -3436,18 +3436,18 @@ namespace draw2d_gdiplus
    }
 
 
-   //void graphics::DrawDragRect(const int_rectangle &  prectangle, const ::double_size & size, const int_rectangle &  lpRectLast, const ::double_size & sizeLast, ::draw2d::brush* pBrush, ::draw2d::brush* pBrushLast)
+   //void graphics::DrawDragRect(const i32_rectangle &  prectangle, const ::double_size & size, const i32_rectangle &  lpRectLast, const ::double_size & sizeLast, ::draw2d::brush* pBrush, ::draw2d::brush* pBrushLast)
    //{
 
    //   ::exception::throw_not_implemented();
 
    //   /*
 
-   //         ASSERT(is_memory_segment_ok(prectangle, sizeof(const int_rectangle &), false));
+   //         ASSERT(is_memory_segment_ok(prectangle, sizeof(const i32_rectangle &), false));
 
    //         ASSERT(pRectLast == nullptr ||
 
-   //            is_memory_segment_ok(pRectLast, sizeof(const int_rectangle &), false));
+   //            is_memory_segment_ok(pRectLast, sizeof(const i32_rectangle &), false));
 
 
    //         // first, determine the update region and select it
@@ -3455,7 +3455,7 @@ namespace draw2d_gdiplus
    //         ::draw2d::region rgnOutside, rgnInside;
    //         rgnOutside.create_rect(prectangle);
 
-   //         const ::int_rectangle & rectangle = *prectangle;
+   //         const ::i32_rectangle & rectangle = *prectangle;
 
    //         rectangle.inflate(-size.cx, -size.cy);
    //         rectangle.intersect(rectangle, prectangle);
@@ -3526,7 +3526,7 @@ namespace draw2d_gdiplus
    //   */
    //}
 
-   /*void graphics::fill_rectangle(const int_rectangle &  prectangle, color32_t clr)
+   /*void graphics::fill_rectangle(const i32_rectangle &  prectangle, color32_t clr)
 
    {
       ::SetBkColor(get_handle1(), clr);
@@ -3548,7 +3548,7 @@ namespace draw2d_gdiplus
 
          }
 
-         Gdiplus::RectF int_rectangle;
+         Gdiplus::RectF i32_rectangle;
 
          copy(&rectangle, &rectParam);
 
@@ -3893,7 +3893,7 @@ namespace draw2d_gdiplus
    }
 
 
-   //void graphics::draw_3drect(const ::int_rectangle& rectangle, const ::color::color& colorTopLeft, const ::color::color& colorBottomRight, const ::e_border & eborder)
+   //void graphics::draw_3drect(const ::i32_rectangle& rectangle, const ::color::color& colorTopLeft, const ::color::color& colorBottomRight, const ::e_border & eborder)
    //{
 
    //   if (!(eborder & (e_border_left | e_border_right | e_border_top | e_border_bottom)))
@@ -4380,19 +4380,19 @@ namespace draw2d_gdiplus
 
       }
 
-      Gdiplus::REAL int_rectangle[6];
+      Gdiplus::REAL i32_rectangle[6];
 
-      int_rectangle[0] = pXform->eDx;
-      int_rectangle[1] = pXform->eDy;
+      i32_rectangle[0] = pXform->eDx;
+      i32_rectangle[1] = pXform->eDy;
 
-      int_rectangle[2] = pXform->eM11;
-      int_rectangle[3] = pXform->eM12;
-      int_rectangle[4] = pXform->eM21;
-      int_rectangle[5] = pXform->eM22;
+      i32_rectangle[2] = pXform->eM11;
+      i32_rectangle[3] = pXform->eM12;
+      i32_rectangle[4] = pXform->eM21;
+      i32_rectangle[5] = pXform->eM22;
 
       Gdiplus::Matrix m;
 
-      m.SetElements(int_rectangle[2],int_rectangle[3],int_rectangle[4],int_rectangle[5],int_rectangle[0],int_rectangle[1]);
+      m.SetElements(i32_rectangle[2],i32_rectangle[3],i32_rectangle[4],i32_rectangle[5],i32_rectangle[0],i32_rectangle[1]);
 
       m_pgraphics->SetTransform(&m);
 
@@ -4498,7 +4498,7 @@ namespace draw2d_gdiplus
    int graphics::get_clip_box(::double_rectangle * prectangle)
    {
 
-      Gdiplus::Rect int_rectangle;
+      Gdiplus::Rect i32_rectangle;
 
       m_pgraphics->GetClipBounds(&rectangle);
 
@@ -4524,7 +4524,7 @@ namespace draw2d_gdiplus
                switch (shapea[i]->eshape())
                {
                //case e_shape_rect:
-               //   intersect_clip(shapea[i]->shape < ::int_rectangle>());
+               //   intersect_clip(shapea[i]->shape < ::i32_rectangle>());
                //   break;
                case e_shape_rectd:
                   intersect_clip(shapea[i]->shape < ::double_rectangle>());
@@ -4567,7 +4567,7 @@ namespace draw2d_gdiplus
    }
 
 
-   ::e_status graphics::intersect_clip(const ::int_rectangle& rectangle)
+   ::e_status graphics::intersect_clip(const ::i32_rectangle& rectangle)
    {
 
       Gdiplus::RectF r;
@@ -4731,7 +4731,7 @@ namespace draw2d_gdiplus
    //   return nRetVal;
    //}
 
-   //int graphics::ExcludeClipRect(const int_rectangle &  rectParam)
+   //int graphics::ExcludeClipRect(const i32_rectangle &  rectParam)
    //{
    //   int nRetVal = ERROR;
    //   //if(get_handle1() != nullptr && get_handle1() != get_handle2())
@@ -4753,11 +4753,11 @@ namespace draw2d_gdiplus
    //   return nRetVal;
    //}
 
-   //int graphics::IntersectClipRect(const int_rectangle &  rectBounds)
+   //int graphics::IntersectClipRect(const i32_rectangle &  rectBounds)
    //{
    //   int nRetVal = ERROR;
 
-   //   Gdiplus::Rect int_rectangle(rectBounds.left, rectBounds.top, width(rectBounds),  height(rectBounds));
+   //   Gdiplus::Rect i32_rectangle(rectBounds.left, rectBounds.top, width(rectBounds),  height(rectBounds));
 
    //   m_pgraphics->IntersectClip(rectangle);
 
@@ -4883,7 +4883,7 @@ namespace draw2d_gdiplus
    ::screen_to_client(get_handle1(), ((LPPOINT)prectangle)+1);
 
    if (GetExStyle() & WS_EX_LAYOUTRTL)
-   int_rectangle::swap_left_right(prectangle);
+   i32_rectangle::swap_left_right(prectangle);
 
    }
 
@@ -4896,7 +4896,7 @@ namespace draw2d_gdiplus
    ::client_to_screen(get_handle1(), ((LPPOINT)prectangle)+1);
 
    if (GetExStyle() & WS_EX_LAYOUTRTL)
-   int_rectangle::swap_left_right(prectangle);
+   i32_rectangle::swap_left_right(prectangle);
 
    }*/
 
@@ -5351,7 +5351,7 @@ namespace draw2d_gdiplus
    }
 
 
-   //bool graphics::draw_text_ex(const_char_pointer pszString,character_count nCount,const int_rectangle & rectParam, const ::e_align & ealign, const ::e_draw_text & edrawtext,LPDRAWTEXTPARAMS lpDTParams)
+   //bool graphics::draw_text_ex(const_char_pointer pszString,character_count nCount,const i32_rectangle & rectParam, const ::e_align & ealign, const ::e_draw_text & edrawtext,LPDRAWTEXTPARAMS lpDTParams)
    //{
 
    //   if (::is_null(m_pgraphics))
@@ -6007,7 +6007,7 @@ namespace draw2d_gdiplus
 
       Gdiplus::PointF origin(0, 0);
 
-      // Generate a on_layout int_rectangle for the text
+      // Generate a on_layout i32_rectangle for the text
 
       Gdiplus::RectF layoutRect(0, 0, 10000, 10000);
       
@@ -6996,7 +6996,7 @@ namespace draw2d_gdiplus
 
       ////Gdiplus::RectF float_rectangle(points[0].X, points[0].Y, points[1].X - points[0].X, points[1].Y - points[0].Y);
 
-      //::int_rectangle rectangle;
+      //::i32_rectangle rectangle;
 
       //rectangle.left      = (LONG) points[0].X;
       //rectangle.top       = (LONG) points[0].Y;
@@ -7114,7 +7114,7 @@ namespace draw2d_gdiplus
 
          // "Reference" implementation for TextOutAlphaBlend
 
-         ::int_rectangle rectIntersect(m_pointAlphaBlend, m_pimageAlphaBlend->size());
+         ::i32_rectangle rectIntersect(m_pointAlphaBlend, m_pimageAlphaBlend->size());
 
          const ::double_size & size = ::double_size(GetTextExtent(block));
 
@@ -7122,7 +7122,7 @@ namespace draw2d_gdiplus
 
          //size.cy = size.cy * 110 / 100;
 
-         ::int_rectangle rectText(int_point((LONG)x, (LONG)y), size);
+         ::i32_rectangle rectText(int_point((LONG)x, (LONG)y), size);
 
          if (rectIntersect.intersect(rectIntersect, rectText))
          {
@@ -7159,7 +7159,7 @@ namespace draw2d_gdiplus
    }
 
 
-   //bool graphics::draw_blend(const ::int_point & pointDst, ::draw2d::graphics * pgraphicsSrc, const ::int_rectangle & rectSrc)
+   //bool graphics::draw_blend(const ::int_point & pointDst, ::draw2d::graphics * pgraphicsSrc, const ::i32_rectangle & rectSrc)
    //{
 
    //   //return ::draw2d::graphics::BitBltAlphaBlend(x, y, nWidth, nHeight, pgraphicsSrc, xSrc, ySrc, dwRop);
@@ -7190,9 +7190,9 @@ namespace draw2d_gdiplus
    //      }
 
 
-   //      ::int_rectangle rectIntersect(m_pointAlphaBlend, m_pimageAlphaBlend->::double_size());
+   //      ::i32_rectangle rectIntersect(m_pointAlphaBlend, m_pimageAlphaBlend->::double_size());
 
-   //      ::int_rectangle rectBlt(int_point((long long)x, (long long)y), ::double_size(nWidth, nHeight));
+   //      ::i32_rectangle rectBlt(int_point((long long)x, (long long)y), ::double_size(nWidth, nHeight));
 
    //      if (rectIntersect.intersect(rectIntersect, rectBlt))
    //      {

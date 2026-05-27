@@ -354,7 +354,7 @@ namespace draw2d_gdiplus
    }
 
 
-   //bool image::draw(const ::int_point & pointDest, ::image::image *pimage, const ::int_rectangle & rectSrc)
+   //bool image::draw(const ::int_point & pointDest, ::image::image *pimage, const ::i32_rectangle & rectSrc)
    //{
 
    //   return m_pgraphics->draw(pointDest, pimage, rectSrc) != false;
@@ -362,10 +362,10 @@ namespace draw2d_gdiplus
    //}
 
 
-   bool image::draw(const ::int_rectangle & rectDstParam, ::image::image *pimageSrc, const ::int_point & pointSrcParam)
+   bool image::draw(const ::i32_rectangle & rectDstParam, ::image::image *pimageSrc, const ::int_point & pointSrcParam)
    {
 
-      ::int_rectangle rectDst(rectDstParam);
+      ::i32_rectangle rectDst(rectDstParam);
 
       ::int_point pointSrc(pointSrcParam);
 
@@ -486,7 +486,7 @@ namespace draw2d_gdiplus
    }
 
 
- /*  bool image::draw(const ::int_rectangle & rectDst, ::image::image *pimage, const ::int_point & pointSrc)
+ /*  bool image::draw(const ::i32_rectangle & rectDst, ::image::image *pimage, const ::int_point & pointSrc)
    {
 
       return ::image::image::draw(rectDst, pimage, pointSrc);
