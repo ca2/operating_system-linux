@@ -6,7 +6,7 @@
 #include "acme/filesystem/filesystem/file_system.h"
 #include "acme/filesystem/filesystem/directory_system.h"
 #include "acme/filesystem/filesystem/listing.h"
-#include "acme/operating_system/shared_posix/c_error_number.h"
+#include "acme/operating_system/shared_posix/c_errno.h"
 #include "acme/parallelization/task_flag.h"
 #include "acme/prototype/string/international.h"
 #include "acme/platform/system.h"
@@ -553,9 +553,9 @@ namespace acme_linux
       if(::rmdir(path) < 0)
       {
 
-         auto cerrornumber = c_error_number();
+         auto cerrno = c_errno();
 
-         auto estatus = cerrornumber.failed_estatus();
+         auto estatus = cerrno.failed_estatus();
 
          throw ::exception(estatus);
 
