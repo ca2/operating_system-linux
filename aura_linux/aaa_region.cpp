@@ -57,7 +57,7 @@ namespace draw2d_gdiplus
 
 
 
-   void region::expand_bounding_box(::double_rectangle * prectangle, ::draw2d::graphics * pgraphics)
+   void region::expand_bounding_box(::f64_rectangle * prectangle, ::draw2d::graphics * pgraphics)
    {
 
       ::i32_rectangle rectangle;

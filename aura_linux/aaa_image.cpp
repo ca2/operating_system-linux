@@ -477,7 +477,7 @@ namespace draw2d_gdiplus
       else
       {
 
-         pimageDst->g()->draw(::double_rectangle(rectDst.top_left(), int_size ), pimageSrc->g(), pointSrc);
+         pimageDst->g()->draw(::f64_rectangle(rectDst.top_left(), int_size ), pimageSrc->g(), pointSrc);
 
       }
 
