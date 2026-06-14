@@ -965,6 +965,17 @@ namespace acme_linux
 
       }
 
+      bool bToolBinArchFolder = true;
+
+      ::file::path pathToolBinArchFolder;
+
+      if (bToolBinArchFolder)
+      {
+
+         pathToolBinArchFolder = pathToolFolder / "bin" / strSystemArchitecture;
+
+      }
+
       ::file::path pathHomeCodeOperatingSystemBin;
 
       ::file::path pathHome = directory_system()->home();
@@ -981,6 +992,18 @@ namespace acme_linux
       ::string straPath;
 
       straPath.explode(":", strPath);
+
+      if (pathToolBinArchFolder.has_character())
+      {
+
+         if (!straPath.contains(pathToolBinArchFolder))
+         {
+
+            straPrefixPaths.add(pathToolBinArchFolder);
+
+         }
+
+      }
 
       if (pathToolFolderBin.has_character())
       {
