@@ -681,6 +681,12 @@ namespace acme_linux
 
       }
 
+      if (psummary->m_strSystem.case_insensitive_equals("ubuntu"))
+      {
+
+         psummary->m_strAmbient = "gnome";
+
+      }
       //::string strLowerCaseCurrentDesktop;
 
       if (psummary->m_strAmbient.is_empty())
