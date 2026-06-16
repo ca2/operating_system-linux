@@ -744,7 +744,7 @@
 // //
 // //      char szBuf [64];
 // //
-// //      ::int_rectangle rectangle;
+// //      ::i32_rectangle rectangle;
 // //      ((::windowing::window *) this)->m_puserinteraction->window_rectangle(&rectangle);
 // //      dumpcontext << "\nrect = " << rectangle;
 // //      dumpcontext << "\nparent ::pointer<::interaction_impl>= " << (void *)((::windowing::window *) this)->get_parent();
@@ -1232,13 +1232,13 @@
 // ////            if(false)
 // ////            {
 // ////               //pmouse->m_bTranslated = true;
-// ////               ::int_rectangle rectWindow;
+// ////               ::i32_rectangle rectWindow;
 // //////            if(m_bScreenRelativeMouseMessagePosition)
 // //////            {
 // //////
 // //////               INFO("Screen Relative Mouse Message Position");
 // //////
-// //////               ::int_rectangle rectWindow32;
+// //////               ::i32_rectangle rectWindow32;
 // //////
 // //////               ::window_rectangle((oswindow) get_handle(), &rectWindow32);
 // //////
@@ -1259,7 +1259,7 @@
 // ////               if (pdisplay->get_monitor_count() > 0)
 // ////               {
 // ////
-// ////                  ::int_rectangle rcMonitor;
+// ////                  ::i32_rectangle rcMonitor;
 // ////
 // ////                  pdisplay->get_monitor_rectangle(0, rcMonitor);
 // ////
@@ -1777,7 +1777,7 @@
 // //   }
 // //
 // //   void interaction_impl::ScrollWindow(int xAmount, int yAmount,
-// //                                       const ::int_rectangle & rectangle, const ::int_rectangle & lpClipRect)
+// //                                       const ::i32_rectangle & rectangle, const ::i32_rectangle & lpClipRect)
 // //
 // //   {
 // //      /*      ASSERT(::is_window((oswindow) get_handle()));
@@ -1801,7 +1801,7 @@
 // //                  for (; hWndChild != nullptr;
 // //                     hWndChild = ::GetNextWindow(hWndChild, GW_HWNDNEXT))
 // //                  {
-// //                     ::int_rectangle rectangle;
+// //                     ::i32_rectangle rectangle;
 // //                     ::window_rectangle(hWndChild, &rectangle);
 // //                     screen_to_client(&rectangle);
 // //                     ::set_window_position(hWndChild, nullptr,
@@ -1814,7 +1814,7 @@
 // //   }
 // //
 // //
-// //   void interaction_impl::CalcWindowRect(::int_rectangle * pClientRect, unsigned int nAdjustType)
+// //   void interaction_impl::CalcWindowRect(::i32_rectangle * pClientRect, unsigned int nAdjustType)
 // //   {
 // //
 // //      /*unsigned int dwExStyle = GetExStyle();
@@ -1979,7 +1979,7 @@
 // //   void interaction_impl::_001DeferPaintLayeredWindowBackground(HDC hdc)
 // //   {
 // //
-// //      ::int_rectangle rectClient;
+// //      ::i32_rectangle rectClient;
 // //
 // //      m_puserinteraction->rectangle(rectClient);
 // //
@@ -1987,10 +1987,10 @@
 // //      //pgraphics->FillSolidRect(rectClient, 0x00000000);
 // //
 // //      //return;
-// //      ::int_rectangle rectUpdate;
+// //      ::i32_rectangle rectUpdate;
 // //      m_puserinteraction->window_rectangle(rectUpdate);
 // ////      SetContextOrgEx(hdc, 0, 0, nullptr);
-// //      ::int_rectangle rectPaint;
+// //      ::i32_rectangle rectPaint;
 // //      rectPaint = rectUpdate;
 // //      m_puserinteraction->screen_to_client(rectPaint);
 // //      user::oswindow_array wndaApp;
@@ -2429,7 +2429,7 @@
 // //   */
 // //
 // //
-// ////   void interaction_impl::MoveWindow(const ::int_rectangle & rectangle, bool bRepaint)
+// ////   void interaction_impl::MoveWindow(const ::i32_rectangle & rectangle, bool bRepaint)
 // ////   {
 // ////
 // ////      MoveWindow(rectangle.left, rectangle.top, rectangle.right - rectangle.left, rectangle.bottom - rectangle.top, bRepaint);
@@ -2492,7 +2492,7 @@
 // //   }
 // //
 // //
-// //   void interaction_impl::MapWindowPoints(::user::interaction * puserinteractionTo, ::int_rectangle * prectangle)
+// //   void interaction_impl::MapWindowPoints(::user::interaction * puserinteractionTo, ::i32_rectangle * prectangle)
 // //
 // //   {
 // //
@@ -2531,7 +2531,7 @@
 // //
 // //      }
 // //
-// //      ::int_rectangle rectClient;
+// //      ::i32_rectangle rectClient;
 // //
 // //      //oswindow->rectangle(rectClient);
 // //
@@ -2607,7 +2607,7 @@
 // //      //::SendMessage(get_handle(), WM_SETREDRAW, bRedraw, 0);
 // //   }
 // //
-// //   bool interaction_impl::GetUpdateRect(::int_rectangle * prectangle, bool bErase)
+// //   bool interaction_impl::GetUpdateRect(::i32_rectangle * prectangle, bool bErase)
 // //
 // //   {
 // //      throw ::not_implemented();
@@ -2630,7 +2630,7 @@
 // //      //::InvalidateRect(get_handle(), nullptr, bErase);
 // //   }
 // //
-// //   void interaction_impl::InvalidateRect(const ::int_rectangle & rectangle, bool bErase)
+// //   void interaction_impl::InvalidateRect(const ::i32_rectangle & rectangle, bool bErase)
 // //
 // //   {
 // //      throw ::not_implemented();
@@ -2646,7 +2646,7 @@
 // //      //::InvalidateRgn(get_handle(), (HRGN)pRgn->get_handle(), bErase);
 // //   }
 // //
-// //   void interaction_impl::ValidateRect(const ::int_rectangle & rectangle)
+// //   void interaction_impl::ValidateRect(const ::i32_rectangle & rectangle)
 // //
 // //   {
 // //      throw ::not_implemented();
@@ -2773,7 +2773,7 @@
 // //   }
 // //
 //
-// //   bool interaction_impl::RedrawWindow(const ::int_rectangle& rectUpdate, ::draw2d::region * prgnUpdate, unsigned int flags)
+// //   bool interaction_impl::RedrawWindow(const ::i32_rectangle& rectUpdate, ::draw2d::region * prgnUpdate, unsigned int flags)
 // //   {
 // //
 // ////      ASSERT(::is_window((oswindow) get_handle()));
@@ -2818,7 +2818,7 @@
 // //   }
 //
 //
-// //   bool interaction_impl::DrawCaption(::draw2d::graphics_pointer & pgraphics, const int_rectangle & prc, unsigned int uFlags)
+// //   bool interaction_impl::DrawCaption(::draw2d::graphics_pointer & pgraphics, const i32_rectangle & prc, unsigned int uFlags)
 // //
 // //   {
 // //
@@ -3139,7 +3139,7 @@
 // //
 // //   }
 // //
-// //   int interaction_impl::ScrollWindowEx(int dx, int dy, const int_rectangle & pRectScroll, const int_rectangle & lpRectClip, ::draw2d::region * prgnUpdate, ::int_rectangle * lpRectUpdate, unsigned int flags)
+// //   int interaction_impl::ScrollWindowEx(int dx, int dy, const i32_rectangle & pRectScroll, const i32_rectangle & lpRectClip, ::draw2d::region * prgnUpdate, ::i32_rectangle * lpRectUpdate, unsigned int flags)
 // //
 // //   {
 // //
@@ -3702,9 +3702,9 @@
 // ////   { Default(); }
 // ////   void interaction_impl::OnStyleChanging(int, LPSTYLESTRUCT)
 // ////   { Default(); }
-// //   void interaction_impl::OnSizing(unsigned int, ::int_rectangle *)
+// //   void interaction_impl::OnSizing(unsigned int, ::i32_rectangle *)
 // //   { Default(); }
-// //   void interaction_impl::OnMoving(unsigned int, ::int_rectangle *)
+// //   void interaction_impl::OnMoving(unsigned int, ::i32_rectangle *)
 // //   { Default(); }
 // //   void interaction_impl::OncaptureChanged(::user::interaction *)
 // //   { Default(); }
@@ -4038,7 +4038,7 @@
 // //   }
 //
 //
-//    void interaction_impl::non_top_most_upper_window_rects(::int_rectangle_array& recta)
+//    void interaction_impl::non_top_most_upper_window_rects(::i32_rectangle_array& recta)
 //    {
 //
 // //      

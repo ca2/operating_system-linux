@@ -32,7 +32,7 @@
 //       bool                             m_bEnabled;
 //
 //       //::pointer<::thread>           m_pthreadDraw;
-//       ::long_long_rectangle                  m_rectLastPos;
+//       ::i64_rectangle                  m_rectLastPos;
 //       class ::time                       m_timeLastPos;
 //
 //       ::int_point                      m_pointLastMove;
@@ -117,7 +117,7 @@
 // //      const_char_pointer pszWindowName,
 //
 // //      unsigned int dwStyle,
-// //      const ::int_rectangle & rectangle,
+// //      const ::i32_rectangle & rectangle,
 // //      ::user::interaction * pParentWnd,
 // //      id id,
 // //      ::create * pContext = nullptr) override;
@@ -141,12 +141,12 @@
 //
 //       void start_destroying_window() override;
 //
-//       // special pre-creation and ::windowing::window int_rectangle adjustment hooks
+//       // special pre-creation and ::windowing::window i32_rectangle adjustment hooks
 //       virtual bool pre_create_window(::user::system * pusersystem) override;
 //
 //       // Advanced: virtual AdjustWindowRect
 // //      enum AdjustType { adjustBorder = 0, adjustOutside = 1 };
-// //      virtual void CalcWindowRect(::int_rectangle * pClientRect, unsigned int nAdjustType = adjustBorder);
+// //      virtual void CalcWindowRect(::i32_rectangle * pClientRect, unsigned int nAdjustType = adjustBorder);
 //
 //
 //
@@ -205,7 +205,7 @@
 //       //virtual bool layout().is_full_screen();
 //       //void MoveWindow(int x, int y, int nWidth, int nHeight,
 //         //              bool bRepaint = true);
-//       //void MoveWindow(const ::int_rectangle & rectangle, bool bRepaint = true);
+//       //void MoveWindow(const ::i32_rectangle & rectangle, bool bRepaint = true);
 //
 // //      int SetWindowRgn(HRGN hRgn, bool bRedraw);
 // //      int GetWindowRgn(HRGN hRgn);
@@ -219,12 +219,12 @@
 //       //virtual bool set_window_position(iptr z, int x, int y, int cx, int cy, unsigned int nFlags);
 // //      virtual unsigned int ArrangeIconicWindows();
 //       //virtual bool BringWindowToTop();
-// //      virtual bool window_rectangle(::long_long_rectangle * prectangle);
+// //      virtual bool window_rectangle(::i64_rectangle * prectangle);
 //
-//   //    virtual bool _001GetWindowRect(::long_long_rectangle * prectangle);
+//   //    virtual bool _001GetWindowRect(::i64_rectangle * prectangle);
 //
 //       //using ::windowing::window::this->rectangle;
-//       //virtual bool this->rectangle(::long_long_rectangle * prectangle);
+//       //virtual bool this->rectangle(::i64_rectangle * prectangle);
 //
 //
 //       //virtual bool has_keyboard_focus() override;
@@ -232,19 +232,19 @@
 //
 //       //virtual ::int_point client_screen_top_left() override;
 //
-// //      virtual bool client_to_screen(::int_rectangle * prectangle);
+// //      virtual bool client_to_screen(::i32_rectangle * prectangle);
 //
 // //      virtual bool client_to_screen(::int_point * ppoint);
 //
-// //      virtual bool client_to_screen(::long_long_rectangle * prectangle);
+// //      virtual bool client_to_screen(::i64_rectangle * prectangle);
 //
 // //      virtual bool client_to_screen(::long_long_point * ppoint);
 //
-// //      virtual bool screen_to_client(::int_rectangle * prectangle);
+// //      virtual bool screen_to_client(::i32_rectangle * prectangle);
 //
 // //      virtual bool screen_to_client(::int_point * ppoint);
 //
-// //      virtual bool screen_to_client(::long_long_rectangle * prectangle);
+// //      virtual bool screen_to_client(::i64_rectangle * prectangle);
 //
 // //      virtual bool screen_to_client(::long_long_point * ppoint);
 //
@@ -257,7 +257,7 @@
 //       // Coordinate Mapping Fufnctions
 // //      virtual void MapWindowPoints(::user::interaction * puserinteractionTo, ::int_point * pPoint, unsigned int nCount);
 // //
-// //      virtual void MapWindowPoints(::user::interaction * puserinteractionTo, ::int_rectangle * prectangle);
+// //      virtual void MapWindowPoints(::user::interaction * puserinteractionTo, ::i32_rectangle * prectangle);
 //
 //
 //       // Update/Painting Functions
@@ -269,14 +269,14 @@
 //
 // //      virtual void UpdateWindow();
 // //      virtual void SetRedraw(bool bRedraw = true);
-// //      virtual bool GetUpdateRect(::int_rectangle * prectangle, bool bErase = false);
+// //      virtual bool GetUpdateRect(::i32_rectangle * prectangle, bool bErase = false);
 // //
 // //      virtual int GetUpdateRgn(::draw2d::region* pRgn, bool bErase = false);
 // //      virtual void Invalidate(bool bErase = true);
-// //      virtual void InvalidateRect(const ::int_rectangle & rectangle, bool bErase = true);
+// //      virtual void InvalidateRect(const ::i32_rectangle & rectangle, bool bErase = true);
 // //
 // //      virtual void InvalidateRgn(::draw2d::region* pRgn, bool bErase = true);
-// //      virtual void ValidateRect(const ::int_rectangle & rectangle);
+// //      virtual void ValidateRect(const ::i32_rectangle & rectangle);
 // //
 // //      virtual void ValidateRgn(::draw2d::region* pRgn);
 //       //virtual bool display(::e_display edisplay) override;
@@ -300,7 +300,7 @@
 //       //virtual ::draw2d::graphics * GetDCEx(::draw2d::region* prgnClip, unsigned int flags);
 //       //virtual bool LockWindowUpdate();
 //       //virtual void UnlockWindowUpdate();
-// //      virtual bool RedrawWindow(const ::int_rectangle& rectUpdate = nullptr,
+// //      virtual bool RedrawWindow(const ::i32_rectangle& rectUpdate = nullptr,
 // //                                ::draw2d::region* prgnUpdate = nullptr,
 // //                                unsigned int flags = RDW_INVALIDATE | RDW_ERASE);
 //       // xxx      virtual bool EnableScrollBar(int nSBFlags, unsigned int nArrowFlags = ESB_ENABLE_BOTH);
@@ -310,7 +310,7 @@
 // //
 // //      //virtual bool DrawAnimatedRects(int idAni, const LPRECTprcFrom, const LPRECTlprcTo);
 // //
-// //      virtual bool DrawCaption(::draw2d::graphics_pointer & pgraphics, const int_rectangle & prc, unsigned int uFlags);
+// //      virtual bool DrawCaption(::draw2d::graphics_pointer & pgraphics, const i32_rectangle & prc, unsigned int uFlags);
 // //
 // //
 // //#if(WINVER >= 0x0500)
@@ -373,7 +373,7 @@
 //
 //       //void show_task(bool bShow) override;
 //
-//       virtual void non_top_most_upper_window_rects(::int_rectangle_array& recta) override;
+//       virtual void non_top_most_upper_window_rects(::i32_rectangle_array& recta) override;
 //
 //    };
 //

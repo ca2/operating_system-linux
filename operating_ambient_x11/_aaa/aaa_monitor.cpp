@@ -48,7 +48,7 @@ namespace node_xfce
 
 
    /// ??should be run in user thread?? (for monitor/screen api maybe not needed)
-   bool monitor::get_monitor_rectangle(::int_rectangle * prectangle)
+   bool monitor::get_monitor_rectangle(::i32_rectangle * prectangle)
    {
 
       synchronous_lock sl(user_synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
@@ -83,7 +83,7 @@ namespace node_xfce
 
 
    /// ??should be run in user thread?? (for monitor/screen api maybe not needed)
-   bool monitor::get_workspace_rectangle(::int_rectangle *prectangle)
+   bool monitor::get_workspace_rectangle(::i32_rectangle *prectangle)
    {
 
       synchronous_lock sl(user_synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
