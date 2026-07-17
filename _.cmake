@@ -898,6 +898,8 @@ if(${DESKTOP_AMBIENT})
 
          message(STATUS "Setting up GTK4 dependencies.")
 
+         set(default_accessibility accessibility_gtk4)
+
          list(APPEND default_acme_windowing acme_windowing_g acme_windowing_gtk4)
 
          set(default_innate_ui innate_ui_gtk4)
