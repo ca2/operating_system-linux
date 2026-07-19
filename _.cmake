@@ -229,7 +229,7 @@ elseif (${__OPERATING_SYSTEM} STREQUAL "debian")
 
    message(STATUS "DEBIAN has been set TRUE")
 
-   set(APPINDICATOR_PKG_MODULE "ayatana-appindicator3-0.1")
+   set(APPINDICATOR_PKG_MODULE "appindicator3-0.1")
 
    set(MPG123_PKG_MODULE "libmpg123")
 
@@ -267,11 +267,19 @@ elseif (${__OPERATING_SYSTEM} STREQUAL "linuxmint")
 
    add_compile_definitions(MINT_LINUX)
 
-   set(APPINDICATOR_PKG_MODULE "ayatana-appindicator3-0.1")
+   set(DEBIAN_LIKE TRUE)
+
+   set(UBUNTU_LIKE TRUE)
+
+   set(APPINDICATOR_PKG_MODULE "appindicator3-0.1")
 
    message(STATUS "LINUX_MINT has been set TRUE")
 
    message(STATUS "MINT_LINUX compile definition")
+
+   message(STATUS "DEBIAN_LIKE has been set TRUE")
+
+   message(STATUS "UBUNTU_LIKE has been set TRUE")
 
 elseif ("${__OPERATING_SYSTEM}" STREQUAL "raspbian")
 
