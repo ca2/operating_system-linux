@@ -7134,17 +7134,17 @@ namespace draw2d_gdiplus
 
             pimage1 = create_image(rectText.size());
 
-            pimage1->get_graphics()->set(get_current_font());
+            pgraphicsImage1->set(get_current_font());
 
-            pimage1->get_graphics()->set(get_current_brush());
+            pgraphicsImage1->set(get_current_brush());
 
-            pimage1->get_graphics()->set_alpha_mode(::draw2d::alpha_mode_set);
+            pgraphicsImage1->set_alpha_mode(::draw2d::alpha_mode_set);
 
-            pimage1->get_graphics()->text_out(0, 0, block);
+            pgraphicsImage1->text_out(0, 0, block);
 
             pimage1->blend2(nullptr, m_pimageAlphaBlend, int_point((int)maximum(0, x - m_pointAlphaBlend.x), (int)maximum(0, y - m_pointAlphaBlend.y)), rectText.size(), 255);
 
-            _draw_raw({ ::int_point((LONG)x, (LONG) y), rectText.size() }, pimage1->get_graphics());
+            _draw_raw({ ::int_point((LONG)x, (LONG) y), rectText.size() }, pgraphicsImage1);
 
             return true;
 
@@ -7247,14 +7247,14 @@ namespace draw2d_gdiplus
 
    //            }
 
-   //            pimage1->g()->set_alpha_mode(::draw2d::alpha_mode_set);
+   //            pgraphicsImage1->set_alpha_mode(::draw2d::alpha_mode_set);
 
    //            if (!pimage1->from(nullptr, pgraphicsSrc, ::int_point(xSrc, ySrc), rectBlt.::f64_size()))
    //               return false;
 
    //            pimage1->blend2(::int_point(), m_pimageAlphaBlend, int_point(x - m_pointAlphaBlend.x, y - m_pointAlphaBlend.y), rectBlt.::f64_size(), 255);
 
-   //            BitBltRaw(x, y, nWidth, nHeight, pimage1->get_graphics(), 0, 0, dwRop);
+   //            BitBltRaw(x, y, nWidth, nHeight, pgraphicsImage1, 0, 0, dwRop);
 
    //         }
 

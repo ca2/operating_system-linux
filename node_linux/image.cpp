@@ -477,7 +477,7 @@ namespace draw2d_gdiplus
       else
       {
 
-         pimageDst->g()->draw(::f64_rectangle(rectDst.top_left(), int_size ), pimageSrc->g(), pointSrc);
+         pgraphicsImageDst->draw(::f64_rectangle(rectDst.top_left(), int_size ), pimageSrc->g(), pointSrc);
 
       }
 
@@ -538,7 +538,7 @@ namespace draw2d_gdiplus
 
       pimage1->set_rgb(255, 255, 255);
 
-      pimage1->g()->draw(::rect_dim(0, 0, cx, cy), picon);
+      pgraphicsImage1->draw(::rect_dim(0, 0, cx, cy), picon);
 
       // Black blend image
       ::image::image_pointer pimage2;
@@ -564,7 +564,7 @@ namespace draw2d_gdiplus
 
       pimage2->fill(0, 0, 0, 0);
 
-      pimage2->g()->draw(::rect_dim(0, 0, cx, cy), picon);
+      pgraphicsImage2->draw(::rect_dim(0, 0, cx, cy), picon);
 
       //nullptr,
       //DI_IMAGE | DI_MASK);
@@ -591,7 +591,7 @@ namespace draw2d_gdiplus
 
       }
 
-      pimageM->g()->draw(::rect_dim(0, 0, cx, cy), picon);
+      pgraphicsImageM->draw(::rect_dim(0, 0, cx, cy), picon);
 
       unsigned char * r1 = (unsigned char *)pimage1->colorref();
       unsigned char * r2 = (unsigned char *)pimage2->colorref();

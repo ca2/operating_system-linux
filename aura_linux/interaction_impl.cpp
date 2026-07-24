@@ -9,6 +9,7 @@
 // #include "aura/user/user/user.h"
 // #include "aura/windowing/display.h"
 // #include "aura/graphics/draw2d/graphics.h"
+#include "aura/graphics/draw2d/graphics_pointer.h"
 //
 //
 // #define TEST 0
