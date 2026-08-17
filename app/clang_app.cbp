@@ -69,7 +69,7 @@
 		<Compiler>
 			<Add option="-fPIC" />
 			<Add option="-std=c++17" />
-			<Add option='-include &quot;framework.h&quot;' />
+			<Add option='-include &quot;platform.h&quot;' />
 			<Add option="-fexceptions" />
 			<Add option="-fnon-call-exceptions" />
 			<Add option="-fno-pie" />
@@ -102,7 +102,7 @@
 			<Add directory="/usr/lib64/mysql/" />
 		</Linker>
 		<Unit filename="app.cpp" />
-		<Unit filename="framework.h">
+		<Unit filename="platform.h">
 			<Option compile="1" />
 			<Option weight="0" />
 		</Unit>

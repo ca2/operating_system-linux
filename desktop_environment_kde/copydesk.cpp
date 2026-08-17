@@ -1,4 +1,4 @@
-#include "framework.h"
+#include "platform.h"
 #include "_.h"
 #include "aura/os/linux/_linux.h"
 //#include "apex/os/linux/gnome_gnome.h"
@@ -356,7 +356,7 @@ namespace node_kde{
 //
 //      int iSrcScan = gdk_pixbuf_get_rowstride(pixbuf);
 //
-//      pdata->m_pimage->create({w, h});
+//      pdata->m_pimage->create_as_descriptor({w, h});
 //
 //      if(pdata->m_pimage)
 //      {

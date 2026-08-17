@@ -159,10 +159,10 @@
 		<Unit filename="/home/camilo/solution/basis/operating_system/operating_system-linux/acme_linux/file.h">
 			<Option target="acme_linux"/>
 		</Unit>
-		<Unit filename="/home/camilo/solution/basis/operating_system/operating_system-linux/acme_linux/framework.cpp">
+		<Unit filename="/home/camilo/solution/basis/operating_system/operating_system-linux/acme_linux/platform.cpp">
 			<Option target="acme_linux"/>
 		</Unit>
-		<Unit filename="/home/camilo/solution/basis/operating_system/operating_system-linux/acme_linux/framework.h">
+		<Unit filename="/home/camilo/solution/basis/operating_system/operating_system-linux/acme_linux/platform.h">
 			<Option target="acme_linux"/>
 		</Unit>
 		<Unit filename="/home/camilo/solution/basis/operating_system/operating_system-linux/acme_linux/node.cpp">

@@ -15,8 +15,8 @@ list(APPEND library_source
         #copydesk.cpp
         #copydesk.h
         #enum_display_monitors.cpp
-        #framework.cpp
-        #framework.h
+        #platform.cpp
+        #platform.h
         #gdk.cpp
         #gdk.h
         #gnome_direct.cpp
@@ -82,8 +82,8 @@ endif()
 add_library(${PROJECT_NAME} SHARED ${library_source})
 add_library(static_${PROJECT_NAME} STATIC ${library_source})
 
-target_precompile_headers(${PROJECT_NAME} PRIVATE framework.h)
-target_precompile_headers(static_${PROJECT_NAME} PRIVATE framework.h)
+target_precompile_headers(${PROJECT_NAME} PRIVATE platform.h)
+target_precompile_headers(static_${PROJECT_NAME} PRIVATE platform.h)
 
 set_target_properties(desktop_environment_kde PROPERTIES LINKER_LANGUAGE CXX)
 

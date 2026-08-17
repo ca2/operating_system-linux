@@ -32,8 +32,8 @@ list(TRANSFORM static_library_references PREPEND static_)
 
 
 
-target_precompile_headers(${PROJECT_NAME} PRIVATE framework.h)
-target_precompile_headers(static_${PROJECT_NAME} PRIVATE framework.h)
+target_precompile_headers(${PROJECT_NAME} PRIVATE platform.h)
+target_precompile_headers(static_${PROJECT_NAME} PRIVATE platform.h)
 
 
 set_target_properties(node_linux PROPERTIES LINKER_LANGUAGE CXX)

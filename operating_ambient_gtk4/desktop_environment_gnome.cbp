@@ -126,10 +126,10 @@
 		<Unit filename="/home/camilo/solution/basis/operating_system/operating_system-linux/desktop_environment_gnome/_factory.cpp">
 			<Option target="desktop_environment_gnome"/>
 		</Unit>
-		<Unit filename="/home/camilo/solution/basis/operating_system/operating_system-linux/desktop_environment_gnome/framework.cpp">
+		<Unit filename="/home/camilo/solution/basis/operating_system/operating_system-linux/desktop_environment_gnome/platform.cpp">
 			<Option target="desktop_environment_gnome"/>
 		</Unit>
-		<Unit filename="/home/camilo/solution/basis/operating_system/operating_system-linux/desktop_environment_gnome/framework.h">
+		<Unit filename="/home/camilo/solution/basis/operating_system/operating_system-linux/desktop_environment_gnome/platform.h">
 			<Option target="desktop_environment_gnome"/>
 		</Unit>
 		<Unit filename="/home/camilo/solution/basis/operating_system/operating_system-linux/desktop_environment_gnome/node.cpp">

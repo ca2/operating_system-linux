@@ -1,4 +1,4 @@
-#include "framework.h"
+#include "platform.h"
 
 
 namespace draw2d_gdiplus
@@ -477,7 +477,7 @@ namespace draw2d_gdiplus
       else
       {
 
-         pgraphicsImageDst->draw(::f64_rectangle(rectDst.top_left(), int_size ), pimageSrc->g(), pointSrc);
+         pgraphicsImageDst->draw(::f64_rectangle(rectDst.top_left(), int_size ), pgraphicsImageSrc->, pointSrc);
 
       }
 
@@ -525,7 +525,7 @@ namespace draw2d_gdiplus
 
       }
       
-      estatus = pimage1->create({ cx, cy });
+      estatus = pimage1->create_as_descriptor({ cx, cy });
 
       if (!estatus)
       {
@@ -552,7 +552,7 @@ namespace draw2d_gdiplus
 
       }
 
-      estatus= pimage2->create( 
+      estatus= pimage2->create_as_descriptor( 
       { cx, cy } );
 
       if (!estatus)
@@ -581,7 +581,7 @@ namespace draw2d_gdiplus
 
       }
 
-      estatus = pimageM->create(
+      estatus = pimageM->create_as_descriptor(
          { cx, cy });
 
       if (!estatus)

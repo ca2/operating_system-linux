@@ -51,7 +51,7 @@
 		</Linker>
 		<Unit filename="application.h" />
 		<Unit filename="factory_exchange.h" />
-		<Unit filename="framework.h">
+		<Unit filename="platform.h">
 			<Option compile="1" />
 			<Option weight="0" />
 		</Unit>

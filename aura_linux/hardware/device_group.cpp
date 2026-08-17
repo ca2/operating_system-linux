@@ -1,5 +1,5 @@
 // From aura/hardware/device_group.cpp by camilo on 2023-11-11 12:00 <3ThomasBorregaardSorensen!!
-#include "../framework.h"
+#include "../platform.h"
 #include "device_group.h"
 #include "devices.h"
 #include "acme/platform/application.h"

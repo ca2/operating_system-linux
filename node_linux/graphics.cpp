@@ -1,4 +1,4 @@
-#include "framework.h"
+#include "platform.h"
 
 
 
@@ -7238,7 +7238,7 @@ namespace draw2d_gdiplus
 
    //            }
    //            
-   //            estatus = pimage1->create(rectBlt.::f64_size());
+   //            estatus = pimage1->create_as_descriptor(rectBlt.::f64_size());
 
    //            if (!estatus)
    //            {

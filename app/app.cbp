@@ -97,7 +97,7 @@
 			<Add directory="/usr/lib64/mysql/" />
 		</Linker>
 		<Unit filename="app.cpp" />
-		<Unit filename="framework.h">
+		<Unit filename="platform.h">
 			<Option compile="1" />
 			<Option weight="0" />
 		</Unit>

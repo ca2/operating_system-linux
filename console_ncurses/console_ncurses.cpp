@@ -3,7 +3,7 @@
 //
 // apt install ncurses-dev
 // dnf install ncurses-devel
-#include "framework.h"
+#include "platform.h"
 #include "acme/operating_system/_const_console.h"
 #include "acme/_operating_system.h"
 #include <ncurses.h>

@@ -18,8 +18,8 @@ list(APPEND library_source
 #        file_context.h
 #        file_system.cpp
 #        file_system.h
-        framework.cpp
-        framework.h
+        platform.cpp
+        platform.h
         #interprocess_communication.cpp
         #interprocess_communication.h
         ip_enum.cpp
@@ -52,8 +52,8 @@ add_library(${PROJECT_NAME} SHARED ${library_source})
 add_library(static_${PROJECT_NAME} STATIC ${library_source})
 
 
-target_precompile_headers(${PROJECT_NAME} PRIVATE framework.h)
-target_precompile_headers(static_${PROJECT_NAME} PRIVATE framework.h)
+target_precompile_headers(${PROJECT_NAME} PRIVATE platform.h)
+target_precompile_headers(static_${PROJECT_NAME} PRIVATE platform.h)
 
 
 set_target_properties(apex_linux PROPERTIES LINKER_LANGUAGE CXX)

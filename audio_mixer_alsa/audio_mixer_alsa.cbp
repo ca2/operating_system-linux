@@ -153,10 +153,10 @@
 		<Unit filename="/home/camilo/solution/basis/operating_system/operating_system-linux/audio_mixer_alsa/device.h">
 			<Option target="audio_mixer_alsa"/>
 		</Unit>
-		<Unit filename="/home/camilo/solution/basis/operating_system/operating_system-linux/audio_mixer_alsa/framework.cpp">
+		<Unit filename="/home/camilo/solution/basis/operating_system/operating_system-linux/audio_mixer_alsa/platform.cpp">
 			<Option target="audio_mixer_alsa"/>
 		</Unit>
-		<Unit filename="/home/camilo/solution/basis/operating_system/operating_system-linux/audio_mixer_alsa/framework.h">
+		<Unit filename="/home/camilo/solution/basis/operating_system/operating_system-linux/audio_mixer_alsa/platform.h">
 			<Option target="audio_mixer_alsa"/>
 		</Unit>
 		<Unit filename="/home/camilo/solution/basis/operating_system/operating_system-linux/audio_mixer_alsa/line_info.cpp">
