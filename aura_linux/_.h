@@ -18,7 +18,7 @@
 
 
 
-//::e_status gdiplus_draw_text(::draw2d::graphics * pgraphics, ::draw2d::path * ppath, const ::scoped_string & scopedstr, f64_rectangle & rectParam, const ::e_align & ealign, const ::e_draw_text & edrawtext, ::write_text::font * pfont, double dFontWidth, ::draw2d::brush * pbrush = nullptr, bool bMeasure = false);
+//::e_status gdiplus_draw_text(::draw2d::graphics * pdraw2dgraphics, ::draw2d::path * ppath, const ::scoped_string & scopedstr, f64_rectangle & rectParam, const ::e_align & ealign, const ::e_draw_text & edrawtext, ::write_text::font * pfont, double dFontWidth, ::draw2d::brush * pbrush = nullptr, bool bMeasure = false);
 
 
 //inline auto gdiplus_color(const ::color::color& color)
@@ -28,7 +28,7 @@
 //
 //
 //
-//#define __graphics(pgraphics) ((::draw2d_gdiplus::graphics *) pgraphics->m_pthis)
+//#define __graphics(pdraw2dgraphics) ((::draw2d_gdiplus::graphics *) pdraw2dgraphics->m_pthis)
 //#define __pen(ppen) ((::draw2d_gdiplus::pen *) ppen->m_pthis)
 //#define __brush(pbrush) ((::draw2d_gdiplus::brush *) pbrush->m_pthis)
 //#define __font(pfont) ((::draw2d_gdiplus::font *) pfont->m_pthis)

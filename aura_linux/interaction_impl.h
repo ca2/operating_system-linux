@@ -160,7 +160,7 @@
 //       virtual void on_end_layout_experience(enum_layout_experience elayoutexperience) override;
 //
 //
-//       virtual void on_layout(::draw2d::graphics_pointer & pgraphics) override;
+//       virtual void on_layout(::draw2d::graphics_pointer & pdraw2dgraphics) override;
 //
 //
 //
@@ -264,8 +264,8 @@
 // //      virtual ::draw2d::graphics * GetDC();
 // //      virtual ::draw2d::graphics * GetWindowDC();
 // //      virtual bool ReleaseDC(::image::image *pimage);
-// //      virtual void Print(::draw2d::graphics_pointer & pgraphics, unsigned int dwFlags) const;
-// //      virtual void PrintClient(::draw2d::graphics_pointer & pgraphics, unsigned int dwFlags) const;
+// //      virtual void Print(::draw2d::graphics_pointer & pdraw2dgraphics, unsigned int dwFlags) const;
+// //      virtual void PrintClient(::draw2d::graphics_pointer & pdraw2dgraphics, unsigned int dwFlags) const;
 //
 // //      virtual void UpdateWindow();
 // //      virtual void SetRedraw(bool bRedraw = true);
@@ -305,12 +305,12 @@
 // //                                unsigned int flags = RDW_INVALIDATE | RDW_ERASE);
 //       // xxx      virtual bool EnableScrollBar(int nSBFlags, unsigned int nArrowFlags = ESB_ENABLE_BOTH);
 //
-//       virtual void set_origin(::draw2d::graphics_pointer & pgraphics) override;
+//       virtual void set_origin(::draw2d::graphics_pointer & pdraw2dgraphics) override;
 //
 // //
 // //      //virtual bool DrawAnimatedRects(int idAni, const LPRECTprcFrom, const LPRECTlprcTo);
 // //
-// //      virtual bool DrawCaption(::draw2d::graphics_pointer & pgraphics, const i32_rectangle & prc, unsigned int uFlags);
+// //      virtual bool DrawCaption(::draw2d::graphics_pointer & pdraw2dgraphics, const i32_rectangle & prc, unsigned int uFlags);
 // //
 // //
 // //#if(WINVER >= 0x0500)
@@ -321,7 +321,7 @@
 // //
 // //#if(_WIN32_WINNT >= 0x0501)
 // //
-// //      virtual bool PrintWindow(::draw2d::graphics_pointer & pgraphics, unsigned int nFlags) const;
+// //      virtual bool PrintWindow(::draw2d::graphics_pointer & pdraw2dgraphics, unsigned int nFlags) const;
 // //
 // //#endif   // _WIN32_WINNT >= 0x0501
 //

@@ -27,12 +27,12 @@
 
    }
 
-   Gdiplus::Graphics* pgraphics = nullptr;
+   Gdiplus::Graphics* pdraw2dgraphics = nullptr;
 
    if (::is_set(pgraphicsParam))
    {
 
-      pgraphics = __graphics(pgraphicsParam)->m_pgraphics;
+      pdraw2dgraphics = __graphics(pgraphicsParam)->m_pgraphics;
 
    }
 
@@ -61,7 +61,7 @@
 
    }
 
-   ASSERT(pgraphics != nullptr || ppath != nullptr);
+   ASSERT(pdraw2dgraphics != nullptr || ppath != nullptr);
    ASSERT(pfont != nullptr);
    ASSERT(ppath != nullptr || pbrush != nullptr);
 
@@ -157,7 +157,7 @@
          if (unit == Gdiplus::UnitPoint)
          {
 
-            size = pgraphics->GetDpiY() * size / 73.0f;
+            size = pdraw2dgraphics->GetDpiY() * size / 73.0f;
 
          }
 
@@ -189,26 +189,26 @@
 
                Gdiplus::RectF box;
 
-               status = pgraphics->MeasureString(text.m_wstr, (INT)iSize, pfont, float_rectangle, &format, &box);
+               status = pdraw2dgraphics->MeasureString(text.m_wstr, (INT)iSize, pfont, float_rectangle, &format, &box);
 
                copy(&rectParam, &box);
 
             }
 
          }
-         else if (pgraphics)
+         else if (pdraw2dgraphics)
          {
 
-            auto e = pgraphics->GetTextRenderingHint();
+            auto e = pdraw2dgraphics->GetTextRenderingHint();
 
-            status = pgraphics->DrawString(text.m_wstr, (INT)iSize, pfont, float_rectangle, &format, pbrush);
+            status = pdraw2dgraphics->DrawString(text.m_wstr, (INT)iSize, pfont, float_rectangle, &format, pbrush);
 
             if (bMeasure)
             {
 
                Gdiplus::RectF box;
 
-               status = pgraphics->MeasureString(text.m_wstr, (INT)iSize, pfont, float_rectangle, &format, &box);
+               status = pdraw2dgraphics->MeasureString(text.m_wstr, (INT)iSize, pfont, float_rectangle, &format, &box);
 
                copy(&rectParam, &box);
 
@@ -218,14 +218,14 @@
 
 
       }
-      else if (pgraphics)
+      else if (pdraw2dgraphics)
       {
 
-         g_keep k(pgraphics);
+         g_keep k(pdraw2dgraphics);
 
          Gdiplus::Matrix m;
 
-         status = pgraphics->GetTransform(&m);
+         status = pdraw2dgraphics->GetTransform(&m);
 
 
          ap(Gdiplus::Matrix) pmNew = m.Clone();
@@ -236,18 +236,18 @@
 
          Gdiplus::RectF float_rectangle(0, 0, (Gdiplus::REAL) (width(rectParam) * dFontWidth), (Gdiplus::REAL) (height(rectParam)));
 
-         status = pgraphics->SetTransform(pmNew);
+         status = pdraw2dgraphics->SetTransform(pmNew);
 
          character_count iSize = text.m_wstr.get_length();
 
-         status = pgraphics->DrawString(text.m_wstr, (INT)iSize, pfont, float_rectangle, &format, pbrush);
+         status = pdraw2dgraphics->DrawString(text.m_wstr, (INT)iSize, pfont, float_rectangle, &format, pbrush);
 
          if (bMeasure)
          {
 
             Gdiplus::RectF box;
 
-            status = pgraphics->MeasureString(text.m_wstr, (INT)iSize, pfont, float_rectangle, &format, &box);
+            status = pdraw2dgraphics->MeasureString(text.m_wstr, (INT)iSize, pfont, float_rectangle, &format, &box);
 
             copy(&rectParam, &box);
 

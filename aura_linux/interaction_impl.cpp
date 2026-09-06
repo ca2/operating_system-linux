@@ -601,10 +601,10 @@
 //    }
 //
 //
-//    void interaction_impl::on_layout(::draw2d::graphics_pointer & pgraphics)
+//    void interaction_impl::on_layout(::draw2d::graphics_pointer & pdraw2dgraphics)
 //    {
 //
-//       ::windowing::window::on_layout(pgraphics);
+//       ::windowing::window::on_layout(pdraw2dgraphics);
 //
 //    }
 //
@@ -1926,7 +1926,7 @@
 // //   void interaction_impl::_001OnDeferPaintLayeredWindowBackground(::image::image *pimage)
 // //   {
 // //
-// //      _001DeferPaintLayeredWindowBackground(pgraphics);
+// //      _001DeferPaintLayeredWindowBackground(pdraw2dgraphics);
 // //
 // //   }
 //
@@ -1985,7 +1985,7 @@
 // //      m_puserinteraction->rectangle(rectClient);
 // //
 // //
-// //      //pgraphics->FillSolidRect(rectClient, 0x00000000);
+// //      //pdraw2dgraphics->FillSolidRect(rectClient, 0x00000000);
 // //
 // //      //return;
 // //      ::i32_rectangle rectUpdate;
@@ -2566,7 +2566,7 @@
 // //      if(pimage->is_null())
 // //         return false;
 // //
-// //      /*      cairo_t * pcairo = (cairo_t *) pgraphics->get_os_data();
+// //      /*      cairo_t * pcairo = (cairo_t *) pdraw2dgraphics->get_os_data();
 // //
 // //            cairo_surface_t * psurface = cairo_get_target(pcairo);
 // //      	if(pcairo ==  g_cairo)
@@ -2582,14 +2582,14 @@
 // //         printf("123");
 // //      }      cairo_surface_destroy(psurface);*/
 // //
-// ////      if(((Gdiplus::Graphics *)(dynamic_cast<::linux::graphics * >(pgraphics))->get_handle()) == nullptr)
+// ////      if(((Gdiplus::Graphics *)(dynamic_cast<::linux::graphics * >(pdraw2dgraphics))->get_handle()) == nullptr)
 // //      //       return false;
 // //
-// //      //::ReleaseDC(get_handle(), (dynamic_cast < ::linux::graphics * > (pgraphics))->detach());
+// //      //::ReleaseDC(get_handle(), (dynamic_cast < ::linux::graphics * > (pdraw2dgraphics))->detach());
 // //
-// ////      (dynamic_cast<::linux::graphics * >(pgraphics))->m_hdc = nullptr;
+// ////      (dynamic_cast<::linux::graphics * >(pdraw2dgraphics))->m_hdc = nullptr;
 // //
-// ////      pgraphics->release();
+// ////      pdraw2dgraphics->release();
 // //
 // //      return true;
 // //
@@ -2819,13 +2819,13 @@
 // //   }
 //
 //
-// //   bool interaction_impl::DrawCaption(::draw2d::graphics_pointer & pgraphics, const i32_rectangle & prc, unsigned int uFlags)
+// //   bool interaction_impl::DrawCaption(::draw2d::graphics_pointer & pdraw2dgraphics, const i32_rectangle & prc, unsigned int uFlags)
 // //
 // //   {
 // //
 // //      throw ::not_implemented();
 // //      //ASSERT(::is_window((oswindow) get_handle()));
-// //      //return ::DrawCaption(get_handle(), (HDC)(dynamic_cast<::linux::graphics * >(pgraphics))->get_handle(), prc, uFlags) != false;
+// //      //return ::DrawCaption(get_handle(), (HDC)(dynamic_cast<::linux::graphics * >(pdraw2dgraphics))->get_handle(), prc, uFlags) != false;
 // //
 // //
 // //   }
@@ -3370,21 +3370,21 @@
 // //
 // //   }
 // //
-// //   void interaction_impl::Print(::draw2d::graphics_pointer & pgraphics, unsigned int dwFlags) const
+// //   void interaction_impl::Print(::draw2d::graphics_pointer & pdraw2dgraphics, unsigned int dwFlags) const
 // //   {
 // //
 // //      throw ::not_implemented();
 // ////      ASSERT(::is_window((oswindow) get_handle()));
-// ////      const_cast < interaction_impl * > (this)->send_message(WM_PRINT, (WPARAM)(dynamic_cast<::linux::graphics * >(pgraphics))->get_handle(), dwFlags);
+// ////      const_cast < interaction_impl * > (this)->send_message(WM_PRINT, (WPARAM)(dynamic_cast<::linux::graphics * >(pdraw2dgraphics))->get_handle(), dwFlags);
 // //
 // //   }
 // //
-// //   void interaction_impl::PrintClient(::draw2d::graphics_pointer & pgraphics, unsigned int dwFlags) const
+// //   void interaction_impl::PrintClient(::draw2d::graphics_pointer & pdraw2dgraphics, unsigned int dwFlags) const
 // //   {
 // //
 // //      throw ::not_implemented();
 // ////      ASSERT(::is_window((oswindow) get_handle()));
-// ////      const_cast < interaction_impl * > (this)->send_message(WM_PRINTCLIENT, (WPARAM)(dynamic_cast<::linux::graphics * >(pgraphics))->get_handle(), dwFlags);
+// ////      const_cast < interaction_impl * > (this)->send_message(WM_PRINTCLIENT, (WPARAM)(dynamic_cast<::linux::graphics * >(pdraw2dgraphics))->get_handle(), dwFlags);
 // //
 // //   }
 // //
@@ -3874,10 +3874,10 @@
 // //   }
 //
 //
-//    void interaction_impl::set_origin(::draw2d::graphics_pointer & pgraphics)
+//    void interaction_impl::set_origin(::draw2d::graphics_pointer & pdraw2dgraphics)
 //    {
 //
-//       pgraphics->set_origin(::int_point());
+//       pdraw2dgraphics->set_origin(::int_point());
 //
 //    }
 //

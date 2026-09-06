@@ -268,10 +268,10 @@ namespace draw2d_gdiplus
    }
 
 
-   ::e_status image::create(::draw2d::graphics * pgraphics)
+   ::e_status image::create(::draw2d::graphics * pdraw2dgraphics)
    {
 
-      ::draw2d::bitmap * pbitmap = (dynamic_cast<::draw2d_gdiplus::graphics *>(pgraphics))->get_current_bitmap();
+      ::draw2d::bitmap * pbitmap = (dynamic_cast<::draw2d_gdiplus::graphics *>(pdraw2dgraphics))->get_current_bitmap();
 
       if (pbitmap == nullptr)
       {
@@ -287,7 +287,7 @@ namespace draw2d_gdiplus
 
       }
 
-      copy(pgraphics->m_pimage);
+      copy(pdraw2dgraphics->m_pimage);
 
       return true;
 
@@ -308,20 +308,20 @@ namespace draw2d_gdiplus
    }
 
 
-   //bool image::to(::draw2d::graphics * pgraphics, const ::int_point & point, const ::int_size & size, const ::int_point & pointSrc)
+   //bool image::to(::draw2d::graphics * pdraw2dgraphics, const ::int_point & point, const ::int_size & size, const ::int_point & pointSrc)
    //{
 
-   //   return pgraphics->draw(point, size, get_graphics(), pointSrc);
+   //   return pdraw2dgraphics->draw(point, size, get_graphics(), pointSrc);
 
    //}
 
 
-   bool image::stretch(::draw2d::graphics * pgraphics)
+   bool image::stretch(::draw2d::graphics * pdraw2dgraphics)
    {
 
       ::draw2d::bitmap_pointer bitmap(get_app());
 
-      bitmap->CreateCompatibleBitmap(pgraphics, 1, 1);
+      bitmap->CreateCompatibleBitmap(pdraw2dgraphics, 1, 1);
 
       const ::int_size & size = bitmap->get_size();
 
@@ -332,15 +332,15 @@ namespace draw2d_gdiplus
 
       }
 
-      HDC hdc = __graphics(pgraphics)->get_hdc();
+      HDC hdc = __graphics(pdraw2dgraphics)->get_hdc();
 
       bool bOk = GetDIBits(hdc, (HBITMAP)bitmap->get_os_data(), 0, height(), m_pimage32Raw, nullptr, DIB_RGB_COLORS) != false;
 
       g()->set(bitmap);
 
-      __graphics(pgraphics)->release_hdc(hdc);
+      __graphics(pdraw2dgraphics)->release_hdc(hdc);
 
-      auto estatus = pgraphics->set(bitmap);
+      auto estatus = pdraw2dgraphics->set(bitmap);
 
       if (!estatus)
       {
@@ -655,7 +655,7 @@ namespace draw2d_gdiplus
    bool image::_load_thumbnail(const_char_pointer psz)
    {
 
-      ::Gdiplus::Graphics * pgraphics = (::Gdiplus::Graphics *)get_graphics()->get_os_data();
+      ::Gdiplus::Graphics * pdraw2dgraphics = (::Gdiplus::Graphics *)get_graphics()->get_os_data();
 
       wstring wstr(scopedstr);
 
@@ -665,7 +665,7 @@ namespace draw2d_gdiplus
       ap(::Gdiplus::Image) pthumbnail = (Gdiplus::Image *)image.GetThumbnailImage(width(), height(), nullptr, nullptr);
 
       // Draw the original and the thumbnail images.
-      pgraphics->DrawImage(pthumbnail, 0, 0, pthumbnail->GetWidth(), pthumbnail->GetHeight());
+      pdraw2dgraphics->DrawImage(pthumbnail, 0, 0, pthumbnail->GetWidth(), pthumbnail->GetHeight());
 
       return true;
 

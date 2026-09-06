@@ -36,11 +36,11 @@ namespace draw2d_gdiplus
    }
 
 
-   bool bitmap::CreateBitmap(::draw2d::graphics * pgraphics, int nWidth, int nHeight, UINT nPlanes, UINT nBitcount, const void * pBits, int stride)
+   bool bitmap::CreateBitmap(::draw2d::graphics * pdraw2dgraphics, int nWidth, int nHeight, UINT nPlanes, UINT nBitcount, const void * pBits, int stride)
 
    {
 
-      __UNREFERENCED_PARAMETER(pgraphics);
+      __UNREFERENCED_PARAMETER(pdraw2dgraphics);
 
       ::acme::del(m_pbitmap);
 
@@ -52,17 +52,17 @@ namespace draw2d_gdiplus
 
    }
 
-   bool bitmap::CreateBitmapIndirect(::draw2d::graphics * pgraphics, LPBITMAP pBitmap)
+   bool bitmap::CreateBitmapIndirect(::draw2d::graphics * pdraw2dgraphics, LPBITMAP pBitmap)
 
    {
 
-      __UNREFERENCED_PARAMETER(pgraphics);
+      __UNREFERENCED_PARAMETER(pdraw2dgraphics);
 
       return false;
    }
 
 
-   bool bitmap::host_bitmap(::draw2d::graphics * pgraphics, const pixmap * ppixmap)
+   bool bitmap::host_bitmap(::draw2d::graphics * pdraw2dgraphics, const pixmap * ppixmap)
    {
 
       if (ppixmap->m_size == m_size)
@@ -72,7 +72,7 @@ namespace draw2d_gdiplus
 
       }
 
-      __UNREFERENCED_PARAMETER(pgraphics);
+      __UNREFERENCED_PARAMETER(pdraw2dgraphics);
 
       ::acme::del(m_pbitmap);
 
@@ -103,7 +103,7 @@ namespace draw2d_gdiplus
    }
 
 
-   bool bitmap::create_bitmap(::draw2d::graphics * pgraphics, const ::int_size & size, void **ppvBits, int * stride)
+   bool bitmap::create_bitmap(::draw2d::graphics * pdraw2dgraphics, const ::int_size & size, void **ppvBits, int * stride)
    {
 
       if (size == m_size)
@@ -125,7 +125,7 @@ namespace draw2d_gdiplus
 
       const BITMAPINFO * pbmi = &info;
 
-      __UNREFERENCED_PARAMETER(pgraphics);
+      __UNREFERENCED_PARAMETER(pdraw2dgraphics);
 
       ::acme::del(m_pbitmap);
 
@@ -172,7 +172,7 @@ namespace draw2d_gdiplus
    }
 
 
-   bool bitmap::CreateDIBitmap(::draw2d::graphics * pgraphics, int cx, int cy, unsigned int flInit, const void *pjBits, UINT iUsage)
+   bool bitmap::CreateDIBitmap(::draw2d::graphics * pdraw2dgraphics, int cx, int cy, unsigned int flInit, const void *pjBits, UINT iUsage)
    {
       return false;
    }
@@ -243,7 +243,7 @@ namespace draw2d_gdiplus
       //return attach(::LoadBitmap(nullptr, MAKEINTRESOURCE(nIDBitmap)));
       return false;
    }
-   bool bitmap::CreateCompatibleBitmap(::draw2d::graphics * pgraphics, int nWidth, int nHeight)
+   bool bitmap::CreateCompatibleBitmap(::draw2d::graphics * pdraw2dgraphics, int nWidth, int nHeight)
    {
 
       ::acme::del(m_pbitmap);
@@ -255,7 +255,7 @@ namespace draw2d_gdiplus
       return true;
 
    }
-   bool bitmap::CreateDiscardableBitmap(::draw2d::graphics * pgraphics, int nWidth, int nHeight)
+   bool bitmap::CreateDiscardableBitmap(::draw2d::graphics * pdraw2dgraphics, int nWidth, int nHeight)
    {
 
       ::acme::del(m_pbitmap);
