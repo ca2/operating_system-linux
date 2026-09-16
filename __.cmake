@@ -4,4 +4,4 @@
 include(source/app/__operating_system_node_posix.cmake)
 
 
-
+set(USE_PORT_FLUIDSYNTH FALSE)
