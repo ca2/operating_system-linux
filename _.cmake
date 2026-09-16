@@ -676,10 +676,8 @@ if(${DESKTOP_AMBIENT})
          )
 
          if(NOT ${DEBIAN} AND NOT ${SUSE} AND NOT ${DEBIAN_LIKE})
-            list(APPEND kf6_component_list
-               PlasmaQuick
-
-            )
+            # Plasma 6 is a standalone package, not a KDE Frameworks component.
+            find_package(PlasmaQuick CONFIG REQUIRED)
 
          endif()
 
