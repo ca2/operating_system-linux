@@ -202,8 +202,8 @@ void debug_break();
 
 
 typedef char16_t					wd16_character;
-typedef wchar_t               wd32_character;
-typedef wd32_character        wide_character;
+typedef char32_t              wd32_character;
+typedef wchar_t               wide_character;
 
 #define DECL_C
 

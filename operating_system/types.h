@@ -20,7 +20,7 @@ typedef long double f128;
 
 typedef char            ansi_character;
 typedef char16_t        wd16_character;
-typedef wchar_t         wd32_character;
+typedef char32_t        wd32_character;
 typedef wchar_t         wide_character;
 
 
