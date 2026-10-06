@@ -2,7 +2,7 @@
 #include "node.h"
 
 
-__FACTORY_EXPORT void aura_linux_factory(::factory::factory * pfactory);
+__FACTORY_EXPORT void node_linux_factory(::factory::factory * pfactory);
 
 
 __FACTORY_EXPORT void node_x11_factory(::factory::factory * pfactory);
@@ -12,7 +12,7 @@ __FACTORY_EXPORT void operating_ambient_x11_factory(::factory::factory * pfactor
 {
 
 
-   aura_linux_factory(pfactory);
+   node_linux_factory(pfactory);
 
    node_x11_factory(pfactory);
 

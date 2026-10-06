@@ -8,7 +8,7 @@
 #pragma once
 
 
-#include "aura_linux/node.h"
+#include "node_linux/node.h"
 #include "node_gtk3/node.h"
 
 
@@ -17,7 +17,7 @@ namespace operating_ambient_gtk3
 
 
    class CLASS_DECL_OPERATING_AMBIENT_GTK3 node :
-      virtual public ::aura_linux::node,
+      virtual public ::node_linux::node,
       virtual public ::node_gtk3::node
    {
    public:

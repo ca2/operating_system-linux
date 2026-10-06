@@ -52,6 +52,7 @@ list(APPEND library_references
         #node_gdk
         node_gtk3
         #node_xfce
+   node_linux
 )
 
 

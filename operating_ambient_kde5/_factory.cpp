@@ -2,7 +2,7 @@
 #include "node.h"
 
 
-__FACTORY_EXPORT void aura_linux_factory(::factory::factory * pfactory);
+__FACTORY_EXPORT void node_linux_factory(::factory::factory * pfactory);
 
 
 __FACTORY_EXPORT void node_kde5_factory(::factory::factory * pfactory);
@@ -11,7 +11,7 @@ __FACTORY_EXPORT void node_kde5_factory(::factory::factory * pfactory);
 __FACTORY_EXPORT void operating_ambient_kde5_factory(::factory::factory * pfactory)
 {
 
-   aura_linux_factory(pfactory);
+   node_linux_factory(pfactory);
 
    node_kde5_factory(pfactory);
 

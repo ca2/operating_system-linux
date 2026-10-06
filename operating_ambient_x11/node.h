@@ -8,7 +8,7 @@
 #pragma once
 
 
-#include "aura_linux/node.h"
+#include "node_linux/node.h"
 #include "node_x11/node.h"
 
 
@@ -17,7 +17,7 @@ namespace operating_ambient_x11
 
 
    class CLASS_DECL_OPERATING_AMBIENT_X11 node :
-      virtual public ::aura_linux::node,
+      virtual public ::node_linux::node,
       virtual public ::node_x11::node
    {
    public:

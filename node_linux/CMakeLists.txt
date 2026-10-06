@@ -6,6 +6,8 @@ list(APPEND library_source
     _.cpp
     _.h
     _factory.cpp
+   node.cpp
+   node.h
     )
 
 

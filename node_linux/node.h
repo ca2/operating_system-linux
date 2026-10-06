@@ -8,17 +8,15 @@
 #pragma once
 
 
-#include "apex_linux/node.h"
-#include "aura_posix/node.h"
+#include "aura_linux/node.h"
 
 
-namespace aura_linux
+namespace node_linux
 {
 
 
    class CLASS_DECL_AURA_LINUX node :
-      virtual public ::apex_linux::node,
-      virtual public ::aura_posix::node
+      virtual public ::aura_linux::node
    {
    public:
 

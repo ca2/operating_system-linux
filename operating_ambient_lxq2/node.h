@@ -8,7 +8,7 @@
 #pragma once
 
 
-#include "aura_linux/node.h"
+#include "node_linux/node.h"
 #include "node_lxq2/node.h"
 
 
@@ -17,7 +17,7 @@ namespace operating_ambient_lxq2
 
 
    class CLASS_DECL_OPERATING_AMBIENT_LXQ2 node :
-      virtual public ::aura_linux::node,
+      virtual public ::node_linux::node,
       virtual public ::node_lxq2::node
    {
    public:
