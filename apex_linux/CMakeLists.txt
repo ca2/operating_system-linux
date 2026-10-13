@@ -62,11 +62,11 @@ set_target_properties(apex_linux PROPERTIES LINKER_LANGUAGE CXX)
 if(${WIN32})
 
 
-    target_compile_options(apex_linux PRIVATE "/MD$<$<CONFIG:Debug>:d>")
-    target_link_options(apex_linux PRIVATE "/DEFAULTLIB:msvcrt$<$<CONFIG:Debug>:d>")
-    target_link_options(apex_linux PRIVATE "/IMPLIB:${LIBRARY_OUTPUT_PATH}/apex_linux.lib")
-    target_link_options(apex_linux PRIVATE "/DEF:${CMAKE_CURRENT_SOURCE_DIR}/apex_linux.def")
-    target_link_libraries(apex_linux PRIVATE acme apex aqua aura Gdiplus)
+    target_compile_options(${PROJECT_NAME} PRIVATE "/MD$<$<CONFIG:Debug>:d>")
+    target_link_options(${PROJECT_NAME} PRIVATE "/DEFAULTLIB:msvcrt$<$<CONFIG:Debug>:d>")
+    target_link_options(${PROJECT_NAME} PRIVATE "/IMPLIB:${LIBRARY_OUTPUT_PATH}/${PROJECT_NAME}.lib")
+    target_link_options(${PROJECT_NAME} PRIVATE "/DEF:${CMAKE_CURRENT_SOURCE_DIR}/${PROJECT_NAME}.def")
+    target_link_libraries(${PROJECT_NAME} PRIVATE acme apex aqua aura Gdiplus)
 
 
 elseif (${LINUX})

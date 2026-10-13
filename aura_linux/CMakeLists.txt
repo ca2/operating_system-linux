@@ -53,11 +53,11 @@ set_target_properties(aura_linux PROPERTIES LINKER_LANGUAGE CXX)
 if(${WIN32})
 
 
-    target_compile_options(aura_linux PRIVATE "/MD$<$<CONFIG:Debug>:d>")
-    target_link_options(aura_linux PRIVATE "/DEFAULTLIB:msvcrt$<$<CONFIG:Debug>:d>")
-    target_link_options(aura_linux PRIVATE "/IMPLIB:${LIBRARY_OUTPUT_PATH}/aura_linux.lib")
-    target_link_options(aura_linux PRIVATE "/DEF:${CMAKE_CURRENT_SOURCE_DIR}/aura_linux.def")
-    target_link_libraries(aura_linux PRIVATE acme apex aqua aura Gdiplus)
+    target_compile_options(${PROJECT_NAME} PRIVATE "/MD$<$<CONFIG:Debug>:d>")
+    target_link_options(${PROJECT_NAME} PRIVATE "/DEFAULTLIB:msvcrt$<$<CONFIG:Debug>:d>")
+    target_link_options(${PROJECT_NAME} PRIVATE "/IMPLIB:${LIBRARY_OUTPUT_PATH}/${PROJECT_NAME}.lib")
+    target_link_options(${PROJECT_NAME} PRIVATE "/DEF:${CMAKE_CURRENT_SOURCE_DIR}/${PROJECT_NAME}.def")
+    target_link_libraries(${PROJECT_NAME} PRIVATE acme apex aqua aura Gdiplus)
 
 
 elseif(${LINUX})
@@ -76,7 +76,7 @@ elseif(${LINUX})
     target_compile_options(static_${PROJECT_NAME} PRIVATE ${${PROJECT_NAME}_PKGCONFIG_CFLAGS})
     target_link_options(${PROJECT_NAME} PRIVATE ${${PROJECT_NAME}_PKGCONFIG_LDFLAGS})
     target_link_options(static_${PROJECT_NAME} PRIVATE ${${PROJECT_NAME}_PKGCONFIG_LDFLAGS})
-    #target_link_options(video_input_video_for_linux PRIVATE -Wl,-rpath=$ORIGIN)
+    #target_link_options(${PROJECT_NAME} PRIVATE -Wl,-rpath=$ORIGIN)
     #target_link_libraries(${PROJECT_NAME} PRIVATE ${library_references})
 
     target_link_libraries(${PROJECT_NAME} PRIVATE ${library_references} ${${PROJECT_NAME}_PKGCONFIG_LIBRARIES})

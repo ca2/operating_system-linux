@@ -44,11 +44,11 @@ set_target_properties(node_linux PROPERTIES LINKER_LANGUAGE CXX)
 if(${WIN32})
 
 
-    target_compile_options(node_linux PRIVATE "/MD$<$<CONFIG:Debug>:d>")
-    target_link_options(node_linux PRIVATE "/DEFAULTLIB:msvcrt$<$<CONFIG:Debug>:d>")
-    target_link_options(node_linux PRIVATE "/IMPLIB:${LIBRARY_OUTPUT_PATH}/node_linux.lib")
-    target_link_options(node_linux PRIVATE "/DEF:${CMAKE_CURRENT_SOURCE_DIR}/node_linux.def")
-    target_link_libraries(node_linux PRIVATE ${library_references})
+    target_compile_options(${PROJECT_NAME} PRIVATE "/MD$<$<CONFIG:Debug>:d>")
+    target_link_options(${PROJECT_NAME} PRIVATE "/DEFAULTLIB:msvcrt$<$<CONFIG:Debug>:d>")
+    target_link_options(${PROJECT_NAME} PRIVATE "/IMPLIB:${LIBRARY_OUTPUT_PATH}/${PROJECT_NAME}.lib")
+    target_link_options(${PROJECT_NAME} PRIVATE "/DEF:${CMAKE_CURRENT_SOURCE_DIR}/${PROJECT_NAME}.def")
+    target_link_libraries(${PROJECT_NAME} PRIVATE ${library_references})
 
 
 elseif(${LINUX})
