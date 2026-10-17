@@ -1,0 +1,2 @@
+#define default_operating_ambient operating_ambient_gtk_based
+
