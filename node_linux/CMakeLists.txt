@@ -93,20 +93,20 @@ elseif(${LINUX})
 endif()
 
 
-add_dependencies(${PROJECT_NAME} ${default_operating_ambient})
+#add_dependencies(${PROJECT_NAME} ${default_operating_ambient})
 
 
-if(${HAS_GTK4})
-    add_dependencies(${PROJECT_NAME} node_gtk4)
-elseif (${HAS_GTK3})
-    add_dependencies(${PROJECT_NAME} node_gtk3)
-elseif (${HAS_KDE5})
-    add_dependencies(${PROJECT_NAME} node_kde5)
-elseif (${HAS_KDE6})
-    add_dependencies(${PROJECT_NAME} node_kde6)
-elseif (${HAS_LXQ2})
-    add_dependencies(${PROJECT_NAME} node_lxq2)
-endif()
+#if(${HAS_GTK4})
+#    add_dependencies(${PROJECT_NAME} node_gtk4)
+#elseif (${HAS_GTK3})
+#    add_dependencies(${PROJECT_NAME} node_gtk3)
+#elseif (${HAS_KDE5})
+#    add_dependencies(${PROJECT_NAME} node_kde5)
+#elseif (${HAS_KDE6})
+#    add_dependencies(${PROJECT_NAME} node_kde6)
+#elseif (${HAS_LXQ2})
+#    add_dependencies(${PROJECT_NAME} node_lxq2)
+#endif()
 
 
 list(APPEND library_include_directories ${CMAKE_CURRENT_SOURCE_DIR})
