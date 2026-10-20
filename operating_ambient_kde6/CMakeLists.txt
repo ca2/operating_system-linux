@@ -25,6 +25,7 @@ list(APPEND library_references
    aura
    aura_posix
    aura_linux
+   node_linux
    #windowing_x11
     #    node_gdk
    #node_gtk_based
