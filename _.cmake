@@ -229,7 +229,7 @@ elseif (${__OPERATING_SYSTEM} STREQUAL "debian")
 
    message(STATUS "DEBIAN has been set TRUE")
 
-   set(APPINDICATOR_PKG_MODULE "appindicator3-0.1")
+   set(APPINDICATOR_PKG_MODULE "ayatana-appindicator3")
 
    set(MPG123_PKG_MODULE "libmpg123")
 
