@@ -132,12 +132,6 @@
 		<Unit filename="/home/camilo/solution/basis/operating_system/operating_system-linux/desktop_environment_gnome/platform.h">
 			<Option target="desktop_environment_gnome"/>
 		</Unit>
-		<Unit filename="/home/camilo/solution/basis/operating_system/operating_system-linux/desktop_environment_gnome/node.cpp">
-			<Option target="desktop_environment_gnome"/>
-		</Unit>
-		<Unit filename="/home/camilo/solution/basis/operating_system/operating_system-linux/desktop_environment_gnome/node.h">
-			<Option target="desktop_environment_gnome"/>
-		</Unit>
 		<Unit filename="/home/camilo/solution/basis/CMakeLists.txt">
 			<Option virtualFolder="CMake Files\"/>
 		</Unit>

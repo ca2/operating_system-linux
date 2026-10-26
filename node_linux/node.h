@@ -15,7 +15,7 @@ namespace node_linux
 {
 
 
-   class CLASS_DECL_AURA_LINUX node :
+   class CLASS_DECL_NODE_LINUX node :
       virtual public ::aura_linux::node
    {
    public:
@@ -26,6 +26,10 @@ namespace node_linux
 
 
       void initialize(::particle * pparticle) override;
+
+      void on_start_system() override;
+
+      bool defer_windowing_post(const ::procedure & procedure) override;
 
 
       string get_user_name();

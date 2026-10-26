@@ -1,8 +1,4 @@
 #include "platform.h"
-#include "node.h"
-
-
-__FACTORY_EXPORT void node_linux_factory(::factory::factory * pfactory);
 
 
 __FACTORY_EXPORT void node_kde5_factory(::factory::factory * pfactory);
@@ -11,14 +7,7 @@ __FACTORY_EXPORT void node_kde5_factory(::factory::factory * pfactory);
 __FACTORY_EXPORT void operating_ambient_kde5_factory(::factory::factory * pfactory)
 {
 
-   node_linux_factory(pfactory);
-
+   // Register desktop services without replacing the operating-system node.
    node_kde5_factory(pfactory);
 
-   pfactory->add_factory_item < ::operating_ambient_kde5::node, ::platform::node > ();
-
-
 }
-
-
-

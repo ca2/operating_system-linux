@@ -2,7 +2,7 @@
 // Created by camilo on 19/01/2021. --<33ThomasBS!!
 //
 #include "platform.h"
-#include "node.h"
+#include "aaa_node.h"
 #include "acme/constant/id.h"
 #include "acme/platform/system.h"
 #include "apex/platform/system.h"
@@ -16,7 +16,7 @@ void gdk_branch(const ::procedure & procedure);
 //CLASS_DECL_ACME void set_main_user_itask(itask itask);
 
 
-namespace operating_ambient_lxq2
+namespace operating_ambient_gtk4
 {
 
 
@@ -62,7 +62,7 @@ namespace operating_ambient_lxq2
 
       ::aura_linux::node::initialize(pparticle);
 
-      ::node_lxq2::node::initialize(pparticle);
+      ::node_gtk4::node::initialize(pparticle);
 
    }
 
@@ -349,17 +349,7 @@ namespace operating_ambient_lxq2
 //   }
 
 
-
-void node::reboot()
-   {
-
-
-      ::node_lxq2::node::reboot();
-
-   }
-
-
-} // namespace operating_ambient_lxq2
+} // namespace operating_ambient_gtk4
 
 
 

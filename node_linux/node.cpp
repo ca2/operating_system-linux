@@ -1,5 +1,7 @@
 #include "platform.h"
 #include "node.h"
+#include "acme/platform/system.h"
+#include "acme/windowing/windowing.h"
 
 
 namespace node_linux
@@ -26,40 +28,25 @@ namespace node_linux
    void node::initialize(::particle * pparticle)
    {
 
-//         auto estatus = ::apex::linux::node::initialize(pparticle);
-
-      ::apex_linux::node::initialize(pparticle);
-
-      // if(!estatus)
-      // {
-      //
-      //    return estatus;
-      //
-      // }
-
-      //estatus = ::aura::posix::node::initialize(pparticle);
-
-      //::aura::posix::node::initialize(pparticle);
-
-      // if(!estatus)
-      // {
-      //
-      //    return estatus;
-      //
-      // }
-
-      //estatus = ::aura::node::initialize(pparticle);
-
       ::aura_linux::node::initialize(pparticle);
 
-      // if(!estatus)
-      // {
-      //
-      //    return estatus;
-      //
-      // }
-      //
-      // return estatus;
+   }
+
+
+   void node::on_start_system()
+   {
+
+      system()->acme_windowing()->windowing_application_on_system_start();
+
+   }
+
+
+   bool node::defer_windowing_post(const ::procedure & procedure)
+   {
+
+      system()->acme_windowing()->user_post(procedure);
+
+      return true;
 
    }
 

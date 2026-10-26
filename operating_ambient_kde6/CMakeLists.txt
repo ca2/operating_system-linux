@@ -9,8 +9,8 @@ list(APPEND library_source
    #_library.h
    platform.cpp
    platform.h
-   node.cpp
-   node.h
+   # aaa_node.cpp
+   # aaa_node.h
    )
 
 

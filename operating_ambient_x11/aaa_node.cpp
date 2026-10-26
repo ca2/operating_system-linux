@@ -2,7 +2,7 @@
 // Created by camilo on 19/01/2021. --<33ThomasBS!!
 //
 #include "platform.h"
-#include "node.h"
+#include "aaa_node.h"
 #include "acme/windowing/windowing.h"
 
 
@@ -40,7 +40,7 @@ namespace operating_ambient_x11
    ::e_status node::node_post(const ::procedure & procedure)
    {
 
-      system()->acme_windowing()->_user_post(procedure);
+      system()->acme_windowing()->user_post(procedure);
 
       return ::success;
 

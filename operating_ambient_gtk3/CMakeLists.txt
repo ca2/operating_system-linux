@@ -25,8 +25,8 @@ list(APPEND library_source
         #gtk_clipboard.cpp
         #monitor.cpp
         #monitor.h
-        node.cpp
-        node.h
+        # aaa_node.cpp
+        # aaa_node.h
         #notify_icon.cpp
         #windowing.cpp
         #windowing.h

@@ -8,8 +8,8 @@ list(APPEND library_source
         _factory.cpp
         platform.cpp
         platform.h
-        node.cpp
-        node.h
+        # aaa_node.cpp
+        # aaa_node.h
 )
 
 
@@ -27,6 +27,7 @@ list(APPEND library_references
     aura
     aura_posix
     aura_linux
+    node_linux
     windowing_x11
     node_x11
 )

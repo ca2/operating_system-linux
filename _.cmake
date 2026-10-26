@@ -485,7 +485,7 @@ link_directories(${CMAKE_CURRENT_SOURCE_DIR}/operating_system/storage-${OPERATIN
 #include_directories(${WORKSPACE_FOLDER}/source/app/include)
 #include_directories(${WORKSPACE_FOLDER}/source/include)
 #include_directories(${WORKSPACE_FOLDER}/port/_)
-#include_directories(${WORKSPACE_FOLDER}/port/include)
+include_directories(${WORKSPACE_FOLDER}/port/include)
 #include_directories(${WORKSPACE_FOLDER}/operating_system)
 if (OPERATING_SYSTEM_POSIX)
    include_directories(${WORKSPACE_FOLDER}/operating_system/operating_system-posix)
