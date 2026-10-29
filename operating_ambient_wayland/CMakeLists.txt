@@ -1,0 +1,5 @@
+cmake_minimum_required(VERSION 3.17)
+project(operating_ambient_wayland LANGUAGES CXX)
+add_library(operating_ambient_wayland SHARED factory.cpp)
+target_link_libraries(operating_ambient_wayland PRIVATE acme nano_graphics_cairo)
+target_link_options(operating_ambient_wayland PRIVATE -Wl,-z,defs -Wl,-rpath,\$ORIGIN)

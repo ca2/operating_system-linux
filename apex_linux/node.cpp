@@ -1,4 +1,5 @@
 #include "platform.h"
+#include "acme/operating_system/desktop_application_id.h"
 //#include "node/platform/node.h"
 #include "acme/filesystem/filesystem/directory_system.h"
 #include "acme/filesystem/filesystem/file_system.h"
@@ -209,9 +210,7 @@ namespace apex_linux
 
       ::string strDesktopFileName;
 
-      strDesktopFileName = papplication->m_strAppId;
-
-      strDesktopFileName.find_replace("/", ".");
+      strDesktopFileName = ::freedesktop::desktop_application_id(papplication->m_strAppId);
 
       pathShortcut = directory_system()->home() / ".local/share/applications" / (strDesktopFileName + ".desktop");
 
