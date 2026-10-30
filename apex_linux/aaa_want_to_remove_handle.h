@@ -158,7 +158,7 @@ public:
 
 
    fixed_alloc_no_sync     m_alloc;
-   ::pointer < ::mutex >                   m_pmutex;
+   ::pointer < ::parallelization::mutex >                   m_pmutex;
    void (* m_pfnConstructObject)(CT* pObject);
    void (* m_pfnDestructObject)(CT* pObject);
    map < HANDLE, HANDLE, CT *, CT *> m_permanentMap;
