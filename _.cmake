@@ -513,3 +513,8 @@ if("${APPINDICATOR_PKG_MODULE}" STREQUAL "")
 else ()
    message(STATUS "APPINDICATOR_PKG_MODULE is ${APPINDICATOR_PKG_MODULE}")
 endif()
+
+
+set(TOOL_BIN_APPLICATION_BUILD_HELPER_EXECUTABLE $ENV{HOME}/code/operating_system/tool/bin/${__TARGET_SYSTEM_ARCHITECTURE}/application_build_helper)
+set(TOOL_BIN_CODING_SETUP_EXECUTABLE $ENV{HOME}/code/operating_system/tool/bin/${__TARGET_SYSTEM_ARCHITECTURE}/coding_setup)
+set(TOOL_BIN_SPEAKER_EXECUTABLE $ENV{HOME}/code/operating_system/tool/bin/${__TARGET_SYSTEM_ARCHITECTURE}/speaker)
