@@ -15,12 +15,32 @@ This is a modern CEF SDK; older CEF application code may require API changes.
   including GTK3 for `cefclient`. See its `README.txt` and `CMakeLists.txt`.
 - Several GB of disk space for the SDK, build outputs, and staged runtimes.
 
+## Standalone CMake library project
+
+The `_tool/cefclient` directory also contains a standalone CMake project. It
+compiles the SDK's actual `libcef_dll_wrapper.a` library; the `cefclient` target
+builds that library. CEF's Chromium runtime remains prebuilt.
+The SDK is detected from the existing setup manifest or the `CEF_ROOT`
+environment variable, and can be selected explicitly with `-DCEF_ROOT=...`.
+
+```sh
+cmake -S operating_system/operating_system-linux/_tool/cefclient \
+  -B /tmp/cefclient-wrapper-release -G Ninja -DCMAKE_BUILD_TYPE=Release
+cmake --build /tmp/cefclient-wrapper-release --target cefclient -j 4
+cmake --install /tmp/cefclient-wrapper-release
+```
+
+Installation stages the wrapper, prebuilt runtime, resources, locales, and
+headers in the same storage layout as `setup.sh`. Override the destination
+with `-DCMAKE_INSTALL_PREFIX=/path/to/storage-linux`. For a Debug wrapper, use
+a separate build directory with `-DCMAKE_BUILD_TYPE=Debug`.
+
 ## Setup
 
 From the main workspace:
 
 ```sh
-./operating_system/operating_system-linux/tools/cefclient/setup.sh
+./operating_system/operating_system-linux/_tool/cefclient/setup.sh
 ```
 
 The default destination is the sibling `operating_system/storage-linux` under
@@ -62,8 +82,8 @@ sandbox setup described by CEF.
 ## Options and existing SDKs
 
 ```sh
-./operating_system/operating_system-linux/tools/cefclient/setup.sh --help
-./operating_system/operating_system-linux/tools/cefclient/setup.sh \
+./operating_system/operating_system-linux/_tool/cefclient/setup.sh --help
+./operating_system/operating_system-linux/_tool/cefclient/setup.sh \
   --sdk /path/to/cef_binary_VERSION_linux64 \
   --version VERSION \
   --storage-root /path/to/storage-linux \
@@ -80,7 +100,7 @@ The first run in this checkout reused the already verified SDK and Release
 wrapper from the standalone sample:
 
 ```sh
-./operating_system/operating_system-linux/tools/cefclient/setup.sh \
+./operating_system/operating_system-linux/_tool/cefclient/setup.sh \
   --sdk /home/camilo/code/cef-sample/cef_binary_156.0.26+g8ea0c73+chromium-156.0.8078.88_linux64 \
   --release-build-dir /home/camilo/code/cef-sample/build
 ```
@@ -104,9 +124,9 @@ On Linux, `source/app-core/cefclient/CMakeLists.txt` now routes to
 macros without loading the SDK. The Linux target instead uses the complete
 sample shipped with the selected SDK, preserving its source unchanged.
 It builds in an isolated CMake project under the main build tree, using the
-staged `libcef.so`, static wrapper, and runtime resources. This is the upstream
-sample; the older Windows-oriented embedded framework application is not
-ported or compiled by this target.
+staged `libcef.so`, static wrapper, and runtime resources. This `cefclient` target remains the upstream sample. The separate
+`app_core_cefclient` and `_app_core_cefclient` targets build the shared framework
+application, using the dependency defined in this tool directory.
 
 ```sh
 cmake -S . -B cmake-build-release
@@ -141,3 +161,35 @@ build that performed no compilation or SDK setup. Its deployed executable loaded
 a local test page with sandboxing enabled; process maps confirmed that its own
 deployed `libcef.so` was loaded. Main Release configuration and the Store dry-run
 build plan also passed; Store's full compilation was not run.
+
+## Shared framework application
+
+`dependency.cmake` owns `cef_prebuilt_setup` and the imported
+`ca2_cef_runtime` / `ca2_cef_wrapper` library targets. The application consumes
+these libraries instead of defining its own SDK setup. The Linux application
+CMake file is `source/app-core/cefclient/linux-application.cmake`.
+
+```sh
+cmake --build cmake-build-debug --target app_core_cefclient -j 4
+cmake --build cmake-build-debug --target _app_core_cefclient -j 4
+cd cmake-build-debug/output
+./_app_core_cefclient
+```
+
+The executable depends on a small `cefclient_subprocess` helper to dispatch
+Chromium renderer/GPU/utility processes without starting the framework. Runtime
+resources are deployed beside the executable. Linux uses CEF's multithreaded
+message loop, a user cache directory, and the host's GTK major version. The
+executable loads CEF before libc to support Chromium's libc interceptors and
+shuts down CEF on the original main thread after framework shutdown.
+
+For local diagnostics, set `CA2_CEF_REMOTE_DEBUGGING_PORT` to a port from 1024
+through 65535. This avoids passing Chromium command-line flags to GTK's option
+parser.
+
+Validation: the standalone Release wrapper built and installed successfully.
+The shared application sources and entry point compiled and linked against the
+existing Debug framework libraries; the executable created its GTK window and
+an embedded CEF page, confirmed through the debugging endpoint. A full rebuild
+of the framework's pending dependencies was not completed. Keyboard/mouse
+interaction and normal window-close behavior have not been fully tested.
