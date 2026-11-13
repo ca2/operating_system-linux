@@ -770,6 +770,12 @@ namespace acme_linux
                psummary->m_strAmbient = "lxqt";
 
             }
+            else if (strLowerCaseCurrentDesktop.equals("mate"))
+            {
+
+               psummary->m_strAmbient = "mate";
+
+            }
             else if (strLowerCaseCurrentDesktop.equals("x-cinnamon"))
             {
                //      elif
