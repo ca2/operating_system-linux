@@ -19,7 +19,7 @@ if (NOT ${CMAKE_SYSTEM_NAME} STREQUAL "Linux")
 
 endif ()
 
-add_compile_options(-Wno-literal-suffix)
+add_compile_options("$<$<COMPILE_LANGUAGE:CXX>:-Wno-literal-suffix>")
 
 
 #list(APPEND CMAKE_PREFIX_PATH "/usr/lib/x86_64-linux-gnu/cmake")
@@ -273,7 +273,13 @@ elseif (${__OPERATING_SYSTEM} STREQUAL "linuxmint")
 
    set(UBUNTU_LIKE TRUE)
 
-   set(APPINDICATOR_PKG_MODULE "appindicator3-0.1")
+   if ($ENV{XDG_CURRENT_DESKTOP} STREQUAL "MATE")
+      set(APPINDICATOR_PKG_MODULE "ayatana-appindicator3-0.1")
+      add_compile_definitions(MATE_DESKTOP)
+   else()
+      set(APPINDICATOR_PKG_MODULE "appindicator3-0.1")
+      add_compile_definitions(CINNAMON_DESKTOP)
+   endif()
 
    message(STATUS "LINUX_MINT has been set TRUE")
 
