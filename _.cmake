@@ -273,6 +273,10 @@ elseif (${__OPERATING_SYSTEM} STREQUAL "linuxmint")
 
    set(UBUNTU_LIKE TRUE)
 
+   set(HAS_SYSTEM_UNAC TRUE)
+
+   set(USE_PORT_FREEIMAGE FALSE)
+
    if ($ENV{XDG_CURRENT_DESKTOP} STREQUAL "MATE")
       set(APPINDICATOR_PKG_MODULE "ayatana-appindicator3-0.1")
       add_compile_definitions(MATE_DESKTOP)
