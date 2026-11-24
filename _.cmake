@@ -529,6 +529,6 @@ else ()
 endif()
 
 
-set(TOOL_BIN_APPLICATION_BUILD_HELPER_EXECUTABLE $ENV{HOME}/code/operating_system/tool/bin/${__TARGET_SYSTEM_ARCHITECTURE}/application_build_helper)
-set(TOOL_BIN_CODING_SETUP_EXECUTABLE $ENV{HOME}/code/operating_system/tool/bin/${__TARGET_SYSTEM_ARCHITECTURE}/coding_setup)
-set(TOOL_BIN_SPEAKER_EXECUTABLE $ENV{HOME}/code/operating_system/tool/bin/${__TARGET_SYSTEM_ARCHITECTURE}/speaker)
+set(TOOL_BIN_APPLICATION_BUILD_HELPER_EXECUTABLE ${WORKSPACE_FOLDER}/operating_system/operating_system-${OPERATING_SYSTEM_NAME}/tool/bin/${__TARGET_SYSTEM_ARCHITECTURE}/application_build_helper)
+set(TOOL_BIN_CODING_SETUP_EXECUTABLE ${WORKSPACE_FOLDER}/operating_system/operating_system-${OPERATING_SYSTEM_NAME}/tool/bin/${__TARGET_SYSTEM_ARCHITECTURE}/coding_setup)
+set(TOOL_BIN_SPEAKER_EXECUTABLE ${WORKSPACE_FOLDER}/operating_system/operating_system-${OPERATING_SYSTEM_NAME}/tool/bin/${__TARGET_SYSTEM_ARCHITECTURE}/speaker)
