@@ -231,7 +231,13 @@ elseif (${__OPERATING_SYSTEM} STREQUAL "debian")
 
    message(STATUS "DEBIAN has been set TRUE")
 
-   set(APPINDICATOR_PKG_MODULE "ayatana-appindicator3")
+
+    if ($ENV{XDG_CURRENT_DESKTOP} STREQUAL "XFCE")
+        set(APPINDICATOR_PKG_MODULE "ayatana-appindicator3-0.1")
+        add_compile_definitions(XFCE_DESKTOP)
+    else()
+        set(APPINDICATOR_PKG_MODULE "ayatana-appindicator3-0.1")
+    endif()
 
    set(MPG123_PKG_MODULE "libmpg123")
 
@@ -462,6 +468,8 @@ include("operating_system/operating_system-posix/_desktop_ambient_2.cmake")
 #    set(static_desktop_environment_pkgconfig ${static_desktop_environment_gnome_pkgconfig})
 #endif()
 #
+
+
 
 
 

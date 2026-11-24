@@ -1,0 +1,4 @@
+[submodule "tool"]
+	path = tool
+	url = ../linux-tool
+	branch = main
