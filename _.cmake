@@ -201,7 +201,7 @@ set(PLATFORM_NAME "linux")
 
 message(STATUS "__OPERATING_SYSTEM is ${__OPERATING_SYSTEM}")
 
-if (${__OPERATING_SYSTEM} STREQUAL "ubuntu")
+if ("${__OPERATING_SYSTEM}" STREQUAL "ubuntu")
 
    set(UBUNTU TRUE)
 
@@ -221,7 +221,7 @@ if (${__OPERATING_SYSTEM} STREQUAL "ubuntu")
 
    set(HAS_SYSTEM_UNAC TRUE)
 
-elseif (${__OPERATING_SYSTEM} STREQUAL "debian")
+elseif ("${__OPERATING_SYSTEM}" STREQUAL "debian")
 
    set(DEBIAN TRUE)
 
@@ -245,9 +245,9 @@ elseif (${__OPERATING_SYSTEM} STREQUAL "debian")
 
    set(HAS_SYSTEM_UNAC TRUE)
 
-elseif (${__OPERATING_SYSTEM} STREQUAL "opensuse-leap"
-   OR ${__OPERATING_SYSTEM} STREQUAL "opensuse-tumbleweed"
-   OR ${__OPERATING_SYSTEM} STREQUAL "opensuse")
+elseif ("${__OPERATING_SYSTEM}" STREQUAL "opensuse-leap"
+   OR "${__OPERATING_SYSTEM}" STREQUAL "opensuse-tumbleweed"
+   OR "${__OPERATING_SYSTEM}" STREQUAL "opensuse")
 
    set(SUSE TRUE)
 
@@ -259,7 +259,7 @@ elseif (${__OPERATING_SYSTEM} STREQUAL "opensuse-leap"
 
    set(MPG123_PKG_MODULE "libmpg123")
 
-elseif (${__OPERATING_SYSTEM} STREQUAL "fedora")
+elseif ("${__OPERATING_SYSTEM}" STREQUAL "fedora")
 
    set(FEDORA TRUE)
 
@@ -269,7 +269,7 @@ elseif (${__OPERATING_SYSTEM} STREQUAL "fedora")
 
    message(STATUS "FEDORA has been set TRUE")
 
-elseif (${__OPERATING_SYSTEM} STREQUAL "linuxmint")
+elseif ("${__OPERATING_SYSTEM}" STREQUAL "linuxmint")
 
    set(LINUXMINT TRUE)
 
@@ -321,8 +321,8 @@ elseif ("${__OPERATING_SYSTEM}" STREQUAL "raspbian")
 
    message(STATUS "RASPBERRYPIOS defined!!")
 
-elseif (${__OPERATING_SYSTEM} STREQUAL "manjaro"
-   OR ${__OPERATING_SYSTEM} STREQUAL "manjarolinux")
+elseif ("${__OPERATING_SYSTEM}" STREQUAL "manjaro"
+   OR "${__OPERATING_SYSTEM}" STREQUAL "manjarolinux")
 
    set(MANJARO TRUE)
 
